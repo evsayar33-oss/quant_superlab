@@ -754,3 +754,13 @@
   start: "2000-01-01"
   status: study
   note: "Walk-forward gradient boosting on all rule signals + Fibonacci position + regime features, long or long/short. 8 settings x 11 jobs = 88 trials. Owner target: CAGR >= 25% and longest recovery <= 600 days, in walk-forward OOS and the locked 2-year holdout."
+
+# ---- 2026-10-25: owner's video, options-implied expected-range reversion (config/volrange.yaml, pre-registered).
+- id: H077
+  strategy: volrange_reversion
+  universe: SPX (VIX), NDX (VXN), XAU (GVZ), BTC, ETH (Deribit DVOL)
+  timeframe: 1d
+  for_system: research_only
+  start: "1990-01-01"
+  status: study
+  note: "Buy below / sell above the options-implied expected range, exit back at the reference price. 48 settings x 5 assets = 240 trials. Locked last 2 years. Owner target CAGR >= 25%, recovery <= 600 days reported."

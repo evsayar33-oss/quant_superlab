@@ -1,0 +1,38 @@
+# H077 implied-volatility range reversion (lab/volrange.py). Pre-registered 2026-10-25 BEFORE any result.
+# Source: owner's video ("100% win rate quant strategy", @atraintrades): price outside the options-implied
+# expected range is expected to return inside it. 16 trades and a $0 average loss were shown; we test it on
+# decades of data, with and without a stop, and judge the worst trade and the recovery time, not the win rate.
+
+assets:                       # price (free) | implied vol index (free) | Bitget perp
+  SPX: {price: "yahoo:^GSPC", iv: "yahoo:^VIX", bitget: SPXUSDT}
+  NDX: {price: "yahoo:^NDX",  iv: "yahoo:^VXN", bitget: NDX100USDT}
+  XAU: {price: "yahoo:GLD",   iv: "yahoo:^GVZ", bitget: XAUUSDT}
+  BTC: {price: "binance_vision:BTCUSDT", iv: "deribit:BTC", bitget: BTCUSDT}
+  ETH: {price: "binance_vision:ETHUSDT", iv: "deribit:ETH", bitget: ETHUSDT}
+costs_from: config/assetbook.yaml   # Bitget commission + slippage + funding per asset
+
+# Expected move over n days at close t: EM = C_t * IV_t/100 * sqrt(n / D), D = 252 (stock/gold), 365 (crypto).
+# Band for bar t: reference R = close n bars ago; lower = R - k*EM(t-n), upper = R + k*EM(t-n).
+# Long entry: close_t < lower. Short entry (side both): close_t > upper. Fill at the next open.
+# Exit: target = R (back inside the range, the "mid"), checked on bar highs/lows; or max_hold bars at the close;
+# or the stop. One position at a time.
+grid:
+  k: [1.0, 1.5, 2.0]          # band width in expected-move units (ordered: plateau neighbours)
+  n: [1, 5]                   # daily band / weekly band (ordered)
+  max_hold: [5, 10]
+  stop: [none, em2]           # em2 = 2 x EM(t) beyond the entry price
+  side: [long, both]
+# 48 settings x 5 assets = 240 trials (DSR).
+
+holdout_years: 2
+discovery:                    # bars before the cut only; 2x = commission + slippage doubled
+  min_trades: 30
+  ret_2x_positive: true
+  min_profit_factor_2x: 1.20
+  thirds_positive_2x: true
+  plateau: 0.50               # one-step neighbours in k and n with PF_2x >= 1.10
+  min_dsr: 0.95
+holdout: {ret_2x_positive: true, min_profit_factor_2x: 1.10, min_trades: 8}
+owner_target: {min_cagr: 0.25, max_recovery_days: 600}   # reported for every setting (discovery and holdout)
+# Always reported: trades, win rate, breakeven win rate, worst single trade, longest recovery.
+# A setting passing discovery + holdout is a LEAD for the decision gate (new id), nothing more.
