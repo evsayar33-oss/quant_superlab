@@ -42,3 +42,4 @@
 - 2026-10-25: H076 learned per-asset model pre-registered (config/mlbook.yaml) BEFORE any result. Owner target written in: CAGR >= 25%, longest recovery <= 600 days. 88 trials. scikit-learn added (free). validation.GATE unchanged.
 - 2026-10-25: H076 run read: 0 of 88 settings meet the owner's target (CAGR >= 25%, recovery <= 600 days) in both the walk-forward OOS and the locked holdout; 0 leads. Long/short settings were worse than long-only on almost every job.
 - 2026-10-25: H077 implied-volatility range reversion pre-registered (config/volrange.yaml) BEFORE any result: 240 trials, D-checks + locked 2-year holdout + DSR >= 0.95. validation.GATE unchanged.
+- 2026-10-25: H077 run read: 0 of 240 settings pass; no setting shows a 100% win rate over >= 10 trades; best settings win 50-60% with worst single trades of -11% (indices) to -30% (crypto); 0 meet the owner's target.
