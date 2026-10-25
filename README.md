@@ -6,7 +6,7 @@ Bu repo üç projeyi birleştirir:
 |---|---|---|
 | `/` (kök: `lab/`, `config/`, `hypotheses/`, `decisions/`, `run.py`) | [quant_lab](https://github.com/evsayar33-oss/quant_lab) | **Karar merkezi.** 68 kural, 47 ağırlık stratejisi, 60+ indikatör, karar kapısı, arena, zaman makinesi, sentez (H072), varlık kitabı (H073), çekirdek kural (H074), öğrenen model (H076). |
 | `ict/` | [islem_onerisi_alarmi](https://github.com/evsayar33-oss/islem_onerisi_alarmi) | **ICT/SMC laboratuvarı.** FVG, OB, BB, MB, RB, PB, VB blokları, çoklu zaman dilimi konfluens, kilitli 2 yıl, Stage A–D. |
-| `terminal/` | [OpenTerminal](https://github.com/ErTasselli/OpenTerminal) (MIT) | **Veri terminali.** Ücretsiz veri sağlayıcıları, grafik, tarayıcı, makro, takvim. Yeni: `/api/lab` lab kararlarını gösterir. |
+| `terminal/` | [OpenTerminal](https://github.com/ErTasselli/OpenTerminal) (MIT) | **Veri terminali.** Ücretsiz veri sağlayıcıları, grafik, tarayıcı, makro, takvim. Yeni: `/api/lab` ve "RESEARCH LAB" paneli lab kararlarını ve raporlarını gösterir. |
 | `bots/core3_bot/` | bu çalışma | Bitget spot botu (H054 kuralı; SOL için H075 bekleniyor). |
 
 Sonuçlar ve dürüst özet: [`SENTEZ_RAPORU.md`](SENTEZ_RAPORU.md), [`VARLIK_STRATEJI_KITABI.md`](VARLIK_STRATEJI_KITABI.md).
