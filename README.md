@@ -9,7 +9,7 @@ Bu repo üç projeyi birleştirir:
 | `terminal/` | [OpenTerminal](https://github.com/ErTasselli/OpenTerminal) (MIT) | **Veri terminali.** Ücretsiz veri sağlayıcıları, grafik, tarayıcı, makro, takvim. Yeni: `/api/lab` ve "RESEARCH LAB" paneli lab kararlarını ve raporlarını gösterir. |
 | `bots/core3_bot/` | bu çalışma | Bitget spot botu (H054 kuralı; SOL için H075 bekleniyor). |
 
-Sonuçlar ve dürüst özet: [`SENTEZ_RAPORU.md`](SENTEZ_RAPORU.md), [`VARLIK_STRATEJI_KITABI.md`](VARLIK_STRATEJI_KITABI.md).
+İşlem ve para yönetimi kuralları: [`docs/ISLEM_KURALLARI.md`](docs/ISLEM_KURALLARI.md). Sonuçlar ve dürüst özet: [`SENTEZ_RAPORU.md`](SENTEZ_RAPORU.md), [`VARLIK_STRATEJI_KITABI.md`](VARLIK_STRATEJI_KITABI.md).
 Bugüne kadar karar kapısından geçen tek kural ailesi: H052/H054 (BTC+ETH trend + oynaklık hedefi).
 
 ## Zorunlu test sırası
