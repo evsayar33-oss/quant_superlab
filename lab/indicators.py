@@ -368,6 +368,13 @@ def rolling_vwap(h, l, c, v, n=20) -> DF:
     return (tp * v).rolling(n).sum() / v.rolling(n).sum().replace(0, np.nan)
 
 
+def session_vwap(h, l, c, v, session) -> DF:
+    """VWAP anchored at each session start; `session` labels the bars of one session (e.g. the date)."""
+    tp = (h + l + c) / 3
+    pv = (tp * v).groupby(session).cumsum()
+    return pv / v.groupby(session).cumsum().replace(0, np.nan)
+
+
 def rel_volume(v, n=20) -> DF:
     return v / sma(v, n).shift(1)
 

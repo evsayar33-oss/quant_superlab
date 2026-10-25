@@ -1,0 +1,27 @@
+# H078 9 EMA x session VWAP cross, intraday (lab/emavwap.py). Pre-registered 2026-10-25 BEFORE any result.
+# Source: owner's video (FiFi Trades, "9EMA/VWAP X" indicator, SLV 3m): enter when the 9 EMA crosses the VWAP
+# (candle breaks through VWAP), exit on 3m (red exit triangles), only crosses inside the 09:30-16:00 session.
+# The video shows one hand-picked trade and no statistics.
+
+# Rules (signals at bar close t, fill at open t+1, all flat at the last bar of the session):
+#   VWAP = session-anchored sum(typical*vol)/sum(vol) (US: 09:30 ET; crypto: 00:00 UTC day).
+#   Long entry: EMA crosses above VWAP. Short entry (side both): EMA crosses below VWAP.
+#   exit cross: opposite cross. exit ema: close back below (long) / above (short) the EMA.
+stocks: [SLV, GLD, SPY, QQQ, TSLA, NVDA]       # yahoo, free; 3m = 1m resampled (last ~30 days only)
+stock_tfs: [3m, 5m, 15m, 60m]                  # 5m/15m: last 60 days; 60m: last 2 years (yahoo limits)
+crypto: [BTCUSDT, ETHUSDT]                      # binance vision 3m klines, free, from crypto_start
+crypto_tfs: [3m, 15m, 60m]
+crypto_start: "2023-01"
+cost_bps_side: {stock: 3, crypto: 8}            # commission + slippage per side; 2x run doubles it
+grid:
+  ema: [7, 9, 12]
+  exit: [cross, ema]
+  side: [long, both]
+# 12 settings x (6x4 + 2x3) = 360 trials.
+
+acceptance:   # per (market, timeframe) cell, on the video setting (ema 9, exit cross, long) — written before results
+  min_trades: 30
+  pf_1x_min: 1.1
+  mean_2x_positive: true
+  both_halves_positive_1x: true
+  neighbours_positive_1x: true                  # ema 7 and 12, same exit/side

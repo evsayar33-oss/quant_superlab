@@ -764,3 +764,13 @@
   start: "1990-01-01"
   status: study
   note: "Buy below / sell above the options-implied expected range, exit back at the reference price. 48 settings x 5 assets = 240 trials. Locked last 2 years. Owner target CAGR >= 25%, recovery <= 600 days reported."
+
+# ---- 2026-10-25: owner's video, 9 EMA x session VWAP cross on 3m (config/emavwap.yaml, pre-registered).
+- id: H078
+  strategy: emavwap_cross
+  universe: SLV, GLD, SPY, QQQ, TSLA, NVDA (yahoo 3m/5m/15m/60m), BTC, ETH (binance 3m/15m/60m)
+  timeframe: 3m
+  for_system: research_only
+  start: "2023-01-01"
+  status: rejected
+  note: "Long when 9 EMA crosses above session VWAP, exit on opposite cross, flat at session end. 12 settings x 30 cells = 360 trials. Video setting passed 0/30 cells; 25/360 settings positive before cost x2, none stable in both halves + neighbours. Report docs/H078_EMAVWAP.md."
