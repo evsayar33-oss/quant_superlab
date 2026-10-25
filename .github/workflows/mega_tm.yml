@@ -1,0 +1,86 @@
+name: Mega screen H062 time machine (cuts 4, 3, 2 years ago)
+
+# H062: every rule x grid x R:R exit x side x filter (+ combos) on crypto, index futures, metals and
+# energy, with the SAME settings on every asset of a class. Last 2 years locked (holdout).
+# Thresholds: config/mega.yaml (pre-registered). Never writes decisions/registry.json.
+
+on:
+  workflow_dispatch:
+    inputs:
+      classes:
+        description: 'JSON list: ["crypto","indices","metals","energy"]'
+        required: false
+        default: '["crypto","indices","metals","energy"]'
+      sides:
+        description: 'JSON list: ["long","short","both"]'
+        required: false
+        default: '["long","short","both"]'
+      holdout_years:
+        description: 'JSON list of cuts in years ago'
+        required: false
+        default: '[4,3,2]'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: quant-lab-mega-tm
+  cancel-in-progress: false
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        cls: ${{ fromJSON(github.event.inputs.classes || '["crypto","indices","metals","energy"]') }}
+        side: ${{ fromJSON(github.event.inputs.sides || '["long","short","both"]') }}
+        hy: ${{ fromJSON(github.event.inputs.holdout_years || '[4,3,2]') }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: mega2-data-${{ matrix.cls }}-${{ github.run_id }}
+          restore-keys: |
+            mega2-data-${{ matrix.cls }}-
+            arena-data-1d-
+      - name: Screen one class / side
+        env:
+          LAB_CACHE_HOURS: "0"
+        run: python -m lab.mega job --cls ${{ matrix.cls }} --side ${{ matrix.side }} --holdout-years ${{ matrix.hy }} --out parts/${{ matrix.cls }}_${{ matrix.side }}_h${{ matrix.hy }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: megatm-${{ matrix.cls }}-${{ matrix.side }}-h${{ matrix.hy }}
+          retention-days: 30
+          path: parts/
+
+  aggregate:
+    needs: job
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: megatm-*
+          path: parts
+      - name: Time machine (selection at each cut, forward at 2x cost)
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python -m lab.mega tm --parts parts --out decisions/mega/timemachine.json --md decisions/mega/timemachine.md --telegram
+      - name: Commit
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add decisions/mega
+          git commit -m "H062 time machine $(date -u +%F)" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

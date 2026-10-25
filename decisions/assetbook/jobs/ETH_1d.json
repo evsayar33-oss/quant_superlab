@@ -1,0 +1,345 @@
+{
+ "asset": "ETH",
+ "tf": "1d",
+ "bitget": "ETHUSDT",
+ "data": "binance_vision:ETHUSDT",
+ "first_bar": "2017-08-17 00:00:00",
+ "last_bar": "2026-10-23 00:00:00",
+ "bars": 3355,
+ "n_trials": 2878,
+ "errors": 0,
+ "error_sample": {},
+ "cuts": {
+  "6y": {
+   "cut": "2020-10-23",
+   "fwd_end": "2022-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2878,
+    "D1-D3": 38,
+    "D4": 38,
+    "D5": 24,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0961,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"cfg\": [0.02, 0.2]}, \"rule\": \"psar_flip\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.224,
+     "dsr": 0.126,
+     "disc": {
+      "trades": 41,
+      "ret2": 4.4706,
+      "pf2": 2.023,
+      "wr2": 0.4878,
+      "be": 0.3201,
+      "sr": 1.2238,
+      "max_dd": -0.6199
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.137,
+     "dsr": 0.103,
+     "disc": {
+      "trades": 39,
+      "ret2": 3.6039,
+      "pf2": 2.241,
+      "wr2": 0.4103,
+      "be": 0.2369,
+      "sr": 1.1366,
+      "max_dd": -0.5359
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 15, \"signal\": 9}, \"rule\": \"trix_cross\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.137,
+     "dsr": 0.111,
+     "disc": {
+      "trades": 49,
+      "ret2": 6.0596,
+      "pf2": 2.431,
+      "wr2": 0.4286,
+      "be": 0.2358,
+      "sr": 1.1669,
+      "max_dd": -0.6456
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.021,
+     "dsr": 0.073,
+     "disc": {
+      "trades": 39,
+      "ret2": 3.0027,
+      "pf2": 2.06,
+      "wr2": 0.359,
+      "be": 0.2138,
+      "sr": 1.0209,
+      "max_dd": -0.6358
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.006,
+     "dsr": 0.127,
+     "disc": {
+      "trades": 39,
+      "ret2": 8.0169,
+      "pf2": 3.912,
+      "wr2": 0.3846,
+      "be": 0.1377,
+      "sr": 1.2076,
+      "max_dd": -0.5614
+     }
+    }
+   ]
+  },
+  "4y": {
+   "cut": "2022-10-23",
+   "fwd_end": "2024-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2878,
+    "D1-D3": 70,
+    "D4": 68,
+    "D5": 53,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0956,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.259,
+     "dsr": 0.14,
+     "disc": {
+      "trades": 61,
+      "ret2": 7.9826,
+      "pf2": 3.113,
+      "wr2": 0.5738,
+      "be": 0.3019,
+      "sr": 1.3939,
+      "max_dd": -0.2838
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.259,
+     "dsr": 0.14,
+     "disc": {
+      "trades": 61,
+      "ret2": 7.9826,
+      "pf2": 3.113,
+      "wr2": 0.5738,
+      "be": 0.3019,
+      "sr": 1.3939,
+      "max_dd": -0.2838
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.25,
+     "dsr": 0.096,
+     "disc": {
+      "trades": 31,
+      "ret2": 17.4581,
+      "pf2": 4.878,
+      "wr2": 0.6129,
+      "be": 0.245,
+      "sr": 1.2602,
+      "max_dd": -0.3878
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.164,
+     "dsr": 0.094,
+     "disc": {
+      "trades": 61,
+      "ret2": 6.4674,
+      "pf2": 3.006,
+      "wr2": 0.5902,
+      "be": 0.3239,
+      "sr": 1.2981,
+      "max_dd": -0.2838
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.164,
+     "dsr": 0.094,
+     "disc": {
+      "trades": 61,
+      "ret2": 6.4674,
+      "pf2": 3.006,
+      "wr2": 0.5902,
+      "be": 0.3239,
+      "sr": 1.2981,
+      "max_dd": -0.2838
+     }
+    }
+   ]
+  },
+  "2y": {
+   "cut": "2024-10-23",
+   "fwd_end": "2026-10-24",
+   "testable": true,
+   "holdout": true,
+   "funnel": {
+    "trials": 2878,
+    "D1-D3": 52,
+    "D4": 52,
+    "D5": 41,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.075,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.013,
+     "dsr": 0.172,
+     "disc": {
+      "trades": 44,
+      "ret2": 20.5082,
+      "pf2": 3.796,
+      "wr2": 0.5455,
+      "be": 0.2402,
+      "sr": 1.0846,
+      "max_dd": -0.3878
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.928,
+     "dsr": 0.1,
+     "disc": {
+      "trades": 142,
+      "ret2": 11.2615,
+      "pf2": 1.816,
+      "wr2": 0.3028,
+      "be": 0.1931,
+      "sr": 0.9605,
+      "max_dd": -0.5688
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.925,
+     "dsr": 0.174,
+     "disc": {
+      "trades": 121,
+      "ret2": 24.8102,
+      "pf2": 2.368,
+      "wr2": 0.2893,
+      "be": 0.1466,
+      "sr": 1.0889,
+      "max_dd": -0.5519
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.919,
+     "dsr": 0.133,
+     "disc": {
+      "trades": 55,
+      "ret2": 11.8058,
+      "pf2": 2.524,
+      "wr2": 0.4909,
+      "be": 0.2764,
+      "sr": 1.0144,
+      "max_dd": -0.3569
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.9,
+     "dsr": 0.074,
+     "disc": {
+      "trades": 94,
+      "ret2": 10.1621,
+      "pf2": 1.977,
+      "wr2": 0.3936,
+      "be": 0.2471,
+      "sr": 0.8998,
+      "max_dd": -0.6358
+     }
+    }
+   ]
+  }
+ },
+ "timemachine": {
+  "testable": [
+   "6y",
+   "4y",
+   "2y"
+  ],
+  "inside": 0,
+  "passed": false
+ },
+ "lead": false,
+ "fib_test": {
+  "disc": {
+   "pairs": 374,
+   "median_delta_pf": -0.032,
+   "share_improved": 0.382
+  },
+  "fwd": {
+   "pairs": 228,
+   "median_delta_pf": -0.09,
+   "share_improved": 0.211
+  },
+  "helps": false
+ },
+ "bh": {
+  "6y": 2.2109,
+  "4y": 0.9226,
+  "2y": -0.0543
+ }
+}

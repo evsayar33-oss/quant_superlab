@@ -1,0 +1,82 @@
+name: Protection study
+
+# Capital protection test on the ACTIVE arena members (no strategy search, no decisions written).
+# Runs by hand, and automatically after every monthly "Arena screen". Report -> results branch,
+# summary -> decisions/arena/<tf>/protection.json.
+
+on:
+  workflow_dispatch:
+    inputs:
+      timeframes:
+        description: 'JSON list: ["4h","1d"]'
+        required: false
+        default: '["4h","1d"]'
+  workflow_run:
+    workflows: ["Arena screen (monthly)"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quant-lab-arena
+  cancel-in-progress: false
+
+jobs:
+  protect:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        timeframe: ${{ fromJSON(github.event.inputs.timeframes || '["4h","1d"]') }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: arena-data-${{ matrix.timeframe }}-${{ github.run_id }}
+          restore-keys: |
+            arena-data-all-
+            arena-data-${{ matrix.timeframe }}-
+            arena-data-
+      - name: Protection study
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          LAB_CACHE_HOURS: "0"
+        run: python run.py --protect --timeframe ${{ matrix.timeframe }} --telegram
+      - name: Commit summary to main
+        run: bash scripts/commit_arena.sh "Protection study ${{ matrix.timeframe }} $(date -u +%F)" "${{ matrix.timeframe }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: protection-${{ matrix.timeframe }}
+          retention-days: 14
+          path: results/protection_*
+
+  publish:
+    needs: protect
+    if: always() && needs.protect.result != 'skipped'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: quant-lab-results
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/fetch_results.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: protection-*
+          path: _parts
+      - run: |
+          mkdir -p results
+          for d in _parts/*; do cp -r "$d"/. results/ 2>/dev/null || true; done
+          rm -rf _parts
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish_results.sh

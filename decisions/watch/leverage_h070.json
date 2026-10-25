@@ -1,0 +1,264 @@
+{
+ "date": "2026-10-21",
+ "ideas": {
+  "H070": {
+   "name": "Endeks IBS ortalamaya d\u00f6n\u00fc\u015f + VIX vade filtresi (long)",
+   "rows": {
+    "1x": {
+     "full": {
+      "final_1000": 3087.0,
+      "cagr": 0.0442,
+      "sharpe": 0.526,
+      "max_dd": -0.219,
+      "worst_day": -0.0513,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1560.0,
+       "cagr": 0.1181,
+       "sharpe": 1.112,
+       "max_dd": -0.0831,
+       "worst_day": -0.028,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1390.0,
+       "cagr": 0.1164,
+       "sharpe": 1.138,
+       "max_dd": -0.0831,
+       "worst_day": -0.028,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1253.0,
+       "cagr": 0.1197,
+       "sharpe": 1.128,
+       "max_dd": -0.0739,
+       "worst_day": -0.0247,
+       "ruined": false
+      }
+     }
+    },
+    "2x": {
+     "full": {
+      "final_1000": 7718.0,
+      "cagr": 0.0815,
+      "sharpe": 0.526,
+      "max_dd": -0.3978,
+      "worst_day": -0.1026,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2328.0,
+       "cagr": 0.2365,
+       "sharpe": 1.112,
+       "max_dd": -0.1618,
+       "worst_day": -0.056,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1873.0,
+       "cagr": 0.2338,
+       "sharpe": 1.138,
+       "max_dd": -0.1618,
+       "worst_day": -0.056,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1536.0,
+       "cagr": 0.24,
+       "sharpe": 1.128,
+       "max_dd": -0.1449,
+       "worst_day": -0.0494,
+       "ruined": false
+      }
+     }
+    },
+    "3x": {
+     "full": {
+      "final_1000": 15610.0,
+      "cagr": 0.1111,
+      "sharpe": 0.526,
+      "max_dd": -0.5419,
+      "worst_day": -0.154,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 3327.0,
+       "cagr": 0.3525,
+       "sharpe": 1.112,
+       "max_dd": -0.2361,
+       "worst_day": -0.0841,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2449.0,
+       "cagr": 0.3497,
+       "sharpe": 1.138,
+       "max_dd": -0.2361,
+       "worst_day": -0.0841,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1843.0,
+       "cagr": 0.3586,
+       "sharpe": 1.128,
+       "max_dd": -0.214,
+       "worst_day": -0.0741,
+       "ruined": false
+      }
+     }
+    },
+    "4x": {
+     "full": {
+      "final_1000": 25504.0,
+      "cagr": 0.1322,
+      "sharpe": 0.526,
+      "max_dd": -0.6564,
+      "worst_day": -0.2053,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 4555.0,
+       "cagr": 0.4636,
+       "sharpe": 1.112,
+       "max_dd": -0.306,
+       "worst_day": -0.1121,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 3108.0,
+       "cagr": 0.4616,
+       "sharpe": 1.138,
+       "max_dd": -0.306,
+       "worst_day": -0.1121,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 2164.0,
+       "cagr": 0.4726,
+       "sharpe": 1.128,
+       "max_dd": -0.2831,
+       "worst_day": -0.0988,
+       "ruined": false
+      }
+     }
+    },
+    "5x": {
+     "full": {
+      "final_1000": 33581.0,
+      "cagr": 0.1442,
+      "sharpe": 0.526,
+      "max_dd": -0.7485,
+      "worst_day": -0.2566,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 5974.0,
+       "cagr": 0.5668,
+       "sharpe": 1.112,
+       "max_dd": -0.3768,
+       "worst_day": -0.1401,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 3826.0,
+       "cagr": 0.5669,
+       "sharpe": 1.138,
+       "max_dd": -0.3768,
+       "worst_day": -0.1401,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 2488.0,
+       "cagr": 0.5793,
+       "sharpe": 1.128,
+       "max_dd": -0.35,
+       "worst_day": -0.1235,
+       "ruined": false
+      }
+     }
+    },
+    "vt": {
+     "full": {
+      "final_1000": 6112.0,
+      "cagr": 0.0719,
+      "sharpe": 0.443,
+      "max_dd": -0.5115,
+      "worst_day": -0.1324,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2012.0,
+       "cagr": 0.192,
+       "sharpe": 0.912,
+       "max_dd": -0.2174,
+       "worst_day": -0.0649,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1762.0,
+       "cagr": 0.2087,
+       "sharpe": 0.956,
+       "max_dd": -0.2174,
+       "worst_day": -0.0649,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1457.0,
+       "cagr": 0.2078,
+       "sharpe": 0.944,
+       "max_dd": -0.1465,
+       "worst_day": -0.0627,
+       "ruined": false
+      }
+     },
+     "avg_leverage": 3.08
+    }
+   },
+   "pick": 2,
+   "bh": {
+    "full": {
+     "final_1000": 4541.0,
+     "cagr": 0.0597,
+     "sharpe": 0.381,
+     "max_dd": -0.6434,
+     "worst_day": -0.112,
+     "ruined": false
+    },
+    "windows": {
+     "2022-10-21": {
+      "final_1000": 2121.0,
+      "cagr": 0.2079,
+      "sharpe": 1.217,
+      "max_dd": -0.1983,
+      "worst_day": -0.0536,
+      "ruined": false
+     },
+     "2023-10-21": {
+      "final_1000": 1857.0,
+      "cagr": 0.2303,
+      "sharpe": 1.303,
+      "max_dd": -0.1983,
+      "worst_day": -0.0536,
+      "ruined": false
+     },
+     "2024-10-21": {
+      "final_1000": 1378.0,
+      "cagr": 0.1742,
+      "sharpe": 0.974,
+      "max_dd": -0.1983,
+      "worst_day": -0.0536,
+      "ruined": false
+     }
+    }
+   }
+  }
+ }
+}

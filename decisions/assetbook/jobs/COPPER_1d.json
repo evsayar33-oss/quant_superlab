@@ -1,0 +1,133 @@
+{
+ "asset": "COPPER",
+ "tf": "1d",
+ "bitget": "COPPERUSDT",
+ "data": "yahoo:CPER",
+ "first_bar": "2011-11-15 00:00:00",
+ "last_bar": "2026-10-23 00:00:00",
+ "bars": 3756,
+ "n_trials": 2622,
+ "errors": 0,
+ "error_sample": {},
+ "cuts": {
+  "6y": {
+   "cut": "2020-10-23",
+   "fwd_end": "2022-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2622,
+    "D1-D3": 3,
+    "D4": 2,
+    "D5": 0,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0719,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": []
+  },
+  "4y": {
+   "cut": "2022-10-23",
+   "fwd_end": "2024-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2622,
+    "D1-D3": 6,
+    "D4": 1,
+    "D5": 1,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0634,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"both\", \"stop\": \"atr\", \"target\": \"swing\", \"trigger\": \"limit\", \"zone\": [0.786, 0.886]}",
+     "failed": "D6",
+     "plateau_score": 0.116,
+     "dsr": 0.006,
+     "disc": {
+      "trades": 34,
+      "ret2": 0.467,
+      "pf2": 1.734,
+      "wr2": 0.3824,
+      "be": 0.263,
+      "sr": 0.414,
+      "max_dd": -0.1395
+     }
+    }
+   ]
+  },
+  "2y": {
+   "cut": "2024-10-23",
+   "fwd_end": "2026-10-24",
+   "testable": true,
+   "holdout": true,
+   "funnel": {
+    "trials": 2622,
+    "D1-D3": 4,
+    "D4": 2,
+    "D5": 0,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.057,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": []
+  }
+ },
+ "timemachine": {
+  "testable": [
+   "6y",
+   "4y",
+   "2y"
+  ],
+  "inside": 0,
+  "passed": false
+ },
+ "lead": false,
+ "fib_test": {
+  "disc": {
+   "pairs": 399,
+   "median_delta_pf": 0.002,
+   "share_improved": 0.509
+  },
+  "fwd": {
+   "pairs": 193,
+   "median_delta_pf": 0.0,
+   "share_improved": 0.456
+  },
+  "helps": false
+ },
+ "bh": {
+  "6y": 0.0787,
+  "4y": 0.3312,
+  "2y": 0.435
+ }
+}

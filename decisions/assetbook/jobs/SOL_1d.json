@@ -1,0 +1,222 @@
+{
+ "asset": "SOL",
+ "tf": "1d",
+ "bitget": "SOLUSDT",
+ "data": "binance_vision:SOLUSDT",
+ "first_bar": "2020-08-11 00:00:00",
+ "last_bar": "2026-10-23 00:00:00",
+ "bars": 2265,
+ "n_trials": 2652,
+ "errors": 0,
+ "error_sample": {},
+ "cuts": {
+  "6y": {
+   "cut": "2020-10-23",
+   "fwd_end": "2022-10-23",
+   "testable": false,
+   "holdout": false,
+   "funnel": {
+    "trials": 2652,
+    "D1-D3": 0,
+    "D4": 0,
+    "D5": 0,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.4202,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": []
+  },
+  "4y": {
+   "cut": "2022-10-23",
+   "fwd_end": "2024-10-23",
+   "testable": false,
+   "holdout": false,
+   "funnel": {
+    "trials": 2652,
+    "D1-D3": 3,
+    "D4": 2,
+    "D5": 2,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.1471,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [5, 20]}, \"rule\": \"chaikin_osc\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 0.974,
+     "dsr": 0.005,
+     "disc": {
+      "trades": 33,
+      "ret2": 1.4964,
+      "pf2": 3.843,
+      "wr2": 0.303,
+      "be": 0.1016,
+      "sr": 1.0566,
+      "max_dd": -0.8938
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"confirm\": 2}, \"rule\": \"heikin_ashi\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.678,
+     "dsr": 0.001,
+     "disc": {
+      "trades": 79,
+      "ret2": 0.3732,
+      "pf2": 1.383,
+      "wr2": 0.4051,
+      "be": 0.3299,
+      "sr": 0.6782,
+      "max_dd": -0.5489
+     }
+    }
+   ]
+  },
+  "2y": {
+   "cut": "2024-10-23",
+   "fwd_end": "2026-10-24",
+   "testable": true,
+   "holdout": true,
+   "funnel": {
+    "trials": 2652,
+    "D1-D3": 18,
+    "D4": 17,
+    "D5": 13,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.1164,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [5, 20]}, \"rule\": \"chaikin_osc\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.41,
+     "dsr": 0.086,
+     "disc": {
+      "trades": 39,
+      "ret2": 81.8899,
+      "pf2": 5.734,
+      "wr2": 0.4103,
+      "be": 0.1082,
+      "sr": 1.583,
+      "max_dd": -0.7158
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 20, \"th\": 0.1}, \"rule\": \"cmf_flow\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.211,
+     "dsr": 0.062,
+     "disc": {
+      "trades": 50,
+      "ret2": 70.8311,
+      "pf2": 5.523,
+      "wr2": 0.52,
+      "be": 0.164,
+      "sr": 1.4824,
+      "max_dd": -0.7485
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.0,
+     "dsr": 0.021,
+     "disc": {
+      "trades": 43,
+      "ret2": 22.6753,
+      "pf2": 8.117,
+      "wr2": 0.2558,
+      "be": 0.0406,
+      "sr": 1.247,
+      "max_dd": -0.788
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 1.5, \"n\": 20}, \"rule\": \"atr_breakout\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 0.995,
+     "dsr": 0.015,
+     "disc": {
+      "trades": 31,
+      "ret2": 14.8119,
+      "pf2": 3.841,
+      "wr2": 0.4516,
+      "be": 0.1766,
+      "sr": 1.1965,
+      "max_dd": -0.7719
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 50, \"price_n\": 50}, \"rule\": \"obv_trend\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 0.951,
+     "dsr": 0.013,
+     "disc": {
+      "trades": 87,
+      "ret2": 12.5534,
+      "pf2": 5.408,
+      "wr2": 0.3218,
+      "be": 0.0807,
+      "sr": 1.1504,
+      "max_dd": -0.8735
+     }
+    }
+   ]
+  }
+ },
+ "timemachine": {
+  "testable": [
+   "2y"
+  ],
+  "inside": 0,
+  "passed": false
+ },
+ "lead": false,
+ "fib_test": {
+  "disc": {
+   "pairs": 319,
+   "median_delta_pf": -0.206,
+   "share_improved": 0.15
+  },
+  "fwd": {
+   "pairs": 232,
+   "median_delta_pf": -0.037,
+   "share_improved": 0.276
+  },
+  "helps": false
+ },
+ "bh": {
+  "6y": 13.2981,
+  "4y": 4.7237,
+  "2y": -0.398
+ }
+}

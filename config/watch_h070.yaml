@@ -1,0 +1,19 @@
+# Leverage test for H070 (IBS reversion + VIX term-structure filter, index futures). No paper watch yet:
+# this file is used only by `python -m lab.watch lev --cfg config/watch_h070.yaml`.
+# Pre-registered 2026-10-21 22:xx BEFORE any leverage result. Same rule as config/watch.yaml (do not tune).
+# Settings = the variant the decision gate picked (lo 0.3, hi 0.8); it was picked on past data, so a mild bias remains.
+
+start: "2026-10-22"
+ideas:
+  H070:
+    name: "Endeks IBS ortalamaya dönüş + VIX vade filtresi (long)"
+    cls: indices
+    side: long
+    spec: {rule: ibs_reversion, params: {lo: 0.3, hi: 0.8}, exit_id: 0, filter: vix_term_contango}
+
+leverage:
+  static: [1, 2, 3, 4, 5]
+  vol_target: {target: 0.20, lookback_days: 60, max_leverage: 5}
+  windows: ["2022-10-21", "2023-10-21", "2024-10-21"]
+  max_dd_floor: -0.40
+  worst_day_floor: -0.25

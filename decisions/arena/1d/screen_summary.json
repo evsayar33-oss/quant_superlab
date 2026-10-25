@@ -1,0 +1,442 @@
+{
+ "date": "2026-10-18",
+ "universe": "crypto_alts",
+ "funnel2": [
+  {
+   "stage": "S0",
+   "label": "veri yetersiz",
+   "eliminated": 0,
+   "remaining": 400
+  },
+  {
+   "stage": "S1",
+   "label": "her dönemde kârlı değil / az işlem",
+   "eliminated": 217,
+   "remaining": 183
+  },
+  {
+   "stage": "S2",
+   "label": "kâr faktörü veya düşüş zayıf",
+   "eliminated": 133,
+   "remaining": 50
+  },
+  {
+   "stage": "S3",
+   "label": "yüksek maliyette zarar",
+   "eliminated": 0,
+   "remaining": 50
+  },
+  {
+   "stage": "S4",
+   "label": "plato yok (komşu ayarlar zararda)",
+   "eliminated": 16,
+   "remaining": 34
+  },
+  {
+   "stage": "S5",
+   "label": "1 bar gecikmeye dayanıksız",
+   "eliminated": 6,
+   "remaining": 28
+  },
+  {
+   "stage": "S6",
+   "label": "yılların çoğunda kârlı değil",
+   "eliminated": 2,
+   "remaining": 26
+  },
+  {
+   "stage": "S7",
+   "label": "istatistiksel güven düşük (PSR)",
+   "eliminated": 2,
+   "remaining": 24
+  }
+ ],
+ "stage2": {
+  "enabled": true,
+  "trials": 18561,
+  "candidates": 231
+ },
+ "timeframe": "1d",
+ "n_trials": 36257,
+ "n_variant_runs": 553,
+ "coins_ok": 32,
+ "coins_total": 35,
+ "funnel": [
+  {
+   "stage": "S0",
+   "label": "veri yetersiz",
+   "eliminated": 186,
+   "remaining": 1984
+  },
+  {
+   "stage": "S1",
+   "label": "her dönemde kârlı değil / az işlem",
+   "eliminated": 1753,
+   "remaining": 231
+  },
+  {
+   "stage": "S2",
+   "label": "kâr faktörü veya düşüş zayıf",
+   "eliminated": 212,
+   "remaining": 19
+  },
+  {
+   "stage": "S3",
+   "label": "yüksek maliyette zarar",
+   "eliminated": 1,
+   "remaining": 18
+  },
+  {
+   "stage": "S4",
+   "label": "plato yok (komşu ayarlar zararda)",
+   "eliminated": 7,
+   "remaining": 11
+  },
+  {
+   "stage": "S5",
+   "label": "1 bar gecikmeye dayanıksız",
+   "eliminated": 6,
+   "remaining": 5
+  },
+  {
+   "stage": "S6",
+   "label": "yılların çoğunda kârlı değil",
+   "eliminated": 1,
+   "remaining": 4
+  },
+  {
+   "stage": "S7",
+   "label": "istatistiksel güven düşük (PSR)",
+   "eliminated": 3,
+   "remaining": 1
+  }
+ ],
+ "survivors": [
+  {
+   "coin": "ARB/USDT",
+   "rule": "atr_breakout",
+   "params": "n=20,k=1.0",
+   "tier": "B",
+   "sharpe": 1.6,
+   "dsr": 0.322,
+   "ret_3y": 6.5705,
+   "ret_5y": null,
+   "ret_full": 7.911,
+   "variant": "filtre=low_vol · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "SOL/USDT",
+   "rule": "cci_breakout",
+   "params": "n=40,level=150",
+   "tier": "B",
+   "sharpe": 1.45,
+   "dsr": 0.179,
+   "ret_3y": 2.5023,
+   "ret_5y": 6.6713,
+   "ret_full": 15.5262,
+   "variant": "filtre=regime_bench200 · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "XLM/USDT",
+   "rule": "stoch_reversal",
+   "params": "k=9,d=5,smooth=3,lo=20",
+   "tier": "B",
+   "sharpe": 1.151,
+   "dsr": 0.096,
+   "ret_3y": 2.4,
+   "ret_5y": null,
+   "ret_full": 2.4,
+   "variant": "filtre=low_vol · çıkış=stop_atr=2.0,be_r=1.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "MINA/USDT",
+   "rule": "rsi_midline",
+   "params": "n=28,level=50",
+   "tier": "B",
+   "sharpe": 1.22,
+   "dsr": 0.095,
+   "ret_3y": 2.5811,
+   "ret_5y": null,
+   "ret_full": 3.6235,
+   "variant": "filtre=low_vol · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "ARB/USDT",
+   "rule": "engulfing",
+   "params": "trend_n=200",
+   "tier": "B",
+   "sharpe": 1.104,
+   "dsr": 0.079,
+   "ret_3y": 3.543,
+   "ret_5y": null,
+   "ret_full": 3.7069,
+   "variant": "filtre=adx20 · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "SOL/USDT",
+   "rule": "donchian_breakout",
+   "params": "entry=40,exit=10",
+   "tier": "B",
+   "sharpe": 1.187,
+   "dsr": 0.058,
+   "ret_3y": 1.3294,
+   "ret_5y": 3.3442,
+   "ret_full": 8.3586,
+   "variant": "filtre=regime_bench200 · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "BNB/USDT",
+   "rule": "price_ma",
+   "params": "kind=sma,n=50",
+   "tier": "B",
+   "sharpe": 0.978,
+   "dsr": 0.045,
+   "ret_3y": 2.148,
+   "ret_5y": null,
+   "ret_full": 2.0925,
+   "variant": "filtre=htf_week_sma10 · çıkış=signal_only",
+   "stage_no": 2
+  },
+  {
+   "coin": "ARB/USDT",
+   "rule": "rsi_reversal",
+   "params": "n=2,lo=10,exit=50",
+   "tier": "B",
+   "sharpe": 0.96,
+   "dsr": 0.044,
+   "ret_3y": 1.2928,
+   "ret_5y": null,
+   "ret_full": 1.2863,
+   "variant": "filtre=regime_bench200 · çıkış=signal_only",
+   "stage_no": 2
+  },
+  {
+   "coin": "XLM/USDT",
+   "rule": "rsi_reversal",
+   "params": "n=9,lo=30,exit=50",
+   "tier": "B",
+   "sharpe": 0.852,
+   "dsr": 0.04,
+   "ret_3y": 1.0799,
+   "ret_5y": null,
+   "ret_full": 0.9517,
+   "variant": "filtre=adx20 · çıkış=trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "ARB/USDT",
+   "rule": "rsi_midline",
+   "params": "n=21,level=50",
+   "tier": "B",
+   "sharpe": 0.895,
+   "dsr": 0.036,
+   "ret_3y": 2.698,
+   "ret_5y": null,
+   "ret_full": 1.7618,
+   "variant": "filtre=regime_bench200 · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "IMX/USDT",
+   "rule": "smc_ote",
+   "params": "k=3,fib_lo=0.5",
+   "tier": "B",
+   "sharpe": 1.028,
+   "dsr": 0.026,
+   "ret_3y": 2.0184,
+   "ret_5y": null,
+   "ret_full": 2.8141,
+   "variant": "çıkış=stop_atr=2.0,trail_atr=3.0 · onay=smc_fvg(≤3 bar)",
+   "stage_no": 2
+  },
+  {
+   "coin": "APT/USDT",
+   "rule": "force_index",
+   "params": "n=2",
+   "tier": "B",
+   "sharpe": 0.828,
+   "dsr": 0.015,
+   "ret_3y": 0.8944,
+   "ret_5y": null,
+   "ret_full": 0.8944,
+   "variant": "çıkış=stop_atr=2.0,trail_atr=3.0 · onay=smc_order_block(≤3 bar)",
+   "stage_no": 2
+  },
+  {
+   "coin": "SAND/USDT",
+   "rule": "mfi_reversal",
+   "params": "n=10,lo=30",
+   "tier": "B",
+   "sharpe": 0.864,
+   "dsr": 0.013,
+   "ret_3y": 0.6257,
+   "ret_5y": null,
+   "ret_full": 2.0526,
+   "variant": "çıkış=stop_atr=2.0,trail_atr=3.0 · onay=smc_liquidity_sweep(≤3 bar)",
+   "stage_no": 2
+  },
+  {
+   "coin": "AXS/USDT",
+   "rule": "williams_reversal",
+   "params": "n=7,lo=-80",
+   "tier": "B",
+   "sharpe": 0.848,
+   "dsr": 0.013,
+   "ret_3y": 1.2369,
+   "ret_5y": 2.9215,
+   "ret_full": 2.9215,
+   "variant": "çıkış=stop_atr=2.0,trail_atr=3.0 · onay=smc_order_block(≤3 bar)",
+   "stage_no": 2
+  },
+  {
+   "coin": "CRV/USDT",
+   "rule": "force_index",
+   "params": "n=2",
+   "tier": "B",
+   "sharpe": 0.874,
+   "dsr": 0.011,
+   "ret_3y": 0.7861,
+   "ret_5y": 2.0946,
+   "ret_full": 3.112,
+   "variant": "filtre=regime_bench200 · çıkış=signal_only",
+   "stage_no": 2
+  },
+  {
+   "coin": "ADA/USDT",
+   "rule": "trix_cross",
+   "params": "n=21,signal=9",
+   "tier": "B",
+   "sharpe": 0.752,
+   "dsr": 0.008,
+   "ret_3y": 1.0247,
+   "ret_5y": null,
+   "ret_full": 1.3323,
+   "variant": "filtre=low_vol · çıkış=stop_atr=2.0,max_hold=10",
+   "stage_no": 2
+  },
+  {
+   "coin": "LINK/USDT",
+   "rule": "stoch_reversal",
+   "params": "k=5,d=3,smooth=3,lo=10",
+   "tier": "B",
+   "sharpe": 0.774,
+   "dsr": 0.006,
+   "ret_3y": 1.0728,
+   "ret_5y": 1.7017,
+   "ret_full": 1.7017,
+   "variant": "filtre=trend_sma200 · çıkış=stop_atr=2.0,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "ETH/USDT",
+   "rule": "ma_cross",
+   "params": "kind=sma,pair=(20, 50)",
+   "tier": "B",
+   "sharpe": 0.935,
+   "dsr": 0.005,
+   "ret_3y": 0.7551,
+   "ret_5y": 1.9388,
+   "ret_full": 7.2969,
+   "variant": "filtre=low_vol · çıkış=trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "AXS/USDT",
+   "rule": "stoch_reversal",
+   "params": "k=5,d=3,smooth=1,lo=10",
+   "tier": "B",
+   "sharpe": 0.691,
+   "dsr": 0.005,
+   "ret_3y": 0.6277,
+   "ret_5y": 2.057,
+   "ret_full": 2.057,
+   "variant": "filtre=adx20 · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "OP/USDT",
+   "rule": "force_index",
+   "params": "n=2",
+   "tier": "B",
+   "sharpe": 0.669,
+   "dsr": 0.005,
+   "ret_3y": 0.763,
+   "ret_5y": null,
+   "ret_full": 1.2239,
+   "variant": "çıkış=stop_atr=2.0,trail_atr=3.0 · onay=smc_fvg(≤5 bar)",
+   "stage_no": 2
+  },
+  {
+   "coin": "ETC/USDT",
+   "rule": "ma_cross",
+   "params": "kind=sma,pair=(10, 50)",
+   "tier": "B",
+   "sharpe": 0.928,
+   "dsr": 0.004,
+   "ret_3y": 0.5105,
+   "ret_5y": 0.9919,
+   "ret_full": 6.5063,
+   "variant": "filtre=low_vol · çıkış=stop_atr=2.0,partial_r=1.0,partial_frac=0.5,partial_to_be=True,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "FIL/USDT",
+   "rule": "stoch_reversal",
+   "params": "k=5,d=3,smooth=3,lo=10",
+   "tier": "B",
+   "sharpe": 0.726,
+   "dsr": 0.004,
+   "ret_3y": 0.759,
+   "ret_5y": 2.1417,
+   "ret_full": 2.1417,
+   "variant": "filtre=low_vol · çıkış=stop_atr=2.0,trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "LTC/USDT",
+   "rule": "hurst_switch",
+   "params": "n=100,fast=20,rsi_n=2",
+   "tier": "B",
+   "sharpe": 0.803,
+   "dsr": 0.001,
+   "ret_3y": 0.8066,
+   "ret_5y": 1.1853,
+   "ret_full": 3.1797,
+   "variant": "filtre=htf_week_sma10 · çıkış=signal_only",
+   "stage_no": 2
+  },
+  {
+   "coin": "TRX/USDT",
+   "rule": "hurst_switch",
+   "params": "n=100,fast=20,rsi_n=2",
+   "tier": "B",
+   "sharpe": 0.632,
+   "dsr": 0.001,
+   "ret_3y": 0.765,
+   "ret_5y": 0.92,
+   "ret_full": 1.3383,
+   "variant": "filtre=regime_bench200 · çıkış=trail_atr=3.0",
+   "stage_no": 2
+  },
+  {
+   "coin": "BTC/USDT",
+   "rule": "atr_breakout",
+   "params": "n=10,k=2.0",
+   "tier": "B",
+   "sharpe": 0.602,
+   "dsr": 0.0,
+   "ret_3y": 0.4493,
+   "ret_5y": 0.6526,
+   "ret_full": 2.3047,
+   "variant": "çıkış=stop_atr=2.0,trail_atr=3.0",
+   "stage_no": 1
+  }
+ ],
+ "note": "Arena: 32 aktif (eleme geçen), 68 kontrol (yakın aday, switcher kullanmaz), 7 yeni üye, 1 kontrolden aktife. Üst sınır 100."
+}

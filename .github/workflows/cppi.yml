@@ -1,0 +1,41 @@
+name: CPPI study
+
+# H061 CPPI (config/cppi.yaml). By hand only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  xsec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: xsec-data-cppi-${{ github.run_id }}
+          restore-keys: |
+            xsec-data-
+            core-data-
+      - name: Study
+        env:
+          LAB_CACHE_HOURS: "0"
+        run: python -m lab.cppi
+      - name: Commit result
+        run: |
+          git config user.name "quant-lab-bot"; git config user.email "actions@users.noreply.github.com"
+          cp -r decisions/cppi /tmp/cppi_dec
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            mkdir -p decisions/cppi && cp -r /tmp/cppi_dec/. decisions/cppi/
+            git add decisions/cppi
+            git diff --cached --quiet && exit 0
+            git commit -q -m "CPPI study $(date -u +%F)" && git push -q origin HEAD:main && exit 0
+            sleep 7
+          done

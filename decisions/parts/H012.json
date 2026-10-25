@@ -1,0 +1,196 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.787 < 0.9 (luck not excluded after 234 trials)",
+    "OOS Sharpe (USD, excess of US T-bill) -1.358 < 0.5",
+    "OOS MaxDD -0.9253 worse than -0.45 (local or USD)",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.604 > 0.5 (variant selection is overfit)",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "wavetrend_reversal",
+  "kind": "rule",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_orderflow_quant",
+  "spec": {
+    "id": "H012",
+    "rule": "wavetrend_reversal",
+    "universe": "bist30",
+    "for_system": "bist_orderflow_quant",
+    "start": "2012-01-01",
+    "filters": [
+      "none",
+      "trend_sma200",
+      "volume_confirm"
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "wavetrend_reversal|n1=9,n2=26,lo=-40|f=trend_sma200|x=trail_atr=3.0,use_signal_exit=False|size=atr_risk0.005",
+  "params": {
+    "n1": 9,
+    "n2": 26,
+    "lo": -40,
+    "_filter": "trend_sma200",
+    "_exit": 40,
+    "_size": 1
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "EKGYO.IS",
+      "YKBNK.IS"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -1.358,
+  "pbo": 0.604,
+  "reality_check_p": 1.0,
+  "dsr": 0.787,
+  "n_trials": 234,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.0272,
+    "vol": 0.031,
+    "sharpe": 0.882,
+    "sharpe_excess_rf": 0.171,
+    "sortino": 0.285,
+    "max_dd": -0.0603,
+    "max_dd_bars": 863,
+    "calmar": 0.452,
+    "ulcer": 0.0195,
+    "var95": -0.0016,
+    "cvar95": -0.0041,
+    "omega": 1.374,
+    "tail_ratio": 1.54,
+    "skew": 3.296,
+    "kurtosis": 55.726,
+    "hit_rate": 0.214,
+    "psr": 0.999,
+    "time_in_market": null,
+    "turnover_ann": 0.99,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": -1.474,
+    "beta": 0.043,
+    "up_capture": 0.052,
+    "down_capture": 0.047
+  },
+  "trade_stats": {
+    "n_trades": 164,
+    "trades_per_year": 15.2,
+    "win_rate": 0.506,
+    "avg_trade": 0.0702,
+    "median_trade": 0.003,
+    "avg_win": 0.197,
+    "avg_loss": -0.0598,
+    "profit_factor": 3.377,
+    "payoff": 3.296,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.356,
+    "max_consec_losses": 8,
+    "avg_bars": 22.3,
+    "avg_bars_win": 33.4,
+    "avg_bars_loss": 11.0,
+    "avg_mfe": 0.186,
+    "avg_mae": -0.0408,
+    "edge_ratio": 4.561,
+    "exit_reasons": {
+      "stop": 164
+    },
+    "long_short": {
+      "1": {
+        "count": 164,
+        "mean": 0.0702
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 1.18,
+      "ann_ret": 0.0322,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": 0.31,
+      "ann_ret": 0.0127,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 0.56,
+      "ann_ret": 0.0144,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 1.16,
+      "ann_ret": 0.0418,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 1.16,
+      "ann_ret": 0.0407,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": -0.39,
+      "ann_ret": -0.008,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": 1.97,
+      "ann_ret": 0.0144,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 0.89,
+      "ann_ret": 0.0423,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 0.95,
+      "ann_ret": 0.0231,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.076,
+      "sharpe_delayed_1bar": 1.137,
+      "retained": 1.057
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.787,
+      "sharpe_median": 0.982
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.6143,
+      "random_median_ann": 0.3344,
+      "random_p95_ann": 0.425,
+      "trades_actual": 170,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.034,
+      "maxdd_p95": -0.0522,
+      "final_p05": 1.1426,
+      "final_median": 1.1426
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": 0.356,
+  "oos_csv": "results/H012_wavetrend_reversal_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:57:53+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

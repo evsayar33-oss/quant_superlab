@@ -1,0 +1,201 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.01 < 0.9 (luck not excluded after 15 trials)",
+    "OOS Sharpe (excess of T-bill) -0.471 < 0.5",
+    "OOS MaxDD -0.4946 worse than -0.45 (local or USD)",
+    "bootstrap P(SR>0) 0.195 < 0.85",
+    "only 52% of OOS years positive",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.786 > 0.5 (variant selection is overfit)",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)",
+    "random entries match it (p=1.0): the edge is in the exits, not the signal"
+  ],
+  "strategy": "weekday_long",
+  "kind": "rule",
+  "universe": "index_futures",
+  "timeframe": "1d",
+  "for_system": "research_only",
+  "spec": {
+    "id": "H067",
+    "rule": "weekday_long",
+    "universe": "index_futures",
+    "timeframe": "1d",
+    "for_system": "research_only",
+    "start": "2000-01-01",
+    "filters": [
+      "none"
+    ],
+    "exits": [
+      0
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "weekday_long|day=0|f=none|x=signal_only|size=atr_risk0.01",
+  "params": {
+    "day": 0,
+    "_filter": "none",
+    "_exit": 0,
+    "_size": 2
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.471,
+  "pbo": 0.786,
+  "reality_check_p": 1.0,
+  "dsr": 0.01,
+  "n_trials": 15,
+  "oos": {
+    "start": "2004-09-15 00:00:00",
+    "end": "2026-10-21 00:00:00",
+    "years": 22.06,
+    "cagr": -0.0163,
+    "vol": 0.0672,
+    "sharpe": -0.211,
+    "sharpe_excess_rf": -0.471,
+    "sortino": -0.618,
+    "max_dd": -0.4946,
+    "max_dd_bars": 5514,
+    "calmar": -0.033,
+    "ulcer": 0.3371,
+    "var95": -0.0043,
+    "cvar95": -0.011,
+    "omega": 0.925,
+    "tail_ratio": 1.11,
+    "skew": -2.207,
+    "kurtosis": 58.443,
+    "hit_rate": 0.173,
+    "psr": 0.157,
+    "time_in_market": null,
+    "turnover_ann": 85.78,
+    "bench_cagr": 0.0979,
+    "bench_sharpe": 0.581,
+    "info_ratio": -0.719,
+    "beta": 0.147,
+    "up_capture": 0.143,
+    "down_capture": 0.174
+  },
+  "trade_stats": {
+    "n_trades": 4631,
+    "trades_per_year": 209.9,
+    "win_rate": 0.547,
+    "avg_trade": 0.0008,
+    "median_trade": 0.0009,
+    "avg_win": 0.0085,
+    "avg_loss": -0.0084,
+    "profit_factor": 1.222,
+    "payoff": 1.01,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.099,
+    "max_consec_losses": 21,
+    "avg_bars": 1.0,
+    "avg_bars_win": 1.0,
+    "avg_bars_loss": 1.0,
+    "avg_mfe": 0.0081,
+    "avg_mae": -0.0081,
+    "edge_ratio": 1.007,
+    "exit_reasons": {
+      "signal": 4631
+    },
+    "long_short": {
+      "1": {
+        "count": 4631,
+        "mean": 0.0008
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.34,
+      "ann_ret": 0.0167,
+      "bars": 4357
+    },
+    "bear": {
+      "sharpe": -1.14,
+      "ann_ret": -0.1246,
+      "bars": 1218
+    },
+    "calm": {
+      "sharpe": -0.21,
+      "ann_ret": -0.0091,
+      "bars": 2907
+    },
+    "stressed": {
+      "sharpe": -0.23,
+      "ann_ret": -0.0197,
+      "bars": 2668
+    },
+    "vix_lt_20": {
+      "sharpe": 0.62,
+      "ann_ret": 0.026,
+      "bars": 3803
+    },
+    "vix_20_30": {
+      "sharpe": -0.69,
+      "ann_ret": -0.0495,
+      "bars": 1323
+    },
+    "vix_ge_30": {
+      "sharpe": -1.56,
+      "ann_ret": -0.2505,
+      "bars": 449
+    },
+    "curve_inverted": {
+      "sharpe": 0.7,
+      "ann_ret": 0.0296,
+      "bars": 813
+    },
+    "curve_normal": {
+      "sharpe": -0.31,
+      "ann_ret": -0.0217,
+      "bars": 4762
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": -0.043,
+      "sharpe_delayed_1bar": -0.182,
+      "retained": null
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": -0.043,
+      "neighbour_median": -0.28,
+      "share_positive": 0.0,
+      "stability": null
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": -0.095,
+      "sharpe_median": -0.035
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": -0.0159,
+      "random_median_ann": 0.0314,
+      "random_p95_ann": 0.0456,
+      "trades_actual": 5181,
+      "p_value": 1.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0725,
+      "maxdd_p95": -0.1061,
+      "final_p05": 1.2494,
+      "final_median": 1.2494
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "equity_ma_126",
+  "kelly_fraction": 0.099,
+  "oos_csv": "results/H067_weekday_long_index_futures_1d_oos.csv",
+  "validated_at": "2026-10-21T17:53:11+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-21 00:00:00"
+}

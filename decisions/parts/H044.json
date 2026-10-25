@@ -1,0 +1,143 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": "WATCH",
+  "reasons": [
+    "DSR 0.739 < 0.9 (luck not excluded after 23 trials)",
+    "OOS Sharpe (excess of T-bill) 0.125 < 0.5",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.561 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.958 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "cot_contrarian",
+  "kind": "strategy",
+  "universe": "metals",
+  "timeframe": "1d",
+  "for_system": "metals",
+  "spec": {
+    "id": "H044",
+    "strategy": "cot_contrarian",
+    "universe": "metals",
+    "for_system": "metals",
+    "start": "2008-01-01",
+    "status": "active"
+  },
+  "variant": "cot_contrarian|look=156,thr=1.0|overlay=vt10",
+  "params": {
+    "look": 156,
+    "thr": 1.0,
+    "_overlay": "vt10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "PL=F": 0.2,
+    "PA=F": 0.2
+  },
+  "gate_sharpe": 0.125,
+  "pbo": 0.561,
+  "reality_check_p": 0.958,
+  "dsr": 0.739,
+  "n_trials": 23,
+  "oos": {
+    "start": "2012-01-09 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 14.76,
+    "cagr": 0.0237,
+    "vol": 0.0854,
+    "sharpe": 0.317,
+    "sharpe_excess_rf": 0.125,
+    "sortino": 0.174,
+    "max_dd": -0.1679,
+    "max_dd_bars": 1221,
+    "calmar": 0.141,
+    "ulcer": 0.0774,
+    "var95": -0.0077,
+    "cvar95": -0.0138,
+    "omega": 1.081,
+    "tail_ratio": 1.105,
+    "skew": -0.526,
+    "kurtosis": 12.425,
+    "hit_rate": 0.326,
+    "psr": 0.887,
+    "time_in_market": null,
+    "turnover_ann": 3.78,
+    "bench_cagr": 0.0598,
+    "bench_sharpe": 0.375,
+    "info_ratio": -0.321,
+    "beta": 0.268,
+    "up_capture": 0.259,
+    "down_capture": 0.254
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.31,
+      "ann_ret": 0.0958,
+      "bars": 2225
+    },
+    "bear": {
+      "sharpe": -0.75,
+      "ann_ret": -0.0755,
+      "bars": 1490
+    },
+    "calm": {
+      "sharpe": 0.37,
+      "ann_ret": 0.0272,
+      "bars": 1959
+    },
+    "stressed": {
+      "sharpe": 0.28,
+      "ann_ret": 0.027,
+      "bars": 1756
+    },
+    "vix_lt_20": {
+      "sharpe": 0.53,
+      "ann_ret": 0.0371,
+      "bars": 2796
+    },
+    "vix_20_30": {
+      "sharpe": 0.11,
+      "ann_ret": 0.0124,
+      "bars": 761
+    },
+    "vix_ge_30": {
+      "sharpe": -0.54,
+      "ann_ret": -0.0783,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": -0.12,
+      "ann_ret": -0.0056,
+      "bars": 615
+    },
+    "curve_normal": {
+      "sharpe": 0.37,
+      "ann_ret": 0.0336,
+      "bars": 3100
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.419,
+      "sharpe_delayed_1bar": 0.453,
+      "retained": 1.083
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.415,
+      "neighbour_median": 0.334,
+      "share_positive": 1.0,
+      "stability": 0.805
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.418,
+      "sharpe_median": 0.422
+    }
+  },
+  "recommended_overlay": "equity_ma_125",
+  "kelly_fraction": null,
+  "oos_csv": "results/H044_cot_contrarian_metals_1d_oos.csv",
+  "validated_at": "2026-10-17T09:04:16+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

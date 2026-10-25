@@ -1,0 +1,8 @@
+# Core3 bot settings. The RULE is fixed in bot/signal.py (H054 core). Change only what is below.
+assets: [BTC, ETH, SOL]        # equal capital, one third each
+min_order_usdt: 5              # Bitget spot minimum is 1 USDT; 5 keeps tiny rounding trades out
+paper_capital_usdt: 1000       # dry-run capital
+max_slippage: 0.002            # limit price at most 0.2% away from the mid
+wait_seconds: 60               # wait for the limit fill, then retry once, then market for the rest
+# Compounding: every run sizes positions from TOTAL equity (USDT + coins at market price), so gains and
+# losses are reinvested automatically. Do not move money in or out without noting it in state/.

@@ -1,0 +1,8613 @@
+{
+ "date": "2026-10-21",
+ "n_survivors": 152,
+ "n_pass": 10,
+ "n_B1": 25,
+ "n_B2": 20,
+ "rows": [
+  {
+   "cls": "crypto",
+   "side": "both",
+   "key": "hurst_switch|{\"fast\": 20, \"n\": 100, \"rsi_n\": 2}|x13|none",
+   "spec": {
+    "rule": "hurst_switch",
+    "params": {
+     "n": 100,
+     "fast": 20,
+     "rsi_n": 2
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 193,
+     "trade_sum": 0.1457,
+     "random_median": -0.0409,
+     "random_pct": 0.817,
+     "sharpe": 0.335,
+     "ret": 0.1545,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.185,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 212,
+     "trade_sum": 0.1093,
+     "random_median": -0.0343,
+     "random_pct": 0.767,
+     "sharpe": 0.357,
+     "ret": 0.111,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.223,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "both",
+   "key": "hurst_switch|{\"fast\": 20, \"n\": 100, \"rsi_n\": 2}|x18|none",
+   "spec": {
+    "rule": "hurst_switch",
+    "params": {
+     "n": 100,
+     "fast": 20,
+     "rsi_n": 2
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 196,
+     "trade_sum": 0.2103,
+     "random_median": -0.0627,
+     "random_pct": 0.907,
+     "sharpe": 0.443,
+     "ret": 0.2356,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.188,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 215,
+     "trade_sum": 0.1398,
+     "random_median": -0.0433,
+     "random_pct": 0.83,
+     "sharpe": 0.446,
+     "ret": 0.1516,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.223,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "both",
+   "key": "hurst_switch|{\"fast\": 20, \"n\": 100, \"rsi_n\": 2}|x20|none",
+   "spec": {
+    "rule": "hurst_switch",
+    "params": {
+     "n": 100,
+     "fast": 20,
+     "rsi_n": 2
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 193,
+     "trade_sum": 0.177,
+     "random_median": -0.0538,
+     "random_pct": 0.91,
+     "sharpe": 0.379,
+     "ret": 0.1881,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.186,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 212,
+     "trade_sum": 0.1288,
+     "random_median": -0.0266,
+     "random_pct": 0.81,
+     "sharpe": 0.4,
+     "ret": 0.1313,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.222,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "bollinger_breakout|{\"k\": 2.5, \"n\": 20}|x13|none",
+   "spec": {
+    "rule": "bollinger_breakout",
+    "params": {
+     "n": 20,
+     "k": 2.5
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 73,
+     "trade_sum": 0.2571,
+     "random_median": 0.0657,
+     "random_pct": 0.863,
+     "sharpe": 0.473,
+     "ret": 0.2268,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.152,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 67,
+     "trade_sum": 0.1817,
+     "random_median": 0.0361,
+     "random_pct": 0.863,
+     "sharpe": 0.554,
+     "ret": 0.1603,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.144,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "bollinger_breakout|{\"k\": 2.5, \"n\": 20}|x20|none",
+   "spec": {
+    "rule": "bollinger_breakout",
+    "params": {
+     "n": 20,
+     "k": 2.5
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 66,
+     "trade_sum": 0.0342,
+     "random_median": 0.0835,
+     "random_pct": 0.393,
+     "sharpe": 0.109,
+     "ret": 0.0007,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.176,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 61,
+     "trade_sum": 0.3783,
+     "random_median": 0.0775,
+     "random_pct": 0.953,
+     "sharpe": 0.536,
+     "ret": 0.1762,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.18,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "bollinger_breakout|{\"k\": 2.5, \"n\": 20}|x28|none",
+   "spec": {
+    "rule": "bollinger_breakout",
+    "params": {
+     "n": 20,
+     "k": 2.5
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 66,
+     "trade_sum": 0.1954,
+     "random_median": 0.0845,
+     "random_pct": 0.72,
+     "sharpe": 0.324,
+     "ret": 0.1538,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.159,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 63,
+     "trade_sum": 0.112,
+     "random_median": 0.0421,
+     "random_pct": 0.693,
+     "sharpe": 0.31,
+     "ret": 0.0816,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.155,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "cci_breakout|{\"level\": 150, \"n\": 20}|x28|trend_sma200",
+   "spec": {
+    "rule": "cci_breakout",
+    "params": {
+     "n": 20,
+     "level": 150
+    },
+    "exit_id": 28,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 76,
+     "trade_sum": 0.1176,
+     "random_median": 0.0821,
+     "random_pct": 0.547,
+     "sharpe": 0.285,
+     "ret": 0.1229,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.177,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 65,
+     "trade_sum": 0.2557,
+     "random_median": 0.0321,
+     "random_pct": 0.913,
+     "sharpe": 0.717,
+     "ret": 0.2683,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.171,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "down_days|{\"hold_exit\": 1, \"n\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "down_days",
+    "params": {
+     "n": 3,
+     "hold_exit": 1
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 135,
+     "trade_sum": 0.0159,
+     "random_median": -0.0957,
+     "random_pct": 0.837,
+     "sharpe": 0.249,
+     "ret": 0.0551,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.065,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 137,
+     "trade_sum": 0.0812,
+     "random_median": -0.0618,
+     "random_pct": 0.93,
+     "sharpe": 0.84,
+     "ret": 0.1235,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.073,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"ema\", \"pair\": [10, 50]}|x18|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "ema",
+     "pair": [
+      10,
+      50
+     ]
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 63,
+     "trade_sum": 0.0666,
+     "random_median": 0.0774,
+     "random_pct": 0.477,
+     "sharpe": 0.245,
+     "ret": 0.07,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.175,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 56,
+     "trade_sum": 0.1069,
+     "random_median": 0.0416,
+     "random_pct": 0.643,
+     "sharpe": 0.402,
+     "ret": 0.0742,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.168,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"ema\", \"pair\": [10, 50]}|x28|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "ema",
+     "pair": [
+      10,
+      50
+     ]
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 63,
+     "trade_sum": 0.2166,
+     "random_median": 0.112,
+     "random_pct": 0.703,
+     "sharpe": 0.443,
+     "ret": 0.2201,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.183,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 56,
+     "trade_sum": 0.177,
+     "random_median": 0.0354,
+     "random_pct": 0.833,
+     "sharpe": 0.44,
+     "ret": 0.1162,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.176,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "smc_choch|{\"k\": 5}|x28|none",
+   "spec": {
+    "rule": "smc_choch",
+    "params": {
+     "k": 5
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-20",
+     "n_trades": 74,
+     "trade_sum": 0.2365,
+     "random_median": 0.0955,
+     "random_pct": 0.673,
+     "sharpe": 0.326,
+     "ret": 0.1598,
+     "bh_sharpe": 0.51,
+     "bh_ret": 0.4643,
+     "exposure": 0.233,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-20",
+     "n_trades": 57,
+     "trade_sum": 0.2086,
+     "random_median": 0.0695,
+     "random_pct": 0.767,
+     "sharpe": 0.374,
+     "ret": 0.1113,
+     "bh_sharpe": 0.494,
+     "bh_ret": 0.2718,
+     "exposure": 0.218,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "energy",
+   "side": "both",
+   "key": "coppock_turn|{\"scale\": 5}|x20|none",
+   "spec": {
+    "rule": "coppock_turn",
+    "params": {
+     "scale": 5
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 68,
+     "trade_sum": 0.1996,
+     "random_median": 0.0967,
+     "random_pct": 0.667,
+     "sharpe": 0.317,
+     "ret": 0.192,
+     "bh_sharpe": 0.38,
+     "bh_ret": 0.3283,
+     "exposure": 0.41,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 49,
+     "trade_sum": 0.2689,
+     "random_median": 0.1459,
+     "random_pct": 0.74,
+     "sharpe": 0.496,
+     "ret": 0.2818,
+     "bh_sharpe": 0.558,
+     "bh_ret": 0.4897,
+     "exposure": 0.37,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "coppock_turn|{\"scale\": 5}|x20|none",
+   "spec": {
+    "rule": "coppock_turn",
+    "params": {
+     "scale": 5
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 52,
+     "trade_sum": 0.1965,
+     "random_median": 0.0785,
+     "random_pct": 0.7,
+     "sharpe": 0.322,
+     "ret": 0.1965,
+     "bh_sharpe": 0.368,
+     "bh_ret": 0.3085,
+     "exposure": 0.405,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 49,
+     "trade_sum": 0.2689,
+     "random_median": 0.1317,
+     "random_pct": 0.73,
+     "sharpe": 0.496,
+     "ret": 0.2818,
+     "bh_sharpe": 0.558,
+     "bh_ret": 0.4897,
+     "exposure": 0.37,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"ema\", \"pair\": [10, 50]}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "ema",
+     "pair": [
+      10,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 23,
+     "trade_sum": 0.0497,
+     "random_median": 0.0068,
+     "random_pct": 0.643,
+     "sharpe": 0.162,
+     "ret": 0.0371,
+     "bh_sharpe": 0.368,
+     "bh_ret": 0.3085,
+     "exposure": 0.106,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 16,
+     "trade_sum": 0.0192,
+     "random_median": 0.0417,
+     "random_pct": 0.443,
+     "sharpe": 0.108,
+     "ret": 0.0099,
+     "bh_sharpe": 0.942,
+     "bh_ret": 0.7678,
+     "exposure": 0.078,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"hma\", \"pair\": [50, 150]}|x13|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "hma",
+     "pair": [
+      50,
+      150
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 42,
+     "trade_sum": 0.0396,
+     "random_median": 0.0342,
+     "random_pct": 0.517,
+     "sharpe": 0.039,
+     "ret": -0.0104,
+     "bh_sharpe": 0.368,
+     "bh_ret": 0.3085,
+     "exposure": 0.24,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.0101,
+     "random_median": 0.0564,
+     "random_pct": 0.387,
+     "sharpe": 0.044,
+     "ret": -0.0044,
+     "bh_sharpe": 0.558,
+     "bh_ret": 0.4897,
+     "exposure": 0.21,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 23,
+     "trade_sum": 0.1231,
+     "random_median": 0.0576,
+     "random_pct": 0.72,
+     "sharpe": 0.758,
+     "ret": 0.1767,
+     "bh_sharpe": 0.942,
+     "bh_ret": 0.7678,
+     "exposure": 0.185,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [20, 100]}|x0|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      20,
+      100
+     ]
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 68,
+     "trade_sum": 0.2283,
+     "random_median": 0.2098,
+     "random_pct": 0.537,
+     "sharpe": 0.42,
+     "ret": 0.2462,
+     "bh_sharpe": 0.558,
+     "bh_ret": 0.4897,
+     "exposure": 0.52,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 49,
+     "trade_sum": 0.2221,
+     "random_median": 0.2127,
+     "random_pct": 0.52,
+     "sharpe": 0.522,
+     "ret": 0.24,
+     "bh_sharpe": 0.942,
+     "bh_ret": 0.7678,
+     "exposure": 0.564,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "tsi_cross|{\"cfg\": [40, 20, 10]}|x13|trend_sma200|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "spec": {
+    "rule": "tsi_cross",
+    "params": {
+     "cfg": [
+      40,
+      20,
+      10
+     ]
+    },
+    "exit_id": 13,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 16,
+     "trade_sum": 0.0744,
+     "random_median": 0.0181,
+     "random_pct": 0.737,
+     "sharpe": 0.473,
+     "ret": 0.0804,
+     "bh_sharpe": 0.558,
+     "bh_ret": 0.4897,
+     "exposure": 0.053,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 13,
+     "trade_sum": 0.0702,
+     "random_median": 0.0181,
+     "random_pct": 0.783,
+     "sharpe": 0.563,
+     "ret": 0.074,
+     "bh_sharpe": 0.942,
+     "bh_ret": 0.7678,
+     "exposure": 0.055,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "vortex_cross|{\"n\": 28}|x13|none",
+   "spec": {
+    "rule": "vortex_cross",
+    "params": {
+     "n": 28
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 144,
+     "trade_sum": 0.1552,
+     "random_median": 0.0012,
+     "random_pct": 0.737,
+     "sharpe": 0.344,
+     "ret": 0.1962,
+     "bh_sharpe": 0.368,
+     "bh_ret": 0.3085,
+     "exposure": 0.363,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 135,
+     "trade_sum": 0.2839,
+     "random_median": 0.0904,
+     "random_pct": 0.857,
+     "sharpe": 0.711,
+     "ret": 0.3679,
+     "bh_sharpe": 0.558,
+     "bh_ret": 0.4897,
+     "exposure": 0.34,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "both",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.2}|x0|trend_sma200|pivot_bounce:{\"window\": 5}:w3",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.2,
+     "hi": 0.7
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "pivot_bounce",
+     "params": {
+      "window": 5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 148,
+     "trade_sum": 0.0084,
+     "random_median": -0.0236,
+     "random_pct": 0.75,
+     "sharpe": 0.277,
+     "ret": 0.0356,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.115,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 103,
+     "trade_sum": 0.0401,
+     "random_median": -0.0031,
+     "random_pct": 0.877,
+     "sharpe": 0.578,
+     "ret": 0.061,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.108,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "both",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.2}|x0|trend_sma200|pivot_bounce:{\"window\": 5}:w5",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.2,
+     "hi": 0.7
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "pivot_bounce",
+     "params": {
+      "window": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 197,
+     "trade_sum": 0.0637,
+     "random_median": -0.0207,
+     "random_pct": 0.927,
+     "sharpe": 0.634,
+     "ret": 0.1028,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.148,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 102,
+     "trade_sum": 0.0575,
+     "random_median": -0.0156,
+     "random_pct": 0.967,
+     "sharpe": 0.876,
+     "ret": 0.0808,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.153,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "both",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.2}|x0|trend_sma200|pivot_bounce:{\"window\": 5}:w5",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.2,
+     "hi": 0.8
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "pivot_bounce",
+     "params": {
+      "window": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 186,
+     "trade_sum": 0.0602,
+     "random_median": 0.0051,
+     "random_pct": 0.8,
+     "sharpe": 0.453,
+     "ret": 0.0906,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.186,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 138,
+     "trade_sum": 0.1115,
+     "random_median": 0.0117,
+     "random_pct": 0.95,
+     "sharpe": 0.834,
+     "ret": 0.1393,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.183,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 97,
+     "trade_sum": 0.0554,
+     "random_median": 0.0015,
+     "random_pct": 0.89,
+     "sharpe": 0.603,
+     "ret": 0.0717,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.2,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cci_reversal|{\"lo\": -100, \"n\": 40}|x0|trend_sma200",
+   "spec": {
+    "rule": "cci_reversal",
+    "params": {
+     "n": 40,
+     "lo": -100
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 40,
+     "trade_sum": 0.0853,
+     "random_median": 0.0625,
+     "random_pct": 0.697,
+     "sharpe": 0.454,
+     "ret": 0.088,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.117,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 29,
+     "trade_sum": 0.0733,
+     "random_median": 0.05,
+     "random_pct": 0.73,
+     "sharpe": 0.613,
+     "ret": 0.0995,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.122,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 19,
+     "trade_sum": 0.0357,
+     "random_median": 0.0268,
+     "random_pct": 0.62,
+     "sharpe": 0.306,
+     "ret": 0.0303,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.123,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_commercial|{\"n\": 260, \"th\": 1.0}|x0|none",
+   "spec": {
+    "rule": "cot_commercial",
+    "params": {
+     "n": 260,
+     "th": 1.0
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 12,
+     "trade_sum": 0.27,
+     "random_median": 0.1593,
+     "random_pct": 0.957,
+     "sharpe": 1.289,
+     "ret": 0.323,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.231,
+     "B1": true,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 9,
+     "trade_sum": 0.2161,
+     "random_median": 0.1294,
+     "random_pct": 0.96,
+     "sharpe": 1.246,
+     "ret": 0.1878,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.21,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 8,
+     "trade_sum": 0.1944,
+     "random_median": 0.1312,
+     "random_pct": 0.93,
+     "sharpe": 1.237,
+     "ret": 0.1465,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.296,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_commercial|{\"n\": 260, \"th\": 1.0}|x13|none",
+   "spec": {
+    "rule": "cot_commercial",
+    "params": {
+     "n": 260,
+     "th": 1.0
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 23,
+     "trade_sum": 0.1649,
+     "random_median": 0.1207,
+     "random_pct": 0.793,
+     "sharpe": 0.951,
+     "ret": 0.1589,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.137,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.082,
+     "random_median": 0.063,
+     "random_pct": 0.69,
+     "sharpe": 0.738,
+     "ret": 0.0607,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.096,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 17,
+     "trade_sum": 0.0588,
+     "random_median": 0.0481,
+     "random_pct": 0.56,
+     "sharpe": 0.67,
+     "ret": 0.0434,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.139,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_commercial|{\"n\": 260, \"th\": 1.0}|x18|none",
+   "spec": {
+    "rule": "cot_commercial",
+    "params": {
+     "n": 260,
+     "th": 1.0
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.0645,
+     "random_median": 0.0748,
+     "random_pct": 0.413,
+     "sharpe": 0.621,
+     "ret": 0.067,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.096,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 19,
+     "trade_sum": 0.0392,
+     "random_median": 0.0594,
+     "random_pct": 0.35,
+     "sharpe": 0.48,
+     "ret": 0.0295,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.086,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0246,
+     "random_median": 0.0403,
+     "random_pct": 0.36,
+     "sharpe": 0.387,
+     "ret": 0.0186,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.124,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_commercial|{\"n\": 260, \"th\": 1.0}|x28|none",
+   "spec": {
+    "rule": "cot_commercial",
+    "params": {
+     "n": 260,
+     "th": 1.0
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.089,
+     "random_median": 0.0859,
+     "random_pct": 0.52,
+     "sharpe": 0.683,
+     "ret": 0.0944,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.098,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 19,
+     "trade_sum": 0.0741,
+     "random_median": 0.0619,
+     "random_pct": 0.62,
+     "sharpe": 0.707,
+     "ret": 0.0547,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.088,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0525,
+     "random_median": 0.0473,
+     "random_pct": 0.567,
+     "sharpe": 0.633,
+     "ret": 0.0379,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.127,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_commercial|{\"n\": 260, \"th\": 1.5}|x18|none",
+   "spec": {
+    "rule": "cot_commercial",
+    "params": {
+     "n": 260,
+     "th": 1.5
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 21,
+     "trade_sum": 0.0386,
+     "random_median": 0.0738,
+     "random_pct": 0.247,
+     "sharpe": 0.434,
+     "ret": 0.032,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.087,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 15,
+     "trade_sum": 0.022,
+     "random_median": 0.0577,
+     "random_pct": 0.2,
+     "sharpe": 0.343,
+     "ret": 0.0171,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.089,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 15,
+     "trade_sum": 0.022,
+     "random_median": 0.0458,
+     "random_pct": 0.287,
+     "sharpe": 0.42,
+     "ret": 0.0171,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.134,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_extreme|{\"n\": 260, \"th\": 1.5}|x13|none",
+   "spec": {
+    "rule": "cot_extreme",
+    "params": {
+     "n": 260,
+     "th": 1.5
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 14,
+     "trade_sum": 0.1142,
+     "random_median": 0.0561,
+     "random_pct": 0.947,
+     "sharpe": 1.243,
+     "ret": 0.0909,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.09,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 13,
+     "trade_sum": 0.091,
+     "random_median": 0.0464,
+     "random_pct": 0.883,
+     "sharpe": 1.274,
+     "ret": 0.0732,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.131,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_extreme|{\"n\": 260, \"th\": 1.5}|x18|none",
+   "spec": {
+    "rule": "cot_extreme",
+    "params": {
+     "n": 260,
+     "th": 1.5
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 21,
+     "trade_sum": 0.061,
+     "random_median": 0.0763,
+     "random_pct": 0.387,
+     "sharpe": 0.669,
+     "ret": 0.0561,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.092,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 15,
+     "trade_sum": 0.039,
+     "random_median": 0.0542,
+     "random_pct": 0.35,
+     "sharpe": 0.612,
+     "ret": 0.0306,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.082,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 14,
+     "trade_sum": 0.0279,
+     "random_median": 0.0339,
+     "random_pct": 0.43,
+     "sharpe": 0.582,
+     "ret": 0.0222,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.115,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_extreme|{\"n\": 260, \"th\": 1.5}|x20|none",
+   "spec": {
+    "rule": "cot_extreme",
+    "params": {
+     "n": 260,
+     "th": 1.5
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 11,
+     "trade_sum": 0.1364,
+     "random_median": 0.1014,
+     "random_pct": 0.79,
+     "sharpe": 0.916,
+     "ret": 0.1072,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.152,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 10,
+     "trade_sum": 0.1368,
+     "random_median": 0.09,
+     "random_pct": 0.843,
+     "sharpe": 1.18,
+     "ret": 0.1085,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.219,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "cot_extreme|{\"n\": 260, \"th\": 1.5}|x28|none",
+   "spec": {
+    "rule": "cot_extreme",
+    "params": {
+     "n": 260,
+     "th": 1.5
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 21,
+     "trade_sum": 0.0923,
+     "random_median": 0.076,
+     "random_pct": 0.63,
+     "sharpe": 0.692,
+     "ret": 0.0799,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.096,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 15,
+     "trade_sum": 0.0694,
+     "random_median": 0.0467,
+     "random_pct": 0.68,
+     "sharpe": 0.783,
+     "ret": 0.0531,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.083,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 14,
+     "trade_sum": 0.0546,
+     "random_median": 0.0394,
+     "random_pct": 0.653,
+     "sharpe": 0.83,
+     "ret": 0.0414,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.117,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.1}|x0|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.7
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 301,
+     "trade_sum": 0.2203,
+     "random_median": 0.0185,
+     "random_pct": 1.0,
+     "sharpe": 1.155,
+     "ret": 0.3058,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.209,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 198,
+     "trade_sum": 0.1555,
+     "random_median": 0.0262,
+     "random_pct": 0.993,
+     "sharpe": 1.185,
+     "ret": 0.2043,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.192,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 117,
+     "trade_sum": 0.072,
+     "random_median": 0.0083,
+     "random_pct": 0.93,
+     "sharpe": 0.818,
+     "ret": 0.0956,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.177,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.1}|x13|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.7
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 312,
+     "trade_sum": 0.1796,
+     "random_median": -0.0004,
+     "random_pct": 1.0,
+     "sharpe": 1.056,
+     "ret": 0.2519,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.195,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 206,
+     "trade_sum": 0.1272,
+     "random_median": 0.0164,
+     "random_pct": 0.987,
+     "sharpe": 1.092,
+     "ret": 0.1643,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.18,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 124,
+     "trade_sum": 0.0641,
+     "random_median": 0.0004,
+     "random_pct": 0.927,
+     "sharpe": 0.846,
+     "ret": 0.0859,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.166,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.1}|x18|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.7
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 312,
+     "trade_sum": 0.1642,
+     "random_median": 0.0026,
+     "random_pct": 0.993,
+     "sharpe": 1.003,
+     "ret": 0.2333,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.195,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 206,
+     "trade_sum": 0.1133,
+     "random_median": 0.0182,
+     "random_pct": 0.97,
+     "sharpe": 1.016,
+     "ret": 0.1484,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.18,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 124,
+     "trade_sum": 0.05,
+     "random_median": -0.0007,
+     "random_pct": 0.883,
+     "sharpe": 0.726,
+     "ret": 0.0708,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.166,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.1}|x20|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.7
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 312,
+     "trade_sum": 0.1796,
+     "random_median": -0.0004,
+     "random_pct": 1.0,
+     "sharpe": 1.056,
+     "ret": 0.2519,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.195,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 206,
+     "trade_sum": 0.1272,
+     "random_median": 0.0128,
+     "random_pct": 0.987,
+     "sharpe": 1.092,
+     "ret": 0.1643,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.18,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 124,
+     "trade_sum": 0.0641,
+     "random_median": 0.0019,
+     "random_pct": 0.953,
+     "sharpe": 0.846,
+     "ret": 0.0859,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.166,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.1}|x28|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.7
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 312,
+     "trade_sum": 0.1805,
+     "random_median": 0.0045,
+     "random_pct": 1.0,
+     "sharpe": 1.061,
+     "ret": 0.2531,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.195,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 206,
+     "trade_sum": 0.1275,
+     "random_median": 0.0117,
+     "random_pct": 0.993,
+     "sharpe": 1.094,
+     "ret": 0.1646,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.18,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 124,
+     "trade_sum": 0.0644,
+     "random_median": 0.0017,
+     "random_pct": 0.94,
+     "sharpe": 0.848,
+     "ret": 0.0861,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.166,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.2}|x0|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.2,
+     "hi": 0.7
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 630,
+     "trade_sum": 0.3549,
+     "random_median": 0.0549,
+     "random_pct": 1.0,
+     "sharpe": 1.209,
+     "ret": 0.5719,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.445,
+     "B1": true,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 448,
+     "trade_sum": 0.2836,
+     "random_median": 0.0543,
+     "random_pct": 0.997,
+     "sharpe": 1.221,
+     "ret": 0.414,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.434,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 298,
+     "trade_sum": 0.1791,
+     "random_median": 0.011,
+     "random_pct": 0.993,
+     "sharpe": 1.107,
+     "ret": 0.256,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.435,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.7, \"lo\": 0.2}|x0|trend_sma200",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.2,
+     "hi": 0.7
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 516,
+     "trade_sum": 0.2218,
+     "random_median": 0.0426,
+     "random_pct": 0.98,
+     "sharpe": 1.201,
+     "ret": 0.3572,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.366,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 247,
+     "trade_sum": 0.117,
+     "random_median": 0.0218,
+     "random_pct": 0.957,
+     "sharpe": 1.181,
+     "ret": 0.173,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.363,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.1}|x0|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.8
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 287,
+     "trade_sum": 0.2313,
+     "random_median": 0.0563,
+     "random_pct": 0.99,
+     "sharpe": 1.041,
+     "ret": 0.317,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.252,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 191,
+     "trade_sum": 0.1533,
+     "random_median": 0.0492,
+     "random_pct": 0.947,
+     "sharpe": 0.984,
+     "ret": 0.2007,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.231,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 112,
+     "trade_sum": 0.0819,
+     "random_median": 0.0144,
+     "random_pct": 0.927,
+     "sharpe": 0.763,
+     "ret": 0.106,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.21,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.1}|x0|trend_sma200",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.8
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 238,
+     "trade_sum": 0.1459,
+     "random_median": 0.0541,
+     "random_pct": 0.937,
+     "sharpe": 0.922,
+     "ret": 0.2002,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.213,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 173,
+     "trade_sum": 0.1286,
+     "random_median": 0.0477,
+     "random_pct": 0.933,
+     "sharpe": 1.03,
+     "ret": 0.1701,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.208,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 98,
+     "trade_sum": 0.0691,
+     "random_median": 0.012,
+     "random_pct": 0.887,
+     "sharpe": 0.814,
+     "ret": 0.088,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.186,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.1}|x13|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.8
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 302,
+     "trade_sum": 0.1605,
+     "random_median": 0.027,
+     "random_pct": 0.947,
+     "sharpe": 0.916,
+     "ret": 0.2244,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.226,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 201,
+     "trade_sum": 0.0997,
+     "random_median": 0.0356,
+     "random_pct": 0.93,
+     "sharpe": 0.872,
+     "ret": 0.1326,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.208,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 120,
+     "trade_sum": 0.0525,
+     "random_median": 0.01,
+     "random_pct": 0.827,
+     "sharpe": 0.72,
+     "ret": 0.072,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.191,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.1}|x18|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.8
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 303,
+     "trade_sum": 0.1599,
+     "random_median": 0.0296,
+     "random_pct": 0.97,
+     "sharpe": 0.936,
+     "ret": 0.2244,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.225,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 201,
+     "trade_sum": 0.0996,
+     "random_median": 0.0379,
+     "random_pct": 0.9,
+     "sharpe": 0.899,
+     "ret": 0.1327,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.207,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 120,
+     "trade_sum": 0.0377,
+     "random_median": 0.0082,
+     "random_pct": 0.767,
+     "sharpe": 0.59,
+     "ret": 0.0565,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.19,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.1}|x20|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.8
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 302,
+     "trade_sum": 0.1605,
+     "random_median": 0.0319,
+     "random_pct": 0.967,
+     "sharpe": 0.916,
+     "ret": 0.2244,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.226,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 201,
+     "trade_sum": 0.0997,
+     "random_median": 0.0417,
+     "random_pct": 0.867,
+     "sharpe": 0.872,
+     "ret": 0.1326,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.208,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 120,
+     "trade_sum": 0.0525,
+     "random_median": 0.0119,
+     "random_pct": 0.827,
+     "sharpe": 0.72,
+     "ret": 0.072,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.191,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.1}|x28|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.1,
+     "hi": 0.8
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 303,
+     "trade_sum": 0.1697,
+     "random_median": 0.0237,
+     "random_pct": 0.983,
+     "sharpe": 0.962,
+     "ret": 0.2362,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.226,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 201,
+     "trade_sum": 0.1051,
+     "random_median": 0.0398,
+     "random_pct": 0.86,
+     "sharpe": 0.915,
+     "ret": 0.1388,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.207,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 120,
+     "trade_sum": 0.0527,
+     "random_median": 0.0099,
+     "random_pct": 0.837,
+     "sharpe": 0.722,
+     "ret": 0.0722,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.191,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.2}|x0|none",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.2,
+     "hi": 0.8
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 568,
+     "trade_sum": 0.3559,
+     "random_median": 0.108,
+     "random_pct": 0.99,
+     "sharpe": 1.076,
+     "ret": 0.5457,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.501,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 406,
+     "trade_sum": 0.2684,
+     "random_median": 0.1038,
+     "random_pct": 0.963,
+     "sharpe": 1.034,
+     "ret": 0.3737,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.488,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 267,
+     "trade_sum": 0.1612,
+     "random_median": 0.0574,
+     "random_pct": 0.94,
+     "sharpe": 0.894,
+     "ret": 0.2179,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.491,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ibs_reversion|{\"hi\": 0.8, \"lo\": 0.2}|x0|trend_sma200",
+   "spec": {
+    "rule": "ibs_reversion",
+    "params": {
+     "lo": 0.2,
+     "hi": 0.8
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 473,
+     "trade_sum": 0.2261,
+     "random_median": 0.1021,
+     "random_pct": 0.933,
+     "sharpe": 0.994,
+     "ret": 0.3409,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.426,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 227,
+     "trade_sum": 0.1225,
+     "random_median": 0.0487,
+     "random_pct": 0.88,
+     "sharpe": 0.962,
+     "ret": 0.165,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.432,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "inside_bar|{\"trend_n\": 200}|x0|none",
+   "spec": {
+    "rule": "inside_bar",
+    "params": {
+     "trend_n": 200
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.2869,
+     "random_median": 0.4545,
+     "random_pct": 0.017,
+     "sharpe": 0.911,
+     "ret": 0.4644,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.693,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 11,
+     "trade_sum": 0.0395,
+     "random_median": 0.1492,
+     "random_pct": 0.023,
+     "sharpe": 0.64,
+     "ret": 0.1547,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.764,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "inside_bar|{\"trend_n\": 200}|x0|trend_sma200",
+   "spec": {
+    "rule": "inside_bar",
+    "params": {
+     "trend_n": 200
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.2869,
+     "random_median": 0.4481,
+     "random_pct": 0.007,
+     "sharpe": 0.911,
+     "ret": 0.4644,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.693,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 11,
+     "trade_sum": 0.0395,
+     "random_median": 0.1384,
+     "random_pct": 0.01,
+     "sharpe": 0.64,
+     "ret": 0.1547,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.764,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"ema\", \"pair\": [20, 100]}|x0|trend_sma200",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "ema",
+     "pair": [
+      20,
+      100
+     ]
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 20,
+     "trade_sum": 0.2957,
+     "random_median": 0.5193,
+     "random_pct": 0.007,
+     "sharpe": 0.851,
+     "ret": 0.4031,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.714,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 10,
+     "trade_sum": 0.2642,
+     "random_median": 0.3459,
+     "random_pct": 0.117,
+     "sharpe": 0.999,
+     "ret": 0.3586,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.72,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 4,
+     "trade_sum": 0.1148,
+     "random_median": 0.1417,
+     "random_pct": 0.247,
+     "sharpe": 0.584,
+     "ret": 0.1091,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.63,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x0|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      12,
+      26,
+      9
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_liquidity_sweep",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0522,
+     "random_median": 0.0401,
+     "random_pct": 0.62,
+     "sharpe": 0.837,
+     "ret": 0.057,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.081,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 13,
+     "trade_sum": 0.0094,
+     "random_median": 0.0199,
+     "random_pct": 0.36,
+     "sharpe": 0.312,
+     "ret": 0.0136,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.08,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x13|trend_sma200",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      12,
+      26,
+      9
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 13,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 53,
+     "trade_sum": 0.0798,
+     "random_median": 0.1033,
+     "random_pct": 0.363,
+     "sharpe": 0.608,
+     "ret": 0.0915,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.155,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.1063,
+     "random_median": 0.0869,
+     "random_pct": 0.683,
+     "sharpe": 0.976,
+     "ret": 0.1188,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.158,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 20,
+     "trade_sum": 0.0039,
+     "random_median": 0.0278,
+     "random_pct": 0.287,
+     "sharpe": 0.146,
+     "ret": 0.0082,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.103,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x13|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      12,
+      26,
+      9
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 13,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_liquidity_sweep",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.046,
+     "random_median": 0.0375,
+     "random_pct": 0.6,
+     "sharpe": 0.77,
+     "ret": 0.0513,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.075,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 13,
+     "trade_sum": 0.0124,
+     "random_median": 0.0177,
+     "random_pct": 0.41,
+     "sharpe": 0.384,
+     "ret": 0.0167,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.078,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x18|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      12,
+      26,
+      9
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 18,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_liquidity_sweep",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0271,
+     "random_median": 0.0404,
+     "random_pct": 0.35,
+     "sharpe": 0.533,
+     "ret": 0.0321,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.076,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 13,
+     "trade_sum": -0.0001,
+     "random_median": 0.0209,
+     "random_pct": 0.217,
+     "sharpe": 0.116,
+     "ret": 0.0044,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.073,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x20|trend_sma200",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      12,
+      26,
+      9
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 20,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 53,
+     "trade_sum": 0.0785,
+     "random_median": 0.1021,
+     "random_pct": 0.363,
+     "sharpe": 0.586,
+     "ret": 0.0903,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.162,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.105,
+     "random_median": 0.0829,
+     "random_pct": 0.673,
+     "sharpe": 0.939,
+     "ret": 0.1176,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.167,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 20,
+     "trade_sum": 0.0039,
+     "random_median": 0.0312,
+     "random_pct": 0.23,
+     "sharpe": 0.146,
+     "ret": 0.0082,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.103,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x20|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      12,
+      26,
+      9
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 20,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_liquidity_sweep",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0552,
+     "random_median": 0.0412,
+     "random_pct": 0.67,
+     "sharpe": 0.888,
+     "ret": 0.0603,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.079,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 13,
+     "trade_sum": 0.0124,
+     "random_median": 0.0174,
+     "random_pct": 0.437,
+     "sharpe": 0.384,
+     "ret": 0.0167,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.078,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x28|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      12,
+      26,
+      9
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 28,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_liquidity_sweep",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0464,
+     "random_median": 0.0377,
+     "random_pct": 0.597,
+     "sharpe": 0.743,
+     "ret": 0.051,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.076,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 13,
+     "trade_sum": 0.0036,
+     "random_median": 0.0206,
+     "random_pct": 0.277,
+     "sharpe": 0.182,
+     "ret": 0.0078,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.073,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [8, 21, 5], \"zero_filter\": true}|x0|trend_sma200",
+   "spec": {
+    "rule": "macd_cross",
+    "params": {
+     "cfg": [
+      8,
+      21,
+      5
+     ],
+     "zero_filter": true
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 82,
+     "trade_sum": 0.0982,
+     "random_median": 0.0883,
+     "random_pct": 0.58,
+     "sharpe": 0.717,
+     "ret": 0.1174,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.168,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 40,
+     "trade_sum": 0.0176,
+     "random_median": 0.0393,
+     "random_pct": 0.327,
+     "sharpe": 0.336,
+     "ret": 0.0259,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.148,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "price_ma|{\"kind\": \"ema\", \"n\": 200}|x0|none",
+   "spec": {
+    "rule": "price_ma",
+    "params": {
+     "kind": "ema",
+     "n": 200
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 69,
+     "trade_sum": 0.3033,
+     "random_median": 0.5343,
+     "random_pct": 0.003,
+     "sharpe": 1.014,
+     "ret": 0.6242,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.862,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 28,
+     "trade_sum": 0.3338,
+     "random_median": 0.3905,
+     "random_pct": 0.243,
+     "sharpe": 1.291,
+     "ret": 0.6514,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.914,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 21,
+     "trade_sum": 0.0793,
+     "random_median": 0.1574,
+     "random_pct": 0.023,
+     "sharpe": 0.952,
+     "ret": 0.2816,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.898,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "roc_breakout|{\"n\": 252, \"th\": 0}|x0|none",
+   "spec": {
+    "rule": "roc_breakout",
+    "params": {
+     "n": 252,
+     "th": 0
+    },
+    "exit_id": 0,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 42,
+     "trade_sum": 0.1635,
+     "random_median": 0.3891,
+     "random_pct": 0.0,
+     "sharpe": 0.971,
+     "ret": 0.626,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.843,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 15,
+     "trade_sum": -0.0026,
+     "random_median": 0.0453,
+     "random_pct": 0.29,
+     "sharpe": 0.757,
+     "ret": 0.2311,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.948,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "roc_breakout|{\"n\": 63, \"th\": 0}|x13|trend_sma200",
+   "spec": {
+    "rule": "roc_breakout",
+    "params": {
+     "n": 63,
+     "th": 0
+    },
+    "exit_id": 13,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 115,
+     "trade_sum": 0.1854,
+     "random_median": 0.1768,
+     "random_pct": 0.53,
+     "sharpe": 0.897,
+     "ret": 0.2088,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.32,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 88,
+     "trade_sum": 0.2183,
+     "random_median": 0.168,
+     "random_pct": 0.75,
+     "sharpe": 1.268,
+     "ret": 0.2445,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.346,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 50,
+     "trade_sum": 0.1212,
+     "random_median": 0.0764,
+     "random_pct": 0.83,
+     "sharpe": 1.047,
+     "ret": 0.125,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.339,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 60, \"lo\": 35, \"n\": 9}|x0|trend_sma200",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 9,
+     "lo": 35,
+     "exit": 60
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 66,
+     "trade_sum": 0.1986,
+     "random_median": 0.105,
+     "random_pct": 0.953,
+     "sharpe": 0.733,
+     "ret": 0.226,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.19,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 53,
+     "trade_sum": 0.1877,
+     "random_median": 0.0929,
+     "random_pct": 0.953,
+     "sharpe": 0.886,
+     "ret": 0.2279,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.2,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 35,
+     "trade_sum": 0.0966,
+     "random_median": 0.0454,
+     "random_pct": 0.86,
+     "sharpe": 0.583,
+     "ret": 0.0981,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.208,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 25, \"n\": 5}|x0|trend_sma200",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 5,
+     "lo": 25,
+     "exit": 70
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 73,
+     "trade_sum": 0.1686,
+     "random_median": 0.138,
+     "random_pct": 0.71,
+     "sharpe": 0.6,
+     "ret": 0.1897,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.231,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 58,
+     "trade_sum": 0.1416,
+     "random_median": 0.1245,
+     "random_pct": 0.593,
+     "sharpe": 0.601,
+     "ret": 0.1546,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.245,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 37,
+     "trade_sum": 0.0645,
+     "random_median": 0.0708,
+     "random_pct": 0.477,
+     "sharpe": 0.384,
+     "ret": 0.0653,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.274,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 30, \"n\": 5}|x0|trend_sma200",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 5,
+     "lo": 30,
+     "exit": 70
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 96,
+     "trade_sum": 0.1506,
+     "random_median": 0.1897,
+     "random_pct": 0.297,
+     "sharpe": 0.465,
+     "ret": 0.1722,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.324,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 76,
+     "trade_sum": 0.1533,
+     "random_median": 0.1657,
+     "random_pct": 0.44,
+     "sharpe": 0.559,
+     "ret": 0.1719,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.332,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 49,
+     "trade_sum": 0.0976,
+     "random_median": 0.1057,
+     "random_pct": 0.44,
+     "sharpe": 0.465,
+     "ret": 0.099,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.362,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 35, \"n\": 5}|x0|trend_sma200",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 5,
+     "lo": 35,
+     "exit": 70
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 120,
+     "trade_sum": 0.1989,
+     "random_median": 0.2205,
+     "random_pct": 0.377,
+     "sharpe": 0.516,
+     "ret": 0.2242,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.379,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 64,
+     "trade_sum": 0.1344,
+     "random_median": 0.1279,
+     "random_pct": 0.543,
+     "sharpe": 0.523,
+     "ret": 0.1333,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.445,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 35, \"n\": 9}|x0|trend_sma200",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 9,
+     "lo": 35,
+     "exit": 70
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 47,
+     "trade_sum": 0.2956,
+     "random_median": 0.2236,
+     "random_pct": 0.807,
+     "sharpe": 0.852,
+     "ret": 0.3608,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.339,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 37,
+     "trade_sum": 0.2546,
+     "random_median": 0.192,
+     "random_pct": 0.843,
+     "sharpe": 1.059,
+     "ret": 0.3772,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.368,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.1448,
+     "random_median": 0.1132,
+     "random_pct": 0.727,
+     "sharpe": 0.69,
+     "ret": 0.1542,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.361,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 14, \"lo\": 10, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 3,
+     "smooth": 3,
+     "lo": 10
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 51,
+     "trade_sum": 0.2124,
+     "random_median": 0.0824,
+     "random_pct": 0.987,
+     "sharpe": 0.956,
+     "ret": 0.2339,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.163,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 35,
+     "trade_sum": 0.1891,
+     "random_median": 0.0599,
+     "random_pct": 0.997,
+     "sharpe": 1.247,
+     "ret": 0.228,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.134,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 20,
+     "trade_sum": 0.088,
+     "random_median": 0.0235,
+     "random_pct": 0.983,
+     "sharpe": 0.842,
+     "ret": 0.0849,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.119,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 14, \"lo\": 20, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 3,
+     "smooth": 3,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 79,
+     "trade_sum": 0.2776,
+     "random_median": 0.1395,
+     "random_pct": 0.983,
+     "sharpe": 0.973,
+     "ret": 0.313,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.25,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 61,
+     "trade_sum": 0.2599,
+     "random_median": 0.1184,
+     "random_pct": 0.993,
+     "sharpe": 1.231,
+     "ret": 0.3137,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.239,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.1131,
+     "random_median": 0.0709,
+     "random_pct": 0.753,
+     "sharpe": 0.688,
+     "ret": 0.108,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.242,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 14, \"lo\": 20, \"smooth\": 3}|x0|trend_sma200|pivot_bounce:{\"window\": 5}:w5",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 3,
+     "smooth": 3,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "pivot_bounce",
+     "params": {
+      "window": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 48,
+     "trade_sum": 0.1965,
+     "random_median": 0.0926,
+     "random_pct": 0.943,
+     "sharpe": 0.991,
+     "ret": 0.2263,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.16,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 38,
+     "trade_sum": 0.1856,
+     "random_median": 0.0712,
+     "random_pct": 0.993,
+     "sharpe": 1.291,
+     "ret": 0.2368,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.155,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.0669,
+     "random_median": 0.0484,
+     "random_pct": 0.663,
+     "sharpe": 0.614,
+     "ret": 0.0754,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.163,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 14, \"lo\": 20, \"smooth\": 3}|x0|trend_sma200|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 3,
+     "smooth": 3,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 57,
+     "trade_sum": 0.2146,
+     "random_median": 0.1057,
+     "random_pct": 0.963,
+     "sharpe": 0.939,
+     "ret": 0.228,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.184,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 45,
+     "trade_sum": 0.2112,
+     "random_median": 0.0849,
+     "random_pct": 0.987,
+     "sharpe": 1.199,
+     "ret": 0.234,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.183,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 31,
+     "trade_sum": 0.0828,
+     "random_median": 0.0575,
+     "random_pct": 0.717,
+     "sharpe": 0.565,
+     "ret": 0.0739,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.208,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 14, \"lo\": 25, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 3,
+     "smooth": 3,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 86,
+     "trade_sum": 0.2672,
+     "random_median": 0.1564,
+     "random_pct": 0.917,
+     "sharpe": 0.913,
+     "ret": 0.301,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.275,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 67,
+     "trade_sum": 0.2561,
+     "random_median": 0.1335,
+     "random_pct": 0.967,
+     "sharpe": 1.176,
+     "ret": 0.31,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.264,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 45,
+     "trade_sum": 0.1194,
+     "random_median": 0.0751,
+     "random_pct": 0.767,
+     "sharpe": 0.701,
+     "ret": 0.116,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.278,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 14, \"lo\": 25, \"smooth\": 3}|x0|trend_sma200|pivot_bounce:{\"window\": 5}:w5",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 3,
+     "smooth": 3,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "pivot_bounce",
+     "params": {
+      "window": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 56,
+     "trade_sum": 0.2124,
+     "random_median": 0.1014,
+     "random_pct": 0.96,
+     "sharpe": 1.031,
+     "ret": 0.2476,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.179,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 32,
+     "trade_sum": 0.0789,
+     "random_median": 0.0553,
+     "random_pct": 0.713,
+     "sharpe": 0.684,
+     "ret": 0.0896,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.19,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 14, \"lo\": 25, \"smooth\": 3}|x0|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 3,
+     "smooth": 3,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_liquidity_sweep",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 47,
+     "trade_sum": 0.1696,
+     "random_median": 0.0832,
+     "random_pct": 0.953,
+     "sharpe": 0.832,
+     "ret": 0.1902,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.149,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 29,
+     "trade_sum": 0.1001,
+     "random_median": 0.0419,
+     "random_pct": 0.913,
+     "sharpe": 0.813,
+     "ret": 0.1063,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.171,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 21, \"lo\": 10, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 3,
+     "smooth": 1,
+     "lo": 10
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 45,
+     "trade_sum": 0.1578,
+     "random_median": 0.1038,
+     "random_pct": 0.807,
+     "sharpe": 0.584,
+     "ret": 0.1686,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.181,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 20,
+     "trade_sum": 0.0696,
+     "random_median": 0.0341,
+     "random_pct": 0.84,
+     "sharpe": 0.443,
+     "ret": 0.0644,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.15,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 21, \"lo\": 10, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 3,
+     "smooth": 3,
+     "lo": 10
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 41,
+     "trade_sum": 0.1536,
+     "random_median": 0.1103,
+     "random_pct": 0.793,
+     "sharpe": 0.584,
+     "ret": 0.1645,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.18,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 28,
+     "trade_sum": 0.1334,
+     "random_median": 0.0667,
+     "random_pct": 0.927,
+     "sharpe": 0.829,
+     "ret": 0.1871,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.159,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0739,
+     "random_median": 0.0346,
+     "random_pct": 0.853,
+     "sharpe": 0.492,
+     "ret": 0.0697,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.148,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 21, \"lo\": 20, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 3,
+     "smooth": 1,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 66,
+     "trade_sum": 0.1983,
+     "random_median": 0.1543,
+     "random_pct": 0.72,
+     "sharpe": 0.597,
+     "ret": 0.2193,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.252,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 51,
+     "trade_sum": 0.197,
+     "random_median": 0.1178,
+     "random_pct": 0.93,
+     "sharpe": 0.825,
+     "ret": 0.2531,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.238,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 35,
+     "trade_sum": 0.0887,
+     "random_median": 0.0715,
+     "random_pct": 0.623,
+     "sharpe": 0.443,
+     "ret": 0.0863,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.239,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 21, \"lo\": 20, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 3,
+     "smooth": 3,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 58,
+     "trade_sum": 0.1912,
+     "random_median": 0.1506,
+     "random_pct": 0.703,
+     "sharpe": 0.573,
+     "ret": 0.2056,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.254,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 44,
+     "trade_sum": 0.1805,
+     "random_median": 0.1169,
+     "random_pct": 0.857,
+     "sharpe": 0.8,
+     "ret": 0.2399,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.241,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 31,
+     "trade_sum": 0.0919,
+     "random_median": 0.081,
+     "random_pct": 0.607,
+     "sharpe": 0.442,
+     "ret": 0.0851,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.244,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 21, \"lo\": 25, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 3,
+     "smooth": 1,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 72,
+     "trade_sum": 0.2083,
+     "random_median": 0.1639,
+     "random_pct": 0.743,
+     "sharpe": 0.616,
+     "ret": 0.2317,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.266,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.0938,
+     "random_median": 0.07,
+     "random_pct": 0.66,
+     "sharpe": 0.457,
+     "ret": 0.0916,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.258,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 21, \"lo\": 25, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 3,
+     "smooth": 3,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 66,
+     "trade_sum": 0.2252,
+     "random_median": 0.1681,
+     "random_pct": 0.81,
+     "sharpe": 0.661,
+     "ret": 0.2488,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.274,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 51,
+     "trade_sum": 0.2104,
+     "random_median": 0.1288,
+     "random_pct": 0.887,
+     "sharpe": 0.89,
+     "ret": 0.2789,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.265,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 36,
+     "trade_sum": 0.1133,
+     "random_median": 0.0835,
+     "random_pct": 0.697,
+     "sharpe": 0.537,
+     "ret": 0.1095,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.272,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 5, \"lo\": 25, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 5,
+     "d": 3,
+     "smooth": 1,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 191,
+     "trade_sum": 0.1431,
+     "random_median": 0.1041,
+     "random_pct": 0.707,
+     "sharpe": 0.692,
+     "ret": 0.1723,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.248,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 146,
+     "trade_sum": 0.101,
+     "random_median": 0.0951,
+     "random_pct": 0.54,
+     "sharpe": 0.607,
+     "ret": 0.1159,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.255,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 99,
+     "trade_sum": 0.0954,
+     "random_median": 0.044,
+     "random_pct": 0.843,
+     "sharpe": 0.791,
+     "ret": 0.1034,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.26,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 9, \"lo\": 10, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 9,
+     "d": 3,
+     "smooth": 3,
+     "lo": 10
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 55,
+     "trade_sum": 0.1551,
+     "random_median": 0.09,
+     "random_pct": 0.883,
+     "sharpe": 0.76,
+     "ret": 0.1632,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.154,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 21,
+     "trade_sum": 0.0701,
+     "random_median": 0.0243,
+     "random_pct": 0.893,
+     "sharpe": 0.698,
+     "ret": 0.0627,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.123,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 3, \"k\": 9, \"lo\": 20, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 9,
+     "d": 3,
+     "smooth": 3,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 90,
+     "trade_sum": 0.1421,
+     "random_median": 0.1566,
+     "random_pct": 0.43,
+     "sharpe": 0.522,
+     "ret": 0.1506,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.26,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 45,
+     "trade_sum": 0.0898,
+     "random_median": 0.0712,
+     "random_pct": 0.627,
+     "sharpe": 0.591,
+     "ret": 0.085,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.256,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 14, \"lo\": 10, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 5,
+     "smooth": 1,
+     "lo": 10
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 46,
+     "trade_sum": 0.1652,
+     "random_median": 0.0636,
+     "random_pct": 0.983,
+     "sharpe": 0.911,
+     "ret": 0.1738,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.118,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 32,
+     "trade_sum": 0.1648,
+     "random_median": 0.0357,
+     "random_pct": 1.0,
+     "sharpe": 1.273,
+     "ret": 0.1704,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.092,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 17,
+     "trade_sum": 0.0755,
+     "random_median": 0.0168,
+     "random_pct": 0.987,
+     "sharpe": 0.903,
+     "ret": 0.0679,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.081,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 14, \"lo\": 20, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 5,
+     "smooth": 1,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 69,
+     "trade_sum": 0.146,
+     "random_median": 0.0909,
+     "random_pct": 0.803,
+     "sharpe": 0.638,
+     "ret": 0.1531,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.181,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 32,
+     "trade_sum": 0.0727,
+     "random_median": 0.0377,
+     "random_pct": 0.833,
+     "sharpe": 0.59,
+     "ret": 0.0645,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.149,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 14, \"lo\": 25, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 14,
+     "d": 5,
+     "smooth": 1,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 81,
+     "trade_sum": 0.1469,
+     "random_median": 0.1154,
+     "random_pct": 0.693,
+     "sharpe": 0.594,
+     "ret": 0.1553,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.208,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 63,
+     "trade_sum": 0.1639,
+     "random_median": 0.0906,
+     "random_pct": 0.923,
+     "sharpe": 0.878,
+     "ret": 0.1818,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.193,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 40,
+     "trade_sum": 0.0729,
+     "random_median": 0.0457,
+     "random_pct": 0.707,
+     "sharpe": 0.508,
+     "ret": 0.0652,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.19,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 21, \"lo\": 10, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 5,
+     "smooth": 1,
+     "lo": 10
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 44,
+     "trade_sum": 0.175,
+     "random_median": 0.0953,
+     "random_pct": 0.947,
+     "sharpe": 0.71,
+     "ret": 0.1976,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.159,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 30,
+     "trade_sum": 0.1435,
+     "random_median": 0.0637,
+     "random_pct": 0.96,
+     "sharpe": 0.886,
+     "ret": 0.1949,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.141,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.0721,
+     "random_median": 0.0324,
+     "random_pct": 0.91,
+     "sharpe": 0.54,
+     "ret": 0.0746,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.122,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 21, \"lo\": 10, \"smooth\": 3}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 5,
+     "smooth": 3,
+     "lo": 10
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 37,
+     "trade_sum": 0.1375,
+     "random_median": 0.0888,
+     "random_pct": 0.817,
+     "sharpe": 0.565,
+     "ret": 0.1523,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.158,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 16,
+     "trade_sum": 0.0631,
+     "random_median": 0.0299,
+     "random_pct": 0.837,
+     "sharpe": 0.479,
+     "ret": 0.0648,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.124,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 21, \"lo\": 20, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 5,
+     "smooth": 1,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 56,
+     "trade_sum": 0.1995,
+     "random_median": 0.1156,
+     "random_pct": 0.93,
+     "sharpe": 0.721,
+     "ret": 0.2212,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.194,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 27,
+     "trade_sum": 0.0798,
+     "random_median": 0.0369,
+     "random_pct": 0.89,
+     "sharpe": 0.502,
+     "ret": 0.0769,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.163,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 5, \"lo\": 20, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 5,
+     "d": 5,
+     "smooth": 1,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 105,
+     "trade_sum": 0.0904,
+     "random_median": 0.0449,
+     "random_pct": 0.78,
+     "sharpe": 0.658,
+     "ret": 0.1082,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.123,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 84,
+     "trade_sum": 0.0716,
+     "random_median": 0.0342,
+     "random_pct": 0.787,
+     "sharpe": 0.665,
+     "ret": 0.0837,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.124,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 55,
+     "trade_sum": 0.0564,
+     "random_median": 0.0135,
+     "random_pct": 0.873,
+     "sharpe": 0.757,
+     "ret": 0.0626,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.116,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 5, \"lo\": 25, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 5,
+     "d": 5,
+     "smooth": 1,
+     "lo": 25
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 131,
+     "trade_sum": 0.0682,
+     "random_median": 0.0591,
+     "random_pct": 0.567,
+     "sharpe": 0.48,
+     "ret": 0.0883,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.159,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 104,
+     "trade_sum": 0.0459,
+     "random_median": 0.057,
+     "random_pct": 0.433,
+     "sharpe": 0.418,
+     "ret": 0.0594,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.165,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 70,
+     "trade_sum": 0.0435,
+     "random_median": 0.0247,
+     "random_pct": 0.693,
+     "sharpe": 0.537,
+     "ret": 0.0512,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.163,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 9, \"lo\": 20, \"smooth\": 1}|x0|trend_sma200",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 9,
+     "d": 5,
+     "smooth": 1,
+     "lo": 20
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 86,
+     "trade_sum": 0.08,
+     "random_median": 0.085,
+     "random_pct": 0.48,
+     "sharpe": 0.449,
+     "ret": 0.0966,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.17,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 68,
+     "trade_sum": 0.1079,
+     "random_median": 0.0653,
+     "random_pct": 0.72,
+     "sharpe": 0.729,
+     "ret": 0.1282,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.168,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 43,
+     "trade_sum": 0.0713,
+     "random_median": 0.0312,
+     "random_pct": 0.857,
+     "sharpe": 0.732,
+     "ret": 0.0796,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.158,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -80, \"n\": 14}|x0|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 14,
+     "lo": -80
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 110,
+     "trade_sum": 0.1059,
+     "random_median": 0.1185,
+     "random_pct": 0.407,
+     "sharpe": 0.447,
+     "ret": 0.1153,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.238,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 59,
+     "trade_sum": 0.1014,
+     "random_median": 0.0565,
+     "random_pct": 0.84,
+     "sharpe": 0.733,
+     "ret": 0.1003,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.231,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -90, \"n\": 10}|x0|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 10,
+     "lo": -90
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 101,
+     "trade_sum": 0.0619,
+     "random_median": 0.0919,
+     "random_pct": 0.313,
+     "sharpe": 0.285,
+     "ret": 0.0617,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.192,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 77,
+     "trade_sum": 0.0916,
+     "random_median": 0.0716,
+     "random_pct": 0.64,
+     "sharpe": 0.494,
+     "ret": 0.0894,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.188,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 53,
+     "trade_sum": 0.092,
+     "random_median": 0.0292,
+     "random_pct": 0.95,
+     "sharpe": 0.762,
+     "ret": 0.0852,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.182,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -90, \"n\": 14}|x0|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 14,
+     "lo": -90
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 83,
+     "trade_sum": 0.1236,
+     "random_median": 0.0994,
+     "random_pct": 0.697,
+     "sharpe": 0.527,
+     "ret": 0.128,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.193,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.0806,
+     "random_median": 0.0362,
+     "random_pct": 0.85,
+     "sharpe": 0.626,
+     "ret": 0.0728,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.171,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -90, \"n\": 7}|x0|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 7,
+     "lo": -90
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 125,
+     "trade_sum": 0.0285,
+     "random_median": 0.0744,
+     "random_pct": 0.207,
+     "sharpe": 0.235,
+     "ret": 0.0445,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.176,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 96,
+     "trade_sum": 0.0272,
+     "random_median": 0.074,
+     "random_pct": 0.177,
+     "sharpe": 0.253,
+     "ret": 0.0383,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.178,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 67,
+     "trade_sum": 0.0548,
+     "random_median": 0.0394,
+     "random_pct": 0.697,
+     "sharpe": 0.611,
+     "ret": 0.0633,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.177,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -95, \"n\": 10}|x0|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 10,
+     "lo": -95
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 65,
+     "trade_sum": 0.0419,
+     "random_median": 0.0581,
+     "random_pct": 0.36,
+     "sharpe": 0.254,
+     "ret": 0.0435,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.128,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 48,
+     "trade_sum": 0.0364,
+     "random_median": 0.0498,
+     "random_pct": 0.35,
+     "sharpe": 0.258,
+     "ret": 0.0349,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.125,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 30,
+     "trade_sum": 0.0463,
+     "random_median": 0.0139,
+     "random_pct": 0.86,
+     "sharpe": 0.478,
+     "ret": 0.0411,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.112,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -95, \"n\": 10}|x0|trend_sma200|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 10,
+     "lo": -95
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 44,
+     "trade_sum": 0.0527,
+     "random_median": 0.04,
+     "random_pct": 0.643,
+     "sharpe": 0.38,
+     "ret": 0.0504,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.083,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 31,
+     "trade_sum": 0.0379,
+     "random_median": 0.0306,
+     "random_pct": 0.607,
+     "sharpe": 0.324,
+     "ret": 0.0326,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.081,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -95, \"n\": 14}|x0|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 14,
+     "lo": -95
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 55,
+     "trade_sum": 0.0911,
+     "random_median": 0.0667,
+     "random_pct": 0.687,
+     "sharpe": 0.475,
+     "ret": 0.094,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.131,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 38,
+     "trade_sum": 0.0854,
+     "random_median": 0.0484,
+     "random_pct": 0.79,
+     "sharpe": 0.578,
+     "ret": 0.0846,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.11,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.0689,
+     "random_median": 0.0188,
+     "random_pct": 0.947,
+     "sharpe": 0.707,
+     "ret": 0.0637,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.105,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -95, \"n\": 21}|x0|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 21,
+     "lo": -95
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 36,
+     "trade_sum": 0.0867,
+     "random_median": 0.0726,
+     "random_pct": 0.627,
+     "sharpe": 0.396,
+     "ret": 0.0873,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.131,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.0806,
+     "random_median": 0.0548,
+     "random_pct": 0.787,
+     "sharpe": 0.571,
+     "ret": 0.1033,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.12,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 16,
+     "trade_sum": 0.0402,
+     "random_median": 0.031,
+     "random_pct": 0.623,
+     "sharpe": 0.306,
+     "ret": 0.0339,
+     "bh_sharpe": 0.98,
+     "bh_ret": 0.3797,
+     "exposure": 0.117,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -95, \"n\": 7}|x0|trend_sma200|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 7,
+     "lo": -95
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 48,
+     "trade_sum": 0.0289,
+     "random_median": 0.0276,
+     "random_pct": 0.513,
+     "sharpe": 0.351,
+     "ret": 0.0369,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.064,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 32,
+     "trade_sum": 0.0112,
+     "random_median": 0.0208,
+     "random_pct": 0.4,
+     "sharpe": 0.21,
+     "ret": 0.0159,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.058,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -95, \"n\": 7}|x18|trend_sma200",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 7,
+     "lo": -95
+    },
+    "exit_id": 18,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 93,
+     "trade_sum": 0.0209,
+     "random_median": 0.0172,
+     "random_pct": 0.557,
+     "sharpe": 0.306,
+     "ret": 0.0352,
+     "bh_sharpe": 1.184,
+     "bh_ret": 1.0718,
+     "exposure": 0.082,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 66,
+     "trade_sum": 0.0121,
+     "random_median": 0.0141,
+     "random_pct": 0.487,
+     "sharpe": 0.262,
+     "ret": 0.0221,
+     "bh_sharpe": 1.302,
+     "bh_ret": 0.8559,
+     "exposure": 0.075,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 100, \"n\": 252}|x28|none|smc_bos:{\"k\": 5}:w3",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 100
+    },
+    "exit_id": 28,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 33,
+     "trade_sum": 0.22,
+     "random_median": 0.0647,
+     "random_pct": 0.957,
+     "sharpe": 0.835,
+     "ret": 0.2422,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.093,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.1829,
+     "random_median": 0.0537,
+     "random_pct": 0.933,
+     "sharpe": 0.996,
+     "ret": 0.1944,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.124,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 100, \"n\": 252}|x28|none|smc_bos:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 100
+    },
+    "exit_id": 28,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 35,
+     "trade_sum": 0.2047,
+     "random_median": 0.0585,
+     "random_pct": 0.94,
+     "sharpe": 0.777,
+     "ret": 0.2239,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.095,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.1746,
+     "random_median": 0.0523,
+     "random_pct": 0.92,
+     "sharpe": 0.951,
+     "ret": 0.1848,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.125,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 100, \"n\": 252}|x28|trend_sma200|smc_bos:{\"k\": 5}:w3",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 100
+    },
+    "exit_id": 28,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 33,
+     "trade_sum": 0.22,
+     "random_median": 0.0656,
+     "random_pct": 0.98,
+     "sharpe": 0.835,
+     "ret": 0.2422,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.093,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.1829,
+     "random_median": 0.0611,
+     "random_pct": 0.923,
+     "sharpe": 0.996,
+     "ret": 0.1944,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.124,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 100, \"n\": 252}|x28|trend_sma200|smc_bos:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 100
+    },
+    "exit_id": 28,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 35,
+     "trade_sum": 0.2047,
+     "random_median": 0.0584,
+     "random_pct": 0.967,
+     "sharpe": 0.777,
+     "ret": 0.2239,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.095,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.1746,
+     "random_median": 0.0538,
+     "random_pct": 0.91,
+     "sharpe": 0.951,
+     "ret": 0.1848,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.125,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 50, \"n\": 252}|x28|none|smc_bos:{\"k\": 5}:w3",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 50
+    },
+    "exit_id": 28,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 33,
+     "trade_sum": 0.22,
+     "random_median": 0.0652,
+     "random_pct": 0.957,
+     "sharpe": 0.835,
+     "ret": 0.2422,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.093,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.1829,
+     "random_median": 0.0471,
+     "random_pct": 0.93,
+     "sharpe": 0.996,
+     "ret": 0.1944,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.124,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 50, \"n\": 252}|x28|none|smc_bos:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 50
+    },
+    "exit_id": 28,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 35,
+     "trade_sum": 0.2047,
+     "random_median": 0.0527,
+     "random_pct": 0.96,
+     "sharpe": 0.777,
+     "ret": 0.2239,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.095,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.1746,
+     "random_median": 0.0661,
+     "random_pct": 0.91,
+     "sharpe": 0.951,
+     "ret": 0.1848,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.125,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 50, \"n\": 252}|x28|trend_sma200|smc_bos:{\"k\": 5}:w3",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 50
+    },
+    "exit_id": 28,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 33,
+     "trade_sum": 0.22,
+     "random_median": 0.0614,
+     "random_pct": 0.977,
+     "sharpe": 0.835,
+     "ret": 0.2422,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.093,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.1829,
+     "random_median": 0.0641,
+     "random_pct": 0.89,
+     "sharpe": 0.996,
+     "ret": 0.1944,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.124,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 50, \"n\": 252}|x28|trend_sma200|smc_bos:{\"k\": 5}:w5",
+   "spec": {
+    "rule": "high_52w_break",
+    "params": {
+     "n": 252,
+     "exit_ma": 50
+    },
+    "exit_id": 28,
+    "filter": "trend_sma200",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 35,
+     "trade_sum": 0.2047,
+     "random_median": 0.0582,
+     "random_pct": 0.943,
+     "sharpe": 0.777,
+     "ret": 0.2239,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.095,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.1746,
+     "random_median": 0.0583,
+     "random_pct": 0.91,
+     "sharpe": 0.951,
+     "ret": 0.1848,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.125,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "rsi_reversal|{\"exit\": 50, \"lo\": 35, \"n\": 14}|x0|trend_sma200",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 14,
+     "lo": 35,
+     "exit": 50
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 16,
+     "trade_sum": 0.0417,
+     "random_median": 0.0138,
+     "random_pct": 0.703,
+     "sharpe": 0.443,
+     "ret": 0.0481,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.049,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 10,
+     "trade_sum": 0.021,
+     "random_median": 0.023,
+     "random_pct": 0.487,
+     "sharpe": 0.263,
+     "ret": 0.0201,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.053,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "bollinger_breakout|{\"k\": 1.5, \"n\": 50}|x13|none",
+   "spec": {
+    "rule": "bollinger_breakout",
+    "params": {
+     "n": 50,
+     "k": 1.5
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 100,
+     "trade_sum": 0.1253,
+     "random_median": 0.1721,
+     "random_pct": 0.35,
+     "sharpe": 0.386,
+     "ret": 0.1507,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.289,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 83,
+     "trade_sum": 0.0894,
+     "random_median": 0.1785,
+     "random_pct": 0.28,
+     "sharpe": 0.365,
+     "ret": 0.1096,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.293,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "bollinger_breakout|{\"k\": 2.0, \"n\": 50}|x13|trend_sma200",
+   "spec": {
+    "rule": "bollinger_breakout",
+    "params": {
+     "n": 50,
+     "k": 2.0
+    },
+    "exit_id": 13,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 82,
+     "trade_sum": 0.2219,
+     "random_median": 0.161,
+     "random_pct": 0.677,
+     "sharpe": 0.577,
+     "ret": 0.2631,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.245,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 73,
+     "trade_sum": 0.2543,
+     "random_median": 0.1503,
+     "random_pct": 0.82,
+     "sharpe": 0.761,
+     "ret": 0.2968,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.252,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "bollinger_reversion|{\"k\": 2.0, \"n\": 30}|x0|trend_sma200",
+   "spec": {
+    "rule": "bollinger_reversion",
+    "params": {
+     "n": 30,
+     "k": 2.0
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 22,
+     "trade_sum": 0.1174,
+     "random_median": 0.0348,
+     "random_pct": 0.9,
+     "sharpe": 0.615,
+     "ret": 0.1316,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.064,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 12,
+     "trade_sum": 0.1084,
+     "random_median": 0.0234,
+     "random_pct": 0.947,
+     "sharpe": 0.713,
+     "ret": 0.1167,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.038,
+     "B1": true,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 10,
+     "trade_sum": 0.0901,
+     "random_median": 0.0261,
+     "random_pct": 0.94,
+     "sharpe": 0.756,
+     "ret": 0.0956,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.043,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "cci_breakout|{\"level\": 100, \"n\": 40}|x13|none",
+   "spec": {
+    "rule": "cci_breakout",
+    "params": {
+     "n": 40,
+     "level": 100
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 111,
+     "trade_sum": 0.1456,
+     "random_median": 0.1754,
+     "random_pct": 0.44,
+     "sharpe": 0.425,
+     "ret": 0.1793,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.329,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 87,
+     "trade_sum": 0.1554,
+     "random_median": 0.1824,
+     "random_pct": 0.427,
+     "sharpe": 0.522,
+     "ret": 0.179,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.337,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 58,
+     "trade_sum": 0.0934,
+     "random_median": 0.1149,
+     "random_pct": 0.393,
+     "sharpe": 0.539,
+     "ret": 0.1301,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.324,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "cci_breakout|{\"level\": 100, \"n\": 40}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "spec": {
+    "rule": "cci_breakout",
+    "params": {
+     "n": 40,
+     "level": 100
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 47,
+     "trade_sum": 0.1705,
+     "random_median": 0.0805,
+     "random_pct": 0.85,
+     "sharpe": 0.937,
+     "ret": 0.1933,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.14,
+     "B1": false,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.1543,
+     "random_median": 0.0908,
+     "random_pct": 0.763,
+     "sharpe": 1.076,
+     "ret": 0.1709,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.146,
+     "B1": false,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 30,
+     "trade_sum": 0.1194,
+     "random_median": 0.0732,
+     "random_pct": 0.707,
+     "sharpe": 1.16,
+     "ret": 0.1357,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.16,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "cci_breakout|{\"level\": 100, \"n\": 40}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "spec": {
+    "rule": "cci_breakout",
+    "params": {
+     "n": 40,
+     "level": 100
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 47,
+     "trade_sum": 0.1705,
+     "random_median": 0.0795,
+     "random_pct": 0.823,
+     "sharpe": 0.937,
+     "ret": 0.1933,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.14,
+     "B1": false,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 39,
+     "trade_sum": 0.1543,
+     "random_median": 0.094,
+     "random_pct": 0.787,
+     "sharpe": 1.076,
+     "ret": 0.1709,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.146,
+     "B1": false,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 30,
+     "trade_sum": 0.1194,
+     "random_median": 0.0623,
+     "random_pct": 0.75,
+     "sharpe": 1.16,
+     "ret": 0.1357,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.16,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "cci_breakout|{\"level\": 100, \"n\": 40}|x18|none",
+   "spec": {
+    "rule": "cci_breakout",
+    "params": {
+     "n": 40,
+     "level": 100
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 128,
+     "trade_sum": 0.1399,
+     "random_median": 0.1632,
+     "random_pct": 0.417,
+     "sharpe": 0.517,
+     "ret": 0.169,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.318,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 103,
+     "trade_sum": 0.1644,
+     "random_median": 0.2006,
+     "random_pct": 0.38,
+     "sharpe": 0.68,
+     "ret": 0.1844,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.337,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 70,
+     "trade_sum": 0.1382,
+     "random_median": 0.144,
+     "random_pct": 0.487,
+     "sharpe": 0.753,
+     "ret": 0.1501,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.337,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "cci_reversal|{\"lo\": -200, \"n\": 20}|x28|trend_sma200",
+   "spec": {
+    "rule": "cci_reversal",
+    "params": {
+     "n": 20,
+     "lo": -200
+    },
+    "exit_id": 28,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 15,
+     "trade_sum": 0.0587,
+     "random_median": 0.0185,
+     "random_pct": 0.817,
+     "sharpe": 0.391,
+     "ret": 0.052,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.025,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 10,
+     "trade_sum": 0.0777,
+     "random_median": 0.0229,
+     "random_pct": 0.89,
+     "sharpe": 0.71,
+     "ret": 0.0667,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.036,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"dema\", \"pair\": [20, 50]}|x0|trend_sma200",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "dema",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 53,
+     "trade_sum": 0.2992,
+     "random_median": 0.2392,
+     "random_pct": 0.633,
+     "sharpe": 0.519,
+     "ret": 0.3487,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.295,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 28,
+     "trade_sum": 0.2788,
+     "random_median": 0.1999,
+     "random_pct": 0.707,
+     "sharpe": 0.649,
+     "ret": 0.2846,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.343,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"dema\", \"pair\": [50, 150]}|x20|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "dema",
+     "pair": [
+      50,
+      150
+     ]
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 34,
+     "trade_sum": 0.1585,
+     "random_median": 0.1648,
+     "random_pct": 0.473,
+     "sharpe": 0.406,
+     "ret": 0.1558,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.222,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.1431,
+     "random_median": 0.1702,
+     "random_pct": 0.423,
+     "sharpe": 0.426,
+     "ret": 0.1313,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.209,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"hma\", \"pair\": [20, 50]}|x13|none|smc_bos:{\"k\": 5}:w3",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "hma",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 49,
+     "trade_sum": 0.068,
+     "random_median": 0.0451,
+     "random_pct": 0.603,
+     "sharpe": 0.35,
+     "ret": 0.0762,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.098,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 41,
+     "trade_sum": 0.0229,
+     "random_median": 0.0532,
+     "random_pct": 0.387,
+     "sharpe": 0.18,
+     "ret": 0.0281,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.108,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"hma\", \"pair\": [20, 50]}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "hma",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 38,
+     "trade_sum": 0.0433,
+     "random_median": 0.0259,
+     "random_pct": 0.607,
+     "sharpe": 0.28,
+     "ret": 0.0471,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.074,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 29,
+     "trade_sum": 0.078,
+     "random_median": 0.0275,
+     "random_pct": 0.78,
+     "sharpe": 0.57,
+     "ret": 0.0816,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.078,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"hma\", \"pair\": [50, 150]}|x13|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "hma",
+     "pair": [
+      50,
+      150
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 55,
+     "trade_sum": 0.2357,
+     "random_median": 0.1137,
+     "random_pct": 0.87,
+     "sharpe": 0.898,
+     "ret": 0.2715,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.178,
+     "B1": false,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 44,
+     "trade_sum": 0.252,
+     "random_median": 0.1211,
+     "random_pct": 0.903,
+     "sharpe": 1.189,
+     "ret": 0.2878,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.184,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 28,
+     "trade_sum": 0.1348,
+     "random_median": 0.0742,
+     "random_pct": 0.697,
+     "sharpe": 0.876,
+     "ret": 0.1396,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.175,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"hma\", \"pair\": [50, 150]}|x13|none|smc_fvg:{\"max_age\": 20, \"min_gap_atr\": 0.5}:w3",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "hma",
+     "pair": [
+      50,
+      150
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_fvg",
+     "params": {
+      "max_age": 20,
+      "min_gap_atr": 0.5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.13,
+     "random_median": 0.09,
+     "random_pct": 0.677,
+     "sharpe": 0.807,
+     "ret": 0.1439,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.126,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 17,
+     "trade_sum": 0.0451,
+     "random_median": 0.0513,
+     "random_pct": 0.47,
+     "sharpe": 0.393,
+     "ret": 0.0451,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.125,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [20, 50]}|x13|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 120,
+     "trade_sum": 0.3243,
+     "random_median": 0.1774,
+     "random_pct": 0.863,
+     "sharpe": 0.835,
+     "ret": 0.398,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.333,
+     "B1": false,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 55,
+     "trade_sum": 0.2696,
+     "random_median": 0.1627,
+     "random_pct": 0.79,
+     "sharpe": 1.132,
+     "ret": 0.3053,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.346,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [20, 50]}|x13|none|smc_bos:{\"k\": 5}:w3",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_bos",
+     "params": {
+      "k": 5
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 31,
+     "trade_sum": 0.0543,
+     "random_median": 0.032,
+     "random_pct": 0.677,
+     "sharpe": 0.408,
+     "ret": 0.0583,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.057,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 29,
+     "trade_sum": 0.0587,
+     "random_median": 0.044,
+     "random_pct": 0.617,
+     "sharpe": 0.503,
+     "ret": 0.0622,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.071,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [20, 50]}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 30,
+     "trade_sum": 0.0889,
+     "random_median": 0.0276,
+     "random_pct": 0.84,
+     "sharpe": 0.774,
+     "ret": 0.0958,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.062,
+     "B1": false,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.1173,
+     "random_median": 0.0424,
+     "random_pct": 0.903,
+     "sharpe": 1.187,
+     "ret": 0.1259,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.076,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 15,
+     "trade_sum": 0.0943,
+     "random_median": 0.0341,
+     "random_pct": 0.87,
+     "sharpe": 1.194,
+     "ret": 0.0943,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.079,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [20, 50]}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 36,
+     "trade_sum": 0.1345,
+     "random_median": 0.0495,
+     "random_pct": 0.923,
+     "sharpe": 1.044,
+     "ret": 0.1481,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.077,
+     "B1": true,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 30,
+     "trade_sum": 0.1563,
+     "random_median": 0.0432,
+     "random_pct": 0.957,
+     "sharpe": 1.435,
+     "ret": 0.1713,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.088,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 18,
+     "trade_sum": 0.1033,
+     "random_median": 0.0342,
+     "random_pct": 0.85,
+     "sharpe": 1.219,
+     "ret": 0.1051,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.09,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [20, 50]}|x13|trend_sma200",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      20,
+      50
+     ]
+    },
+    "exit_id": 13,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 71,
+     "trade_sum": 0.1672,
+     "random_median": 0.1096,
+     "random_pct": 0.713,
+     "sharpe": 0.629,
+     "ret": 0.1908,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.181,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 42,
+     "trade_sum": 0.1278,
+     "random_median": 0.1093,
+     "random_pct": 0.573,
+     "sharpe": 0.709,
+     "ret": 0.1345,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.223,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [50, 150]}|x20|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      50,
+      150
+     ]
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 46,
+     "trade_sum": 0.3757,
+     "random_median": 0.2041,
+     "random_pct": 0.857,
+     "sharpe": 0.545,
+     "ret": 0.3275,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.259,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 22,
+     "trade_sum": 0.3941,
+     "random_median": 0.2358,
+     "random_pct": 0.883,
+     "sharpe": 0.756,
+     "ret": 0.3053,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.29,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [50, 200]}|x20|none",
+   "spec": {
+    "rule": "ma_cross",
+    "params": {
+     "kind": "tema",
+     "pair": [
+      50,
+      200
+     ]
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 43,
+     "trade_sum": 0.1452,
+     "random_median": 0.1597,
+     "random_pct": 0.447,
+     "sharpe": 0.408,
+     "ret": 0.1765,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.219,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 37,
+     "trade_sum": 0.1458,
+     "random_median": 0.186,
+     "random_pct": 0.393,
+     "sharpe": 0.47,
+     "ret": 0.1738,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.242,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 19,
+     "trade_sum": 0.1687,
+     "random_median": 0.1346,
+     "random_pct": 0.62,
+     "sharpe": 0.582,
+     "ret": 0.1637,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.213,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "mfi_reversal|{\"lo\": 20, \"n\": 21}|x20|none",
+   "spec": {
+    "rule": "mfi_reversal",
+    "params": {
+     "n": 21,
+     "lo": 20
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 62,
+     "trade_sum": 0.098,
+     "random_median": 0.0384,
+     "random_pct": 0.757,
+     "sharpe": 0.622,
+     "ret": 0.141,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.123,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 40,
+     "trade_sum": 0.0508,
+     "random_median": 0.0366,
+     "random_pct": 0.54,
+     "sharpe": 0.42,
+     "ret": 0.0642,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.099,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 23,
+     "trade_sum": 0.0868,
+     "random_median": 0.0362,
+     "random_pct": 0.7,
+     "sharpe": 0.675,
+     "ret": 0.0753,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.092,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "price_ma|{\"kind\": \"hma\", \"n\": 200}|x13|none|smc_fvg:{\"max_age\": 20, \"min_gap_atr\": 0.5}:w5",
+   "spec": {
+    "rule": "price_ma",
+    "params": {
+     "kind": "hma",
+     "n": 200
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_fvg",
+     "params": {
+      "max_age": 20,
+      "min_gap_atr": 0.5
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 86,
+     "trade_sum": 0.0315,
+     "random_median": 0.1087,
+     "random_pct": 0.227,
+     "sharpe": 0.203,
+     "ret": 0.0393,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.226,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 59,
+     "trade_sum": 0.044,
+     "random_median": 0.0766,
+     "random_pct": 0.377,
+     "sharpe": 0.24,
+     "ret": 0.0331,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.233,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "roc_breakout|{\"n\": 63, \"th\": 10}|x13|none",
+   "spec": {
+    "rule": "roc_breakout",
+    "params": {
+     "n": 63,
+     "th": 10
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 73,
+     "trade_sum": 0.1144,
+     "random_median": 0.1343,
+     "random_pct": 0.453,
+     "sharpe": 0.464,
+     "ret": 0.1291,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.205,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 59,
+     "trade_sum": 0.1054,
+     "random_median": 0.1145,
+     "random_pct": 0.46,
+     "sharpe": 0.535,
+     "ret": 0.1179,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.206,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 42,
+     "trade_sum": 0.0838,
+     "random_median": 0.0845,
+     "random_pct": 0.493,
+     "sharpe": 0.593,
+     "ret": 0.0962,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.213,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 60, \"lo\": 35, \"n\": 14}|x13|none",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 14,
+     "lo": 35,
+     "exit": 60
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 62,
+     "trade_sum": 0.2181,
+     "random_median": 0.0715,
+     "random_pct": 0.88,
+     "sharpe": 0.704,
+     "ret": 0.2727,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.224,
+     "B1": false,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 37,
+     "trade_sum": 0.1908,
+     "random_median": 0.0871,
+     "random_pct": 0.807,
+     "sharpe": 0.779,
+     "ret": 0.2161,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.189,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 23,
+     "trade_sum": 0.0942,
+     "random_median": 0.0721,
+     "random_pct": 0.597,
+     "sharpe": 0.538,
+     "ret": 0.094,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.195,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 60, \"lo\": 35, \"n\": 14}|x20|none",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 14,
+     "lo": 35,
+     "exit": 60
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 62,
+     "trade_sum": 0.2327,
+     "random_median": 0.0727,
+     "random_pct": 0.903,
+     "sharpe": 0.763,
+     "ret": 0.2764,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.184,
+     "B1": true,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 37,
+     "trade_sum": 0.2056,
+     "random_median": 0.0933,
+     "random_pct": 0.883,
+     "sharpe": 0.864,
+     "ret": 0.2319,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.167,
+     "B1": false,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 23,
+     "trade_sum": 0.1036,
+     "random_median": 0.0784,
+     "random_pct": 0.607,
+     "sharpe": 0.599,
+     "ret": 0.1035,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.185,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 35, \"n\": 14}|x13|none",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 14,
+     "lo": 35,
+     "exit": 70
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 60,
+     "trade_sum": 0.3202,
+     "random_median": 0.1398,
+     "random_pct": 0.87,
+     "sharpe": 0.85,
+     "ret": 0.419,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.333,
+     "B1": false,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 36,
+     "trade_sum": 0.3245,
+     "random_median": 0.131,
+     "random_pct": 0.96,
+     "sharpe": 1.097,
+     "ret": 0.3892,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.282,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 22,
+     "trade_sum": 0.193,
+     "random_median": 0.0993,
+     "random_pct": 0.803,
+     "sharpe": 0.883,
+     "ret": 0.1874,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.265,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 35, \"n\": 21}|x13|none",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 21,
+     "lo": 35,
+     "exit": 70
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 15,
+     "trade_sum": 0.1903,
+     "random_median": 0.0546,
+     "random_pct": 0.967,
+     "sharpe": 0.955,
+     "ret": 0.2457,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.179,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 10,
+     "trade_sum": 0.1406,
+     "random_median": 0.0567,
+     "random_pct": 0.857,
+     "sharpe": 0.804,
+     "ret": 0.1403,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.187,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 35, \"n\": 7}|x18|none",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 7,
+     "lo": 35,
+     "exit": 70
+    },
+    "exit_id": 18,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 174,
+     "trade_sum": 0.103,
+     "random_median": 0.1298,
+     "random_pct": 0.45,
+     "sharpe": 0.392,
+     "ret": 0.1676,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.377,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 74,
+     "trade_sum": 0.0588,
+     "random_median": 0.136,
+     "random_pct": 0.277,
+     "sharpe": 0.31,
+     "ret": 0.0674,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.367,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "rsi_reversal|{\"exit\": 70, \"lo\": 35, \"n\": 7}|x28|none",
+   "spec": {
+    "rule": "rsi_reversal",
+    "params": {
+     "n": 7,
+     "lo": 35,
+     "exit": 70
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 174,
+     "trade_sum": 0.0328,
+     "random_median": 0.1256,
+     "random_pct": 0.273,
+     "sharpe": 0.24,
+     "ret": 0.0943,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.382,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 74,
+     "trade_sum": 0.0648,
+     "random_median": 0.133,
+     "random_pct": 0.29,
+     "sharpe": 0.312,
+     "ret": 0.0718,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.373,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "smc_bos|{\"k\": 8}|x13|none",
+   "spec": {
+    "rule": "smc_bos",
+    "params": {
+     "k": 8
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 92,
+     "trade_sum": 0.0893,
+     "random_median": 0.1641,
+     "random_pct": 0.307,
+     "sharpe": 0.291,
+     "ret": 0.0997,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.286,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 51,
+     "trade_sum": 0.042,
+     "random_median": 0.1154,
+     "random_pct": 0.237,
+     "sharpe": 0.261,
+     "ret": 0.0468,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.267,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "smc_choch|{\"k\": 8}|x13|none",
+   "spec": {
+    "rule": "smc_choch",
+    "params": {
+     "k": 8
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 57,
+     "trade_sum": 0.0827,
+     "random_median": 0.1085,
+     "random_pct": 0.417,
+     "sharpe": 0.353,
+     "ret": 0.0886,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.182,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 48,
+     "trade_sum": 0.0674,
+     "random_median": 0.1151,
+     "random_pct": 0.33,
+     "sharpe": 0.33,
+     "ret": 0.0665,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.206,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 29,
+     "trade_sum": 0.0874,
+     "random_median": 0.0979,
+     "random_pct": 0.483,
+     "sharpe": 0.651,
+     "ret": 0.0947,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.173,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "stoch_reversal|{\"d\": 5, \"k\": 21, \"lo\": 10, \"smooth\": 3}|x20|none",
+   "spec": {
+    "rule": "stoch_reversal",
+    "params": {
+     "k": 21,
+     "d": 5,
+     "smooth": 3,
+     "lo": 10
+    },
+    "exit_id": 20,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 112,
+     "trade_sum": 0.0903,
+     "random_median": 0.1046,
+     "random_pct": 0.463,
+     "sharpe": 0.282,
+     "ret": 0.1086,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.282,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 71,
+     "trade_sum": 0.1382,
+     "random_median": 0.1225,
+     "random_pct": 0.563,
+     "sharpe": 0.468,
+     "ret": 0.1585,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.265,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 46,
+     "trade_sum": 0.0295,
+     "random_median": 0.0923,
+     "random_pct": 0.283,
+     "sharpe": 0.171,
+     "ret": 0.0281,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.263,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "trix_cross|{\"n\": 12, \"signal\": 9}|x20|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "spec": {
+    "rule": "trix_cross",
+    "params": {
+     "n": 12,
+     "signal": 9
+    },
+    "exit_id": 20,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 31,
+     "trade_sum": 0.1852,
+     "random_median": 0.0454,
+     "random_pct": 0.967,
+     "sharpe": 0.578,
+     "ret": 0.18,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.092,
+     "B1": true,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 26,
+     "trade_sum": 0.196,
+     "random_median": 0.0519,
+     "random_pct": 0.967,
+     "sharpe": 0.708,
+     "ret": 0.1913,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.107,
+     "B1": true,
+     "B2": false
+    }
+   },
+   "B1_all": true,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "trix_cross|{\"n\": 21, \"signal\": 7}|x13|none",
+   "spec": {
+    "rule": "trix_cross",
+    "params": {
+     "n": 21,
+     "signal": 7
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 93,
+     "trade_sum": 0.2742,
+     "random_median": 0.1277,
+     "random_pct": 0.893,
+     "sharpe": 0.912,
+     "ret": 0.3464,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.25,
+     "B1": false,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 69,
+     "trade_sum": 0.2984,
+     "random_median": 0.1235,
+     "random_pct": 0.907,
+     "sharpe": 1.19,
+     "ret": 0.3458,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.245,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ultimate_reversal|{\"a\": 7, \"lo\": 35}|x0|trend_sma200",
+   "spec": {
+    "rule": "ultimate_reversal",
+    "params": {
+     "a": 7,
+     "lo": 35
+    },
+    "exit_id": 0,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 51,
+     "trade_sum": 0.1609,
+     "random_median": 0.1048,
+     "random_pct": 0.7,
+     "sharpe": 0.658,
+     "ret": 0.1989,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.154,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 40,
+     "trade_sum": 0.1742,
+     "random_median": 0.0825,
+     "random_pct": 0.8,
+     "sharpe": 0.85,
+     "ret": 0.2093,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.155,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 28,
+     "trade_sum": 0.1167,
+     "random_median": 0.0782,
+     "random_pct": 0.653,
+     "sharpe": 0.775,
+     "ret": 0.1378,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.157,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ultimate_reversal|{\"a\": 7, \"lo\": 35}|x20|trend_sma200",
+   "spec": {
+    "rule": "ultimate_reversal",
+    "params": {
+     "a": 7,
+     "lo": 35
+    },
+    "exit_id": 20,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 56,
+     "trade_sum": 0.1105,
+     "random_median": 0.0444,
+     "random_pct": 0.757,
+     "sharpe": 0.576,
+     "ret": 0.131,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.104,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 30,
+     "trade_sum": 0.1157,
+     "random_median": 0.0184,
+     "random_pct": 0.893,
+     "sharpe": 0.914,
+     "ret": 0.1297,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.104,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "vortex_cross|{\"n\": 28}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w0",
+   "spec": {
+    "rule": "vortex_cross",
+    "params": {
+     "n": 28
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 0
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 25,
+     "trade_sum": 0.0873,
+     "random_median": 0.0193,
+     "random_pct": 0.957,
+     "sharpe": 1.173,
+     "ret": 0.1095,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.049,
+     "B1": true,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 22,
+     "trade_sum": 0.0651,
+     "random_median": 0.0178,
+     "random_pct": 0.847,
+     "sharpe": 1.025,
+     "ret": 0.0693,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.054,
+     "B1": false,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 14,
+     "trade_sum": 0.0629,
+     "random_median": 0.0183,
+     "random_pct": 0.85,
+     "sharpe": 1.184,
+     "ret": 0.054,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.053,
+     "B1": false,
+     "B2": true
+    }
+   },
+   "B1_all": false,
+   "B2_all": true,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "vortex_cross|{\"n\": 28}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "spec": {
+    "rule": "vortex_cross",
+    "params": {
+     "n": 28
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 3
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 48,
+     "trade_sum": 0.2023,
+     "random_median": 0.0233,
+     "random_pct": 0.993,
+     "sharpe": 1.479,
+     "ret": 0.2455,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.085,
+     "B1": true,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 43,
+     "trade_sum": 0.1573,
+     "random_median": 0.0408,
+     "random_pct": 0.94,
+     "sharpe": 1.383,
+     "ret": 0.174,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.1,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 31,
+     "trade_sum": 0.1264,
+     "random_median": 0.0257,
+     "random_pct": 0.947,
+     "sharpe": 1.497,
+     "ret": 0.1379,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.104,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "vortex_cross|{\"n\": 28}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "spec": {
+    "rule": "vortex_cross",
+    "params": {
+     "n": 28
+    },
+    "exit_id": 13,
+    "filter": "none",
+    "confirm": {
+     "rule": "smc_order_block",
+     "params": {
+      "k": 5,
+      "max_age": 50
+     },
+     "within": 5
+    }
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 53,
+     "trade_sum": 0.2027,
+     "random_median": 0.0351,
+     "random_pct": 0.983,
+     "sharpe": 1.287,
+     "ret": 0.2512,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.109,
+     "B1": true,
+     "B2": true
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 45,
+     "trade_sum": 0.1524,
+     "random_median": 0.0543,
+     "random_pct": 0.913,
+     "sharpe": 1.15,
+     "ret": 0.1719,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.117,
+     "B1": true,
+     "B2": true
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 31,
+     "trade_sum": 0.1264,
+     "random_median": 0.0296,
+     "random_pct": 0.95,
+     "sharpe": 1.497,
+     "ret": 0.1379,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.104,
+     "B1": true,
+     "B2": true
+    }
+   },
+   "B1_all": true,
+   "B2_all": true,
+   "pass": true
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "wavetrend_reversal|{\"lo\": -40, \"n1\": 12, \"n2\": 18}|x20|trend_sma200",
+   "spec": {
+    "rule": "wavetrend_reversal",
+    "params": {
+     "n1": 12,
+     "n2": 18,
+     "lo": -40
+    },
+    "exit_id": 20,
+    "filter": "trend_sma200"
+   },
+   "cuts": {
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 12,
+     "trade_sum": 0.0239,
+     "random_median": 0.0225,
+     "random_pct": 0.517,
+     "sharpe": 0.234,
+     "ret": 0.026,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.038,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 8,
+     "trade_sum": 0.0373,
+     "random_median": 0.0238,
+     "random_pct": 0.63,
+     "sharpe": 0.44,
+     "ret": 0.0388,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.045,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -80, \"n\": 21}|x28|none",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 21,
+     "lo": -80
+    },
+    "exit_id": 28,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 175,
+     "trade_sum": -0.0025,
+     "random_median": 0.0687,
+     "random_pct": 0.33,
+     "sharpe": 0.161,
+     "ret": 0.0468,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.274,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 72,
+     "trade_sum": 0.0156,
+     "random_median": 0.0774,
+     "random_pct": 0.287,
+     "sharpe": 0.123,
+     "ret": 0.0153,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.261,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "williams_reversal|{\"lo\": -95, \"n\": 21}|x13|none",
+   "spec": {
+    "rule": "williams_reversal",
+    "params": {
+     "n": 21,
+     "lo": -95
+    },
+    "exit_id": 13,
+    "filter": "none"
+   },
+   "cuts": {
+    "4": {
+     "cut": "2022-10-21",
+     "n_trades": 115,
+     "trade_sum": 0.1707,
+     "random_median": 0.0633,
+     "random_pct": 0.757,
+     "sharpe": 0.617,
+     "ret": 0.2343,
+     "bh_sharpe": 0.687,
+     "bh_ret": 0.846,
+     "exposure": 0.25,
+     "B1": false,
+     "B2": false
+    },
+    "3": {
+     "cut": "2023-10-21",
+     "n_trades": 73,
+     "trade_sum": 0.1392,
+     "random_median": 0.1013,
+     "random_pct": 0.627,
+     "sharpe": 0.584,
+     "ret": 0.1563,
+     "bh_sharpe": 0.864,
+     "bh_ret": 0.9037,
+     "exposure": 0.223,
+     "B1": false,
+     "B2": false
+    },
+    "2": {
+     "cut": "2024-10-21",
+     "n_trades": 43,
+     "trade_sum": 0.0254,
+     "random_median": 0.0779,
+     "random_pct": 0.287,
+     "sharpe": 0.196,
+     "ret": 0.0273,
+     "bh_sharpe": 0.823,
+     "bh_ret": 0.5506,
+     "exposure": 0.212,
+     "B1": false,
+     "B2": false
+    }
+   },
+   "B1_all": false,
+   "B2_all": false,
+   "pass": false
+  }
+ ]
+}

@@ -1,0 +1,210 @@
+{
+ "asset": "XAG",
+ "tf": "1d",
+ "bitget": "XAGUSDT",
+ "data": "yahoo:SLV",
+ "first_bar": "2006-04-28 00:00:00",
+ "last_bar": "2026-10-23 00:00:00",
+ "bars": 5155,
+ "n_trials": 2624,
+ "errors": 0,
+ "error_sample": {},
+ "cuts": {
+  "6y": {
+   "cut": "2020-10-23",
+   "fwd_end": "2022-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2624,
+    "D1-D3": 9,
+    "D4": 4,
+    "D5": 3,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0654,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 15, \"signal\": 9}, \"rule\": \"trix_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.302,
+     "dsr": 0.026,
+     "disc": {
+      "trades": 84,
+      "ret2": 1.2968,
+      "pf2": 1.742,
+      "wr2": 0.3929,
+      "be": 0.2709,
+      "sr": 0.5244,
+      "max_dd": -0.348
+     }
+    },
+    {
+     "key": "F1|{\"filter\": \"none\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+     "failed": "D6",
+     "plateau_score": 0.29,
+     "dsr": 0.065,
+     "disc": {
+      "trades": 38,
+      "ret2": 1.6376,
+      "pf2": 2.508,
+      "wr2": 0.4211,
+      "be": 0.2248,
+      "sr": 0.6362,
+      "max_dd": -0.2497
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 5}, \"rule\": \"smc_choch\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.169,
+     "dsr": 0.011,
+     "disc": {
+      "trades": 46,
+      "ret2": 0.8435,
+      "pf2": 1.897,
+      "wr2": 0.3696,
+      "be": 0.236,
+      "sr": 0.436,
+      "max_dd": -0.3171
+     }
+    }
+   ]
+  },
+  "4y": {
+   "cut": "2022-10-23",
+   "fwd_end": "2024-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2624,
+    "D1-D3": 7,
+    "D4": 3,
+    "D5": 2,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.061,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 15, \"signal\": 9}, \"rule\": \"trix_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.206,
+     "dsr": 0.014,
+     "disc": {
+      "trades": 98,
+      "ret2": 0.9537,
+      "pf2": 1.564,
+      "wr2": 0.3776,
+      "be": 0.2794,
+      "sr": 0.4281,
+      "max_dd": -0.348
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 5}, \"rule\": \"smc_choch\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.044,
+     "dsr": 0.003,
+     "disc": {
+      "trades": 51,
+      "ret2": 0.4206,
+      "pf2": 1.556,
+      "wr2": 0.3333,
+      "be": 0.2431,
+      "sr": 0.2902,
+      "max_dd": -0.3171
+     }
+    }
+   ]
+  },
+  "2y": {
+   "cut": "2024-10-23",
+   "fwd_end": "2026-10-24",
+   "testable": true,
+   "holdout": true,
+   "funnel": {
+    "trials": 2624,
+    "D1-D3": 2,
+    "D4": 1,
+    "D5": 1,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0591,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F1|{\"filter\": \"none\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+     "failed": "D6",
+     "plateau_score": 0.271,
+     "dsr": 0.047,
+     "disc": {
+      "trades": 53,
+      "ret2": 1.4441,
+      "pf2": 2.012,
+      "wr2": 0.434,
+      "be": 0.2759,
+      "sr": 0.5484,
+      "max_dd": -0.2136
+     }
+    }
+   ]
+  }
+ },
+ "timemachine": {
+  "testable": [
+   "6y",
+   "4y",
+   "2y"
+  ],
+  "inside": 0,
+  "passed": false
+ },
+ "lead": false,
+ "fib_test": {
+  "disc": {
+   "pairs": 426,
+   "median_delta_pf": -0.045,
+   "share_improved": 0.258
+  },
+  "fwd": {
+   "pairs": 181,
+   "median_delta_pf": -0.12,
+   "share_improved": 0.282
+  },
+  "helps": false
+ },
+ "bh": {
+  "6y": -0.2258,
+  "4y": 0.7952,
+  "2y": 0.5865
+ }
+}

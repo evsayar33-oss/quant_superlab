@@ -1,0 +1,129 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (USD, excess of US T-bill) -0.728 < 0.5",
+    "OOS MaxDD -0.8723 worse than -0.45 (local or USD)",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.99 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "turn_of_month",
+  "kind": "strategy",
+  "universe": "bist_index",
+  "timeframe": "1d",
+  "for_system": "bist_orderflow_quant",
+  "spec": {
+    "id": "H004",
+    "strategy": "turn_of_month",
+    "universe": "bist_index",
+    "for_system": "bist_orderflow_quant",
+    "start": "2010-01-01",
+    "status": "active"
+  },
+  "variant": "turn_of_month|days_before=2,days_after=4|overlay=eqma_s",
+  "params": {
+    "days_before": 2,
+    "days_after": 4,
+    "_overlay": "eqma_s"
+  },
+  "targets": {},
+  "targets_observe_only": {},
+  "gate_sharpe": -0.728,
+  "pbo": 0.377,
+  "reality_check_p": 0.99,
+  "dsr": 0.996,
+  "n_trials": 23,
+  "oos": {
+    "start": "2014-01-08 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.75,
+    "cagr": 0.1026,
+    "vol": 0.1061,
+    "sharpe": 0.974,
+    "sharpe_excess_rf": 0.797,
+    "sortino": 1.293,
+    "max_dd": -0.2208,
+    "max_dd_bars": 1742,
+    "calmar": 0.465,
+    "ulcer": 0.1165,
+    "var95": -0.0062,
+    "cvar95": -0.0154,
+    "omega": 1.454,
+    "tail_ratio": 1.741,
+    "skew": 0.991,
+    "kurtosis": 25.758,
+    "hit_rate": 0.111,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 21.69,
+    "bench_cagr": 0.2582,
+    "bench_sharpe": 1.021,
+    "info_ratio": -0.685,
+    "beta": 0.175,
+    "up_capture": 0.202,
+    "down_capture": 0.165
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.36,
+      "ann_ret": 0.1559,
+      "bars": 2338
+    },
+    "bear": {
+      "sharpe": -0.51,
+      "ann_ret": -0.0394,
+      "bars": 862
+    },
+    "calm": {
+      "sharpe": 0.87,
+      "ann_ret": 0.0766,
+      "bars": 1675
+    },
+    "stressed": {
+      "sharpe": 1.08,
+      "ann_ret": 0.1327,
+      "bars": 1525
+    },
+    "vix_lt_20": {
+      "sharpe": 0.99,
+      "ann_ret": 0.0985,
+      "bars": 2329
+    },
+    "vix_20_30": {
+      "sharpe": 0.99,
+      "ann_ret": 0.1106,
+      "bars": 714
+    },
+    "vix_ge_30": {
+      "sharpe": 0.88,
+      "ann_ret": 0.142,
+      "bars": 157
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.74,
+      "sharpe_delayed_1bar": 0.775,
+      "retained": 1.048
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.74,
+      "neighbour_median": 0.642,
+      "share_positive": 1.0,
+      "stability": 0.867
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.682,
+      "sharpe_median": 0.741
+    }
+  },
+  "recommended_overlay": "equity_ma_41",
+  "kelly_fraction": null,
+  "oos_csv": "results/H004_turn_of_month_bist_index_1d_oos.csv",
+  "validated_at": "2026-10-17T08:55:08+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

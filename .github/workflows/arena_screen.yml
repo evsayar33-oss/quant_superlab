@@ -1,0 +1,98 @@
+name: Arena screen (monthly)
+
+# Rule-based screening funnel (no LLM): every rule x full parameter grid x every coin, eliminated step by
+# step with thresholds written in config/arena.yaml. Survivors join the paper arena; the switcher backtest
+# gate is re-checked. Never writes decisions/registry.json (a funnel result is a lead, not a decision).
+
+on:
+  schedule:
+    - cron: '17 3 2 * *'
+  workflow_dispatch:
+    inputs:
+      universe:
+        description: 'universe (empty = config/arena.yaml)'
+        required: false
+        default: ''
+      timeframes:
+        description: 'JSON list: ["4h","1d"] or ["4h"]'
+        required: false
+        default: '["4h","1d"]'
+      stage2:
+        description: 'stage 2 (filters x exits x combos): config | on | off'
+        required: false
+        default: config
+      sides:
+        description: 'JSON list: ["both","long","short"] (one book both ways, long only, short only)'
+        required: false
+        default: '["both","long","short"]'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quant-lab-arena
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        timeframe: ${{ fromJSON(github.event.inputs.timeframes || '["4h","1d"]') }}
+        side: ${{ fromJSON(github.event.inputs.sides || '["both","long","short"]') }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: arena-data-${{ matrix.timeframe }}-${{ github.run_id }}
+          restore-keys: |
+            arena-data-${{ matrix.timeframe }}-
+            arena-data-
+      - name: Screen
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          LAB_CACHE_HOURS: "0"
+        run: |
+          ARGS="--screen --timeframe ${{ matrix.timeframe }} --side ${{ matrix.side }} --telegram"
+          S2="${{ github.event.inputs.stage2 }}"
+          if [ "$S2" = "on" ] || [ "$S2" = "off" ]; then ARGS="$ARGS --stage2 $S2"; fi
+          if [ -n "${{ github.event.inputs.universe }}" ]; then ARGS="$ARGS --universe ${{ github.event.inputs.universe }}"; fi
+          python run.py $ARGS
+      - name: Commit roster to main
+        run: |
+          KEY="${{ matrix.timeframe }}"; if [ "${{ matrix.side }}" != "both" ]; then KEY="${KEY}_${{ matrix.side }}"; fi
+          bash scripts/commit_arena.sh "Arena screen $KEY $(date -u +%F)" "$KEY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arena-screen-${{ matrix.timeframe }}-${{ matrix.side }}
+          retention-days: 14
+          path: results/arena_screen_*
+
+  publish:
+    needs: screen
+    if: always()
+    runs-on: ubuntu-latest
+    concurrency:
+      group: quant-lab-results
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/fetch_results.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: arena-screen-*
+          path: _parts
+      - run: |
+          mkdir -p results
+          for d in _parts/*; do cp -r "$d"/. results/ 2>/dev/null || true; done
+          rm -rf _parts
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish_results.sh

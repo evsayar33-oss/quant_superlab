@@ -1,0 +1,54 @@
+name: Paper watch H063-H065
+
+# Paper only (no orders, no keys). Daily after the US close; leverage test on demand. Rules: config/watch.yaml.
+on:
+  schedule:
+    - cron: '37 22 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily | lev | lev070 | venues'
+        required: false
+        default: daily
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quant-lab-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: watch-data-${{ github.run_id }}
+          restore-keys: |
+            watch-data-
+            mega2-data-
+      - name: Run
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          LAB_CACHE_HOURS: "0"
+        run: |
+          M="${{ github.event.inputs.mode }}"; [ -z "$M" ] && M=daily
+          if [ "$M" = "lev" ]; then python -m lab.watch lev --telegram; fi
+          if [ "$M" = "lev070" ]; then python -m lab.watch lev --cfg config/watch_h070.yaml --telegram; exit 0; fi
+          # venue list: on demand, every Monday, or when missing (a failure must never stop the paper record)
+          if [ "$M" != "daily" ] || [ "$(date -u +%u)" = "1" ] || [ ! -f decisions/watch/venues.json ]; then python -m lab.venues || echo "venues check failed"; fi
+          python -m lab.watch daily --telegram
+      - name: Commit
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add decisions/watch
+          git commit -m "Paper watch $(date -u +%F)" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

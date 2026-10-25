@@ -1,0 +1,8728 @@
+{
+ "run_at": "2026-10-24T17:06:12+00:00",
+ "n_trials": 80,
+ "weak_points": [
+  "Blok A verisi CRSP t\u00fcm ABD piyasas\u0131 (Ken French). S&P 500 ile korelasyonu \u00e7ok y\u00fcksek ama ayn\u0131 de\u011fildir.",
+  "1928\u20131990 d\u00f6neminde kald\u0131ra\u00e7l\u0131 endeks fonu yoktu. Finansman maliyeti (T-bill + %1,25) bug\u00fcnk\u00fc kald\u0131ra\u00e7l\u0131 ETF ve vadeli i\u015flem maliyetinden t\u00fcretildi.",
+  "Kald\u0131ra\u00e7 kenar yaratmaz. Ge\u00e7en kurallarda kenar d\u00fc\u015f\u00fc\u015ften ka\u00e7\u0131nmadan gelir (trend filtresi). V \u015feklindeki \u00e7\u00f6k\u00fc\u015flerde (1987, 2020) bu koruma ge\u00e7 kal\u0131r.",
+  "Momentum ailesi (A4) akademik portf\u00f6yd\u00fcr. Ger\u00e7ek ETF (\u00f6r. MTUM) daha az getiri verir; %1,5 y\u0131ll\u0131k ek maliyet bir tahmindir.",
+  "AQR TSMOM serisi br\u00fct y\u00f6netim \u00fccretidir; %1 \u00fccret d\u00fc\u015f\u00fcld\u00fc. Perakende yat\u0131r\u0131mc\u0131 i\u00e7in en yak\u0131n ara\u00e7 y\u00f6netilen vadeli fon ETF'leridir (2019+).",
+  "Ge\u00e7mi\u015fteki en k\u00f6t\u00fc d\u00fc\u015f\u00fc\u015f, gelecekteki en k\u00f6t\u00fc d\u00fc\u015f\u00fc\u015f de\u011fildir. Ladder tablosu bir \u00fcst s\u0131n\u0131rd\u0131r, hedef de\u011fil.",
+  "Vergi, kur (TL) ve arac\u0131 kurum eri\u015fimi modellenmedi.",
+  "Bu \u00e7al\u0131\u015fma bir \u00f6n elemedir. Ge\u00e7en kural yine de karar kap\u0131s\u0131ndan (validation.GATE) ve ileri kay\u0131ttan ge\u00e7melidir."
+ ],
+ "block_a": {
+  "window": [
+   "1928-01-01",
+   "2026-08-31"
+  ],
+  "bh": {
+   "cagr": 0.1,
+   "sharpe": 0.452,
+   "max_dd": -0.8409,
+   "vol": 0.1755,
+   "final_1000": 12122066.0,
+   "start": "1928-01-03",
+   "end": "2026-08-31"
+  },
+  "pick": null,
+  "family_pick": {
+   "A0_const_lev": null,
+   "A1_trend_lev": null,
+   "A2_volman_lev": null,
+   "A3_trend_volman": null,
+   "A4_mom_trend": null
+  },
+  "naive": "A4_mom_trend|L=2.0,filter=sma200",
+  "n_pass": 0,
+  "ladder": [
+   {
+    "max_dd_limit": -0.35,
+    "pick": null,
+    "stats": null
+   },
+   {
+    "max_dd_limit": -0.5,
+    "pick": null,
+    "stats": null
+   },
+   {
+    "max_dd_limit": -0.65,
+    "pick": null,
+    "stats": null
+   }
+  ],
+  "timemachine": {
+   "replays": [
+    {
+     "cut": "1966-01-01",
+     "to": "1982-01-01",
+     "n_pass_before_cut": 0,
+     "bh_forward": {
+      "cagr": 0.0659,
+      "max_dd": -0.4819
+     },
+     "pick": null,
+     "naive": {
+      "key": "A1_trend_lev|N=100,L=3.0",
+      "cagr": 0.0858,
+      "max_dd": -0.5138,
+      "inside": true
+     },
+     "family_picks": {
+      "A0_const_lev": null,
+      "A1_trend_lev": null,
+      "A2_volman_lev": null,
+      "A3_trend_volman": null,
+      "A4_mom_trend": null
+     }
+    },
+    {
+     "cut": "1982-01-01",
+     "to": "2000-01-01",
+     "n_pass_before_cut": 0,
+     "bh_forward": {
+      "cagr": 0.1775,
+      "max_dd": -0.3312
+     },
+     "pick": null,
+     "naive": {
+      "key": "A4_mom_trend|L=2.0,filter=sma200",
+      "cagr": 0.2709,
+      "max_dd": -0.6015,
+      "inside": false
+     },
+     "family_picks": {
+      "A0_const_lev": null,
+      "A1_trend_lev": null,
+      "A2_volman_lev": null,
+      "A3_trend_volman": null,
+      "A4_mom_trend": null
+     }
+    },
+    {
+     "cut": "2000-01-01",
+     "to": "2013-01-01",
+     "n_pass_before_cut": 0,
+     "bh_forward": {
+      "cagr": 0.0212,
+      "max_dd": -0.5458
+     },
+     "pick": null,
+     "naive": {
+      "key": "A4_mom_trend|L=2.0,filter=sma200",
+      "cagr": 0.0113,
+      "max_dd": -0.6505,
+      "inside": false
+     },
+     "family_picks": {
+      "A0_const_lev": null,
+      "A1_trend_lev": null,
+      "A2_volman_lev": null,
+      "A3_trend_volman": null,
+      "A4_mom_trend": null
+     }
+    },
+    {
+     "cut": "2013-01-01",
+     "to": "2026-08-31",
+     "n_pass_before_cut": 0,
+     "bh_forward": {
+      "cagr": 0.1502,
+      "max_dd": -0.3422
+     },
+     "pick": null,
+     "naive": {
+      "key": "A4_mom_trend|L=2.0,filter=sma200",
+      "cagr": 0.1387,
+      "max_dd": -0.7431,
+      "inside": false
+     },
+     "family_picks": {
+      "A0_const_lev": null,
+      "A1_trend_lev": null,
+      "A2_volman_lev": null,
+      "A3_trend_volman": null,
+      "A4_mom_trend": null
+     }
+    }
+   ],
+   "inside": 0,
+   "need": 3,
+   "passed": false,
+   "naive_inside": 1,
+   "family_passed": {
+    "A0_const_lev": false,
+    "A1_trend_lev": false,
+    "A2_volman_lev": false,
+    "A3_trend_volman": false,
+    "A4_mom_trend": false
+   }
+  },
+  "rows": {
+   "A0_const_lev|L=1.25": {
+    "fam": "A0_const_lev",
+    "p": {
+     "L": 1.25
+    },
+    "stats": {
+     "cagr": 0.1088,
+     "sharpe": 0.438,
+     "max_dd": -0.9073,
+     "vol": 0.2194,
+     "final_1000": 26686757.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.105,
+     "sharpe": 0.422,
+     "max_dd": -0.9083,
+     "vol": 0.2194,
+     "final_1000": 18893164.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1088,
+     "sharpe": 0.438,
+     "max_dd": -0.9073,
+     "vol": 0.2194,
+     "final_1000": 26686757.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0088,
+    "vol_matched_L": 1.25,
+    "vol_matched_cagr": 0.1088,
+    "dsr_active": 0.352,
+    "t_active": 3.78,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0444,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.9073,
+      "bh_max_dd": -0.8409,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1526,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3462,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0592,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5799,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2007,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4051,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0107,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.6425,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1766,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4142,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.0,
+    "plateau_score": 0.0088,
+    "pass": false,
+    "near_miss": false
+   },
+   "A0_const_lev|L=1.5": {
+    "fam": "A0_const_lev",
+    "p": {
+     "L": 1.5
+    },
+    "stats": {
+     "cagr": 0.1156,
+     "sharpe": 0.428,
+     "max_dd": -0.9473,
+     "vol": 0.2633,
+     "final_1000": 48454708.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1081,
+     "sharpe": 0.403,
+     "max_dd": -0.9483,
+     "vol": 0.2633,
+     "final_1000": 25013678.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1156,
+     "sharpe": 0.428,
+     "max_dd": -0.9473,
+     "vol": 0.2633,
+     "final_1000": 48454708.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0156,
+    "vol_matched_L": 1.5,
+    "vol_matched_cagr": 0.1156,
+    "dsr_active": 0.352,
+    "t_active": 3.78,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0371,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.9473,
+      "bh_max_dd": -0.8409,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1761,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4053,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0515,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.6605,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2227,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4736,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0027,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.7295,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2013,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4806,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.0,
+    "plateau_score": 0.0156,
+    "pass": false,
+    "near_miss": false
+   },
+   "A0_const_lev|L=2.0": {
+    "fam": "A0_const_lev",
+    "p": {
+     "L": 2.0
+    },
+    "stats": {
+     "cagr": 0.1225,
+     "sharpe": 0.416,
+     "max_dd": -0.9842,
+     "vol": 0.3511,
+     "final_1000": 89217149.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1079,
+     "sharpe": 0.379,
+     "max_dd": -0.9848,
+     "vol": 0.3511,
+     "final_1000": 24481209.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1225,
+     "sharpe": 0.416,
+     "max_dd": -0.9842,
+     "vol": 0.3511,
+     "final_1000": 89217149.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0225,
+    "vol_matched_L": 2.0,
+    "vol_matched_cagr": 0.1225,
+    "dsr_active": 0.352,
+    "t_active": 3.78,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0104,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.9842,
+      "bh_max_dd": -0.8409,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2216,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.5119,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0331,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.7805,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2626,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.5949,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0376,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.8759,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2451,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.5973,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.0,
+    "plateau_score": 0.0156,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=100,L=1.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 100,
+     "L": 1.0
+    },
+    "stats": {
+     "cagr": 0.0944,
+     "sharpe": 0.589,
+     "max_dd": -0.3623,
+     "vol": 0.1101,
+     "final_1000": 7336076.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0831,
+     "sharpe": 0.494,
+     "max_dd": -0.3893,
+     "vol": 0.1103,
+     "final_1000": 2638726.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.0901,
+     "sharpe": 0.548,
+     "max_dd": -0.4386,
+     "vol": 0.1113,
+     "final_1000": 4953432.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": -0.0056,
+    "vol_matched_L": 0.63,
+    "vol_matched_cagr": 0.0776,
+    "dsr_active": 0.0,
+    "t_active": -1.05,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1005,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.3623,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1163,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.1418,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0866,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.1554,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1255,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.1647,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0123,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3474,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.105,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2046,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.5,
+    "plateau_score": -0.0056,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=100,L=1.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 100,
+     "L": 1.5
+    },
+    "stats": {
+     "cagr": 0.1173,
+     "sharpe": 0.564,
+     "max_dd": -0.5112,
+     "vol": 0.1652,
+     "final_1000": 56473315.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0955,
+     "sharpe": 0.444,
+     "max_dd": -0.5683,
+     "vol": 0.1654,
+     "final_1000": 8088870.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1105,
+     "sharpe": 0.523,
+     "max_dd": -0.6067,
+     "vol": 0.167,
+     "final_1000": 31000698.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0173,
+    "vol_matched_L": 0.94,
+    "vol_matched_cagr": 0.0967,
+    "dsr_active": 0.001,
+    "t_active": 0.93,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1371,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.504,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1613,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2086,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0891,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2517,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1486,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2563,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0006,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5086,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.14,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3056,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0173,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=100,L=2.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 100,
+     "L": 2.0
+    },
+    "stats": {
+     "cagr": 0.1372,
+     "sharpe": 0.551,
+     "max_dd": -0.644,
+     "vol": 0.2202,
+     "final_1000": 321420786.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1046,
+     "sharpe": 0.419,
+     "max_dd": -0.7052,
+     "vol": 0.2205,
+     "final_1000": 18316427.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1278,
+     "sharpe": 0.511,
+     "max_dd": -0.728,
+     "vol": 0.2227,
+     "final_1000": 142350573.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0372,
+    "vol_matched_L": 1.25,
+    "vol_matched_cagr": 0.109,
+    "dsr_active": 0.038,
+    "t_active": 2.38,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1681,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6206,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2062,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2714,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0898,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3452,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1689,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3524,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0166,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.6328,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1722,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3967,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0372,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=100,L=2.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 100,
+     "L": 2.5
+    },
+    "stats": {
+     "cagr": 0.1538,
+     "sharpe": 0.544,
+     "max_dd": -0.7439,
+     "vol": 0.2753,
+     "final_1000": 1350202872.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1104,
+     "sharpe": 0.404,
+     "max_dd": -0.8174,
+     "vol": 0.2757,
+     "final_1000": 30581451.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1418,
+     "sharpe": 0.503,
+     "max_dd": -0.8145,
+     "vol": 0.2783,
+     "final_1000": 478573820.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0538,
+    "vol_matched_L": 1.57,
+    "vol_matched_cagr": 0.117,
+    "dsr_active": 0.184,
+    "t_active": 3.26,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1931,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.7148,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2508,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3304,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0887,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4308,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1861,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4379,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0355,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.7277,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2013,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4784,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0538,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=100,L=3.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 100,
+     "L": 3.0
+    },
+    "stats": {
+     "cagr": 0.1671,
+     "sharpe": 0.539,
+     "max_dd": -0.8182,
+     "vol": 0.3303,
+     "final_1000": 4176926372.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1127,
+     "sharpe": 0.394,
+     "max_dd": -0.8899,
+     "vol": 0.3308,
+     "final_1000": 37561203.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1522,
+     "sharpe": 0.499,
+     "max_dd": -0.8771,
+     "vol": 0.334,
+     "final_1000": 1174912570.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0671,
+    "vol_matched_L": 1.88,
+    "vol_matched_cagr": 0.1216,
+    "dsr_active": 0.352,
+    "t_active": 3.78,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.2115,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.7893,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2949,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3858,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0858,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5138,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.5135,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0573,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.7997,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2271,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.5513,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0658,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=150,L=1.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 150,
+     "L": 1.0
+    },
+    "stats": {
+     "cagr": 0.0988,
+     "sharpe": 0.611,
+     "max_dd": -0.4013,
+     "vol": 0.1132,
+     "final_1000": 10858844.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.09,
+     "sharpe": 0.54,
+     "max_dd": -0.4365,
+     "vol": 0.1133,
+     "final_1000": 4925009.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.0969,
+     "sharpe": 0.586,
+     "max_dd": -0.363,
+     "vol": 0.1156,
+     "final_1000": 9139139.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": -0.0012,
+    "vol_matched_L": 0.64,
+    "vol_matched_cagr": 0.0787,
+    "dsr_active": 0.0,
+    "t_active": -0.75,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0989,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.3182,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1197,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.1818,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0766,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.1707,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1448,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2198,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.015,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4013,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1185,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.1773,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.33,
+    "plateau_score": -0.002,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=150,L=1.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 150,
+     "L": 1.5
+    },
+    "stats": {
+     "cagr": 0.1235,
+     "sharpe": 0.586,
+     "max_dd": -0.5675,
+     "vol": 0.1698,
+     "final_1000": 97569319.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1053,
+     "sharpe": 0.489,
+     "max_dd": -0.6067,
+     "vol": 0.1699,
+     "final_1000": 19490574.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1203,
+     "sharpe": 0.561,
+     "max_dd": -0.5254,
+     "vol": 0.1734,
+     "final_1000": 73423502.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0235,
+    "vol_matched_L": 0.97,
+    "vol_matched_cagr": 0.0982,
+    "dsr_active": 0.003,
+    "t_active": 1.37,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1339,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4569,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1662,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2719,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0738,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2723,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1777,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3276,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0031,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5675,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1602,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2691,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 0.75,
+    "plateau_score": 0.0196,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=150,L=2.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 150,
+     "L": 2.0
+    },
+    "stats": {
+     "cagr": 0.1451,
+     "sharpe": 0.573,
+     "max_dd": -0.69,
+     "vol": 0.2264,
+     "final_1000": 636752794.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1172,
+     "sharpe": 0.464,
+     "max_dd": -0.7277,
+     "vol": 0.2266,
+     "final_1000": 55982553.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1402,
+     "sharpe": 0.549,
+     "max_dd": -0.6563,
+     "vol": 0.2312,
+     "final_1000": 419673972.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0451,
+    "vol_matched_L": 1.29,
+    "vol_matched_cagr": 0.11,
+    "dsr_active": 0.096,
+    "t_active": 2.85,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.163,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5764,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2126,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3554,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0692,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3791,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2078,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4221,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.012,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.69,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1993,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3532,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0397,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=150,L=2.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 150,
+     "L": 2.5
+    },
+    "stats": {
+     "cagr": 0.1632,
+     "sharpe": 0.566,
+     "max_dd": -0.7796,
+     "vol": 0.283,
+     "final_1000": 3012018219.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1255,
+     "sharpe": 0.449,
+     "max_dd": -0.813,
+     "vol": 0.2833,
+     "final_1000": 116455045.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1565,
+     "sharpe": 0.541,
+     "max_dd": -0.7554,
+     "vol": 0.289,
+     "final_1000": 1695698504.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0632,
+    "vol_matched_L": 1.61,
+    "vol_matched_cagr": 0.1179,
+    "dsr_active": 0.324,
+    "t_active": 3.7,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1855,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6816,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2587,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4323,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0627,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.477,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2349,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.5048,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0302,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.7796,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2352,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.43,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0563,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=150,L=3.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 150,
+     "L": 3.0
+    },
+    "stats": {
+     "cagr": 0.1778,
+     "sharpe": 0.561,
+     "max_dd": -0.8446,
+     "vol": 0.3396,
+     "final_1000": 10300416435.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1302,
+     "sharpe": 0.439,
+     "max_dd": -0.8744,
+     "vol": 0.3399,
+     "final_1000": 174979835.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1687,
+     "sharpe": 0.536,
+     "max_dd": -0.8284,
+     "vol": 0.3468,
+     "final_1000": 4799863645.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0778,
+    "vol_matched_L": 1.93,
+    "vol_matched_cagr": 0.1221,
+    "dsr_active": 0.511,
+    "t_active": 4.19,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.2012,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.772,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.3042,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.5027,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0545,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5615,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2585,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.5769,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0513,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.8446,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2677,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4997,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0671,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=200,L=1.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 200,
+     "L": 1.0
+    },
+    "stats": {
+     "cagr": 0.098,
+     "sharpe": 0.592,
+     "max_dd": -0.4115,
+     "vol": 0.1164,
+     "final_1000": 10173157.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0913,
+     "sharpe": 0.539,
+     "max_dd": -0.4283,
+     "vol": 0.1165,
+     "final_1000": 5520359.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.0952,
+     "sharpe": 0.566,
+     "max_dd": -0.3987,
+     "vol": 0.1174,
+     "final_1000": 7878424.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": -0.002,
+    "vol_matched_L": 0.66,
+    "vol_matched_cagr": 0.0799,
+    "dsr_active": 0.0,
+    "t_active": -0.79,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0923,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4115,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1158,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.156,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0804,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.1758,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1467,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2945,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0243,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2434,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1108,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2307,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.33,
+    "plateau_score": -0.002,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=200,L=1.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 200,
+     "L": 1.5
+    },
+    "stats": {
+     "cagr": 0.1219,
+     "sharpe": 0.567,
+     "max_dd": -0.5683,
+     "vol": 0.1746,
+     "final_1000": 84786046.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1066,
+     "sharpe": 0.488,
+     "max_dd": -0.5892,
+     "vol": 0.1747,
+     "final_1000": 21938959.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1174,
+     "sharpe": 0.541,
+     "max_dd": -0.5544,
+     "vol": 0.1761,
+     "final_1000": 57210210.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0219,
+    "vol_matched_L": 0.99,
+    "vol_matched_cagr": 0.0997,
+    "dsr_active": 0.003,
+    "t_active": 1.36,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1232,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5683,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.16,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2293,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0791,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2689,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1793,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4221,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.017,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3795,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1482,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3377,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 0.75,
+    "plateau_score": 0.0219,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=200,L=2.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 200,
+     "L": 2.0
+    },
+    "stats": {
+     "cagr": 0.1423,
+     "sharpe": 0.554,
+     "max_dd": -0.6917,
+     "vol": 0.2328,
+     "final_1000": 500443991.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1183,
+     "sharpe": 0.463,
+     "max_dd": -0.7126,
+     "vol": 0.2329,
+     "final_1000": 61711688.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1361,
+     "sharpe": 0.528,
+     "max_dd": -0.7043,
+     "vol": 0.2348,
+     "final_1000": 292129785.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0423,
+    "vol_matched_L": 1.33,
+    "vol_matched_cagr": 0.1111,
+    "dsr_active": 0.09,
+    "t_active": 2.81,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1478,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6917,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2037,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3007,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0757,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3523,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.208,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.5418,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0063,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4971,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1825,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4317,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0423,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=200,L=2.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 200,
+     "L": 2.5
+    },
+    "stats": {
+     "cagr": 0.1589,
+     "sharpe": 0.547,
+     "max_dd": -0.7858,
+     "vol": 0.291,
+     "final_1000": 2078669060.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1261,
+     "sharpe": 0.448,
+     "max_dd": -0.8044,
+     "vol": 0.2912,
+     "final_1000": 122073205.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1508,
+     "sharpe": 0.521,
+     "max_dd": -0.8189,
+     "vol": 0.2935,
+     "final_1000": 1041739428.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0589,
+    "vol_matched_L": 1.66,
+    "vol_matched_cagr": 0.1187,
+    "dsr_active": 0.297,
+    "t_active": 3.62,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1654,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.7858,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2469,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.372,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0703,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4483,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2321,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.6442,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0077,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5954,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2133,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.5139,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0589,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=200,L=3.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 200,
+     "L": 3.0
+    },
+    "stats": {
+     "cagr": 0.1714,
+     "sharpe": 0.542,
+     "max_dd": -0.8606,
+     "vol": 0.3492,
+     "final_1000": 6021926069.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1297,
+     "sharpe": 0.438,
+     "max_dd": -0.8866,
+     "vol": 0.3494,
+     "final_1000": 168288743.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1614,
+     "sharpe": 0.516,
+     "max_dd": -0.8965,
+     "vol": 0.3522,
+     "final_1000": 2569780724.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0714,
+    "vol_matched_L": 1.99,
+    "vol_matched_cagr": 0.1224,
+    "dsr_active": 0.468,
+    "t_active": 4.08,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1757,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8606,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2892,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4393,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0629,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5452,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.251,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.731,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0248,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.6767,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2404,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.5856,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0714,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=250,L=1.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 250,
+     "L": 1.0
+    },
+    "stats": {
+     "cagr": 0.1,
+     "sharpe": 0.593,
+     "max_dd": -0.457,
+     "vol": 0.1198,
+     "final_1000": 12093417.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0943,
+     "sharpe": 0.55,
+     "max_dd": -0.4705,
+     "vol": 0.1199,
+     "final_1000": 7261506.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.0989,
+     "sharpe": 0.584,
+     "max_dd": -0.4775,
+     "vol": 0.1202,
+     "final_1000": 11029666.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": -0.0,
+    "vol_matched_L": 0.68,
+    "vol_matched_cagr": 0.0812,
+    "dsr_active": 0.0,
+    "t_active": -0.64,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0782,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.457,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1168,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.1746,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0856,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.1808,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1609,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3005,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0391,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.1973,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.103,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2119,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.5,
+    "plateau_score": -0.0,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=250,L=1.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 250,
+     "L": 1.5
+    },
+    "stats": {
+     "cagr": 0.1244,
+     "sharpe": 0.568,
+     "max_dd": -0.6276,
+     "vol": 0.1797,
+     "final_1000": 105607161.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1107,
+     "sharpe": 0.5,
+     "max_dd": -0.6423,
+     "vol": 0.1798,
+     "final_1000": 31534238.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1228,
+     "sharpe": 0.559,
+     "max_dd": -0.6347,
+     "vol": 0.1803,
+     "final_1000": 91584420.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0244,
+    "vol_matched_L": 1.02,
+    "vol_matched_cagr": 0.1009,
+    "dsr_active": 0.005,
+    "t_active": 1.6,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1009,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6276,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1613,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2568,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0865,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2688,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2009,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4434,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0388,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2887,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1353,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3129,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0219,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=250,L=2.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 250,
+     "L": 2.0
+    },
+    "stats": {
+     "cagr": 0.1451,
+     "sharpe": 0.556,
+     "max_dd": -0.752,
+     "vol": 0.2396,
+     "final_1000": 639432831.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1232,
+     "sharpe": 0.475,
+     "max_dd": -0.7654,
+     "vol": 0.2397,
+     "final_1000": 94908526.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1428,
+     "sharpe": 0.546,
+     "max_dd": -0.7499,
+     "vol": 0.2405,
+     "final_1000": 525753060.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0451,
+    "vol_matched_L": 1.37,
+    "vol_matched_cagr": 0.1122,
+    "dsr_active": 0.134,
+    "t_active": 3.05,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1165,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.752,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2053,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3327,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0853,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3481,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2372,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.5644,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0348,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3797,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1637,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4029,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0423,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=250,L=2.5": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 250,
+     "L": 2.5
+    },
+    "stats": {
+     "cagr": 0.1618,
+     "sharpe": 0.548,
+     "max_dd": -0.8398,
+     "vol": 0.2995,
+     "final_1000": 2665893909.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1315,
+     "sharpe": 0.46,
+     "max_dd": -0.8507,
+     "vol": 0.2997,
+     "final_1000": 196582629.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1588,
+     "sharpe": 0.539,
+     "max_dd": -0.8358,
+     "vol": 0.3006,
+     "final_1000": 2071805727.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0618,
+    "vol_matched_L": 1.71,
+    "vol_matched_cagr": 0.1195,
+    "dsr_active": 0.367,
+    "t_active": 3.82,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1246,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8398,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2486,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4026,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0818,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.422,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2692,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.6661,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0271,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4739,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1878,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4829,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0589,
+    "pass": false,
+    "near_miss": false
+   },
+   "A1_trend_lev|N=250,L=3.0": {
+    "fam": "A1_trend_lev",
+    "p": {
+     "N": 250,
+     "L": 3.0
+    },
+    "stats": {
+     "cagr": 0.1742,
+     "sharpe": 0.543,
+     "max_dd": -0.8996,
+     "vol": 0.3595,
+     "final_1000": 7579969122.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1355,
+     "sharpe": 0.45,
+     "max_dd": -0.9079,
+     "vol": 0.3596,
+     "final_1000": 277516775.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1705,
+     "sharpe": 0.534,
+     "max_dd": -0.8964,
+     "vol": 0.3607,
+     "final_1000": 5549579379.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0742,
+    "vol_matched_L": 2.05,
+    "vol_matched_cagr": 0.1227,
+    "dsr_active": 0.529,
+    "t_active": 4.24,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.125,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8996,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.291,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4668,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0763,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5005,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2958,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.7509,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0158,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.557,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2073,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.5537,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0666,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.1,Lmax=1.5": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.1,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.0893,
+     "sharpe": 0.52,
+     "max_dd": -0.523,
+     "vol": 0.1174,
+     "final_1000": 4633500.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0838,
+     "sharpe": 0.477,
+     "max_dd": -0.525,
+     "vol": 0.1174,
+     "final_1000": 2808331.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.0902,
+     "sharpe": 0.524,
+     "max_dd": -0.516,
+     "vol": 0.1183,
+     "final_1000": 5025520.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": -0.0107,
+    "vol_matched_L": 0.67,
+    "vol_matched_cagr": 0.0803,
+    "dsr_active": 0.0,
+    "t_active": -1.92,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0608,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.523,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.122,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2783,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0536,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3772,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1571,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2268,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0265,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3454,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.098,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.1733,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.5,
+    "plateau_score": -0.0107,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.1,Lmax=2.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.1,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.0893,
+     "sharpe": 0.512,
+     "max_dd": -0.523,
+     "vol": 0.1199,
+     "final_1000": 4627386.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0822,
+     "sharpe": 0.457,
+     "max_dd": -0.525,
+     "vol": 0.1199,
+     "final_1000": 2435938.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.0903,
+     "sharpe": 0.516,
+     "max_dd": -0.516,
+     "vol": 0.1209,
+     "final_1000": 5074135.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": -0.0107,
+    "vol_matched_L": 0.68,
+    "vol_matched_cagr": 0.0812,
+    "dsr_active": 0.0,
+    "t_active": -1.87,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0632,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.523,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.124,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2928,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0507,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4024,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.157,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2268,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0263,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3454,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.0958,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.1817,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.33,
+    "plateau_score": -0.0107,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.1,Lmax=3.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.1,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.0881,
+     "sharpe": 0.497,
+     "max_dd": -0.523,
+     "vol": 0.1215,
+     "final_1000": 4129281.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0804,
+     "sharpe": 0.438,
+     "max_dd": -0.525,
+     "vol": 0.1215,
+     "final_1000": 2048538.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.0899,
+     "sharpe": 0.509,
+     "max_dd": -0.516,
+     "vol": 0.1221,
+     "final_1000": 4863721.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": -0.0119,
+    "vol_matched_L": 0.69,
+    "vol_matched_cagr": 0.0818,
+    "dsr_active": 0.0,
+    "t_active": -1.94,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0631,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.523,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1202,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2929,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0478,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4195,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1575,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2268,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0263,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3454,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.0952,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.1817,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.5,
+    "plateau_score": -0.0119,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.15,Lmax=1.5": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.15,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1091,
+     "sharpe": 0.539,
+     "max_dd": -0.6709,
+     "vol": 0.1567,
+     "final_1000": 27389614.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1022,
+     "sharpe": 0.499,
+     "max_dd": -0.6735,
+     "vol": 0.1567,
+     "final_1000": 14814313.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1095,
+     "sharpe": 0.539,
+     "max_dd": -0.6695,
+     "vol": 0.1576,
+     "final_1000": 28287116.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0091,
+    "vol_matched_L": 0.89,
+    "vol_matched_cagr": 0.094,
+    "dsr_active": 0.0,
+    "t_active": 0.64,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0689,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6709,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1627,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3478,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0584,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4649,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1864,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2973,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0219,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4833,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1359,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2187,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0091,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.15,Lmax=2.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.15,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.11,
+     "sharpe": 0.515,
+     "max_dd": -0.6709,
+     "vol": 0.1698,
+     "final_1000": 29693657.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0984,
+     "sharpe": 0.453,
+     "max_dd": -0.6735,
+     "vol": 0.1699,
+     "final_1000": 10470490.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1116,
+     "sharpe": 0.52,
+     "max_dd": -0.6695,
+     "vol": 0.1713,
+     "final_1000": 34058708.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.01,
+    "vol_matched_L": 0.97,
+    "vol_matched_cagr": 0.0982,
+    "dsr_active": 0.001,
+    "t_active": 0.9,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.084,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6709,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1701,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3772,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0439,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5168,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1846,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3127,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.023,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4833,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1306,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2283,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 0.75,
+    "plateau_score": 0.0095,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.15,Lmax=3.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.15,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1099,
+     "sharpe": 0.501,
+     "max_dd": -0.6709,
+     "vol": 0.177,
+     "final_1000": 29317354.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0941,
+     "sharpe": 0.42,
+     "max_dd": -0.6735,
+     "vol": 0.177,
+     "final_1000": 7153155.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.111,
+     "sharpe": 0.504,
+     "max_dd": -0.6695,
+     "vol": 0.1784,
+     "final_1000": 32497157.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0099,
+    "vol_matched_L": 1.01,
+    "vol_matched_cagr": 0.1003,
+    "dsr_active": 0.001,
+    "t_active": 0.95,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0856,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6709,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1728,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4092,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0333,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5591,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1909,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3127,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0234,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4833,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1287,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2408,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0099,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.2,Lmax=1.5": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.2,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1143,
+     "sharpe": 0.514,
+     "max_dd": -0.7624,
+     "vol": 0.1819,
+     "final_1000": 43372832.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1074,
+     "sharpe": 0.479,
+     "max_dd": -0.7661,
+     "vol": 0.1819,
+     "final_1000": 23487031.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1143,
+     "sharpe": 0.512,
+     "max_dd": -0.7589,
+     "vol": 0.1829,
+     "final_1000": 43204601.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0143,
+    "vol_matched_L": 1.04,
+    "vol_matched_cagr": 0.1014,
+    "dsr_active": 0.014,
+    "t_active": 1.96,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0594,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.7624,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.17,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3634,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0582,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5537,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1971,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3727,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0237,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5697,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1624,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2566,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0143,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.2,Lmax=2.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.2,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1236,
+     "sharpe": 0.513,
+     "max_dd": -0.7686,
+     "vol": 0.2083,
+     "final_1000": 98428039.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1101,
+     "sharpe": 0.455,
+     "max_dd": -0.7716,
+     "vol": 0.2083,
+     "final_1000": 29814173.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1237,
+     "sharpe": 0.512,
+     "max_dd": -0.7725,
+     "vol": 0.2096,
+     "final_1000": 99563304.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0236,
+    "vol_matched_L": 1.19,
+    "vol_matched_cagr": 0.1068,
+    "dsr_active": 0.097,
+    "t_active": 2.86,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.077,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.7686,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1998,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4449,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0434,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5762,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2171,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3813,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.018,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5967,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1641,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.274,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0181,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.2,Lmax=3.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.2,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.122,
+     "sharpe": 0.48,
+     "max_dd": -0.7686,
+     "vol": 0.2296,
+     "final_1000": 85735313.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0995,
+     "sharpe": 0.392,
+     "max_dd": -0.7716,
+     "vol": 0.2296,
+     "final_1000": 11606512.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.123,
+     "sharpe": 0.482,
+     "max_dd": -0.7725,
+     "vol": 0.2315,
+     "final_1000": 93252071.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.022,
+    "vol_matched_L": 1.31,
+    "vol_matched_cagr": 0.1106,
+    "dsr_active": 0.055,
+    "t_active": 2.55,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.091,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.7686,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2095,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.5039,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0108,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.6628,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2214,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3809,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0194,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5967,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1552,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3181,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.022,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.25,Lmax=1.5": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.25,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1151,
+     "sharpe": 0.491,
+     "max_dd": -0.8596,
+     "vol": 0.1984,
+     "final_1000": 46713565.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1085,
+     "sharpe": 0.461,
+     "max_dd": -0.8622,
+     "vol": 0.1984,
+     "final_1000": 25900135.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1158,
+     "sharpe": 0.492,
+     "max_dd": -0.8526,
+     "vol": 0.1994,
+     "final_1000": 49668050.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0151,
+    "vol_matched_L": 1.13,
+    "vol_matched_cagr": 0.1049,
+    "dsr_active": 0.078,
+    "t_active": 2.73,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0396,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8596,
+      "bh_max_dd": -0.8409,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1767,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3804,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0554,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5966,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2105,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4063,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0257,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5976,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1723,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3411,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0151,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.25,Lmax=2.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.25,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.13,
+     "sharpe": 0.503,
+     "max_dd": -0.8741,
+     "vol": 0.2363,
+     "final_1000": 173170899.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1159,
+     "sharpe": 0.45,
+     "max_dd": -0.8773,
+     "vol": 0.2363,
+     "final_1000": 49915592.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1305,
+     "sharpe": 0.503,
+     "max_dd": -0.8668,
+     "vol": 0.2381,
+     "final_1000": 180075265.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0301,
+    "vol_matched_L": 1.35,
+    "vol_matched_cagr": 0.1117,
+    "dsr_active": 0.341,
+    "t_active": 3.75,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0648,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8741,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2158,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4652,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.045,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.6719,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.236,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4411,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0114,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.6747,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1889,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3408,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0236,
+    "pass": false,
+    "near_miss": false
+   },
+   "A2_volman_lev|target=0.25,Lmax=3.0": {
+    "fam": "A2_volman_lev",
+    "p": {
+     "target": 0.25,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1368,
+     "sharpe": 0.491,
+     "max_dd": -0.8699,
+     "vol": 0.2746,
+     "final_1000": 311531777.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1102,
+     "sharpe": 0.405,
+     "max_dd": -0.8739,
+     "vol": 0.2746,
+     "final_1000": 30211825.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1399,
+     "sharpe": 0.499,
+     "max_dd": -0.8621,
+     "vol": 0.2771,
+     "final_1000": 408332692.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0368,
+    "vol_matched_L": 1.56,
+    "vol_matched_cagr": 0.1169,
+    "dsr_active": 0.32,
+    "t_active": 3.69,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0952,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8699,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2474,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.5721,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0117,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.7267,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2502,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.444,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0129,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.6838,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1769,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3665,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.026,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.15,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.15,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1054,
+     "sharpe": 0.617,
+     "max_dd": -0.3782,
+     "vol": 0.1241,
+     "final_1000": 19671245.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0911,
+     "sharpe": 0.511,
+     "max_dd": -0.4238,
+     "vol": 0.1242,
+     "final_1000": 5438432.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1043,
+     "sharpe": 0.6,
+     "max_dd": -0.4315,
+     "vol": 0.1264,
+     "final_1000": 17841516.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0054,
+    "vol_matched_L": 0.71,
+    "vol_matched_cagr": 0.0827,
+    "dsr_active": 0.0,
+    "t_active": -0.2,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1075,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.3782,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1533,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2582,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0653,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2641,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1468,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2532,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0187,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3239,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1146,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.194,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0054,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.15,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.15,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1068,
+     "sharpe": 0.578,
+     "max_dd": -0.409,
+     "vol": 0.1378,
+     "final_1000": 22324834.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.088,
+     "sharpe": 0.453,
+     "max_dd": -0.4606,
+     "vol": 0.1379,
+     "final_1000": 4098909.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1062,
+     "sharpe": 0.565,
+     "max_dd": -0.4691,
+     "vol": 0.1408,
+     "final_1000": 21183878.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0068,
+    "vol_matched_L": 0.78,
+    "vol_matched_cagr": 0.0876,
+    "dsr_active": 0.0,
+    "t_active": 0.02,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1176,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.409,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1601,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3359,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0531,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3187,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1508,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2525,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.022,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3239,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1083,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2361,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0068,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.15,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.15,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1065,
+     "sharpe": 0.552,
+     "max_dd": -0.4108,
+     "vol": 0.1459,
+     "final_1000": 21776562.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0838,
+     "sharpe": 0.409,
+     "max_dd": -0.4681,
+     "vol": 0.146,
+     "final_1000": 2806994.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1062,
+     "sharpe": 0.542,
+     "max_dd": -0.4721,
+     "vol": 0.1488,
+     "final_1000": 21066161.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0066,
+    "vol_matched_L": 0.83,
+    "vol_matched_cagr": 0.0904,
+    "dsr_active": 0.0,
+    "t_active": 0.08,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1171,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4108,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1652,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3539,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0409,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3458,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1576,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2525,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0224,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3239,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1061,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2571,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0066,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.2,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.2,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1117,
+     "sharpe": 0.604,
+     "max_dd": -0.4148,
+     "vol": 0.1394,
+     "final_1000": 34377062.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0958,
+     "sharpe": 0.501,
+     "max_dd": -0.4632,
+     "vol": 0.1396,
+     "final_1000": 8348496.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1108,
+     "sharpe": 0.59,
+     "max_dd": -0.478,
+     "vol": 0.1422,
+     "final_1000": 31906190.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0117,
+    "vol_matched_L": 0.79,
+    "vol_matched_cagr": 0.0881,
+    "dsr_active": 0.0,
+    "t_active": 0.34,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1017,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4148,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1607,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2593,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0687,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2723,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1611,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3013,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0155,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4096,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1387,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2059,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0117,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.2,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.2,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1219,
+     "sharpe": 0.589,
+     "max_dd": -0.4741,
+     "vol": 0.1652,
+     "final_1000": 84759117.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0993,
+     "sharpe": 0.466,
+     "max_dd": -0.5287,
+     "vol": 0.1654,
+     "final_1000": 11435848.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1213,
+     "sharpe": 0.578,
+     "max_dd": -0.5402,
+     "vol": 0.1684,
+     "final_1000": 80350860.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0219,
+    "vol_matched_L": 0.94,
+    "vol_matched_cagr": 0.0968,
+    "dsr_active": 0.001,
+    "t_active": 1.17,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1293,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4741,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1928,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3585,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0602,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3628,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1689,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3306,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0117,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4285,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.136,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.26,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0219,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.2,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.2,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1228,
+     "sharpe": 0.544,
+     "max_dd": -0.5111,
+     "vol": 0.1879,
+     "final_1000": 92147148.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0917,
+     "sharpe": 0.394,
+     "max_dd": -0.574,
+     "vol": 0.1882,
+     "final_1000": 5753630.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1227,
+     "sharpe": 0.537,
+     "max_dd": -0.5859,
+     "vol": 0.1914,
+     "final_1000": 90699727.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0228,
+    "vol_matched_L": 1.07,
+    "vol_matched_cagr": 0.1027,
+    "dsr_active": 0.003,
+    "t_active": 1.36,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1412,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5111,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2076,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.441,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0319,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4586,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1789,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3307,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0147,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4285,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1266,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3406,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0228,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.25,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.25,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1172,
+     "sharpe": 0.609,
+     "max_dd": -0.4696,
+     "vol": 0.1486,
+     "final_1000": 56267203.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1003,
+     "sharpe": 0.506,
+     "max_dd": -0.5103,
+     "vol": 0.1488,
+     "final_1000": 12476568.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1146,
+     "sharpe": 0.583,
+     "max_dd": -0.4894,
+     "vol": 0.1525,
+     "final_1000": 44725920.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0172,
+    "vol_matched_L": 0.85,
+    "vol_matched_cagr": 0.0913,
+    "dsr_active": 0.0,
+    "t_active": 0.78,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1081,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4441,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1654,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2719,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0734,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2723,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1683,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3269,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0153,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.4696,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1495,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2515,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0172,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.25,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.25,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1308,
+     "sharpe": 0.593,
+     "max_dd": -0.5197,
+     "vol": 0.1826,
+     "final_1000": 184166695.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1063,
+     "sharpe": 0.473,
+     "max_dd": -0.5744,
+     "vol": 0.1828,
+     "final_1000": 21309853.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1283,
+     "sharpe": 0.573,
+     "max_dd": -0.5768,
+     "vol": 0.1866,
+     "final_1000": 148563494.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0308,
+    "vol_matched_L": 1.04,
+    "vol_matched_cagr": 0.1015,
+    "dsr_active": 0.009,
+    "t_active": 1.81,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.132,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5197,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.204,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3486,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0666,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3634,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1798,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3803,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0089,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5014,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1628,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2761,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0279,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=150,target=0.25,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 150,
+     "target": 0.25,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1398,
+     "sharpe": 0.56,
+     "max_dd": -0.5927,
+     "vol": 0.2222,
+     "final_1000": 405015313.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.103,
+     "sharpe": 0.411,
+     "max_dd": -0.6544,
+     "vol": 0.2225,
+     "final_1000": 15807478.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1397,
+     "sharpe": 0.553,
+     "max_dd": -0.6582,
+     "vol": 0.2267,
+     "final_1000": 400836121.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0398,
+    "vol_matched_L": 1.27,
+    "vol_matched_cagr": 0.1093,
+    "dsr_active": 0.041,
+    "t_active": 2.41,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1676,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5927,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2437,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.494,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.037,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.5283,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1918,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3994,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0099,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5133,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1489,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3588,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0308,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.15,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.15,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1083,
+     "sharpe": 0.629,
+     "max_dd": -0.3808,
+     "vol": 0.1264,
+     "final_1000": 25444603.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.096,
+     "sharpe": 0.54,
+     "max_dd": -0.4141,
+     "vol": 0.1265,
+     "final_1000": 8462129.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1056,
+     "sharpe": 0.604,
+     "max_dd": -0.4284,
+     "vol": 0.1279,
+     "final_1000": 20080858.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0083,
+    "vol_matched_L": 0.72,
+    "vol_matched_cagr": 0.0836,
+    "dsr_active": 0.0,
+    "t_active": 0.01,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1034,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.3808,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1506,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2116,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0741,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.23,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1561,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2799,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.032,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2295,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1084,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2001,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0083,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.15,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.15,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1098,
+     "sharpe": 0.588,
+     "max_dd": -0.3859,
+     "vol": 0.1405,
+     "final_1000": 28971589.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0929,
+     "sharpe": 0.479,
+     "max_dd": -0.4357,
+     "vol": 0.1406,
+     "final_1000": 6418934.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1074,
+     "sharpe": 0.566,
+     "max_dd": -0.4461,
+     "vol": 0.1427,
+     "final_1000": 23424695.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0098,
+    "vol_matched_L": 0.8,
+    "vol_matched_cagr": 0.0885,
+    "dsr_active": 0.0,
+    "t_active": 0.23,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1154,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.3859,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1585,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2769,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0603,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2769,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1591,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2956,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0345,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2298,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1027,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.256,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0094,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.15,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.15,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1094,
+     "sharpe": 0.562,
+     "max_dd": -0.3808,
+     "vol": 0.1485,
+     "final_1000": 28089790.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0887,
+     "sharpe": 0.435,
+     "max_dd": -0.4343,
+     "vol": 0.1486,
+     "final_1000": 4371210.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1072,
+     "sharpe": 0.544,
+     "max_dd": -0.4401,
+     "vol": 0.1506,
+     "final_1000": 23137765.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0094,
+    "vol_matched_L": 0.85,
+    "vol_matched_cagr": 0.0913,
+    "dsr_active": 0.0,
+    "t_active": 0.28,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1158,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.3808,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1627,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2966,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.048,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3418,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1652,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.2956,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0348,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2298,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1009,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2765,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0094,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.2,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.2,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.114,
+     "sharpe": 0.61,
+     "max_dd": -0.4687,
+     "vol": 0.1421,
+     "final_1000": 42071862.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1005,
+     "sharpe": 0.524,
+     "max_dd": -0.5012,
+     "vol": 0.1422,
+     "final_1000": 12728054.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1117,
+     "sharpe": 0.59,
+     "max_dd": -0.4807,
+     "vol": 0.1439,
+     "final_1000": 34427297.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.014,
+    "vol_matched_L": 0.81,
+    "vol_matched_cagr": 0.0891,
+    "dsr_active": 0.0,
+    "t_active": 0.52,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4687,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1551,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2255,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0773,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2531,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1657,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3546,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.035,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.275,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1288,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2411,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.014,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.2,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.2,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1257,
+     "sharpe": 0.602,
+     "max_dd": -0.4895,
+     "vol": 0.168,
+     "final_1000": 117915658.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1057,
+     "sharpe": 0.496,
+     "max_dd": -0.5318,
+     "vol": 0.1681,
+     "final_1000": 20227945.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1227,
+     "sharpe": 0.581,
+     "max_dd": -0.5347,
+     "vol": 0.1703,
+     "final_1000": 90788268.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0257,
+    "vol_matched_L": 0.96,
+    "vol_matched_cagr": 0.0976,
+    "dsr_active": 0.003,
+    "t_active": 1.44,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1247,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4895,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1895,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2924,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0678,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3091,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.181,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.371,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0314,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.294,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1284,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2683,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0244,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.2,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.2,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.127,
+     "sharpe": 0.558,
+     "max_dd": -0.5023,
+     "vol": 0.191,
+     "final_1000": 132864890.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0986,
+     "sharpe": 0.424,
+     "max_dd": -0.5616,
+     "vol": 0.1911,
+     "final_1000": 10657629.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1242,
+     "sharpe": 0.54,
+     "max_dd": -0.5589,
+     "vol": 0.1938,
+     "final_1000": 103546319.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.027,
+    "vol_matched_L": 1.09,
+    "vol_matched_cagr": 0.1033,
+    "dsr_active": 0.006,
+    "t_active": 1.63,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1389,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5023,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2038,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3729,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0387,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3989,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.192,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3705,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0341,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2946,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1198,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3536,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0257,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.25,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.25,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1173,
+     "sharpe": 0.6,
+     "max_dd": -0.4957,
+     "vol": 0.152,
+     "final_1000": 56689602.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1032,
+     "sharpe": 0.516,
+     "max_dd": -0.5305,
+     "vol": 0.1521,
+     "final_1000": 16150234.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1145,
+     "sharpe": 0.579,
+     "max_dd": -0.5347,
+     "vol": 0.1536,
+     "final_1000": 44317009.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0173,
+    "vol_matched_L": 0.87,
+    "vol_matched_cagr": 0.0924,
+    "dsr_active": 0.0,
+    "t_active": 0.84,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.105,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4957,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.16,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2293,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0788,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.261,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1679,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4221,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0325,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3113,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1376,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2905,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0173,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.25,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.25,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1339,
+     "sharpe": 0.601,
+     "max_dd": -0.5686,
+     "vol": 0.186,
+     "final_1000": 243089683.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1125,
+     "sharpe": 0.498,
+     "max_dd": -0.6032,
+     "vol": 0.1862,
+     "final_1000": 36954790.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1293,
+     "sharpe": 0.573,
+     "max_dd": -0.5894,
+     "vol": 0.1889,
+     "final_1000": 162005823.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0339,
+    "vol_matched_L": 1.06,
+    "vol_matched_cagr": 0.1023,
+    "dsr_active": 0.018,
+    "t_active": 2.06,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.131,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5686,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1983,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2952,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0747,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3317,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1889,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4268,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0302,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.353,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1507,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3078,
+      "bh_max_dd": -0.3422,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0308,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=200,target=0.25,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 200,
+     "target": 0.25,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.146,
+     "sharpe": 0.578,
+     "max_dd": -0.5844,
+     "vol": 0.2258,
+     "final_1000": 689170013.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1123,
+     "sharpe": 0.446,
+     "max_dd": -0.644,
+     "vol": 0.226,
+     "final_1000": 36476976.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1424,
+     "sharpe": 0.559,
+     "max_dd": -0.6479,
+     "vol": 0.2295,
+     "final_1000": 505470337.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.046,
+    "vol_matched_L": 1.29,
+    "vol_matched_cagr": 0.1099,
+    "dsr_active": 0.082,
+    "t_active": 2.76,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1664,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5844,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2409,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4101,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0473,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4361,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2115,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4383,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0313,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3599,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1383,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3765,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0369,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.15,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.15,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1098,
+     "sharpe": 0.629,
+     "max_dd": -0.5496,
+     "vol": 0.1291,
+     "final_1000": 29082228.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0988,
+     "sharpe": 0.551,
+     "max_dd": -0.5852,
+     "vol": 0.1292,
+     "final_1000": 10849116.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1087,
+     "sharpe": 0.616,
+     "max_dd": -0.5155,
+     "vol": 0.1303,
+     "final_1000": 26268715.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0098,
+    "vol_matched_L": 0.74,
+    "vol_matched_cagr": 0.0845,
+    "dsr_active": 0.0,
+    "t_active": 0.13,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0965,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5496,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1472,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2556,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0806,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2268,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1692,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3007,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.04,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.1786,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1009,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2123,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0098,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.15,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.15,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1114,
+     "sharpe": 0.59,
+     "max_dd": -0.5647,
+     "vol": 0.1432,
+     "final_1000": 33531429.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0958,
+     "sharpe": 0.491,
+     "max_dd": -0.6057,
+     "vol": 0.1432,
+     "final_1000": 8300522.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1106,
+     "sharpe": 0.58,
+     "max_dd": -0.5397,
+     "vol": 0.145,
+     "final_1000": 31293930.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0114,
+    "vol_matched_L": 0.82,
+    "vol_matched_cagr": 0.0894,
+    "dsr_active": 0.0,
+    "t_active": 0.36,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1077,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5647,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1561,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2905,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0663,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2741,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.172,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.316,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0435,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.1751,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.0954,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2459,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0105,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.15,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.15,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1112,
+     "sharpe": 0.566,
+     "max_dd": -0.5608,
+     "vol": 0.1511,
+     "final_1000": 33001187.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.0917,
+     "sharpe": 0.448,
+     "max_dd": -0.6063,
+     "vol": 0.1512,
+     "final_1000": 5723624.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1104,
+     "sharpe": 0.556,
+     "max_dd": -0.5373,
+     "vol": 0.1529,
+     "final_1000": 30640398.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0112,
+    "vol_matched_L": 0.86,
+    "vol_matched_cagr": 0.0921,
+    "dsr_active": 0.0,
+    "t_active": 0.42,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1082,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5608,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1614,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.302,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0541,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3071,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1777,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.316,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0438,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.1784,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.0936,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.27,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0112,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.2,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.2,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1167,
+     "sharpe": 0.618,
+     "max_dd": -0.5994,
+     "vol": 0.1449,
+     "final_1000": 53720950.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1048,
+     "sharpe": 0.544,
+     "max_dd": -0.6346,
+     "vol": 0.145,
+     "final_1000": 18708372.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1161,
+     "sharpe": 0.61,
+     "max_dd": -0.5636,
+     "vol": 0.1462,
+     "final_1000": 50732939.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0167,
+    "vol_matched_L": 0.83,
+    "vol_matched_cagr": 0.09,
+    "dsr_active": 0.0,
+    "t_active": 0.74,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0901,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.5994,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1562,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2568,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0854,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.2503,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1833,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3762,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0464,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2108,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.117,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.24,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0167,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.2,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.2,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1278,
+     "sharpe": 0.603,
+     "max_dd": -0.671,
+     "vol": 0.172,
+     "final_1000": 141668635.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1094,
+     "sharpe": 0.508,
+     "max_dd": -0.7079,
+     "vol": 0.1721,
+     "final_1000": 28166977.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1271,
+     "sharpe": 0.596,
+     "max_dd": -0.6367,
+     "vol": 0.1736,
+     "final_1000": 133782400.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0278,
+    "vol_matched_L": 0.98,
+    "vol_matched_cagr": 0.0989,
+    "dsr_active": 0.006,
+    "t_active": 1.62,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1115,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.671,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.186,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3331,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0771,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3064,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2019,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3942,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.041,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2219,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1186,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2837,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0257,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.2,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.2,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1277,
+     "sharpe": 0.554,
+     "max_dd": -0.6907,
+     "vol": 0.1948,
+     "final_1000": 141590625.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1008,
+     "sharpe": 0.43,
+     "max_dd": -0.7335,
+     "vol": 0.1949,
+     "final_1000": 13020023.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1271,
+     "sharpe": 0.547,
+     "max_dd": -0.6661,
+     "vol": 0.197,
+     "final_1000": 133541197.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0277,
+    "vol_matched_L": 1.11,
+    "vol_matched_cagr": 0.1041,
+    "dsr_active": 0.008,
+    "t_active": 1.73,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1213,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6907,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2009,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3836,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0461,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3953,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2104,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3937,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0436,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.262,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1104,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3499,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0274,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.25,Lmax=1.5": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.25,
+     "Lmax": 1.5
+    },
+    "stats": {
+     "cagr": 0.1203,
+     "sharpe": 0.607,
+     "max_dd": -0.6079,
+     "vol": 0.1556,
+     "final_1000": 73410545.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1077,
+     "sharpe": 0.534,
+     "max_dd": -0.6438,
+     "vol": 0.1557,
+     "final_1000": 24232185.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1193,
+     "sharpe": 0.598,
+     "max_dd": -0.5568,
+     "vol": 0.1567,
+     "final_1000": 67736416.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0203,
+    "vol_matched_L": 0.89,
+    "vol_matched_cagr": 0.0936,
+    "dsr_active": 0.001,
+    "t_active": 1.09,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0934,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6079,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1596,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2568,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0855,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.26,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1891,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4434,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0481,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2264,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1243,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.2946,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0173,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.25,Lmax=2.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.25,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1377,
+     "sharpe": 0.608,
+     "max_dd": -0.6985,
+     "vol": 0.1905,
+     "final_1000": 336485500.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.118,
+     "sharpe": 0.516,
+     "max_dd": -0.7348,
+     "vol": 0.1906,
+     "final_1000": 60174469.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1357,
+     "sharpe": 0.595,
+     "max_dd": -0.6634,
+     "vol": 0.1927,
+     "final_1000": 283639469.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0377,
+    "vol_matched_L": 1.09,
+    "vol_matched_cagr": 0.1032,
+    "dsr_active": 0.035,
+    "t_active": 2.34,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.115,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6985,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1969,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3241,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0884,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3284,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2129,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4526,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0447,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.2515,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1391,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3075,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0308,
+    "pass": false,
+    "near_miss": false
+   },
+   "A3_trend_volman|N=250,target=0.25,Lmax=3.0": {
+    "fam": "A3_trend_volman",
+    "p": {
+     "N": 250,
+     "target": 0.25,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1471,
+     "sharpe": 0.575,
+     "max_dd": -0.7669,
+     "vol": 0.2305,
+     "final_1000": 756233073.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1153,
+     "sharpe": 0.454,
+     "max_dd": -0.8048,
+     "vol": 0.2306,
+     "final_1000": 47488535.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1466,
+     "sharpe": 0.57,
+     "max_dd": -0.7427,
+     "vol": 0.2335,
+     "final_1000": 727227312.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0471,
+    "vol_matched_L": 1.31,
+    "vol_matched_cagr": 0.1107,
+    "dsr_active": 0.102,
+    "t_active": 2.88,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1429,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.7669,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2374,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4299,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.0581,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4328,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2347,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4636,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0442,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3303,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1257,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.3804,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0377,
+    "pass": false,
+    "near_miss": false
+   },
+   "A4_mom_trend|L=1.0,filter=none": {
+    "fam": "A4_mom_trend",
+    "p": {
+     "L": 1.0,
+     "filter": "none"
+    },
+    "stats": {
+     "cagr": 0.1359,
+     "sharpe": 0.521,
+     "max_dd": -0.8507,
+     "vol": 0.2394,
+     "final_1000": 288849381.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1187,
+     "sharpe": 0.457,
+     "max_dd": -0.8584,
+     "vol": 0.2395,
+     "final_1000": 63823910.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1359,
+     "sharpe": 0.521,
+     "max_dd": -0.8507,
+     "vol": 0.2394,
+     "final_1000": 288849381.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0359,
+    "vol_matched_L": 1.36,
+    "vol_matched_cagr": 0.1122,
+    "dsr_active": 0.25,
+    "t_active": 3.49,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.057,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8507,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.1789,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.3555,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.1502,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4395,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2214,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4228,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0293,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5686,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1641,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4433,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.5,
+    "plateau_score": 0.0359,
+    "pass": false,
+    "near_miss": false
+   },
+   "A4_mom_trend|L=1.0,filter=sma200": {
+    "fam": "A4_mom_trend",
+    "p": {
+     "L": 1.0,
+     "filter": "sma200"
+    },
+    "stats": {
+     "cagr": 0.1295,
+     "sharpe": 0.582,
+     "max_dd": -0.4488,
+     "vol": 0.1847,
+     "final_1000": 165508592.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1104,
+     "sharpe": 0.489,
+     "max_dd": -0.4686,
+     "vol": 0.1847,
+     "final_1000": 30668017.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1235,
+     "sharpe": 0.549,
+     "max_dd": -0.5022,
+     "vol": 0.1866,
+     "final_1000": 97532052.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0295,
+    "vol_matched_L": 1.05,
+    "vol_matched_cagr": 0.102,
+    "dsr_active": 0.006,
+    "t_active": 1.66,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1208,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.4454,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.149,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.2264,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.1523,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.3192,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.1835,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.3302,
+      "bh_max_dd": -0.3312,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0377,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.3426,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1085,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.4488,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0295,
+    "pass": false,
+    "near_miss": false
+   },
+   "A4_mom_trend|L=1.5,filter=none": {
+    "fam": "A4_mom_trend",
+    "p": {
+     "L": 1.5,
+     "filter": "none"
+    },
+    "stats": {
+     "cagr": 0.1588,
+     "sharpe": 0.504,
+     "max_dd": -0.9597,
+     "vol": 0.3591,
+     "final_1000": 2066959696.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1254,
+     "sharpe": 0.422,
+     "max_dd": -0.9636,
+     "vol": 0.3592,
+     "final_1000": 115746752.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1588,
+     "sharpe": 0.504,
+     "max_dd": -0.9597,
+     "vol": 0.3591,
+     "final_1000": 2066959696.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0588,
+    "vol_matched_L": 2.05,
+    "vol_matched_cagr": 0.1227,
+    "dsr_active": 0.594,
+    "t_active": 4.4,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.0292,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.9597,
+      "bh_max_dd": -0.8409,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2496,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4986,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.1713,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.6195,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2841,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.5778,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.001,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.7334,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2056,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.6147,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0588,
+    "pass": false,
+    "near_miss": false
+   },
+   "A4_mom_trend|L=1.5,filter=sma200": {
+    "fam": "A4_mom_trend",
+    "p": {
+     "L": 1.5,
+     "filter": "sma200"
+    },
+    "stats": {
+     "cagr": 0.1614,
+     "sharpe": 0.566,
+     "max_dd": -0.6273,
+     "vol": 0.277,
+     "final_1000": 2579731223.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.127,
+     "sharpe": 0.457,
+     "max_dd": -0.6608,
+     "vol": 0.2771,
+     "final_1000": 133142134.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1518,
+     "sharpe": 0.533,
+     "max_dd": -0.7304,
+     "vol": 0.28,
+     "final_1000": 1131844672.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0614,
+    "vol_matched_L": 1.58,
+    "vol_matched_cagr": 0.1172,
+    "dsr_active": 0.209,
+    "t_active": 3.36,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1493,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.6273,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.208,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.324,
+      "bh_max_dd": -0.2829,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.184,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.4539,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2308,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.4779,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0289,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.5137,
+      "bh_max_dd": -0.5458,
+      "ok": true,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1304,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.6175,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.67,
+    "plateau_score": 0.0588,
+    "pass": false,
+    "near_miss": false
+   },
+   "A4_mom_trend|L=2.0,filter=none": {
+    "fam": "A4_mom_trend",
+    "p": {
+     "L": 2.0,
+     "filter": "none"
+    },
+    "stats": {
+     "cagr": 0.1646,
+     "sharpe": 0.495,
+     "max_dd": -0.9913,
+     "vol": 0.4789,
+     "final_1000": 3381242581.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1154,
+     "sharpe": 0.405,
+     "max_dd": -0.9932,
+     "vol": 0.479,
+     "final_1000": 47912295.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1646,
+     "sharpe": 0.495,
+     "max_dd": -0.9913,
+     "vol": 0.4789,
+     "final_1000": 3381242581.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0646,
+    "vol_matched_L": 2.73,
+    "vol_matched_cagr": 0.1166,
+    "dsr_active": 0.661,
+    "t_active": 4.58,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": -0.0288,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.9913,
+      "bh_max_dd": -0.8409,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.3163,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.6166,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.183,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.7458,
+      "bh_max_dd": -0.4819,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.3372,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.7003,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": -0.0482,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.8825,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.2268,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.7465,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": true
+     }
+    ],
+    "checks": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.5,
+    "plateau_score": 0.0646,
+    "pass": false,
+    "near_miss": false
+   },
+   "A4_mom_trend|L=2.0,filter=sma200": {
+    "fam": "A4_mom_trend",
+    "p": {
+     "L": 2.0,
+     "filter": "sma200"
+    },
+    "stats": {
+     "cagr": 0.1836,
+     "sharpe": 0.558,
+     "max_dd": -0.8034,
+     "vol": 0.3694,
+     "final_1000": 16733377814.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1338,
+     "sharpe": 0.442,
+     "max_dd": -0.8369,
+     "vol": 0.3695,
+     "final_1000": 240250654.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "stats_delay": {
+     "cagr": 0.17,
+     "sharpe": 0.525,
+     "max_dd": -0.8797,
+     "vol": 0.3733,
+     "final_1000": 5344772661.0,
+     "start": "1928-01-03",
+     "end": "2026-08-31"
+    },
+    "excess_cagr": 0.0836,
+    "vol_matched_L": 2.1,
+    "vol_matched_cagr": 0.1228,
+    "dsr_active": 0.48,
+    "t_active": 4.11,
+    "subperiods": [
+     {
+      "from": "1928-01-01",
+      "cagr": 0.1581,
+      "bh_cagr": 0.0476,
+      "max_dd": -0.8034,
+      "bh_max_dd": -0.8409,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1946-01-01",
+      "cagr": 0.2647,
+      "bh_cagr": 0.1288,
+      "max_dd": -0.4118,
+      "bh_max_dd": -0.2829,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "1966-01-01",
+      "cagr": 0.2113,
+      "bh_cagr": 0.0659,
+      "max_dd": -0.564,
+      "bh_max_dd": -0.4819,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1982-01-01",
+      "cagr": 0.2709,
+      "bh_cagr": 0.1775,
+      "max_dd": -0.6015,
+      "bh_max_dd": -0.3312,
+      "ok": false,
+      "ok_2x": true
+     },
+     {
+      "from": "2000-01-01",
+      "cagr": 0.0113,
+      "bh_cagr": 0.0212,
+      "max_dd": -0.6505,
+      "bh_max_dd": -0.5458,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2013-01-01",
+      "cagr": 0.1387,
+      "bh_cagr": 0.1502,
+      "max_dd": -0.7431,
+      "bh_max_dd": -0.3422,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": false
+    },
+    "plateau_share": 0.5,
+    "plateau_score": 0.063,
+    "pass": false,
+    "near_miss": false
+   }
+  }
+ },
+ "block_b": {
+  "window": [
+   "1988-01-01",
+   "2026-05-31"
+  ],
+  "bh": {
+   "cagr": 0.1166,
+   "sharpe": 0.618,
+   "max_dd": -0.5019,
+   "vol": 0.1506,
+   "final_1000": 68555.0,
+   "start": "1988-01-31",
+   "end": "2026-05-31"
+  },
+  "pick": null,
+  "family_pick": {
+   "B1_stack": null,
+   "B2_risk_balanced": null
+  },
+  "naive": "B1_stack|k=1.0",
+  "n_pass": 0,
+  "timemachine": {
+   "replays": [
+    {
+     "cut": "2004-01-01",
+     "to": "2012-01-01",
+     "n_pass_before_cut": 4,
+     "bh_forward": {
+      "cagr": 0.0427,
+      "max_dd": -0.5019
+     },
+     "pick": {
+      "key": "B1_stack|k=0.75",
+      "cagr": 0.1008,
+      "max_dd": -0.3933,
+      "inside": true
+     },
+     "naive": {
+      "key": "B1_stack|k=1.0",
+      "cagr": 0.1186,
+      "max_dd": -0.3554,
+      "inside": true
+     },
+     "family_picks": {
+      "B1_stack": {
+       "key": "B1_stack|k=0.75",
+       "cagr": 0.1008,
+       "max_dd": -0.3933,
+       "inside": true
+      },
+      "B2_risk_balanced": null
+     }
+    },
+    {
+     "cut": "2012-01-01",
+     "to": "2026-05-31",
+     "n_pass_before_cut": 4,
+     "bh_forward": {
+      "cagr": 0.1534,
+      "max_dd": -0.2492
+     },
+     "pick": {
+      "key": "B1_stack|k=0.75",
+      "cagr": 0.1759,
+      "max_dd": -0.1836,
+      "inside": true
+     },
+     "naive": {
+      "key": "B1_stack|k=1.0",
+      "cagr": 0.181,
+      "max_dd": -0.2114,
+      "inside": true
+     },
+     "family_picks": {
+      "B1_stack": {
+       "key": "B1_stack|k=0.75",
+       "cagr": 0.1759,
+       "max_dd": -0.1836,
+       "inside": true
+      },
+      "B2_risk_balanced": null
+     }
+    }
+   ],
+   "inside": 2,
+   "need": 2,
+   "passed": true,
+   "naive_inside": 2,
+   "family_passed": {
+    "B1_stack": true,
+    "B2_risk_balanced": false
+   }
+  },
+  "rows": {
+   "B1_stack|k=0.25": {
+    "fam": "B1_stack",
+    "p": {
+     "k": 0.25
+    },
+    "stats": {
+     "cagr": 0.1426,
+     "sharpe": 0.779,
+     "max_dd": -0.4666,
+     "vol": 0.149,
+     "final_1000": 165726.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1357,
+     "sharpe": 0.737,
+     "max_dd": -0.4712,
+     "vol": 0.149,
+     "final_1000": 131259.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1426,
+     "sharpe": 0.779,
+     "max_dd": -0.4666,
+     "vol": 0.149,
+     "final_1000": 165726.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.026,
+    "vol_matched_L": 0.99,
+    "vol_matched_cagr": 0.1158,
+    "dsr_active": 0.556,
+    "t_active": 4.59,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.1929,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.13,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.1461,
+      "bh_cagr": 0.093,
+      "max_dd": -0.3835,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.0628,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.4666,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1602,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1559,
+      "bh_max_dd": -0.145,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.1669,
+      "bh_cagr": 0.16,
+      "max_dd": -0.1921,
+      "bh_max_dd": -0.2492,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.026,
+    "pass": false,
+    "near_miss": false
+   },
+   "B1_stack|k=0.5": {
+    "fam": "B1_stack",
+    "p": {
+     "k": 0.5
+    },
+    "stats": {
+     "cagr": 0.1681,
+     "sharpe": 0.905,
+     "max_dd": -0.4304,
+     "vol": 0.1537,
+     "final_1000": 385874.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1544,
+     "sharpe": 0.827,
+     "max_dd": -0.4399,
+     "vol": 0.1537,
+     "final_1000": 245172.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1681,
+     "sharpe": 0.905,
+     "max_dd": -0.4304,
+     "vol": 0.1537,
+     "final_1000": 385874.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0515,
+    "vol_matched_L": 1.02,
+    "vol_matched_cagr": 0.1179,
+    "dsr_active": 0.556,
+    "t_active": 4.59,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.2302,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.1408,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.2004,
+      "bh_cagr": 0.093,
+      "max_dd": -0.3155,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.0822,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.4304,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1692,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1688,
+      "bh_max_dd": -0.145,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.1726,
+      "bh_cagr": 0.16,
+      "max_dd": -0.1599,
+      "bh_max_dd": -0.2492,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0512,
+    "pass": false,
+    "near_miss": false
+   },
+   "B1_stack|k=0.75": {
+    "fam": "B1_stack",
+    "p": {
+     "k": 0.75
+    },
+    "stats": {
+     "cagr": 0.193,
+     "sharpe": 0.987,
+     "max_dd": -0.3933,
+     "vol": 0.1643,
+     "final_1000": 865408.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1722,
+     "sharpe": 0.878,
+     "max_dd": -0.4081,
+     "vol": 0.1643,
+     "final_1000": 441460.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.193,
+     "sharpe": 0.987,
+     "max_dd": -0.3933,
+     "vol": 0.1643,
+     "final_1000": 865408.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0764,
+    "vol_matched_L": 1.09,
+    "vol_matched_cagr": 0.1223,
+    "dsr_active": 0.557,
+    "t_active": 4.59,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.2678,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.1705,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.2558,
+      "bh_cagr": 0.093,
+      "max_dd": -0.2421,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1008,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.3933,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.177,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1836,
+      "bh_max_dd": -0.145,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.1771,
+      "bh_cagr": 0.16,
+      "max_dd": -0.1418,
+      "bh_max_dd": -0.2492,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.076,
+    "pass": false,
+    "near_miss": false
+   },
+   "B1_stack|k=1.0": {
+    "fam": "B1_stack",
+    "p": {
+     "k": 1.0
+    },
+    "stats": {
+     "cagr": 0.2172,
+     "sharpe": 1.031,
+     "max_dd": -0.3554,
+     "vol": 0.1796,
+     "final_1000": 1869016.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1892,
+     "sharpe": 0.899,
+     "max_dd": -0.3762,
+     "vol": 0.1796,
+     "final_1000": 765538.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.2172,
+     "sharpe": 1.031,
+     "max_dd": -0.3554,
+     "vol": 0.1796,
+     "final_1000": 1869016.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.1006,
+    "vol_matched_L": 1.19,
+    "vol_matched_cagr": 0.1285,
+    "dsr_active": 0.557,
+    "t_active": 4.59,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.3055,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.1995,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.3124,
+      "bh_cagr": 0.093,
+      "max_dd": -0.1657,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1186,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.3554,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1837,
+      "bh_cagr": 0.15,
+      "max_dd": -0.2114,
+      "bh_max_dd": -0.145,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.1803,
+      "bh_cagr": 0.16,
+      "max_dd": -0.1367,
+      "bh_max_dd": -0.2492,
+      "ok": true,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0764,
+    "pass": false,
+    "near_miss": false
+   },
+   "B2_risk_balanced|target=0.12,Lmax=2.0": {
+    "fam": "B2_risk_balanced",
+    "p": {
+     "target": 0.12,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1379,
+     "sharpe": 0.919,
+     "max_dd": -0.2509,
+     "vol": 0.1173,
+     "final_1000": 141174.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1171,
+     "sharpe": 0.761,
+     "max_dd": -0.2991,
+     "vol": 0.1173,
+     "final_1000": 69830.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1363,
+     "sharpe": 0.907,
+     "max_dd": -0.2483,
+     "vol": 0.1174,
+     "final_1000": 133798.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0212,
+    "vol_matched_L": 0.78,
+    "vol_matched_cagr": 0.0988,
+    "dsr_active": 0.0,
+    "t_active": 0.61,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.2252,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.1685,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.2126,
+      "bh_cagr": 0.093,
+      "max_dd": -0.1235,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1019,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.147,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1019,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1105,
+      "bh_max_dd": -0.145,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.0453,
+      "bh_cagr": 0.16,
+      "max_dd": -0.2509,
+      "bh_max_dd": -0.2492,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0212,
+    "pass": false,
+    "near_miss": false
+   },
+   "B2_risk_balanced|target=0.12,Lmax=3.0": {
+    "fam": "B2_risk_balanced",
+    "p": {
+     "target": 0.12,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1432,
+     "sharpe": 0.886,
+     "max_dd": -0.2722,
+     "vol": 0.1285,
+     "final_1000": 169236.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1195,
+     "sharpe": 0.72,
+     "max_dd": -0.3239,
+     "vol": 0.1286,
+     "final_1000": 75590.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1409,
+     "sharpe": 0.866,
+     "max_dd": -0.26,
+     "vol": 0.1292,
+     "final_1000": 156537.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0266,
+    "vol_matched_L": 0.85,
+    "vol_matched_cagr": 0.1049,
+    "dsr_active": 0.0,
+    "t_active": 0.84,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.2267,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.1685,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.2175,
+      "bh_cagr": 0.093,
+      "max_dd": -0.1246,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1042,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.2229,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1187,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1388,
+      "bh_max_dd": -0.145,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.046,
+      "bh_cagr": 0.16,
+      "max_dd": -0.2722,
+      "bh_max_dd": -0.2492,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0266,
+    "pass": false,
+    "near_miss": false
+   },
+   "B2_risk_balanced|target=0.15,Lmax=2.0": {
+    "fam": "B2_risk_balanced",
+    "p": {
+     "target": 0.15,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1445,
+     "sharpe": 0.927,
+     "max_dd": -0.2519,
+     "vol": 0.1237,
+     "final_1000": 176763.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1216,
+     "sharpe": 0.761,
+     "max_dd": -0.3001,
+     "vol": 0.1236,
+     "final_1000": 81475.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1441,
+     "sharpe": 0.922,
+     "max_dd": -0.2494,
+     "vol": 0.1238,
+     "final_1000": 173863.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0279,
+    "vol_matched_L": 0.82,
+    "vol_matched_cagr": 0.1022,
+    "dsr_active": 0.0,
+    "t_active": 0.89,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.2374,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.1946,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.2228,
+      "bh_cagr": 0.093,
+      "max_dd": -0.1305,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1123,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.147,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1021,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1105,
+      "bh_max_dd": -0.145,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.046,
+      "bh_cagr": 0.16,
+      "max_dd": -0.2519,
+      "bh_max_dd": -0.2492,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0279,
+    "pass": false,
+    "near_miss": false
+   },
+   "B2_risk_balanced|target=0.15,Lmax=3.0": {
+    "fam": "B2_risk_balanced",
+    "p": {
+     "target": 0.15,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1659,
+     "sharpe": 0.881,
+     "max_dd": -0.3496,
+     "vol": 0.1562,
+     "final_1000": 359140.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1329,
+     "sharpe": 0.695,
+     "max_dd": -0.4133,
+     "vol": 0.1562,
+     "final_1000": 119599.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1628,
+     "sharpe": 0.864,
+     "max_dd": -0.3358,
+     "vol": 0.1562,
+     "final_1000": 324449.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0493,
+    "vol_matched_L": 1.04,
+    "vol_matched_cagr": 0.119,
+    "dsr_active": 0.002,
+    "t_active": 1.66,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.2675,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.2109,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.258,
+      "bh_cagr": 0.093,
+      "max_dd": -0.1556,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1218,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.2238,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.136,
+      "bh_cagr": 0.15,
+      "max_dd": -0.164,
+      "bh_max_dd": -0.145,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.0439,
+      "bh_cagr": 0.16,
+      "max_dd": -0.3496,
+      "bh_max_dd": -0.2492,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0279,
+    "pass": false,
+    "near_miss": false
+   },
+   "B2_risk_balanced|target=0.18,Lmax=2.0": {
+    "fam": "B2_risk_balanced",
+    "p": {
+     "target": 0.18,
+     "Lmax": 2.0
+    },
+    "stats": {
+     "cagr": 0.1454,
+     "sharpe": 0.928,
+     "max_dd": -0.2519,
+     "vol": 0.1244,
+     "final_1000": 181735.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1222,
+     "sharpe": 0.761,
+     "max_dd": -0.3001,
+     "vol": 0.1244,
+     "final_1000": 83069.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1451,
+     "sharpe": 0.925,
+     "max_dd": -0.2494,
+     "vol": 0.1246,
+     "final_1000": 180175.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0288,
+    "vol_matched_L": 0.83,
+    "vol_matched_cagr": 0.1026,
+    "dsr_active": 0.0,
+    "t_active": 0.93,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.2416,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.1965,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.2228,
+      "bh_cagr": 0.093,
+      "max_dd": -0.1305,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1123,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.147,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1021,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1105,
+      "bh_max_dd": -0.145,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.046,
+      "bh_cagr": 0.16,
+      "max_dd": -0.2519,
+      "bh_max_dd": -0.2492,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0288,
+    "pass": false,
+    "near_miss": false
+   },
+   "B2_risk_balanced|target=0.18,Lmax=3.0": {
+    "fam": "B2_risk_balanced",
+    "p": {
+     "target": 0.18,
+     "Lmax": 3.0
+    },
+    "stats": {
+     "cagr": 0.1822,
+     "sharpe": 0.882,
+     "max_dd": -0.3936,
+     "vol": 0.1757,
+     "final_1000": 610847.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_2x": {
+     "cagr": 0.1426,
+     "sharpe": 0.686,
+     "max_dd": -0.4633,
+     "vol": 0.1757,
+     "final_1000": 165810.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "stats_delay": {
+     "cagr": 0.1797,
+     "sharpe": 0.869,
+     "max_dd": -0.3906,
+     "vol": 0.1759,
+     "final_1000": 563273.0,
+     "start": "1988-01-31",
+     "end": "2026-05-31"
+    },
+    "excess_cagr": 0.0656,
+    "vol_matched_L": 1.17,
+    "vol_matched_cagr": 0.1269,
+    "dsr_active": 0.01,
+    "t_active": 2.18,
+    "subperiods": [
+     {
+      "from": "1988-01-01",
+      "cagr": 0.3062,
+      "bh_cagr": 0.1559,
+      "max_dd": -0.252,
+      "bh_max_dd": -0.1701,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "1996-01-01",
+      "cagr": 0.2909,
+      "bh_cagr": 0.093,
+      "max_dd": -0.1846,
+      "bh_max_dd": -0.4469,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2004-01-01",
+      "cagr": 0.1324,
+      "bh_cagr": 0.0427,
+      "max_dd": -0.2238,
+      "bh_max_dd": -0.5019,
+      "ok": true,
+      "ok_2x": true
+     },
+     {
+      "from": "2012-01-01",
+      "cagr": 0.1405,
+      "bh_cagr": 0.15,
+      "max_dd": -0.1649,
+      "bh_max_dd": -0.145,
+      "ok": false,
+      "ok_2x": false
+     },
+     {
+      "from": "2020-01-01",
+      "cagr": 0.041,
+      "bh_cagr": 0.16,
+      "max_dd": -0.3936,
+      "bh_max_dd": -0.2492,
+      "ok": false,
+      "ok_2x": false
+     }
+    ],
+    "checks": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C7": false,
+     "C6": true
+    },
+    "plateau_share": 1.0,
+    "plateau_score": 0.0391,
+    "pass": false,
+    "near_miss": false
+   }
+  }
+ },
+ "block_c": {
+  "replicate": {},
+  "crypto": {
+   "core": "SPY al-tut",
+   "rows": {
+    "0.1": {
+     "mix": {
+      "cagr": 0.1758,
+      "sharpe": 0.85,
+      "max_dd": -0.3234,
+      "vol": 0.1783,
+      "final_1000": 3805.0,
+      "start": "2018-07-01",
+      "end": "2026-09-30"
+     },
+     "mix_2x": {
+      "cagr": 0.1745,
+      "sharpe": 0.844,
+      "max_dd": -0.3238,
+      "vol": 0.1784,
+      "final_1000": 3770.0,
+      "start": "2018-07-01",
+      "end": "2026-09-30"
+     },
+     "core": {
+      "cagr": 0.1507,
+      "sharpe": 0.692,
+      "max_dd": -0.3372,
+      "vol": 0.1912,
+      "final_1000": 3183.0,
+      "start": "2018-07-01",
+      "end": "2026-09-30"
+     },
+     "windows_ok": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "accepted": true
+    },
+    "0.2": {
+     "mix": {
+      "cagr": 0.2002,
+      "sharpe": 0.999,
+      "max_dd": -0.3112,
+      "vol": 0.171,
+      "final_1000": 4505.0,
+      "start": "2018-07-01",
+      "end": "2026-09-30"
+     },
+     "mix_2x": {
+      "cagr": 0.1975,
+      "sharpe": 0.986,
+      "max_dd": -0.312,
+      "vol": 0.1711,
+      "final_1000": 4424.0,
+      "start": "2018-07-01",
+      "end": "2026-09-30"
+     },
+     "core": {
+      "cagr": 0.1507,
+      "sharpe": 0.692,
+      "max_dd": -0.3372,
+      "vol": 0.1912,
+      "final_1000": 3183.0,
+      "start": "2018-07-01",
+      "end": "2026-09-30"
+     },
+     "windows_ok": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "accepted": true
+    }
+   }
+  }
+ },
+ "data_sources": {
+  "us_market": "Ken French daily (CRSP)",
+  "trend": "AQR TSMOM monthly",
+  "bond10": "Yahoo ^TNX",
+  "etf": "Yahoo SPY + ^IRX",
+  "crypto": "lab/core.py H054 on 4h bars (Bitget via ccxt, else Binance Vision)"
+ },
+ "forward": {
+  "frozen_on": "2026-10-24",
+  "picks": {
+   "watch:B1_stack|k=0.75": {
+    "key": "B1_stack|k=0.75",
+    "months": 0,
+    "forward_active_sum": 0.0,
+    "last_month": "2026-05-31",
+    "degraded": null
+   },
+   "watch:C2_crypto|c=0.1": {
+    "key": "C2_crypto|c=0.1",
+    "months": 0,
+    "forward_active_sum": 0.0,
+    "last_month": "2026-09-30",
+    "degraded": null
+   },
+   "watch:C2_crypto|c=0.2": {
+    "key": "C2_crypto|c=0.2",
+    "months": 0,
+    "forward_active_sum": 0.0,
+    "last_month": "2026-09-30",
+    "degraded": null
+   }
+  }
+ }
+}

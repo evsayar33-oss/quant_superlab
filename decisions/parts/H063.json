@@ -1,0 +1,212 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (excess of T-bill) 0.184 < 0.5",
+    "PBO 0.515 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.95 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "vortex_cross",
+  "kind": "rule",
+  "universe": "metals",
+  "timeframe": "1d",
+  "for_system": "paper_watch",
+  "spec": {
+    "id": "H063",
+    "rule": "vortex_cross",
+    "universe": "metals",
+    "timeframe": "1d",
+    "for_system": "paper_watch",
+    "start": "2000-01-01",
+    "filters": [
+      "none"
+    ],
+    "exits": [
+      13
+    ],
+    "confirm": "smc_order_block",
+    "confirm_params": {
+      "k": 5,
+      "max_age": 50
+    },
+    "confirm_within": [
+      3
+    ],
+    "side": "long",
+    "status": "paper"
+  },
+  "variant": "vortex_cross+smc_order_block|n=28|f=none|x=stop_atr=2.0,tp_r=3.0|confirm=k=5,max_age=50,within=3|size=atr_risk0.005",
+  "params": {
+    "n": 28,
+    "_filter": "none",
+    "_exit": 13,
+    "_size": 1,
+    "_cparams": {
+      "k": 5,
+      "max_age": 50
+    },
+    "_cwithin": 3
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "HG=F": 0.1977
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": 0.184,
+  "pbo": 0.515,
+  "reality_check_p": 0.95,
+  "dsr": 0.994,
+  "n_trials": 13,
+  "oos": {
+    "start": "2004-01-28 00:00:00",
+    "end": "2026-10-21 00:00:00",
+    "years": 22.77,
+    "cagr": 0.0231,
+    "vol": 0.0333,
+    "sharpe": 0.702,
+    "sharpe_excess_rf": 0.184,
+    "sortino": 0.279,
+    "max_dd": -0.0764,
+    "max_dd_bars": 872,
+    "calmar": 0.302,
+    "ulcer": 0.0227,
+    "var95": -0.0027,
+    "cvar95": -0.0051,
+    "omega": 1.231,
+    "tail_ratio": 1.257,
+    "skew": 0.995,
+    "kurtosis": 26.094,
+    "hit_rate": 0.206,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 4.95,
+    "bench_cagr": 0.0892,
+    "bench_sharpe": 0.493,
+    "info_ratio": -0.406,
+    "beta": 0.053,
+    "up_capture": 0.075,
+    "down_capture": 0.063
+  },
+  "trade_stats": {
+    "n_trades": 252,
+    "trades_per_year": 11.1,
+    "win_rate": 0.496,
+    "avg_trade": 0.0163,
+    "median_trade": -0.0002,
+    "avg_win": 0.0555,
+    "avg_loss": -0.0222,
+    "profit_factor": 2.457,
+    "payoff": 2.497,
+    "expectancy_r": 0.461,
+    "sqn": 3.03,
+    "kelly_fraction": 0.294,
+    "max_consec_losses": 11,
+    "avg_bars": 9.7,
+    "avg_bars_win": 13.1,
+    "avg_bars_loss": 6.3,
+    "avg_mfe": 0.0349,
+    "avg_mae": -0.0127,
+    "edge_ratio": 2.758,
+    "exit_reasons": {
+      "signal": 155,
+      "target": 50,
+      "stop": 47
+    },
+    "long_short": {
+      "1": {
+        "count": 252,
+        "mean": 0.0163
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 1.38,
+      "ann_ret": 0.0471,
+      "bars": 3972
+    },
+    "bear": {
+      "sharpe": -0.98,
+      "ann_ret": -0.0305,
+      "bars": 1750
+    },
+    "calm": {
+      "sharpe": 1.18,
+      "ann_ret": 0.0413,
+      "bars": 2898
+    },
+    "stressed": {
+      "sharpe": 0.16,
+      "ann_ret": 0.005,
+      "bars": 2824
+    },
+    "vix_lt_20": {
+      "sharpe": 0.56,
+      "ann_ret": 0.0171,
+      "bars": 3945
+    },
+    "vix_20_30": {
+      "sharpe": 0.96,
+      "ann_ret": 0.0373,
+      "bars": 1328
+    },
+    "vix_ge_30": {
+      "sharpe": 0.94,
+      "ann_ret": 0.0373,
+      "bars": 449
+    },
+    "curve_inverted": {
+      "sharpe": 0.24,
+      "ann_ret": 0.0049,
+      "bars": 813
+    },
+    "curve_normal": {
+      "sharpe": 0.76,
+      "ann_ret": 0.0265,
+      "bars": 4909
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.959,
+      "sharpe_delayed_1bar": 0.914,
+      "retained": 0.953
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.956,
+      "neighbour_median": 0.844,
+      "share_positive": 1.0,
+      "stability": 0.882
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.657,
+      "sharpe_median": 0.814
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.358,
+      "random_median_ann": 0.1071,
+      "random_p95_ann": 0.1799,
+      "trades_actual": 287,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0337,
+      "maxdd_p95": -0.0507,
+      "final_p05": 1.0756,
+      "final_median": 1.0756
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "vol_target_0.2",
+  "kelly_fraction": 0.294,
+  "oos_csv": "results/H063_vortex_cross_metals_1d_oos.csv",
+  "validated_at": "2026-10-21T15:17:55+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-21 00:00:00"
+}

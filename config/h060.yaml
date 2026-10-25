@@ -1,0 +1,13 @@
+# H060 more return from H056. WRITTEN 2026-10-17 BEFORE ANY RESULT. Two fixed variants, no search.
+# H056 net daily returns at the 15% vol target are scaled by vol_target/0.15 (fees, slippage and funding scale
+# with the position, so the scaling is linear; the 2x gross cap of the base run is NOT re-applied: a 25% target
+# needs up to ~3.3x gross on perps, so the result is an upper bound for a 2x-capped book).
+vol_target: 0.25
+variants:
+  H060a: {bot: 0.0, h056: 1.0}     # H056 alone at 25% vol
+  H060b: {bot: 0.5, h056: 0.5}     # 50% bot + 50% H056 at 25% vol
+cutoffs: ["2022-10-17", "2023-10-17", "2024-10-17"]
+accept:                            # ALL must hold; goal = MORE PROFIT than the bot
+  beat_bot_full: true              # final > bot, 2021-01 -> end
+  beat_bot_windows: true           # final > bot in all 3 windows
+  max_dd: -0.35

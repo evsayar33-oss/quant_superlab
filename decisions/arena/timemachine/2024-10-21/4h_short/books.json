@@ -1,0 +1,208 @@
+{
+ "books": {
+  "A": {
+   "id": "A",
+   "name": "Hepsi eşit ağırlık, 1x",
+   "select": "all",
+   "leverage": 1,
+   "members": [
+    "A0001",
+    "A0002",
+    "A0003",
+    "A0004",
+    "A0005",
+    "A0006",
+    "A0007",
+    "A0008",
+    "A0009",
+    "A0010",
+    "A0011",
+    "A0012",
+    "A0013",
+    "A0014",
+    "A0015",
+    "A0016",
+    "A0017",
+    "A0018",
+    "A0019",
+    "A0020",
+    "A0021",
+    "A0022",
+    "A0023",
+    "A0024",
+    "A0025",
+    "A0026",
+    "A0027",
+    "A0028",
+    "A0029",
+    "A0030",
+    "A0031",
+    "A0032",
+    "A0033",
+    "A0034",
+    "A0035",
+    "A0036",
+    "A0037",
+    "A0038",
+    "A0039",
+    "A0040",
+    "A0041",
+    "A0042",
+    "A0043",
+    "A0044",
+    "A0045",
+    "A0046",
+    "A0047",
+    "A0048",
+    "A0049",
+    "A0050",
+    "A0051",
+    "A0052",
+    "A0053",
+    "A0054",
+    "A0055",
+    "A0056",
+    "A0057",
+    "A0058",
+    "A0059",
+    "A0060",
+    "A0061",
+    "A0062",
+    "A0063",
+    "A0064",
+    "A0065",
+    "A0066",
+    "A0067",
+    "A0068",
+    "A0069",
+    "A0070",
+    "A0071",
+    "A0072",
+    "A0073",
+    "A0074",
+    "A0075",
+    "A0076",
+    "A0077",
+    "A0078"
+   ],
+   "created_at": "2024-10-21T00:00:00+00:00"
+  },
+  "B": {
+   "id": "B",
+   "name": "En iyi 10, 1x",
+   "select": "top",
+   "n": 10,
+   "leverage": 1,
+   "members": [
+    "A0001",
+    "A0008",
+    "A0017",
+    "A0047",
+    "A0061",
+    "A0035",
+    "A0037",
+    "A0030",
+    "A0063",
+    "A0043"
+   ],
+   "created_at": "2024-10-21T00:00:00+00:00"
+  },
+  "B2": {
+   "id": "B2",
+   "name": "En iyi 10, ters volatilite ağırlık, 1x",
+   "select": "top",
+   "n": 10,
+   "leverage": 1,
+   "weighting": "invvol",
+   "members": [
+    "A0001",
+    "A0008",
+    "A0017",
+    "A0047",
+    "A0061",
+    "A0035",
+    "A0037",
+    "A0030",
+    "A0063",
+    "A0043"
+   ],
+   "created_at": "2024-10-21T00:00:00+00:00"
+  },
+  "C": {
+   "id": "C",
+   "name": "En iyi 5, 3x",
+   "select": "top",
+   "n": 5,
+   "leverage": 3,
+   "members": [
+    "A0001",
+    "A0008",
+    "A0017",
+    "A0047",
+    "A0061"
+   ],
+   "created_at": "2024-10-21T00:00:00+00:00"
+  },
+  "C2": {
+   "id": "C2",
+   "name": "En iyi 5, 3x + volatilite hedefi %35",
+   "select": "top",
+   "n": 5,
+   "leverage": 3,
+   "vol_target": 0.35,
+   "members": [
+    "A0001",
+    "A0008",
+    "A0017",
+    "A0047",
+    "A0061"
+   ],
+   "created_at": "2024-10-21T00:00:00+00:00"
+  },
+  "K1": {
+   "id": "K1",
+   "name": "Çekirdek: BTC+ETH SMA200 + momentum + vol hedefi",
+   "select": "core",
+   "rule": "dual_trend_vt",
+   "assets": [
+    "BTC/USDT",
+    "ETH/USDT"
+   ],
+   "funding_annual": 0.08,
+   "params": {
+    "sma_days": 200,
+    "horizons_days": [
+     30,
+     90,
+     180
+    ],
+    "target": 0.4,
+    "lookback_days": 30
+   },
+   "members": [],
+   "created_at": "2024-10-21T00:00:00+00:00"
+  },
+  "K2": {
+   "id": "K2",
+   "name": "Çekirdek: BTC+ETH momentum + vol hedefi",
+   "select": "core",
+   "rule": "tsmom_vt",
+   "assets": [
+    "BTC/USDT",
+    "ETH/USDT"
+   ],
+   "funding_annual": 0.08,
+   "params": {
+    "horizons_days": [
+     30,
+     90,
+     180
+    ],
+    "target": 0.4,
+    "lookback_days": 30
+   },
+   "members": [],
+   "created_at": "2024-10-21T00:00:00+00:00"
+  }
+ }
+}

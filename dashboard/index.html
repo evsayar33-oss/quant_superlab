@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>quant_lab Arena</title>
+<meta name="description" content="Strateji arenası: eleme motoru, ileri (paper) takip ve rejim switcher'ı">
+<style>
+:root{
+  --bg:#f6f7f9;--panel:#ffffff;--panel2:#eef1f5;--ink:#141820;--ink2:#4a5363;--ink3:#7b8494;--line:#dde2ea;
+  --accent:#0b7fa8;--pos:#0f8a5f;--neg:#c2413b;--warn:#b7791f;--chip:#e6edf5;
+  --trend:#0f8a5f;--down:#c2413b;--range:#5b6b82;--vol:#b7791f;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 2px 10px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a0f17;--panel:#111824;--panel2:#172131;--ink:#e7edf5;--ink2:#a8b3c4;--ink3:#6f7c90;--line:#223047;
+  --accent:#38bdf8;--pos:#34d399;--neg:#f87171;--warn:#fbbf24;--chip:#1b2738;
+  --trend:#34d399;--down:#f87171;--range:#94a3b8;--vol:#fbbf24;--shadow:none}}
+:root[data-theme="dark"]{
+  --bg:#0a0f17;--panel:#111824;--panel2:#172131;--ink:#e7edf5;--ink2:#a8b3c4;--ink3:#6f7c90;--line:#223047;
+  --accent:#38bdf8;--pos:#34d399;--neg:#f87171;--warn:#fbbf24;--chip:#1b2738;
+  --trend:#34d399;--down:#f87171;--range:#94a3b8;--vol:#fbbf24;--shadow:none}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px 48px}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 8px}
+h1{font-size:17px;margin:0;letter-spacing:.2px}
+h1 small{color:var(--ink3);font-weight:500;margin-left:6px}
+.upd{color:var(--ink3);font-size:12px;text-align:right}
+nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+nav button{flex:none;border:1px solid var(--line);background:var(--panel);color:var(--ink2);border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+section{display:none;padding-top:16px}section.on{display:block}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow);min-width:0}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin:0 0 10px;font-weight:600}
+.big{font-size:26px;font-weight:650;font-variant-numeric:tabular-nums}
+.muted{color:var(--ink3)}.small{font-size:12.5px}
+a{color:var(--accent);text-decoration:none;font-weight:600}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--chip);color:var(--ink2)}
+.b-ok{background:color-mix(in srgb,var(--pos) 18%,transparent);color:var(--pos)}
+.b-no{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.b-long{background:color-mix(in srgb,var(--pos) 16%,transparent);color:var(--pos)}
+.b-short{background:color-mix(in srgb,var(--neg) 16%,transparent);color:var(--neg)}
+.rg-trend_up{color:var(--trend)}.rg-trend_down{color:var(--down)}.rg-range{color:var(--range)}.rg-volatile{color:var(--vol)}
+.rgb-trend_up{background:var(--trend)}.rgb-trend_down{background:var(--down)}.rgb-range{background:var(--range)}.rgb-volatile{background:var(--vol)}
+.checks{list-style:none;margin:0;padding:0}.checks li{display:flex;gap:8px;padding:4px 0;font-size:14px}
+.kv{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px dashed var(--line);font-variant-numeric:tabular-nums}
+.kv:last-child{border-bottom:0}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13.5px}
+th,td{text-align:right;padding:7px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--ink3);font-weight:600;font-size:12px}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.tools select,.tools input{font:inherit;font-size:14px;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.tools input{flex:1;min-width:140px}
+.list{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.row:hover{border-color:var(--accent)}
+.row .t{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .s{grid-column:1/2;color:var(--ink3);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .r{grid-row:1/3;grid-column:2;text-align:right;font-variant-numeric:tabular-nums}
+svg.spark{display:block;width:96px;height:28px}
+.bar{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--panel2)}
+.bar span{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--ink3);margin-top:8px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
+dialog{border:0;padding:0;border-radius:16px;max-width:760px;width:calc(100% - 24px);background:var(--panel);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+.dlg{padding:16px}.dlg h3{margin:0 0 4px;font-size:18px}
+.close{float:right;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:999px;width:34px;height:34px;font-size:18px;cursor:pointer}
+.note{font-size:13px;color:var(--ink2);background:var(--panel2);border-radius:10px;padding:10px 12px;margin-top:12px}
+.empty{padding:28px;text-align:center;color:var(--ink3)}
+svg.chart{width:100%;height:160px;display:block}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="hrow"><h1>quant_lab Arena<small id="sub"></small></h1><div class="upd" id="upd">yükleniyor…</div></div>
+  <div id="tfbar" class="tools" style="margin:0 0 8px"></div>
+  <nav role="tablist">
+    <button role="tab" aria-selected="true" data-t="ozet">Özet</button>
+    <button role="tab" aria-selected="false" data-t="defter">Portföyler</button>
+    <button role="tab" aria-selected="false" data-t="arena">Arena</button>
+    <button role="tab" aria-selected="false" data-t="rejim">Rejimler</button>
+    <button role="tab" aria-selected="false" data-t="huni">Eleme hunisi</button>
+  </nav>
+</div></header>
+<main class="wrap">
+  <section id="ozet" class="on"></section>
+  <section id="defter"></section>
+  <section id="arena"></section>
+  <section id="rejim"></section>
+  <section id="huni"></section>
+</main>
+<dialog id="dlg"><div class="dlg" id="dlgc"></div></dialog>
+<script>
+const $=s=>document.querySelector(s);
+const pct=(x,d=1)=>x==null||isNaN(x)?"–":(x>0?"+":"")+(x*100).toFixed(d)+"%";
+const num=(x,d=2)=>x==null||isNaN(x)?"–":Number(x).toFixed(d);
+const cls=x=>x==null?"":(x>0?"pos":(x<0?"neg":""));
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RG={trend_up:"Trend ↑",trend_down:"Trend ↓",range:"Yatay",volatile:"Volatil",unknown:"Belirsiz"};
+const POS={long:"LONG",short:"SHORT",flat:"nakit"};
+const ST={active:"aktif",control:"kontrol",retired:"emekli"};
+const WL=w=>w==="full"?"Tüm":w.replace("y"," yıl");
+
+function spark(pts,w=96,h=28,color){
+  if(!pts||pts.length<2)return '<svg class="spark"></svg>';
+  const mn=Math.min(...pts),mx=Math.max(...pts),r=mx-mn||1;
+  const d=pts.map((v,i)=>`${(i/(pts.length-1)*w).toFixed(1)},${(h-2-(v-mn)/r*(h-4)).toFixed(1)}`).join(" ");
+  const c=color||(pts[pts.length-1]>=pts[0]?"var(--pos)":"var(--neg)");
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline fill="none" stroke="${c}" stroke-width="1.6" points="${d}"/></svg>`;
+}
+function chart(series){ // [{pts,color,label}]
+  const W=600,H=160,all=series.flatMap(s=>s.pts||[]);
+  if(all.length<2)return '<div class="empty small">Henüz yeterli veri yok.</div>';
+  const mn=Math.min(...all),mx=Math.max(...all),r=mx-mn||1;
+  const lines=series.filter(s=>s.pts&&s.pts.length>1).map(s=>{
+    const d=s.pts.map((v,i)=>`${(i/(s.pts.length-1)*W).toFixed(1)},${(H-6-(v-mn)/r*(H-12)).toFixed(1)}`).join(" ");
+    return `<polyline fill="none" stroke="${s.color}" stroke-width="2" points="${d}" vector-effect="non-scaling-stroke"/>`;}).join("");
+  const y1=H-6-(1-mn)/r*(H-12);
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="0" x2="${W}" y1="${y1}" y2="${y1}" stroke="var(--line)" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>${lines}</svg>
+  <div class="legend">${series.map(s=>`<span><i style="background:${s.color}"></i>${esc(s.label)}</span>`).join("")}</div>`;
+}
+function tabs(){document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.setAttribute("aria-selected",x===b));
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===b.dataset.t));
+  try{localStorage.setItem("tab",b.dataset.t)}catch(e){}
+});
+  let t=null;try{t=localStorage.getItem("tab")}catch(e){}
+  if(t){const b=document.querySelector(`nav button[data-t="${t}"]`);if(b)b.click();}
+}
+
+function defter(D){
+  const B=D.books||[];
+  if(!B.length){$("#defter").innerHTML='<div class="card empty">Bu zaman diliminde paper portföy yok (sadece 4h).</div>';return}
+  const rows=B.map(b=>`<tr><td><b>${esc(b.id)}</b> ${esc(b.name)}<div class="small">${b.timemachine?`<span class="badge ${b.timemachine.candidate?"b-ok":"b-no"}">zaman makinesi ${b.timemachine.inside}/${b.timemachine.total} ${b.timemachine.candidate?"· aday":"· aday değil"}</span>`:`<span class="badge">zaman makinesi yok</span>`}</div><div class="small muted">${b.members.length?b.members.length+" strateji":"sabit kural (BTC+ETH)"} · ${b.leverage}x${b.vol_target?" · vol hedefi %"+Math.round(b.vol_target*100):""} · başlangıç ${b.created_at}</div></td>
+    <td><b>$${Number(b.forward.balance_1000).toLocaleString("tr-TR",{maximumFractionDigits:0})}</b><div class="small ${cls(b.forward.ret)}">${pct(b.forward.ret)}</div></td>
+    <td class="neg">${pct(b.forward.max_dd)}</td><td>${spark(b.spark_fwd)}</td></tr>`).join("");
+  const bt=B.map(b=>`<tr><td>${esc(b.id)}</td><td>${pct(b.backtest.cagr,0)}</td><td>${num(b.backtest.sharpe)}</td><td class="neg">${pct(b.backtest.max_dd,0)}</td><td>${spark(b.spark_bt)}</td></tr>`).join("");
+  const bands=B.map(b=>{const bd=b.band||{};const bs=b.band_status||{};
+    const n=Math.max(2,Math.min((bd.day||[]).length, Math.max(8, Math.ceil((b.forward.days||0)/7)+4)));
+    const W=600,H=150,P5=(bd.p5||[]).slice(0,n),P95=(bd.p95||[]).slice(0,n),P50=(bd.p50||[]).slice(0,n);
+    const fw=(b.fwd_daily||[]);const all=[...P5,...P95,...fw,0];const mn=Math.min(...all),mx=Math.max(...all),rg=mx-mn||1;
+    const X=i=>(i/(n-1)*W).toFixed(1),Y=v=>(H-6-(v-mn)/rg*(H-12)).toFixed(1);
+    const area=P95.map((v,i)=>`${X(i)},${Y(v)}`).join(" ")+" "+P5.map((v,i)=>`${X(i)},${Y(v)}`).reverse().join(" ");
+    const days=b.forward.days||0;const fx=fw.map((v,i)=>`${((i/(Math.max(fw.length-1,1)))*(days/7)/(n-1)*W).toFixed(1)},${Y(v)}`).join(" ");
+    const col=bs.status==="below"?"var(--neg)":bs.status==="above"?"var(--pos)":"var(--accent)";
+    return `<div class="card"><h2>${esc(b.id)} · ${esc(b.name)}</h2>
+      <div class="small" style="color:${col};margin-bottom:6px"><b>${esc(bs.text||"")}</b>${bs.p5!=null?` · bugün beklenen: ${pct(bs.p5)} … ${pct(bs.p95)} (medyan ${pct(bs.p50)})`:""}</div>
+      ${P5.length?`<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><polygon points="${area}" fill="var(--accent)" opacity=".13"/><polyline fill="none" stroke="var(--ink3)" stroke-dasharray="4 4" stroke-width="1.5" vector-effect="non-scaling-stroke" points="${P50.map((v,i)=>`${X(i)},${Y(v)}`).join(" ")}"/>${fw.length>1?`<polyline fill="none" stroke="${col}" stroke-width="2.5" vector-effect="non-scaling-stroke" points="${fx}"/>`:""}</svg>
+      <div class="legend"><span><i style="background:var(--accent);opacity:.3"></i>beklenen aralık (%5–%95)</span><span><i style="background:var(--ink3)"></i>medyan</span><span><i style="background:${col}"></i>ileri kayıt</span></div>`:'<div class="empty small">Bant için yeterli backtest yok.</div>'}</div>`}).join("");
+  $("#defter").innerHTML=`<div class="grid"><div class="card"><h2>İleri (paper) kayıt · $1000 ile</h2>
+   <div class="tscroll"><table><tr><th>Portföy</th><th>Bakiye</th><th>Maks. düşüş</th><th></th></tr>${rows}</table></div>
+   <div class="note small">İçerik ilk gün donduruldu. Emekli olan stratejinin payı nakde geçer. Kaldıraç, maliyet, funding ve pozisyon başı likidasyon sınırı dahil.</div></div>
+   <div class="card"><h2>Aynı portföylerin backtest'i (iyimser)</h2><div class="tscroll"><table><tr><th></th><th>Yıllık</th><th>Sharpe</th><th>Maks. düşüş</th><th></th></tr>${bt}</table></div>
+   <div class="note small">Üyeler aynı geçmişte seçildi; gerçek test soldaki ileri kayıttır.</div></div></div>
+   <h2 style="font-size:13px;color:var(--ink3);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.6px">Beklenen aralık bandı</h2>
+   <div class="note small" style="margin-bottom:10px">Bant: portföy backtest'teki gibi davranırsa ileri kaydın %90 olasılıkla kalacağı aralık (backtest günlerinden 1.000 rastgele yol). Altına düşmek = "backtest'teki gibi çalışmıyor olabilir" uyarısı (Telegram'a da gelir). Backtest iyimser olduğu için bant da iyimserdir: alt sınır sıkı bir test sayılır.</div>
+   <div class="grid">${bands}</div>`;
+}
+function ozet(D){
+  const S=D.switcher,F=S.forward||{},G=D.gate||{};
+  const chk=Object.entries(S.checks||{}).map(([k,v])=>`<li>${v?"✅":"⏳"} ${({backtest_gate:"Backtest kapısı (her pencerede eşit ağırlığı yener, 2× maliyette kârlı, düşüş sınırı)",forward_days:"İleri kayıt süresi yeterli",forward_beats_equal_weight:"İleri kayıtta eşit ağırlığı yener"})[k]||k}</li>`).join("");
+  const picks=(S.picks||[]).map(p=>`<tr><td><a href="#" data-m="${p.id}">${p.id}</a> ${esc(p.coin)}<div class="small muted">${esc(p.rule)}</div></td><td><span class="rg-${p.regime}">${RG[p.regime]||p.regime}</span></td><td><span class="badge b-${p.position}">${POS[p.position]}</span></td><td>${(p.weight*100).toFixed(0)}%</td></tr>`).join("");
+  const win=Object.entries(G.windows||{}).map(([w,v])=>`<tr><td>${WL(w)}</td><td class="${cls(v.sharpe-v.ew_sharpe)}">${num(v.sharpe)}</td><td>${num(v.ew_sharpe)}</td></tr>`).join("");
+  const regs=Object.values(S.regimes||{});const cnt={};regs.forEach(r=>cnt[r.now]=(cnt[r.now]||0)+1);
+  const n=regs.length||1;
+  const bar=["trend_up","range","trend_down","volatile"].map(k=>`<span class="rgb-${k}" style="width:${(cnt[k]||0)/n*100}%"></span>`).join("");
+  const act=(D.members||[]).filter(m=>m.status==="active").length,ctl=(D.members||[]).filter(m=>m.status==="control").length,ret=(D.members||[]).filter(m=>m.status==="retired").length;
+  $("#ozet").innerHTML=`<div class="grid">
+  <div class="card"><h2>Rejim switcher</h2>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="badge ${S.usable?"b-ok":"b-no"}">${S.usable?"Botlar kullanabilir":"Sadece paper"}</span><span class="muted small">yarı ömür ${S.settings?.halflife_days} gün · en iyi ${S.settings?.top_k}</span></div>
+    <ul class="checks" style="margin-top:10px">${chk}</ul>
+    <div class="note">Switcher her gün, her coinin <b>şu anki rejiminde</b> geçmişte en iyi çalışan stratejilere para ayırır. Bot onu sadece tüm kontroller geçince kullanır.</div></div>
+  <div class="card"><h2>Şu an tutulanlar</h2>${picks?`<div class="tscroll"><table><tr><th>Strateji</th><th>Rejim</th><th>Pozisyon</th><th>Ağırlık</th></tr>${picks}<tr><td class="muted">Nakit</td><td></td><td></td><td>${(S.cash*100).toFixed(0)}%</td></tr></table></div>`:'<div class="empty">Hiçbir stratejinin bu rejimde pozitif skoru yok → %100 nakit.</div>'}</div>
+  <div class="card"><h2>İleri (paper) kayıt</h2>
+    <div class="kv"><span>Başlangıç</span><span>${F.since||"–"} (${F.days??0} gün)</span></div>
+    <div class="kv"><span>Switcher</span><span class="${cls(F.ret)}">${pct(F.ret)} · SR ${num(F.sharpe)}</span></div>
+    <div class="kv"><span>Eşit ağırlık</span><span class="${cls(F.ew_ret)}">${pct(F.ew_ret)} · SR ${num(F.ew_sharpe)}</span></div>
+    <div class="kv"><span>Maks. düşüş</span><span class="neg">${pct(F.max_dd)}</span></div>
+    ${chart([{pts:D.spark_switch_fwd,color:"var(--accent)",label:"Switcher (ileri)"},{pts:D.spark_ew_fwd,color:"var(--ink3)",label:"Eşit ağırlık (ileri)"}])}</div>
+  <div class="card"><h2>Backtest: switcher vs eşit ağırlık</h2>
+    ${win?`<table><tr><th>Pencere</th><th>Switcher SR</th><th>Eşit ağ. SR</th></tr>${win}</table>`:'<div class="empty small">Kapı henüz çalışmadı (aylık eleme sonrası).</div>'}
+    ${chart([{pts:G.spark,color:"var(--accent)",label:"Switcher"},{pts:G.spark_ew,color:"var(--ink3)",label:"Eşit ağırlık"}])}
+    <div class="note small">Backtest iyimserdir: üyeler aynı geçmişte seçildi. ${G.grid?`Izgaradaki ${G.grid.length} ayarın %${Math.round((G.grid_share_positive||0)*100)}'i pozitif Sharpe.`:""}</div></div>
+  <div class="card"><h2>Arena</h2>
+    <div class="kv"><span>Aktif (eleme geçen)</span><b>${act}</b></div><div class="kv"><span>Kontrol (yakın aday)</span><b>${ctl}</b></div><div class="kv"><span>Emekli</span><b>${ret}</b></div>
+    <h2 style="margin-top:14px">Coin rejim dağılımı (${regs.length})</h2><div class="bar">${bar}</div>
+    <div class="legend">${["trend_up","range","trend_down","volatile"].map(k=>`<span><i class="rgb-${k}"></i>${RG[k]} ${cnt[k]||0}</span>`).join("")}</div></div>
+  </div>`;
+}
+
+let FILTER={status:"active",sort:"fwd",q:""};
+function arena(D){
+  const ms=(D.members||[]).filter(m=>(FILTER.status==="all"||m.status===FILTER.status)&&(!FILTER.q||(m.coin+" "+m.rule+" "+m.id).toLowerCase().includes(FILTER.q.toLowerCase())));
+  const key={fwd:m=>-(m.forward?.ret??-9),bt:m=>-(m.card?.full?.sharpe??-9),r3:m=>-(m.card?.["3y"]?.ret??-9),id:m=>m.id};
+  ms.sort((a,b)=>{const ka=key[FILTER.sort](a),kb=key[FILTER.sort](b);return ka<kb?-1:ka>kb?1:0});
+  const rows=ms.map(m=>`<button class="row" data-m="${m.id}">
+    <span class="t">${m.id} · ${esc(m.coin)} <span class="badge b-${m.position}" style="margin-left:4px">${POS[m.position]}</span></span>
+    <span class="r">${spark(m.spark_fwd&&m.spark_fwd.length>2?m.spark_fwd:m.spark)}<span class="small ${cls(m.forward?.ret)}">ileri ${pct(m.forward?.ret)}</span></span>
+    <span class="s">${esc(m.rule)}${m.stage_no===2?" ★":""} · <span class="rg-${m.regime_now}">${RG[m.regime_now]||""}</span> · 3y ${pct(m.card?.["3y"]?.ret,0)} · SR ${num(m.card?.full?.sharpe)}</span></button>`).join("");
+  $("#arena").innerHTML=`<div class="tools">
+    <select id="fs"><option value="active">Aktif</option><option value="control">Kontrol</option><option value="retired">Emekli</option><option value="all">Hepsi</option></select>
+    <select id="so"><option value="fwd">İleri getiri</option><option value="bt">Backtest Sharpe</option><option value="r3">Son 3 yıl</option><option value="id">Kimlik</option></select>
+    <input id="q" placeholder="coin veya kural ara" value="${esc(FILTER.q)}"></div>
+    <div class="small muted" style="margin-bottom:8px">${ms.length} strateji. Bir satıra dokun: karne, kaldıraç ve rejim performansı.</div>
+    <div class="list">${rows||'<div class="empty">Bu filtrede strateji yok.</div>'}</div>`;
+  $("#fs").value=FILTER.status;$("#so").value=FILTER.sort;
+  $("#fs").onchange=e=>{FILTER.status=e.target.value;arena(D)};
+  $("#so").onchange=e=>{FILTER.sort=e.target.value;arena(D)};
+  $("#q").oninput=e=>{FILTER.q=e.target.value;clearTimeout(window._qt);window._qt=setTimeout(()=>{arena(D);const q=$("#q");q.focus();q.setSelectionRange(q.value.length,q.value.length)},250)};
+}
+
+function rejim(D){
+  const R=D.switcher.regimes||{};
+  const rows=Object.entries(R).sort((a,b)=>a[0].localeCompare(b[0])).map(([c,r])=>`<tr><td>${esc(c)}</td><td class="rg-${r.now}"><b>${RG[r.now]}</b></td><td class="muted small">${esc(String(r.since).slice(0,16))}</td><td style="min-width:120px"><div class="bar">${["trend_up","range","trend_down","volatile"].map(k=>`<span class="rgb-${k}" style="width:${(r.share?.[k]||0)*100}%"></span>`).join("")}</div></td></tr>`).join("");
+  $("#rejim").innerHTML=`<div class="card"><h2>Coin bazında rejim (kapanmış barlar)</h2>
+  <div class="tscroll"><table><tr><th>Coin</th><th>Şimdi</th><th>Başlangıç</th><th>Geçmiş dağılım</th></tr>${rows}</table></div>
+  <div class="legend">${["trend_up","range","trend_down","volatile"].map(k=>`<span><i class="rgb-${k}"></i>${RG[k]}</span>`).join("")}</div>
+  <div class="note">Kural: geçmiş 1 yılın en oynak %20'si → <b>Volatil</b>. Değilse ADX ≥ 25 ve verimlilik oranı ≥ 0,30 → <b>Trend</b> (yön: fiyat SMA üstü/altı). Diğerleri → <b>Yatay</b>. Yeni rejim 3 bar sürmeden kullanılmaz.</div></div>`;
+}
+
+function huni(D){
+  const S=D.screen||{};
+  if(!S.funnel){$("#huni").innerHTML='<div class="card empty">Eleme motoru henüz çalışmadı. Actions → "Arena screen" çalıştır.</div>';return}
+  const mx=S.funnel[0]?.remaining+S.funnel[0]?.eliminated||1;
+  const f=S.funnel.map(x=>`<tr><td>${x.stage}</td><td style="text-align:left;white-space:normal">${esc(x.label)}</td><td>${x.eliminated}</td><td><b>${x.remaining}</b></td><td style="min-width:90px"><div class="bar"><span style="width:${x.remaining/mx*100}%;background:var(--accent)"></span></div></td></tr>`).join("");
+  const sv=(S.survivors||[]).map(r=>`<tr><td>${r.tier||""} ${esc(r.coin)}<div class="small muted">${esc(r.rule)} <code>${esc(r.params)}</code>${r.stage_no===2?"<br>★ "+esc(r.variant):""}</div></td>${(D.windows||[]).map(w=>{const k=w?w+"y":"full";const v=r["ret_"+k];return `<td class="${cls(v)}">${v==null?"veri yok":pct(v,0)}</td>`}).join("")}<td>${num(r.sharpe)}</td><td>${num(r.dsr)}</td></tr>`).join("");
+  $("#huni").innerHTML=`<div class="grid"><div class="card"><h2>Huni · ${esc(S.date||"")}</h2>
+   <div class="small muted" style="margin-bottom:8px">${S.coins_ok}/${S.coins_total} coin uygun · ${S.n_variant_runs} varyant · <b>${S.n_trials}</b> deneme</div>
+   <div class="tscroll"><table><tr><th>Adım</th><th style="text-align:left">Kontrol</th><th>Elenen</th><th>Kalan</th><th></th></tr>${f}</table></div>
+   ${S.stage2&&S.stage2.enabled?`<h2 style="margin-top:14px">2. aşama · filtre × çıkış × kombo</h2><div class="small muted" style="margin-bottom:6px">${S.stage2.candidates} aday → ${S.stage2.trials} ek deneme</div><div class="tscroll"><table><tr><th>Adım</th><th style="text-align:left">Kontrol</th><th>Elenen</th><th>Kalan</th></tr>${(S.funnel2||[]).map(x=>`<tr><td>${x.stage}</td><td style="text-align:left;white-space:normal">${esc(x.label)}</td><td>${x.eliminated}</td><td><b>${x.remaining}</b></td></tr>`).join("")}</table></div>${(S.funnel2||[]).length?"":'<div class="empty small">Hiçbir filtre/çıkış/kombo, kuralın kendi halinden daha sağlam çıkmadı.</div>'}`:""}
+   <div class="note">Her (coin, kural) için tek en iyi ayar değil, en sağlam bölgenin merkezi seçilir. Sonuç bir aday listesidir; karar sadece doğrulama kapısında verilir.</div></div>
+   <div class="card"><h2>Geçenler</h2>${sv?`<div class="tscroll"><table><tr><th>Strateji</th>${(D.windows||[]).map(w=>`<th>${w?w+" yıl":"Tüm"}</th>`).join("")}<th>SR</th><th>DSR</th></tr>${sv}</table></div>`:'<div class="empty">Daha iyisi bulunamadı: kurala göre hiçbir strateji tüm adımları geçmedi.</div>'}</div></div>`;
+}
+
+function detail(D,id){
+  const m=(D.members||[]).find(x=>x.id===id);if(!m)return;
+  const ws=Object.keys(m.card||{});
+  const levs=Object.keys((ws.map(w=>m.card[w]).find(v=>v&&v.perp)||{}).perp||{});
+  const rowsW=ws.map(w=>{const v=m.card[w];if(v.no_data)return `<tr><td>${WL(w)}</td><td colspan="6" class="muted">veri yok</td></tr>`;
+    return `<tr><td>${WL(w)}</td><td class="${cls(v.ret)}">${pct(v.ret,0)}</td><td>${pct(v.cagr,0)}</td><td>${num(v.sharpe)}</td><td class="neg">${pct(v.max_dd,0)}</td><td>${v.trades}</td><td>${v.win_rate==null?"–":Math.round(v.win_rate*100)+"%"}</td><td>${num(v.profit_factor)}</td></tr>`}).join("");
+  const bal=D.account?.balance||1000,mf=D.account?.margin_frac||0.1;
+  const rowsL=ws.filter(w=>!m.card[w].no_data).map(w=>`<tr><td>${WL(w)}</td>${levs.map(L=>{const p=m.card[w].perp[L];return `<td class="${cls(p.ret)}">$${Math.round(p.final).toLocaleString("tr-TR")}${p.liquidations?`<div class="small neg">${p.liquidations} likidasyon</div>`:""}</td>`}).join("")}</tr>`).join("");
+  const rs=Object.entries(m.regime_sharpe||{}).map(([k,v])=>`<div class="kv"><span class="rg-${k}">${RG[k]}</span><span class="${cls(v)}">${num(v)}</span></div>`).join("");
+  $("#dlgc").innerHTML=`<button class="close" aria-label="Kapat" onclick="dlg.close()">×</button>
+  <h3>${m.id} · ${esc(m.coin)}</h3><div class="muted small">${esc(m.rule)} <code>${esc(m.params)}</code> · ${esc(m.variant||("çıkış "+m.exit))} · ${esc(m.side)}${m.stage_no===2?" · 2. aşama":""}</div>
+  <div style="margin:10px 0;display:flex;gap:6px;flex-wrap:wrap"><span class="badge">${ST[m.status]}</span>${m.tier?`<span class="badge">tier ${m.tier}</span>`:""}<span class="badge b-${m.position}">${POS[m.position]}</span><span class="badge rg-${m.regime_now}">${RG[m.regime_now]}</span><span class="badge">katılım ${m.added_at}</span></div>
+  ${m.why?`<div class="note">${esc(m.why)}</div>`:""}
+  <h2 style="font-size:13px;color:var(--ink3);margin:16px 0 6px">KARNE (1x, maliyet dahil)</h2>
+  <div class="tscroll"><table><tr><th>Pencere</th><th>Getiri</th><th>CAGR</th><th>Sharpe</th><th>Maks. düşüş</th><th>İşlem</th><th>Kazanma</th><th>PF</th></tr>${rowsW}</table></div>
+  <h2 style="font-size:13px;color:var(--ink3);margin:16px 0 6px">PERP SİMÜLASYONU ($${bal} · işlem başı marjin %${Math.round(mf*100)})</h2>
+  <div class="tscroll"><table><tr><th>Pencere</th>${levs.map(L=>`<th>${L}</th>`).join("")}</tr>${rowsL}</table></div>
+  <div class="note small">Kaldıraç bir avantaj (edge) yaratmaz. Sadece riski ve likidasyon olasılığını büyütür. Likidasyon işlem bazında yaklaşık hesaplanır.</div>
+  <div class="grid" style="margin-top:12px"><div class="card"><h2>Rejime göre Sharpe</h2>${rs||'<span class="muted">–</span>'}</div>
+  <div class="card"><h2>İleri kayıt</h2><div class="kv"><span>Gün</span><span>${m.forward?.days}</span></div><div class="kv"><span>Getiri</span><span class="${cls(m.forward?.ret)}">${pct(m.forward?.ret)}</span></div><div class="kv"><span>Sharpe</span><span>${num(m.forward?.sharpe)}</span></div><div class="kv"><span>Maks. düşüş</span><span class="neg">${pct(m.forward?.max_dd)}</span></div><div class="kv"><span>İşlem</span><span>${m.forward?.trades}</span></div></div></div>
+  <div class="card" style="margin-top:12px"><h2>Tüm geçmiş (1x)</h2>${chart([{pts:m.spark,color:"var(--accent)",label:"Özsermaye"}])}</div>`;
+  dlg.showModal();
+}
+const dlg=$("#dlg");
+tabs();
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+
+let TF=null;
+function load(tf){
+  TF=tf;try{localStorage.setItem("tf",tf)}catch(e){}
+  document.querySelectorAll("#tfbar button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tf===tf));
+  fetch(`data_${tf}.json`,{cache:"no-store"}).then(r=>r.json()).then(D=>{
+    $("#sub").textContent=` ${D.universe} · ${D.timeframe}`;
+    const u=new Date(D.updated_at);$("#upd").innerHTML=`güncelleme ${u.toLocaleString("tr-TR",{dateStyle:"short",timeStyle:"short"})}<br>son bar ${esc(String(D.data_end).slice(0,16))}`;
+    window.D=D;ozet(D);defter(D);arena(D);rejim(D);huni(D);
+  }).catch(e=>{$("#ozet").innerHTML=`<div class="card empty">Veri yüklenemedi: ${esc(e)}</div>`;$("#upd").textContent="hata"});
+}
+document.body.addEventListener("click",e=>{const t=e.target.closest("[data-m]");if(t&&window.D){e.preventDefault();detail(window.D,t.dataset.m)}});
+fetch("tfs.json",{cache:"no-store"}).then(r=>r.json()).then(tfs=>{
+  $("#tfbar").innerHTML=tfs.map(t=>`<nav style="padding:0"><button data-tf="${t}" aria-selected="false">${t==="1d"?"Günlük (1d)":t==="4h"?"4 saatlik (4h)":t}</button></nav>`).join("");
+  document.querySelectorAll("#tfbar button").forEach(b=>b.onclick=()=>load(b.dataset.tf));
+  let t=null;try{t=localStorage.getItem("tf")}catch(e){}
+  load(tfs.includes(t)?t:tfs[0]);
+}).catch(()=>load("4h"));
+</script>
+</body>
+</html>

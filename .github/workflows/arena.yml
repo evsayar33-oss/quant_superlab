@@ -1,0 +1,77 @@
+name: Arena (paper, every 4h)
+
+# 9 minutes after every 4h bar closes (UTC): for every timeframe arena (4h, 1d) recompute its strategies on the latest CLOSED bar,
+# retire decaying ones, run the regime switcher, send Telegram changes, deploy the dashboard to GitHub Pages.
+# Starts by itself: until the monthly "Arena screen" has put members in decisions/arena/roster.json,
+# every run stops after a 5-second check (no install, no download, no commit).
+# One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+
+on:
+  schedule:
+    - cron: '9 0,4,8,12,16,20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: quant-lab-arena
+  cancel-in-progress: false
+
+jobs:
+  arena:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    outputs:
+      go: ${{ steps.ready.outputs.go }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Is the arena populated?
+        id: ready
+        run: |
+          if python3 -c "import json,sys,glob; sys.exit(0 if any(m['status'] in ('active','control') for f in glob.glob('decisions/arena/*/roster.json') for m in json.load(open(f))['members']) else 1)" 2>/dev/null; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=false" >> "$GITHUB_OUTPUT"; echo "Arena is empty: run 'Arena screen' first. Skipping."
+          fi
+      - if: steps.ready.outputs.go == 'true'
+        uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - if: steps.ready.outputs.go == 'true'
+        run: pip install -r requirements.txt
+      - if: steps.ready.outputs.go == 'true'
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: arena-data-all-${{ github.run_id }}
+          restore-keys: |
+            arena-data-all-
+            arena-data-
+      - if: steps.ready.outputs.go == 'true'
+        name: Arena run
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          LAB_CACHE_HOURS: "0"          # always refresh (incremental: only the new bars are downloaded)
+        run: python run.py --arena --site site --telegram
+      - if: steps.ready.outputs.go == 'true'
+        name: Commit arena state to main
+        run: bash scripts/commit_arena.sh "Arena $(date -u +%F_%H%M)"
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.ready.outputs.go == 'true' && hashFiles('site/tfs.json') != ''
+        with:
+          path: site
+
+  deploy:
+    needs: arena
+    if: needs.arena.result == 'success' && needs.arena.outputs.go == 'true'
+    runs-on: ubuntu-latest
+    continue-on-error: true            # Pages not enabled yet -> the arena itself still succeeded
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

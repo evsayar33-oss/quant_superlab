@@ -1,0 +1,150 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.878 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.676 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "ml_ridge_rank",
+  "kind": "strategy",
+  "universe": "sp_megacap",
+  "timeframe": "1d",
+  "for_system": "global_momentum_quant",
+  "spec": {
+    "id": "H026",
+    "strategy": "ml_ridge_rank",
+    "universe": "sp_megacap",
+    "for_system": "global_momentum_quant",
+    "start": "2010-01-01",
+    "status": "active"
+  },
+  "variant": "ml_ridge_rank|train_months=36,alpha=1.0,top_n=10|overlay=eqma_s",
+  "params": {
+    "train_months": 36,
+    "alpha": 1.0,
+    "top_n": 10,
+    "_overlay": "eqma_s"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "NVDA": 0.1,
+    "AMZN": 0.1,
+    "GOOGL": 0.1,
+    "UNH": 0.1,
+    "JNJ": 0.1,
+    "AVGO": 0.1,
+    "MRK": 0.1,
+    "ORCL": 0.1,
+    "CSCO": 0.1,
+    "META": 0.1
+  },
+  "gate_sharpe": 0.931,
+  "pbo": 0.878,
+  "reality_check_p": 0.676,
+  "dsr": 0.999,
+  "n_trials": 22,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.1898,
+    "vol": 0.1849,
+    "sharpe": 1.033,
+    "sharpe_excess_rf": 0.931,
+    "sortino": 1.33,
+    "max_dd": -0.301,
+    "max_dd_bars": 547,
+    "calmar": 0.631,
+    "ulcer": 0.1071,
+    "var95": -0.0189,
+    "cvar95": -0.0283,
+    "omega": 1.21,
+    "tail_ratio": 0.948,
+    "skew": -0.088,
+    "kurtosis": 6.61,
+    "hit_rate": 0.531,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 12.48,
+    "bench_cagr": 0.2038,
+    "bench_sharpe": 1.225,
+    "info_ratio": -0.061,
+    "beta": 0.842,
+    "up_capture": 1.025,
+    "down_capture": 1.043
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.7,
+      "ann_ret": 0.2916,
+      "bars": 2702
+    },
+    "bear": {
+      "sharpe": -1.42,
+      "ann_ret": -0.3446,
+      "bars": 508
+    },
+    "calm": {
+      "sharpe": 1.82,
+      "ann_ret": 0.2642,
+      "bars": 1677
+    },
+    "stressed": {
+      "sharpe": 0.5,
+      "ann_ret": 0.1107,
+      "bars": 1533
+    },
+    "vix_lt_20": {
+      "sharpe": 2.76,
+      "ann_ret": 0.4302,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": -1.56,
+      "ann_ret": -0.3457,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": -2.9,
+      "ann_ret": -0.91,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 1.17,
+      "ann_ret": 0.2339,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 1.0,
+      "ann_ret": 0.1808,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.265,
+      "sharpe_delayed_1bar": 1.285,
+      "retained": 1.016
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 1.1,
+      "neighbour_median": 1.117,
+      "share_positive": 1.0,
+      "stability": 1.016
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.194,
+      "sharpe_median": 1.251
+    }
+  },
+  "recommended_overlay": "equity_ma_125",
+  "kelly_fraction": null,
+  "oos_csv": "results/H026_ml_ridge_rank_sp_megacap_1d_oos.csv",
+  "validated_at": "2026-10-17T08:59:48+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

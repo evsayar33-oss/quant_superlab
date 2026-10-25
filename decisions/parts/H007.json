@@ -1,0 +1,147 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (excess of T-bill) 0.393 < 0.5",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.833 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.996 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "ts_momentum",
+  "kind": "strategy",
+  "universe": "us_sectors",
+  "timeframe": "1d",
+  "for_system": "sp500_shock_quant",
+  "spec": {
+    "id": "H007",
+    "strategy": "ts_momentum",
+    "universe": "us_sectors",
+    "for_system": "sp500_shock_quant",
+    "start": "2010-01-01",
+    "status": "active"
+  },
+  "variant": "ts_momentum|lookback=252,vol_target=0.1",
+  "params": {
+    "lookback": 252,
+    "vol_target": 0.1
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "XLF": 0.0737,
+    "XLRE": 0.0714,
+    "XLI": 0.0609,
+    "XLP": 0.0602,
+    "XLB": 0.0556,
+    "XLV": 0.0532,
+    "XLE": 0.0421,
+    "XLK": 0.0351
+  },
+  "gate_sharpe": 0.393,
+  "pbo": 0.833,
+  "reality_check_p": 0.996,
+  "dsr": 0.947,
+  "n_trials": 20,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.0472,
+    "vol": 0.0767,
+    "sharpe": 0.639,
+    "sharpe_excess_rf": 0.393,
+    "sortino": 0.529,
+    "max_dd": -0.1223,
+    "max_dd_bars": 683,
+    "calmar": 0.386,
+    "ulcer": 0.0488,
+    "var95": -0.0077,
+    "cvar95": -0.0125,
+    "omega": 1.132,
+    "tail_ratio": 0.972,
+    "skew": -0.887,
+    "kurtosis": 6.6,
+    "hit_rate": 0.483,
+    "psr": 0.987,
+    "time_in_market": null,
+    "turnover_ann": 5.09,
+    "bench_cagr": 0.1162,
+    "bench_sharpe": 0.764,
+    "info_ratio": -0.584,
+    "beta": 0.305,
+    "up_capture": 0.461,
+    "down_capture": 0.471
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.02,
+      "ann_ret": 0.0787,
+      "bars": 2702
+    },
+    "bear": {
+      "sharpe": -1.49,
+      "ann_ret": -0.1089,
+      "bars": 508
+    },
+    "calm": {
+      "sharpe": 0.86,
+      "ann_ret": 0.0579,
+      "bars": 1677
+    },
+    "stressed": {
+      "sharpe": 0.46,
+      "ann_ret": 0.0394,
+      "bars": 1533
+    },
+    "vix_lt_20": {
+      "sharpe": 2.16,
+      "ann_ret": 0.1483,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": -1.67,
+      "ann_ret": -0.1431,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": -4.62,
+      "ann_ret": -0.5454,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 0.29,
+      "ann_ret": 0.0227,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.72,
+      "ann_ret": 0.0553,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.719,
+      "sharpe_delayed_1bar": 0.683,
+      "retained": 0.949
+    },
+    "neighbourhood": {
+      "neighbours": 3,
+      "best_sharpe": 0.696,
+      "neighbour_median": 0.696,
+      "share_positive": 1.0,
+      "stability": 1.0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.71,
+      "sharpe_median": 0.72
+    }
+  },
+  "recommended_overlay": "none",
+  "kelly_fraction": null,
+  "oos_csv": "results/H007_ts_momentum_us_sectors_1d_oos.csv",
+  "validated_at": "2026-10-17T08:56:35+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

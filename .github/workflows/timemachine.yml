@@ -1,0 +1,117 @@
+name: Time machine test
+
+# Replay the whole arena pipeline as if today were `cutoff` (funnel, roster, books frozen), then measure
+# what those frozen choices did after the cutoff. Never touches the live arena or decisions/registry.json.
+
+on:
+  schedule:
+    - cron: '7 5 5 1,4,7,10 *'      # quarterly; cutoffs and on/off come from config/arena.yaml (timemachine)
+  workflow_dispatch:
+    inputs:
+      cutoffs:
+        description: 'JSON list of cutoff dates: ["2022-10-17","2023-10-17","2024-10-17"]'
+        required: false
+        default: ''   # empty = config/arena.yaml timemachine.years_ago
+      timeframes:
+        description: 'JSON list: ["4h"] or ["4h","1d"]'
+        required: false
+        default: ''
+      sides:
+        description: 'JSON list: ["both","long","short"] (empty = config/arena.yaml sides)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      cutoffs: ${{ steps.p.outputs.cutoffs }}
+      timeframes: ${{ steps.p.outputs.timeframes }}
+      sides: ${{ steps.p.outputs.sides }}
+      go: ${{ steps.p.outputs.go }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        env:
+          IN_CUT: ${{ github.event.inputs.cutoffs }}
+          IN_TF: ${{ github.event.inputs.timeframes }}
+          IN_SD: ${{ github.event.inputs.sides }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os, datetime, yaml
+          c = yaml.safe_load(open("config/arena.yaml")).get("timemachine", {})
+          today = datetime.date.today()
+          cut = os.environ.get("IN_CUT") or json.dumps([str(today - datetime.timedelta(days=round(365.25 * y))) for y in c.get("years_ago", [2, 3, 4])])
+          tf = os.environ.get("IN_TF") or json.dumps(c.get("timeframes", ["4h"]))
+          full = yaml.safe_load(open("config/arena.yaml"))
+          sd = os.environ.get("IN_SD") or json.dumps(full.get("sides") or [full.get("side", "both")])
+          print(f"sides={sd}")
+          go = "true" if (os.environ["EVENT"] == "workflow_dispatch" or c.get("enabled", False)) else "false"
+          print(f"cutoffs={cut}"); print(f"timeframes={tf}"); print(f"go={go}")
+          PY
+
+  replay:
+    needs: plan
+    if: needs.plan.outputs.go == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        timeframe: ${{ fromJSON(needs.plan.outputs.timeframes) }}
+        cutoff: ${{ fromJSON(needs.plan.outputs.cutoffs) }}
+        side: ${{ fromJSON(needs.plan.outputs.sides) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: arena-data-tm-${{ matrix.timeframe }}-${{ github.run_id }}
+          restore-keys: |
+            arena-data-${{ matrix.timeframe }}-
+            arena-data-all-
+            arena-data-
+      - name: Replay
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          LAB_CACHE_HOURS: "0"
+        run: python run.py --timemachine "${{ matrix.cutoff }}" --timeframe ${{ matrix.timeframe }} --side ${{ matrix.side }} --telegram
+      - name: Commit summary to main
+        run: |
+          KEY="${{ matrix.timeframe }}"; if [ "${{ matrix.side }}" != "both" ]; then KEY="${KEY}_${{ matrix.side }}"; fi
+          bash scripts/commit_arena.sh "Time machine $KEY ${{ matrix.cutoff }}" "timemachine/${{ matrix.cutoff }}/$KEY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: timemachine-${{ matrix.cutoff }}-${{ matrix.timeframe }}-${{ matrix.side }}
+          retention-days: 14
+          path: results/timemachine_*
+
+  publish:
+    needs: replay
+    if: always() && needs.replay.result != 'skipped'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: quant-lab-results
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/fetch_results.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: timemachine-*
+          path: _parts
+      - run: |
+          mkdir -p results
+          for d in _parts/*; do cp -r "$d"/. results/ 2>/dev/null || true; done
+          rm -rf _parts
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish_results.sh

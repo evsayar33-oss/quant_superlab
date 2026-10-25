@@ -1,0 +1,151 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.86 < 0.9 (luck not excluded after 26 trials)",
+    "OOS Sharpe (excess of T-bill) 0.366 < 0.5",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.541 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.998 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "macro_risk_switch",
+  "kind": "strategy",
+  "universe": "global_assets",
+  "timeframe": "1d",
+  "for_system": "macro-model",
+  "spec": {
+    "id": "H027",
+    "strategy": "macro_risk_switch",
+    "universe": "global_assets",
+    "for_system": "macro-model",
+    "start": "2008-01-01",
+    "status": "active"
+  },
+  "variant": "macro_risk_switch|vix_max=30,use_curve=False,trend_n=100",
+  "params": {
+    "vix_max": 30,
+    "use_curve": false,
+    "trend_n": 100
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "SPY": 0.1,
+    "QQQ": 0.1,
+    "IWM": 0.1,
+    "EFA": 0.1,
+    "EEM": 0.1,
+    "TLT": 0.1,
+    "IEF": 0.1,
+    "GLD": 0.1,
+    "DBC": 0.1,
+    "VNQ": 0.1
+  },
+  "gate_sharpe": 0.366,
+  "pbo": 0.541,
+  "reality_check_p": 0.998,
+  "dsr": 0.86,
+  "n_trials": 26,
+  "oos": {
+    "start": "2012-01-09 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 14.76,
+    "cagr": 0.0394,
+    "vol": 0.0669,
+    "sharpe": 0.611,
+    "sharpe_excess_rf": 0.366,
+    "sortino": 0.511,
+    "max_dd": -0.1559,
+    "max_dd_bars": 865,
+    "calmar": 0.253,
+    "ulcer": 0.0696,
+    "var95": -0.007,
+    "cvar95": -0.0106,
+    "omega": 1.133,
+    "tail_ratio": 1.05,
+    "skew": -0.429,
+    "kurtosis": 4.22,
+    "hit_rate": 0.37,
+    "psr": 0.99,
+    "time_in_market": null,
+    "turnover_ann": 8.81,
+    "bench_cagr": 0.0844,
+    "bench_sharpe": 0.785,
+    "info_ratio": -0.523,
+    "beta": 0.364,
+    "up_capture": 0.53,
+    "down_capture": 0.539
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 0.77,
+      "ann_ret": 0.0549,
+      "bars": 3204
+    },
+    "bear": {
+      "sharpe": -2.58,
+      "ann_ret": -0.0471,
+      "bars": 511
+    },
+    "calm": {
+      "sharpe": 0.62,
+      "ann_ret": 0.04,
+      "bars": 2043
+    },
+    "stressed": {
+      "sharpe": 0.61,
+      "ann_ret": 0.042,
+      "bars": 1672
+    },
+    "vix_lt_20": {
+      "sharpe": 1.64,
+      "ann_ret": 0.1093,
+      "bars": 2796
+    },
+    "vix_20_30": {
+      "sharpe": -2.56,
+      "ann_ret": -0.1781,
+      "bars": 761
+    },
+    "vix_ge_30": {
+      "sharpe": -2.79,
+      "ann_ret": -0.1148,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 0.89,
+      "ann_ret": 0.0462,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.57,
+      "ann_ret": 0.0398,
+      "bars": 3101
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.598,
+      "sharpe_delayed_1bar": 0.638,
+      "retained": 1.068
+    },
+    "neighbourhood": {
+      "neighbours": 4,
+      "best_sharpe": 0.594,
+      "neighbour_median": 0.515,
+      "share_positive": 1.0,
+      "stability": 0.867
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.589,
+      "sharpe_median": 0.6
+    }
+  },
+  "recommended_overlay": "dd_brake_0.1",
+  "kelly_fraction": null,
+  "oos_csv": "results/H027_macro_risk_switch_global_assets_1d_oos.csv",
+  "validated_at": "2026-10-17T08:59:52+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

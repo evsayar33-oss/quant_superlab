@@ -1,0 +1,133 @@
+name: Validate hypotheses
+
+# Saturday 07:17 TR. plan: tests + one shared data download (cached for all jobs)
+# validate: one PARALLEL job per hypothesis   merge: registry + HRP allocation,
+# decisions committed to main, reports/charts published to the `results` branch (no git bloat).
+
+on:
+  schedule:
+    - cron: '17 4 * * 6'
+  workflow_dispatch:
+    inputs:
+      hypothesis:
+        description: "Hypothesis id(s), comma separated (e.g. H001,H013). Empty = all active"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quant-lab-registry
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    outputs:
+      ids: ${{ steps.ids.outputs.ids }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - name: Offline tests (the engine must be correct before it decides anything)
+        run: python tests/test_core.py
+      - id: ids
+        env:
+          WANT: ${{ github.event.inputs.hypothesis }}
+        run: |
+          if [ -n "$WANT" ]; then
+            python -c "import json,os; print('ids='+json.dumps([x.strip() for x in os.environ['WANT'].split(',') if x.strip()]))" >> "$GITHUB_OUTPUT"
+          else
+            echo "ids=$(python run.py --ids)" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Download all data once (avoids Yahoo rate limits in parallel jobs)
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          WANT: ${{ github.event.inputs.hypothesis }}
+        run: |
+          if [ -n "$WANT" ]; then python run.py --prefetch --hypothesis "$WANT"; else python run.py --prefetch; fi
+      - uses: actions/cache/save@v4
+        with:
+          path: data/cache
+          key: data-${{ github.run_id }}
+
+  validate:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        id: ${{ fromJSON(needs.plan.outputs.ids) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache/restore@v4
+        with:
+          path: data/cache
+          key: data-${{ github.run_id }}
+      - name: Validate ${{ matrix.id }}
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          LAB_CACHE_HOURS: "48"
+        run: python run.py --hypothesis "${{ matrix.id }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: part-${{ matrix.id }}
+          retention-days: 3
+          if-no-files-found: ignore
+          path: |
+            decisions/parts/${{ matrix.id }}.json
+            decisions/history.csv
+            results/${{ matrix.id }}_*
+            results/charts/${{ matrix.id }}_*
+
+  merge:
+    needs: validate
+    if: always()
+    runs-on: ubuntu-latest
+    concurrency:
+      group: quant-lab-results
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - name: Fetch published results (older OOS series are needed for the allocation)
+        run: bash scripts/fetch_results.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: part-*
+          path: _parts
+      - name: Collect parts
+        run: |
+          mkdir -p decisions/parts results/charts
+          [ -f decisions/history.csv ] || echo "validated_at,id,strategy,universe,timeframe,verdict,gate_sharpe,dsr,pbo,oos_cagr,oos_maxdd" > decisions/history.csv
+          for d in _parts/*; do
+            [ -d "$d" ] || continue
+            id="${d#_parts/part-}"
+            if ls "$d"/decisions/parts/*.json >/dev/null 2>&1; then rm -f "results/${id}_ERROR.txt"; fi   # success clears an old error
+            cp "$d"/decisions/parts/*.json decisions/parts/ 2>/dev/null || true
+            cp -r "$d"/results/. results/ 2>/dev/null || true
+            if [ -f "$d/decisions/history.csv" ]; then tail -n 1 "$d/decisions/history.csv" >> decisions/history.csv; fi
+          done
+          rm -rf _parts
+      - name: Merge registry
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python run.py --merge --telegram
+      - name: Publish reports to the results branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish_results.sh
+      - name: Commit decisions to main
+        run: bash scripts/commit_decisions.sh "Validation $(date -u +%F)"

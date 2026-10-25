@@ -1,0 +1,145 @@
+{
+ "date": "2026-10-21",
+ "venues": {
+  "bitget": {
+   "reachable": true,
+   "n_markets": 851
+  },
+  "binance": {
+   "reachable": false,
+   "error": "HTTP Error 451: "
+  },
+  "hyperliquid": {
+   "reachable": true,
+   "n_markets": 545
+  }
+ },
+ "assets": {
+  "GC=F": {
+   "name": "gold",
+   "markets": {
+    "bitget": [
+     "PAXGUSDT",
+     "XAUTUSDT",
+     "XAUUSDT"
+    ],
+    "hyperliquid": [
+     "PAXG",
+     "xyz:GOLD",
+     "flx:GOLD",
+     "vntl:GOLDJM",
+     "hyna:GOLD",
+     "km:GOLD"
+    ]
+   }
+  },
+  "SI=F": {
+   "name": "silver",
+   "markets": {
+    "bitget": [
+     "XAGUSDT"
+    ],
+    "hyperliquid": [
+     "xyz:SILVER",
+     "flx:SILVER",
+     "vntl:SILVERJM",
+     "hyna:SILVER",
+     "km:SILVER",
+     "cash:SILVER"
+    ]
+   }
+  },
+  "HG=F": {
+   "name": "copper",
+   "markets": {
+    "bitget": [
+     "COPPERUSDT"
+    ],
+    "hyperliquid": [
+     "xyz:COPPER",
+     "flx:COPPER"
+    ]
+   }
+  },
+  "PL=F": {
+   "name": "platinum",
+   "markets": {
+    "bitget": [
+     "XPTUSDT"
+    ],
+    "hyperliquid": [
+     "xyz:PLATINUM",
+     "flx:PLATINUM"
+    ]
+   }
+  },
+  "PA=F": {
+   "name": "palladium",
+   "markets": {
+    "bitget": [
+     "XPDUSDT"
+    ],
+    "hyperliquid": [
+     "xyz:PALLADIUM",
+     "flx:PALLADIUM"
+    ]
+   }
+  },
+  "ES=F": {
+   "name": "S&P 500",
+   "markets": {
+    "bitget": [
+     "SPXUSDT",
+     "SPYUSDT",
+     "ESPUSDT",
+     "SP500USDT"
+    ],
+    "hyperliquid": [
+     "SPX",
+     "xyz:SP500",
+     "km:US500",
+     "mkts:US500"
+    ]
+   }
+  },
+  "NQ=F": {
+   "name": "Nasdaq 100",
+   "markets": {
+    "bitget": [
+     "QQQUSDT",
+     "NDX100USDT"
+    ],
+    "hyperliquid": [
+     "xyz:XYZ100"
+    ]
+   }
+  },
+  "YM=F": {
+   "name": "Dow Jones",
+   "markets": {
+    "hyperliquid": [
+     "xyz:YMTC"
+    ]
+   }
+  },
+  "RTY=F": {
+   "name": "Russell 2000",
+   "markets": {
+    "bitget": [
+     "IWMUSDT"
+    ]
+   }
+  },
+  "NKD=F": {
+   "name": "Nikkei 225",
+   "markets": {
+    "bitget": [
+     "JP225USDT"
+    ],
+    "hyperliquid": [
+     "xyz:JP225"
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,213 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (excess of T-bill) -0.147 < 0.5",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.964 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "high_52w_break",
+  "kind": "rule",
+  "universe": "metals",
+  "timeframe": "1d",
+  "for_system": "paper_watch",
+  "spec": {
+    "id": "H064",
+    "rule": "high_52w_break",
+    "universe": "metals",
+    "timeframe": "1d",
+    "for_system": "paper_watch",
+    "start": "2000-01-01",
+    "filters": [
+      "none"
+    ],
+    "exits": [
+      28
+    ],
+    "confirm": "smc_bos",
+    "confirm_params": {
+      "k": 5
+    },
+    "confirm_within": [
+      3
+    ],
+    "side": "both",
+    "status": "paper"
+  },
+  "variant": "high_52w_break+smc_bos|n=252,exit_ma=50|f=none|x=stop_atr=2.0,trail_atr=3.0|confirm=k=5,within=3|size=vol0.1",
+  "params": {
+    "n": 252,
+    "exit_ma": 50,
+    "_filter": "none",
+    "_exit": 28,
+    "_size": 4,
+    "_cparams": {
+      "k": 5
+    },
+    "_cwithin": 3
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "GC=F",
+      "SI=F",
+      "HG=F",
+      "PL=F",
+      "PA=F"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.147,
+  "pbo": 0.036,
+  "reality_check_p": 0.964,
+  "dsr": 0.964,
+  "n_trials": 14,
+  "oos": {
+    "start": "2004-01-28 00:00:00",
+    "end": "2026-10-21 00:00:00",
+    "years": 22.77,
+    "cagr": 0.0131,
+    "vol": 0.0261,
+    "sharpe": 0.513,
+    "sharpe_excess_rf": -0.147,
+    "sortino": -0.206,
+    "max_dd": -0.0622,
+    "max_dd_bars": 2016,
+    "calmar": 0.211,
+    "ulcer": 0.028,
+    "var95": -0.0017,
+    "cvar95": -0.0041,
+    "omega": 1.21,
+    "tail_ratio": 1.273,
+    "skew": -0.432,
+    "kurtosis": 32.511,
+    "hit_rate": 0.148,
+    "psr": 0.992,
+    "time_in_market": null,
+    "turnover_ann": 2.01,
+    "bench_cagr": 0.0892,
+    "bench_sharpe": 0.493,
+    "info_ratio": -0.447,
+    "beta": 0.038,
+    "up_capture": 0.047,
+    "down_capture": 0.04
+  },
+  "trade_stats": {
+    "n_trades": 146,
+    "trades_per_year": 6.4,
+    "win_rate": 0.466,
+    "avg_trade": 0.0227,
+    "median_trade": -0.0079,
+    "avg_win": 0.0834,
+    "avg_loss": -0.0302,
+    "profit_factor": 2.409,
+    "payoff": 2.764,
+    "expectancy_r": 0.711,
+    "sqn": 3.01,
+    "kelly_fraction": 0.272,
+    "max_consec_losses": 6,
+    "avg_bars": 12.8,
+    "avg_bars_win": 20.0,
+    "avg_bars_loss": 6.6,
+    "avg_mfe": 0.0787,
+    "avg_mae": -0.0126,
+    "edge_ratio": 6.268,
+    "exit_reasons": {
+      "stop": 146
+    },
+    "long_short": {
+      "1": {
+        "count": 146,
+        "mean": 0.0227
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.71,
+      "ann_ret": 0.0201,
+      "bars": 3972
+    },
+    "bear": {
+      "sharpe": -0.09,
+      "ann_ret": -0.0017,
+      "bars": 1750
+    },
+    "calm": {
+      "sharpe": 0.91,
+      "ann_ret": 0.0233,
+      "bars": 2898
+    },
+    "stressed": {
+      "sharpe": 0.12,
+      "ann_ret": 0.0032,
+      "bars": 2824
+    },
+    "vix_lt_20": {
+      "sharpe": 0.66,
+      "ann_ret": 0.0171,
+      "bars": 3945
+    },
+    "vix_20_30": {
+      "sharpe": 0.31,
+      "ann_ret": 0.009,
+      "bars": 1328
+    },
+    "vix_ge_30": {
+      "sharpe": -0.33,
+      "ann_ret": -0.0058,
+      "bars": 449
+    },
+    "curve_inverted": {
+      "sharpe": 0.77,
+      "ann_ret": 0.0208,
+      "bars": 813
+    },
+    "curve_normal": {
+      "sharpe": 0.47,
+      "ann_ret": 0.0122,
+      "bars": 4909
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.778,
+      "sharpe_delayed_1bar": 0.732,
+      "retained": 0.941
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.753,
+      "neighbour_median": 0.753,
+      "share_positive": 1.0,
+      "stability": 1.0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.638,
+      "sharpe_median": 0.687
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.3878,
+      "random_median_ann": 0.1336,
+      "random_p95_ann": 0.2994,
+      "trades_actual": 162,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0222,
+      "maxdd_p95": -0.0341,
+      "final_p05": 0.4326,
+      "final_median": 0.4326
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "equity_ma_125",
+  "kelly_fraction": 0.272,
+  "oos_csv": "results/H064_high_52w_break_metals_1d_oos.csv",
+  "validated_at": "2026-10-21T15:17:30+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-21 00:00:00"
+}

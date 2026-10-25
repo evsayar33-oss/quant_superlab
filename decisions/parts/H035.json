@@ -1,0 +1,200 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": "REJECT",
+  "reasons": [
+    "DSR 0.018 < 0.9 (luck not excluded after 163 trials)",
+    "OOS Sharpe (excess of T-bill) -0.003 < 0.5",
+    "bootstrap P(SR>0) 0.791 < 0.85",
+    "only 50% of OOS years positive",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.966 > 0.1 (best variant may be data-mined)",
+    "random entries match it (p=0.48): the edge is in the exits, not the signal"
+  ],
+  "strategy": "supertrend_flip",
+  "kind": "rule",
+  "universe": "metals",
+  "timeframe": "1w",
+  "for_system": "metals",
+  "spec": {
+    "id": "H035",
+    "rule": "supertrend_flip",
+    "universe": "metals",
+    "timeframe": "1w",
+    "for_system": "metals",
+    "start": "2005-01-01",
+    "filters": [
+      "none",
+      "curve_normal"
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "supertrend_flip|cfg=(14, 3.0)|f=none|x=stop_pct=0.03",
+  "params": {
+    "cfg": [
+      14,
+      3.0
+    ],
+    "_filter": "none",
+    "_exit": 4,
+    "_size": 0
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.003,
+  "pbo": 0.343,
+  "reality_check_p": 0.966,
+  "dsr": 0.018,
+  "n_trials": 163,
+  "oos": {
+    "start": "2009-01-09 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 17.77,
+    "cagr": 0.0116,
+    "vol": 0.0646,
+    "sharpe": 0.211,
+    "sharpe_excess_rf": -0.003,
+    "sortino": -0.004,
+    "max_dd": -0.3389,
+    "max_dd_bars": 807,
+    "calmar": 0.034,
+    "ulcer": 0.1945,
+    "var95": -0.012,
+    "cvar95": -0.0212,
+    "omega": 1.119,
+    "tail_ratio": 1.165,
+    "skew": 0.68,
+    "kurtosis": 9.96,
+    "hit_rate": 0.314,
+    "psr": 0.815,
+    "time_in_market": null,
+    "turnover_ann": 1.43,
+    "bench_cagr": 0.0956,
+    "bench_sharpe": 0.528,
+    "info_ratio": -0.538,
+    "beta": 0.169,
+    "up_capture": 0.176,
+    "down_capture": 0.189
+  },
+  "trade_stats": {
+    "n_trades": 85,
+    "trades_per_year": 4.8,
+    "win_rate": 0.141,
+    "avg_trade": 0.0287,
+    "median_trade": -0.03,
+    "avg_win": 0.3872,
+    "avg_loss": -0.0302,
+    "profit_factor": 2.105,
+    "payoff": 12.806,
+    "expectancy_r": 0.956,
+    "sqn": 1.26,
+    "kelly_fraction": 0.074,
+    "max_consec_losses": 24,
+    "avg_bars": 8.0,
+    "avg_bars_win": 45.2,
+    "avg_bars_loss": 1.9,
+    "avg_mfe": 0.1202,
+    "avg_mae": -0.0114,
+    "edge_ratio": 10.513,
+    "exit_reasons": {
+      "stop": 73,
+      "signal": 12
+    },
+    "long_short": {
+      "1": {
+        "count": 85,
+        "mean": 0.0287
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.67,
+      "ann_ret": 0.0495,
+      "bars": 612
+    },
+    "bear": {
+      "sharpe": -1.38,
+      "ann_ret": -0.0559,
+      "bars": 316
+    },
+    "calm": {
+      "sharpe": 0.43,
+      "ann_ret": 0.0261,
+      "bars": 485
+    },
+    "stressed": {
+      "sharpe": -0.0,
+      "ann_ret": -0.0001,
+      "bars": 443
+    },
+    "vix_lt_20": {
+      "sharpe": -0.02,
+      "ann_ret": -0.0008,
+      "bars": 624
+    },
+    "vix_20_30": {
+      "sharpe": 0.94,
+      "ann_ret": 0.0665,
+      "bars": 232
+    },
+    "vix_ge_30": {
+      "sharpe": -0.3,
+      "ann_ret": -0.0315,
+      "bars": 72
+    },
+    "curve_inverted": {
+      "sharpe": -0.51,
+      "ann_ret": -0.0202,
+      "bars": 125
+    },
+    "curve_normal": {
+      "sharpe": 0.28,
+      "ann_ret": 0.0189,
+      "bars": 803
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.378,
+      "sharpe_delayed_1bar": 0.485,
+      "retained": 1.284
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.376,
+      "neighbour_median": 0.18,
+      "share_positive": 1.0,
+      "stability": 0.478
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.303,
+      "sharpe_median": 0.441
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.1474,
+      "random_median_ann": 0.1465,
+      "random_p95_ann": 0.2272,
+      "trades_actual": 100,
+      "p_value": 0.48
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.1236,
+      "maxdd_p95": -0.1846,
+      "final_p05": 0.7633,
+      "final_median": 0.7633
+    }
+  },
+  "recommended_overlay": "equity_ma_8",
+  "kelly_fraction": 0.074,
+  "oos_csv": "results/H035_supertrend_flip_metals_1w_oos.csv",
+  "validated_at": "2026-10-17T09:02:05+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

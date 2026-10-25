@@ -1,0 +1,195 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS too short (2.76y < 3.0y)",
+    "DSR 0.034 < 0.9 (luck not excluded after 169 trials)",
+    "OOS Sharpe (excess of T-bill) -0.197 < 0.5",
+    "bootstrap P(SR>0) 0.531 < 0.85",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.89 > 0.1 (best variant may be data-mined)",
+    "1-bar delay keeps only -183% of Sharpe (latency-fragile)"
+  ],
+  "strategy": "donchian_breakout",
+  "kind": "rule",
+  "universe": "crypto_major",
+  "timeframe": "1h",
+  "for_system": "karma_perp_bot",
+  "spec": {
+    "id": "H032",
+    "rule": "donchian_breakout",
+    "universe": "crypto_major",
+    "timeframe": "1h",
+    "for_system": "karma_perp_bot",
+    "start": "2022-01-01",
+    "filters": [
+      "none",
+      "htf_week_sma10"
+    ],
+    "side": "both",
+    "train_years": 1,
+    "test_months": 2,
+    "status": "active"
+  },
+  "variant": "donchian_breakout|entry=100,exit=20|f=htf_week_sma10|x=stop_pct=0.05,tp_pct=0.1|size=atr_risk0.01",
+  "params": {
+    "entry": 100,
+    "exit": 20,
+    "_filter": "htf_week_sma10",
+    "_exit": 16,
+    "_size": 2
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.197,
+  "pbo": 0.165,
+  "reality_check_p": 0.89,
+  "dsr": 0.034,
+  "n_trials": 169,
+  "oos": {
+    "start": "2024-01-13 02:00:00",
+    "end": "2026-10-17 07:00:00",
+    "years": 2.76,
+    "cagr": -0.0207,
+    "vol": 0.2083,
+    "sharpe": 0.003,
+    "sharpe_excess_rf": -0.197,
+    "sortino": -0.285,
+    "max_dd": -0.3574,
+    "max_dd_bars": 6411,
+    "calmar": -0.058,
+    "ulcer": 0.1404,
+    "var95": -0.0018,
+    "cvar95": -0.0051,
+    "omega": 1.0,
+    "tail_ratio": 0.979,
+    "skew": 0.74,
+    "kurtosis": 110.102,
+    "hit_rate": 0.265,
+    "psr": 0.502,
+    "time_in_market": null,
+    "turnover_ann": 86.5,
+    "bench_cagr": -0.0536,
+    "bench_sharpe": 0.258,
+    "info_ratio": -0.237,
+    "beta": -0.039,
+    "up_capture": -0.024,
+    "down_capture": -0.024
+  },
+  "trade_stats": {
+    "n_trades": 1381,
+    "trades_per_year": 500.3,
+    "win_rate": 0.376,
+    "avg_trade": 0.0051,
+    "median_trade": -0.0146,
+    "avg_win": 0.0662,
+    "avg_loss": -0.0317,
+    "profit_factor": 1.256,
+    "payoff": 2.086,
+    "expectancy_r": 0.101,
+    "sqn": 0.92,
+    "kelly_fraction": 0.077,
+    "max_consec_losses": 22,
+    "avg_bars": 32.5,
+    "avg_bars_win": 43.2,
+    "avg_bars_loss": 26.1,
+    "avg_mfe": 0.0422,
+    "avg_mae": -0.0242,
+    "edge_ratio": 1.74,
+    "exit_reasons": {
+      "signal": 784,
+      "target": 300,
+      "stop": 297
+    },
+    "long_short": {
+      "-1": {
+        "count": 733,
+        "mean": 0.004
+      },
+      "1": {
+        "count": 648,
+        "mean": 0.0062
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.59,
+      "ann_ret": 0.091,
+      "bars": 17038
+    },
+    "bear": {
+      "sharpe": -0.71,
+      "ann_ret": -0.2141,
+      "bars": 7160
+    },
+    "calm": {
+      "sharpe": 1.05,
+      "ann_ret": 0.2258,
+      "bars": 11214
+    },
+    "stressed": {
+      "sharpe": -0.96,
+      "ann_ret": -0.1937,
+      "bars": 12984
+    },
+    "vix_lt_20": {
+      "sharpe": 0.33,
+      "ann_ret": 0.0683,
+      "bars": 19614
+    },
+    "vix_20_30": {
+      "sharpe": -1.21,
+      "ann_ret": -0.2645,
+      "bars": 4080
+    },
+    "vix_ge_30": {
+      "sharpe": -4.46,
+      "ann_ret": -0.4821,
+      "bars": 504
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.076,
+      "sharpe_delayed_1bar": -0.138,
+      "retained": -1.829
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.075,
+      "neighbour_median": 0.126,
+      "share_positive": 1.0,
+      "stability": 1.673
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": -0.093,
+      "sharpe_median": 0.04
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.0856,
+      "random_median_ann": -0.615,
+      "random_p95_ann": -0.1721,
+      "trades_actual": 2331,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.2441,
+      "maxdd_p95": -0.358,
+      "final_p05": 1.7586,
+      "final_median": 1.7586
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": 0.077,
+  "oos_csv": "results/H032_donchian_breakout_crypto_major_1h_oos.csv",
+  "validated_at": "2026-10-17T09:11:25+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-17 07:00:00"
+}

@@ -1,0 +1,135 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS too short (2.76y < 3.0y)",
+    "DSR 0.146 < 0.9 (luck not excluded after 20 trials)",
+    "OOS Sharpe (excess of T-bill) -0.945 < 0.5",
+    "bootstrap P(SR>0) 0.257 < 0.85",
+    "only 33% of OOS years positive",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.849 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.876 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "ts_momentum",
+  "kind": "strategy",
+  "universe": "crypto_major",
+  "timeframe": "1d",
+  "for_system": "karma_perp_bot",
+  "spec": {
+    "id": "H009",
+    "strategy": "ts_momentum",
+    "universe": "crypto_major",
+    "for_system": "karma_perp_bot",
+    "start": "2020-01-01",
+    "status": "active"
+  },
+  "variant": "ts_momentum|lookback=252,vol_target=0.15|overlay=vt10",
+  "params": {
+    "lookback": 252,
+    "vol_target": 0.15,
+    "_overlay": "vt10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "BNB/USDT": 0.0448,
+    "BTC/USDT": 0.0415,
+    "ETH/USDT": 0.0293,
+    "SOL/USDT": 0.0277,
+    "LINK/USDT": 0.0228,
+    "AVAX/USDT": 0.0193
+  },
+  "gate_sharpe": -0.945,
+  "pbo": 0.849,
+  "reality_check_p": 0.876,
+  "dsr": 0.146,
+  "n_trials": 20,
+  "oos": {
+    "start": "2024-01-12 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 2.76,
+    "cagr": -0.0308,
+    "vol": 0.0743,
+    "sharpe": -0.384,
+    "sharpe_excess_rf": -0.945,
+    "sortino": -1.242,
+    "max_dd": -0.1411,
+    "max_dd_bars": 947,
+    "calmar": -0.218,
+    "ulcer": 0.0694,
+    "var95": -0.0067,
+    "cvar95": -0.0107,
+    "omega": 0.926,
+    "tail_ratio": 0.841,
+    "skew": -0.629,
+    "kurtosis": 9.867,
+    "hit_rate": 0.292,
+    "psr": 0.261,
+    "time_in_market": null,
+    "turnover_ann": 2.14,
+    "bench_cagr": -0.0775,
+    "bench_sharpe": 0.203,
+    "info_ratio": -0.268,
+    "beta": 0.08,
+    "up_capture": 0.076,
+    "down_capture": 0.085
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 0.32,
+      "ann_ret": 0.0242,
+      "bars": 712
+    },
+    "bear": {
+      "sharpe": -2.26,
+      "ann_ret": -0.1549,
+      "bars": 297
+    },
+    "calm": {
+      "sharpe": 0.1,
+      "ann_ret": 0.007,
+      "bars": 493
+    },
+    "stressed": {
+      "sharpe": -0.79,
+      "ann_ret": -0.0624,
+      "bars": 516
+    },
+    "vix_lt_20": {
+      "sharpe": 0.2,
+      "ann_ret": 0.0151,
+      "bars": 818
+    },
+    "vix_20_30": {
+      "sharpe": -3.16,
+      "ann_ret": -0.2442,
+      "bars": 170
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.912,
+      "sharpe_delayed_1bar": 0.91,
+      "retained": 0.998
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.86,
+      "neighbour_median": 0.857,
+      "share_positive": 1.0,
+      "stability": 0.997
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.905,
+      "sharpe_median": 0.908
+    }
+  },
+  "recommended_overlay": "equity_ma_60",
+  "kelly_fraction": null,
+  "oos_csv": "results/H009_ts_momentum_crypto_major_1d_oos.csv",
+  "validated_at": "2026-10-17T08:58:04+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

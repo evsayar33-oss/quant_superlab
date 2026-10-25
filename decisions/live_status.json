@@ -1,0 +1,20 @@
+{
+  "H052": {
+    "live_bars": 36,
+    "live_return": -0.0075,
+    "live_sharpe": -1.145,
+    "live_max_dd": -0.0404,
+    "degraded": false,
+    "why": "ok",
+    "checked_at": "2026-10-23T21:44:27+00:00"
+  },
+  "H054": {
+    "live_bars": 36,
+    "live_return": -0.0081,
+    "live_sharpe": -1.164,
+    "live_max_dd": -0.0424,
+    "degraded": false,
+    "why": "ok",
+    "checked_at": "2026-10-23T21:44:27+00:00"
+  }
+}

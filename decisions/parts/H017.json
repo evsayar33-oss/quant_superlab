@@ -1,0 +1,218 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (USD, excess of US T-bill) -0.696 < 0.5",
+    "OOS MaxDD -0.8252 worse than -0.45 (local or USD)",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.996 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "volume_breakout",
+  "kind": "rule",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_orderflow_quant",
+  "spec": {
+    "id": "H017",
+    "rule": "volume_breakout",
+    "universe": "bist30",
+    "for_system": "bist_orderflow_quant",
+    "start": "2012-01-01",
+    "filters": [
+      "none",
+      "trend_sma200"
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "volume_breakout|n=20,rv=2.0|f=trend_sma200|x=trail_atr=3.0,use_signal_exit=False|size=atr_risk0.02|overlay=vt10",
+  "params": {
+    "n": 20,
+    "rv": 2.0,
+    "_filter": "trend_sma200",
+    "_exit": 40,
+    "_size": 3,
+    "_overlay": "vt10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "AKBNK.IS",
+      "ARCLK.IS",
+      "ASELS.IS",
+      "BIMAS.IS",
+      "EKGYO.IS",
+      "ENKAI.IS",
+      "EREGL.IS",
+      "FROTO.IS",
+      "GUBRF.IS",
+      "HEKTS.IS",
+      "ISCTR.IS",
+      "KCHOL.IS",
+      "KRDMD.IS",
+      "PETKM.IS",
+      "SAHOL.IS",
+      "SASA.IS",
+      "SISE.IS",
+      "TCELL.IS",
+      "THYAO.IS",
+      "TOASO.IS",
+      "TUPRS.IS",
+      "YKBNK.IS",
+      "TTKOM.IS",
+      "TAVHL.IS",
+      "OYAKC.IS",
+      "MGROS.IS",
+      "PGSUS.IS"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.696,
+  "pbo": 0.45,
+  "reality_check_p": 0.996,
+  "dsr": 0.999,
+  "n_trials": 165,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.1348,
+    "vol": 0.0941,
+    "sharpe": 1.391,
+    "sharpe_excess_rf": 1.156,
+    "sortino": 1.731,
+    "max_dd": -0.1153,
+    "max_dd_bars": 702,
+    "calmar": 1.169,
+    "ulcer": 0.039,
+    "var95": -0.0077,
+    "cvar95": -0.014,
+    "omega": 1.382,
+    "tail_ratio": 1.363,
+    "skew": -0.28,
+    "kurtosis": 12.516,
+    "hit_rate": 0.413,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 7.92,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": -1.17,
+    "beta": 0.178,
+    "up_capture": 0.226,
+    "down_capture": 0.195
+  },
+  "trade_stats": {
+    "n_trades": 353,
+    "trades_per_year": 32.8,
+    "win_rate": 0.535,
+    "avg_trade": 0.0649,
+    "median_trade": 0.0128,
+    "avg_win": 0.1689,
+    "avg_loss": -0.055,
+    "profit_factor": 3.537,
+    "payoff": 3.069,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.384,
+    "max_consec_losses": 11,
+    "avg_bars": 20.0,
+    "avg_bars_win": 29.8,
+    "avg_bars_loss": 8.7,
+    "avg_mfe": 0.1845,
+    "avg_mae": -0.0348,
+    "edge_ratio": 5.305,
+    "exit_reasons": {
+      "stop": 353
+    },
+    "long_short": {
+      "1": {
+        "count": 353,
+        "mean": 0.0649
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 1.94,
+      "ann_ret": 0.1954,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": -0.96,
+      "ann_ret": -0.0661,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 2.03,
+      "ann_ret": 0.2106,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 0.52,
+      "ann_ret": 0.0423,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 1.17,
+      "ann_ret": 0.1141,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": 2.18,
+      "ann_ret": 0.2007,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": 0.73,
+      "ann_ret": 0.0365,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 0.71,
+      "ann_ret": 0.0679,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 1.59,
+      "ann_ret": 0.1489,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.357,
+      "sharpe_delayed_1bar": 1.311,
+      "retained": 0.966
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.275,
+      "sharpe_median": 1.352
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.4883,
+      "random_median_ann": 0.3438,
+      "random_p95_ann": 0.4001,
+      "trades_actual": 403,
+      "p_value": 0.04
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.1247,
+      "maxdd_p95": -0.181,
+      "final_p05": 52.9625,
+      "final_median": 52.9625
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": 0.384,
+  "oos_csv": "results/H017_volume_breakout_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:57:01+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

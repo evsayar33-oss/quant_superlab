@@ -1,0 +1,52 @@
+name: Asset book
+
+# H073 per-asset strategy book (config/assetbook.yaml): one rule per asset for one bot on Bitget perps,
+# Fibonacci premium/discount family included. Report-only: never writes decisions/registry.json.
+# Quarterly + by hand. Same pre-registered rules every run; the time machine and the holdout move with the data.
+on:
+  schedule:
+    - cron: "41 5 12 1,4,7,10 *"
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: "asset:tf list (empty = all), e.g. BTC:1d,SPX:1d"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  assetbook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: assetbook-data-${{ github.run_id }}
+          restore-keys: |
+            assetbook-data-
+      - name: Tests
+        run: python tests/test_core.py
+      - name: Study
+        env:
+          LAB_CACHE_HOURS: "0"
+          LAB_WORKERS: "4"
+        run: python -m lab.assetbook ${{ github.event.inputs.jobs && format('--jobs {0}', github.event.inputs.jobs) || '' }}
+      - name: Commit result
+        run: |
+          git config user.name "quant-lab-bot"; git config user.email "actions@users.noreply.github.com"
+          cp -r decisions/assetbook /tmp/assetbook_dec
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            mkdir -p decisions/assetbook && cp -r /tmp/assetbook_dec/. decisions/assetbook/
+            git add decisions/assetbook
+            git diff --cached --quiet && exit 0
+            git commit -q -m "Asset book $(date -u +%F)" && git push -q origin HEAD:main && exit 0
+            sleep 7
+          done

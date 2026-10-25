@@ -1,0 +1,151 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.01 < 0.9 (luck not excluded after 38 trials)",
+    "OOS Sharpe (USD, excess of US T-bill) -1.478 < 0.5",
+    "OOS MaxDD -0.9432 worse than -0.45 (local or USD)",
+    "bootstrap P(SR>0) 0.598 < 0.85",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.737 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.99 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "pairs_zscore",
+  "kind": "strategy",
+  "universe": "bist_banks",
+  "timeframe": "1d",
+  "for_system": "bist_shock_quant",
+  "spec": {
+    "id": "H025",
+    "strategy": "pairs_zscore",
+    "universe": "bist_banks",
+    "for_system": "bist_shock_quant",
+    "start": "2012-01-01",
+    "status": "active"
+  },
+  "variant": "pairs_zscore|form=126,entry_z=1.5,min_corr=0.6,hedge=ratio",
+  "params": {
+    "form": 126,
+    "entry_z": 1.5,
+    "min_corr": 0.6,
+    "hedge": "ratio"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "TSKB.IS": 0.3,
+    "AKBNK.IS": 0.1,
+    "ISCTR.IS": -0.05,
+    "ALBRK.IS": -0.05,
+    "GARAN.IS": -0.1,
+    "VAKBN.IS": -0.1,
+    "YKBNK.IS": -0.1
+  },
+  "gate_sharpe": -1.478,
+  "pbo": 0.737,
+  "reality_check_p": 0.99,
+  "dsr": 0.01,
+  "n_trials": 38,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.0014,
+    "vol": 0.0339,
+    "sharpe": 0.059,
+    "sharpe_excess_rf": -0.592,
+    "sortino": -0.843,
+    "max_dd": -0.141,
+    "max_dd_bars": 2523,
+    "calmar": 0.01,
+    "ulcer": 0.0713,
+    "var95": -0.003,
+    "cvar95": -0.0055,
+    "omega": 1.017,
+    "tail_ratio": 0.895,
+    "skew": 0.714,
+    "kurtosis": 21.292,
+    "hit_rate": 0.239,
+    "psr": 0.576,
+    "time_in_market": null,
+    "turnover_ann": 5.31,
+    "bench_cagr": 0.2953,
+    "bench_sharpe": 0.917,
+    "info_ratio": -0.902,
+    "beta": -0.006,
+    "up_capture": -0.01,
+    "down_capture": -0.013
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": -0.19,
+      "ann_ret": -0.0054,
+      "bars": 1825
+    },
+    "bear": {
+      "sharpe": 0.38,
+      "ann_ret": 0.0164,
+      "bars": 929
+    },
+    "calm": {
+      "sharpe": -0.5,
+      "ann_ret": -0.0156,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 0.59,
+      "ann_ret": 0.0215,
+      "bars": 1304
+    },
+    "vix_lt_20": {
+      "sharpe": -0.02,
+      "ann_ret": -0.0009,
+      "bars": 1930
+    },
+    "vix_20_30": {
+      "sharpe": 0.28,
+      "ann_ret": 0.0086,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": 0.99,
+      "ann_ret": 0.0091,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": -1.36,
+      "ann_ret": -0.0274,
+      "bars": 612
+    },
+    "curve_normal": {
+      "sharpe": 0.28,
+      "ann_ret": 0.0104,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.04,
+      "sharpe_delayed_1bar": 0.144,
+      "retained": 3.602
+    },
+    "neighbourhood": {
+      "neighbours": 5,
+      "best_sharpe": 0.039,
+      "neighbour_median": 0.078,
+      "share_positive": 0.6,
+      "stability": 1.983
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.045,
+      "sharpe_median": 0.123
+    }
+  },
+  "recommended_overlay": "equity_ma_128",
+  "kelly_fraction": null,
+  "oos_csv": "results/H025_pairs_zscore_bist_banks_1d_oos.csv",
+  "validated_at": "2026-10-17T08:59:06+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

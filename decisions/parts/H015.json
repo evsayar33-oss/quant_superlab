@@ -1,0 +1,142 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS MaxDD -0.5041 worse than -0.45 (local or USD)"
+  ],
+  "strategy": "qvm_composite",
+  "kind": "strategy",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_orderflow_quant",
+  "spec": {
+    "id": "H015",
+    "strategy": "qvm_composite",
+    "universe": "bist30",
+    "for_system": "bist_orderflow_quant",
+    "start": "2012-01-01",
+    "status": "active"
+  },
+  "variant": "qvm_composite|top_n=5,w_value=0.5,w_mom=0.33",
+  "params": {
+    "top_n": 5,
+    "w_value": 0.5,
+    "w_mom": 0.33
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "ASELS.IS": 0.2,
+    "BIMAS.IS": 0.2,
+    "KRDMD.IS": 0.2,
+    "THYAO.IS": 0.2,
+    "TUPRS.IS": 0.2
+  },
+  "gate_sharpe": 0.614,
+  "pbo": 0.183,
+  "reality_check_p": 0.004,
+  "dsr": 1.0,
+  "n_trials": 32,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.5181,
+    "vol": 0.2277,
+    "sharpe": 1.949,
+    "sharpe_excess_rf": 1.851,
+    "sortino": 2.833,
+    "max_dd": -0.2554,
+    "max_dd_bars": 356,
+    "calmar": 2.029,
+    "ulcer": 0.0735,
+    "var95": -0.0189,
+    "cvar95": -0.0311,
+    "omega": 1.434,
+    "tail_ratio": 1.278,
+    "skew": -0.175,
+    "kurtosis": 6.308,
+    "hit_rate": 0.547,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 5.46,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": 0.258,
+    "beta": 0.687,
+    "up_capture": 0.741,
+    "down_capture": 0.628
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 2.77,
+      "ann_ret": 0.6509,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": -0.94,
+      "ann_ret": -0.1884,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 2.87,
+      "ann_ret": 0.5069,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 1.37,
+      "ann_ret": 0.3736,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 2.03,
+      "ann_ret": 0.4165,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": 2.03,
+      "ann_ret": 0.554,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": 1.12,
+      "ann_ret": 0.3039,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 0.56,
+      "ann_ret": 0.125,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 2.34,
+      "ann_ret": 0.535,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.666,
+      "sharpe_delayed_1bar": 1.657,
+      "retained": 0.995
+    },
+    "neighbourhood": {
+      "neighbours": 5,
+      "best_sharpe": 1.607,
+      "neighbour_median": 1.584,
+      "share_positive": 1.0,
+      "stability": 0.985
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.638,
+      "sharpe_median": 1.661
+    }
+  },
+  "recommended_overlay": "equity_ma_42",
+  "kelly_fraction": null,
+  "oos_csv": "results/H015_qvm_composite_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:55:55+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

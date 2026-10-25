@@ -1,0 +1,139 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": "WATCH",
+  "reasons": [
+    "DSR 0.891 < 0.9 (luck not excluded after 20 trials)",
+    "OOS Sharpe (excess of T-bill) 0.428 < 0.5",
+    "OOS MaxDD -0.5064 worse than -0.45 (local or USD)",
+    "PBO 0.536 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.598 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "st_reversal",
+  "kind": "strategy",
+  "universe": "metals_etf",
+  "timeframe": "1w",
+  "for_system": "metals",
+  "spec": {
+    "id": "H048",
+    "strategy": "st_reversal",
+    "universe": "metals_etf",
+    "timeframe": "1w",
+    "for_system": "metals",
+    "start": "2008-01-01",
+    "status": "active"
+  },
+  "variant": "st_reversal|lookback=5,top_n=3",
+  "params": {
+    "lookback": 5,
+    "top_n": 3
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "SLV": 0.3333,
+    "PALL": 0.3333,
+    "SIL": 0.3333
+  },
+  "gate_sharpe": 0.428,
+  "pbo": 0.536,
+  "reality_check_p": 0.598,
+  "dsr": 0.891,
+  "n_trials": 20,
+  "oos": {
+    "start": "2012-01-06 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 14.78,
+    "cagr": 0.0948,
+    "vol": 0.2402,
+    "sharpe": 0.496,
+    "sharpe_excess_rf": 0.428,
+    "sortino": 0.653,
+    "max_dd": -0.5064,
+    "max_dd_bars": 397,
+    "calmar": 0.187,
+    "ulcer": 0.2972,
+    "var95": -0.048,
+    "cvar95": -0.0726,
+    "omega": 1.22,
+    "tail_ratio": 1.146,
+    "skew": 0.39,
+    "kurtosis": 3.207,
+    "hit_rate": 0.465,
+    "psr": 0.973,
+    "time_in_market": null,
+    "turnover_ann": 19.33,
+    "bench_cagr": 0.0622,
+    "bench_sharpe": 0.373,
+    "info_ratio": 0.24,
+    "beta": 0.868,
+    "up_capture": 0.892,
+    "down_capture": 0.824
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.71,
+      "ann_ret": 0.3979,
+      "bars": 446
+    },
+    "bear": {
+      "sharpe": -1.09,
+      "ann_ret": -0.2621,
+      "bars": 326
+    },
+    "calm": {
+      "sharpe": 0.33,
+      "ann_ret": 0.069,
+      "bars": 399
+    },
+    "stressed": {
+      "sharpe": 0.64,
+      "ann_ret": 0.1729,
+      "bars": 373
+    },
+    "vix_lt_20": {
+      "sharpe": 0.64,
+      "ann_ret": 0.1408,
+      "bars": 579
+    },
+    "vix_20_30": {
+      "sharpe": 0.23,
+      "ann_ret": 0.0619,
+      "bars": 163
+    },
+    "curve_inverted": {
+      "sharpe": 0.41,
+      "ann_ret": 0.099,
+      "bars": 125
+    },
+    "curve_normal": {
+      "sharpe": 0.51,
+      "ann_ret": 0.1231,
+      "bars": 647
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.429,
+      "sharpe_delayed_1bar": 0.361,
+      "retained": 0.843
+    },
+    "neighbourhood": {
+      "neighbours": 3,
+      "best_sharpe": 0.427,
+      "neighbour_median": 0.396,
+      "share_positive": 1.0,
+      "stability": 0.928
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.395,
+      "sharpe_median": 0.437
+    }
+  },
+  "recommended_overlay": "dd_brake_0.2",
+  "kelly_fraction": null,
+  "oos_csv": "results/H048_st_reversal_metals_etf_1w_oos.csv",
+  "validated_at": "2026-10-17T09:04:50+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

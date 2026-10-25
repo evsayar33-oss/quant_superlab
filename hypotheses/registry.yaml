@@ -1,0 +1,756 @@
+# Hypothesis registry: one entry = one claim to test. The weekly workflow re-validates every
+# entry with status: active. A bot may act on a hypothesis ONLY when decisions/registry.json
+# shows verdict ACCEPT for it (lab/client.py enforces this).
+#
+# Two kinds of entry:
+#   strategy: <name>     weight strategy (factor / rotation / calendar)     -> python run.py --list
+#   rule: <name>         entry/exit rule run through the trade engine
+#       filters: [none, trend_sma200, ...] | all       entry filters to sweep
+#       exits:   [0, 1, 5] | all                       exit configs (indexes in run.py --list). OPT-IN:
+#                                                      default = [0] (the rule's own exit); all = every exit, staged
+#       side:    long | short | both
+#       max_positions: 10                              optional slot limit
+# Common: universe, for_system, start, status (active|retired), note, train_years, test_months
+#   overlays: [vt15, dd20] | all                       portfolio overlays to try (OPT-IN, default none)
+#   tickers: [SNX/USDT]                                test a subset of the universe
+#   protection_study: false                            skip the capital-protection diagnostic (default on)
+# Ids are never reused. Gate changes are logged in hypotheses/CHANGELOG.md.
+
+# ---------------------------------------------------------------- BIST
+- id: H001
+  strategy: xs_momentum
+  universe: bist30
+  for_system: bist_orderflow_quant
+  start: "2012-01-01"
+  status: active
+  note: "12-1 momentum on BIST30; candidate stock filter for the orderflow meta-engine"
+
+- id: H002
+  strategy: low_vol
+  universe: bist30
+  for_system: bist_shock_quant
+  start: "2012-01-01"
+  status: active
+  note: "Low-vol anomaly in a high-inflation EM market"
+
+- id: H003
+  strategy: st_reversal
+  universe: bist30
+  for_system: bist_shock_quant
+  start: "2012-01-01"
+  status: active
+  note: "Weekly losers bounce; related to shock-recovery logic"
+
+- id: H004
+  strategy: turn_of_month
+  universe: bist_index
+  for_system: bist_orderflow_quant
+  start: "2010-01-01"
+  status: active
+  note: "Calendar effect on XU100 as an entry-timing filter"
+
+- id: H010
+  strategy: high_52w
+  universe: bist30
+  for_system: bist_orderflow_quant
+  start: "2012-01-01"
+  status: active
+  note: "52-week-high anchoring"
+
+- id: H011
+  rule: rsi_reversal
+  universe: bist30
+  for_system: bist_shock_quant
+  start: "2012-01-01"
+  filters: [none, trend_sma200, regime_bench200]
+  side: long
+  status: active
+  note: "RSI 2..28 oversold entries with stops/targets; shock-recovery entry timing"
+
+- id: H012
+  rule: wavetrend_reversal
+  universe: bist30
+  for_system: bist_orderflow_quant
+  start: "2012-01-01"
+  filters: [none, trend_sma200, volume_confirm]
+  side: long
+  status: active
+  note: "WaveTrend (ATVS core) cross from oversold"
+
+- id: H013
+  rule: supertrend_flip
+  universe: bist30
+  for_system: bist_orderflow_quant
+  start: "2012-01-01"
+  filters: [none, adx20, regime_bench200]
+  side: long
+  status: active
+  note: "Trend entry with ATR bands"
+
+- id: H014
+  rule: donchian_breakout
+  universe: bist30
+  for_system: bist_orderflow_quant
+  start: "2012-01-01"
+  filters: [none, volume_confirm, regime_bench200]
+  side: long
+  status: active
+  note: "Turtle breakout on BIST30"
+
+- id: H015
+  strategy: qvm_composite
+  universe: bist30
+  for_system: bist_orderflow_quant
+  start: "2012-01-01"
+  status: active
+  note: "Value + quality + momentum composite (Is Yatirim fundamentals)"
+
+- id: H016
+  strategy: value_ep
+  universe: bist30
+  for_system: bist_shock_quant
+  start: "2012-01-01"
+  status: active
+  note: "Earnings yield in an inflationary market"
+
+- id: H017
+  rule: volume_breakout
+  universe: bist30
+  for_system: bist_orderflow_quant
+  start: "2012-01-01"
+  filters: [none, trend_sma200]
+  side: long
+  status: active
+  note: "Breakout confirmed by a volume surge (orderflow proxy)"
+
+# ---------------------------------------------------------------- US
+- id: H005
+  strategy: xs_momentum
+  universe: sp_megacap
+  for_system: global_momentum_quant
+  start: "2010-01-01"
+  status: active
+  note: "US arm of GMQ"
+
+- id: H007
+  strategy: ts_momentum
+  universe: us_sectors
+  for_system: sp500_shock_quant
+  start: "2010-01-01"
+  status: active
+  note: "Sector trend following"
+
+- id: H008
+  rule: rsi_reversal
+  universe: sp_megacap
+  for_system: us_f1_bot
+  start: "2010-01-01"
+  filters: [trend_sma200, regime_bench200]
+  side: long
+  status: active
+  note: "Connors-style RSI dip-buy in an uptrend as entry timing"
+
+- id: H018
+  strategy: magic_formula
+  universe: sp_megacap
+  for_system: us_f1_bot
+  start: "2011-01-01"
+  status: active
+  note: "Greenblatt with SEC point-in-time fundamentals"
+
+- id: H019
+  strategy: piotroski_f
+  universe: sp_megacap
+  for_system: us_f1_bot
+  start: "2011-01-01"
+  status: active
+  note: "F-score quality screen"
+
+- id: H020
+  rule: bollinger_reversion
+  universe: sp_megacap
+  for_system: sp500_shock_quant
+  start: "2010-01-01"
+  filters: [trend_sma200, low_vol]
+  side: long
+  status: active
+  note: "Band mean reversion inside long-term uptrends"
+
+- id: H021
+  rule: ibs_reversion
+  universe: us_sectors
+  for_system: sp500_shock_quant
+  start: "2010-01-01"
+  filters: [none, trend_sma200]
+  side: long
+  status: active
+  note: "Internal bar strength on sector ETFs"
+
+# ---------------------------------------------------------------- cross-asset / macro
+- id: H006
+  strategy: dual_momentum
+  universe: global_assets
+  for_system: macro-model
+  start: "2008-01-01"
+  status: active
+  note: "Cross-asset risk-on/off allocation"
+
+- id: H022
+  rule: macd_cross
+  universe: global_assets
+  for_system: macro-model
+  start: "2008-01-01"
+  filters: [none, trend_sma200]
+  side: long
+  status: active
+  note: "MACD variants across asset classes"
+
+# ---------------------------------------------------------------- crypto
+- id: H009
+  strategy: ts_momentum
+  universe: crypto_major
+  for_system: karma_perp_bot
+  start: "2020-01-01"
+  status: active
+  note: "Crypto trend following for the Bitget perp book"
+
+- id: H023
+  rule: supertrend_flip
+  universe: crypto_major
+  for_system: karma_perp_bot
+  start: "2020-01-01"
+  filters: [none, adx20]
+  side: both
+  status: active
+  note: "Long/short supertrend on perps"
+
+- id: H024
+  rule: donchian_breakout
+  universe: crypto_major
+  for_system: karma_perp_bot
+  start: "2020-01-01"
+  filters: [none, volume_confirm]
+  side: both
+  train_years: 2
+  test_months: 3
+  status: active
+  note: "Turtle breakout long/short on perps"
+
+# ---------------------------------------------------------------- multi-timeframe, stat-arb, ML, event, macro
+- id: H025
+  strategy: pairs_zscore
+  universe: bist_banks
+  for_system: bist_shock_quant
+  start: "2012-01-01"
+  status: active
+  note: "Bank-pair mean reversion (market-neutral)"
+
+- id: H026
+  strategy: ml_ridge_rank
+  universe: sp_megacap
+  for_system: global_momentum_quant
+  start: "2010-01-01"
+  status: active
+  note: "Walk-forward ridge ranking on momentum/vol/RSI features"
+
+- id: H027
+  strategy: macro_risk_switch
+  universe: global_assets
+  for_system: macro-model
+  start: "2008-01-01"
+  status: active
+  note: "VIX + yield curve + trend risk switch"
+
+- id: H028
+  rule: rsi_reversal
+  universe: crypto_major
+  timeframe: 4h
+  for_system: karma_perp_bot
+  start: "2021-01-01"
+  filters: [none, htf_week_sma10]
+  side: both
+  train_years: 1.5
+  test_months: 3
+  status: active
+  note: "4h RSI reversal long/short with weekly trend filter"
+
+- id: H029
+  rule: supertrend_flip
+  universe: bist30
+  timeframe: 1w
+  for_system: bist_orderflow_quant
+  start: "2010-01-01"
+  filters: [none, usdtry_calm]
+  side: long
+  status: active
+  note: "Weekly supertrend swing entries on BIST30"
+
+- id: H030
+  strategy: post_report_drift
+  universe: us_largecap_100
+  for_system: us_f1_bot
+  start: "2011-01-01"
+  status: active
+  note: "Post-report drift proxy with SEC filing dates (F1 filter research)"
+
+- id: H031
+  strategy: usdtry_hedge_switch
+  universe: bist_index
+  for_system: macro-model
+  start: "2010-01-01"
+  status: active
+  note: "Step out of BIST in lira stress"
+
+- id: H032
+  rule: donchian_breakout
+  universe: crypto_major
+  timeframe: 1h
+  for_system: karma_perp_bot
+  start: "2022-01-01"
+  filters: [none, htf_week_sma10]
+  side: both
+  train_years: 1
+  test_months: 2
+  status: active
+  note: "Intraday breakout long/short"
+
+# ---------------------------------------------------------------- metals (XAU, XAG, copper, PGMs)
+- id: H033
+  strategy: ts_momentum
+  universe: metals_etf
+  for_system: metals
+  start: "2010-01-01"
+  status: active
+  note: "Trend following across gold, silver, copper, platinum, palladium and miners"
+
+- id: H034
+  rule: donchian_breakout
+  universe: metals
+  for_system: metals
+  start: "2008-01-01"
+  filters: [none, trend_sma200, vix_below_25]
+  side: both
+  status: active
+  note: "Turtle breakout long/short on metal futures"
+
+- id: H035
+  rule: supertrend_flip
+  universe: metals
+  timeframe: 1w
+  for_system: metals
+  start: "2005-01-01"
+  filters: [none, curve_normal]
+  side: long
+  status: active
+  note: "Weekly supertrend swing entries on metals"
+
+- id: H036
+  strategy: pairs_zscore
+  universe: metals_etf
+  for_system: metals
+  start: "2010-01-01"
+  status: active
+  note: "Relative value: gold/silver, gold/miners, silver/miners mean reversion"
+
+- id: H037
+  rule: rsi_reversal
+  universe: metals_etf
+  for_system: metals
+  start: "2010-01-01"
+  filters: [trend_sma200, htf_week_sma30]
+  side: long
+  confirm: macd_cross
+  confirm_within: [0, 3, 5]
+  status: active
+  note: "Dip-buy in uptrend, RSI oversold confirmed by MACD"
+
+- id: H038
+  strategy: dual_momentum
+  universe: metals_etf
+  for_system: metals
+  start: "2010-01-01"
+  status: active
+  note: "Rotate into the strongest metal, cash when none is rising"
+
+- id: H039
+  strategy: macro_risk_switch
+  universe: metals_etf
+  for_system: metals
+  start: "2010-01-01"
+  status: active
+  note: "Hold metals only in favourable VIX / yield-curve / trend regime"
+
+# ---------------------------------------------------------------- metal drivers (DXY, real yields, ratios, COT, seasonality)
+- id: H040
+  strategy: real_yield_switch
+  universe: metals_etf
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Hold metals while real yields fall (TIP/IEF rising)"
+
+- id: H041
+  strategy: dxy_metal_switch
+  universe: metals_etf
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Hold metals while the dollar is weak"
+
+- id: H042
+  strategy: gold_silver_ratio
+  universe: metals_etf
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Gold/silver ratio extremes: rotate between gold and silver assets"
+
+- id: H043
+  strategy: copper_gold_rotation
+  universe: metals_etf
+  for_system: metals
+  start: "2010-01-01"
+  status: active
+  note: "Copper/gold ratio trend: industrial vs gold rotation"
+
+- id: H044
+  strategy: cot_contrarian
+  universe: metals
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Buy metals when speculators are extremely short (CFTC COT)"
+
+- id: H045
+  strategy: cot_commercial_follow
+  universe: metals
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Follow commercial hedgers' unusual net long positioning"
+
+- id: H046
+  strategy: ts_seasonality
+  universe: metals
+  for_system: metals
+  start: "2000-01-01"
+  status: active
+  note: "Own-month seasonality per metal (past years only)"
+
+- id: H047
+  strategy: dual_momentum
+  universe: metals_etf
+  for_system: metals
+  start: "2010-01-01"
+  status: retired
+  note: "Duplicate of H038 (H038 itself now searches stage-4 overlays) - retired"
+
+# ---------------------------------------------------------------- metals scan leads (2026-10-15 discovery scan)
+- id: H048
+  strategy: st_reversal
+  universe: metals_etf
+  timeframe: 1w
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Scan lead: weekly cross-metal reversal (WF OOS Sharpe 0.88 in scan)"
+
+- id: H049
+  strategy: st_reversal
+  universe: metals_etf
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Scan lead: daily-bar cross-metal reversal (WF OOS Sharpe 0.85 in scan)"
+
+- id: H050
+  strategy: copper_gold_rotation
+  universe: metals_etf
+  timeframe: 1w
+  for_system: metals
+  start: "2008-01-01"
+  status: active
+  note: "Scan lead: copper/gold rotation on weekly bars"
+
+- id: H051
+  strategy: gold_silver_ratio
+  universe: metals
+  timeframe: 1w
+  for_system: metals
+  start: "2005-01-01"
+  status: active
+  note: "Scan lead: gold/silver ratio on weekly futures bars"
+
+# ---------------------------------------------------------------- crypto core (fixed literature rules, no grid)
+- id: H052
+  strategy: core_dual_trend_vt
+  universe: crypto_core
+  timeframe: 4h
+  for_system: karma_perp_bot
+  start: "2018-01-01"
+  status: active
+  note: "Core study winner: BTC+ETH long/cash, SMA200 + TSMOM(30/90/180d) + 40% vol target. Fixed settings, 1 trial."
+
+- id: H053
+  strategy: core_tsmom_vt
+  universe: crypto_core
+  timeframe: 4h
+  for_system: karma_perp_bot
+  start: "2018-01-01"
+  status: active
+  note: "Core study: BTC+ETH long/cash, TSMOM(30/90/180d) + 40% vol target. Fixed settings, 1 trial."
+
+- id: H054
+  strategy: core_dual_trend_vt_band
+  universe: crypto_core
+  timeframe: 4h
+  for_system: karma_perp_bot
+  start: "2018-01-01"
+  status: active
+  note: "H052 + 10% no-trade band. Passed the pre-registered variant test (Sharpe above H052 full + all 3 windows)."
+
+
+# ---------------------------------------------------------------- market-neutral cross-section (config/xsec.yaml)
+- id: H055
+  strategy: xsec_momentum
+  universe: binance_usdtm_top30
+  timeframe: 1d
+  for_system: h054_spot_bot
+  start: "2021-01-01"
+  status: active
+  note: "Long top / short bottom tercile of 14d return, weekly, inverse-vol, dollar neutral, 15% vol target. Liu-Tsyvinski-Wu 2022; Borri et al. 2026; Han-Kang-Ryu 2024 (14d/7d)."
+
+- id: H056
+  strategy: xsec_funding_carry
+  universe: binance_usdtm_top30
+  timeframe: 1d
+  for_system: h054_spot_bot
+  start: "2021-01-01"
+  status: active
+  note: "Long lowest / short highest tercile of 7d mean funding, weekly, inverse-vol, dollar neutral, 15% vol target. Carry literature (Koijen et al.); crypto evidence non-peer-reviewed."
+
+- id: H057
+  strategy: cash_and_carry_btc_eth
+  universe: crypto_core
+  timeframe: 1d
+  for_system: h054_spot_bot
+  start: "2020-01-01"
+  status: active
+  note: "Long spot + short perp BTC/ETH (config/core.yaml funding_arb). Schmeling-Schrimpf-Todorov (BIS WP 1087)."
+
+- id: H058
+  strategy: xsec_low_vol
+  universe: binance_usdtm_top30
+  timeframe: 1d
+  for_system: h054_spot_bot
+  start: "2021-01-01"
+  status: active
+  note: "Long lowest / short highest tercile of 90d volatility, weekly, inverse-vol, dollar neutral, 15% vol target. Pyo-Jang 2026 (FRL); Borri et al. 2026 (contra)."
+
+- id: H059
+  strategy: xsec_value_onchain
+  universe: crypto
+  timeframe: 1w
+  for_system: none
+  start: "2021-01-01"
+  status: untestable
+  note: "Price / new-address value factor (Borri et al. 2026). Needs on-chain address data; no free source in our stack."
+
+- id: H061
+  strategy: cppi_floor80
+  universe: crypto_core
+  timeframe: 1d
+  for_system: h054_spot_bot
+  start: "2021-01-01"
+  status: active
+  note: "CPPI (Black-Jones 1987; Perold-Sharpe 1988): floor 80% of peak, multiplier 3. Risky = 50% bot + 50% H056, safe = H057. config/cppi.yaml."
+
+- id: H060
+  strategy: h056_scaled_mix
+  universe: binance_usdtm_top30
+  timeframe: 1d
+  for_system: h054_spot_bot
+  start: "2021-01-01"
+  status: active
+  note: "H056 at 25% vol alone (a) and 50/50 with the bot (b). Goal: more profit than the bot. config/h060.yaml."
+
+- id: H062
+  strategy: mega_screen
+  universe: crypto_alts, index_futures, metals, energy_futures
+  timeframe: 1d
+  for_system: h054_spot_bot
+  start: "2000-01-01"
+  status: active
+  note: "Mega multi-asset screen: every rule (technical, SMC, divergence, pivots, COT) x grid x R:R exit x side x filter + combos; same settings on every asset of a class; last 2 years locked; DSR over all trials. Pre-registered in config/mega.yaml. Output is a lead only."
+
+- id: H063
+  rule: vortex_cross
+  universe: metals
+  timeframe: 1d
+  for_system: paper_watch
+  start: "2000-01-01"
+  filters: [none]
+  exits: [13]
+  confirm: smc_order_block
+  confirm_params: {k: 5, max_age: 50}
+  confirm_within: [3]
+  side: long
+  status: paper
+  note: "H062 survivor (paper watch from 2026-10-22, config/watch.yaml): vortex_cross + smc_order_block confirm (3 bars), 2 ATR stop + 3R target, long. Passed random-entry and buy-and-hold checks at 3/3 cuts. Gate run: walk-forward picks the vortex n on past data only."
+
+- id: H064
+  rule: high_52w_break
+  universe: metals
+  timeframe: 1d
+  for_system: paper_watch
+  start: "2000-01-01"
+  filters: [none]
+  exits: [28]
+  confirm: smc_bos
+  confirm_params: {k: 5}
+  confirm_within: [3]
+  side: both
+  status: paper
+  note: "H062 survivor (paper watch from 2026-10-22): high_52w_break + smc_bos confirm (3 bars), 2 ATR stop + 3 ATR chandelier, both sides. Passed checks at 2/2 cuts."
+
+- id: H065
+  rule: ibs_reversion
+  universe: index_futures
+  timeframe: 1d
+  for_system: paper_watch
+  start: "2000-01-01"
+  filters: [trend_sma200]
+  exits: [0]
+  side: long
+  status: paper
+  note: "H062 survivor (paper watch from 2026-10-22): ibs_reversion + trend_sma200 filter, rule exit, long. Passed checks at 2/2 cuts."
+
+# ---- 2026-10-21: free "different information" rules (seasonality, funding, macro filters). Pre-registered
+# before any result. Acceptance = decision gate ACCEPT (validation.GATE unchanged). Output of every run is read
+# once; no rerun with changed settings. See hypotheses/CHANGELOG.md for the trial count.
+- id: H066
+  rule: turn_of_month
+  universe: index_futures
+  timeframe: 1d
+  for_system: research_only
+  start: "2000-01-01"
+  filters: [none]
+  exits: [0]
+  side: long
+  status: active
+  note: "Turn-of-month effect (Ariel 1987; Lakonishok & Smidt 1988). Long from pre days before month end to post days into the next month. Calendar only, no extra data."
+
+- id: H067
+  rule: weekday_long
+  universe: index_futures
+  timeframe: 1d
+  for_system: research_only
+  start: "2000-01-01"
+  filters: [none]
+  exits: [0]
+  side: long
+  status: active
+  note: "Weekday effect (French 1980). Long one weekday only; walk-forward picks the day on past data. Expected weak: the effect is documented as faded."
+
+- id: H068
+  rule: halloween
+  universe: index_futures
+  timeframe: 1d
+  for_system: research_only
+  start: "2000-01-01"
+  filters: [none]
+  exits: [0]
+  side: long
+  status: active
+  note: "Halloween / sell in May (Bouman & Jacobsen 2002). Long in the winter half-year only."
+
+- id: H069
+  rule: funding_extreme
+  universe: crypto_alts
+  timeframe: 1d
+  for_system: research_only
+  start: "2019-10-01"
+  filters: [none]
+  exits: [0]
+  side: both
+  status: active
+  note: "Perp funding extremes as a contrarian crowding signal (Briese 2008 logic). Funding: Binance public files, shifted one bar. Coins without funding history give no signal."
+
+- id: H070
+  rule: ibs_reversion
+  universe: index_futures
+  timeframe: 1d
+  for_system: research_only
+  start: "2008-01-01"
+  filters: [vix_term_contango]
+  exits: [0]
+  side: long
+  status: active
+  note: "Question: does the VIX term-structure filter (VIX < 3-month VIX) make IBS reversion on index futures robust? Compare with H065 (SMA200 filter). Start 2008: ^VIX3M history."
+
+- id: H071
+  rule: ibs_reversion
+  universe: index_futures
+  timeframe: 1d
+  for_system: research_only
+  start: "2008-01-01"
+  filters: [credit_calm]
+  exits: [0]
+  side: long
+  status: active
+  note: "Question: does a credit filter (HYG/IEF above its 100-bar average) make IBS reversion on index futures robust? Start 2008: HYG history."
+
+# ---- 2026-10-24: synthesis study (both labs as one). Pre-registered in config/synthesis.yaml BEFORE any result.
+# Question: which published rules beat a plain US index investment (not cash) in EVERY sub-period of 1928-2026,
+# at 2x costs, with leverage paid at T-bill + spread? Umbrella id like H062: the output is a lead; survivors get
+# their own gate-ready ids.
+- id: H072
+  strategy: synthesis_study
+  universe: us_market_century, us_multi_asset_1988, spy_etf, crypto_core
+  timeframe: 1d
+  for_system: research_only
+  start: "1928-01-01"
+  status: study
+  note: "Families A0 (control: constant leverage), A1 trend+leverage (Faber 2007, Gayed-Bilello 2016), A2 vol-managed (Moreira-Muir 2017), A3 A1xA2, A4 top-decile momentum + trend filter, B1 index + TSMOM overlay (MOP 2012), B2 inverse-vol equity/bond/TSMOM with vol target, C replication on SPY + H054 crypto sleeve. 80 trials. Benchmark = the index, not cash. Time machine at 4 + 2 cuts."
+
+# ---- 2026-10-24: per-asset strategy book for one platform (owner's request after H072). Pre-registered in
+# config/assetbook.yaml BEFORE any result. Umbrella id like H062/H072: output is a lead only.
+- id: H073
+  strategy: asset_book
+  universe: BTC, ETH, SOL (1d + 4h), SPX, NDX, XAU, XAG, COPPER (1d) — Bitget USDT-M perps
+  timeframe: 1d
+  for_system: research_only
+  start: "2000-01-01"
+  status: study
+  note: "Per asset: F1 Fibonacci premium/discount (OTE) entries with Fibonacci stops/targets (1296 settings), F2 every lab/rules.py rule alone and with the Fibonacci premium/discount filter (1170), F3 Fibonacci OTE + second signal combos (144). About 2,610 trials per asset+timeframe, 11 jobs. Last 2 years locked; DSR per job; time machine at 6/4/2 years ago."
+
+# ---- 2026-10-24: the H054 core rule on every Bitget asset, unchanged (config/coreassets.yaml, pre-registered).
+- id: H074
+  strategy: core_rule_per_asset
+  universe: BTC, ETH, SOL, SPX, NDX, XAU, XAG, COPPER (1d) — Bitget USDT-M perps
+  timeframe: 1d
+  for_system: research_only
+  start: "2000-01-01"
+  status: study
+  note: "Same fixed rule as H052/H054 (SMA200 + TSMOM 30/90/180 + 40% vol target, 10% band, long or cash), no per-asset tuning, 8 trials. Acceptance per asset = config/core.yaml thresholds vs own buy-and-hold in full history and the last 6/4/2 years, at 1x and 2x costs. Passing assets become per-asset gate hypotheses."
+
+# ---- 2026-10-24: H074 lead (pre-registered acceptance passed on SOL). BTC and ETH are already traded by H054.
+- id: H075
+  strategy: core_dual_trend_vt_band
+  universe: crypto_major
+  tickers: [SOL/USDT]
+  timeframe: 4h
+  for_system: research_only
+  start: "2018-01-01"
+  status: active
+  note: "H074 lead: the unchanged H054 core rule on SOL alone (SMA200 + TSMOM 30/90/180 + 40% vol target + 10% band, long or cash). Passed config/coreassets.yaml acceptance on 1d in full history and the last 6/4/2 years at 1x and 2x costs. Short history (2020-08). Gate decides; for_system stays research_only until the owner wires a bot."
+
+# ---- 2026-10-25: learned per-asset model (config/mlbook.yaml, pre-registered). Umbrella id; output is a lead.
+- id: H076
+  strategy: ml_book
+  universe: BTC, ETH, SOL (1d + 4h), SPX, NDX, XAU, XAG, COPPER (1d)
+  timeframe: 1d
+  for_system: research_only
+  start: "2000-01-01"
+  status: study
+  note: "Walk-forward gradient boosting on all rule signals + Fibonacci position + regime features, long or long/short. 8 settings x 11 jobs = 88 trials. Owner target: CAGR >= 25% and longest recovery <= 600 days, in walk-forward OOS and the locked 2-year holdout."

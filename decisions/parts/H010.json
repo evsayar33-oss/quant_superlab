@@ -1,0 +1,149 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (USD, excess of US T-bill) -0.001 < 0.5",
+    "OOS MaxDD -0.5642 worse than -0.45 (local or USD)",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.609 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.378 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "high_52w",
+  "kind": "strategy",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_orderflow_quant",
+  "spec": {
+    "id": "H010",
+    "strategy": "high_52w",
+    "universe": "bist30",
+    "for_system": "bist_orderflow_quant",
+    "start": "2012-01-01",
+    "status": "active"
+  },
+  "variant": "high_52w|top_n=10",
+  "params": {
+    "top_n": 10
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "ASELS.IS": 0.1,
+    "BIMAS.IS": 0.1,
+    "EREGL.IS": 0.1,
+    "GARAN.IS": 0.1,
+    "KCHOL.IS": 0.1,
+    "KRDMD.IS": 0.1,
+    "THYAO.IS": 0.1,
+    "TUPRS.IS": 0.1,
+    "YKBNK.IS": 0.1,
+    "ALARK.IS": 0.1
+  },
+  "gate_sharpe": -0.001,
+  "pbo": 0.609,
+  "reality_check_p": 0.378,
+  "dsr": 1.0,
+  "n_trials": 17,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.2803,
+    "vol": 0.2153,
+    "sharpe": 1.256,
+    "sharpe_excess_rf": 1.154,
+    "sortino": 1.648,
+    "max_dd": -0.3274,
+    "max_dd_bars": 483,
+    "calmar": 0.856,
+    "ulcer": 0.095,
+    "var95": -0.0173,
+    "cvar95": -0.0323,
+    "omega": 1.277,
+    "tail_ratio": 1.218,
+    "skew": -0.665,
+    "kurtosis": 9.092,
+    "hit_rate": 0.5,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 12.28,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": -0.817,
+    "beta": 0.646,
+    "up_capture": 0.652,
+    "down_capture": 0.645
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.89,
+      "ann_ret": 0.4228,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": -1.04,
+      "ann_ret": -0.194,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 2.07,
+      "ann_ret": 0.3298,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 0.77,
+      "ann_ret": 0.2047,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 1.5,
+      "ann_ret": 0.3099,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": 0.82,
+      "ann_ret": 0.1946,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": 0.48,
+      "ann_ret": 0.1073,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 1.08,
+      "ann_ret": 0.2504,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 1.31,
+      "ann_ret": 0.2763,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.496,
+      "sharpe_delayed_1bar": 1.537,
+      "retained": 1.027
+    },
+    "neighbourhood": {
+      "neighbours": 2,
+      "best_sharpe": 1.47,
+      "neighbour_median": 1.301,
+      "share_positive": 1.0,
+      "stability": 0.885
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.433,
+      "sharpe_median": 1.482
+    }
+  },
+  "recommended_overlay": "vol_target_0.2",
+  "kelly_fraction": null,
+  "oos_csv": "results/H010_high_52w_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:54:53+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

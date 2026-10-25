@@ -1,0 +1,151 @@
+{
+ "books": {
+  "A": {
+   "id": "A",
+   "name": "Hepsi eşit ağırlık, 1x",
+   "select": "all",
+   "leverage": 1,
+   "members": [
+    "A0001",
+    "A0002",
+    "A0003",
+    "A0004",
+    "A0005",
+    "A0006",
+    "A0007",
+    "A0008",
+    "A0009",
+    "A0010",
+    "A0011",
+    "A0012",
+    "A0013",
+    "A0014",
+    "A0015",
+    "A0016",
+    "A0017",
+    "A0018",
+    "A0019",
+    "A0020",
+    "A0021",
+    "A0022",
+    "A0023",
+    "A0024",
+    "A0025",
+    "A0026",
+    "A0027",
+    "A0028",
+    "A0029"
+   ],
+   "created_at": "2022-10-21T00:00:00+00:00"
+  },
+  "B": {
+   "id": "B",
+   "name": "En iyi 10, 1x",
+   "select": "top",
+   "n": 10,
+   "leverage": 1,
+   "members": [
+    "A0001",
+    "A0002",
+    "A0004",
+    "A0005",
+    "A0006",
+    "A0007"
+   ],
+   "created_at": "2022-10-21T00:00:00+00:00"
+  },
+  "B2": {
+   "id": "B2",
+   "name": "En iyi 10, ters volatilite ağırlık, 1x",
+   "select": "top",
+   "n": 10,
+   "leverage": 1,
+   "weighting": "invvol",
+   "members": [
+    "A0001",
+    "A0002",
+    "A0004",
+    "A0005",
+    "A0006",
+    "A0007"
+   ],
+   "created_at": "2022-10-21T00:00:00+00:00"
+  },
+  "C": {
+   "id": "C",
+   "name": "En iyi 5, 3x",
+   "select": "top",
+   "n": 5,
+   "leverage": 3,
+   "members": [
+    "A0001",
+    "A0002",
+    "A0004",
+    "A0005",
+    "A0006"
+   ],
+   "created_at": "2022-10-21T00:00:00+00:00"
+  },
+  "C2": {
+   "id": "C2",
+   "name": "En iyi 5, 3x + volatilite hedefi %35",
+   "select": "top",
+   "n": 5,
+   "leverage": 3,
+   "vol_target": 0.35,
+   "members": [
+    "A0001",
+    "A0002",
+    "A0004",
+    "A0005",
+    "A0006"
+   ],
+   "created_at": "2022-10-21T00:00:00+00:00"
+  },
+  "K1": {
+   "id": "K1",
+   "name": "Çekirdek: BTC+ETH SMA200 + momentum + vol hedefi",
+   "select": "core",
+   "rule": "dual_trend_vt",
+   "assets": [
+    "BTC/USDT",
+    "ETH/USDT"
+   ],
+   "funding_annual": 0.08,
+   "params": {
+    "sma_days": 200,
+    "horizons_days": [
+     30,
+     90,
+     180
+    ],
+    "target": 0.4,
+    "lookback_days": 30
+   },
+   "members": [],
+   "created_at": "2022-10-21T00:00:00+00:00"
+  },
+  "K2": {
+   "id": "K2",
+   "name": "Çekirdek: BTC+ETH momentum + vol hedefi",
+   "select": "core",
+   "rule": "tsmom_vt",
+   "assets": [
+    "BTC/USDT",
+    "ETH/USDT"
+   ],
+   "funding_annual": 0.08,
+   "params": {
+    "horizons_days": [
+     30,
+     90,
+     180
+    ],
+    "target": 0.4,
+    "lookback_days": 30
+   },
+   "members": [],
+   "created_at": "2022-10-21T00:00:00+00:00"
+  }
+ }
+}

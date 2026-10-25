@@ -1,0 +1,200 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.0 < 0.9 (luck not excluded after 393 trials)",
+    "OOS Sharpe (excess of T-bill) -0.759 < 0.5",
+    "bootstrap P(SR>0) 0.558 < 0.85",
+    "only 50% of OOS years positive",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.828 > 0.1 (best variant may be data-mined)",
+    "random entries match it (p=0.44): the edge is in the exits, not the signal",
+    "parameter spike: only 0% of neighbouring settings are profitable"
+  ],
+  "strategy": "rsi_reversal",
+  "kind": "rule",
+  "universe": "crypto_major",
+  "timeframe": "4h",
+  "for_system": "karma_perp_bot",
+  "spec": {
+    "id": "H028",
+    "rule": "rsi_reversal",
+    "universe": "crypto_major",
+    "timeframe": "4h",
+    "for_system": "karma_perp_bot",
+    "start": "2021-01-01",
+    "filters": [
+      "none",
+      "htf_week_sma10"
+    ],
+    "side": "both",
+    "train_years": 1.5,
+    "test_months": 3,
+    "status": "active"
+  },
+  "variant": "rsi_reversal|n=7,lo=20,exit=60|f=htf_week_sma10|x=signal_only",
+  "params": {
+    "n": 7,
+    "lo": 20,
+    "exit": 60,
+    "_filter": "htf_week_sma10",
+    "_exit": 0,
+    "_size": 0
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "BNB/USDT": 0.1,
+      "XRP/USDT": 0.1,
+      "DOGE/USDT": 0.1,
+      "LINK/USDT": 0.1
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.759,
+  "pbo": 0.303,
+  "reality_check_p": 0.828,
+  "dsr": 0.0,
+  "n_trials": 393,
+  "oos": {
+    "start": "2023-07-14 16:00:00",
+    "end": "2026-10-17 04:00:00",
+    "years": 3.26,
+    "cagr": 0.0027,
+    "vol": 0.0516,
+    "sharpe": 0.079,
+    "sharpe_excess_rf": -0.759,
+    "sortino": -1.03,
+    "max_dd": -0.0866,
+    "max_dd_bars": 3780,
+    "calmar": 0.032,
+    "ulcer": 0.0142,
+    "var95": -0.0001,
+    "cvar95": -0.0021,
+    "omega": 1.017,
+    "tail_ratio": 1.723,
+    "skew": -2.125,
+    "kurtosis": 107.093,
+    "hit_rate": 0.053,
+    "psr": 0.556,
+    "time_in_market": null,
+    "turnover_ann": 1.41,
+    "bench_cagr": 0.075,
+    "bench_sharpe": 0.435,
+    "info_ratio": -0.422,
+    "beta": -0.011,
+    "up_capture": -0.014,
+    "down_capture": -0.015
+  },
+  "trade_stats": {
+    "n_trades": 616,
+    "trades_per_year": 189.0,
+    "win_rate": 0.661,
+    "avg_trade": 0.0031,
+    "median_trade": 0.0171,
+    "avg_win": 0.0342,
+    "avg_loss": -0.0575,
+    "profit_factor": 1.159,
+    "payoff": 0.595,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.091,
+    "max_consec_losses": 10,
+    "avg_bars": 18.2,
+    "avg_bars_win": 10.9,
+    "avg_bars_loss": 32.4,
+    "avg_mfe": 0.0336,
+    "avg_mae": -0.0657,
+    "edge_ratio": 0.512,
+    "exit_reasons": {
+      "signal": 616
+    },
+    "long_short": {
+      "-1": {
+        "count": 354,
+        "mean": 0.0031
+      },
+      "1": {
+        "count": 262,
+        "mean": 0.0031
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": -0.28,
+      "ann_ret": -0.0128,
+      "bars": 5348
+    },
+    "bear": {
+      "sharpe": 0.82,
+      "ann_ret": 0.0541,
+      "bars": 1796
+    },
+    "calm": {
+      "sharpe": -0.31,
+      "ann_ret": -0.0218,
+      "bars": 3234
+    },
+    "stressed": {
+      "sharpe": 1.01,
+      "ann_ret": 0.0255,
+      "bars": 3910
+    },
+    "vix_lt_20": {
+      "sharpe": -0.1,
+      "ann_ret": -0.0054,
+      "bars": 5938
+    },
+    "vix_20_30": {
+      "sharpe": 1.5,
+      "ann_ret": 0.0567,
+      "bars": 1080
+    },
+    "vix_ge_30": {
+      "sharpe": 0.0,
+      "ann_ret": 0.0,
+      "bars": 126
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": -0.585,
+      "sharpe_delayed_1bar": -0.477,
+      "retained": null
+    },
+    "neighbourhood": {
+      "neighbours": 13,
+      "best_sharpe": -0.585,
+      "neighbour_median": -0.695,
+      "share_positive": 0.0,
+      "stability": null
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": -0.731,
+      "sharpe_median": -0.583
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": -0.8494,
+      "random_median_ann": -1.0394,
+      "random_p95_ann": -0.1846,
+      "trades_actual": 1050,
+      "p_value": 0.44
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.638,
+      "maxdd_p95": -0.6862,
+      "final_p05": -0.5967,
+      "final_median": -0.5967
+    }
+  },
+  "recommended_overlay": "equity_ma_365",
+  "kelly_fraction": 0.091,
+  "oos_csv": "results/H028_rsi_reversal_crypto_major_4h_oos.csv",
+  "validated_at": "2026-10-17T09:04:48+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-17 04:00:00"
+}

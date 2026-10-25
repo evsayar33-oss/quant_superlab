@@ -1,0 +1,136 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "Reality Check p 0.598 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "dual_momentum",
+  "kind": "strategy",
+  "universe": "global_assets",
+  "timeframe": "1d",
+  "for_system": "macro-model",
+  "spec": {
+    "id": "H006",
+    "strategy": "dual_momentum",
+    "universe": "global_assets",
+    "for_system": "macro-model",
+    "start": "2008-01-01",
+    "status": "active"
+  },
+  "variant": "dual_momentum|lookback=252,top_n=5|overlay=eqma_s",
+  "params": {
+    "lookback": 252,
+    "top_n": 5,
+    "_overlay": "eqma_s"
+  },
+  "targets": {},
+  "targets_observe_only": {},
+  "gate_sharpe": 0.724,
+  "pbo": 0.017,
+  "reality_check_p": 0.598,
+  "dsr": 0.965,
+  "n_trials": 20,
+  "oos": {
+    "start": "2012-01-09 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 14.76,
+    "cagr": 0.1037,
+    "vol": 0.1245,
+    "sharpe": 0.855,
+    "sharpe_excess_rf": 0.724,
+    "sortino": 0.988,
+    "max_dd": -0.2542,
+    "max_dd_bars": 549,
+    "calmar": 0.408,
+    "ulcer": 0.0678,
+    "var95": -0.0117,
+    "cvar95": -0.0195,
+    "omega": 1.177,
+    "tail_ratio": 0.995,
+    "skew": -1.064,
+    "kurtosis": 13.975,
+    "hit_rate": 0.532,
+    "psr": 0.999,
+    "time_in_market": null,
+    "turnover_ann": 5.99,
+    "bench_cagr": 0.0844,
+    "bench_sharpe": 0.785,
+    "info_ratio": 0.192,
+    "beta": 0.722,
+    "up_capture": 0.859,
+    "down_capture": 0.803
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.08,
+      "ann_ret": 0.1325,
+      "bars": 3204
+    },
+    "bear": {
+      "sharpe": -0.42,
+      "ann_ret": -0.0571,
+      "bars": 511
+    },
+    "calm": {
+      "sharpe": 0.89,
+      "ann_ret": 0.0999,
+      "bars": 2043
+    },
+    "stressed": {
+      "sharpe": 0.83,
+      "ann_ret": 0.1144,
+      "bars": 1672
+    },
+    "vix_lt_20": {
+      "sharpe": 1.77,
+      "ann_ret": 0.1946,
+      "bars": 2796
+    },
+    "vix_20_30": {
+      "sharpe": -0.81,
+      "ann_ret": -0.1217,
+      "bars": 761
+    },
+    "vix_ge_30": {
+      "sharpe": -1.76,
+      "ann_ret": -0.3557,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 1.07,
+      "ann_ret": 0.1216,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.82,
+      "ann_ret": 0.1034,
+      "bars": 3101
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.402,
+      "sharpe_delayed_1bar": 0.487,
+      "retained": 1.211
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.391,
+      "neighbour_median": 0.433,
+      "share_positive": 1.0,
+      "stability": 1.107
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.338,
+      "sharpe_median": 0.353
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": null,
+  "oos_csv": "results/H006_dual_momentum_global_assets_1d_oos.csv",
+  "validated_at": "2026-10-17T08:57:45+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

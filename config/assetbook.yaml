@@ -1,0 +1,99 @@
+# H073 per-asset strategy book (lab/assetbook.py). Pre-registered 2026-10-24 BEFORE any result was computed.
+# Do not change a threshold after the results are seen (CLAUDE.md realism rule). A change needs a line in
+# hypotheses/CHANGELOG.md with the reason. The first complete run is read once and is final.
+#
+# Owner's request (2026-10-24, after H072): profitable trading rules PER ASSET, not a portfolio. Each rule must
+# be runnable by one bot on one platform (Bitget USDT-M perpetuals). Try every rule alone and combined. Test
+# entries inside the Fibonacci premium / discount zone explicitly.
+#
+# Warning written BEFORE the run: about 2,600 primary trials per asset and timeframe (about 29,000 in total).
+# Many rules WILL look profitable in the past by luck alone. Only (1) the locked last 2 years, (2) the luck
+# correction over every trial of the asset (DSR) and (3) the time machine (the same selection made 4 and 6
+# years ago) separate a real edge from luck.
+
+platform: "Bitget USDT-M perpetual futures (one account, one bot per asset)"
+
+assets:                       # Bitget symbol, free data source, timeframes, costs per side + perp funding
+  BTC:    {bitget: BTCUSDT,    data: "binance_vision:BTCUSDT", tf: [1d, 4h], costs: {commission: 0.0006, slippage: 0.0002, funding_annual: 0.08}}
+  ETH:    {bitget: ETHUSDT,    data: "binance_vision:ETHUSDT", tf: [1d, 4h], costs: {commission: 0.0006, slippage: 0.0002, funding_annual: 0.08}}
+  SOL:    {bitget: SOLUSDT,    data: "binance_vision:SOLUSDT", tf: [1d, 4h], costs: {commission: 0.0006, slippage: 0.0004, funding_annual: 0.08}}
+  SPX:    {bitget: SPXUSDT,    data: "yahoo:^GSPC", tf: [1d], costs: {commission: 0.0006, slippage: 0.0005, funding_annual: 0.05}}
+  NDX:    {bitget: NDX100USDT, data: "yahoo:^NDX",  tf: [1d], costs: {commission: 0.0006, slippage: 0.0005, funding_annual: 0.05}}
+  XAU:    {bitget: XAUUSDT,    data: "yahoo:GLD",   tf: [1d], costs: {commission: 0.0006, slippage: 0.0005, funding_annual: 0.05}}
+  XAG:    {bitget: XAGUSDT,    data: "yahoo:SLV",   tf: [1d], costs: {commission: 0.0006, slippage: 0.0008, funding_annual: 0.05}}
+  COPPER: {bitget: COPPERUSDT, data: "yahoo:CPER",  tf: [1d], costs: {commission: 0.0006, slippage: 0.0008, funding_annual: 0.05}}
+start: "2000-01-01"           # or the first bar of the source
+# Index levels (^GSPC, ^NDX) and metal ETFs (GLD, SLV, CPER) are the price proxies of the Bitget perps.
+# 4h bars only for crypto: free 4h history for index and metal perps does not exist (Yahoo 1h = 2 years).
+# Every bot runs on closed bars (GitHub Actions can be 5-30 min late), so 1d and 4h only.
+
+# ------------------------------------------------------------------------------------------------ families
+families:
+  F1_fib_zone:                # Fibonacci premium / discount (ICT OTE) entries with Fibonacci stops and targets
+    source: "ICT optimal trade entry; Fibonacci retracement (Carney 2004; Brown 2008). Academic evidence ~ none."
+    # Dealing range = last CONFIRMED swing high SH and swing low SL (fractal with k bars each side; a swing is
+    # known k bars after it happens). Bullish leg = the low came before the high: longs only, inside the
+    # DISCOUNT zone [SH - z_hi*R, SH - z_lo*R], R = SH - SL. Bearish leg = mirror: shorts only, inside the
+    # PREMIUM zone [SL + z_lo*R, SL + z_hi*R]. The leg must be >= 2 ATR(14). The setup dies when a close
+    # crosses the far end of the leg (below SL for a bullish leg).
+    grid:
+      k: [3, 5, 10]
+      zone: [[0.5, 0.618], [0.618, 0.786], [0.786, 0.886]]       # equilibrium / OTE / deep
+      trigger: [limit, confirm]  # limit = resting order at the zone edge nearest to price (fills on touch)
+                                 # confirm = a bar trades into the zone and closes back on the trade side of
+                                 #           its open (bullish candle for longs); market entry at the next open
+      stop: [swing, atr]         # swing = beyond the 1.0 level (SL - 0.1 ATR); atr = 1.5 ATR from entry
+      target: [swing, ext1272, ext1618, r2]   # 0 level (SH) / 1.272 / 1.618 extension / 2R
+      filter: [none, sma200, structure]       # structure = higher low for longs, lower high for shorts
+      side: [long, short, both]
+    max_hold_bars: 60
+    ordered: [k, zone, target]   # plateau neighbours: one step along these
+  F2_catalog_x_fib:           # every rule of lab/rules.py alone and with the Fibonacci premium/discount filter
+    source: "lab/rules.py catalog (65 rules; positioning family excluded: needs COT/funding data)"
+    params: middle point of each rule's grid (plateau centre); one-step grid neighbours are run for
+            candidates that pass D1-D3 (they count as trials)
+    exits: [0, 13, 28]           # rule exit | 2 ATR stop + 3R target | 2 ATR stop + 3 ATR chandelier
+    side: [long, short, both]
+    filter: [none, fib_pd]       # fib_pd: long entries only below 50% of the dealing range (discount),
+                                 # short entries only above 50% (premium); swing k = 5
+  F3_fib_confirm:             # Fibonacci OTE zone + a second ICT/indicator signal within 3 bars (combo)
+    base: {k: 5, zone: [0.618, 0.786], trigger: confirm, stop: swing}
+    grid:
+      target: [swing, ext1272, ext1618, r2]
+      filter: [none, sma200, structure]
+      side: [long, short, both]
+      confirm: [smc_liquidity_sweep, smc_fvg, rsi_divergence, smc_choch]   # default mid parameters
+    within_bars: 3
+    ordered: [target]
+
+# ------------------------------------------------------------------------------------------------ selection
+holdout_years: 2              # locked; read once, only for the picks and the D1-D6 survivors
+timemachine_years_ago: [6, 4] # the same selection repeated with data cut 6 and 4 years ago (forward 2 years each)
+min_discovery_years: 3        # a cut with less discovery data is not testable
+
+discovery:                    # every check uses bars before the cut only; "2x" = commission + slippage doubled
+  D1_min_trades: {1d: 30, 4h: 60}
+  D2: {ret_2x_positive: true, min_profit_factor_2x: 1.20, win_rate_above_breakeven: true}
+  D3_thirds_positive_2x: true # positive at 2x cost in each third of the discovery period
+  D4_plateau: 0.50            # >= 50% of one-step neighbours have profit factor >= 1.10 at 2x cost
+                              # (no neighbour = no plateau = fail)
+  D5_delay: 0.50              # one bar later entry keeps >= 50% of the 2x-cost return (and stays > 0)
+  D6_min_dsr: 0.95            # Deflated Sharpe, n = every trial run in this asset+timeframe job
+pick: "highest plateau score = min(own Sharpe, median neighbour Sharpe) among D1-D6 survivors"
+
+holdout:                      # H: the pick's next 2 years (also used as 'inside' in the time machine)
+  H1_ret_2x_positive: true
+  H2_min_profit_factor_2x: 1.10
+  H3_min_trades: {1d: 8, 4h: 15}
+
+timemachine:                  # cuts: 6y, 4y and 2y (= holdout) ago; inside = H1-H3 on the next 2 years
+  min_inside: 2               # of the testable cuts (>= 2 testable cuts needed)
+
+# A job's pick becomes a LEAD for the decision gate only if: D1-D6 at the 2-year cut, H1-H3 on the locked
+# holdout, and the time machine. A lead still needs a hypothesis id + run.py --hypothesis before any bot.
+
+# Fibonacci question asked by the owner, answered with a paired test (pre-registered):
+# for every F2 variant pair (filter none vs fib_pd, both >= 10 trades), delta = PF_2x(fib_pd) - PF_2x(none).
+# The filter HELPS on a job when, in the locked holdout, the median delta > 0 and > 55% of the pairs improve.
+# It helps in general when that holds on >= 6 of the 11 jobs.
+fib_filter_help: {min_share: 0.55, min_jobs: 6, min_trades: 10}

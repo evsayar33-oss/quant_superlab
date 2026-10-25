@@ -1,0 +1,169 @@
+# Strategy arena = rule-based screening funnel -> paper arena of ~100 strategies -> regime switcher.
+# No LLM. Every threshold below is written BEFORE looking at any result (CLAUDE.md realism rule).
+# Do not loosen a threshold to let more strategies through; a change needs a line in hypotheses/CHANGELOG.md.
+
+universe: crypto_alts
+timeframes: [4h, 1d]       # one separate arena per timeframe (decisions/arena/<tf>/). No scalping:
+                           # fees and slippage eat short-horizon edges.
+start: "2018-01-01"
+side: both                 # perps: long and short (default when `sides` is missing)
+sides: [both, long, short] # 2026-10-20: every screen / arena / time machine runs all three: one book that
+                           # trades both ways, a long-only book and a short-only book (own folders <tf>_long ...)
+exit_id: 28                # trade_engine.EXIT_GRID[28] = 2 ATR stop + 3 ATR chandelier + rule exit
+                           # (one pre-chosen exit = fewer trials; perps always need a hard stop)
+
+# Stage 2 runs on EVERY screen (switch it off here, or per run with the workflow input `stage2`).
+# Only candidates that passed S1 in stage 1 are widened, so the extra trials stay bounded.
+# Every stage-2 trial is added to the Deflated Sharpe count; the same S1-S7 steps apply.
+stage2:
+  enabled: true
+  filters: [none, trend_sma200, adx20, htf_week_sma10, regime_bench200, low_vol]   # regime_bench200 = BTC trend
+  exits: [28, 0, 23, 13, 18, 37, 20]   # 28 base | 0 rule signal only | 23 3 ATR chandelier | 13 2 ATR stop + 3R target
+                                   # | 18 partial at 1R + stop to entry + trail | 37 2 ATR stop + 10-bar time exit
+                                   # | 20 2 ATR stop, stop moves to ENTRY (breakeven) at +1R
+  combos:
+    enabled: true
+    top_families: 6        # confirmation rules: the most frequent S1-passing rule of each top family
+    within: [0, 3, 5]      # confirmation on the same bar or within the last 3 / 5 bars
+    # 2026-10-18: SMC / divergence / pivot rules are also tried as confirmation for every candidate
+    extra_confirm: [smc_bos, smc_choch, smc_fvg, smc_order_block, smc_liquidity_sweep, smc_ote,
+                    rsi_divergence, macd_divergence, pivot_bounce]
+  # Robust pick per candidate: score = min(own Sharpe, mean of neighbours). Filter/exit neighbours = same
+  # filter with other exits + same exit with other filters; combo neighbours = the other windows.
+  # S4 then needs BOTH the parameter plateau AND this neighbourhood to be >= 50% profitable.
+  # A combo is a candidate only when it beats the rule alone.
+
+# Settings that depend on the bar length (merged over the values below for that timeframe)
+by_timeframe:
+  1d:
+    regime: {er_days: 20, vol_days: 20, trend_ma_days: 50, confirm_bars: 2}
+
+# Report card windows in YEARS (0 = full history). No window is shorter than 3 years.
+report_windows_years: [3, 5, 0]
+
+account:                   # perp simulation shown in the report card (isolated margin)
+  balance: 1000
+  margin_frac: 0.10        # margin per trade as a share of equity
+  leverages: [1, 3, 5, 10] # shown side by side: leverage does not create an edge, it adds liquidation risk
+  maint_margin: 0.005
+
+screen:                    # the funnel. A strategy = one rule (one parameter set) on one coin.
+  rules: all               # or a list of rule names from lab/rules.py
+  min_years: 3.0           # S0 data: at least this much history
+  min_trades: 30           # S1
+  min_profit_factor: 1.15  # S2
+  max_dd_floor: -0.40      # S2: 1x max drawdown, full history
+  cost_stress: 2.0         # S3: still profitable with 2x commission + slippage
+  min_neighbour_share_pos: 0.50   # S4: >= 50% of neighbour parameter sets are profitable (plateau, not a peak)
+  min_delay_retained: 0.40 # S5: entering one bar late keeps >= 40% of the return
+  min_pos_year_frac: 0.60  # S6: >= 60% of calendar years profitable
+  min_psr: 0.90            # S7: P(true Sharpe > 0) >= 0.90 on the full history
+  tier_a_min_dsr: 0.90     # survivors that ALSO pass the Deflated Sharpe (all funnel trials counted)
+                           # are written as suggested hypotheses for the real decision gate
+
+arena:
+  max_members: 100
+  fill_controls: true      # empty slots -> best near-misses as "control" members (never used by the switcher)
+  retire:                  # forward (paper) demotion, checked every run
+    min_forward_days: 120
+    dd_mult: 1.5           # forward drawdown worse than 1.5x the backtest drawdown
+    min_forward_sharpe: 0.0
+  notify: switcher         # Telegram signals: switcher (only strategies the switcher holds) | all | none
+  daily_summary_hour_utc: 20
+
+regime:                    # per coin, closed bars only, with hysteresis
+  adx_n: 14
+  adx_trend: 25
+  er_days: 5               # Kaufman efficiency ratio window (days)
+  er_trend: 0.30
+  vol_days: 5              # realized volatility window (days)
+  vol_rank_days: 365       # volatility percentile versus the PAST year only
+  vol_hi_pct: 0.80         # top 20% of the past year's volatility = VOLATILE
+  trend_ma_days: 17        # direction of a trend: close vs SMA (about 100 bars on 4h)
+  confirm_bars: 3          # a new regime must hold this many bars before it is used
+
+switcher:                  # "trading agent": picks the strategies that worked in the CURRENT regime
+  pool: survivors          # survivors | all
+  halflife_days: [15, 30, 60]
+  top_k: [3, 5, 8]
+  default: {halflife_days: 30, top_k: 5}   # pre-chosen centre of the grid (the report shows all 9)
+  rebalance_days: 1
+  prior_days: 10           # shrinkage: a score needs evidence before it counts
+  min_regime_days: 20      # a strategy needs this much past history in a regime to be chosen in it
+  max_asset_weight: 0.40
+  gate:                    # bots may use the switcher only when ALL of these hold
+    beat_equal_weight_all_windows: true
+    positive_at_cost_stress: true
+    max_dd_floor: -0.45
+    min_forward_days: 180  # plus a forward (paper) record: switcher Sharpe > equal-weight Sharpe
+
+# Capital protection study (lab/protect.py). Written BEFORE any result was seen.
+# The study runs on the equal-weight portfolio of the ACTIVE arena members of each timeframe.
+# Mechanical rules (no test needed, they follow from arithmetic) are always on:
+#   leverage buffer: leverage <= 1 / (buffer_mult x catastrophe distance)   -> a stop always fires before liquidation
+#   concentration:   one coin <= max_coin_weight of the capital
+# Tested rules: each is switched ON only if it passes `accept` in EVERY timeframe and for EVERY
+# neighbouring threshold (a plateau, not one lucky setting). The middle value is the proposal.
+protection:
+  max_coin_weight: 0.20
+  leverage_buffer_mult: 2.0
+  tests:
+    dd_brake: [[0.08, 0.16], [0.10, 0.20], [0.12, 0.25]]  # half size below -a, flat below -b (portfolio peak)
+    daily_limit: [0.04, 0.05, 0.07]                       # no exposure for the rest of the UTC day after -x
+    crash_guard: [0.08, 0.10, 0.15]                       # BTC falls > x in one day -> close longs, 1 day pause
+    catastrophe_stop: [0.10, 0.12, 0.15]                  # hard % stop on members whose exit has no stop
+    vol_target: [0.25, 0.35, 0.50]                        # scale = min(1, target / trailing 30-day vol): de-risk only
+    equity_ma: [30, 60, 90]                               # flat while the (shadow) book is below its N-day average
+  crises:                                                 # real crash windows (inclusive)
+    covid_2020: ["2020-03-05", "2020-03-31"]
+    may_2021: ["2021-05-08", "2021-07-20"]
+    luna_2022: ["2022-05-04", "2022-06-30"]
+    ftx_2022: ["2022-11-05", "2022-12-31"]
+    aug_2024: ["2024-07-29", "2024-08-15"]
+    oct_2025: ["2025-10-06", "2025-10-20"]
+  accept:
+    min_crises_better_frac: 0.67   # max drawdown less deep in >= 2/3 of the crises the data covers
+    must_lower_full_dd: true       # and a less deep max drawdown on the full history
+    max_sharpe_drop: 0.10          # full-history Sharpe may fall by at most 10%
+    max_cagr_drop: 0.25            # full-history CAGR may fall by at most 25% (the price of insurance)
+  monte_carlo: {paths: 3000, years: 1, block_days: 10, ruin_dd: -0.50}
+
+# Paper portfolio books (owner's request 2026-10-17): candidate bot books tracked forward for ~3 months
+# BEFORE any real money. Membership is FROZEN on the first run (decisions/arena/<tf>/books.json):
+# nothing is re-picked with hindsight. A retired member's share goes to cash (not replaced).
+# Leverage multiplies returns, costs and funding; a position's loss in one bar is capped at its margin
+# (isolated-margin liquidation: 1/leverage - maint_margin).
+books:
+  timeframes: [4h]
+  maint_margin: 0.005
+  list:
+    - {id: A, name: "Hepsi eşit ağırlık, 1x", select: all, leverage: 1}
+    - {id: B, name: "En iyi 10, 1x", select: top, n: 10, leverage: 1}
+    - {id: B2, name: "En iyi 10, ters volatilite ağırlık, 1x", select: top, n: 10, leverage: 1, weighting: invvol}
+    - {id: C, name: "En iyi 5, 3x", select: top, n: 5, leverage: 3}
+    - {id: C2, name: "En iyi 5, 3x + volatilite hedefi %35", select: top, n: 5, leverage: 3, vol_target: 0.35}
+    # core rules (config/core.yaml, fixed settings), perp funding charged on exposure
+    - {id: K1, name: "Çekirdek: BTC+ETH SMA200 + momentum + vol hedefi", select: core, rule: dual_trend_vt,
+       assets: [BTC/USDT, ETH/USDT], funding_annual: 0.08,
+       params: {sma_days: 200, horizons_days: [30, 90, 180], target: 0.40, lookback_days: 30}}
+    - {id: K2, name: "Çekirdek: BTC+ETH momentum + vol hedefi", select: core, rule: tsmom_vt,
+       assets: [BTC/USDT, ETH/USDT], funding_annual: 0.08,
+       params: {horizons_days: [30, 90, 180], target: 0.40, lookback_days: 30}}
+
+# Time-machine test as a standing, OPTIONAL check for every SELECTION process (funnel, top-N books, switcher).
+# A single hypothesis does not need it: the decision gate's walk-forward already does this for one strategy.
+timemachine:
+  enabled: true                 # false = the quarterly run skips itself (manual runs still work)
+  years_ago: [2, 3, 4]          # cutoffs relative to the run date
+  timeframes: [4h]
+  # Rule (written 2026-10-17, after the arena books failed 6 of 6 replays): a book or selection process is
+  # a real-money CANDIDATE only if its forward record stayed inside the expected band in at least
+  # `min_inside` of the cutoffs. The dashboard shows this; bots never read books anyway.
+  min_inside: 2
+
+# Manual-trading signals sent to Telegram (owner's "way 2"). Information only: nothing is traded.
+# H054 (= H052 + 10% no-trade band, both ACCEPT; H054 trades less): target share of capital per coin.
+# A message is sent when a target moves by >= min_change (and in the daily summary). Apply at the next
+# bar open. Status shown as the gate verdict of that hypothesis.
+signals:
+  H054: {enabled: true, timeframe: 4h, assets: [BTC/USDT, ETH/USDT], band: 0.10, min_change: 0.05}

@@ -1,0 +1,82 @@
+# Core study: a FEW simple, literature-based rules with FIXED textbook settings. No parameter search, no
+# selection among variants. Written on 2026-10-17 BEFORE any result was seen; do not tune after the fact.
+# Long or cash only (spot, no funding). Signals on closed bars, traded at the next bar open.
+universe_assets: [BTC/USDT, ETH/USDT]
+start: "2018-01-01"
+timeframes: [1d, 4h]
+costs: {commission: 0.0006, slippage: 0.0005}
+
+rules:
+  buy_hold:      {}                                     # benchmark
+  vol_target:    {target: 0.40, lookback_days: 30}      # Moreira & Muir (2017); scale = min(1, target/vol)
+  trend_sma200:  {sma_days: 200}                        # Faber (2007): long above the 200-day SMA
+  tsmom:         {horizons_days: [30, 90, 180]}         # Moskowitz, Ooi & Pedersen (2012); Liu & Tsyvinski (2021):
+                                                        # exposure = share of horizons with a positive past return
+  tsmom_vt:      {horizons_days: [30, 90, 180], target: 0.40, lookback_days: 30}   # both combined
+  dual_trend_vt: {sma_days: 200, horizons_days: [30, 90, 180], target: 0.40, lookback_days: 30}
+                                                        # long only when price > SMA200 AND tsmom > 0, vol-targeted
+
+# Portfolios: each rule on BTC, on ETH, and on a 50/50 BTC+ETH book (rebalanced every bar).
+# Forward windows reuse the time-machine cutoffs: the rules are fixed, so "forward" = after that date.
+cutoffs: ["2022-10-17", "2023-10-17", "2024-10-17"]
+
+# A rule is APPROVED for the paper arena only if, for the SAME asset, in EVERY forward window:
+accept:
+  dd_reduction_vs_buyhold: 0.33   # max drawdown at least 1/3 less deep than buy-and-hold
+  max_sharpe_gap: 0.10            # Sharpe not more than 0.10 below buy-and-hold
+  positive_return: true           # and a positive return
+
+# Variants of the H052 rule (dual_trend_vt on BTC+ETH, 4h). Written 2026-10-17 BEFORE any result.
+# One setting each (4 trials). A variant REPLACES the baseline idea only if, against the baseline on the
+# same data, it has a higher Sharpe on the full history AND in every forward window, and its max drawdown
+# is at most 5 points deeper. Passing variants are then registered as hypotheses for the decision gate.
+variants:
+  baseline: {rule: dual_trend_vt, assets: [BTC/USDT, ETH/USDT], timeframe: 4h}
+  list:
+    - {id: V_alts,  name: "Daha fazla büyük coin (BTC, ETH, SOL, BNB, XRP)", rule: dual_trend_vt,
+       assets: [BTC/USDT, ETH/USDT, SOL/USDT, BNB/USDT, XRP/USDT], timeframe: 4h}
+    - {id: V_short, name: "Düşüşte short (perp)", rule: dual_trend_vt_ls, assets: [BTC/USDT, ETH/USDT], timeframe: 4h}
+    - {id: V_band,  name: "İşlem yapmama bandı %10", rule: dual_trend_vt, band: 0.10, assets: [BTC/USDT, ETH/USDT], timeframe: 4h}
+    - {id: V_1h,    name: "1h zaman dilimi", rule: dual_trend_vt, assets: [BTC/USDT, ETH/USDT], timeframe: 1h}
+  accept:
+    beat_sharpe_full_and_all_windows: true
+    max_extra_dd: 0.05
+  funding_annual: 0.08     # perp funding on |exposure| (all variants, so the comparison is fair)
+
+# ---------------------------------------------------------------------------------------------
+# Risk levels for H054 (written 2026-10-17 BEFORE results). Same rule, only the vol target changes.
+# No leverage: exposure stays capped at 100%, so a higher target only adds exposure in calm markets.
+# This is a RISK choice, not an improvement: the report picks the HIGHEST target whose max drawdown
+# stays >= max_dd_floor on the full history AND in every forward window.
+risk_levels:
+  targets: [0.40, 0.60, 0.80]
+  band: 0.10
+  max_dd_floor: -0.40
+
+# Funding-rate arbitrage (cash-and-carry): long spot + short perp of the same coin, equal notional, so the
+# price move cancels and the book earns the funding the short side receives (pays it when funding < 0).
+# Data: Binance USDT-M funding history (free monthly files on data.binance.vision) as the proxy for Bitget.
+# Capital: `hedge_share` of capital is the hedged notional (spot), the rest is perp margin (1x on the short).
+funding_arb:
+  assets: [BTCUSDT, ETHUSDT]
+  start: "2020-01"
+  hedge_share: 0.5
+  cost_per_leg: 0.0011            # commission + slippage per side, 4 legs per round trip (spot+perp, in+out)
+  rules:
+    always_on: {}                 # hold the hedge all the time
+    positive_only: {enter_ann: 0.10, exit_ann: 0.0, lookback_days: 3}   # hold only while recent funding is high
+  accept:                         # a rule is APPROVED if in EVERY forward window (config `cutoffs`):
+    positive_return: true
+    max_dd_floor: -0.05
+    combo_beats_h054_sharpe: true # 50/50 with H054 has a higher Sharpe than H054 alone
+
+# Idle-cash funding arbitrage (written 2026-10-17 BEFORE results). H054 runs unchanged; the cash it does
+# NOT use (1 - H054 exposure) is put into the long-spot + short-perp hedge (hedge_share of that idle cash
+# is the hedged notional, the rest is perp margin). Hedge size follows the idle cash daily; resizing costs.
+# Owner's criterion: MOST PROFIT in the forward (unseen) windows. A candidate is accepted only if, in EVERY
+# forward window, it earns more than H054 alone and its max drawdown is at most 3 points deeper.
+# Among accepted candidates the bot uses the one with the highest return in the forward windows.
+idle_arb:
+  rules: [always_on, positive_only]
+  hedge_share: 0.5
+  max_extra_dd: 0.03

@@ -1,0 +1,206 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (excess of T-bill) 0.484 < 0.5",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "ibs_reversion",
+  "kind": "rule",
+  "universe": "index_futures",
+  "timeframe": "1d",
+  "for_system": "research_only",
+  "spec": {
+    "id": "H070",
+    "rule": "ibs_reversion",
+    "universe": "index_futures",
+    "timeframe": "1d",
+    "for_system": "research_only",
+    "start": "2008-01-01",
+    "filters": [
+      "vix_term_contango"
+    ],
+    "exits": [
+      0
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "ibs_reversion|lo=0.3,hi=0.8|f=vix_term_contango|x=signal_only|size=atr_risk0.02",
+  "params": {
+    "lo": 0.3,
+    "hi": 0.8,
+    "_filter": "vix_term_contango",
+    "_exit": 0,
+    "_size": 3
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "ES=F": 0.1875,
+      "NQ=F": 0.1875,
+      "YM=F": 0.1875,
+      "NKD=F": 0.25
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "ES=F",
+      "NQ=F",
+      "YM=F",
+      "RTY=F"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": 0.484,
+  "pbo": 0.288,
+  "reality_check_p": 1.0,
+  "dsr": 0.987,
+  "n_trials": 16,
+  "oos": {
+    "start": "2012-01-10 00:00:00",
+    "end": "2026-10-21 00:00:00",
+    "years": 14.77,
+    "cagr": 0.053,
+    "vol": 0.0792,
+    "sharpe": 0.692,
+    "sharpe_excess_rf": 0.484,
+    "sortino": 0.716,
+    "max_dd": -0.1667,
+    "max_dd_bars": 644,
+    "calmar": 0.318,
+    "ulcer": 0.0455,
+    "var95": -0.007,
+    "cvar95": -0.0124,
+    "omega": 1.198,
+    "tail_ratio": 1.11,
+    "skew": 0.298,
+    "kurtosis": 16.113,
+    "hit_rate": 0.338,
+    "psr": 0.996,
+    "time_in_market": null,
+    "turnover_ann": 45.95,
+    "bench_cagr": 0.1383,
+    "bench_sharpe": 0.83,
+    "info_ratio": -0.627,
+    "beta": 0.265,
+    "up_capture": 0.309,
+    "down_capture": 0.298
+  },
+  "trade_stats": {
+    "n_trades": 2197,
+    "trades_per_year": 148.7,
+    "win_rate": 0.687,
+    "avg_trade": 0.0028,
+    "median_trade": 0.005,
+    "avg_win": 0.0116,
+    "avg_loss": -0.0165,
+    "profit_factor": 1.542,
+    "payoff": 0.703,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.241,
+    "max_consec_losses": 11,
+    "avg_bars": 3.3,
+    "avg_bars_win": 2.5,
+    "avg_bars_loss": 5.0,
+    "avg_mfe": 0.0115,
+    "avg_mae": -0.0174,
+    "edge_ratio": 0.66,
+    "exit_reasons": {
+      "signal": 2197
+    },
+    "long_short": {
+      "1": {
+        "count": 2197,
+        "mean": 0.0028
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 1.26,
+      "ann_ret": 0.085,
+      "bars": 3151
+    },
+    "bear": {
+      "sharpe": -0.9,
+      "ann_ret": -0.1129,
+      "bars": 567
+    },
+    "calm": {
+      "sharpe": 1.11,
+      "ann_ret": 0.0674,
+      "bars": 2023
+    },
+    "stressed": {
+      "sharpe": 0.41,
+      "ann_ret": 0.0398,
+      "bars": 1695
+    },
+    "vix_lt_20": {
+      "sharpe": 2.04,
+      "ann_ret": 0.1163,
+      "bars": 2800
+    },
+    "vix_20_30": {
+      "sharpe": -0.93,
+      "ann_ret": -0.1047,
+      "bars": 760
+    },
+    "vix_ge_30": {
+      "sharpe": -1.61,
+      "ann_ret": -0.2682,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 0.92,
+      "ann_ret": 0.0854,
+      "bars": 615
+    },
+    "curve_normal": {
+      "sharpe": 0.64,
+      "ann_ret": 0.0487,
+      "bars": 3103
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.619,
+      "sharpe_delayed_1bar": 0.266,
+      "retained": 0.43
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.617,
+      "neighbour_median": 0.666,
+      "share_positive": 1.0,
+      "stability": 1.08
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.605,
+      "sharpe_median": 0.618
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.1557,
+      "random_median_ann": 0.1256,
+      "random_p95_ann": 0.1596,
+      "trades_actual": 2607,
+      "p_value": 0.08
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0807,
+      "maxdd_p95": -0.1157,
+      "final_p05": 4.3313,
+      "final_median": 4.3313
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "none",
+  "kelly_fraction": 0.241,
+  "oos_csv": "results/H070_ibs_reversion_index_futures_1d_oos.csv",
+  "validated_at": "2026-10-21T17:52:26+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-21 00:00:00"
+}

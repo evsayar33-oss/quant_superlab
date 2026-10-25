@@ -1,0 +1,37 @@
+# Market-neutral cross-sectional study: H055 (momentum), H056 (funding carry), H058 (low volatility).
+# WRITTEN 2026-10-17 BEFORE ANY RESULT. Settings are fixed from the literature (see hypotheses/registry.yaml
+# notes). No parameter search. Neighbours/phases/costs are robustness checks, never a way to pick a winner.
+# H057 (BTC/ETH cash-and-carry) = existing config/core.yaml funding_arb result. H059 (value, on-chain new
+# addresses) cannot be tested on free exchange data -> reported as "not testable".
+start: "2020-01"            # data download start (Binance USDT-M monthly files, delisted symbols included)
+test_start: "2021-01-01"    # evaluation start
+universe:
+  top_n: 30                 # by 30-day median daily quote volume, re-ranked at every rebalance
+  min_age_days: 60
+  exclude: [USDC, BUSD, TUSD, FDUSD, DAI, USDP, EUR, GBP, BTCDOM, DEFI, BLUEBIRD, FOOTBALL, USUAL0]
+portfolio:
+  quantile: 3               # tercile: top third long, bottom third short
+  vol_lookback: 30          # inverse-vol weights inside each leg
+  leg_cap: 0.20             # one coin max 20% of its leg
+  rebalance_weekday: 0      # Monday (signals from the Sunday close)
+  vol_target: 0.15          # book vol target, 60-day realized, max gross 2x
+  vol_window: 60
+  max_gross: 2.0
+costs: {fee: 0.0006, slippage: 0.0005}   # per side, on turnover
+strategies:
+  H055: {signal: momentum, lookback: 14, long: high, neighbours: [7, 28]}
+  H056: {signal: funding,  lookback: 7,  long: low,  neighbours: [3, 14]}
+  H058: {signal: lowvol,   lookback: 90, long: low,  neighbours: [60, 180]}
+accept:                     # ALL must hold (pre-registered)
+  min_sharpe: 0.5           # net, test_start -> end
+  min_t: 2.0                # t-stat of daily log returns
+  bear_years: [2022, 2025]  # net > 0 in at least one
+  cost_mult: 2.0            # Sharpe > 0 at 2x costs
+  min_phases: 5             # of 7 rebalance weekdays, total net return > 0
+  max_corr: 0.3             # |weekly corr| with BTC and with the bot (H054 + idle arb)
+  neighbours_positive: true # Sharpe > 0 at both neighbour lookbacks
+  delist_stress: 0.5        # extra -50% of the position on the last day of a delisted coin; Sharpe > 0
+combo:                      # only for a strategy that passes ALL of accept
+  share: 0.5                # 50% bot + 50% strategy
+  cutoffs: ["2022-10-17", "2023-10-17", "2024-10-17"]
+  rule: "final >= bot in all 3 windows, OR max DD >= 5 points better and final >= 90% of bot in all 3"

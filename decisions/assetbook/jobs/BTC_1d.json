@@ -1,0 +1,345 @@
+{
+ "asset": "BTC",
+ "tf": "1d",
+ "bitget": "BTCUSDT",
+ "data": "binance_vision:BTCUSDT",
+ "first_bar": "2017-08-17 00:00:00",
+ "last_bar": "2026-10-23 00:00:00",
+ "bars": 3355,
+ "n_trials": 2831,
+ "errors": 0,
+ "error_sample": {},
+ "cuts": {
+  "6y": {
+   "cut": "2020-10-23",
+   "fwd_end": "2022-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2831,
+    "D1-D3": 25,
+    "D4": 25,
+    "D5": 17,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.1016,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.526,
+     "dsr": 0.22,
+     "disc": {
+      "trades": 47,
+      "ret2": 6.708,
+      "pf2": 3.595,
+      "wr2": 0.3404,
+      "be": 0.1255,
+      "sr": 1.5259,
+      "max_dd": -0.5174
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.412,
+     "dsr": 0.193,
+     "disc": {
+      "trades": 39,
+      "ret2": 6.2481,
+      "pf2": 3.085,
+      "wr2": 0.4359,
+      "be": 0.2003,
+      "sr": 1.4787,
+      "max_dd": -0.4209
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.179,
+     "dsr": 0.101,
+     "disc": {
+      "trades": 39,
+      "ret2": 3.0079,
+      "pf2": 2.318,
+      "wr2": 0.4359,
+      "be": 0.2501,
+      "sr": 1.2325,
+      "max_dd": -0.4027
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.146,
+     "dsr": 0.072,
+     "disc": {
+      "trades": 55,
+      "ret2": 2.8592,
+      "pf2": 2.146,
+      "wr2": 0.3273,
+      "be": 0.1848,
+      "sr": 1.1461,
+      "max_dd": -0.4954
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [0.02, 0.2]}, \"rule\": \"psar_flip\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.101,
+     "dsr": 0.062,
+     "disc": {
+      "trades": 43,
+      "ret2": 2.9372,
+      "pf2": 2.063,
+      "wr2": 0.4884,
+      "be": 0.3163,
+      "sr": 1.1009,
+      "max_dd": -0.4641
+     }
+    }
+   ]
+  },
+  "4y": {
+   "cut": "2022-10-23",
+   "fwd_end": "2024-10-23",
+   "testable": true,
+   "holdout": false,
+   "funnel": {
+    "trials": 2831,
+    "D1-D3": 31,
+    "D4": 29,
+    "D5": 25,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0858,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 50, \"price_n\": 50}, \"rule\": \"obv_trend\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.165,
+     "dsr": 0.146,
+     "disc": {
+      "trades": 52,
+      "ret2": 9.8075,
+      "pf2": 3.673,
+      "wr2": 0.3462,
+      "be": 0.126,
+      "sr": 1.1884,
+      "max_dd": -0.5688
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.099,
+     "dsr": 0.106,
+     "disc": {
+      "trades": 38,
+      "ret2": 8.5582,
+      "pf2": 3.545,
+      "wr2": 0.2895,
+      "be": 0.1031,
+      "sr": 1.099,
+      "max_dd": -0.7862
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.068,
+     "dsr": 0.114,
+     "disc": {
+      "trades": 30,
+      "ret2": 4.0465,
+      "pf2": 2.79,
+      "wr2": 0.4667,
+      "be": 0.2388,
+      "sr": 1.1331,
+      "max_dd": -0.4793
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.885,
+     "dsr": 0.043,
+     "disc": {
+      "trades": 31,
+      "ret2": 2.8458,
+      "pf2": 2.501,
+      "wr2": 0.4839,
+      "be": 0.2727,
+      "sr": 0.8847,
+      "max_dd": -0.529
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"trend_n\": 50}, \"rule\": \"engulfing\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 0.867,
+     "dsr": 0.079,
+     "disc": {
+      "trades": 43,
+      "ret2": 4.5296,
+      "pf2": 2.534,
+      "wr2": 0.4651,
+      "be": 0.2555,
+      "sr": 1.0354,
+      "max_dd": -0.4744
+     }
+    }
+   ]
+  },
+  "2y": {
+   "cut": "2024-10-23",
+   "fwd_end": "2026-10-24",
+   "testable": true,
+   "holdout": true,
+   "funnel": {
+    "trials": 2831,
+    "D1-D3": 58,
+    "D4": 56,
+    "D5": 46,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0794,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.234,
+     "dsr": 0.218,
+     "disc": {
+      "trades": 112,
+      "ret2": 24.6463,
+      "pf2": 2.685,
+      "wr2": 0.3036,
+      "be": 0.1397,
+      "sr": 1.2342,
+      "max_dd": -0.6062
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.2,
+     "dsr": 0.266,
+     "disc": {
+      "trades": 36,
+      "ret2": 31.1916,
+      "pf2": 5.179,
+      "wr2": 0.4722,
+      "be": 0.1473,
+      "sr": 1.2908,
+      "max_dd": -0.5671
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.185,
+     "dsr": 0.179,
+     "disc": {
+      "trades": 90,
+      "ret2": 20.9787,
+      "pf2": 2.514,
+      "wr2": 0.4111,
+      "be": 0.2174,
+      "sr": 1.1854,
+      "max_dd": -0.6052
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 50, \"price_n\": 50}, \"rule\": \"obv_trend\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.095,
+     "dsr": 0.123,
+     "disc": {
+      "trades": 92,
+      "ret2": 14.4942,
+      "pf2": 3.119,
+      "wr2": 0.2609,
+      "be": 0.1017,
+      "sr": 1.095,
+      "max_dd": -0.5688
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.065,
+     "dsr": 0.11,
+     "disc": {
+      "trades": 54,
+      "ret2": 16.2094,
+      "pf2": 3.321,
+      "wr2": 0.3333,
+      "be": 0.1309,
+      "sr": 1.0651,
+      "max_dd": -0.7862
+     }
+    }
+   ]
+  }
+ },
+ "timemachine": {
+  "testable": [
+   "6y",
+   "4y",
+   "2y"
+  ],
+  "inside": 0,
+  "passed": false
+ },
+ "lead": false,
+ "fib_test": {
+  "disc": {
+   "pairs": 372,
+   "median_delta_pf": -0.102,
+   "share_improved": 0.191
+  },
+  "fwd": {
+   "pairs": 233,
+   "median_delta_pf": -0.124,
+   "share_improved": 0.18
+  },
+  "helps": false
+ },
+ "bh": {
+  "6y": 0.4861,
+  "4y": 2.4453,
+  "2y": 0.2178
+ }
+}

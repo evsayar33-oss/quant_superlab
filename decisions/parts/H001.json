@@ -1,0 +1,140 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": "WATCH",
+  "reasons": [
+    "OOS MaxDD -0.4756 worse than -0.45 (local or USD)"
+  ],
+  "strategy": "xs_momentum",
+  "kind": "strategy",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_orderflow_quant",
+  "spec": {
+    "id": "H001",
+    "strategy": "xs_momentum",
+    "universe": "bist30",
+    "for_system": "bist_orderflow_quant",
+    "start": "2012-01-01",
+    "status": "active"
+  },
+  "variant": "xs_momentum|lookback=126,skip=0,top_n=3",
+  "params": {
+    "lookback": 126,
+    "skip": 0,
+    "top_n": 3
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "EREGL.IS": 0.3333,
+    "TUPRS.IS": 0.3333,
+    "ALARK.IS": 0.3333
+  },
+  "gate_sharpe": 0.691,
+  "pbo": 0.286,
+  "reality_check_p": 0.012,
+  "dsr": 1.0,
+  "n_trials": 32,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.5694,
+    "vol": 0.2711,
+    "sharpe": 1.799,
+    "sharpe_excess_rf": 1.717,
+    "sortino": 2.659,
+    "max_dd": -0.4394,
+    "max_dd_bars": 279,
+    "calmar": 1.296,
+    "ulcer": 0.0912,
+    "var95": -0.0233,
+    "cvar95": -0.0382,
+    "omega": 1.397,
+    "tail_ratio": 1.274,
+    "skew": 0.068,
+    "kurtosis": 5.398,
+    "hit_rate": 0.54,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 6.73,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": 0.385,
+    "beta": 0.674,
+    "up_capture": 0.806,
+    "down_capture": 0.679
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 2.52,
+      "ann_ret": 0.6568,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": -0.09,
+      "ann_ret": -0.0281,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 2.3,
+      "ann_ret": 0.4936,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 1.49,
+      "ann_ret": 0.4813,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 2.0,
+      "ann_ret": 0.5049,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": 1.65,
+      "ann_ret": 0.4663,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": 0.88,
+      "ann_ret": 0.3654,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 0.98,
+      "ann_ret": 0.1574,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 1.97,
+      "ann_ret": 0.5823,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.584,
+      "sharpe_delayed_1bar": 1.629,
+      "retained": 1.028
+    },
+    "neighbourhood": {
+      "neighbours": 5,
+      "best_sharpe": 1.557,
+      "neighbour_median": 1.464,
+      "share_positive": 1.0,
+      "stability": 0.941
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.539,
+      "sharpe_median": 1.569
+    }
+  },
+  "recommended_overlay": "vol_target_0.2",
+  "kelly_fraction": null,
+  "oos_csv": "results/H001_xs_momentum_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:54:55+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

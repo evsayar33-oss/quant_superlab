@@ -1,0 +1,142 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": "WATCH",
+  "reasons": [
+    "DSR 0.873 < 0.9 (luck not excluded after 18 trials)",
+    "OOS Sharpe (excess of T-bill) 0.299 < 0.5",
+    "Reality Check p 0.956 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "cot_commercial_follow",
+  "kind": "strategy",
+  "universe": "metals",
+  "timeframe": "1d",
+  "for_system": "metals",
+  "spec": {
+    "id": "H045",
+    "strategy": "cot_commercial_follow",
+    "universe": "metals",
+    "for_system": "metals",
+    "start": "2008-01-01",
+    "status": "active"
+  },
+  "variant": "cot_commercial_follow|look=156,thr=0.5|overlay=vt10",
+  "params": {
+    "look": 156,
+    "thr": 0.5,
+    "_overlay": "vt10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "HG=F": 0.1504,
+    "PL=F": 0.1504,
+    "PA=F": 0.1504
+  },
+  "gate_sharpe": 0.299,
+  "pbo": 0.392,
+  "reality_check_p": 0.956,
+  "dsr": 0.873,
+  "n_trials": 18,
+  "oos": {
+    "start": "2012-01-09 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 14.76,
+    "cagr": 0.0413,
+    "vol": 0.0959,
+    "sharpe": 0.47,
+    "sharpe_excess_rf": 0.299,
+    "sortino": 0.435,
+    "max_dd": -0.1693,
+    "max_dd_bars": 1450,
+    "calmar": 0.244,
+    "ulcer": 0.0494,
+    "var95": -0.0078,
+    "cvar95": -0.015,
+    "omega": 1.126,
+    "tail_ratio": 1.116,
+    "skew": 0.518,
+    "kurtosis": 22.198,
+    "hit_rate": 0.329,
+    "psr": 0.965,
+    "time_in_market": null,
+    "turnover_ann": 5.4,
+    "bench_cagr": 0.0598,
+    "bench_sharpe": 0.375,
+    "info_ratio": -0.22,
+    "beta": 0.297,
+    "up_capture": 0.29,
+    "down_capture": 0.272
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.34,
+      "ann_ret": 0.1138,
+      "bars": 2225
+    },
+    "bear": {
+      "sharpe": -0.52,
+      "ann_ret": -0.0575,
+      "bars": 1490
+    },
+    "calm": {
+      "sharpe": 0.38,
+      "ann_ret": 0.0299,
+      "bars": 1959
+    },
+    "stressed": {
+      "sharpe": 0.55,
+      "ann_ret": 0.062,
+      "bars": 1756
+    },
+    "vix_lt_20": {
+      "sharpe": 0.58,
+      "ann_ret": 0.0447,
+      "bars": 2796
+    },
+    "vix_20_30": {
+      "sharpe": 0.3,
+      "ann_ret": 0.0345,
+      "bars": 761
+    },
+    "vix_ge_30": {
+      "sharpe": 0.47,
+      "ann_ret": 0.1024,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 0.29,
+      "ann_ret": 0.0134,
+      "bars": 615
+    },
+    "curve_normal": {
+      "sharpe": 0.5,
+      "ann_ret": 0.0514,
+      "bars": 3100
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.339,
+      "sharpe_delayed_1bar": 0.336,
+      "retained": 0.992
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.336,
+      "neighbour_median": 0.292,
+      "share_positive": 1.0,
+      "stability": 0.869
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.337,
+      "sharpe_median": 0.342
+    }
+  },
+  "recommended_overlay": "none",
+  "kelly_fraction": null,
+  "oos_csv": "results/H045_cot_commercial_follow_metals_1d_oos.csv",
+  "validated_at": "2026-10-17T09:04:25+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

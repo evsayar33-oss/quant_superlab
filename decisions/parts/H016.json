@@ -1,0 +1,147 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (USD, excess of US T-bill) 0.346 < 0.5",
+    "OOS MaxDD -0.5236 worse than -0.45 (local or USD)"
+  ],
+  "strategy": "value_ep",
+  "kind": "strategy",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_shock_quant",
+  "spec": {
+    "id": "H016",
+    "strategy": "value_ep",
+    "universe": "bist30",
+    "for_system": "bist_shock_quant",
+    "start": "2012-01-01",
+    "status": "active"
+  },
+  "variant": "value_ep|top_n=10,freq=ME",
+  "params": {
+    "top_n": 10,
+    "freq": "ME"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "AKBNK.IS": 0.1,
+    "FROTO.IS": 0.1,
+    "GARAN.IS": 0.1,
+    "ISCTR.IS": 0.1,
+    "SISE.IS": 0.1,
+    "THYAO.IS": 0.1,
+    "YKBNK.IS": 0.1,
+    "TTKOM.IS": 0.1,
+    "OYAKC.IS": 0.1,
+    "PGSUS.IS": 0.1
+  },
+  "gate_sharpe": 0.346,
+  "pbo": 0.364,
+  "reality_check_p": 0.014,
+  "dsr": 1.0,
+  "n_trials": 20,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.4068,
+    "vol": 0.2226,
+    "sharpe": 1.646,
+    "sharpe_excess_rf": 1.546,
+    "sortino": 2.374,
+    "max_dd": -0.253,
+    "max_dd_bars": 166,
+    "calmar": 1.608,
+    "ulcer": 0.0732,
+    "var95": -0.0195,
+    "cvar95": -0.0303,
+    "omega": 1.342,
+    "tail_ratio": 1.172,
+    "skew": 0.018,
+    "kurtosis": 4.611,
+    "hit_rate": 0.538,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 2.39,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": -0.216,
+    "beta": 0.655,
+    "up_capture": 0.714,
+    "down_capture": 0.653
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 2.37,
+      "ann_ret": 0.5414,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": -0.84,
+      "ann_ret": -0.1683,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 2.53,
+      "ann_ret": 0.4795,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 0.95,
+      "ann_ret": 0.2404,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 2.01,
+      "ann_ret": 0.4132,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": 1.22,
+      "ann_ret": 0.3174,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": -0.05,
+      "ann_ret": -0.0126,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 1.04,
+      "ann_ret": 0.1706,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 1.78,
+      "ann_ret": 0.4222,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.41,
+      "sharpe_delayed_1bar": 1.394,
+      "retained": 0.989
+    },
+    "neighbourhood": {
+      "neighbours": 3,
+      "best_sharpe": 1.405,
+      "neighbour_median": 1.56,
+      "share_positive": 1.0,
+      "stability": 1.11
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.411,
+      "sharpe_median": 1.412
+    }
+  },
+  "recommended_overlay": "dd_brake_0.1",
+  "kelly_fraction": null,
+  "oos_csv": "results/H016_value_ep_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:55:51+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

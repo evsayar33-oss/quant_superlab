@@ -1,0 +1,218 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.036 < 0.9 (luck not excluded after 177 trials)",
+    "OOS Sharpe (excess of T-bill) -0.32 < 0.5",
+    "bootstrap P(SR>0) 0.824 < 0.85",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "bollinger_reversion",
+  "kind": "rule",
+  "universe": "sp_megacap",
+  "timeframe": "1d",
+  "for_system": "sp500_shock_quant",
+  "spec": {
+    "id": "H020",
+    "rule": "bollinger_reversion",
+    "universe": "sp_megacap",
+    "for_system": "sp500_shock_quant",
+    "start": "2010-01-01",
+    "filters": [
+      "trend_sma200",
+      "low_vol"
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "bollinger_reversion|n=30,k=2.5|f=low_vol|x=signal_only",
+  "params": {
+    "n": 30,
+    "k": 2.5,
+    "_filter": "low_vol",
+    "_exit": 0,
+    "_size": 0
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "JPM": 0.0333,
+      "PEP": 0.0333
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "AAPL",
+      "MSFT",
+      "BRK-B",
+      "V",
+      "UNH",
+      "XOM",
+      "PG",
+      "MA",
+      "HD",
+      "COST",
+      "LLY",
+      "MRK",
+      "PEP",
+      "KO",
+      "WMT",
+      "CVX",
+      "ADBE",
+      "CRM",
+      "META",
+      "ABBV"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.32,
+  "pbo": 0.444,
+  "reality_check_p": 1.0,
+  "dsr": 0.036,
+  "n_trials": 177,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.0067,
+    "vol": 0.0362,
+    "sharpe": 0.202,
+    "sharpe_excess_rf": -0.32,
+    "sortino": -0.43,
+    "max_dd": -0.1161,
+    "max_dd_bars": 2773,
+    "calmar": 0.057,
+    "ulcer": 0.0683,
+    "var95": -0.0025,
+    "cvar95": -0.0059,
+    "omega": 1.062,
+    "tail_ratio": 1.06,
+    "skew": -1.208,
+    "kurtosis": 29.834,
+    "hit_rate": 0.358,
+    "psr": 0.763,
+    "time_in_market": null,
+    "turnover_ann": 5.38,
+    "bench_cagr": 0.2038,
+    "bench_sharpe": 1.225,
+    "info_ratio": -1.253,
+    "beta": 0.081,
+    "up_capture": 0.102,
+    "down_capture": 0.119
+  },
+  "trade_stats": {
+    "n_trades": 173,
+    "trades_per_year": 13.6,
+    "win_rate": 0.815,
+    "avg_trade": 0.0202,
+    "median_trade": 0.0264,
+    "avg_win": 0.0356,
+    "avg_loss": -0.0477,
+    "profit_factor": 3.285,
+    "payoff": 0.746,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.567,
+    "max_consec_losses": 3,
+    "avg_bars": 14.9,
+    "avg_bars_win": 11.3,
+    "avg_bars_loss": 30.6,
+    "avg_mfe": 0.0353,
+    "avg_mae": -0.0417,
+    "edge_ratio": 0.846,
+    "exit_reasons": {
+      "signal": 173
+    },
+    "long_short": {
+      "1": {
+        "count": 173,
+        "mean": 0.0202
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.5,
+      "ann_ret": 0.0187,
+      "bars": 2702
+    },
+    "bear": {
+      "sharpe": -1.83,
+      "ann_ret": -0.0535,
+      "bars": 508
+    },
+    "calm": {
+      "sharpe": 0.61,
+      "ann_ret": 0.018,
+      "bars": 1677
+    },
+    "stressed": {
+      "sharpe": -0.1,
+      "ann_ret": -0.0044,
+      "bars": 1533
+    },
+    "vix_lt_20": {
+      "sharpe": 1.09,
+      "ann_ret": 0.0383,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": -2.0,
+      "ann_ret": -0.0755,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": -1.9,
+      "ann_ret": -0.0751,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 1.14,
+      "ann_ret": 0.0256,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.08,
+      "ann_ret": 0.003,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.839,
+      "sharpe_delayed_1bar": 0.747,
+      "retained": 0.89
+    },
+    "neighbourhood": {
+      "neighbours": 5,
+      "best_sharpe": 0.818,
+      "neighbour_median": 0.655,
+      "share_positive": 1.0,
+      "stability": 0.801
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.705,
+      "sharpe_median": 0.85
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.4034,
+      "random_median_ann": 0.2607,
+      "random_p95_ann": 0.5012,
+      "trades_actual": 221,
+      "p_value": 0.08
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0098,
+      "maxdd_p95": -0.0154,
+      "final_p05": 0.1815,
+      "final_median": 0.1815
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": 0.567,
+  "oos_csv": "results/H020_bollinger_reversion_sp_megacap_1d_oos.csv",
+  "validated_at": "2026-10-17T08:59:41+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

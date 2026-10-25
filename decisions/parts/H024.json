@@ -1,0 +1,183 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.217 < 0.9 (luck not excluded after 169 trials)",
+    "OOS Sharpe (excess of T-bill) 0.033 < 0.5",
+    "bootstrap P(SR>0) 0.73 < 0.85",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.818 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "donchian_breakout",
+  "kind": "rule",
+  "universe": "crypto_major",
+  "timeframe": "1d",
+  "for_system": "karma_perp_bot",
+  "spec": {
+    "id": "H024",
+    "rule": "donchian_breakout",
+    "universe": "crypto_major",
+    "for_system": "karma_perp_bot",
+    "start": "2020-01-01",
+    "filters": [
+      "none",
+      "volume_confirm"
+    ],
+    "side": "both",
+    "train_years": 2,
+    "test_months": 3,
+    "status": "active"
+  },
+  "variant": "donchian_breakout|entry=55,exit=10|f=none|x=max_hold=5|size=atr_risk0.01|overlay=vt15",
+  "params": {
+    "entry": 55,
+    "exit": 10,
+    "_filter": "none",
+    "_exit": 33,
+    "_size": 2,
+    "_overlay": "vt15"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": 0.033,
+  "pbo": 0.183,
+  "reality_check_p": 0.818,
+  "dsr": 0.217,
+  "n_trials": 169,
+  "oos": {
+    "start": "2023-01-11 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 3.76,
+    "cagr": 0.04,
+    "vol": 0.1338,
+    "sharpe": 0.36,
+    "sharpe_excess_rf": 0.033,
+    "sortino": 0.047,
+    "max_dd": -0.2401,
+    "max_dd_bars": 451,
+    "calmar": 0.166,
+    "ulcer": 0.0785,
+    "var95": -0.0063,
+    "cvar95": -0.0161,
+    "omega": 1.106,
+    "tail_ratio": 1.138,
+    "skew": -1.899,
+    "kurtosis": 61.976,
+    "hit_rate": 0.254,
+    "psr": 0.753,
+    "time_in_market": null,
+    "turnover_ann": 14.55,
+    "bench_cagr": 0.1495,
+    "bench_sharpe": 0.535,
+    "info_ratio": -0.448,
+    "beta": -0.001,
+    "up_capture": 0.016,
+    "down_capture": 0.006
+  },
+  "trade_stats": {
+    "n_trades": 389,
+    "trades_per_year": 103.4,
+    "win_rate": 0.491,
+    "avg_trade": 0.0198,
+    "median_trade": -0.0022,
+    "avg_win": 0.1005,
+    "avg_loss": -0.0581,
+    "profit_factor": 1.669,
+    "payoff": 1.73,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.197,
+    "max_consec_losses": 12,
+    "avg_bars": 5.0,
+    "avg_bars_win": 5.0,
+    "avg_bars_loss": 4.9,
+    "avg_mfe": 0.1048,
+    "avg_mae": -0.0689,
+    "edge_ratio": 1.52,
+    "exit_reasons": {
+      "time": 382,
+      "signal": 7
+    },
+    "long_short": {
+      "-1": {
+        "count": 146,
+        "mean": 0.0049
+      },
+      "1": {
+        "count": 243,
+        "mean": 0.0287
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.83,
+      "ann_ret": 0.0968,
+      "bars": 1059
+    },
+    "bear": {
+      "sharpe": -0.64,
+      "ann_ret": -0.1145,
+      "bars": 316
+    },
+    "calm": {
+      "sharpe": 0.56,
+      "ann_ret": 0.0587,
+      "bars": 743
+    },
+    "stressed": {
+      "sharpe": 0.22,
+      "ann_ret": 0.036,
+      "bars": 632
+    },
+    "vix_lt_20": {
+      "sharpe": 0.7,
+      "ann_ret": 0.0806,
+      "bars": 1131
+    },
+    "vix_20_30": {
+      "sharpe": -0.57,
+      "ann_ret": -0.1136,
+      "bars": 223
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.107,
+      "sharpe_delayed_1bar": 0.857,
+      "retained": 0.774
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.026,
+      "sharpe_median": 1.107
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 1.6917,
+      "random_median_ann": 0.061,
+      "random_p95_ann": 0.3687,
+      "trades_actual": 568,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0833,
+      "maxdd_p95": -0.1256,
+      "final_p05": 3.1612,
+      "final_median": 3.1612
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": 0.197,
+  "oos_csv": "results/H024_donchian_breakout_crypto_major_1d_oos.csv",
+  "validated_at": "2026-10-17T08:59:33+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

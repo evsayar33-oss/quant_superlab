@@ -1,0 +1,141 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": "WATCH",
+  "reasons": [
+    "OOS Sharpe (excess of T-bill) 0.28 < 0.5",
+    "only 46% of OOS years positive",
+    "PBO 0.929 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.934 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "ts_momentum",
+  "kind": "strategy",
+  "universe": "metals_etf",
+  "timeframe": "1d",
+  "for_system": "metals",
+  "spec": {
+    "id": "H033",
+    "strategy": "ts_momentum",
+    "universe": "metals_etf",
+    "for_system": "metals",
+    "start": "2010-01-01",
+    "status": "active"
+  },
+  "variant": "ts_momentum|lookback=126,vol_target=0.15|overlay=vt10",
+  "params": {
+    "lookback": 126,
+    "vol_target": 0.15,
+    "_overlay": "vt10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "CPER": 0.0817
+  },
+  "gate_sharpe": 0.28,
+  "pbo": 0.929,
+  "reality_check_p": 0.934,
+  "dsr": 0.935,
+  "n_trials": 20,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.036,
+    "vol": 0.0666,
+    "sharpe": 0.564,
+    "sharpe_excess_rf": 0.28,
+    "sortino": 0.385,
+    "max_dd": -0.1468,
+    "max_dd_bars": 1045,
+    "calmar": 0.245,
+    "ulcer": 0.064,
+    "var95": -0.006,
+    "cvar95": -0.0108,
+    "omega": 1.142,
+    "tail_ratio": 1.115,
+    "skew": -0.836,
+    "kurtosis": 13.275,
+    "hit_rate": 0.337,
+    "psr": 0.976,
+    "time_in_market": null,
+    "turnover_ann": 4.23,
+    "bench_cagr": 0.0974,
+    "bench_sharpe": 0.502,
+    "info_ratio": -0.423,
+    "beta": 0.197,
+    "up_capture": 0.198,
+    "down_capture": 0.189
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 0.95,
+      "ann_ret": 0.0756,
+      "bars": 2038
+    },
+    "bear": {
+      "sharpe": -0.86,
+      "ann_ret": -0.0287,
+      "bars": 1172
+    },
+    "calm": {
+      "sharpe": 1.28,
+      "ann_ret": 0.0649,
+      "bars": 1701
+    },
+    "stressed": {
+      "sharpe": 0.08,
+      "ann_ret": 0.0067,
+      "bars": 1509
+    },
+    "vix_lt_20": {
+      "sharpe": 0.82,
+      "ann_ret": 0.048,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": 0.55,
+      "ann_ret": 0.0369,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": -0.85,
+      "ann_ret": -0.1144,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": -0.32,
+      "ann_ret": -0.0221,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.79,
+      "ann_ret": 0.0517,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.474,
+      "sharpe_delayed_1bar": 0.422,
+      "retained": 0.89
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.465,
+      "neighbour_median": 0.482,
+      "share_positive": 1.0,
+      "stability": 1.035
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.452,
+      "sharpe_median": 0.466
+    }
+  },
+  "recommended_overlay": "equity_ma_41",
+  "kelly_fraction": null,
+  "oos_csv": "results/H033_ts_momentum_metals_etf_1d_oos.csv",
+  "validated_at": "2026-10-17T09:00:52+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

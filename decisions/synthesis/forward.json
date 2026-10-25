@@ -1,0 +1,26 @@
+{
+ "frozen_on": "2026-10-24",
+ "picks": {
+  "watch:B1_stack|k=0.75": {
+   "key": "B1_stack|k=0.75",
+   "months": 0,
+   "forward_active_sum": 0.0,
+   "last_month": "2026-05-31",
+   "degraded": null
+  },
+  "watch:C2_crypto|c=0.1": {
+   "key": "C2_crypto|c=0.1",
+   "months": 0,
+   "forward_active_sum": 0.0,
+   "last_month": "2026-09-30",
+   "degraded": null
+  },
+  "watch:C2_crypto|c=0.2": {
+   "key": "C2_crypto|c=0.2",
+   "months": 0,
+   "forward_active_sum": 0.0,
+   "last_month": "2026-09-30",
+   "degraded": null
+  }
+ }
+}

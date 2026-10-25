@@ -1,0 +1,49 @@
+# Paper forward watch + leverage test for the 3 H062 ideas that passed the buy-and-hold / random-entry check.
+# Pre-registered 2026-10-21 18:05, BEFORE any leverage result was computed. Do not tune after results.
+# Paper only: no orders, no keys. Signals go to Telegram. The bot (H054) is not changed.
+
+start: "2026-10-22"          # paper record starts here (forward = never seen by any selection)
+ideas:
+  H063:
+    name: "Metal Vortex(28) + SMC order block (long)"
+    cls: metals
+    side: long
+    spec: {rule: vortex_cross, params: {n: 28}, exit_id: 13, filter: none,
+           confirm: {rule: smc_order_block, params: {k: 5, max_age: 50}, within: 3}}
+  H064:
+    name: "Metal 52 hafta zirvesi + SMC BOS (iki yön)"
+    cls: metals
+    side: both
+    spec: {rule: high_52w_break, params: {n: 252, exit_ma: 100}, exit_id: 28, filter: none,
+           confirm: {rule: smc_bos, params: {k: 5}, within: 3}}
+  H065:
+    name: "Endeks IBS ortalamaya dönüş + SMA200 (long)"
+    cls: indices
+    side: long
+    spec: {rule: ibs_reversion, params: {lo: 0.2, hi: 0.7}, exit_id: 0, filter: trend_sma200}
+
+# Leverage test (applied to the equal-weight pool of the class assets, 1x = each asset 1/N of equity).
+# Levered daily return = L x pool return (trading cost scales with L); a day can never lose more than 100%.
+# Futures: financing is inside the futures price, so no extra borrow cost; idle cash interest is ignored
+# (conservative). Futures contract size is ignored (small accounts may need micro contracts).
+leverage:
+  static: [1, 2, 3, 4, 5]
+  vol_target: {target: 0.20, lookback_days: 60, max_leverage: 5}   # scale = min(5, 20% / past 60-day vol), lag 1
+  windows: ["2022-10-21", "2023-10-21", "2024-10-21"]               # same cuts as the time machine
+  # Pick per idea = the HIGHEST static L that keeps ALL of:
+  max_dd_floor: -0.40        # max drawdown >= -40% on the full history AND in every window (main capital is never close to lost)
+  worst_day_floor: -0.25     # no single day worse than -25%
+  # If even L=1 fails, the idea is not traded with leverage. The vol-target variant is reported for comparison only.
+
+# Start leverage for a later live start (decided NOW, 2026-10-21, not after the review):
+# start = floor(picked / 2), at least 1. The picked figure is a ceiling, not a target. The paper record tracks
+# 1x, start and picked leverage side by side, so the review sees all three.
+start_leverage_rule: half_of_pick_floor
+
+# Tradable-only paper book: the same idea computed ONLY on the assets that a crypto venue with an API lists
+# (decisions/watch/venues.json, refreshed weekly). If an asset (e.g. copper) has no market, the live book cannot
+# hold it; this second record shows what a live book would really have earned.
+tradable_only: true
+
+review:                       # paper check dates (scheduled tasks); same B1 / B2 rule as config/mega.yaml baseline
+  dates: ["2027-01-22", "2027-04-22"]

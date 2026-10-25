@@ -1,0 +1,41 @@
+# H076 learned per-asset model (lab/mlbook.py). Pre-registered 2026-10-25 BEFORE any result was computed.
+# Owner's request (2026-10-25): do not hand-pick combinations; let one model combine ALL signals (every
+# lab/rules.py rule, Fibonacci zone position, trend and volatility regime) per asset, long AND short, so it can
+# also earn in falling markets. Owner's target: average >= 25% a year and the longest recovery (time below the
+# previous equity peak) <= 20 months. Report every setting that meets the target, even if the strict checks fail.
+#
+# Why this is not data mining: the model is refit on PAST data only (walk-forward). Every prediction is made by a
+# model that never saw that bar. Only 8 settings per asset+timeframe are tried (counted in the DSR).
+
+assets_from: config/assetbook.yaml        # same 8 Bitget assets, costs, funding and free data
+jobs: [BTC:1d, BTC:4h, ETH:1d, ETH:4h, SOL:1d, SOL:4h, SPX:1d, NDX:1d, XAU:1d, XAG:1d, COPPER:1d]
+
+features:                                  # all known at the close of bar t
+  rules: "every lab/rules.py rule except the positioning family, grid centre: +1 entry long, -1 entry short,
+          state of the last entry within 20 bars"
+  fib: "position of the close inside the dealing range of the last confirmed swing high/low (k = 5), 0..1, and
+        leg direction"
+  regime: "close / SMA200 - 1, SMA50 / SMA200 - 1, ADX(14), 30-bar realised vol, returns over 1/5/20/60 bars"
+model: "sklearn HistGradientBoostingClassifier(max_depth=3, learning_rate=0.05, max_iter=200, l2=1.0), fixed"
+label: "sign of the forward return over `horizon` bars; |return| < 0.25 x ATR% counts as flat (class 0)"
+walk_forward: {min_train_years: 3, refit_months: 6, expanding: true, embargo_bars: horizon}
+
+grid:                                      # 8 settings per job, nothing else is tuned
+  horizon: {1d: [5, 20], 4h: [6, 30]}      # short / long holding view
+  threshold: [0.55, 0.60]                  # act only when the predicted class probability is above this
+  side: [long, both]                       # long/cash, or long/short/cash
+position: "+1 / -1 / 0 at the next bar open; no leverage; same costs and funding as config/assetbook.yaml"
+
+holdout_years: 2                           # last 2 years locked: read once after all settings are fixed
+
+# Owner's target (T) and strict checks (S). Both are reported for every setting.
+target:                                    # on the walk-forward OOS period (discovery) AND on the holdout
+  min_cagr: 0.25
+  max_recovery_days: 600                   # about 20 months
+strict:
+  S1_cost_2x_cagr_positive: true
+  S2_min_dsr: 0.90                         # n = 8 x 11 = 88 trials
+  S3_each_year_of_holdout_positive: false  # reported, not required
+# A setting that meets T in both periods AND S1-S2 is a LEAD -> its own hypothesis id + decision gate.
+# A setting that meets T only is reported as "meets the owner's target, not proven".
+baseline: "H054 rule on the same asset and dates (report only)"

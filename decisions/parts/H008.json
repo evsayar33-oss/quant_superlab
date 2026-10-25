@@ -1,0 +1,211 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.009 < 0.9 (luck not excluded after 393 trials)",
+    "OOS Sharpe (excess of T-bill) -0.154 < 0.5",
+    "bootstrap P(SR>0) 0.778 < 0.85",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)",
+    "random entries match it (p=0.84): the edge is in the exits, not the signal"
+  ],
+  "strategy": "rsi_reversal",
+  "kind": "rule",
+  "universe": "sp_megacap",
+  "timeframe": "1d",
+  "for_system": "us_f1_bot",
+  "spec": {
+    "id": "H008",
+    "rule": "rsi_reversal",
+    "universe": "sp_megacap",
+    "for_system": "us_f1_bot",
+    "start": "2010-01-01",
+    "filters": [
+      "trend_sma200",
+      "regime_bench200"
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "rsi_reversal|n=9,lo=35,exit=70|f=trend_sma200|x=trail_pct=0.1|size=atr_risk0.01|overlay=eqma_s",
+  "params": {
+    "n": 9,
+    "lo": 35,
+    "exit": 70,
+    "_filter": "trend_sma200",
+    "_exit": 26,
+    "_size": 2,
+    "_overlay": "eqma_s"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "AMZN": 0.2048,
+      "JNJ": 0.1582,
+      "MRK": 0.1443
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "BRK-B",
+      "V",
+      "XOM",
+      "PG",
+      "MA",
+      "HD",
+      "COST",
+      "LLY",
+      "KO",
+      "WMT",
+      "CVX",
+      "ABBV"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.154,
+  "pbo": 0.275,
+  "reality_check_p": 1.0,
+  "dsr": 0.009,
+  "n_trials": 393,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.0099,
+    "vol": 0.0504,
+    "sharpe": 0.22,
+    "sharpe_excess_rf": -0.154,
+    "sortino": -0.21,
+    "max_dd": -0.1648,
+    "max_dd_bars": 1674,
+    "calmar": 0.06,
+    "ulcer": 0.0813,
+    "var95": -0.0037,
+    "cvar95": -0.0084,
+    "omega": 1.066,
+    "tail_ratio": 1.023,
+    "skew": -0.365,
+    "kurtosis": 28.479,
+    "hit_rate": 0.336,
+    "psr": 0.784,
+    "time_in_market": null,
+    "turnover_ann": 4.98,
+    "bench_cagr": 0.211,
+    "bench_sharpe": 1.225,
+    "info_ratio": -1.325,
+    "beta": 0.162,
+    "up_capture": 0.153,
+    "down_capture": 0.179
+  },
+  "trade_stats": {
+    "n_trades": 814,
+    "trades_per_year": 63.8,
+    "win_rate": 0.634,
+    "avg_trade": 0.017,
+    "median_trade": 0.0351,
+    "avg_win": 0.0664,
+    "avg_loss": -0.0685,
+    "profit_factor": 1.68,
+    "payoff": 0.97,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.257,
+    "max_consec_losses": 42,
+    "avg_bars": 21.9,
+    "avg_bars_win": 22.8,
+    "avg_bars_loss": 20.3,
+    "avg_mfe": 0.0599,
+    "avg_mae": -0.0393,
+    "edge_ratio": 1.523,
+    "exit_reasons": {
+      "signal": 524,
+      "stop": 290
+    },
+    "long_short": {
+      "1": {
+        "count": 814,
+        "mean": 0.017
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.82,
+      "ann_ret": 0.0376,
+      "bars": 2702
+    },
+    "bear": {
+      "sharpe": -1.85,
+      "ann_ret": -0.1296,
+      "bars": 508
+    },
+    "calm": {
+      "sharpe": 0.57,
+      "ann_ret": 0.0152,
+      "bars": 1677
+    },
+    "stressed": {
+      "sharpe": 0.1,
+      "ann_ret": 0.0067,
+      "bars": 1533
+    },
+    "vix_lt_20": {
+      "sharpe": 1.67,
+      "ann_ret": 0.0584,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": -1.38,
+      "ann_ret": -0.0889,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": -1.96,
+      "ann_ret": -0.2343,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": -1.26,
+      "ann_ret": -0.0485,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.48,
+      "ann_ret": 0.0252,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.73,
+      "sharpe_delayed_1bar": 1.149,
+      "retained": 1.574
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.207,
+      "sharpe_median": 0.421
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.135,
+      "random_median_ann": 0.1676,
+      "random_p95_ann": 0.2119,
+      "trades_actual": 956,
+      "p_value": 0.84
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.1035,
+      "maxdd_p95": -0.1487,
+      "final_p05": 11.0618,
+      "final_median": 11.0618
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": 0.257,
+  "oos_csv": "results/H008_rsi_reversal_sp_megacap_1d_oos.csv",
+  "validated_at": "2026-10-17T09:01:50+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

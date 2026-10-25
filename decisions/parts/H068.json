@@ -1,0 +1,207 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.892 < 0.9 (luck not excluded after 16 trials)",
+    "OOS Sharpe (excess of T-bill) 0.228 < 0.5",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.968 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "halloween",
+  "kind": "rule",
+  "universe": "index_futures",
+  "timeframe": "1d",
+  "for_system": "research_only",
+  "spec": {
+    "id": "H068",
+    "rule": "halloween",
+    "universe": "index_futures",
+    "timeframe": "1d",
+    "for_system": "research_only",
+    "start": "2000-01-01",
+    "filters": [
+      "none"
+    ],
+    "exits": [
+      0
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "halloween|start=10,end=5|f=none|x=signal_only|size=vol0.1",
+  "params": {
+    "start": 10,
+    "end": 5,
+    "_filter": "none",
+    "_exit": 0,
+    "_size": 4
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "ES=F": 0.2164,
+      "YM=F": 0.2079,
+      "RTY=F": 0.1898,
+      "NKD=F": 0.0992
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "ES=F",
+      "YM=F",
+      "RTY=F",
+      "NKD=F"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": 0.228,
+  "pbo": 0.339,
+  "reality_check_p": 0.968,
+  "dsr": 0.892,
+  "n_trials": 16,
+  "oos": {
+    "start": "2004-09-15 00:00:00",
+    "end": "2026-10-21 00:00:00",
+    "years": 22.06,
+    "cagr": 0.037,
+    "vol": 0.1095,
+    "sharpe": 0.387,
+    "sharpe_excess_rf": 0.228,
+    "sortino": 0.315,
+    "max_dd": -0.3843,
+    "max_dd_bars": 1483,
+    "calmar": 0.096,
+    "ulcer": 0.0922,
+    "var95": -0.0095,
+    "cvar95": -0.0167,
+    "omega": 1.107,
+    "tail_ratio": 0.989,
+    "skew": -0.968,
+    "kurtosis": 48.565,
+    "hit_rate": 0.312,
+    "psr": 0.963,
+    "time_in_market": null,
+    "turnover_ann": 1.49,
+    "bench_cagr": 0.0823,
+    "bench_sharpe": 0.507,
+    "info_ratio": -0.403,
+    "beta": 0.408,
+    "up_capture": 0.413,
+    "down_capture": 0.411
+  },
+  "trade_stats": {
+    "n_trades": 75,
+    "trades_per_year": 3.4,
+    "win_rate": 0.707,
+    "avg_trade": 0.0734,
+    "median_trade": 0.0753,
+    "avg_win": 0.1414,
+    "avg_loss": -0.0903,
+    "profit_factor": 3.77,
+    "payoff": 1.565,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.519,
+    "max_consec_losses": 6,
+    "avg_bars": 167.0,
+    "avg_bars_win": 167.1,
+    "avg_bars_loss": 167.0,
+    "avg_mfe": 0.156,
+    "avg_mae": -0.1028,
+    "edge_ratio": 1.518,
+    "exit_reasons": {
+      "signal": 75
+    },
+    "long_short": {
+      "1": {
+        "count": 75,
+        "mean": 0.0734
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 1.22,
+      "ann_ret": 0.0974,
+      "bars": 4357
+    },
+    "bear": {
+      "sharpe": -0.87,
+      "ann_ret": -0.1544,
+      "bars": 1218
+    },
+    "calm": {
+      "sharpe": 0.9,
+      "ann_ret": 0.0592,
+      "bars": 2907
+    },
+    "stressed": {
+      "sharpe": 0.17,
+      "ann_ret": 0.0241,
+      "bars": 2668
+    },
+    "vix_lt_20": {
+      "sharpe": 2.04,
+      "ann_ret": 0.1457,
+      "bars": 3803
+    },
+    "vix_20_30": {
+      "sharpe": -1.25,
+      "ann_ret": -0.1487,
+      "bars": 1323
+    },
+    "vix_ge_30": {
+      "sharpe": -1.07,
+      "ann_ret": -0.2696,
+      "bars": 449
+    },
+    "curve_inverted": {
+      "sharpe": 0.65,
+      "ann_ret": 0.0664,
+      "bars": 813
+    },
+    "curve_normal": {
+      "sharpe": 0.35,
+      "ann_ret": 0.0383,
+      "bars": 4762
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.559,
+      "sharpe_delayed_1bar": 0.557,
+      "retained": 0.996
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.548,
+      "neighbour_median": 0.523,
+      "share_positive": 1.0,
+      "stability": 0.955
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.547,
+      "sharpe_median": 0.554
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.1267,
+      "random_median_ann": 0.0884,
+      "random_p95_ann": 0.1163,
+      "trades_actual": 80,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.048,
+      "maxdd_p95": -0.0738,
+      "final_p05": 1.9675,
+      "final_median": 1.9675
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "equity_ma_42",
+  "kelly_fraction": 0.519,
+  "oos_csv": "results/H068_halloween_index_futures_1d_oos.csv",
+  "validated_at": "2026-10-21T17:52:31+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-21 00:00:00"
+}

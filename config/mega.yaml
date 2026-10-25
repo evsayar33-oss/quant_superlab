@@ -1,0 +1,84 @@
+# H062 mega multi-asset screen (pre-registered 2026-10-21, BEFORE any result was seen).
+# Every rule (technical, indicator, SMC, divergence, pivots, COT positioning) x full parameter grid
+# x R:R exits x sides x filters, plus two-signal combos, on every futures-tradable asset class.
+# Thresholds below are fixed. Do not loosen them after seeing results (CLAUDE.md realism rule);
+# a change needs a line in hypotheses/CHANGELOG.md with the reason.
+#
+# Why the design is this strict: on 2026-10-17 arena picks looked very good in backtest and failed
+# 6 of 6 time-machine replays (backtest rank vs forward rank ~0). More trials = more lucky winners.
+# The defences are (1) a locked holdout, (2) ONE parameter set that must work on MANY assets,
+# (3) a plateau, not a peak, (4) Deflated Sharpe over ALL trials of ALL jobs.
+
+timeframe: 1d          # free Yahoo futures data has only ~2 years of hourly bars, so 1d for every class
+start: "2000-01-01"
+starts:                # per-class start (data source limits). Not a threshold.
+  crypto: "2018-01-01"  # Bitget via ccxt: a request from 2000 returns only recent bars (run 39586616372: 2 coins)
+
+classes:               # each class = one universe in config/universes.yaml (own costs)
+  crypto: crypto_alts
+  indices: index_futures
+  metals: metals
+  energy: energy_futures
+
+sides: [long, short, both]
+exits: [28, 0, 13, 20, 18]   # R:R grid (lab/trade_engine.EXIT_GRID):
+                             # 28 2 ATR stop + 3 ATR chandelier | 0 rule signal only
+                             # 13 2 ATR stop + 3R target | 20 stop to breakeven at +1R
+                             # 18 partial 50% at 1R + stop to entry + trail
+filters: [none, trend_sma200]
+combos:
+  top_per_job: 30            # best discovery candidates of each job (by pooled Sharpe) get confirmations
+  confirm: [smc_bos, smc_choch, smc_fvg, smc_order_block, smc_liquidity_sweep, smc_ote,
+            rsi_divergence, macd_divergence, pivot_bounce, cot_extreme]
+  within: [0, 3, 5]          # neighbours of each other for the combo plateau
+
+holdout_years: 2       # the LAST 2 years are locked. Selection never reads them.
+                       # They are read ONCE, only for the finalists, in the aggregate step.
+
+discovery:             # every check uses data BEFORE the holdout cut only
+  min_years: 5         # an asset joins a strategy's test only with >= 5 years of discovery data
+  min_assets: 4        # a class needs >= 4 eligible assets
+  min_asset_share: 0.60      # D1: same parameters profitable at 2x cost on >= 60% of the class's assets
+  min_trades_per_asset: 20   # D1: average trades per asset
+  min_pooled_sharpe: 0.50    # D2: equal-weight pool of the assets (1x each)
+  min_profit_factor: 1.15    # D2: pooled trades, net of cost
+  max_dd_floor: -0.35        # D2: pooled 1x drawdown
+  min_wr_margin: 0.0         # D2: win rate above breakeven win rate 1/(1+payoff)
+  min_plateau: 0.50          # D3: >= 50% of neighbour parameter sets also pass D1 share >= 50%
+  min_pos_year_frac: 0.60    # D4: >= 60% of calendar years profitable (pooled)
+  min_dsr: 0.90              # D5: Deflated Sharpe, n = ALL trials of ALL jobs
+
+holdout:               # H: read once for finalists. All must hold.
+  min_return_2x: 0.0         # pooled holdout return at 2x cost > 0
+  min_sharpe: 0.0
+  min_asset_share: 0.50      # >= 50% of assets profitable in the holdout
+
+# A finalist that passes H is still a LEAD, not a decision. Next steps (manual, owner approval):
+# register it as a hypothesis -> decision gate (walk-forward, PBO, 2x cost) -> time machine.
+# "strong" label: the same spec passes D1-D4 in >= 2 classes.
+
+# Time machine for H062 (pre-registered 2026-10-21 14:45, before any replay result).
+# The whole selection is re-run as if today were 4, 3 and 2 years ago: only data before the cut is used.
+# The "book" at each cut = the top `top_per_job` D1-D4 candidates of every class/side job (by discovery
+# pooled Sharpe, NO DSR filter), equal weight. Forward = everything after the cut, at 2x cost.
+timemachine:
+  holdout_years: [4, 3, 2]   # cuts ~2022-10, 2023-10, 2024-10
+  top_per_job: 5
+  inside: {min_return_2x: 0.0, min_sharpe_ratio: 0.5}   # a cut counts as "inside" when the book's forward
+                             # 2x return > 0 AND forward Sharpe >= 0.5 x its discovery Sharpe
+  min_inside: 2              # pass when >= 2 of 3 cuts are inside (same rule as lab/timemachine.py)
+  # Strategy level: "survivor" = a spec in the D1-D4 list at >= 2 cuts with forward 2x return > 0 at each.
+  # The 2-year cut reads the sealed holdout of ALL D1-D4 candidates: this spends the locked holdout
+  # (owner decision 2026-10-21: run the future test now). Survivors then go to paper forward watch.
+
+# Buy-and-hold / random-entry check for H062 time-machine survivors (pre-registered 2026-10-21 17:30,
+# BEFORE any baseline result was computed). Question: real edge, or only "long in a rising market"?
+# For every survivor and EVERY cut where it was selected, on the forward period (cut -> today):
+baseline:
+  tm_run: 39595249003        # the H062 time-machine run whose parts define the survivors
+  random_draws: 300          # random-entry null: same assets, same number of trades, same holding bars,
+                             # same side, entry dates drawn at random inside the forward period, 2x cost
+  min_random_pct: 0.90       # B1: forward trade return beats >= 90% of the random-entry draws
+  beat_bh_sharpe: true       # B2: forward pooled Sharpe >= forward Sharpe of equal-weight buy-and-hold of the class
+  # Pass = B1 AND B2 at EVERY cut where the survivor was selected. Passers go to the paper watch list.
+  # Failing B1 = timing adds nothing over random entries; failing B2 = holding the class was better.

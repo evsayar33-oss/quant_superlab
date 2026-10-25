@@ -1,0 +1,127 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": "WATCH",
+  "reasons": [
+    "OOS too short (2.17y < 3.0y)",
+    "DSR 0.802 < 0.9 (luck not excluded after 1 trials)",
+    "OOS Sharpe (excess of T-bill) 0.433 < 0.5"
+  ],
+  "strategy": "core_dual_trend_vt_band",
+  "kind": "strategy",
+  "universe": "crypto_major",
+  "timeframe": "4h",
+  "for_system": "research_only",
+  "spec": {
+    "id": "H075",
+    "strategy": "core_dual_trend_vt_band",
+    "universe": "crypto_major",
+    "tickers": [
+      "SOL/USDT"
+    ],
+    "timeframe": "4h",
+    "for_system": "research_only",
+    "start": "2018-01-01",
+    "status": "active"
+  },
+  "variant": "core_dual_trend_vt_band|",
+  "params": {},
+  "targets": {},
+  "targets_observe_only": {
+    "SOL/USDT": 0.7865
+  },
+  "gate_sharpe": 0.433,
+  "pbo": null,
+  "reality_check_p": null,
+  "dsr": 0.802,
+  "n_trials": 1,
+  "oos": {
+    "start": "2024-08-22 16:00:00",
+    "end": "2026-10-24 16:00:00",
+    "years": 2.17,
+    "cagr": 0.1287,
+    "vol": 0.2788,
+    "sharpe": 0.573,
+    "sharpe_excess_rf": 0.433,
+    "sortino": 0.65,
+    "max_dd": -0.2484,
+    "max_dd_bars": 3511,
+    "calmar": 0.518,
+    "ulcer": 0.1786,
+    "var95": -0.0087,
+    "cvar95": -0.0147,
+    "omega": 1.057,
+    "tail_ratio": 1.028,
+    "skew": 1.013,
+    "kurtosis": 19.977,
+    "hit_rate": 0.195,
+    "psr": 0.802,
+    "time_in_market": null,
+    "turnover_ann": 9.63,
+    "bench_cagr": -0.212,
+    "bench_sharpe": 0.047,
+    "info_ratio": 0.207,
+    "beta": 0.238,
+    "up_capture": 0.246,
+    "down_capture": 0.233
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 0.55,
+      "ann_ret": 0.1935,
+      "bars": 2972
+    },
+    "bear": {
+      "sharpe": 1.95,
+      "ann_ret": 0.1037,
+      "bars": 1787
+    },
+    "calm": {
+      "sharpe": 0.49,
+      "ann_ret": 0.1587,
+      "bars": 2418
+    },
+    "stressed": {
+      "sharpe": 0.71,
+      "ann_ret": 0.1609,
+      "bars": 2341
+    },
+    "vix_lt_20": {
+      "sharpe": 0.45,
+      "ann_ret": 0.1309,
+      "bars": 3679
+    },
+    "vix_20_30": {
+      "sharpe": 1.23,
+      "ann_ret": 0.2904,
+      "bars": 960
+    },
+    "vix_ge_30": {
+      "sharpe": 0.0,
+      "ann_ret": 0.0,
+      "bars": 120
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.103,
+      "sharpe_delayed_1bar": 1.139,
+      "retained": 1.033
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.03,
+      "sharpe_median": 1.068
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "vol_target_0.2",
+  "kelly_fraction": null,
+  "oos_csv": "results/H075_core_dual_trend_vt_band_crypto_major_4h_oos.csv",
+  "validated_at": "2026-10-24T20:08:45+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-24 16:00:00"
+}

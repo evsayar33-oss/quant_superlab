@@ -1,0 +1,202 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": "REJECT",
+  "reasons": [
+    "DSR 0.008 < 0.9 (luck not excluded after 177 trials)",
+    "OOS Sharpe (excess of T-bill) -0.466 < 0.5",
+    "bootstrap P(SR>0) 0.147 < 0.85",
+    "only 33% of OOS years positive",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.996 > 0.1 (best variant may be data-mined)",
+    "1-bar delay keeps only -41% of Sharpe (latency-fragile)"
+  ],
+  "strategy": "donchian_breakout",
+  "kind": "rule",
+  "universe": "metals",
+  "timeframe": "1d",
+  "for_system": "metals",
+  "spec": {
+    "id": "H034",
+    "rule": "donchian_breakout",
+    "universe": "metals",
+    "for_system": "metals",
+    "start": "2008-01-01",
+    "filters": [
+      "none",
+      "trend_sma200",
+      "vix_below_25"
+    ],
+    "side": "both",
+    "status": "active"
+  },
+  "variant": "donchian_breakout|entry=100,exit=10|f=vix_below_25|x=max_hold=5,use_signal_exit=False|size=vol0.1|overlay=eqma_s",
+  "params": {
+    "entry": 100,
+    "exit": 10,
+    "_filter": "vix_below_25",
+    "_exit": 42,
+    "_size": 4,
+    "_overlay": "eqma_s"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {},
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.466,
+  "pbo": 0.333,
+  "reality_check_p": 0.996,
+  "dsr": 0.008,
+  "n_trials": 177,
+  "oos": {
+    "start": "2012-01-09 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 14.76,
+    "cagr": -0.0231,
+    "vol": 0.0788,
+    "sharpe": -0.257,
+    "sharpe_excess_rf": -0.466,
+    "sortino": -0.618,
+    "max_dd": -0.402,
+    "max_dd_bars": 3541,
+    "calmar": -0.057,
+    "ulcer": 0.3196,
+    "var95": -0.0063,
+    "cvar95": -0.0128,
+    "omega": 0.927,
+    "tail_ratio": 0.913,
+    "skew": -1.563,
+    "kurtosis": 58.303,
+    "hit_rate": 0.274,
+    "psr": 0.159,
+    "time_in_market": null,
+    "turnover_ann": 10.41,
+    "bench_cagr": 0.0598,
+    "bench_sharpe": 0.375,
+    "info_ratio": -0.439,
+    "beta": -0.003,
+    "up_capture": 0.005,
+    "down_capture": 0.022
+  },
+  "trade_stats": {
+    "n_trades": 326,
+    "trades_per_year": 22.1,
+    "win_rate": 0.509,
+    "avg_trade": 0.0041,
+    "median_trade": 0.0004,
+    "avg_win": 0.0371,
+    "avg_loss": -0.0302,
+    "profit_factor": 1.275,
+    "payoff": 1.229,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.11,
+    "max_consec_losses": 12,
+    "avg_bars": 5.0,
+    "avg_bars_win": 5.0,
+    "avg_bars_loss": 5.0,
+    "avg_mfe": 0.0281,
+    "avg_mae": -0.0245,
+    "edge_ratio": 1.144,
+    "exit_reasons": {
+      "time": 326
+    },
+    "long_short": {
+      "-1": {
+        "count": 41,
+        "mean": -0.0126
+      },
+      "1": {
+        "count": 285,
+        "mean": 0.0065
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": -0.14,
+      "ann_ret": -0.0107,
+      "bars": 2225
+    },
+    "bear": {
+      "sharpe": -0.43,
+      "ann_ret": -0.0346,
+      "bars": 1490
+    },
+    "calm": {
+      "sharpe": 0.37,
+      "ann_ret": 0.0234,
+      "bars": 1959
+    },
+    "stressed": {
+      "sharpe": -0.74,
+      "ann_ret": -0.069,
+      "bars": 1756
+    },
+    "vix_lt_20": {
+      "sharpe": -0.16,
+      "ann_ret": -0.0104,
+      "bars": 2796
+    },
+    "vix_20_30": {
+      "sharpe": -0.28,
+      "ann_ret": -0.0202,
+      "bars": 761
+    },
+    "vix_ge_30": {
+      "sharpe": -0.91,
+      "ann_ret": -0.1957,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": -0.22,
+      "ann_ret": -0.008,
+      "bars": 615
+    },
+    "curve_normal": {
+      "sharpe": -0.27,
+      "ann_ret": -0.0227,
+      "bars": 3100
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.292,
+      "sharpe_delayed_1bar": -0.121,
+      "retained": -0.413
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.287,
+      "neighbour_median": 0.287,
+      "share_positive": 1.0,
+      "stability": 1.0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.02,
+      "sharpe_median": 0.256
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.2255,
+      "random_median_ann": 0.043,
+      "random_p95_ann": 0.0947,
+      "trades_actual": 430,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0455,
+      "maxdd_p95": -0.0723,
+      "final_p05": 0.1529,
+      "final_median": 0.1529
+    }
+  },
+  "recommended_overlay": "equity_ma_41",
+  "kelly_fraction": 0.11,
+  "oos_csv": "results/H034_donchian_breakout_metals_1d_oos.csv",
+  "validated_at": "2026-10-17T09:03:33+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

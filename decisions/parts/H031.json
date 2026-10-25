@@ -1,0 +1,135 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.884 < 0.9 (luck not excluded after 18 trials)",
+    "OOS Sharpe (USD, excess of US T-bill) -0.696 < 0.5",
+    "OOS MaxDD -0.9139 worse than -0.45 (local or USD)",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.998 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "usdtry_hedge_switch",
+  "kind": "strategy",
+  "universe": "bist_index",
+  "timeframe": "1d",
+  "for_system": "macro-model",
+  "spec": {
+    "id": "H031",
+    "strategy": "usdtry_hedge_switch",
+    "universe": "bist_index",
+    "for_system": "macro-model",
+    "start": "2010-01-01",
+    "status": "active"
+  },
+  "variant": "usdtry_hedge_switch|n=20,thr=0.03|overlay=vt10",
+  "params": {
+    "n": 20,
+    "thr": 0.03,
+    "_overlay": "vt10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "XU100.IS": 0.0989,
+    "XU030.IS": 0.0989,
+    "XBANK.IS": 0.0989,
+    "XUSIN.IS": 0.0989
+  },
+  "gate_sharpe": -0.696,
+  "pbo": 0.495,
+  "reality_check_p": 0.998,
+  "dsr": 0.884,
+  "n_trials": 18,
+  "oos": {
+    "start": "2014-01-08 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.75,
+    "cagr": 0.0782,
+    "vol": 0.1522,
+    "sharpe": 0.571,
+    "sharpe_excess_rf": 0.447,
+    "sortino": 0.625,
+    "max_dd": -0.3145,
+    "max_dd_bars": 1619,
+    "calmar": 0.248,
+    "ulcer": 0.1441,
+    "var95": -0.0135,
+    "cvar95": -0.0243,
+    "omega": 1.144,
+    "tail_ratio": 1.186,
+    "skew": -0.706,
+    "kurtosis": 10.841,
+    "hit_rate": 0.316,
+    "psr": 0.978,
+    "time_in_market": null,
+    "turnover_ann": 13.69,
+    "bench_cagr": 0.2582,
+    "bench_sharpe": 1.021,
+    "info_ratio": -0.955,
+    "beta": 0.418,
+    "up_capture": 0.426,
+    "down_capture": 0.445
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.07,
+      "ann_ret": 0.1707,
+      "bars": 2338
+    },
+    "bear": {
+      "sharpe": -1.11,
+      "ann_ret": -0.1404,
+      "bars": 862
+    },
+    "calm": {
+      "sharpe": 1.21,
+      "ann_ret": 0.1523,
+      "bars": 1675
+    },
+    "stressed": {
+      "sharpe": 0.09,
+      "ann_ret": 0.0151,
+      "bars": 1525
+    },
+    "vix_lt_20": {
+      "sharpe": 0.97,
+      "ann_ret": 0.1311,
+      "bars": 2329
+    },
+    "vix_20_30": {
+      "sharpe": 0.06,
+      "ann_ret": 0.0115,
+      "bars": 714
+    },
+    "vix_ge_30": {
+      "sharpe": -1.14,
+      "ann_ret": -0.2263,
+      "bars": 157
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.727,
+      "sharpe_delayed_1bar": 0.364,
+      "retained": 0.5
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.725,
+      "neighbour_median": 0.611,
+      "share_positive": 1.0,
+      "stability": 0.843
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.71,
+      "sharpe_median": 0.726
+    }
+  },
+  "recommended_overlay": "vol_target_0.2",
+  "kelly_fraction": null,
+  "oos_csv": "results/H031_usdtry_hedge_switch_bist_index_1d_oos.csv",
+  "validated_at": "2026-10-17T09:02:14+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

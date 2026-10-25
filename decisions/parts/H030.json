@@ -1,0 +1,143 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.408 < 0.9 (luck not excluded after 20 trials)",
+    "OOS Sharpe (excess of T-bill) -0.044 < 0.5",
+    "bootstrap P(SR>0) 0.832 < 0.85",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "post_report_drift",
+  "kind": "strategy",
+  "universe": "us_largecap_100",
+  "timeframe": "1d",
+  "for_system": "us_f1_bot",
+  "spec": {
+    "id": "H030",
+    "strategy": "post_report_drift",
+    "universe": "us_largecap_100",
+    "for_system": "us_f1_bot",
+    "start": "2011-01-01",
+    "status": "active"
+  },
+  "variant": "post_report_drift|hold=63,min_react=0.0",
+  "params": {
+    "hold": 63,
+    "min_react": 0.0
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "PG": 0.1,
+    "COST": 0.1,
+    "ACN": 0.1
+  },
+  "gate_sharpe": -0.044,
+  "pbo": 0.344,
+  "reality_check_p": 1.0,
+  "dsr": 0.408,
+  "n_trials": 20,
+  "oos": {
+    "start": "2015-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 11.76,
+    "cagr": 0.0152,
+    "vol": 0.0685,
+    "sharpe": 0.255,
+    "sharpe_excess_rf": -0.044,
+    "sortino": -0.06,
+    "max_dd": -0.1699,
+    "max_dd_bars": 1175,
+    "calmar": 0.09,
+    "ulcer": 0.0655,
+    "var95": -0.0055,
+    "cvar95": -0.0111,
+    "omega": 1.068,
+    "tail_ratio": 1.04,
+    "skew": -0.74,
+    "kurtosis": 21.06,
+    "hit_rate": 0.373,
+    "psr": 0.808,
+    "time_in_market": null,
+    "turnover_ann": 5.67,
+    "bench_cagr": 0.1579,
+    "bench_sharpe": 0.979,
+    "info_ratio": -1.069,
+    "beta": 0.255,
+    "up_capture": 0.243,
+    "down_capture": 0.271
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 0.87,
+      "ann_ret": 0.0537,
+      "bars": 2455
+    },
+    "bear": {
+      "sharpe": -1.68,
+      "ann_ret": -0.1592,
+      "bars": 503
+    },
+    "calm": {
+      "sharpe": 1.17,
+      "ann_ret": 0.0541,
+      "bars": 1554
+    },
+    "stressed": {
+      "sharpe": -0.27,
+      "ann_ret": -0.0231,
+      "bars": 1404
+    },
+    "vix_lt_20": {
+      "sharpe": 1.87,
+      "ann_ret": 0.0959,
+      "bars": 2095
+    },
+    "vix_20_30": {
+      "sharpe": -1.92,
+      "ann_ret": -0.1493,
+      "bars": 705
+    },
+    "vix_ge_30": {
+      "sharpe": -1.76,
+      "ann_ret": -0.279,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": -1.07,
+      "ann_ret": -0.0758,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.62,
+      "ann_ret": 0.0419,
+      "bars": 2344
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.429,
+      "sharpe_delayed_1bar": 0.399,
+      "retained": 0.929
+    },
+    "neighbourhood": {
+      "neighbours": 3,
+      "best_sharpe": 0.428,
+      "neighbour_median": 0.078,
+      "share_positive": 1.0,
+      "stability": 0.182
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.394,
+      "sharpe_median": 0.422
+    }
+  },
+  "recommended_overlay": "equity_ma_41",
+  "kelly_fraction": null,
+  "oos_csv": "results/H030_post_report_drift_us_largecap_100_1d_oos.csv",
+  "validated_at": "2026-10-17T09:00:41+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

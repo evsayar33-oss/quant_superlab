@@ -1,0 +1,91 @@
+{
+ "date": "2026-10-21",
+ "start": "2026-10-22",
+ "ideas": {
+  "H063": {
+   "name": "Metal Vortex(28) + SMC order block (long)",
+   "bar": "2026-10-21",
+   "held": {
+    "HG=F": 1.0
+   },
+   "leverage_pick": 5,
+   "paper_1x": {
+    "final_1000": 1000.0,
+    "days": 0
+   },
+   "paper_5x": {
+    "final_1000": 1000.0
+   },
+   "start_leverage": 2,
+   "paper_start": {
+    "final_1000": 1000.0
+   },
+   "tradable_assets": [
+    "GC=F",
+    "HG=F",
+    "PA=F",
+    "PL=F",
+    "SI=F"
+   ],
+   "paper_tradable_1x": {
+    "final_1000": 1000.0
+   }
+  },
+  "H064": {
+   "name": "Metal 52 hafta zirvesi + SMC BOS (iki y\u00f6n)",
+   "bar": "2026-10-21",
+   "held": {},
+   "leverage_pick": 4,
+   "paper_1x": {
+    "final_1000": 1000.0,
+    "days": 0
+   },
+   "paper_4x": {
+    "final_1000": 1000.0
+   },
+   "start_leverage": 2,
+   "paper_start": {
+    "final_1000": 1000.0
+   },
+   "tradable_assets": [
+    "GC=F",
+    "HG=F",
+    "PA=F",
+    "PL=F",
+    "SI=F"
+   ],
+   "paper_tradable_1x": {
+    "final_1000": 1000.0
+   }
+  },
+  "H065": {
+   "name": "Endeks IBS ortalamaya d\u00f6n\u00fc\u015f + SMA200 (long)",
+   "bar": "2026-10-21",
+   "held": {
+    "NQ=F": 1.0
+   },
+   "leverage_pick": 4,
+   "paper_1x": {
+    "final_1000": 1000.0,
+    "days": 0
+   },
+   "paper_4x": {
+    "final_1000": 1000.0
+   },
+   "start_leverage": 2,
+   "paper_start": {
+    "final_1000": 1000.0
+   },
+   "tradable_assets": [
+    "ES=F",
+    "NKD=F",
+    "NQ=F",
+    "RTY=F",
+    "YM=F"
+   ],
+   "paper_tradable_1x": {
+    "final_1000": 1000.0
+   }
+  }
+ }
+}

@@ -1,0 +1,1258 @@
+{
+ "run_at": "2026-10-24T18:28:22+00:00",
+ "n_trials": 8,
+ "rows": [
+  {
+   "asset": "BTC",
+   "bitget": "BTCUSDT",
+   "data": "binance_vision:BTCUSDT",
+   "first": "2017-08-17",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2018-03-06",
+      "final_1000": 7088.0,
+      "cagr": 0.2547,
+      "sharpe": 0.68,
+      "max_dd": -0.7663
+     },
+     "rule_1x": {
+      "start": "2018-03-06",
+      "final_1000": 5224.0,
+      "cagr": 0.2111,
+      "sharpe": 0.79,
+      "max_dd": -0.4603
+     },
+     "rule_2x": {
+      "start": "2018-03-06",
+      "final_1000": 4997.0,
+      "cagr": 0.2049,
+      "sharpe": 0.77,
+      "max_dd": -0.4652
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 6261.0,
+      "cagr": 0.3576,
+      "sharpe": 0.82,
+      "max_dd": -0.7663
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 3614.0,
+      "cagr": 0.2388,
+      "sharpe": 0.85,
+      "max_dd": -0.4603
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 3488.0,
+      "cagr": 0.2315,
+      "sharpe": 0.83,
+      "max_dd": -0.4652
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-23",
+      "final_1000": 4228.0,
+      "cagr": 0.4337,
+      "sharpe": 1.0,
+      "max_dd": -0.5297
+     },
+     "rule_1x": {
+      "start": "2022-10-23",
+      "final_1000": 2610.0,
+      "cagr": 0.2709,
+      "sharpe": 0.92,
+      "max_dd": -0.259
+     },
+     "rule_2x": {
+      "start": "2022-10-23",
+      "final_1000": 2543.0,
+      "cagr": 0.2627,
+      "sharpe": 0.9,
+      "max_dd": -0.2624
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 1204.0,
+      "cagr": 0.0973,
+      "sharpe": 0.43,
+      "max_dd": -0.5297
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1257.0,
+      "cagr": 0.1212,
+      "sharpe": 0.55,
+      "max_dd": -0.259
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1243.0,
+      "cagr": 0.1146,
+      "sharpe": 0.53,
+      "max_dd": -0.2624
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "full_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "6y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "6y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "4y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "4y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "2y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.376,
+   "exposure_avg_2x": 0.376,
+   "accepted": true,
+   "failed": []
+  },
+  {
+   "asset": "ETH",
+   "bitget": "ETHUSDT",
+   "data": "binance_vision:ETHUSDT",
+   "first": "2017-08-17",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2018-03-06",
+      "final_1000": 2809.0,
+      "cagr": 0.1271,
+      "sharpe": 0.56,
+      "max_dd": -0.8978
+     },
+     "rule_1x": {
+      "start": "2018-03-06",
+      "final_1000": 7131.0,
+      "cagr": 0.2555,
+      "sharpe": 0.88,
+      "max_dd": -0.4129
+     },
+     "rule_2x": {
+      "start": "2018-03-06",
+      "final_1000": 6903.0,
+      "cagr": 0.2508,
+      "sharpe": 0.87,
+      "max_dd": -0.4159
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 5767.0,
+      "cagr": 0.3392,
+      "sharpe": 0.76,
+      "max_dd": -0.793
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 5374.0,
+      "cagr": 0.3235,
+      "sharpe": 1.03,
+      "max_dd": -0.2548
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 5251.0,
+      "cagr": 0.3184,
+      "sharpe": 1.02,
+      "max_dd": -0.2578
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-23",
+      "final_1000": 1818.0,
+      "cagr": 0.161,
+      "sharpe": 0.55,
+      "max_dd": -0.6755
+     },
+     "rule_1x": {
+      "start": "2022-10-23",
+      "final_1000": 2002.0,
+      "cagr": 0.1895,
+      "sharpe": 0.71,
+      "max_dd": -0.2548
+     },
+     "rule_2x": {
+      "start": "2022-10-23",
+      "final_1000": 1965.0,
+      "cagr": 0.1839,
+      "sharpe": 0.7,
+      "max_dd": -0.2578
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 910.0,
+      "cagr": -0.0459,
+      "sharpe": 0.27,
+      "max_dd": -0.6755
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1116.0,
+      "cagr": 0.0565,
+      "sharpe": 0.34,
+      "max_dd": -0.2548
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1107.0,
+      "cagr": 0.0521,
+      "sharpe": 0.33,
+      "max_dd": -0.2578
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "full_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "6y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "6y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "4y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "4y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "2y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.286,
+   "exposure_avg_2x": 0.286,
+   "accepted": true,
+   "failed": []
+  },
+  {
+   "asset": "SOL",
+   "bitget": "SOLUSDT",
+   "data": "binance_vision:SOLUSDT",
+   "first": "2020-08-11",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2021-02-28",
+      "final_1000": 7797.0,
+      "cagr": 0.4385,
+      "sharpe": 0.87,
+      "max_dd": -0.9627
+     },
+     "rule_1x": {
+      "start": "2021-02-28",
+      "final_1000": 5642.0,
+      "cagr": 0.3584,
+      "sharpe": 1.13,
+      "max_dd": -0.4077
+     },
+     "rule_2x": {
+      "start": "2021-02-28",
+      "final_1000": 5478.0,
+      "cagr": 0.3513,
+      "sharpe": 1.11,
+      "max_dd": -0.4141
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 52523.0,
+      "cagr": 0.9355,
+      "sharpe": 1.15,
+      "max_dd": -0.9627
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 5608.0,
+      "cagr": 0.333,
+      "sharpe": 1.09,
+      "max_dd": -0.4077
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 5443.0,
+      "cagr": 0.3264,
+      "sharpe": 1.08,
+      "max_dd": -0.4141
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-23",
+      "final_1000": 3672.0,
+      "cagr": 0.3842,
+      "sharpe": 0.81,
+      "max_dd": -0.7626
+     },
+     "rule_1x": {
+      "start": "2022-10-23",
+      "final_1000": 2268.0,
+      "cagr": 0.2272,
+      "sharpe": 0.81,
+      "max_dd": -0.3252
+     },
+     "rule_2x": {
+      "start": "2022-10-23",
+      "final_1000": 2205.0,
+      "cagr": 0.2185,
+      "sharpe": 0.79,
+      "max_dd": -0.3313
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 614.0,
+      "cagr": -0.2166,
+      "sharpe": 0.06,
+      "max_dd": -0.7626
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1222.0,
+      "cagr": 0.1055,
+      "sharpe": 0.5,
+      "max_dd": -0.1981
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1215.0,
+      "cagr": 0.1022,
+      "sharpe": 0.49,
+      "max_dd": -0.2011
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "full_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "6y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "6y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "4y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "4y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "2y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.208,
+   "exposure_avg_2x": 0.208,
+   "accepted": true,
+   "failed": []
+  },
+  {
+   "asset": "SPX",
+   "bitget": "SPXUSDT",
+   "data": "yahoo:^GSPC",
+   "first": "2000-01-03",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2000-07-21",
+      "final_1000": 5098.0,
+      "cagr": 0.064,
+      "sharpe": 0.42,
+      "max_dd": -0.5678
+     },
+     "rule_1x": {
+      "start": "2000-07-21",
+      "final_1000": 785.0,
+      "cagr": -0.0092,
+      "sharpe": -0.03,
+      "max_dd": -0.5064
+     },
+     "rule_2x": {
+      "start": "2000-07-21",
+      "final_1000": 579.0,
+      "cagr": -0.0206,
+      "sharpe": -0.14,
+      "max_dd": -0.6183
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 2208.0,
+      "cagr": 0.1413,
+      "sharpe": 0.89,
+      "max_dd": -0.2543
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 1445.0,
+      "cagr": 0.0634,
+      "sharpe": 0.59,
+      "max_dd": -0.2271
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 1380.0,
+      "cagr": 0.0552,
+      "sharpe": 0.52,
+      "max_dd": -0.2456
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-24",
+      "final_1000": 2031.0,
+      "cagr": 0.1943,
+      "sharpe": 1.25,
+      "max_dd": -0.189
+     },
+     "rule_1x": {
+      "start": "2022-10-24",
+      "final_1000": 1323.0,
+      "cagr": 0.0726,
+      "sharpe": 0.67,
+      "max_dd": -0.0992
+     },
+     "rule_2x": {
+      "start": "2022-10-24",
+      "final_1000": 1278.0,
+      "cagr": 0.0635,
+      "sharpe": 0.59,
+      "max_dd": -0.109
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 1303.0,
+      "cagr": 0.1418,
+      "sharpe": 0.9,
+      "max_dd": -0.189
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1127.0,
+      "cagr": 0.0619,
+      "sharpe": 0.6,
+      "max_dd": -0.0681
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1117.0,
+      "cagr": 0.0572,
+      "sharpe": 0.56,
+      "max_dd": -0.0722
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "full_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "6y_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "6y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_1x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_2x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_1x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.689,
+   "exposure_avg_2x": 0.689,
+   "accepted": false,
+   "failed": [
+    "full_1x:dd",
+    "full_1x:sharpe",
+    "full_1x:ret",
+    "full_2x:dd",
+    "full_2x:sharpe",
+    "full_2x:ret",
+    "6y_1x:dd",
+    "6y_1x:sharpe",
+    "6y_2x:dd",
+    "6y_2x:sharpe",
+    "4y_1x:sharpe",
+    "4y_2x:sharpe",
+    "2y_1x:sharpe",
+    "2y_2x:sharpe"
+   ]
+  },
+  {
+   "asset": "NDX",
+   "bitget": "NDX100USDT",
+   "data": "yahoo:^NDX",
+   "first": "2000-01-03",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2000-07-21",
+      "final_1000": 7248.0,
+      "cagr": 0.0784,
+      "sharpe": 0.42,
+      "max_dd": -0.8037
+     },
+     "rule_1x": {
+      "start": "2000-07-21",
+      "final_1000": 1600.0,
+      "cagr": 0.0181,
+      "sharpe": 0.19,
+      "max_dd": -0.5273
+     },
+     "rule_2x": {
+      "start": "2000-07-21",
+      "final_1000": 1226.0,
+      "cagr": 0.0078,
+      "sharpe": 0.13,
+      "max_dd": -0.5851
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 2483.0,
+      "cagr": 0.1639,
+      "sharpe": 0.79,
+      "max_dd": -0.3556
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 1765.0,
+      "cagr": 0.0995,
+      "sharpe": 0.66,
+      "max_dd": -0.2193
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 1687.0,
+      "cagr": 0.0912,
+      "sharpe": 0.62,
+      "max_dd": -0.2313
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-24",
+      "final_1000": 2560.0,
+      "cagr": 0.2656,
+      "sharpe": 1.23,
+      "max_dd": -0.2293
+     },
+     "rule_1x": {
+      "start": "2022-10-24",
+      "final_1000": 1622.0,
+      "cagr": 0.1289,
+      "sharpe": 0.82,
+      "max_dd": -0.1421
+     },
+     "rule_2x": {
+      "start": "2022-10-24",
+      "final_1000": 1570.0,
+      "cagr": 0.1196,
+      "sharpe": 0.77,
+      "max_dd": -0.1552
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 1420.0,
+      "cagr": 0.1922,
+      "sharpe": 0.91,
+      "max_dd": -0.2293
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1135.0,
+      "cagr": 0.0653,
+      "sharpe": 0.46,
+      "max_dd": -0.1421
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1111.0,
+      "cagr": 0.0542,
+      "sharpe": 0.4,
+      "max_dd": -0.1552
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "full_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "6y_1x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "6y_2x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_1x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_1x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.71,
+   "exposure_avg_2x": 0.71,
+   "accepted": false,
+   "failed": [
+    "full_1x:sharpe",
+    "full_2x:dd",
+    "full_2x:sharpe",
+    "6y_1x:sharpe",
+    "6y_2x:sharpe",
+    "4y_1x:sharpe",
+    "4y_2x:dd",
+    "4y_2x:sharpe",
+    "2y_1x:sharpe",
+    "2y_2x:dd",
+    "2y_2x:sharpe"
+   ]
+  },
+  {
+   "asset": "XAU",
+   "bitget": "XAUUSDT",
+   "data": "yahoo:GLD",
+   "first": "2004-11-18",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2005-06-09",
+      "final_1000": 8659.0,
+      "cagr": 0.1063,
+      "sharpe": 0.64,
+      "max_dd": -0.4556
+     },
+     "rule_1x": {
+      "start": "2005-06-09",
+      "final_1000": 1818.0,
+      "cagr": 0.0284,
+      "sharpe": 0.26,
+      "max_dd": -0.4051
+     },
+     "rule_2x": {
+      "start": "2005-06-09",
+      "final_1000": 1435.0,
+      "cagr": 0.017,
+      "sharpe": 0.19,
+      "max_dd": -0.4767
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 2050.0,
+      "cagr": 0.1273,
+      "sharpe": 0.75,
+      "max_dd": -0.264
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 1284.0,
+      "cagr": 0.0427,
+      "sharpe": 0.35,
+      "max_dd": -0.302
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 1195.0,
+      "cagr": 0.0302,
+      "sharpe": 0.27,
+      "max_dd": -0.3358
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-24",
+      "final_1000": 2378.0,
+      "cagr": 0.2425,
+      "sharpe": 1.19,
+      "max_dd": -0.264
+     },
+     "rule_1x": {
+      "start": "2022-10-24",
+      "final_1000": 1769.0,
+      "cagr": 0.1537,
+      "sharpe": 0.91,
+      "max_dd": -0.293
+     },
+     "rule_2x": {
+      "start": "2022-10-24",
+      "final_1000": 1723.0,
+      "cagr": 0.146,
+      "sharpe": 0.88,
+      "max_dd": -0.3018
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 1444.0,
+      "cagr": 0.2021,
+      "sharpe": 0.88,
+      "max_dd": -0.264
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1296.0,
+      "cagr": 0.139,
+      "sharpe": 0.73,
+      "max_dd": -0.293
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1280.0,
+      "cagr": 0.1319,
+      "sharpe": 0.7,
+      "max_dd": -0.3018
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "full_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "6y_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "6y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.641,
+   "exposure_avg_2x": 0.641,
+   "accepted": false,
+   "failed": [
+    "full_1x:dd",
+    "full_1x:sharpe",
+    "full_2x:dd",
+    "full_2x:sharpe",
+    "6y_1x:dd",
+    "6y_1x:sharpe",
+    "6y_2x:dd",
+    "6y_2x:sharpe",
+    "4y_1x:dd",
+    "4y_1x:sharpe",
+    "4y_2x:dd",
+    "4y_2x:sharpe",
+    "2y_1x:dd",
+    "2y_1x:sharpe",
+    "2y_2x:dd",
+    "2y_2x:sharpe"
+   ]
+  },
+  {
+   "asset": "XAG",
+   "bitget": "XAGUSDT",
+   "data": "yahoo:SLV",
+   "first": "2006-04-28",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2006-11-14",
+      "final_1000": 3788.0,
+      "cagr": 0.0691,
+      "sharpe": 0.37,
+      "max_dd": -0.7628
+     },
+     "rule_1x": {
+      "start": "2006-11-14",
+      "final_1000": 1597.0,
+      "cagr": 0.0237,
+      "sharpe": 0.22,
+      "max_dd": -0.7432
+     },
+     "rule_2x": {
+      "start": "2006-11-14",
+      "final_1000": 1170.0,
+      "cagr": 0.0079,
+      "sharpe": 0.15,
+      "max_dd": -0.7835
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 2122.0,
+      "cagr": 0.1338,
+      "sharpe": 0.53,
+      "max_dd": -0.5386
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 1599.0,
+      "cagr": 0.0815,
+      "sharpe": 0.44,
+      "max_dd": -0.3578
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 1469.0,
+      "cagr": 0.0663,
+      "sharpe": 0.38,
+      "max_dd": -0.3899
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-24",
+      "final_1000": 2743.0,
+      "cagr": 0.2878,
+      "sharpe": 0.84,
+      "max_dd": -0.5386
+     },
+     "rule_1x": {
+      "start": "2022-10-24",
+      "final_1000": 1916.0,
+      "cagr": 0.177,
+      "sharpe": 0.72,
+      "max_dd": -0.276
+     },
+     "rule_2x": {
+      "start": "2022-10-24",
+      "final_1000": 1810.0,
+      "cagr": 0.1603,
+      "sharpe": 0.67,
+      "max_dd": -0.2934
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 1535.0,
+      "cagr": 0.2396,
+      "sharpe": 0.7,
+      "max_dd": -0.5386
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1672.0,
+      "cagr": 0.2939,
+      "sharpe": 0.98,
+      "max_dd": -0.276
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1632.0,
+      "cagr": 0.2782,
+      "sharpe": 0.94,
+      "max_dd": -0.2767
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "full_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "6y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "6y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_1x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "4y_2x": {
+     "dd": true,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_1x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": true,
+     "sharpe": true,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.51,
+   "exposure_avg_2x": 0.51,
+   "accepted": false,
+   "failed": [
+    "full_1x:dd",
+    "full_1x:sharpe",
+    "full_2x:dd",
+    "full_2x:sharpe",
+    "6y_2x:dd",
+    "6y_2x:sharpe",
+    "4y_1x:sharpe",
+    "4y_2x:sharpe"
+   ]
+  },
+  {
+   "asset": "COPPER",
+   "bitget": "COPPERUSDT",
+   "data": "yahoo:CPER",
+   "first": "2011-11-15",
+   "last": "2026-10-23",
+   "windows": {
+    "full": {
+     "bh": {
+      "start": "2012-06-06",
+      "final_1000": 1679.0,
+      "cagr": 0.0367,
+      "sharpe": 0.27,
+      "max_dd": -0.5528
+     },
+     "rule_1x": {
+      "start": "2012-06-06",
+      "final_1000": 591.0,
+      "cagr": -0.0358,
+      "sharpe": -0.13,
+      "max_dd": -0.5134
+     },
+     "rule_2x": {
+      "start": "2012-06-06",
+      "final_1000": 473.0,
+      "cagr": -0.0507,
+      "sharpe": -0.22,
+      "max_dd": -0.6082
+     }
+    },
+    "6y": {
+     "bh": {
+      "start": "2020-10-23",
+      "final_1000": 2000.0,
+      "cagr": 0.1226,
+      "sharpe": 0.57,
+      "max_dd": -0.3475
+     },
+     "rule_1x": {
+      "start": "2020-10-23",
+      "final_1000": 938.0,
+      "cagr": -0.0107,
+      "sharpe": 0.06,
+      "max_dd": -0.4527
+     },
+     "rule_2x": {
+      "start": "2020-10-23",
+      "final_1000": 854.0,
+      "cagr": -0.026,
+      "sharpe": -0.01,
+      "max_dd": -0.4987
+     }
+    },
+    "4y": {
+     "bh": {
+      "start": "2022-10-24",
+      "final_1000": 1862.0,
+      "cagr": 0.1684,
+      "sharpe": 0.71,
+      "max_dd": -0.2477
+     },
+     "rule_1x": {
+      "start": "2022-10-24",
+      "final_1000": 923.0,
+      "cagr": -0.0198,
+      "sharpe": 0.03,
+      "max_dd": -0.2887
+     },
+     "rule_2x": {
+      "start": "2022-10-24",
+      "final_1000": 869.0,
+      "cagr": -0.0347,
+      "sharpe": -0.03,
+      "max_dd": -0.3075
+     }
+    },
+    "2y": {
+     "bh": {
+      "start": "2024-10-23",
+      "final_1000": 1417.0,
+      "cagr": 0.1906,
+      "sharpe": 0.72,
+      "max_dd": -0.2477
+     },
+     "rule_1x": {
+      "start": "2024-10-23",
+      "final_1000": 1034.0,
+      "cagr": 0.0167,
+      "sharpe": 0.2,
+      "max_dd": -0.2147
+     },
+     "rule_2x": {
+      "start": "2024-10-23",
+      "final_1000": 1011.0,
+      "cagr": 0.0054,
+      "sharpe": 0.17,
+      "max_dd": -0.2181
+     }
+    }
+   },
+   "checks": {
+    "full_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "full_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "6y_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "6y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "4y_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "4y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": false
+    },
+    "2y_1x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    },
+    "2y_2x": {
+     "dd": false,
+     "sharpe": false,
+     "ret": true
+    }
+   },
+   "exposure_avg_1x": 0.488,
+   "exposure_avg_2x": 0.488,
+   "accepted": false,
+   "failed": [
+    "full_1x:dd",
+    "full_1x:sharpe",
+    "full_1x:ret",
+    "full_2x:dd",
+    "full_2x:sharpe",
+    "full_2x:ret",
+    "6y_1x:dd",
+    "6y_1x:sharpe",
+    "6y_1x:ret",
+    "6y_2x:dd",
+    "6y_2x:sharpe",
+    "6y_2x:ret",
+    "4y_1x:dd",
+    "4y_1x:sharpe",
+    "4y_1x:ret",
+    "4y_2x:dd",
+    "4y_2x:sharpe",
+    "4y_2x:ret",
+    "2y_1x:dd",
+    "2y_1x:sharpe",
+    "2y_2x:dd",
+    "2y_2x:sharpe"
+   ]
+  }
+ ]
+}

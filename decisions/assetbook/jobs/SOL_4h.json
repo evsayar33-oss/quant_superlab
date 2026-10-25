@@ -1,0 +1,267 @@
+{
+ "asset": "SOL",
+ "tf": "4h",
+ "bitget": "SOLUSDT",
+ "data": "binance_vision:SOLUSDT",
+ "first_bar": "2020-08-11 04:00:00",
+ "last_bar": "2026-10-23 20:00:00",
+ "bars": 13589,
+ "n_trials": 2671,
+ "errors": 0,
+ "error_sample": {},
+ "cuts": {
+  "6y": {
+   "cut": "2020-10-23",
+   "fwd_end": "2022-10-23",
+   "testable": false,
+   "holdout": false,
+   "funnel": {
+    "trials": 2671,
+    "D1-D3": 0,
+    "D4": 0,
+    "D5": 0,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.1614,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": []
+  },
+  "4y": {
+   "cut": "2022-10-23",
+   "fwd_end": "2024-10-23",
+   "testable": false,
+   "holdout": false,
+   "funnel": {
+    "trials": 2671,
+    "D1-D3": 20,
+    "D4": 17,
+    "D5": 13,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0527,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"kind\": \"ema\", \"set\": [10, 50, 200]}, \"rule\": \"triple_ma\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.424,
+     "dsr": 0.072,
+     "disc": {
+      "trades": 60,
+      "ret2": 8.9748,
+      "pf2": 2.946,
+      "wr2": 0.4,
+      "be": 0.1845,
+      "sr": 1.4947,
+      "max_dd": -0.8134
+     }
+    },
+    {
+     "key": "F1|{\"filter\": \"structure\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.5, 0.618]}",
+     "failed": "D6",
+     "plateau_score": 1.19,
+     "dsr": 0.202,
+     "disc": {
+      "trades": 76,
+      "ret2": 10.2178,
+      "pf2": 2.256,
+      "wr2": 0.6184,
+      "be": 0.4181,
+      "sr": 1.9219,
+      "max_dd": -0.4268
+     }
+    },
+    {
+     "key": "F1|{\"filter\": \"structure\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1272\", \"trigger\": \"limit\", \"zone\": [0.618, 0.786]}",
+     "failed": "D6",
+     "plateau_score": 1.088,
+     "dsr": 0.071,
+     "disc": {
+      "trades": 95,
+      "ret2": 3.8821,
+      "pf2": 1.763,
+      "wr2": 0.3368,
+      "be": 0.2237,
+      "sr": 1.5164,
+      "max_dd": -0.3597
+     }
+    },
+    {
+     "key": "F1|{\"filter\": \"none\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1272\", \"trigger\": \"limit\", \"zone\": [0.5, 0.618]}",
+     "failed": "D6",
+     "plateau_score": 1.085,
+     "dsr": 0.086,
+     "disc": {
+      "trades": 192,
+      "ret2": 6.237,
+      "pf2": 1.488,
+      "wr2": 0.3385,
+      "be": 0.2559,
+      "sr": 1.571,
+      "max_dd": -0.7649
+     }
+    },
+    {
+     "key": "F1|{\"filter\": \"structure\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"limit\", \"zone\": [0.618, 0.786]}",
+     "failed": "D6",
+     "plateau_score": 1.006,
+     "dsr": 0.025,
+     "disc": {
+      "trades": 104,
+      "ret2": 1.7598,
+      "pf2": 1.498,
+      "wr2": 0.3654,
+      "be": 0.2776,
+      "sr": 1.1875,
+      "max_dd": -0.3672
+     }
+    }
+   ]
+  },
+  "2y": {
+   "cut": "2024-10-23",
+   "fwd_end": "2026-10-24",
+   "testable": true,
+   "holdout": true,
+   "funnel": {
+    "trials": 2671,
+    "D1-D3": 27,
+    "D4": 27,
+    "D5": 19,
+    "D6 (all)": 0
+   },
+   "sr_star_bar": 0.0453,
+   "pick": null,
+   "f1_pick": null,
+   "n_surv_f1": 0,
+   "n_surv_f3": 0,
+   "n_surv_f2_fib": 0,
+   "pick_disc": null,
+   "pick_fwd": null,
+   "pick_inside": false,
+   "f1_pick_fwd": null,
+   "survivors": [],
+   "near": [
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"max_age\": 20, \"min_gap_atr\": 0.5}, \"rule\": \"smc_fvg\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.724,
+     "dsr": 0.281,
+     "disc": {
+      "trades": 196,
+      "ret2": 104.9172,
+      "pf2": 2.507,
+      "wr2": 0.3214,
+      "be": 0.1589,
+      "sr": 1.8421,
+      "max_dd": -0.5876
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.506,
+     "dsr": 0.164,
+     "disc": {
+      "trades": 80,
+      "ret2": 63.1438,
+      "pf2": 3.227,
+      "wr2": 0.35,
+      "be": 0.143,
+      "sr": 1.6586,
+      "max_dd": -0.4284
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.323,
+     "dsr": 0.055,
+     "disc": {
+      "trades": 165,
+      "ret2": 21.1574,
+      "pf2": 2.032,
+      "wr2": 0.303,
+      "be": 0.1763,
+      "sr": 1.3589,
+      "max_dd": -0.6424
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"kind\": \"dema\", \"pair\": [20, 50]}, \"rule\": \"ma_cross\", \"side\": \"long\"}",
+     "failed": "D6",
+     "plateau_score": 1.296,
+     "dsr": 0.043,
+     "disc": {
+      "trades": 148,
+      "ret2": 18.8927,
+      "pf2": 1.892,
+      "wr2": 0.4054,
+      "be": 0.2649,
+      "sr": 1.297,
+      "max_dd": -0.7592
+     }
+    },
+    {
+     "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"kind\": \"ema\", \"set\": [10, 50, 200]}, \"rule\": \"triple_ma\", \"side\": \"both\"}",
+     "failed": "D6",
+     "plateau_score": 1.142,
+     "dsr": 0.033,
+     "disc": {
+      "trades": 128,
+      "ret2": 17.3388,
+      "pf2": 2.443,
+      "wr2": 0.3516,
+      "be": 0.1816,
+      "sr": 1.2317,
+      "max_dd": -0.8134
+     }
+    }
+   ]
+  }
+ },
+ "timemachine": {
+  "testable": [
+   "2y"
+  ],
+  "inside": 0,
+  "passed": false
+ },
+ "lead": false,
+ "fib_test": {
+  "disc": {
+   "pairs": 442,
+   "median_delta_pf": -0.074,
+   "share_improved": 0.206
+  },
+  "fwd": {
+   "pairs": 409,
+   "median_delta_pf": 0.014,
+   "share_improved": 0.545
+  },
+  "helps": false
+ },
+ "bh": {
+  "6y": 13.7065,
+  "4y": 4.9092,
+  "2y": -0.398
+ }
+}

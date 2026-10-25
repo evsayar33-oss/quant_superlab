@@ -1,0 +1,212 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (USD, excess of US T-bill) -0.103 < 0.5",
+    "OOS MaxDD -0.6184 worse than -0.45 (local or USD)",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.954 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "donchian_breakout",
+  "kind": "rule",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_orderflow_quant",
+  "spec": {
+    "id": "H014",
+    "rule": "donchian_breakout",
+    "universe": "bist30",
+    "for_system": "bist_orderflow_quant",
+    "start": "2012-01-01",
+    "filters": [
+      "none",
+      "volume_confirm",
+      "regime_bench200"
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "donchian_breakout|entry=20,exit=20|f=volume_confirm|x=trail_atr=4.0",
+  "params": {
+    "entry": 20,
+    "exit": 20,
+    "_filter": "volume_confirm",
+    "_exit": 24,
+    "_size": 0
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "TUPRS.IS": 0.0345
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "ARCLK.IS",
+      "BIMAS.IS",
+      "ENKAI.IS",
+      "FROTO.IS",
+      "GUBRF.IS",
+      "KCHOL.IS",
+      "KRDMD.IS",
+      "SASA.IS",
+      "SISE.IS",
+      "THYAO.IS",
+      "TTKOM.IS",
+      "OYAKC.IS",
+      "MGROS.IS",
+      "PGSUS.IS"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.103,
+  "pbo": 0.326,
+  "reality_check_p": 0.954,
+  "dsr": 0.999,
+  "n_trials": 177,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.2632,
+    "vol": 0.1571,
+    "sharpe": 1.566,
+    "sharpe_excess_rf": 1.425,
+    "sortino": 2.125,
+    "max_dd": -0.2886,
+    "max_dd_bars": 603,
+    "calmar": 0.912,
+    "ulcer": 0.1112,
+    "var95": -0.0136,
+    "cvar95": -0.0228,
+    "omega": 1.364,
+    "tail_ratio": 1.262,
+    "skew": -0.379,
+    "kurtosis": 6.665,
+    "hit_rate": 0.466,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 14.58,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": -0.745,
+    "beta": 0.362,
+    "up_capture": 0.449,
+    "down_capture": 0.399
+  },
+  "trade_stats": {
+    "n_trades": 987,
+    "trades_per_year": 91.8,
+    "win_rate": 0.511,
+    "avg_trade": 0.0787,
+    "median_trade": 0.0029,
+    "avg_win": 0.219,
+    "avg_loss": -0.0678,
+    "profit_factor": 3.372,
+    "payoff": 3.231,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.359,
+    "max_consec_losses": 13,
+    "avg_bars": 31.5,
+    "avg_bars_win": 46.7,
+    "avg_bars_loss": 15.5,
+    "avg_mfe": 0.2305,
+    "avg_mae": -0.0436,
+    "edge_ratio": 5.283,
+    "exit_reasons": {
+      "stop": 881,
+      "signal": 106
+    },
+    "long_short": {
+      "1": {
+        "count": 987,
+        "mean": 0.0787
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 2.32,
+      "ann_ret": 0.3728,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": -0.99,
+      "ann_ret": -0.1405,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 2.53,
+      "ann_ret": 0.3565,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 0.71,
+      "ann_ret": 0.1235,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 1.51,
+      "ann_ret": 0.2341,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": 1.9,
+      "ann_ret": 0.3146,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": 0.7,
+      "ann_ret": 0.0967,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 0.64,
+      "ann_ret": 0.1089,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 1.86,
+      "ann_ret": 0.2854,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.378,
+      "sharpe_delayed_1bar": 1.267,
+      "retained": 0.92
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 1.374,
+      "neighbour_median": 1.343,
+      "share_positive": 1.0,
+      "stability": 0.978
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.334,
+      "sharpe_median": 1.374
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.4621,
+      "random_median_ann": 0.3541,
+      "random_p95_ann": 0.374,
+      "trades_actual": 1151,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0336,
+      "maxdd_p95": -0.0487,
+      "final_p05": 13.9135,
+      "final_median": 13.9135
+    }
+  },
+  "recommended_overlay": "equity_ma_128",
+  "kelly_fraction": 0.359,
+  "oos_csv": "results/H014_donchian_breakout_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:57:25+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

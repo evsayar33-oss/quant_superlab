@@ -1,0 +1,62 @@
+name: Core study
+
+# Simple fixed-setting rules on BTC/ETH (config/core.yaml): no parameter search, no selection.
+# By hand, and on the 3rd of every month.
+
+on:
+  schedule:
+    - cron: '37 4 3 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: core-data-${{ github.run_id }}
+          restore-keys: |
+            core-data-
+            arena-data-all-
+      - name: Core study
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          LAB_CACHE_HOURS: "0"
+        run: python run.py --core --telegram
+      - name: Commit summary
+        run: |
+          git config user.name "quant-lab-bot"; git config user.email "actions@users.noreply.github.com"
+          cp -r decisions/core /tmp/core_dec
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            mkdir -p decisions/core && cp -r /tmp/core_dec/. decisions/core/
+            git add decisions/core
+            git diff --cached --quiet && exit 0
+            git commit -q -m "Core study $(date -u +%F)" && git push -q origin HEAD:main && exit 0
+            sleep 7
+          done
+      - uses: actions/upload-artifact@v4
+        with: {name: core, retention-days: 14, path: results/core_*}
+
+  publish:
+    needs: core
+    runs-on: ubuntu-latest
+    concurrency: {group: quant-lab-results, cancel-in-progress: false}
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/fetch_results.sh
+      - uses: actions/download-artifact@v4
+        with: {name: core, path: _parts}
+      - run: mkdir -p results && cp -r _parts/. results/ && rm -rf _parts
+      - env: {GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"}
+        run: bash scripts/publish_results.sh

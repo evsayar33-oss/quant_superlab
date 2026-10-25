@@ -1,0 +1,140 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (USD, excess of US T-bill) -0.468 < 0.5",
+    "OOS MaxDD -0.8307 worse than -0.45 (local or USD)",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.755 > 0.5 (variant selection is overfit)",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "st_reversal",
+  "kind": "strategy",
+  "universe": "bist30",
+  "timeframe": "1d",
+  "for_system": "bist_shock_quant",
+  "spec": {
+    "id": "H003",
+    "strategy": "st_reversal",
+    "universe": "bist30",
+    "for_system": "bist_shock_quant",
+    "start": "2012-01-01",
+    "status": "active"
+  },
+  "variant": "st_reversal|lookback=5,top_n=3|overlay=dd10",
+  "params": {
+    "lookback": 5,
+    "top_n": 3,
+    "_overlay": "dd10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "GUBRF.IS": 0.1667,
+    "SASA.IS": 0.1667,
+    "MGROS.IS": 0.1667
+  },
+  "gate_sharpe": -0.468,
+  "pbo": 0.755,
+  "reality_check_p": 1.0,
+  "dsr": 0.919,
+  "n_trials": 20,
+  "oos": {
+    "start": "2015-12-16 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 10.76,
+    "cagr": 0.1214,
+    "vol": 0.2193,
+    "sharpe": 0.633,
+    "sharpe_excess_rf": 0.532,
+    "sortino": 0.769,
+    "max_dd": -0.4315,
+    "max_dd_bars": 779,
+    "calmar": 0.281,
+    "ulcer": 0.1805,
+    "var95": -0.0205,
+    "cvar95": -0.0321,
+    "omega": 1.131,
+    "tail_ratio": 1.093,
+    "skew": -0.215,
+    "kurtosis": 6.239,
+    "hit_rate": 0.439,
+    "psr": 0.98,
+    "time_in_market": null,
+    "turnover_ann": 46.79,
+    "bench_cagr": 0.4437,
+    "bench_sharpe": 1.523,
+    "info_ratio": -1.366,
+    "beta": 0.577,
+    "up_capture": 0.598,
+    "down_capture": 0.675
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.36,
+      "ann_ret": 0.3051,
+      "bars": 2075
+    },
+    "bear": {
+      "sharpe": -1.84,
+      "ann_ret": -0.3689,
+      "bars": 680
+    },
+    "calm": {
+      "sharpe": 0.78,
+      "ann_ret": 0.146,
+      "bars": 1450
+    },
+    "stressed": {
+      "sharpe": 0.52,
+      "ann_ret": 0.1307,
+      "bars": 1305
+    },
+    "vix_lt_20": {
+      "sharpe": 0.91,
+      "ann_ret": 0.1814,
+      "bars": 1931
+    },
+    "vix_20_30": {
+      "sharpe": 0.22,
+      "ann_ret": 0.0554,
+      "bars": 671
+    },
+    "vix_ge_30": {
+      "sharpe": -0.12,
+      "ann_ret": -0.0345,
+      "bars": 153
+    },
+    "curve_inverted": {
+      "sharpe": 0.56,
+      "ann_ret": 0.1247,
+      "bars": 613
+    },
+    "curve_normal": {
+      "sharpe": 0.65,
+      "ann_ret": 0.1427,
+      "bars": 2142
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.692,
+      "sharpe_delayed_1bar": 0.713,
+      "retained": 1.03
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.613,
+      "sharpe_median": 0.701
+    }
+  },
+  "recommended_overlay": "equity_ma_42",
+  "kelly_fraction": null,
+  "oos_csv": "results/H003_st_reversal_bist30_1d_oos.csv",
+  "validated_at": "2026-10-17T08:54:48+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

@@ -1,0 +1,782 @@
+{
+ "date": "2026-10-21",
+ "ideas": {
+  "H063": {
+   "name": "Metal Vortex(28) + SMC order block (long)",
+   "rows": {
+    "1x": {
+     "full": {
+      "final_1000": 2444.0,
+      "cagr": 0.0339,
+      "sharpe": 0.958,
+      "max_dd": -0.0581,
+      "worst_day": -0.0322,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1245.0,
+       "cagr": 0.0563,
+       "sharpe": 1.479,
+       "max_dd": -0.0318,
+       "worst_day": -0.0143,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1174.0,
+       "cagr": 0.0548,
+       "sharpe": 1.382,
+       "max_dd": -0.0318,
+       "worst_day": -0.0143,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1138.0,
+       "cagr": 0.0665,
+       "sharpe": 1.496,
+       "max_dd": -0.0318,
+       "worst_day": -0.0143,
+       "ruined": false
+      }
+     }
+    },
+    "2x": {
+     "full": {
+      "final_1000": 5777.0,
+      "cagr": 0.0676,
+      "sharpe": 0.958,
+      "max_dd": -0.114,
+      "worst_day": -0.0644,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1542.0,
+       "cagr": 0.1143,
+       "sharpe": 1.479,
+       "max_dd": -0.0627,
+       "worst_day": -0.0287,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1372.0,
+       "cagr": 0.111,
+       "sharpe": 1.382,
+       "max_dd": -0.0627,
+       "worst_day": -0.0287,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1290.0,
+       "cagr": 0.1352,
+       "sharpe": 1.496,
+       "max_dd": -0.0627,
+       "worst_day": -0.0287,
+       "ruined": false
+      }
+     }
+    },
+    "3x": {
+     "full": {
+      "final_1000": 13204.0,
+      "cagr": 0.1011,
+      "sharpe": 0.958,
+      "max_dd": -0.1677,
+      "worst_day": -0.0966,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1899.0,
+       "cagr": 0.1738,
+       "sharpe": 1.479,
+       "max_dd": -0.0928,
+       "worst_day": -0.043,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1595.0,
+       "cagr": 0.1683,
+       "sharpe": 1.382,
+       "max_dd": -0.0928,
+       "worst_day": -0.043,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1456.0,
+       "cagr": 0.2061,
+       "sharpe": 1.496,
+       "max_dd": -0.0928,
+       "worst_day": -0.043,
+       "ruined": false
+      }
+     }
+    },
+    "4x": {
+     "full": {
+      "final_1000": 29190.0,
+      "cagr": 0.1342,
+      "sharpe": 0.958,
+      "max_dd": -0.2193,
+      "worst_day": -0.1288,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2326.0,
+       "cagr": 0.2348,
+       "sharpe": 1.479,
+       "max_dd": -0.1221,
+       "worst_day": -0.0573,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1847.0,
+       "cagr": 0.2267,
+       "sharpe": 1.382,
+       "max_dd": -0.1221,
+       "worst_day": -0.0573,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1638.0,
+       "cagr": 0.2789,
+       "sharpe": 1.496,
+       "max_dd": -0.1221,
+       "worst_day": -0.0573,
+       "ruined": false
+      }
+     }
+    },
+    "5x": {
+     "full": {
+      "final_1000": 62422.0,
+      "cagr": 0.1668,
+      "sharpe": 0.958,
+      "max_dd": -0.2687,
+      "worst_day": -0.161,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2832.0,
+       "cagr": 0.2971,
+       "sharpe": 1.479,
+       "max_dd": -0.1506,
+       "worst_day": -0.0717,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2129.0,
+       "cagr": 0.2861,
+       "sharpe": 1.382,
+       "max_dd": -0.1506,
+       "worst_day": -0.0717,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1835.0,
+       "cagr": 0.3536,
+       "sharpe": 1.496,
+       "max_dd": -0.1506,
+       "worst_day": -0.0717,
+       "ruined": false
+      }
+     }
+    },
+    "vt": {
+     "full": {
+      "final_1000": 30801.0,
+      "cagr": 0.1365,
+      "sharpe": 0.928,
+      "max_dd": -0.2591,
+      "worst_day": -0.093,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2304.0,
+       "cagr": 0.2319,
+       "sharpe": 1.403,
+       "max_dd": -0.1396,
+       "worst_day": -0.0666,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1938.0,
+       "cagr": 0.2464,
+       "sharpe": 1.372,
+       "max_dd": -0.1396,
+       "worst_day": -0.0666,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1670.0,
+       "cagr": 0.2916,
+       "sharpe": 1.477,
+       "max_dd": -0.1211,
+       "worst_day": -0.0666,
+       "ruined": false
+      }
+     },
+     "avg_leverage": 4.67
+    }
+   },
+   "pick": 5,
+   "bh": {
+    "full": {
+     "final_1000": 12602.0,
+     "cagr": 0.0992,
+     "sharpe": 0.525,
+     "max_dd": -0.5391,
+     "worst_day": -0.2207,
+     "ruined": false
+    },
+    "windows": {
+     "2022-10-21": {
+      "final_1000": 1862.0,
+      "cagr": 0.168,
+      "sharpe": 0.694,
+      "max_dd": -0.3364,
+      "worst_day": -0.1626,
+      "ruined": false
+     },
+     "2023-10-21": {
+      "final_1000": 1911.0,
+      "cagr": 0.2405,
+      "sharpe": 0.867,
+      "max_dd": -0.3364,
+      "worst_day": -0.1626,
+      "ruined": false
+     },
+     "2024-10-21": {
+      "final_1000": 1547.0,
+      "cagr": 0.243,
+      "sharpe": 0.818,
+      "max_dd": -0.3364,
+      "worst_day": -0.1626,
+      "ruined": false
+     }
+    }
+   }
+  },
+  "H064": {
+   "name": "Metal 52 hafta zirvesi + SMC BOS (iki y\u00f6n)",
+   "rows": {
+    "1x": {
+     "full": {
+      "final_1000": 1947.0,
+      "cagr": 0.0252,
+      "sharpe": 0.637,
+      "max_dd": -0.0805,
+      "worst_day": -0.0525,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1242.0,
+       "cagr": 0.0557,
+       "sharpe": 0.835,
+       "max_dd": -0.0805,
+       "worst_day": -0.0525,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1258.0,
+       "cagr": 0.0793,
+       "sharpe": 1.021,
+       "max_dd": -0.0805,
+       "worst_day": -0.0525,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1194.0,
+       "cagr": 0.0926,
+       "sharpe": 0.996,
+       "max_dd": -0.0805,
+       "worst_day": -0.0525,
+       "ruined": false
+      }
+     }
+    },
+    "2x": {
+     "full": {
+      "final_1000": 3627.0,
+      "cagr": 0.0493,
+      "sharpe": 0.637,
+      "max_dd": -0.1576,
+      "worst_day": -0.1049,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1515.0,
+       "cagr": 0.1093,
+       "sharpe": 0.835,
+       "max_dd": -0.1576,
+       "worst_day": -0.1049,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1553.0,
+       "cagr": 0.1578,
+       "sharpe": 1.021,
+       "max_dd": -0.1576,
+       "worst_day": -0.1049,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1401.0,
+       "cagr": 0.1833,
+       "sharpe": 0.996,
+       "max_dd": -0.1576,
+       "worst_day": -0.1049,
+       "ruined": false
+      }
+     }
+    },
+    "3x": {
+     "full": {
+      "final_1000": 6464.0,
+      "cagr": 0.0721,
+      "sharpe": 0.637,
+      "max_dd": -0.2312,
+      "worst_day": -0.1574,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1812.0,
+       "cagr": 0.1601,
+       "sharpe": 0.835,
+       "max_dd": -0.2312,
+       "worst_day": -0.1574,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1882.0,
+       "cagr": 0.2343,
+       "sharpe": 1.021,
+       "max_dd": -0.2312,
+       "worst_day": -0.1574,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1615.0,
+       "cagr": 0.27,
+       "sharpe": 0.996,
+       "max_dd": -0.2312,
+       "worst_day": -0.1574,
+       "ruined": false
+      }
+     }
+    },
+    "4x": {
+     "full": {
+      "final_1000": 11011.0,
+      "cagr": 0.0937,
+      "sharpe": 0.637,
+      "max_dd": -0.3015,
+      "worst_day": -0.2098,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2126.0,
+       "cagr": 0.2074,
+       "sharpe": 0.835,
+       "max_dd": -0.3015,
+       "worst_day": -0.2098,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2236.0,
+       "cagr": 0.3073,
+       "sharpe": 1.021,
+       "max_dd": -0.3015,
+       "worst_day": -0.2098,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1826.0,
+       "cagr": 0.3504,
+       "sharpe": 0.996,
+       "max_dd": -0.3015,
+       "worst_day": -0.2098,
+       "ruined": false
+      }
+     }
+    },
+    "5x": {
+     "full": {
+      "final_1000": 17912.0,
+      "cagr": 0.1137,
+      "sharpe": 0.637,
+      "max_dd": -0.3685,
+      "worst_day": -0.2623,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2445.0,
+       "cagr": 0.2502,
+       "sharpe": 0.835,
+       "max_dd": -0.3685,
+       "worst_day": -0.2623,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2605.0,
+       "cagr": 0.3754,
+       "sharpe": 1.021,
+       "max_dd": -0.3685,
+       "worst_day": -0.2623,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 2026.0,
+       "cagr": 0.422,
+       "sharpe": 0.996,
+       "max_dd": -0.3685,
+       "worst_day": -0.2623,
+       "ruined": false
+      }
+     }
+    },
+    "vt": {
+     "full": {
+      "final_1000": 10106.0,
+      "cagr": 0.0902,
+      "sharpe": 0.718,
+      "max_dd": -0.2898,
+      "worst_day": -0.0786,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2089.0,
+       "cagr": 0.2021,
+       "sharpe": 1.194,
+       "max_dd": -0.1571,
+       "worst_day": -0.0583,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2227.0,
+       "cagr": 0.3054,
+       "sharpe": 1.512,
+       "max_dd": -0.1571,
+       "worst_day": -0.0583,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1734.0,
+       "cagr": 0.3159,
+       "sharpe": 1.402,
+       "max_dd": -0.1571,
+       "worst_day": -0.0583,
+       "ruined": false
+      }
+     },
+     "avg_leverage": 4.65
+    }
+   },
+   "pick": 4,
+   "bh": {
+    "full": {
+     "final_1000": 12602.0,
+     "cagr": 0.0992,
+     "sharpe": 0.525,
+     "max_dd": -0.5391,
+     "worst_day": -0.2207,
+     "ruined": false
+    },
+    "windows": {
+     "2022-10-21": {
+      "final_1000": 1862.0,
+      "cagr": 0.168,
+      "sharpe": 0.694,
+      "max_dd": -0.3364,
+      "worst_day": -0.1626,
+      "ruined": false
+     },
+     "2023-10-21": {
+      "final_1000": 1911.0,
+      "cagr": 0.2405,
+      "sharpe": 0.867,
+      "max_dd": -0.3364,
+      "worst_day": -0.1626,
+      "ruined": false
+     },
+     "2024-10-21": {
+      "final_1000": 1547.0,
+      "cagr": 0.243,
+      "sharpe": 0.818,
+      "max_dd": -0.3364,
+      "worst_day": -0.1626,
+      "ruined": false
+     }
+    }
+   }
+  },
+  "H065": {
+   "name": "Endeks IBS ortalamaya d\u00f6n\u00fc\u015f + SMA200 (long)",
+   "rows": {
+    "1x": {
+     "full": {
+      "final_1000": 2447.0,
+      "cagr": 0.0349,
+      "sharpe": 0.643,
+      "max_dd": -0.0904,
+      "worst_day": -0.0478,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1358.0,
+       "cagr": 0.0799,
+       "sharpe": 1.203,
+       "max_dd": -0.0582,
+       "worst_day": -0.0183,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1314.0,
+       "cagr": 0.0958,
+       "sharpe": 1.368,
+       "max_dd": -0.0409,
+       "worst_day": -0.0183,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1173.0,
+       "cagr": 0.0835,
+       "sharpe": 1.184,
+       "max_dd": -0.0409,
+       "worst_day": -0.0183,
+       "ruined": false
+      }
+     }
+    },
+    "2x": {
+     "full": {
+      "final_1000": 5518.0,
+      "cagr": 0.0677,
+      "sharpe": 0.643,
+      "max_dd": -0.1762,
+      "worst_day": -0.0956,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 1812.0,
+       "cagr": 0.1611,
+       "sharpe": 1.203,
+       "max_dd": -0.114,
+       "worst_day": -0.0365,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 1704.0,
+       "cagr": 0.1952,
+       "sharpe": 1.368,
+       "max_dd": -0.0808,
+       "worst_day": -0.0365,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1364.0,
+       "cagr": 0.1684,
+       "sharpe": 1.184,
+       "max_dd": -0.0808,
+       "worst_day": -0.0365,
+       "ruined": false
+      }
+     }
+    },
+    "3x": {
+     "full": {
+      "final_1000": 11466.0,
+      "cagr": 0.098,
+      "sharpe": 0.643,
+      "max_dd": -0.2591,
+      "worst_day": -0.1434,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2378.0,
+       "cagr": 0.2431,
+       "sharpe": 1.203,
+       "max_dd": -0.1675,
+       "worst_day": -0.0548,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2178.0,
+       "cagr": 0.2976,
+       "sharpe": 1.368,
+       "max_dd": -0.1199,
+       "worst_day": -0.0548,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1570.0,
+       "cagr": 0.2539,
+       "sharpe": 1.184,
+       "max_dd": -0.1199,
+       "worst_day": -0.0548,
+       "ruined": false
+      }
+     }
+    },
+    "4x": {
+     "full": {
+      "final_1000": 21935.0,
+      "cagr": 0.1257,
+      "sharpe": 0.643,
+      "max_dd": -0.3476,
+      "worst_day": -0.1912,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 3069.0,
+       "cagr": 0.3254,
+       "sharpe": 1.203,
+       "max_dd": -0.2187,
+       "worst_day": -0.0731,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2746.0,
+       "cagr": 0.4023,
+       "sharpe": 1.368,
+       "max_dd": -0.158,
+       "worst_day": -0.0731,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1791.0,
+       "cagr": 0.3393,
+       "sharpe": 1.184,
+       "max_dd": -0.158,
+       "worst_day": -0.0731,
+       "ruined": false
+      }
+     }
+    },
+    "5x": {
+     "full": {
+      "final_1000": 38607.0,
+      "cagr": 0.1503,
+      "sharpe": 0.643,
+      "max_dd": -0.434,
+      "worst_day": -0.2391,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 3895.0,
+       "cagr": 0.4072,
+       "sharpe": 1.203,
+       "max_dd": -0.2676,
+       "worst_day": -0.0914,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 3416.0,
+       "cagr": 0.5086,
+       "sharpe": 1.368,
+       "max_dd": -0.1953,
+       "worst_day": -0.0914,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 2024.0,
+       "cagr": 0.4239,
+       "sharpe": 1.184,
+       "max_dd": -0.1953,
+       "worst_day": -0.0914,
+       "ruined": false
+      }
+     }
+    },
+    "vt": {
+     "full": {
+      "final_1000": 9582.0,
+      "cagr": 0.0905,
+      "sharpe": 0.528,
+      "max_dd": -0.3686,
+      "worst_day": -0.1915,
+      "ruined": false
+     },
+     "windows": {
+      "2022-10-21": {
+       "final_1000": 2303.0,
+       "cagr": 0.2331,
+       "sharpe": 1.059,
+       "max_dd": -0.1995,
+       "worst_day": -0.0853,
+       "ruined": false
+      },
+      "2023-10-21": {
+       "final_1000": 2097.0,
+       "cagr": 0.2814,
+       "sharpe": 1.224,
+       "max_dd": -0.1437,
+       "worst_day": -0.0853,
+       "ruined": false
+      },
+      "2024-10-21": {
+       "final_1000": 1516.0,
+       "cagr": 0.2319,
+       "sharpe": 1.04,
+       "max_dd": -0.1437,
+       "worst_day": -0.0853,
+       "ruined": false
+      }
+     },
+     "avg_leverage": 3.94
+    }
+   },
+   "pick": 4,
+   "bh": {
+    "full": {
+     "final_1000": 4533.0,
+     "cagr": 0.0597,
+     "sharpe": 0.381,
+     "max_dd": -0.6434,
+     "worst_day": -0.112,
+     "ruined": false
+    },
+    "windows": {
+     "2022-10-21": {
+      "final_1000": 2117.0,
+      "cagr": 0.2074,
+      "sharpe": 1.215,
+      "max_dd": -0.1983,
+      "worst_day": -0.0536,
+      "ruined": false
+     },
+     "2023-10-21": {
+      "final_1000": 1854.0,
+      "cagr": 0.2296,
+      "sharpe": 1.299,
+      "max_dd": -0.1983,
+      "worst_day": -0.0536,
+      "ruined": false
+     },
+     "2024-10-21": {
+      "final_1000": 1375.0,
+      "cagr": 0.1732,
+      "sharpe": 0.969,
+      "max_dd": -0.1983,
+      "worst_day": -0.0536,
+      "ruined": false
+     }
+    }
+   }
+  }
+ }
+}

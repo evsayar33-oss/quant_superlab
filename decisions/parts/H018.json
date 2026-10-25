@@ -1,0 +1,148 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.688 > 0.5 (variant selection is overfit)"
+  ],
+  "strategy": "magic_formula",
+  "kind": "strategy",
+  "universe": "sp_megacap",
+  "timeframe": "1d",
+  "for_system": "us_f1_bot",
+  "spec": {
+    "id": "H018",
+    "strategy": "magic_formula",
+    "universe": "sp_megacap",
+    "for_system": "us_f1_bot",
+    "start": "2011-01-01",
+    "status": "active"
+  },
+  "variant": "magic_formula|top_n=10,freq=QE|overlay=eqma_s",
+  "params": {
+    "top_n": 10,
+    "freq": "QE",
+    "_overlay": "eqma_s"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "AAPL": 0.1,
+    "MSFT": 0.1,
+    "NVDA": 0.1,
+    "BRK-B": 0.1,
+    "V": 0.1,
+    "MA": 0.1,
+    "HD": 0.1,
+    "ORCL": 0.1,
+    "ADBE": 0.1,
+    "NFLX": 0.1
+  },
+  "gate_sharpe": 1.013,
+  "pbo": 0.688,
+  "reality_check_p": 0.05,
+  "dsr": 1.0,
+  "n_trials": 20,
+  "oos": {
+    "start": "2015-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 11.76,
+    "cagr": 0.1495,
+    "vol": 0.1252,
+    "sharpe": 1.176,
+    "sharpe_excess_rf": 1.013,
+    "sortino": 1.449,
+    "max_dd": -0.2089,
+    "max_dd_bars": 522,
+    "calmar": 0.716,
+    "ulcer": 0.0704,
+    "var95": -0.0127,
+    "cvar95": -0.0192,
+    "omega": 1.249,
+    "tail_ratio": 1.053,
+    "skew": -0.35,
+    "kurtosis": 3.605,
+    "hit_rate": 0.478,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 8.0,
+    "bench_cagr": 0.2072,
+    "bench_sharpe": 1.222,
+    "info_ratio": -0.475,
+    "beta": 0.544,
+    "up_capture": 0.714,
+    "down_capture": 0.71
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.93,
+      "ann_ret": 0.2325,
+      "bars": 2455
+    },
+    "bear": {
+      "sharpe": -1.88,
+      "ann_ret": -0.2691,
+      "bars": 503
+    },
+    "calm": {
+      "sharpe": 1.81,
+      "ann_ret": 0.1976,
+      "bars": 1554
+    },
+    "stressed": {
+      "sharpe": 0.65,
+      "ann_ret": 0.0915,
+      "bars": 1404
+    },
+    "vix_lt_20": {
+      "sharpe": 3.24,
+      "ann_ret": 0.3532,
+      "bars": 2095
+    },
+    "vix_20_30": {
+      "sharpe": -2.28,
+      "ann_ret": -0.3366,
+      "bars": 705
+    },
+    "vix_ge_30": {
+      "sharpe": -2.4,
+      "ann_ret": -0.4257,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 1.29,
+      "ann_ret": 0.1778,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 1.14,
+      "ann_ret": 0.1392,
+      "bars": 2344
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.188,
+      "sharpe_delayed_1bar": 1.176,
+      "retained": 0.991
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 1.178,
+      "neighbour_median": 1.113,
+      "share_positive": 1.0,
+      "stability": 0.945
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.137,
+      "sharpe_median": 1.184
+    }
+  },
+  "recommended_overlay": "vol_target_0.1",
+  "kelly_fraction": null,
+  "oos_csv": "results/H018_magic_formula_sp_megacap_1d_oos.csv",
+  "validated_at": "2026-10-17T08:56:50+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

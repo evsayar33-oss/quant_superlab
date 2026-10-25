@@ -1,0 +1,3258 @@
+{
+ "run_at": "2026-10-24T18:25:44+00:00",
+ "n_trials": 29912,
+ "jobs": [
+  {
+   "asset": "BTC",
+   "tf": "1d",
+   "bitget": "BTCUSDT",
+   "data": "binance_vision:BTCUSDT",
+   "first_bar": "2017-08-17 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 3355,
+   "n_trials": 2831,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2831,
+      "D1-D3": 25,
+      "D4": 25,
+      "D5": 17,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.1016,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.526,
+       "dsr": 0.22,
+       "disc": {
+        "trades": 47,
+        "ret2": 6.708,
+        "pf2": 3.595,
+        "wr2": 0.3404,
+        "be": 0.1255,
+        "sr": 1.5259,
+        "max_dd": -0.5174
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.412,
+       "dsr": 0.193,
+       "disc": {
+        "trades": 39,
+        "ret2": 6.2481,
+        "pf2": 3.085,
+        "wr2": 0.4359,
+        "be": 0.2003,
+        "sr": 1.4787,
+        "max_dd": -0.4209
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.179,
+       "dsr": 0.101,
+       "disc": {
+        "trades": 39,
+        "ret2": 3.0079,
+        "pf2": 2.318,
+        "wr2": 0.4359,
+        "be": 0.2501,
+        "sr": 1.2325,
+        "max_dd": -0.4027
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.146,
+       "dsr": 0.072,
+       "disc": {
+        "trades": 55,
+        "ret2": 2.8592,
+        "pf2": 2.146,
+        "wr2": 0.3273,
+        "be": 0.1848,
+        "sr": 1.1461,
+        "max_dd": -0.4954
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [0.02, 0.2]}, \"rule\": \"psar_flip\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.101,
+       "dsr": 0.062,
+       "disc": {
+        "trades": 43,
+        "ret2": 2.9372,
+        "pf2": 2.063,
+        "wr2": 0.4884,
+        "be": 0.3163,
+        "sr": 1.1009,
+        "max_dd": -0.4641
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2831,
+      "D1-D3": 31,
+      "D4": 29,
+      "D5": 25,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0858,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 50, \"price_n\": 50}, \"rule\": \"obv_trend\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.165,
+       "dsr": 0.146,
+       "disc": {
+        "trades": 52,
+        "ret2": 9.8075,
+        "pf2": 3.673,
+        "wr2": 0.3462,
+        "be": 0.126,
+        "sr": 1.1884,
+        "max_dd": -0.5688
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.099,
+       "dsr": 0.106,
+       "disc": {
+        "trades": 38,
+        "ret2": 8.5582,
+        "pf2": 3.545,
+        "wr2": 0.2895,
+        "be": 0.1031,
+        "sr": 1.099,
+        "max_dd": -0.7862
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.068,
+       "dsr": 0.114,
+       "disc": {
+        "trades": 30,
+        "ret2": 4.0465,
+        "pf2": 2.79,
+        "wr2": 0.4667,
+        "be": 0.2388,
+        "sr": 1.1331,
+        "max_dd": -0.4793
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.885,
+       "dsr": 0.043,
+       "disc": {
+        "trades": 31,
+        "ret2": 2.8458,
+        "pf2": 2.501,
+        "wr2": 0.4839,
+        "be": 0.2727,
+        "sr": 0.8847,
+        "max_dd": -0.529
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"trend_n\": 50}, \"rule\": \"engulfing\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.867,
+       "dsr": 0.079,
+       "disc": {
+        "trades": 43,
+        "ret2": 4.5296,
+        "pf2": 2.534,
+        "wr2": 0.4651,
+        "be": 0.2555,
+        "sr": 1.0354,
+        "max_dd": -0.4744
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2831,
+      "D1-D3": 58,
+      "D4": 56,
+      "D5": 46,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0794,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.234,
+       "dsr": 0.218,
+       "disc": {
+        "trades": 112,
+        "ret2": 24.6463,
+        "pf2": 2.685,
+        "wr2": 0.3036,
+        "be": 0.1397,
+        "sr": 1.2342,
+        "max_dd": -0.6062
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.2,
+       "dsr": 0.266,
+       "disc": {
+        "trades": 36,
+        "ret2": 31.1916,
+        "pf2": 5.179,
+        "wr2": 0.4722,
+        "be": 0.1473,
+        "sr": 1.2908,
+        "max_dd": -0.5671
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.185,
+       "dsr": 0.179,
+       "disc": {
+        "trades": 90,
+        "ret2": 20.9787,
+        "pf2": 2.514,
+        "wr2": 0.4111,
+        "be": 0.2174,
+        "sr": 1.1854,
+        "max_dd": -0.6052
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 50, \"price_n\": 50}, \"rule\": \"obv_trend\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.095,
+       "dsr": 0.123,
+       "disc": {
+        "trades": 92,
+        "ret2": 14.4942,
+        "pf2": 3.119,
+        "wr2": 0.2609,
+        "be": 0.1017,
+        "sr": 1.095,
+        "max_dd": -0.5688
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.065,
+       "dsr": 0.11,
+       "disc": {
+        "trades": 54,
+        "ret2": 16.2094,
+        "pf2": 3.321,
+        "wr2": 0.3333,
+        "be": 0.1309,
+        "sr": 1.0651,
+        "max_dd": -0.7862
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 372,
+     "median_delta_pf": -0.102,
+     "share_improved": 0.191
+    },
+    "fwd": {
+     "pairs": 233,
+     "median_delta_pf": -0.124,
+     "share_improved": 0.18
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 0.4861,
+    "4y": 2.4453,
+    "2y": 0.2178
+   }
+  },
+  {
+   "asset": "BTC",
+   "tf": "4h",
+   "bitget": "BTCUSDT",
+   "data": "binance_vision:BTCUSDT",
+   "first_bar": "2017-08-17 04:00:00",
+   "last_bar": "2026-10-23 20:00:00",
+   "bars": 20112,
+   "n_trials": 2846,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2846,
+      "D1-D3": 68,
+      "D4": 65,
+      "D5": 54,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0505,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"look\": 252, \"n\": 20, \"q\": 0.2}, \"rule\": \"bb_squeeze\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.581,
+       "dsr": 0.076,
+       "disc": {
+        "trades": 80,
+        "ret2": 2.0576,
+        "pf2": 2.048,
+        "wr2": 0.375,
+        "be": 0.2266,
+        "sr": 1.5813,
+        "max_dd": -0.1953
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [7, 22, 44]}, \"rule\": \"ichimoku_cloud\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.484,
+       "dsr": 0.092,
+       "disc": {
+        "trades": 128,
+        "ret2": 4.6011,
+        "pf2": 2.0,
+        "wr2": 0.4219,
+        "be": 0.2673,
+        "sr": 1.6154,
+        "max_dd": -0.3705
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.472,
+       "dsr": 0.065,
+       "disc": {
+        "trades": 122,
+        "ret2": 3.2771,
+        "pf2": 1.873,
+        "wr2": 0.4344,
+        "be": 0.2908,
+        "sr": 1.5177,
+        "max_dd": -0.308
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.443,
+       "dsr": 0.086,
+       "disc": {
+        "trades": 115,
+        "ret2": 4.2482,
+        "pf2": 1.974,
+        "wr2": 0.4435,
+        "be": 0.2875,
+        "sr": 1.5999,
+        "max_dd": -0.2757
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.362,
+       "dsr": 0.037,
+       "disc": {
+        "trades": 144,
+        "ret2": 4.1462,
+        "pf2": 1.878,
+        "wr2": 0.2986,
+        "be": 0.1848,
+        "sr": 1.3622,
+        "max_dd": -0.4698
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2846,
+      "D1-D3": 51,
+      "D4": 48,
+      "D5": 40,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0409,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.371,
+       "dsr": 0.109,
+       "disc": {
+        "trades": 95,
+        "ret2": 10.4439,
+        "pf2": 2.499,
+        "wr2": 0.4,
+        "be": 0.2106,
+        "sr": 1.3709,
+        "max_dd": -0.3945
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"look\": 252, \"n\": 20, \"q\": 0.2}, \"rule\": \"bb_squeeze\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.296,
+       "dsr": 0.075,
+       "disc": {
+        "trades": 125,
+        "ret2": 3.2032,
+        "pf2": 1.924,
+        "wr2": 0.408,
+        "be": 0.2637,
+        "sr": 1.296,
+        "max_dd": -0.2509
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.201,
+       "dsr": 0.132,
+       "disc": {
+        "trades": 146,
+        "ret2": 7.78,
+        "pf2": 2.026,
+        "wr2": 0.4178,
+        "be": 0.2616,
+        "sr": 1.427,
+        "max_dd": -0.2742
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"bollinger_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.187,
+       "dsr": 0.05,
+       "disc": {
+        "trades": 88,
+        "ret2": 6.2984,
+        "pf2": 2.353,
+        "wr2": 0.4091,
+        "be": 0.2273,
+        "sr": 1.1868,
+        "max_dd": -0.3855
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.123,
+       "dsr": 0.052,
+       "disc": {
+        "trades": 128,
+        "ret2": 3.732,
+        "pf2": 1.708,
+        "wr2": 0.3828,
+        "be": 0.2664,
+        "sr": 1.1929,
+        "max_dd": -0.3066
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2846,
+      "D1-D3": 84,
+      "D4": 75,
+      "D5": 57,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0397,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.355,
+       "dsr": 0.09,
+       "disc": {
+        "trades": 139,
+        "ret2": 20.7958,
+        "pf2": 2.363,
+        "wr2": 0.3885,
+        "be": 0.2119,
+        "sr": 1.3546,
+        "max_dd": -0.438
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"bollinger_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.215,
+       "dsr": 0.043,
+       "disc": {
+        "trades": 128,
+        "ret2": 12.6559,
+        "pf2": 2.328,
+        "wr2": 0.4141,
+        "be": 0.2329,
+        "sr": 1.2147,
+        "max_dd": -0.396
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"look\": 252, \"n\": 20, \"q\": 0.2}, \"rule\": \"bb_squeeze\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.203,
+       "dsr": 0.054,
+       "disc": {
+        "trades": 171,
+        "ret2": 4.8663,
+        "pf2": 1.913,
+        "wr2": 0.4152,
+        "be": 0.2707,
+        "sr": 1.2725,
+        "max_dd": -0.2509
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.174,
+       "dsr": 0.033,
+       "disc": {
+        "trades": 335,
+        "ret2": 13.9319,
+        "pf2": 1.71,
+        "wr2": 0.3015,
+        "be": 0.2015,
+        "sr": 1.1742,
+        "max_dd": -0.6734
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.173,
+       "dsr": 0.056,
+       "disc": {
+        "trades": 264,
+        "ret2": 15.9475,
+        "pf2": 1.841,
+        "wr2": 0.3447,
+        "be": 0.2223,
+        "sr": 1.2631,
+        "max_dd": -0.538
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 457,
+     "median_delta_pf": -0.053,
+     "share_improved": 0.234
+    },
+    "fwd": {
+     "pairs": 420,
+     "median_delta_pf": -0.007,
+     "share_improved": 0.438
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 0.5089,
+    "4y": 2.3966,
+    "2y": 0.2178
+   }
+  },
+  {
+   "asset": "ETH",
+   "tf": "1d",
+   "bitget": "ETHUSDT",
+   "data": "binance_vision:ETHUSDT",
+   "first_bar": "2017-08-17 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 3355,
+   "n_trials": 2878,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2878,
+      "D1-D3": 38,
+      "D4": 38,
+      "D5": 24,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0961,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"cfg\": [0.02, 0.2]}, \"rule\": \"psar_flip\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.224,
+       "dsr": 0.126,
+       "disc": {
+        "trades": 41,
+        "ret2": 4.4706,
+        "pf2": 2.023,
+        "wr2": 0.4878,
+        "be": 0.3201,
+        "sr": 1.2238,
+        "max_dd": -0.6199
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.137,
+       "dsr": 0.103,
+       "disc": {
+        "trades": 39,
+        "ret2": 3.6039,
+        "pf2": 2.241,
+        "wr2": 0.4103,
+        "be": 0.2369,
+        "sr": 1.1366,
+        "max_dd": -0.5359
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 15, \"signal\": 9}, \"rule\": \"trix_cross\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.137,
+       "dsr": 0.111,
+       "disc": {
+        "trades": 49,
+        "ret2": 6.0596,
+        "pf2": 2.431,
+        "wr2": 0.4286,
+        "be": 0.2358,
+        "sr": 1.1669,
+        "max_dd": -0.6456
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.021,
+       "dsr": 0.073,
+       "disc": {
+        "trades": 39,
+        "ret2": 3.0027,
+        "pf2": 2.06,
+        "wr2": 0.359,
+        "be": 0.2138,
+        "sr": 1.0209,
+        "max_dd": -0.6358
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [8, 21, 5]}, \"rule\": \"macd_zero\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.006,
+       "dsr": 0.127,
+       "disc": {
+        "trades": 39,
+        "ret2": 8.0169,
+        "pf2": 3.912,
+        "wr2": 0.3846,
+        "be": 0.1377,
+        "sr": 1.2076,
+        "max_dd": -0.5614
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2878,
+      "D1-D3": 70,
+      "D4": 68,
+      "D5": 53,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0956,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.259,
+       "dsr": 0.14,
+       "disc": {
+        "trades": 61,
+        "ret2": 7.9826,
+        "pf2": 3.113,
+        "wr2": 0.5738,
+        "be": 0.3019,
+        "sr": 1.3939,
+        "max_dd": -0.2838
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.259,
+       "dsr": 0.14,
+       "disc": {
+        "trades": 61,
+        "ret2": 7.9826,
+        "pf2": 3.113,
+        "wr2": 0.5738,
+        "be": 0.3019,
+        "sr": 1.3939,
+        "max_dd": -0.2838
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.25,
+       "dsr": 0.096,
+       "disc": {
+        "trades": 31,
+        "ret2": 17.4581,
+        "pf2": 4.878,
+        "wr2": 0.6129,
+        "be": 0.245,
+        "sr": 1.2602,
+        "max_dd": -0.3878
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.164,
+       "dsr": 0.094,
+       "disc": {
+        "trades": 61,
+        "ret2": 6.4674,
+        "pf2": 3.006,
+        "wr2": 0.5902,
+        "be": 0.3239,
+        "sr": 1.2981,
+        "max_dd": -0.2838
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"post\": 3, \"pre\": 2}, \"rule\": \"turn_of_month\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.164,
+       "dsr": 0.094,
+       "disc": {
+        "trades": 61,
+        "ret2": 6.4674,
+        "pf2": 3.006,
+        "wr2": 0.5902,
+        "be": 0.3239,
+        "sr": 1.2981,
+        "max_dd": -0.2838
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2878,
+      "D1-D3": 52,
+      "D4": 52,
+      "D5": 41,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.075,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.013,
+       "dsr": 0.172,
+       "disc": {
+        "trades": 44,
+        "ret2": 20.5082,
+        "pf2": 3.796,
+        "wr2": 0.5455,
+        "be": 0.2402,
+        "sr": 1.0846,
+        "max_dd": -0.3878
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.928,
+       "dsr": 0.1,
+       "disc": {
+        "trades": 142,
+        "ret2": 11.2615,
+        "pf2": 1.816,
+        "wr2": 0.3028,
+        "be": 0.1931,
+        "sr": 0.9605,
+        "max_dd": -0.5688
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"ema_n\": 21, \"macd_cfg\": [12, 26, 9]}, \"rule\": \"elder_impulse\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.925,
+       "dsr": 0.174,
+       "disc": {
+        "trades": 121,
+        "ret2": 24.8102,
+        "pf2": 2.368,
+        "wr2": 0.2893,
+        "be": 0.1466,
+        "sr": 1.0889,
+        "max_dd": -0.5519
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"level\": 150, \"n\": 20}, \"rule\": \"cci_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.919,
+       "dsr": 0.133,
+       "disc": {
+        "trades": 55,
+        "ret2": 11.8058,
+        "pf2": 2.524,
+        "wr2": 0.4909,
+        "be": 0.2764,
+        "sr": 1.0144,
+        "max_dd": -0.3569
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [10, 30, 9]}, \"rule\": \"ppo_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.9,
+       "dsr": 0.074,
+       "disc": {
+        "trades": 94,
+        "ret2": 10.1621,
+        "pf2": 1.977,
+        "wr2": 0.3936,
+        "be": 0.2471,
+        "sr": 0.8998,
+        "max_dd": -0.6358
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 374,
+     "median_delta_pf": -0.032,
+     "share_improved": 0.382
+    },
+    "fwd": {
+     "pairs": 228,
+     "median_delta_pf": -0.09,
+     "share_improved": 0.211
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 2.2109,
+    "4y": 0.9226,
+    "2y": -0.0543
+   }
+  },
+  {
+   "asset": "ETH",
+   "tf": "4h",
+   "bitget": "ETHUSDT",
+   "data": "binance_vision:ETHUSDT",
+   "first_bar": "2017-08-17 04:00:00",
+   "last_bar": "2026-10-23 20:00:00",
+   "bars": 20112,
+   "n_trials": 2877,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2877,
+      "D1-D3": 85,
+      "D4": 74,
+      "D5": 46,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0462,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"bollinger_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.753,
+       "dsr": 0.33,
+       "disc": {
+        "trades": 67,
+        "ret2": 8.5475,
+        "pf2": 3.004,
+        "wr2": 0.4179,
+        "be": 0.1929,
+        "sr": 1.9213,
+        "max_dd": -0.3639
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.544,
+       "dsr": 0.132,
+       "disc": {
+        "trades": 86,
+        "ret2": 5.4065,
+        "pf2": 2.205,
+        "wr2": 0.3953,
+        "be": 0.2287,
+        "sr": 1.5443,
+        "max_dd": -0.3719
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"entry\": 55, \"exit\": 20}, \"rule\": \"donchian_breakout\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.431,
+       "dsr": 0.108,
+       "disc": {
+        "trades": 106,
+        "ret2": 7.9555,
+        "pf2": 2.284,
+        "wr2": 0.4434,
+        "be": 0.2586,
+        "sr": 1.4621,
+        "max_dd": -0.442
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.396,
+       "dsr": 0.087,
+       "disc": {
+        "trades": 164,
+        "ret2": 8.0506,
+        "pf2": 1.815,
+        "wr2": 0.378,
+        "be": 0.2509,
+        "sr": 1.3963,
+        "max_dd": -0.4952
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"look\": 252, \"n\": 20, \"q\": 0.2}, \"rule\": \"bb_squeeze\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.386,
+       "dsr": 0.175,
+       "disc": {
+        "trades": 72,
+        "ret2": 4.973,
+        "pf2": 2.649,
+        "wr2": 0.4444,
+        "be": 0.2319,
+        "sr": 1.6393,
+        "max_dd": -0.2241
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2877,
+      "D1-D3": 109,
+      "D4": 96,
+      "D5": 70,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0437,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 50, \"rv\": 2.0}, \"rule\": \"volume_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.385,
+       "dsr": 0.062,
+       "disc": {
+        "trades": 68,
+        "ret2": 6.3716,
+        "pf2": 2.885,
+        "wr2": 0.4559,
+        "be": 0.225,
+        "sr": 1.3849,
+        "max_dd": -0.3241
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"kind\": \"ema\", \"set\": [10, 50, 200]}, \"rule\": \"triple_ma\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.331,
+       "dsr": 0.053,
+       "disc": {
+        "trades": 82,
+        "ret2": 19.0202,
+        "pf2": 2.687,
+        "wr2": 0.3902,
+        "be": 0.1924,
+        "sr": 1.3306,
+        "max_dd": -0.4378
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.244,
+       "dsr": 0.041,
+       "disc": {
+        "trades": 102,
+        "ret2": 13.8365,
+        "pf2": 2.324,
+        "wr2": 0.3725,
+        "be": 0.2035,
+        "sr": 1.2769,
+        "max_dd": -0.4274
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 63, \"th\": 5}, \"rule\": \"roc_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.156,
+       "dsr": 0.029,
+       "disc": {
+        "trades": 119,
+        "ret2": 15.4257,
+        "pf2": 2.125,
+        "wr2": 0.3445,
+        "be": 0.1983,
+        "sr": 1.21,
+        "max_dd": -0.5862
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.147,
+       "dsr": 0.041,
+       "disc": {
+        "trades": 197,
+        "ret2": 14.2631,
+        "pf2": 1.887,
+        "wr2": 0.3096,
+        "be": 0.1921,
+        "sr": 1.2821,
+        "max_dd": -0.4965
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2877,
+      "D1-D3": 47,
+      "D4": 42,
+      "D5": 34,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0373,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 50, \"rv\": 2.0}, \"rule\": \"volume_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.331,
+       "dsr": 0.185,
+       "disc": {
+        "trades": 78,
+        "ret2": 32.4249,
+        "pf2": 3.597,
+        "wr2": 0.4872,
+        "be": 0.2089,
+        "sr": 1.4102,
+        "max_dd": -0.3021
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 50, \"rv\": 2.0}, \"rule\": \"volume_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.22,
+       "dsr": 0.091,
+       "disc": {
+        "trades": 99,
+        "ret2": 8.7444,
+        "pf2": 2.685,
+        "wr2": 0.4343,
+        "be": 0.2224,
+        "sr": 1.2609,
+        "max_dd": -0.3241
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.145,
+       "dsr": 0.059,
+       "disc": {
+        "trades": 147,
+        "ret2": 19.5493,
+        "pf2": 2.13,
+        "wr2": 0.3537,
+        "be": 0.2045,
+        "sr": 1.1593,
+        "max_dd": -0.4582
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"bollinger_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.088,
+       "dsr": 0.097,
+       "disc": {
+        "trades": 167,
+        "ret2": 14.2734,
+        "pf2": 2.068,
+        "wr2": 0.4132,
+        "be": 0.254,
+        "sr": 1.2667,
+        "max_dd": -0.4694
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.064,
+       "dsr": 0.061,
+       "disc": {
+        "trades": 277,
+        "ret2": 19.9143,
+        "pf2": 1.79,
+        "wr2": 0.2924,
+        "be": 0.1876,
+        "sr": 1.169,
+        "max_dd": -0.5046
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 460,
+     "median_delta_pf": -0.05,
+     "share_improved": 0.311
+    },
+    "fwd": {
+     "pairs": 400,
+     "median_delta_pf": 0.02,
+     "share_improved": 0.535
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 2.253,
+    "4y": 0.8417,
+    "2y": -0.0543
+   }
+  },
+  {
+   "asset": "SOL",
+   "tf": "1d",
+   "bitget": "SOLUSDT",
+   "data": "binance_vision:SOLUSDT",
+   "first_bar": "2020-08-11 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 2265,
+   "n_trials": 2652,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": false,
+     "holdout": false,
+     "funnel": {
+      "trials": 2652,
+      "D1-D3": 0,
+      "D4": 0,
+      "D5": 0,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.4202,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": []
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": false,
+     "holdout": false,
+     "funnel": {
+      "trials": 2652,
+      "D1-D3": 3,
+      "D4": 2,
+      "D5": 2,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.1471,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [5, 20]}, \"rule\": \"chaikin_osc\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 0.974,
+       "dsr": 0.005,
+       "disc": {
+        "trades": 33,
+        "ret2": 1.4964,
+        "pf2": 3.843,
+        "wr2": 0.303,
+        "be": 0.1016,
+        "sr": 1.0566,
+        "max_dd": -0.8938
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 13, \"filter\": \"none\", \"params\": {\"confirm\": 2}, \"rule\": \"heikin_ashi\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.678,
+       "dsr": 0.001,
+       "disc": {
+        "trades": 79,
+        "ret2": 0.3732,
+        "pf2": 1.383,
+        "wr2": 0.4051,
+        "be": 0.3299,
+        "sr": 0.6782,
+        "max_dd": -0.5489
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2652,
+      "D1-D3": 18,
+      "D4": 17,
+      "D5": 13,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.1164,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"cfg\": [5, 20]}, \"rule\": \"chaikin_osc\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.41,
+       "dsr": 0.086,
+       "disc": {
+        "trades": 39,
+        "ret2": 81.8899,
+        "pf2": 5.734,
+        "wr2": 0.4103,
+        "be": 0.1082,
+        "sr": 1.583,
+        "max_dd": -0.7158
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 20, \"th\": 0.1}, \"rule\": \"cmf_flow\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.211,
+       "dsr": 0.062,
+       "disc": {
+        "trades": 50,
+        "ret2": 70.8311,
+        "pf2": 5.523,
+        "wr2": 0.52,
+        "be": 0.164,
+        "sr": 1.4824,
+        "max_dd": -0.7485
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.0,
+       "dsr": 0.021,
+       "disc": {
+        "trades": 43,
+        "ret2": 22.6753,
+        "pf2": 8.117,
+        "wr2": 0.2558,
+        "be": 0.0406,
+        "sr": 1.247,
+        "max_dd": -0.788
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 1.5, \"n\": 20}, \"rule\": \"atr_breakout\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 0.995,
+       "dsr": 0.015,
+       "disc": {
+        "trades": 31,
+        "ret2": 14.8119,
+        "pf2": 3.841,
+        "wr2": 0.4516,
+        "be": 0.1766,
+        "sr": 1.1965,
+        "max_dd": -0.7719
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"n\": 50, \"price_n\": 50}, \"rule\": \"obv_trend\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 0.951,
+       "dsr": 0.013,
+       "disc": {
+        "trades": 87,
+        "ret2": 12.5534,
+        "pf2": 5.408,
+        "wr2": 0.3218,
+        "be": 0.0807,
+        "sr": 1.1504,
+        "max_dd": -0.8735
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 319,
+     "median_delta_pf": -0.206,
+     "share_improved": 0.15
+    },
+    "fwd": {
+     "pairs": 232,
+     "median_delta_pf": -0.037,
+     "share_improved": 0.276
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 13.2981,
+    "4y": 4.7237,
+    "2y": -0.398
+   }
+  },
+  {
+   "asset": "SOL",
+   "tf": "4h",
+   "bitget": "SOLUSDT",
+   "data": "binance_vision:SOLUSDT",
+   "first_bar": "2020-08-11 04:00:00",
+   "last_bar": "2026-10-23 20:00:00",
+   "bars": 13589,
+   "n_trials": 2671,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": false,
+     "holdout": false,
+     "funnel": {
+      "trials": 2671,
+      "D1-D3": 0,
+      "D4": 0,
+      "D5": 0,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.1614,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": []
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": false,
+     "holdout": false,
+     "funnel": {
+      "trials": 2671,
+      "D1-D3": 20,
+      "D4": 17,
+      "D5": 13,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0527,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"kind\": \"ema\", \"set\": [10, 50, 200]}, \"rule\": \"triple_ma\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.424,
+       "dsr": 0.072,
+       "disc": {
+        "trades": 60,
+        "ret2": 8.9748,
+        "pf2": 2.946,
+        "wr2": 0.4,
+        "be": 0.1845,
+        "sr": 1.4947,
+        "max_dd": -0.8134
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"structure\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 1.19,
+       "dsr": 0.202,
+       "disc": {
+        "trades": 76,
+        "ret2": 10.2178,
+        "pf2": 2.256,
+        "wr2": 0.6184,
+        "be": 0.4181,
+        "sr": 1.9219,
+        "max_dd": -0.4268
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"structure\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1272\", \"trigger\": \"limit\", \"zone\": [0.618, 0.786]}",
+       "failed": "D6",
+       "plateau_score": 1.088,
+       "dsr": 0.071,
+       "disc": {
+        "trades": 95,
+        "ret2": 3.8821,
+        "pf2": 1.763,
+        "wr2": 0.3368,
+        "be": 0.2237,
+        "sr": 1.5164,
+        "max_dd": -0.3597
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"none\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1272\", \"trigger\": \"limit\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 1.085,
+       "dsr": 0.086,
+       "disc": {
+        "trades": 192,
+        "ret2": 6.237,
+        "pf2": 1.488,
+        "wr2": 0.3385,
+        "be": 0.2559,
+        "sr": 1.571,
+        "max_dd": -0.7649
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"structure\", \"k\": 3, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"limit\", \"zone\": [0.618, 0.786]}",
+       "failed": "D6",
+       "plateau_score": 1.006,
+       "dsr": 0.025,
+       "disc": {
+        "trades": 104,
+        "ret2": 1.7598,
+        "pf2": 1.498,
+        "wr2": 0.3654,
+        "be": 0.2776,
+        "sr": 1.1875,
+        "max_dd": -0.3672
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2671,
+      "D1-D3": 27,
+      "D4": 27,
+      "D5": 19,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0453,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"max_age\": 20, \"min_gap_atr\": 0.5}, \"rule\": \"smc_fvg\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.724,
+       "dsr": 0.281,
+       "disc": {
+        "trades": 196,
+        "ret2": 104.9172,
+        "pf2": 2.507,
+        "wr2": 0.3214,
+        "be": 0.1589,
+        "sr": 1.8421,
+        "max_dd": -0.5876
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"keltner_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.506,
+       "dsr": 0.164,
+       "disc": {
+        "trades": 80,
+        "ret2": 63.1438,
+        "pf2": 3.227,
+        "wr2": 0.35,
+        "be": 0.143,
+        "sr": 1.6586,
+        "max_dd": -0.4284
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"level\": 55, \"n\": 21}, \"rule\": \"rsi_midline\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.323,
+       "dsr": 0.055,
+       "disc": {
+        "trades": 165,
+        "ret2": 21.1574,
+        "pf2": 2.032,
+        "wr2": 0.303,
+        "be": 0.1763,
+        "sr": 1.3589,
+        "max_dd": -0.6424
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"kind\": \"dema\", \"pair\": [20, 50]}, \"rule\": \"ma_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 1.296,
+       "dsr": 0.043,
+       "disc": {
+        "trades": 148,
+        "ret2": 18.8927,
+        "pf2": 1.892,
+        "wr2": 0.4054,
+        "be": 0.2649,
+        "sr": 1.297,
+        "max_dd": -0.7592
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"kind\": \"ema\", \"set\": [10, 50, 200]}, \"rule\": \"triple_ma\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 1.142,
+       "dsr": 0.033,
+       "disc": {
+        "trades": 128,
+        "ret2": 17.3388,
+        "pf2": 2.443,
+        "wr2": 0.3516,
+        "be": 0.1816,
+        "sr": 1.2317,
+        "max_dd": -0.8134
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 442,
+     "median_delta_pf": -0.074,
+     "share_improved": 0.206
+    },
+    "fwd": {
+     "pairs": 409,
+     "median_delta_pf": 0.014,
+     "share_improved": 0.545
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 13.7065,
+    "4y": 4.9092,
+    "2y": -0.398
+   }
+  },
+  {
+   "asset": "SPX",
+   "tf": "1d",
+   "bitget": "SPXUSDT",
+   "data": "yahoo:^GSPC",
+   "first_bar": "2000-01-03 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 6743,
+   "n_trials": 2616,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2616,
+      "D1-D3": 9,
+      "D4": 9,
+      "D5": 5,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0582,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.397,
+       "dsr": 0.014,
+       "disc": {
+        "trades": 45,
+        "ret2": 0.2723,
+        "pf2": 1.884,
+        "wr2": 0.5111,
+        "be": 0.3569,
+        "sr": 0.433,
+        "max_dd": -0.1204
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.322,
+       "dsr": 0.01,
+       "disc": {
+        "trades": 49,
+        "ret2": 0.2059,
+        "pf2": 1.756,
+        "wr2": 0.4082,
+        "be": 0.282,
+        "sr": 0.4043,
+        "max_dd": -0.1085
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.313,
+       "dsr": 0.008,
+       "disc": {
+        "trades": 46,
+        "ret2": 0.1959,
+        "pf2": 1.672,
+        "wr2": 0.5217,
+        "be": 0.3948,
+        "sr": 0.3974,
+        "max_dd": -0.1237
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.215,
+       "dsr": 0.01,
+       "disc": {
+        "trades": 46,
+        "ret2": 0.1912,
+        "pf2": 1.698,
+        "wr2": 0.5652,
+        "be": 0.4336,
+        "sr": 0.414,
+        "max_dd": -0.1393
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"both\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.161,
+       "dsr": 0.002,
+       "disc": {
+        "trades": 43,
+        "ret2": 0.2443,
+        "pf2": 1.796,
+        "wr2": 0.3488,
+        "be": 0.2298,
+        "sr": 0.2842,
+        "max_dd": -0.1686
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2616,
+      "D1-D3": 14,
+      "D4": 14,
+      "D5": 11,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0602,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.404,
+       "dsr": 0.014,
+       "disc": {
+        "trades": 37,
+        "ret2": 0.4367,
+        "pf2": 2.678,
+        "wr2": 0.4054,
+        "be": 0.203,
+        "sr": 0.4923,
+        "max_dd": -0.0859
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.399,
+       "dsr": 0.019,
+       "disc": {
+        "trades": 50,
+        "ret2": 0.4256,
+        "pf2": 2.057,
+        "wr2": 0.5,
+        "be": 0.3271,
+        "sr": 0.5184,
+        "max_dd": -0.1204
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.331,
+       "dsr": 0.004,
+       "disc": {
+        "trades": 51,
+        "ret2": 0.2238,
+        "pf2": 1.655,
+        "wr2": 0.5098,
+        "be": 0.3859,
+        "sr": 0.3993,
+        "max_dd": -0.1237
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.329,
+       "dsr": 0.001,
+       "disc": {
+        "trades": 52,
+        "ret2": 0.134,
+        "pf2": 1.551,
+        "wr2": 0.4615,
+        "be": 0.3559,
+        "sr": 0.329,
+        "max_dd": -0.1586
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.329,
+       "dsr": 0.008,
+       "disc": {
+        "trades": 39,
+        "ret2": 0.2779,
+        "pf2": 2.156,
+        "wr2": 0.4872,
+        "be": 0.3058,
+        "sr": 0.4535,
+        "max_dd": -0.0762
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2616,
+      "D1-D3": 17,
+      "D4": 16,
+      "D5": 14,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0619,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.423,
+       "dsr": 0.011,
+       "disc": {
+        "trades": 39,
+        "ret2": 0.5241,
+        "pf2": 2.492,
+        "wr2": 0.3846,
+        "be": 0.2005,
+        "sr": 0.5172,
+        "max_dd": -0.0859
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.364,
+       "dsr": 0.003,
+       "disc": {
+        "trades": 55,
+        "ret2": 0.3508,
+        "pf2": 1.833,
+        "wr2": 0.4727,
+        "be": 0.3285,
+        "sr": 0.4246,
+        "max_dd": -0.1204
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.321,
+       "dsr": 0.001,
+       "disc": {
+        "trades": 56,
+        "ret2": 0.2141,
+        "pf2": 1.576,
+        "wr2": 0.5,
+        "be": 0.3882,
+        "sr": 0.3678,
+        "max_dd": -0.1237
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 5, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.618, 0.786]}",
+       "failed": "D6",
+       "plateau_score": 0.307,
+       "dsr": 0.003,
+       "disc": {
+        "trades": 81,
+        "ret2": 0.3803,
+        "pf2": 1.649,
+        "wr2": 0.4568,
+        "be": 0.3378,
+        "sr": 0.4172,
+        "max_dd": -0.1604
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.296,
+       "dsr": 0.006,
+       "disc": {
+        "trades": 42,
+        "ret2": 0.3155,
+        "pf2": 2.2,
+        "wr2": 0.5,
+        "be": 0.3125,
+        "sr": 0.4731,
+        "max_dd": -0.0762
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 414,
+     "median_delta_pf": -0.014,
+     "share_improved": 0.326
+    },
+    "fwd": {
+     "pairs": 169,
+     "median_delta_pf": -0.019,
+     "share_improved": 0.379
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 0.0829,
+    "4y": 0.5409,
+    "2y": 0.315
+   }
+  },
+  {
+   "asset": "NDX",
+   "tf": "1d",
+   "bitget": "NDX100USDT",
+   "data": "yahoo:^NDX",
+   "first_bar": "2000-01-03 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 6743,
+   "n_trials": 2614,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2614,
+      "D1-D3": 13,
+      "D4": 11,
+      "D5": 9,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0548,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.364,
+       "dsr": 0.031,
+       "disc": {
+        "trades": 31,
+        "ret2": 0.5649,
+        "pf2": 2.511,
+        "wr2": 0.4194,
+        "be": 0.2233,
+        "sr": 0.4558,
+        "max_dd": -0.183
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"limit\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 0.284,
+       "dsr": 0.01,
+       "disc": {
+        "trades": 56,
+        "ret2": 0.5815,
+        "pf2": 1.78,
+        "wr2": 0.375,
+        "be": 0.2521,
+        "sr": 0.3555,
+        "max_dd": -0.3172
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"structure\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 0.252,
+       "dsr": 0.014,
+       "disc": {
+        "trades": 37,
+        "ret2": 0.6867,
+        "pf2": 2.06,
+        "wr2": 0.5405,
+        "be": 0.3635,
+        "sr": 0.3909,
+        "max_dd": -0.219
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"structure\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 0.243,
+       "dsr": 0.017,
+       "disc": {
+        "trades": 37,
+        "ret2": 0.7398,
+        "pf2": 2.081,
+        "wr2": 0.5135,
+        "be": 0.3365,
+        "sr": 0.4072,
+        "max_dd": -0.2058
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 0.238,
+       "dsr": 0.006,
+       "disc": {
+        "trades": 42,
+        "ret2": 0.48,
+        "pf2": 1.772,
+        "wr2": 0.5,
+        "be": 0.3608,
+        "sr": 0.3165,
+        "max_dd": -0.3322
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2614,
+      "D1-D3": 37,
+      "D4": 37,
+      "D5": 31,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0558,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.519,
+       "dsr": 0.07,
+       "disc": {
+        "trades": 31,
+        "ret2": 0.9751,
+        "pf2": 3.347,
+        "wr2": 0.5484,
+        "be": 0.2662,
+        "sr": 0.5709,
+        "max_dd": -0.1342
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.441,
+       "dsr": 0.047,
+       "disc": {
+        "trades": 31,
+        "ret2": 0.7792,
+        "pf2": 3.213,
+        "wr2": 0.6129,
+        "be": 0.3301,
+        "sr": 0.5299,
+        "max_dd": -0.1225
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 0.383,
+       "dsr": 0.008,
+       "disc": {
+        "trades": 46,
+        "ret2": 0.7774,
+        "pf2": 2.076,
+        "wr2": 0.5435,
+        "be": 0.3645,
+        "sr": 0.3827,
+        "max_dd": -0.3326
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.618, 0.786]}",
+       "failed": "D6",
+       "plateau_score": 0.374,
+       "dsr": 0.019,
+       "disc": {
+        "trades": 48,
+        "ret2": 0.6109,
+        "pf2": 1.98,
+        "wr2": 0.5208,
+        "be": 0.3544,
+        "sr": 0.445,
+        "max_dd": -0.1827
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.357,
+       "dsr": 0.024,
+       "disc": {
+        "trades": 34,
+        "ret2": 0.6086,
+        "pf2": 2.735,
+        "wr2": 0.5,
+        "be": 0.2678,
+        "sr": 0.4656,
+        "max_dd": -0.1406
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2614,
+      "D1-D3": 33,
+      "D4": 31,
+      "D5": 25,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0559,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.509,
+       "dsr": 0.064,
+       "disc": {
+        "trades": 34,
+        "ret2": 1.1487,
+        "pf2": 3.091,
+        "wr2": 0.5294,
+        "be": 0.2669,
+        "sr": 0.5766,
+        "max_dd": -0.1342
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.424,
+       "dsr": 0.041,
+       "disc": {
+        "trades": 34,
+        "ret2": 0.9181,
+        "pf2": 2.917,
+        "wr2": 0.5882,
+        "be": 0.3288,
+        "sr": 0.5338,
+        "max_dd": -0.1225
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.384,
+       "dsr": 0.025,
+       "disc": {
+        "trades": 39,
+        "ret2": 0.8292,
+        "pf2": 2.458,
+        "wr2": 0.4103,
+        "be": 0.2206,
+        "sr": 0.4884,
+        "max_dd": -0.183
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"swing\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.5, 0.618]}",
+       "failed": "D6",
+       "plateau_score": 0.365,
+       "dsr": 0.006,
+       "disc": {
+        "trades": 52,
+        "ret2": 0.8684,
+        "pf2": 1.93,
+        "wr2": 0.5192,
+        "be": 0.3588,
+        "sr": 0.3801,
+        "max_dd": -0.3326
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"r2\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.347,
+       "dsr": 0.104,
+       "disc": {
+        "trades": 35,
+        "ret2": 0.7403,
+        "pf2": 2.878,
+        "wr2": 0.6286,
+        "be": 0.3703,
+        "sr": 0.6304,
+        "max_dd": -0.1466
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 433,
+     "median_delta_pf": -0.014,
+     "share_improved": 0.381
+    },
+    "fwd": {
+     "pairs": 167,
+     "median_delta_pf": 0.0,
+     "share_improved": 0.443
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": -0.0327,
+    "4y": 0.7839,
+    "2y": 0.443
+   }
+  },
+  {
+   "asset": "XAU",
+   "tf": "1d",
+   "bitget": "XAUUSDT",
+   "data": "yahoo:GLD",
+   "first_bar": "2004-11-18 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 5517,
+   "n_trials": 2681,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2681,
+      "D1-D3": 22,
+      "D4": 20,
+      "D5": 17,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0685,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"entry\": 55, \"exit\": 20}, \"rule\": \"donchian_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.37,
+       "dsr": 0.003,
+       "disc": {
+        "trades": 50,
+        "ret2": 0.4114,
+        "pf2": 1.932,
+        "wr2": 0.5,
+        "be": 0.3411,
+        "sr": 0.4008,
+        "max_dd": -0.1557
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"none\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"limit\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.326,
+       "dsr": 0.006,
+       "disc": {
+        "trades": 55,
+        "ret2": 0.6345,
+        "pf2": 1.983,
+        "wr2": 0.4364,
+        "be": 0.2808,
+        "sr": 0.464,
+        "max_dd": -0.2826
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"limit\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.307,
+       "dsr": 0.003,
+       "disc": {
+        "trades": 31,
+        "ret2": 0.4042,
+        "pf2": 2.193,
+        "wr2": 0.3871,
+        "be": 0.2236,
+        "sr": 0.402,
+        "max_dd": -0.2206
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"bollinger_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.305,
+       "dsr": 0.003,
+       "disc": {
+        "trades": 49,
+        "ret2": 0.3713,
+        "pf2": 1.843,
+        "wr2": 0.4694,
+        "be": 0.3243,
+        "sr": 0.3799,
+        "max_dd": -0.1554
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 5}, \"rule\": \"smc_bos\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.294,
+       "dsr": 0.001,
+       "disc": {
+        "trades": 79,
+        "ret2": 0.332,
+        "pf2": 1.62,
+        "wr2": 0.4684,
+        "be": 0.3523,
+        "sr": 0.3359,
+        "max_dd": -0.3054
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2681,
+      "D1-D3": 14,
+      "D4": 14,
+      "D5": 13,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0616,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"entry\": 55, \"exit\": 20}, \"rule\": \"donchian_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.335,
+       "dsr": 0.005,
+       "disc": {
+        "trades": 54,
+        "ret2": 0.3849,
+        "pf2": 1.874,
+        "wr2": 0.5185,
+        "be": 0.365,
+        "sr": 0.3642,
+        "max_dd": -0.1557
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"exit_ma\": 100, \"n\": 252}, \"rule\": \"high_52w_break\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.325,
+       "dsr": 0.004,
+       "disc": {
+        "trades": 30,
+        "ret2": 0.3299,
+        "pf2": 2.213,
+        "wr2": 0.5333,
+        "be": 0.3406,
+        "sr": 0.3506,
+        "max_dd": -0.1511
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"exit_ma\": 100, \"n\": 252}, \"rule\": \"high_52w_break\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 0.325,
+       "dsr": 0.004,
+       "disc": {
+        "trades": 30,
+        "ret2": 0.3299,
+        "pf2": 2.213,
+        "wr2": 0.5333,
+        "be": 0.3406,
+        "sr": 0.3506,
+        "max_dd": -0.1511
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"none\", \"params\": {\"k\": 2.5, \"n\": 20}, \"rule\": \"bollinger_reversion\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.283,
+       "dsr": 0.007,
+       "disc": {
+        "trades": 34,
+        "ret2": 0.4573,
+        "pf2": 3.716,
+        "wr2": 0.7647,
+        "be": 0.4665,
+        "sr": 0.4383,
+        "max_dd": -0.1435
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 0, \"filter\": \"fib_pd\", \"params\": {\"exit\": 60, \"lo\": 25, \"n\": 9}, \"rule\": \"rsi_reversal\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.282,
+       "dsr": 0.004,
+       "disc": {
+        "trades": 33,
+        "ret2": 0.4995,
+        "pf2": 3.452,
+        "wr2": 0.7576,
+        "be": 0.4752,
+        "sr": 0.3833,
+        "max_dd": -0.1945
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2681,
+      "D1-D3": 18,
+      "D4": 18,
+      "D5": 18,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0661,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"entry\": 55, \"exit\": 20}, \"rule\": \"donchian_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.342,
+       "dsr": 0.002,
+       "disc": {
+        "trades": 62,
+        "ret2": 0.4984,
+        "pf2": 1.764,
+        "wr2": 0.4839,
+        "be": 0.3471,
+        "sr": 0.3916,
+        "max_dd": -0.1557
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"exit_ma\": 100, \"n\": 252}, \"rule\": \"high_52w_break\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.334,
+       "dsr": 0.001,
+       "disc": {
+        "trades": 36,
+        "ret2": 0.3536,
+        "pf2": 1.747,
+        "wr2": 0.4722,
+        "be": 0.3386,
+        "sr": 0.3453,
+        "max_dd": -0.1692
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"exit_ma\": 100, \"n\": 252}, \"rule\": \"high_52w_break\", \"side\": \"both\"}",
+       "failed": "D6",
+       "plateau_score": 0.334,
+       "dsr": 0.001,
+       "disc": {
+        "trades": 36,
+        "ret2": 0.3536,
+        "pf2": 1.747,
+        "wr2": 0.4722,
+        "be": 0.3386,
+        "sr": 0.3453,
+        "max_dd": -0.1692
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 2.0, \"n\": 50}, \"rule\": \"bollinger_breakout\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.321,
+       "dsr": 0.002,
+       "disc": {
+        "trades": 61,
+        "ret2": 0.5292,
+        "pf2": 1.771,
+        "wr2": 0.459,
+        "be": 0.3239,
+        "sr": 0.4049,
+        "max_dd": -0.1554
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.32,
+       "dsr": 0.001,
+       "disc": {
+        "trades": 30,
+        "ret2": 0.4265,
+        "pf2": 2.463,
+        "wr2": 0.4333,
+        "be": 0.2369,
+        "sr": 0.3712,
+        "max_dd": -0.1688
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 424,
+     "median_delta_pf": -0.032,
+     "share_improved": 0.283
+    },
+    "fwd": {
+     "pairs": 189,
+     "median_delta_pf": -0.086,
+     "share_improved": 0.217
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": -0.1371,
+    "4y": 0.6527,
+    "2y": 0.4614
+   }
+  },
+  {
+   "asset": "XAG",
+   "tf": "1d",
+   "bitget": "XAGUSDT",
+   "data": "yahoo:SLV",
+   "first_bar": "2006-04-28 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 5155,
+   "n_trials": 2624,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2624,
+      "D1-D3": 9,
+      "D4": 4,
+      "D5": 3,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0654,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 15, \"signal\": 9}, \"rule\": \"trix_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.302,
+       "dsr": 0.026,
+       "disc": {
+        "trades": 84,
+        "ret2": 1.2968,
+        "pf2": 1.742,
+        "wr2": 0.3929,
+        "be": 0.2709,
+        "sr": 0.5244,
+        "max_dd": -0.348
+       }
+      },
+      {
+       "key": "F1|{\"filter\": \"none\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1618\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.29,
+       "dsr": 0.065,
+       "disc": {
+        "trades": 38,
+        "ret2": 1.6376,
+        "pf2": 2.508,
+        "wr2": 0.4211,
+        "be": 0.2248,
+        "sr": 0.6362,
+        "max_dd": -0.2497
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 5}, \"rule\": \"smc_choch\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.169,
+       "dsr": 0.011,
+       "disc": {
+        "trades": 46,
+        "ret2": 0.8435,
+        "pf2": 1.897,
+        "wr2": 0.3696,
+        "be": 0.236,
+        "sr": 0.436,
+        "max_dd": -0.3171
+       }
+      }
+     ]
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2624,
+      "D1-D3": 7,
+      "D4": 3,
+      "D5": 2,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.061,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"n\": 15, \"signal\": 9}, \"rule\": \"trix_cross\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.206,
+       "dsr": 0.014,
+       "disc": {
+        "trades": 98,
+        "ret2": 0.9537,
+        "pf2": 1.564,
+        "wr2": 0.3776,
+        "be": 0.2794,
+        "sr": 0.4281,
+        "max_dd": -0.348
+       }
+      },
+      {
+       "key": "F2|{\"exit\": 28, \"filter\": \"none\", \"params\": {\"k\": 5}, \"rule\": \"smc_choch\", \"side\": \"long\"}",
+       "failed": "D6",
+       "plateau_score": 0.044,
+       "dsr": 0.003,
+       "disc": {
+        "trades": 51,
+        "ret2": 0.4206,
+        "pf2": 1.556,
+        "wr2": 0.3333,
+        "be": 0.2431,
+        "sr": 0.2902,
+        "max_dd": -0.3171
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2624,
+      "D1-D3": 2,
+      "D4": 1,
+      "D5": 1,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0591,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"none\", \"k\": 10, \"side\": \"long\", \"stop\": \"atr\", \"target\": \"ext1272\", \"trigger\": \"confirm\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.271,
+       "dsr": 0.047,
+       "disc": {
+        "trades": 53,
+        "ret2": 1.4441,
+        "pf2": 2.012,
+        "wr2": 0.434,
+        "be": 0.2759,
+        "sr": 0.5484,
+        "max_dd": -0.2136
+       }
+      }
+     ]
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 426,
+     "median_delta_pf": -0.045,
+     "share_improved": 0.258
+    },
+    "fwd": {
+     "pairs": 181,
+     "median_delta_pf": -0.12,
+     "share_improved": 0.282
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": -0.2258,
+    "4y": 0.7952,
+    "2y": 0.5865
+   }
+  },
+  {
+   "asset": "COPPER",
+   "tf": "1d",
+   "bitget": "COPPERUSDT",
+   "data": "yahoo:CPER",
+   "first_bar": "2011-11-15 00:00:00",
+   "last_bar": "2026-10-23 00:00:00",
+   "bars": 3756,
+   "n_trials": 2622,
+   "errors": 0,
+   "error_sample": {},
+   "cuts": {
+    "6y": {
+     "cut": "2020-10-23",
+     "fwd_end": "2022-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2622,
+      "D1-D3": 3,
+      "D4": 2,
+      "D5": 0,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0719,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": []
+    },
+    "4y": {
+     "cut": "2022-10-23",
+     "fwd_end": "2024-10-23",
+     "testable": true,
+     "holdout": false,
+     "funnel": {
+      "trials": 2622,
+      "D1-D3": 6,
+      "D4": 1,
+      "D5": 1,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.0634,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": [
+      {
+       "key": "F1|{\"filter\": \"sma200\", \"k\": 10, \"side\": \"both\", \"stop\": \"atr\", \"target\": \"swing\", \"trigger\": \"limit\", \"zone\": [0.786, 0.886]}",
+       "failed": "D6",
+       "plateau_score": 0.116,
+       "dsr": 0.006,
+       "disc": {
+        "trades": 34,
+        "ret2": 0.467,
+        "pf2": 1.734,
+        "wr2": 0.3824,
+        "be": 0.263,
+        "sr": 0.414,
+        "max_dd": -0.1395
+       }
+      }
+     ]
+    },
+    "2y": {
+     "cut": "2024-10-23",
+     "fwd_end": "2026-10-24",
+     "testable": true,
+     "holdout": true,
+     "funnel": {
+      "trials": 2622,
+      "D1-D3": 4,
+      "D4": 2,
+      "D5": 0,
+      "D6 (all)": 0
+     },
+     "sr_star_bar": 0.057,
+     "pick": null,
+     "f1_pick": null,
+     "n_surv_f1": 0,
+     "n_surv_f3": 0,
+     "n_surv_f2_fib": 0,
+     "pick_disc": null,
+     "pick_fwd": null,
+     "pick_inside": false,
+     "f1_pick_fwd": null,
+     "survivors": [],
+     "near": []
+    }
+   },
+   "timemachine": {
+    "testable": [
+     "6y",
+     "4y",
+     "2y"
+    ],
+    "inside": 0,
+    "passed": false
+   },
+   "lead": false,
+   "fib_test": {
+    "disc": {
+     "pairs": 399,
+     "median_delta_pf": 0.002,
+     "share_improved": 0.509
+    },
+    "fwd": {
+     "pairs": 193,
+     "median_delta_pf": 0.0,
+     "share_improved": 0.456
+    },
+    "helps": false
+   },
+   "bh": {
+    "6y": 0.0787,
+    "4y": 0.3312,
+    "2y": 0.435
+   }
+  }
+ ],
+ "cfg_fib": {
+  "min_share": 0.55,
+  "min_jobs": 6,
+  "min_trades": 10
+ }
+}

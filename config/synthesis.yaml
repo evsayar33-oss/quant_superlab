@@ -1,0 +1,158 @@
+# H072 synthesis study (lab/synthesis.py). Pre-registered 2026-10-24 BEFORE any result was computed.
+# Do not change a threshold after the results are seen (CLAUDE.md realism rule). A change needs a line in
+# hypotheses/CHANGELOG.md with the reason. The first complete run is read once and is final.
+#
+# Owner's question (2026-10-24): the two labs (quant_lab, islem_onerisi_alarmi) found no strategy that earns
+# more than a plain S&P 500 index investment. Find strategies that beat the index robustly, so that they are
+# likely to beat it LIVE, and report them.
+#
+# Why this study is different from H001-H071 and from the ICT lab:
+#   1. Those tests judged each idea ALONE against cash (Sharpe >= 0.5). The owner compares with BUYING THE
+#      INDEX. A rule that holds the market 30% of the time cannot earn more than the index, even with good
+#      timing. Here every candidate is measured against the index itself, period by period.
+#   2. Large allocators turn a better risk/return ratio into more money with two tools: (a) leverage with a
+#      real financing cost, (b) combining return streams that are not correlated. Both are tested here.
+#      Leverage alone is a CONTROL (family A0): it must fail, because it only scales the index.
+#   3. No rule mining. Every family is a published rule with a small neighbourhood grid. The grid exists only
+#      for the plateau check and is fully counted as trials (Deflated Sharpe).
+#   4. 100 years of daily data (1926-2026) for the core question, so the result covers the 1929 crash, the
+#      1970s inflation, 2000, 2008, 2020 and 2022, not one regime.
+
+benchmark: "US stock market total return, 1x, index-fund fee only (Ken French Mkt-RF + RF, CRSP value-weighted)"
+
+data:                                  # free sources only
+  us_market: ken_french_daily          # F-F_Research_Data_Factors_daily: Mkt-RF + RF, 1926-07 -> latest
+  rf: ken_french_daily                 # 1-month T-bill (same file)
+  mom_top: ken_french_mom10_daily      # 10_Portfolios_Prior_12_2_Daily, "Hi PRIOR", value-weighted (survivorship-free)
+  trend: aqr_tsmom_monthly             # AQR Time Series Momentum factor (all assets), monthly excess return, 1985 ->
+  bond10: fred_gs10                    # 10y constant-maturity yield (monthly) -> synthetic par-bond total return
+  etf: [SPY]                           # Block C replication (yfinance adjusted close, 1993 ->)
+  etf_rf: ^IRX                         # 13-week T-bill, annual %
+  crypto: crypto_core_4h               # H054 book (lab/core.py dual_trend_vt + 10% band) from Bitget 4h bars
+
+# Execution. The signal uses closes up to t. The order fills at the close of t+1, so the position earns the
+# return of t+2 onward (lag 2 on close-to-close data; more conservative than the next-open rule).
+lag_days: 2
+delay_test_extra_days: 1               # C4: one more day of delay
+no_trade_band: 0.20                    # exposure is changed only when the target moves more than 0.20 from it
+                                       # (an exit to cash and an entry from cash always trade)
+
+costs:                                 # "1x" = base case, "2x" = high-cost check (every item doubled)
+  trade_per_side: 0.0010               # per unit of exposure traded (retail ETF/futures spread + commission)
+  index_fee_annual: 0.0003             # on equity notional (benchmark pays it too)
+  cash_fee_annual: 0.0010              # money-market fee on cash (cash earns the T-bill rate minus this)
+  borrow_spread_annual: 0.0125         # borrowed notional pays T-bill + this (leveraged ETF fee + swap spread)
+  momentum_extra_annual: 0.0150        # top-decile momentum: turnover and implementation drag
+  trend_fee_annual: 0.0100             # managed-futures (TSMOM) sleeve fee
+  bond_fee_annual: 0.0015
+  benchmark_cost_multiplier: 1         # the benchmark ALWAYS uses 1x costs (the strict side)
+
+# ------------------------------------------------------------------------------------------------ Block A
+# Daily, US market, 1928-01-01 -> latest. Warm-up data before 1928 is used only for indicators.
+block_a:
+  start: "1928-01-01"
+  subperiods: ["1928-01-01", "1946-01-01", "1966-01-01", "1982-01-01", "2000-01-01", "2013-01-01"]
+  vol_lookback_days: 21
+  families:
+    A0_const_lev:                      # CONTROL: constant leverage on the index, daily reset. Expected to FAIL (DD).
+      source: "control"
+      grid: {L: [1.25, 1.5, 2.0]}
+    A1_trend_lev:                      # long L x market when TR index > SMA(N), else cash
+      source: "Faber (2007) A Quantitative Approach to Tactical Asset Allocation; Gayed & Bilello (2016) Leverage for the Long Run"
+      grid: {N: [100, 150, 200, 250], L: [1.0, 1.5, 2.0, 2.5, 3.0]}
+    A2_volman_lev:                     # exposure = min(Lmax, target / realized vol of the last 21 days)
+      source: "Moreira & Muir (2017) Volatility-Managed Portfolios, JF"
+      grid: {target: [0.10, 0.15, 0.20, 0.25], Lmax: [1.5, 2.0, 3.0]}
+    A3_trend_volman:                   # A1 signal x A2 sizing
+      source: "Faber (2007) + Moreira & Muir (2017); Harvey et al. (2018) The Impact of Volatility Targeting"
+      grid: {N: [150, 200, 250], target: [0.15, 0.20, 0.25], Lmax: [1.5, 2.0, 3.0]}
+    A4_mom_trend:                      # top-decile 12-2 momentum stocks (VW), optional market trend filter, leverage L
+      source: "Jegadeesh & Titman (1993); Daniel & Moskowitz (2016) Momentum Crashes; Faber (2007) filter"
+      grid: {L: [1.0, 1.5, 2.0], filter: [none, sma200]}
+
+# ------------------------------------------------------------------------------------------------ Block B
+# Monthly, 1988-01 -> latest (AQR TSMOM starts 1985; 36 months of warm-up for volatility estimates).
+block_b:
+  start: "1988-01-01"
+  subperiods: ["1988-01-01", "1996-01-01", "2004-01-01", "2012-01-01", "2020-01-01"]
+  vol_lookback_months: 36
+  families:
+    B1_stack:                          # 100% market + k x TSMOM overlay ("return stacking" / portable alpha)
+      source: "Moskowitz, Ooi & Pedersen (2012); Hurst, Ooi & Pedersen (2017) A Century of Evidence on Trend-Following"
+      grid: {k: [0.25, 0.5, 0.75, 1.0]}
+    B2_risk_balanced:                  # inverse-vol equity + 10y bond + TSMOM, scaled to a vol target, cap Lmax
+      source: "Qian (2005) Risk Parity; Asness, Frazzini & Pedersen (2012) Leverage Aversion and Risk Parity"
+      grid: {target: [0.12, 0.15, 0.18], Lmax: [2.0, 3.0]}
+
+# ------------------------------------------------------------------------------------------------ Block C
+# Real instruments. C_replicate: the Block A pick of each passing family re-run on SPY + ^IRX (1993 ->).
+# Not new trials (same settings). It must still pass C1 at 1x and 2x costs, else the family is flagged
+# "does not replicate on the tradable instrument".
+# C2_crypto: (1 - c) x [best Block A pick on SPY, or SPY if none] + c x H054 book, rebalanced monthly.
+block_c:
+  etf_start: "1993-02-01"
+  crypto_start: "2018-07-01"
+  crypto_windows: ["2022-10-17", "2023-10-17", "2024-10-17"]   # forward windows (same as config/core.yaml)
+  crypto_grid: {c: [0.10, 0.20]}
+  crypto_accept:                       # vs the core alone, full period AND every window
+    higher_cagr: true
+    higher_sharpe: true
+    max_extra_dd: 0.03
+
+n_trials: 80   # A0 3 + A1 20 + A2 12 + A3 27 + A4 6 + B1 4 + B2 6 + C2 2
+
+# ------------------------------------------------------------------------------------------------ Acceptance
+# A grid point PASSES only if ALL of C1-C7 hold. "bh" = the benchmark on the same dates.
+accept:
+  C1_full:                             # full period, 1x costs
+    cagr_above_bh: true
+    sharpe_above_bh: true
+    max_dd_tolerance: 0.05             # max drawdown at most 5 points deeper than bh
+  C2_subperiods:                       # EVERY sub-period, 1x costs
+    cagr_above_bh: true
+    max_dd_tolerance: 0.10
+  C3_high_cost:                        # 2x costs: C1 holds AND CAGR above bh in all sub-periods but at most one
+    max_failed_subperiods: 1
+  C4_delay: true                       # C1 holds with one extra day of delay
+  C5_not_just_leverage: true           # CAGR above the index levered to the SAME full-period volatility
+                                       # (constant leverage, same financing; the control is fitted in-sample,
+                                       # which favours the control)
+  C6_plateau: 0.75                     # >= 75% of one-step grid neighbours pass C1
+  C7_min_dsr: 0.90                     # Deflated Sharpe of daily (monthly for B) ACTIVE returns
+                                       # (strategy - bh), n = n_trials, trial variance from all trials
+
+# Pick inside a family (no single best point): among PASS points, the highest plateau score
+# = min(own CAGR excess over bh, median CAGR excess of its one-step neighbours).
+# Near miss (reported, never recommended): fails only C2 or C3 by one sub-period.
+
+# Profit-target ladder (the owner's target is not fixed in writing): for drawdown limits below, the report
+# lists the PASS point with the highest plateau score whose full-period max drawdown is inside the limit.
+ladder_max_dd: [-0.35, -0.50, -0.65]
+
+# ------------------------------------------------------------------------------------------------ Time machine
+# CLAUDE.md 2026-10-17 rule: a process that picks from many candidates must pass a time-machine test.
+# At each cut the WHOLE selection (C1-C7 on data before the cut, sub-periods that end before the cut,
+# n_trials unchanged) is re-run; the pick is frozen; the forward window runs to the next cut (last: to the end).
+# Inside = forward CAGR above bh AND forward max drawdown at most 5 points deeper than bh.
+# No pick at a cut counts as NOT inside. Pass = inside in >= min_inside of the cuts.
+timemachine:
+  block_a_cuts: ["1966-01-01", "1982-01-01", "2000-01-01", "2013-01-01"]
+  block_b_cuts: ["2004-01-01", "2012-01-01"]
+  min_inside: 0.6667
+  also_report_naive: true              # naive pick = highest pre-cut CAGR with no checks (for comparison)
+
+# ------------------------------------------------------------------------------------------------ Forward record
+# Self-improving loop: every monthly run appends the realised months of every frozen pick (frozen 2026-10-24)
+# to decisions/synthesis/forward.json. A pick is flagged DEGRADED when its forward active return (vs bh) is
+# below the 5th percentile of its own historical rolling active returns of the same length (>= 6 months).
+forward:
+  frozen_on: "2026-10-24"
+  min_months: 6
+  degrade_percentile: 5
+
+# Added 2026-10-24 AFTER the first run (report-only; no threshold or verdict changed, see CHANGELOG):
+# nothing in Block A/B passed C1-C7, so the forward record also follows the strongest candidates as WATCH.
+# B1_stack|k=0.75 = the time-machine pick at both cuts (failed only C7 on the full sample).
+# C2_crypto entries = the two Block C settings that passed their own pre-registered rule.
+# A watch entry never becomes a decision by itself.
+  watch: ["B1_stack|k=0.75", "C2_crypto|c=0.1", "C2_crypto|c=0.2"]

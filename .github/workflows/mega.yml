@@ -1,0 +1,98 @@
+name: Mega screen H062 (all asset classes)
+
+# H062: every rule x grid x R:R exit x side x filter (+ combos) on crypto, index futures, metals and
+# energy, with the SAME settings on every asset of a class. Last 2 years locked (holdout).
+# Thresholds: config/mega.yaml (pre-registered). Never writes decisions/registry.json.
+
+on:
+  workflow_dispatch:
+    inputs:
+      classes:
+        description: 'JSON list: ["crypto","indices","metals","energy"]'
+        required: false
+        default: '["crypto","indices","metals","energy"]'
+      sides:
+        description: 'JSON list: ["long","short","both"]'
+        required: false
+        default: '["long","short","both"]'
+      reuse_run:
+        description: 'run id: reuse its parts for classes/sides not run now (DSR still counts all trials)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: quant-lab-mega
+  cancel-in-progress: false
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        cls: ${{ fromJSON(github.event.inputs.classes || '["crypto","indices","metals","energy"]') }}
+        side: ${{ fromJSON(github.event.inputs.sides || '["long","short","both"]') }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: mega2-data-${{ matrix.cls }}-${{ github.run_id }}
+          restore-keys: |
+            mega2-data-${{ matrix.cls }}-
+            arena-data-1d-
+      - name: Screen one class / side
+        env:
+          LAB_CACHE_HOURS: "0"
+        run: python -m lab.mega job --cls ${{ matrix.cls }} --side ${{ matrix.side }} --out parts/${{ matrix.cls }}_${{ matrix.side }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mega-${{ matrix.cls }}-${{ matrix.side }}
+          retention-days: 30
+          path: parts/
+
+  aggregate:
+    needs: job
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: mega-*
+          path: parts
+      - name: Reuse parts of an earlier run
+        if: github.event.inputs.reuse_run != ''
+        uses: actions/download-artifact@v4
+        with:
+          pattern: mega-*
+          path: parts_prev
+          run-id: ${{ github.event.inputs.reuse_run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge parts
+        run: |
+          mkdir -p parts
+          if [ -d parts_prev ]; then for d in parts_prev/*; do n=$(basename "$d"); [ -d "parts/$n" ] || cp -r "$d" "parts/$n"; done; fi
+          find parts -name '*.json' | sort
+      - name: Aggregate (DSR over all trials, holdout read once for finalists)
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python -m lab.mega aggregate --parts parts --out decisions/mega/result.json --md decisions/mega/report.md --telegram
+      - name: Commit
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add decisions/mega
+          git commit -m "H062 mega screen $(date -u +%F)" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

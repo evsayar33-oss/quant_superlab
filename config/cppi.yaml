@@ -1,0 +1,16 @@
+# H061 CPPI capital protection. WRITTEN 2026-10-17 BEFORE ANY RESULT. Fixed settings, no search.
+# Book value V. Floor = floor_pct x running peak of V (it only rises). Risky exposure = min(multiplier x (V - floor), V)
+# (no leverage). Risky asset = 50% bot (H054 + idle arb) + 50% H056 funding carry. Safe asset = H057 cash-and-carry
+# BTC/ETH (half spot long, half perp margin: return = 0.5 x daily funding). Daily check, trade only when the
+# exposure is off target by more than `band` of V; cost per traded unit `cost`.
+floor_pct: 0.80
+multiplier: 3
+band: 0.05
+cost: 0.0011
+start: "2021-01-01"
+cutoffs: ["2022-10-17", "2023-10-17", "2024-10-17"]
+also_report: [bot]          # same CPPI with the bot alone as risky asset (report only, never a selection)
+accept:                     # ALL must hold
+  max_dd: -0.22             # floor at 80% of peak, 2 points slack for gaps
+  windows_grow: true        # final > 1000 in all 3 windows
+  beat_safe: true           # CAGR above the safe asset alone in all 3 windows

@@ -1,0 +1,87 @@
+name: Discovery scan
+
+# 1st of every month + on demand. Every rule x variant x filter, every strategy, then two-signal
+# combinations of the best rule families. Never writes decisions. Leaderboards + per-variant CSV
+# are published to the `results` branch.
+
+on:
+  schedule:
+    - cron: '23 2 1 * *'
+  workflow_dispatch:
+    inputs:
+      universes:
+        description: 'JSON list, e.g. ["bist30"] or ["bist30","sp_megacap","crypto_major"]'
+        required: false
+        default: '["bist30","sp_megacap","us_sectors","global_assets","crypto_major"]'
+      timeframes:
+        description: 'JSON list of timeframes: ["1d"] or ["4h","1d","1w"]'
+        required: false
+        default: '["1d","1w"]'
+      families:
+        description: "all | rules | strategies | factors"
+        required: false
+        default: all
+      filters:
+        description: "comma list or all (e.g. none,trend_sma200,regime_bench200)"
+        required: false
+        default: "none,trend_sma200"
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        universe: ${{ fromJSON(github.event.inputs.universes || '["bist30","sp_megacap","us_sectors","global_assets","crypto_major"]') }}
+        timeframe: ${{ fromJSON(github.event.inputs.timeframes || '["1d","1w"]') }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: scan-${{ matrix.universe }}-${{ matrix.timeframe }}-${{ github.run_id }}
+          restore-keys: scan-${{ matrix.universe }}-${{ matrix.timeframe }}-
+      - name: Scan
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: |
+          python run.py --scan --universe "${{ matrix.universe }}" --timeframe "${{ matrix.timeframe }}" \
+            --families "${{ github.event.inputs.families || 'all' }}" \
+            --filters "${{ github.event.inputs.filters || 'none,trend_sma200' }}" --telegram
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scan-${{ matrix.universe }}-${{ matrix.timeframe }}
+          retention-days: 7
+          path: results/scan_*
+
+  publish:
+    needs: scan
+    if: always()
+    runs-on: ubuntu-latest
+    concurrency:
+      group: quant-lab-results
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/fetch_results.sh
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: scan-*
+          path: _parts
+      - run: |
+          mkdir -p results
+          for d in _parts/*; do cp -r "$d"/. results/ 2>/dev/null || true; done
+          rm -rf _parts
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish_results.sh

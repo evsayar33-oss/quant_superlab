@@ -1,0 +1,142 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.948 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "piotroski_f",
+  "kind": "strategy",
+  "universe": "sp_megacap",
+  "timeframe": "1d",
+  "for_system": "us_f1_bot",
+  "spec": {
+    "id": "H019",
+    "strategy": "piotroski_f",
+    "universe": "sp_megacap",
+    "for_system": "us_f1_bot",
+    "start": "2011-01-01",
+    "status": "active"
+  },
+  "variant": "piotroski_f|top_n=5,freq=QE",
+  "params": {
+    "top_n": 5,
+    "freq": "QE"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "AAPL": 0.2,
+    "MSFT": 0.2,
+    "LLY": 0.2,
+    "ADBE": 0.2,
+    "ABBV": 0.2
+  },
+  "gate_sharpe": 0.64,
+  "pbo": 0.353,
+  "reality_check_p": 0.948,
+  "dsr": 0.949,
+  "n_trials": 20,
+  "oos": {
+    "start": "2015-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 11.76,
+    "cagr": 0.1237,
+    "vol": 0.174,
+    "sharpe": 0.758,
+    "sharpe_excess_rf": 0.64,
+    "sortino": 0.917,
+    "max_dd": -0.4354,
+    "max_dd_bars": 778,
+    "calmar": 0.284,
+    "ulcer": 0.0985,
+    "var95": -0.014,
+    "cvar95": -0.0252,
+    "omega": 1.179,
+    "tail_ratio": 0.984,
+    "skew": 0.23,
+    "kurtosis": 40.32,
+    "hit_rate": 0.509,
+    "psr": 0.995,
+    "time_in_market": null,
+    "turnover_ann": 6.31,
+    "bench_cagr": 0.2072,
+    "bench_sharpe": 1.222,
+    "info_ratio": -0.688,
+    "beta": 0.863,
+    "up_capture": 0.817,
+    "down_capture": 0.861
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.64,
+      "ann_ret": 0.2112,
+      "bars": 2455
+    },
+    "bear": {
+      "sharpe": -0.83,
+      "ann_ret": -0.2559,
+      "bars": 503
+    },
+    "calm": {
+      "sharpe": 1.72,
+      "ann_ret": 0.1859,
+      "bars": 1554
+    },
+    "stressed": {
+      "sharpe": 0.32,
+      "ann_ret": 0.0719,
+      "bars": 1404
+    },
+    "vix_lt_20": {
+      "sharpe": 2.77,
+      "ann_ret": 0.3206,
+      "bars": 2095
+    },
+    "vix_20_30": {
+      "sharpe": -1.34,
+      "ann_ret": -0.2113,
+      "bars": 705
+    },
+    "vix_ge_30": {
+      "sharpe": -1.61,
+      "ann_ret": -0.8408,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 0.73,
+      "ann_ret": 0.0906,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.77,
+      "ann_ret": 0.1426,
+      "bars": 2344
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.016,
+      "sharpe_delayed_1bar": 0.987,
+      "retained": 0.972
+    },
+    "neighbourhood": {
+      "neighbours": 3,
+      "best_sharpe": 1.008,
+      "neighbour_median": 1.077,
+      "share_positive": 1.0,
+      "stability": 1.068
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.011,
+      "sharpe_median": 1.016
+    }
+  },
+  "recommended_overlay": "equity_ma_125",
+  "kelly_fraction": null,
+  "oos_csv": "results/H019_piotroski_f_sp_megacap_1d_oos.csv",
+  "validated_at": "2026-10-17T08:57:17+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

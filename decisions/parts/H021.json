@@ -1,0 +1,211 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.831 < 0.9 (luck not excluded after 165 trials)",
+    "OOS Sharpe (excess of T-bill) 0.407 < 0.5",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.659 > 0.5 (variant selection is overfit)",
+    "Reality Check p 1.0 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "ibs_reversion",
+  "kind": "rule",
+  "universe": "us_sectors",
+  "timeframe": "1d",
+  "for_system": "sp500_shock_quant",
+  "spec": {
+    "id": "H021",
+    "rule": "ibs_reversion",
+    "universe": "us_sectors",
+    "for_system": "sp500_shock_quant",
+    "start": "2010-01-01",
+    "filters": [
+      "none",
+      "trend_sma200"
+    ],
+    "side": "long",
+    "status": "active"
+  },
+  "variant": "ibs_reversion|lo=0.2,hi=0.8|f=none|x=trail_atr=3.0,use_signal_exit=False",
+  "params": {
+    "lo": 0.2,
+    "hi": 0.8,
+    "_filter": "none",
+    "_exit": 40,
+    "_size": 0
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "XLK": 0.0909,
+      "XLF": 0.0909,
+      "XLV": 0.0909,
+      "XLE": 0.0909,
+      "XLP": 0.0909,
+      "XLU": 0.0909,
+      "XLB": 0.0909,
+      "XLRE": 0.0909,
+      "XLC": 0.0909
+    },
+    "entry_long_next_open": [
+      "XLK",
+      "XLV",
+      "XLC"
+    ],
+    "exit_long_next_open": [
+      "XLE",
+      "XLU"
+    ],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": 0.407,
+  "pbo": 0.659,
+  "reality_check_p": 1.0,
+  "dsr": 0.831,
+  "n_trials": 165,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.0469,
+    "vol": 0.0726,
+    "sharpe": 0.667,
+    "sharpe_excess_rf": 0.407,
+    "sortino": 0.593,
+    "max_dd": -0.1015,
+    "max_dd_bars": 887,
+    "calmar": 0.462,
+    "ulcer": 0.0385,
+    "var95": -0.0066,
+    "cvar95": -0.0109,
+    "omega": 1.15,
+    "tail_ratio": 1.047,
+    "skew": 0.683,
+    "kurtosis": 22.924,
+    "hit_rate": 0.498,
+    "psr": 0.992,
+    "time_in_market": null,
+    "turnover_ann": 30.54,
+    "bench_cagr": 0.1162,
+    "bench_sharpe": 0.764,
+    "info_ratio": -0.605,
+    "beta": 0.309,
+    "up_capture": 0.39,
+    "down_capture": 0.389
+  },
+  "trade_stats": {
+    "n_trades": 1389,
+    "trades_per_year": 108.9,
+    "win_rate": 0.468,
+    "avg_trade": 0.0118,
+    "median_trade": -0.0029,
+    "avg_win": 0.0586,
+    "avg_loss": -0.0294,
+    "profit_factor": 1.756,
+    "payoff": 1.996,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.201,
+    "max_consec_losses": 29,
+    "avg_bars": 20.7,
+    "avg_bars_win": 33.5,
+    "avg_bars_loss": 9.3,
+    "avg_mfe": 0.0593,
+    "avg_mae": -0.0191,
+    "edge_ratio": 3.112,
+    "exit_reasons": {
+      "stop": 1389
+    },
+    "long_short": {
+      "1": {
+        "count": 1389,
+        "mean": 0.0118
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 1.11,
+      "ann_ret": 0.0733,
+      "bars": 2702
+    },
+    "bear": {
+      "sharpe": -0.83,
+      "ann_ret": -0.0836,
+      "bars": 508
+    },
+    "calm": {
+      "sharpe": 0.89,
+      "ann_ret": 0.0475,
+      "bars": 1677
+    },
+    "stressed": {
+      "sharpe": 0.56,
+      "ann_ret": 0.0495,
+      "bars": 1533
+    },
+    "vix_lt_20": {
+      "sharpe": 2.12,
+      "ann_ret": 0.1122,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": -0.73,
+      "ann_ret": -0.0682,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": -2.3,
+      "ann_ret": -0.3634,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 0.14,
+      "ann_ret": 0.0073,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.76,
+      "ann_ret": 0.0582,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.883,
+      "sharpe_delayed_1bar": 0.968,
+      "retained": 1.097
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 0.881,
+      "neighbour_median": 0.867,
+      "share_positive": 1.0,
+      "stability": 0.985
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.783,
+      "sharpe_median": 0.817
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.1362,
+      "random_median_ann": 0.1216,
+      "random_p95_ann": 0.1335,
+      "trades_actual": 1719,
+      "p_value": 0.04
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.0564,
+      "maxdd_p95": -0.0829,
+      "final_p05": 5.7002,
+      "final_median": 5.7002
+    }
+  },
+  "recommended_overlay": "none",
+  "kelly_fraction": 0.201,
+  "oos_csv": "results/H021_ibs_reversion_us_sectors_1d_oos.csv",
+  "validated_at": "2026-10-17T08:59:49+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

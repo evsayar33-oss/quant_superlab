@@ -1,0 +1,32 @@
+# H074 core rule per asset (lab/coreassets.py). Pre-registered 2026-10-24 BEFORE any result was computed.
+# Owner's request: one simple rule per asset, one bot, one platform (Bitget USDT-M perps).
+#
+# Why this test: H073 mined ~29,900 rule settings per asset and found nothing that passed the luck test.
+# The only rule family that passed the decision gate AND the time machine (3/3) in this lab is the FIXED
+# literature rule of H052/H054 (chosen before data, one trial). This test applies the SAME rule, with the SAME
+# settings, to every Bitget asset. No parameter is tuned per asset. 8 trials (one per asset).
+#
+# Prior knowledge, stated honestly: H072 (Block A, family A3) already showed on the US market (1928-2026)
+# that SMA200 + volatility targeting cuts the drawdown much more than the return. For crypto the rule is the
+# H054 core (its BTC and ETH results are known from config/core.yaml). For NDX, gold, silver and copper this
+# rule was never run in this lab.
+
+rule: dual_trend_vt               # lab/core.py: long only when close > SMA(200 days) AND the share of positive
+                                  # 30/90/180-day returns > 0; size = min(1, target / 30-day realised vol)
+params: {sma_days: 200, horizons_days: [30, 90, 180], target: 0.40, lookback_days: 30}
+band: 0.10                        # no-trade band (H054)
+# Days are CALENDAR days, converted to bars by lab/regime.bars (days x bars-per-year / 365), exactly as in
+# lab/core.py. On a 252-bar stock year, 200 days = about 138 bars. This keeps the rule identical to H054.
+timeframe: 1d                     # signal at the daily close, trade at the next bar (lab/core.book_returns)
+assets_from: config/assetbook.yaml   # same 8 assets, same Bitget costs and funding, same free data
+side: long_or_cash                # no shorts, no leverage (exposure <= 1)
+
+# Acceptance per asset (same thresholds as config/core.yaml `accept`, written 2026-10-17), against the
+# asset's own buy-and-hold on the same dates, at 1x AND 2x costs:
+windows_years: [6, 4, 2]          # full history + the last 6, 4 and 2 years
+accept:
+  dd_reduction_vs_buyhold: 0.33   # max drawdown at least 1/3 less deep than buy-and-hold, every window
+  max_sharpe_gap: 0.10            # Sharpe not more than 0.10 below buy-and-hold, every window
+  positive_return: true           # positive return, every window
+# An asset that passes is a LEAD for the decision gate: a hypothesis id per asset (universe with that
+# asset only, strategy core_dual_trend_vt_band) and run.py --hypothesis. Bots act only on ACCEPT.

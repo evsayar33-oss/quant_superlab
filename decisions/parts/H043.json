@@ -1,0 +1,146 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": "WATCH",
+  "reasons": [
+    "DSR 0.799 < 0.9 (luck not excluded after 17 trials)",
+    "OOS Sharpe (excess of T-bill) 0.295 < 0.5",
+    "OOS MaxDD -0.5126 worse than -0.45 (local or USD)",
+    "only 46% of OOS years positive",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "PBO 0.518 > 0.5 (variant selection is overfit)",
+    "Reality Check p 0.906 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "copper_gold_rotation",
+  "kind": "strategy",
+  "universe": "metals_etf",
+  "timeframe": "1d",
+  "for_system": "metals",
+  "spec": {
+    "id": "H043",
+    "strategy": "copper_gold_rotation",
+    "universe": "metals_etf",
+    "for_system": "metals",
+    "start": "2010-01-01",
+    "status": "active"
+  },
+  "variant": "copper_gold_rotation|n=200",
+  "params": {
+    "n": 200
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "SLV": 0.2,
+    "PPLT": 0.2,
+    "PALL": 0.2,
+    "SIL": 0.2,
+    "COPX": 0.2
+  },
+  "gate_sharpe": 0.295,
+  "pbo": 0.518,
+  "reality_check_p": 0.906,
+  "dsr": 0.799,
+  "n_trials": 17,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.0626,
+    "vol": 0.2383,
+    "sharpe": 0.374,
+    "sharpe_excess_rf": 0.295,
+    "sortino": 0.414,
+    "max_dd": -0.5126,
+    "max_dd_bars": 1113,
+    "calmar": 0.122,
+    "ulcer": 0.2453,
+    "var95": -0.0234,
+    "cvar95": -0.0367,
+    "omega": 1.077,
+    "tail_ratio": 1.052,
+    "skew": -0.388,
+    "kurtosis": 6.255,
+    "hit_rate": 0.403,
+    "psr": 0.908,
+    "time_in_market": null,
+    "turnover_ann": 29.05,
+    "bench_cagr": 0.0975,
+    "bench_sharpe": 0.489,
+    "info_ratio": -0.252,
+    "beta": 0.754,
+    "up_capture": 0.739,
+    "down_capture": 0.742
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.19,
+      "ann_ret": 0.3046,
+      "bars": 2038
+    },
+    "bear": {
+      "sharpe": -1.43,
+      "ann_ret": -0.2853,
+      "bars": 1172
+    },
+    "calm": {
+      "sharpe": 0.52,
+      "ann_ret": 0.0926,
+      "bars": 1701
+    },
+    "stressed": {
+      "sharpe": 0.29,
+      "ann_ret": 0.0855,
+      "bars": 1509
+    },
+    "vix_lt_20": {
+      "sharpe": 0.38,
+      "ann_ret": 0.0789,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": 0.38,
+      "ann_ret": 0.1001,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": 0.43,
+      "ann_ret": 0.1928,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": -0.02,
+      "ann_ret": -0.0043,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 0.45,
+      "ann_ret": 0.1114,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.35,
+      "sharpe_delayed_1bar": 0.304,
+      "retained": 0.866
+    },
+    "neighbourhood": {
+      "neighbours": 2,
+      "best_sharpe": 0.35,
+      "neighbour_median": 0.385,
+      "share_positive": 1.0,
+      "stability": 1.099
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.346,
+      "sharpe_median": 0.353
+    }
+  },
+  "recommended_overlay": "equity_ma_41",
+  "kelly_fraction": null,
+  "oos_csv": "results/H043_copper_gold_rotation_metals_etf_1d_oos.csv",
+  "validated_at": "2026-10-17T09:04:00+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

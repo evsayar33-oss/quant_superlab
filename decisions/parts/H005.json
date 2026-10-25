@@ -1,0 +1,148 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "with 2x costs it does not beat the equal-weight benchmark"
+  ],
+  "strategy": "xs_momentum",
+  "kind": "strategy",
+  "universe": "sp_megacap",
+  "timeframe": "1d",
+  "for_system": "global_momentum_quant",
+  "spec": {
+    "id": "H005",
+    "strategy": "xs_momentum",
+    "universe": "sp_megacap",
+    "for_system": "global_momentum_quant",
+    "start": "2010-01-01",
+    "status": "active"
+  },
+  "variant": "xs_momentum|lookback=252,skip=0,top_n=10|overlay=dd10",
+  "params": {
+    "lookback": 252,
+    "skip": 0,
+    "top_n": 10,
+    "_overlay": "dd10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "AAPL": 0.1,
+    "GOOGL": 0.1,
+    "XOM": 0.1,
+    "JNJ": 0.1,
+    "LLY": 0.1,
+    "MRK": 0.1,
+    "KO": 0.1,
+    "CVX": 0.1,
+    "CSCO": 0.1,
+    "ABBV": 0.1
+  },
+  "gate_sharpe": 1.138,
+  "pbo": 0.32,
+  "reality_check_p": 0.004,
+  "dsr": 1.0,
+  "n_trials": 32,
+  "oos": {
+    "start": "2014-01-13 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 12.76,
+    "cagr": 0.2864,
+    "vol": 0.2274,
+    "sharpe": 1.221,
+    "sharpe_excess_rf": 1.138,
+    "sortino": 1.715,
+    "max_dd": -0.2905,
+    "max_dd_bars": 337,
+    "calmar": 0.986,
+    "ulcer": 0.0786,
+    "var95": -0.0214,
+    "cvar95": -0.0326,
+    "omega": 1.254,
+    "tail_ratio": 1.042,
+    "skew": 0.561,
+    "kurtosis": 9.37,
+    "hit_rate": 0.55,
+    "psr": 1.0,
+    "time_in_market": null,
+    "turnover_ann": 6.65,
+    "bench_cagr": 0.2038,
+    "bench_sharpe": 1.225,
+    "info_ratio": 0.436,
+    "beta": 0.861,
+    "up_capture": 1.101,
+    "down_capture": 1.022
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.66,
+      "ann_ret": 0.3632,
+      "bars": 2702
+    },
+    "bear": {
+      "sharpe": -0.67,
+      "ann_ret": -0.1775,
+      "bars": 508
+    },
+    "calm": {
+      "sharpe": 1.66,
+      "ann_ret": 0.3392,
+      "bars": 1677
+    },
+    "stressed": {
+      "sharpe": 0.84,
+      "ann_ret": 0.2103,
+      "bars": 1533
+    },
+    "vix_lt_20": {
+      "sharpe": 2.47,
+      "ann_ret": 0.5306,
+      "bars": 2335
+    },
+    "vix_20_30": {
+      "sharpe": -1.42,
+      "ann_ret": -0.3401,
+      "bars": 717
+    },
+    "vix_ge_30": {
+      "sharpe": -2.1,
+      "ann_ret": -0.658,
+      "bars": 158
+    },
+    "curve_inverted": {
+      "sharpe": 1.63,
+      "ann_ret": 0.4213,
+      "bars": 614
+    },
+    "curve_normal": {
+      "sharpe": 1.11,
+      "ann_ret": 0.2437,
+      "bars": 2596
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.156,
+      "sharpe_delayed_1bar": 1.142,
+      "retained": 0.988
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": 1.118,
+      "neighbour_median": 1.095,
+      "share_positive": 1.0,
+      "stability": 0.979
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 1.14,
+      "sharpe_median": 1.158
+    }
+  },
+  "recommended_overlay": "vol_target_0.15",
+  "kelly_fraction": null,
+  "oos_csv": "results/H005_xs_momentum_sp_megacap_1d_oos.csv",
+  "validated_at": "2026-10-17T08:55:59+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

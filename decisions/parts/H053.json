@@ -1,0 +1,123 @@
+{
+  "verdict": "WATCH",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS Sharpe (excess of T-bill) 0.458 < 0.5"
+  ],
+  "strategy": "core_tsmom_vt",
+  "kind": "strategy",
+  "universe": "crypto_core",
+  "timeframe": "4h",
+  "for_system": "karma_perp_bot",
+  "spec": {
+    "id": "H053",
+    "strategy": "core_tsmom_vt",
+    "universe": "crypto_core",
+    "timeframe": "4h",
+    "for_system": "karma_perp_bot",
+    "start": "2018-01-01",
+    "status": "active"
+  },
+  "variant": "core_tsmom_vt|",
+  "params": {},
+  "targets": {},
+  "targets_observe_only": {
+    "BTC/USDT": 0.5,
+    "ETH/USDT": 0.2917
+  },
+  "gate_sharpe": 0.458,
+  "pbo": null,
+  "reality_check_p": null,
+  "dsr": 0.912,
+  "n_trials": 1,
+  "oos": {
+    "start": "2022-01-22 20:00:00",
+    "end": "2026-10-17 12:00:00",
+    "years": 4.73,
+    "cagr": 0.127,
+    "vol": 0.2372,
+    "sharpe": 0.623,
+    "sharpe_excess_rf": 0.458,
+    "sortino": 0.651,
+    "max_dd": -0.2663,
+    "max_dd_bars": 2255,
+    "calmar": 0.477,
+    "ulcer": 0.1489,
+    "var95": -0.007,
+    "cvar95": -0.0124,
+    "omega": 1.05,
+    "tail_ratio": 1.064,
+    "skew": -0.192,
+    "kurtosis": 21.883,
+    "hit_rate": 0.439,
+    "psr": 0.912,
+    "time_in_market": null,
+    "turnover_ann": 35.7,
+    "bench_cagr": 0.0304,
+    "bench_sharpe": 0.33,
+    "info_ratio": -0.082,
+    "beta": 0.315,
+    "up_capture": 0.364,
+    "down_capture": 0.355
+  },
+  "trade_stats": null,
+  "regimes": {
+    "bull": {
+      "sharpe": 1.08,
+      "ann_ret": 0.3101,
+      "bars": 6385
+    },
+    "bear": {
+      "sharpe": -0.92,
+      "ann_ret": -0.1122,
+      "bars": 3988
+    },
+    "calm": {
+      "sharpe": 0.29,
+      "ann_ret": 0.0666,
+      "bars": 5727
+    },
+    "stressed": {
+      "sharpe": 1.0,
+      "ann_ret": 0.2477,
+      "bars": 4646
+    },
+    "vix_lt_20": {
+      "sharpe": 0.4,
+      "ann_ret": 0.1046,
+      "bars": 6904
+    },
+    "vix_20_30": {
+      "sharpe": 1.55,
+      "ann_ret": 0.2847,
+      "bars": 2953
+    },
+    "vix_ge_30": {
+      "sharpe": -0.78,
+      "ann_ret": -0.0591,
+      "bars": 516
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 0.994,
+      "sharpe_delayed_1bar": 1.02,
+      "retained": 1.026
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.935,
+      "sharpe_median": 0.949
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "equity_ma_365",
+  "kelly_fraction": null,
+  "oos_csv": "results/H053_core_tsmom_vt_crypto_core_4h_oos.csv",
+  "validated_at": "2026-10-17T17:53:52+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-17 12:00:00"
+}

@@ -1,0 +1,89 @@
+name: Ad-hoc backtest
+
+# Run from the phone: Actions -> Ad-hoc backtest -> Run workflow.
+# Results: Telegram summary + artifact. Ad-hoc runs NEVER change decisions/registry.json.
+# To make a test official, add it to hypotheses/registry.yaml.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "strategy | rule | scan | vbt | bt"
+        required: true
+        default: rule
+        type: choice
+        options: [strategy, rule, scan, vbt, bt]
+      name:
+        description: "strategy or rule name (python run.py --list); for scan: comma list of rules or empty"
+        required: false
+        default: rsi_reversal
+      universe:
+        description: "universe from config/universes.yaml"
+        required: false
+        default: bist30
+      filters:
+        description: "rule/scan: comma list or all"
+        required: false
+        default: "none,trend_sma200"
+      exits:
+        description: "rule: exit indexes (e.g. 0,1,5) or all; empty = staged search over all"
+        required: false
+        default: ""
+      side:
+        description: "rule: long | short | both"
+        required: false
+        default: long
+      ticker:
+        description: "vbt/bt only: one ticker (THYAO.IS, SPY, BTC/USDT)"
+        required: false
+        default: THYAO.IS
+      timeframe:
+        description: "1h | 4h | 1d | 1w | 1mo"
+        required: false
+        default: "1d"
+      start:
+        description: "start date"
+        required: false
+        default: "2012-01-01"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Optional engines
+        if: ${{ inputs.mode == 'vbt' || inputs.mode == 'bt' }}
+        run: pip install -r requirements-optional.txt
+      - name: Run
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+          NAME: ${{ inputs.name }}
+          UNI: ${{ inputs.universe }}
+          FILTERS: ${{ inputs.filters }}
+          EXITS: ${{ inputs.exits }}
+          SIDE: ${{ inputs.side }}
+          TICKER: ${{ inputs.ticker }}
+          START: ${{ inputs.start }}
+          TF: ${{ inputs.timeframe }}
+        run: |
+          case "${{ inputs.mode }}" in
+            strategy) python run.py --strategy "$NAME" --universe "$UNI" --start "$START" --timeframe "$TF" --telegram ;;
+            rule)     python run.py --rule "$NAME" --universe "$UNI" --filters "$FILTERS" --exits "$EXITS" --side "$SIDE" --start "$START" --timeframe "$TF" --telegram ;;
+            scan)     python run.py --scan --universe "$UNI" --rules "$NAME" --filters "$FILTERS" --side "$SIDE" --start "$START" --timeframe "$TF" --telegram ;;
+            vbt)      python -m lab.adapters.vbt_adapter "$TICKER" --start "$START" ;;
+            bt)       python -m lab.adapters.bt_adapter "$TICKER" --start "$START" ;;
+          esac
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adhoc-results
+          retention-days: 14
+          path: results/

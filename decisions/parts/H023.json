@@ -1,0 +1,196 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "OOS too short (2.76y < 3.0y)",
+    "DSR 0.289 < 0.9 (luck not excluded after 163 trials)",
+    "OOS Sharpe (excess of T-bill) 0.111 < 0.5",
+    "bootstrap P(SR>0) 0.791 < 0.85",
+    "Reality Check p 0.844 > 0.1 (best variant may be data-mined)"
+  ],
+  "strategy": "supertrend_flip",
+  "kind": "rule",
+  "universe": "crypto_major",
+  "timeframe": "1d",
+  "for_system": "karma_perp_bot",
+  "spec": {
+    "id": "H023",
+    "rule": "supertrend_flip",
+    "universe": "crypto_major",
+    "for_system": "karma_perp_bot",
+    "start": "2020-01-01",
+    "filters": [
+      "none",
+      "adx20"
+    ],
+    "side": "both",
+    "status": "active"
+  },
+  "variant": "supertrend_flip|cfg=(14, 3.0)|f=none|x=trail_pct=0.15|size=atr_risk0.005|overlay=vt10",
+  "params": {
+    "cfg": [
+      14,
+      3.0
+    ],
+    "_filter": "none",
+    "_exit": 27,
+    "_size": 1,
+    "_overlay": "vt10"
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "BTC/USDT": 0.0542,
+      "ETH/USDT": -0.0411,
+      "SOL/USDT": -0.0314,
+      "BNB/USDT": 0.0675,
+      "DOGE/USDT": -0.0232,
+      "LINK/USDT": -0.0239
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [
+      "BNB/USDT",
+      "ADA/USDT"
+    ],
+    "entry_short_next_open": [
+      "BNB/USDT",
+      "ADA/USDT"
+    ]
+  },
+  "gate_sharpe": 0.111,
+  "pbo": 0.387,
+  "reality_check_p": 0.844,
+  "dsr": 0.289,
+  "n_trials": 163,
+  "oos": {
+    "start": "2024-01-12 00:00:00",
+    "end": "2026-10-16 00:00:00",
+    "years": 2.76,
+    "cagr": 0.0479,
+    "vol": 0.1569,
+    "sharpe": 0.377,
+    "sharpe_excess_rf": 0.111,
+    "sortino": 0.168,
+    "max_dd": -0.1812,
+    "max_dd_bars": 394,
+    "calmar": 0.265,
+    "ulcer": 0.081,
+    "var95": -0.0101,
+    "cvar95": -0.0177,
+    "omega": 1.083,
+    "tail_ratio": 1.134,
+    "skew": 0.114,
+    "kurtosis": 20.879,
+    "hit_rate": 0.419,
+    "psr": 0.734,
+    "time_in_market": null,
+    "turnover_ann": 12.25,
+    "bench_cagr": -0.0775,
+    "bench_sharpe": 0.203,
+    "info_ratio": -0.11,
+    "beta": 0.001,
+    "up_capture": 0.022,
+    "down_capture": 0.009
+  },
+  "trade_stats": {
+    "n_trades": 236,
+    "trades_per_year": 85.5,
+    "win_rate": 0.419,
+    "avg_trade": 0.0145,
+    "median_trade": -0.0411,
+    "avg_win": 0.1623,
+    "avg_loss": -0.0923,
+    "profit_factor": 1.271,
+    "payoff": 1.759,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.09,
+    "max_consec_losses": 22,
+    "avg_bars": 14.3,
+    "avg_bars_win": 19.6,
+    "avg_bars_loss": 10.5,
+    "avg_mfe": 0.171,
+    "avg_mae": -0.0603,
+    "edge_ratio": 2.837,
+    "exit_reasons": {
+      "stop": 213,
+      "signal": 23
+    },
+    "long_short": {
+      "-1": {
+        "count": 114,
+        "mean": 0.0099
+      },
+      "1": {
+        "count": 122,
+        "mean": 0.0189
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": -0.02,
+      "ann_ret": -0.0028,
+      "bars": 712
+    },
+    "bear": {
+      "sharpe": 1.56,
+      "ann_ret": 0.2075,
+      "bars": 297
+    },
+    "calm": {
+      "sharpe": 0.2,
+      "ann_ret": 0.0279,
+      "bars": 493
+    },
+    "stressed": {
+      "sharpe": 0.52,
+      "ann_ret": 0.0889,
+      "bars": 516
+    },
+    "vix_lt_20": {
+      "sharpe": 0.39,
+      "ann_ret": 0.0625,
+      "bars": 818
+    },
+    "vix_20_30": {
+      "sharpe": -0.15,
+      "ann_ret": -0.0211,
+      "bars": 170
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": 1.043,
+      "sharpe_delayed_1bar": 0.771,
+      "retained": 0.739
+    },
+    "neighbourhood": {
+      "neighbours": 0
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": 0.914,
+      "sharpe_median": 1.003
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": 0.7703,
+      "random_median_ann": 0.1199,
+      "random_p95_ann": 0.4779,
+      "trades_actual": 460,
+      "p_value": 0.0
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.062,
+      "maxdd_p95": -0.0927,
+      "final_p05": 1.4622,
+      "final_median": 1.4622
+    }
+  },
+  "recommended_overlay": "vol_target_0.2",
+  "kelly_fraction": 0.09,
+  "oos_csv": "results/H023_supertrend_flip_crypto_major_1d_oos.csv",
+  "validated_at": "2026-10-17T08:58:45+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-16 00:00:00"
+}

@@ -1,0 +1,208 @@
+{
+  "verdict": "REJECT",
+  "previous_verdict": null,
+  "reasons": [
+    "DSR 0.336 < 0.9 (luck not excluded after 16 trials)",
+    "OOS Sharpe (excess of T-bill) -0.088 < 0.5",
+    "OOS MaxDD -0.5325 worse than -0.45 (local or USD)",
+    "bootstrap P(SR>0) 0.499 < 0.85",
+    "only 50% of OOS years positive",
+    "with 2x costs it does not beat the equal-weight benchmark",
+    "Reality Check p 0.956 > 0.1 (best variant may be data-mined)",
+    "random entries match it (p=0.44): the edge is in the exits, not the signal"
+  ],
+  "strategy": "funding_extreme",
+  "kind": "rule",
+  "universe": "crypto_alts",
+  "timeframe": "1d",
+  "for_system": "research_only",
+  "spec": {
+    "id": "H069",
+    "rule": "funding_extreme",
+    "universe": "crypto_alts",
+    "timeframe": "1d",
+    "for_system": "research_only",
+    "start": "2019-10-01",
+    "filters": [
+      "none"
+    ],
+    "exits": [
+      0
+    ],
+    "side": "both",
+    "status": "active"
+  },
+  "variant": "funding_extreme|n=365,th=1.5|f=none|x=signal_only|size=atr_risk0.01",
+  "params": {
+    "n": 365,
+    "th": 1.5,
+    "_filter": "none",
+    "_exit": 0,
+    "_size": 2
+  },
+  "targets": {},
+  "targets_observe_only": {
+    "positions": {
+      "XRP/USDT": -0.0221,
+      "ADA/USDT": -0.0304,
+      "DOGE/USDT": -0.0989,
+      "AVAX/USDT": -0.0736,
+      "LINK/USDT": -0.0886,
+      "LTC/USDT": -0.0323,
+      "BCH/USDT": -0.0453,
+      "TRX/USDT": 0.1131,
+      "NEAR/USDT": -0.0632,
+      "UNI/USDT": -0.0207,
+      "AAVE/USDT": -0.081,
+      "ETC/USDT": -0.0282,
+      "XLM/USDT": -0.0408,
+      "ALGO/USDT": -0.0287,
+      "MANA/USDT": -0.1092,
+      "ARB/USDT": 0.0458,
+      "SUI/USDT": -0.0781
+    },
+    "entry_long_next_open": [],
+    "exit_long_next_open": [],
+    "entry_short_next_open": []
+  },
+  "gate_sharpe": -0.088,
+  "pbo": 0.461,
+  "reality_check_p": 0.956,
+  "dsr": 0.336,
+  "n_trials": 16,
+  "oos": {
+    "start": "2023-10-12 00:00:00",
+    "end": "2026-10-20 00:00:00",
+    "years": 3.02,
+    "cagr": -0.0932,
+    "vol": 0.45,
+    "sharpe": 0.007,
+    "sharpe_excess_rf": -0.088,
+    "sortino": -0.128,
+    "max_dd": -0.5325,
+    "max_dd_bars": 560,
+    "calmar": -0.175,
+    "ulcer": 0.3395,
+    "var95": -0.0349,
+    "cvar95": -0.0539,
+    "omega": 1.001,
+    "tail_ratio": 1.032,
+    "skew": 0.387,
+    "kurtosis": 9.006,
+    "hit_rate": 0.452,
+    "psr": 0.505,
+    "time_in_market": null,
+    "turnover_ann": 12.47,
+    "bench_cagr": -0.0034,
+    "bench_sharpe": 0.351,
+    "info_ratio": -0.34,
+    "beta": 0.183,
+    "up_capture": 0.177,
+    "down_capture": 0.185
+  },
+  "trade_stats": {
+    "n_trades": 229,
+    "trades_per_year": 75.7,
+    "win_rate": 0.607,
+    "avg_trade": 0.0004,
+    "median_trade": 0.0319,
+    "avg_win": 0.1636,
+    "avg_loss": -0.2517,
+    "profit_factor": 1.004,
+    "payoff": 0.65,
+    "expectancy_r": null,
+    "sqn": null,
+    "kelly_fraction": 0.002,
+    "max_consec_losses": 9,
+    "avg_bars": 37.0,
+    "avg_bars_win": 29.0,
+    "avg_bars_loss": 49.4,
+    "avg_mfe": 0.2041,
+    "avg_mae": -0.2271,
+    "edge_ratio": 0.899,
+    "exit_reasons": {
+      "signal": 229
+    },
+    "long_short": {
+      "-1": {
+        "count": 61,
+        "mean": -0.0962
+      },
+      "1": {
+        "count": 168,
+        "mean": 0.0355
+      }
+    }
+  },
+  "regimes": {
+    "bull": {
+      "sharpe": 0.51,
+      "ann_ret": 0.2159,
+      "bars": 807
+    },
+    "bear": {
+      "sharpe": -1.1,
+      "ann_ret": -0.5732,
+      "bars": 298
+    },
+    "calm": {
+      "sharpe": 1.35,
+      "ann_ret": 0.4492,
+      "bars": 506
+    },
+    "stressed": {
+      "sharpe": -0.71,
+      "ann_ret": -0.3738,
+      "bars": 599
+    },
+    "vix_lt_20": {
+      "sharpe": 0.28,
+      "ann_ret": 0.1158,
+      "bars": 904
+    },
+    "vix_20_30": {
+      "sharpe": -1.19,
+      "ann_ret": -0.6694,
+      "bars": 180
+    }
+  },
+  "robustness": {
+    "delay": {
+      "sharpe": -0.172,
+      "sharpe_delayed_1bar": -0.11,
+      "retained": null
+    },
+    "neighbourhood": {
+      "neighbours": 1,
+      "best_sharpe": -0.162,
+      "neighbour_median": -0.479,
+      "share_positive": 0.0,
+      "stability": null
+    },
+    "noise": {
+      "noise_bp": 0.002,
+      "sharpe_min": -0.175,
+      "sharpe_median": -0.173
+    },
+    "random_entry": {
+      "actual_ret_per_exposure_ann": -0.1449,
+      "random_median_ann": -0.1768,
+      "random_p95_ann": 0.1021,
+      "trades_actual": 365,
+      "p_value": 0.44
+    },
+    "mc_trade_shuffle": {
+      "maxdd_median": -0.4003,
+      "maxdd_p95": -0.5158,
+      "final_p05": -0.1873,
+      "final_median": -0.1873
+    }
+  },
+  "protection_rules_passed": [],
+  "recommended_overlay": "equity_ma_182",
+  "kelly_fraction": 0.002,
+  "oos_csv": "results/H069_funding_extreme_crypto_alts_1d_oos.csv",
+  "validated_at": "2026-10-21T17:55:10+00:00",
+  "accepted_at": null,
+  "data_end": "2026-10-20 00:00:00"
+}

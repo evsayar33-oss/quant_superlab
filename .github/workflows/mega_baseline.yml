@@ -1,0 +1,54 @@
+name: H062 survivors vs buy-and-hold and random entries
+
+# Rule: config/mega.yaml -> baseline (pre-registered). Reads the parts of the H062 time-machine run.
+on:
+  workflow_dispatch:
+    inputs:
+      tm_run:
+        description: 'H062 time-machine run id (empty = config/mega.yaml baseline.tm_run)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: mega2-data-baseline-${{ github.run_id }}
+          restore-keys: |
+            mega2-data-
+            arena-data-1d-
+      - id: r
+        run: |
+          R="${{ github.event.inputs.tm_run }}"
+          if [ -z "$R" ]; then R=$(python -c "import yaml;print(yaml.safe_load(open('config/mega.yaml'))['baseline']['tm_run'])"); fi
+          echo "run=$R" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: megatm-*
+          path: parts
+          run-id: ${{ steps.r.outputs.run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Baseline check
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          LAB_CACHE_HOURS: "0"
+        run: python -m lab.mega_baseline --parts parts --out decisions/mega/baseline.json --md decisions/mega/baseline.md --telegram
+      - name: Commit
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add decisions/mega
+          git commit -m "H062 baseline check $(date -u +%F)" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

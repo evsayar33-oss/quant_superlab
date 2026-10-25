@@ -1,0 +1,428 @@
+{
+ "date": "2026-10-21",
+ "n_trials_total": 73005,
+ "jobs": [
+  {
+   "cls": "crypto",
+   "side": "both",
+   "cut": "2024-10-20",
+   "data_end": "2026-10-20",
+   "eligible": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "XRP/USDT",
+    "LTC/USDT",
+    "BCH/USDT",
+    "TRX/USDT",
+    "ETC/USDT"
+   ],
+   "skipped": null,
+   "n_trials": 6530,
+   "funnel": {
+    "trials": 6530,
+    "D1": 94,
+    "D2": 43,
+    "D3": 29,
+    "D4": 16
+   }
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "cut": "2024-10-20",
+   "data_end": "2026-10-20",
+   "eligible": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "XRP/USDT",
+    "LTC/USDT",
+    "BCH/USDT",
+    "TRX/USDT",
+    "ETC/USDT"
+   ],
+   "skipped": null,
+   "n_trials": 6530,
+   "funnel": {
+    "trials": 6530,
+    "D1": 1106,
+    "D2": 341,
+    "D3": 286,
+    "D4": 89
+   }
+  },
+  {
+   "cls": "crypto",
+   "side": "short",
+   "cut": "2024-10-20",
+   "data_end": "2026-10-20",
+   "eligible": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "XRP/USDT",
+    "LTC/USDT",
+    "BCH/USDT",
+    "TRX/USDT",
+    "ETC/USDT"
+   ],
+   "skipped": null,
+   "n_trials": 5630,
+   "funnel": {
+    "trials": 5630,
+    "D1": 2,
+    "D2": 0,
+    "D3": 0,
+    "D4": 0
+   }
+  },
+  {
+   "cls": "energy",
+   "side": "both",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "CL=F",
+    "BZ=F",
+    "NG=F",
+    "HO=F",
+    "RB=F"
+   ],
+   "skipped": null,
+   "n_trials": 5720,
+   "funnel": {
+    "trials": 5720,
+    "D1": 261,
+    "D2": 3,
+    "D3": 0,
+    "D4": 0
+   }
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "CL=F",
+    "BZ=F",
+    "NG=F",
+    "HO=F",
+    "RB=F"
+   ],
+   "skipped": null,
+   "n_trials": 6530,
+   "funnel": {
+    "trials": 6530,
+    "D1": 1590,
+    "D2": 94,
+    "D3": 54,
+    "D4": 34
+   }
+  },
+  {
+   "cls": "energy",
+   "side": "short",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "CL=F",
+    "BZ=F",
+    "NG=F",
+    "HO=F"
+   ],
+   "skipped": null,
+   "n_trials": 5630,
+   "funnel": {
+    "trials": 5630,
+    "D1": 28,
+    "D2": 0,
+    "D3": 0,
+    "D4": 0
+   }
+  },
+  {
+   "cls": "indices",
+   "side": "both",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "ES=F",
+    "NQ=F",
+    "YM=F",
+    "RTY=F",
+    "NKD=F"
+   ],
+   "skipped": null,
+   "n_trials": 6170,
+   "funnel": {
+    "trials": 6170,
+    "D1": 911,
+    "D2": 36,
+    "D3": 22,
+    "D4": 5
+   }
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "ES=F",
+    "NQ=F",
+    "YM=F",
+    "RTY=F",
+    "NKD=F"
+   ],
+   "skipped": null,
+   "n_trials": 6518,
+   "funnel": {
+    "trials": 6518,
+    "D1": 3117,
+    "D2": 281,
+    "D3": 255,
+    "D4": 192
+   }
+  },
+  {
+   "cls": "indices",
+   "side": "short",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "ES=F",
+    "NQ=F",
+    "YM=F",
+    "RTY=F",
+    "NKD=F"
+   ],
+   "skipped": null,
+   "n_trials": 5630,
+   "funnel": {
+    "trials": 5630,
+    "D1": 65,
+    "D2": 0,
+    "D3": 0,
+    "D4": 0
+   }
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "GC=F",
+    "SI=F",
+    "HG=F",
+    "PL=F",
+    "PA=F"
+   ],
+   "skipped": null,
+   "n_trials": 5960,
+   "funnel": {
+    "trials": 5960,
+    "D1": 610,
+    "D2": 37,
+    "D3": 27,
+    "D4": 10
+   }
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "GC=F",
+    "SI=F",
+    "HG=F",
+    "PL=F",
+    "PA=F"
+   ],
+   "skipped": null,
+   "n_trials": 6527,
+   "funnel": {
+    "trials": 6527,
+    "D1": 2485,
+    "D2": 112,
+    "D3": 89,
+    "D4": 69
+   }
+  },
+  {
+   "cls": "metals",
+   "side": "short",
+   "cut": "2024-10-21",
+   "data_end": "2026-10-21",
+   "eligible": [
+    "GC=F",
+    "SI=F",
+    "HG=F",
+    "PL=F",
+    "PA=F"
+   ],
+   "skipped": null,
+   "n_trials": 5630,
+   "funnel": {
+    "trials": 5630,
+    "D1": 60,
+    "D2": 0,
+    "D3": 0,
+    "D4": 0
+   }
+  }
+ ],
+ "d4_candidates": 415,
+ "finalists": [],
+ "winners": [],
+ "near_misses": [
+  {
+   "cls": "crypto",
+   "side": "both",
+   "key": "cmf_flow|{\"n\": 40, \"th\": 0.05}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "pool_sharpe": 0.865,
+   "asset_share": 0.8571428571428571
+  },
+  {
+   "cls": "crypto",
+   "side": "both",
+   "key": "hurst_switch|{\"fast\": 20, \"n\": 200, \"rsi_n\": 2}|x20|none|pivot_bounce:{\"window\": 5}:w3",
+   "pool_sharpe": 0.796,
+   "asset_share": 0.8571428571428571
+  },
+  {
+   "cls": "crypto",
+   "side": "both",
+   "key": "hurst_switch|{\"fast\": 20, \"n\": 200, \"rsi_n\": 2}|x13|none|pivot_bounce:{\"window\": 5}:w3",
+   "pool_sharpe": 0.796,
+   "asset_share": 0.8571428571428571
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "cci_breakout|{\"level\": 100, \"n\": 14}|x0|none",
+   "pool_sharpe": 1.131,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"dema\", \"pair\": [10, 50]}|x28|trend_sma200",
+   "pool_sharpe": 1.101,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "crypto",
+   "side": "long",
+   "key": "cci_breakout|{\"level\": 100, \"n\": 14}|x0|trend_sma200",
+   "pool_sharpe": 1.077,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "trix_cross|{\"n\": 21, \"signal\": 7}|x13|trend_sma200|smc_bos:{\"k\": 5}:w5",
+   "pool_sharpe": 0.724,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "trix_cross|{\"n\": 21, \"signal\": 9}|x13|trend_sma200|smc_bos:{\"k\": 5}:w5",
+   "pool_sharpe": 0.687,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "energy",
+   "side": "long",
+   "key": "tsi_cross|{\"cfg\": [40, 20, 10]}|x13|trend_sma200|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "pool_sharpe": 0.677,
+   "asset_share": 0.8
+  },
+  {
+   "cls": "indices",
+   "side": "both",
+   "key": "supertrend_flip|{\"cfg\": [7, 2.0]}|x13|trend_sma200|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "pool_sharpe": 0.752,
+   "asset_share": 0.8
+  },
+  {
+   "cls": "indices",
+   "side": "both",
+   "key": "supertrend_flip|{\"cfg\": [7, 2.0]}|x13|trend_sma200|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "pool_sharpe": 0.735,
+   "asset_share": 0.6
+  },
+  {
+   "cls": "indices",
+   "side": "both",
+   "key": "supertrend_flip|{\"cfg\": [7, 2.0]}|x13|trend_sma200",
+   "pool_sharpe": 0.601,
+   "asset_share": 0.8
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x0|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "pool_sharpe": 0.942,
+   "asset_share": 0.8
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "macd_cross|{\"cfg\": [12, 26, 9], \"zero_filter\": true}|x18|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w5",
+   "pool_sharpe": 0.936,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "indices",
+   "side": "long",
+   "key": "ppo_cross|{\"cfg\": [10, 30, 9]}|x0|trend_sma200|smc_liquidity_sweep:{\"k\": 5}:w3",
+   "pool_sharpe": 0.926,
+   "asset_share": 0.8
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 50, \"n\": 252}|x28|none|smc_bos:{\"k\": 5}:w3",
+   "pool_sharpe": 0.624,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 100, \"n\": 252}|x28|none|smc_bos:{\"k\": 5}:w3",
+   "pool_sharpe": 0.624,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "metals",
+   "side": "both",
+   "key": "high_52w_break|{\"exit_ma\": 50, \"n\": 252}|x28|trend_sma200|smc_bos:{\"k\": 5}:w3",
+   "pool_sharpe": 0.624,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "vortex_cross|{\"n\": 28}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w3",
+   "pool_sharpe": 0.905,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "vortex_cross|{\"n\": 28}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "pool_sharpe": 0.881,
+   "asset_share": 1.0
+  },
+  {
+   "cls": "metals",
+   "side": "long",
+   "key": "ma_cross|{\"kind\": \"tema\", \"pair\": [20, 50]}|x13|none|smc_order_block:{\"k\": 5, \"max_age\": 50}:w5",
+   "pool_sharpe": 0.88,
+   "asset_share": 1.0
+  }
+ ],
+ "verdict": "NO_BETTER_FOUND"
+}
