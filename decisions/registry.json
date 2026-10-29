@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28T22:54:12+00:00",
+  "updated": "2026-10-29T23:00:14+00:00",
   "hypotheses": {
     "H001": {
       "verdict": "WATCH",
@@ -8314,13 +8314,13 @@
       "accepted_at": "2026-10-17T17:53:48+00:00",
       "data_end": "2026-10-17 12:00:00",
       "live": {
-        "live_bars": 66,
-        "live_return": -0.0112,
-        "live_sharpe": -1.015,
-        "live_max_dd": -0.0673,
+        "live_bars": 72,
+        "live_return": -0.0222,
+        "live_sharpe": -1.804,
+        "live_max_dd": -0.0674,
         "degraded": false,
         "why": "ok",
-        "checked_at": "2026-10-28T22:54:11+00:00"
+        "checked_at": "2026-10-29T23:00:13+00:00"
       }
     },
     "H053": {
@@ -8572,13 +8572,13 @@
       "accepted_at": "2026-10-17T18:34:11+00:00",
       "data_end": "2026-10-17 12:00:00",
       "live": {
-        "live_bars": 66,
-        "live_return": -0.0119,
-        "live_sharpe": -1.02,
-        "live_max_dd": -0.0704,
+        "live_bars": 72,
+        "live_return": -0.0235,
+        "live_sharpe": -1.812,
+        "live_max_dd": -0.0705,
         "degraded": false,
         "why": "ok",
-        "checked_at": "2026-10-28T22:54:11+00:00"
+        "checked_at": "2026-10-29T23:00:13+00:00"
       }
     },
     "H063": {
