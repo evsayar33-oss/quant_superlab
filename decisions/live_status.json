@@ -1,20 +1,20 @@
 {
   "H052": {
-    "live_bars": 114,
-    "live_return": -0.0629,
-    "live_sharpe": -2.614,
-    "live_max_dd": -0.0972,
+    "live_bars": 120,
+    "live_return": -0.0698,
+    "live_sharpe": -2.85,
+    "live_max_dd": -0.1033,
     "degraded": false,
     "why": "ok",
-    "checked_at": "2026-11-05T23:52:21+00:00"
+    "checked_at": "2026-11-06T23:32:41+00:00"
   },
   "H054": {
-    "live_bars": 114,
-    "live_return": -0.0673,
-    "live_sharpe": -2.707,
-    "live_max_dd": -0.1028,
+    "live_bars": 120,
+    "live_return": -0.0742,
+    "live_sharpe": -2.931,
+    "live_max_dd": -0.1088,
     "degraded": false,
     "why": "ok",
-    "checked_at": "2026-11-05T23:52:21+00:00"
+    "checked_at": "2026-11-06T23:32:41+00:00"
   }
 }
