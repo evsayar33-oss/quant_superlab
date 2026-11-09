@@ -10,16 +10,16 @@
   },
   "watch:C2_crypto|c=0.1": {
    "key": "C2_crypto|c=0.1",
-   "months": 0,
-   "forward_active_sum": 0.0,
-   "last_month": "2026-09-30",
+   "months": 1,
+   "forward_active_sum": -0.0026,
+   "last_month": "2026-11-30",
    "degraded": null
   },
   "watch:C2_crypto|c=0.2": {
    "key": "C2_crypto|c=0.2",
-   "months": 0,
-   "forward_active_sum": 0.0,
-   "last_month": "2026-09-30",
+   "months": 1,
+   "forward_active_sum": -0.0052,
+   "last_month": "2026-11-30",
    "degraded": null
   }
  }

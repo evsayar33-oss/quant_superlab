@@ -1,22 +1,22 @@
 # H072 sentez çalışması — endeksi yenen kurallar
 
-Tarih: 2026-10-24. Veri sonu: Blok A 2026-08-31, Blok B 2026-05-31. Toplam deneme: **80** (DSR bu sayıyla hesaplandı).
+Tarih: 2026-11-09. Veri sonu: Blok A 2026-09-30, Blok B 2026-05-31. Toplam deneme: **80** (DSR bu sayıyla hesaplandı).
 
 Kurallar sonuçlardan ÖNCE yazıldı: `config/synthesis.yaml` (commit `c1566c0`). Ölçüt nakit değil, **endeksin kendisi** (ABD piyasası toplam getiri, 1x).
 
 ## Blok A — ABD piyasası, 1928 → bugün (günlük)
 
-Endeks (al-tut): yıllık **10.0%**, Sharpe 0.452, maks. düşüş -84.1%, $1000 → $12,122,066.
+Endeks (al-tut): yıllık **10.0%**, Sharpe 0.451, maks. düşüş -84.1%, $1000 → $12,020,589.
 
 C1–C7'nin hepsini geçen nokta: **0** / 68.
 
 | Aile | Seçilen ayar | Yıllık | Endeks farkı | Sharpe | Maks. düşüş | 2x maliyet yıllık | DSR | Plato | Sonuç |
 |---|---|---|---|---|---|---|---|---|---|
-| A0_const_lev | `L=1.5` | 11.6% | +1.6% | 0.428 | -94.7% | 10.8% | 0.352 | 0% | kaldı (C1,C2,C3,C4,C5,C7,C6) |
-| A1_trend_lev | `N=150,L=3.0` | 17.8% | +7.8% | 0.561 | -84.5% | 13.0% | 0.511 | 100% | kaldı (C2,C3,C7) |
-| A2_volman_lev | `target=0.25,Lmax=3.0` | 13.7% | +3.7% | 0.491 | -87.0% | 11.0% | 0.32 | 100% | kaldı (C2,C3,C7) |
-| A3_trend_volman | `N=200,target=0.25,Lmax=2.0` | 13.4% | +3.4% | 0.601 | -56.9% | 11.2% | 0.018 | 100% | kaldı (C3,C7) |
-| A4_mom_trend | `L=1.0,filter=sma200` | 13.0% | +2.9% | 0.582 | -44.9% | 11.0% | 0.006 | 100% | kaldı (C2,C3,C7) |
+| A0_const_lev | `L=1.5` | 11.5% | +1.6% | 0.427 | -94.7% | 10.8% | 0.345 | 0% | kaldı (C1,C2,C3,C4,C5,C7,C6) |
+| A1_trend_lev | `N=150,L=3.0` | 17.7% | +7.7% | 0.559 | -84.5% | 13.0% | 0.503 | 100% | kaldı (C2,C3,C7) |
+| A2_volman_lev | `target=0.25,Lmax=3.0` | 13.6% | +3.6% | 0.489 | -87.0% | 11.0% | 0.309 | 100% | kaldı (C2,C3,C7) |
+| A3_trend_volman | `N=250,target=0.25,Lmax=2.0` | 13.7% | +3.8% | 0.607 | -69.8% | 11.8% | 0.034 | 100% | kaldı (C2,C7) |
+| A4_mom_trend | `L=1.0,filter=sma200` | 13.1% | +3.1% | 0.586 | -44.9% | 11.1% | 0.007 | 100% | kaldı (C2,C3,C7) |
 
 Bir aile geçmediyse tabloda en çok kontrolü geçen ayarı gösterilir.
 
@@ -37,7 +37,7 @@ Geçme şartı: 3/4 kesimde ileri kayıt endeksin üstünde ve düşüş en çok
 | 1966-01-01 | → 1982-01-01 | 0 | `yok` | — | 6.6% | — | -48.2% | hayır |
 | 1982-01-01 | → 2000-01-01 | 0 | `yok` | — | 17.8% | — | -33.1% | hayır |
 | 2000-01-01 | → 2013-01-01 | 0 | `yok` | — | 2.1% | — | -54.6% | hayır |
-| 2013-01-01 | → 2026-08-31 | 0 | `yok` | — | 15.0% | — | -34.2% | hayır |
+| 2013-01-01 | → 2026-09-30 | 0 | `yok` | — | 14.9% | — | -34.2% | hayır |
 
 Aile bazında zaman makinesi: A0_const_lev kaldı, A1_trend_lev kaldı, A2_volman_lev kaldı, A3_trend_volman kaldı, A4_mom_trend kaldı
 
@@ -79,8 +79,8 @@ Kripto kolu (H054) çekirdek: `SPY al-tut`.
 
 | c | Yıllık | Sharpe | Maks. düşüş | Çekirdek yıllık | Çekirdek düşüş | Kabul |
 |---|---|---|---|---|---|---|
-| 0.1 | 17.6% | 0.85 | -32.3% | 15.1% | -33.7% | evet |
-| 0.2 | 20.0% | 0.999 | -31.1% | 15.1% | -33.7% | evet |
+| 0.1 | 16.9% | 0.816 | -32.4% | 14.6% | -33.7% | hayır |
+| 0.2 | 19.1% | 0.951 | -31.2% | 14.6% | -33.7% | hayır |
 
 ## İleri kayıt (kendini güncelleyen döngü)
 
@@ -89,8 +89,8 @@ Dondurma tarihi: 2026-10-24. Her aylık çalışma yeni ayları ekler. Bozulma =
 | Kayıt | Ay | İleri aktif getiri (toplam) | Bozuldu mu |
 |---|---|---|---|
 | `watch:B1_stack|k=0.75` | 0 | +0.0% | henüz erken |
-| `watch:C2_crypto|c=0.1` | 0 | +0.0% | henüz erken |
-| `watch:C2_crypto|c=0.2` | 0 | +0.0% | henüz erken |
+| `watch:C2_crypto|c=0.1` | 1 | -0.3% | henüz erken |
+| `watch:C2_crypto|c=0.2` | 1 | -0.5% | henüz erken |
 
 ## Zayıf yönler (her zaman)
 

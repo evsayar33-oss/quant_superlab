@@ -1,5 +1,5 @@
 {
- "run_at": "2026-10-24T17:06:12+00:00",
+ "run_at": "2026-11-09T16:22:15+00:00",
  "n_trials": 80,
  "weak_points": [
   "Blok A verisi CRSP t\u00fcm ABD piyasas\u0131 (Ken French). S&P 500 ile korelasyonu \u00e7ok y\u00fcksek ama ayn\u0131 de\u011fildir.",
@@ -14,16 +14,16 @@
  "block_a": {
   "window": [
    "1928-01-01",
-   "2026-08-31"
+   "2026-09-30"
   ],
   "bh": {
-   "cagr": 0.1,
-   "sharpe": 0.452,
+   "cagr": 0.0998,
+   "sharpe": 0.451,
    "max_dd": -0.8409,
    "vol": 0.1755,
-   "final_1000": 12122066.0,
+   "final_1000": 12020589.0,
    "start": "1928-01-03",
-   "end": "2026-08-31"
+   "end": "2026-09-30"
   },
   "pick": null,
   "family_pick": {
@@ -125,16 +125,16 @@
     },
     {
      "cut": "2013-01-01",
-     "to": "2026-08-31",
+     "to": "2026-09-30",
      "n_pass_before_cut": 0,
      "bh_forward": {
-      "cagr": 0.1502,
+      "cagr": 0.1486,
       "max_dd": -0.3422
      },
      "pick": null,
      "naive": {
       "key": "A4_mom_trend|L=2.0,filter=sma200",
-      "cagr": 0.1387,
+      "cagr": 0.1527,
       "max_dd": -0.7431,
       "inside": false
      },
@@ -166,37 +166,37 @@
      "L": 1.25
     },
     "stats": {
-     "cagr": 0.1088,
-     "sharpe": 0.438,
+     "cagr": 0.1086,
+     "sharpe": 0.437,
      "max_dd": -0.9073,
      "vol": 0.2194,
-     "final_1000": 26686757.0,
+     "final_1000": 26383191.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.105,
-     "sharpe": 0.422,
+     "cagr": 0.1047,
+     "sharpe": 0.421,
      "max_dd": -0.9083,
      "vol": 0.2194,
-     "final_1000": 18893164.0,
+     "final_1000": 18672877.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1088,
-     "sharpe": 0.438,
+     "cagr": 0.1086,
+     "sharpe": 0.437,
      "max_dd": -0.9073,
      "vol": 0.2194,
-     "final_1000": 26686757.0,
+     "final_1000": 26383191.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": 0.0088,
     "vol_matched_L": 1.25,
-    "vol_matched_cagr": 0.1088,
-    "dsr_active": 0.352,
-    "t_active": 3.78,
+    "vol_matched_cagr": 0.1086,
+    "dsr_active": 0.345,
+    "t_active": 3.77,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -245,8 +245,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1766,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1745,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4142,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -273,37 +273,37 @@
      "L": 1.5
     },
     "stats": {
-     "cagr": 0.1156,
-     "sharpe": 0.428,
+     "cagr": 0.1153,
+     "sharpe": 0.427,
      "max_dd": -0.9473,
      "vol": 0.2633,
-     "final_1000": 48454708.0,
+     "final_1000": 47755549.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1081,
-     "sharpe": 0.403,
+     "cagr": 0.1078,
+     "sharpe": 0.402,
      "max_dd": -0.9483,
      "vol": 0.2633,
-     "final_1000": 25013678.0,
+     "final_1000": 24639173.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1156,
-     "sharpe": 0.428,
+     "cagr": 0.1153,
+     "sharpe": 0.427,
      "max_dd": -0.9473,
      "vol": 0.2633,
-     "final_1000": 48454708.0,
+     "final_1000": 47755549.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0156,
+    "excess_cagr": 0.0155,
     "vol_matched_L": 1.5,
-    "vol_matched_cagr": 0.1156,
-    "dsr_active": 0.352,
-    "t_active": 3.78,
+    "vol_matched_cagr": 0.1153,
+    "dsr_active": 0.345,
+    "t_active": 3.77,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -352,8 +352,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2013,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1987,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4806,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -370,7 +370,7 @@
      "C6": false
     },
     "plateau_share": 0.0,
-    "plateau_score": 0.0156,
+    "plateau_score": 0.0155,
     "pass": false,
     "near_miss": false
    },
@@ -380,37 +380,37 @@
      "L": 2.0
     },
     "stats": {
-     "cagr": 0.1225,
-     "sharpe": 0.416,
+     "cagr": 0.1221,
+     "sharpe": 0.415,
      "max_dd": -0.9842,
-     "vol": 0.3511,
-     "final_1000": 89217149.0,
+     "vol": 0.351,
+     "final_1000": 87371718.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1079,
-     "sharpe": 0.379,
+     "cagr": 0.1075,
+     "sharpe": 0.378,
      "max_dd": -0.9848,
-     "vol": 0.3511,
-     "final_1000": 24481209.0,
+     "vol": 0.351,
+     "final_1000": 23948994.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1225,
-     "sharpe": 0.416,
+     "cagr": 0.1221,
+     "sharpe": 0.415,
      "max_dd": -0.9842,
-     "vol": 0.3511,
-     "final_1000": 89217149.0,
+     "vol": 0.351,
+     "final_1000": 87371718.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0225,
+    "excess_cagr": 0.0223,
     "vol_matched_L": 2.0,
-    "vol_matched_cagr": 0.1225,
-    "dsr_active": 0.352,
-    "t_active": 3.78,
+    "vol_matched_cagr": 0.1221,
+    "dsr_active": 0.345,
+    "t_active": 3.77,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -459,8 +459,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2451,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2416,
+      "bh_cagr": 0.1486,
       "max_dd": -0.5973,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -477,7 +477,7 @@
      "C6": false
     },
     "plateau_share": 0.0,
-    "plateau_score": 0.0156,
+    "plateau_score": 0.0155,
     "pass": false,
     "near_miss": false
    },
@@ -488,35 +488,35 @@
      "L": 1.0
     },
     "stats": {
-     "cagr": 0.0944,
-     "sharpe": 0.589,
+     "cagr": 0.0942,
+     "sharpe": 0.588,
      "max_dd": -0.3623,
      "vol": 0.1101,
-     "final_1000": 7336076.0,
+     "final_1000": 7274664.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0831,
-     "sharpe": 0.494,
+     "cagr": 0.083,
+     "sharpe": 0.493,
      "max_dd": -0.3893,
      "vol": 0.1103,
-     "final_1000": 2638726.0,
+     "final_1000": 2616572.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.0901,
-     "sharpe": 0.548,
+     "cagr": 0.0899,
+     "sharpe": 0.547,
      "max_dd": -0.4386,
      "vol": 0.1113,
-     "final_1000": 4953432.0,
+     "final_1000": 4911966.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": -0.0056,
     "vol_matched_L": 0.63,
-    "vol_matched_cagr": 0.0776,
+    "vol_matched_cagr": 0.0775,
     "dsr_active": 0.0,
     "t_active": -1.05,
     "subperiods": [
@@ -567,8 +567,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.105,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1037,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2046,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -596,35 +596,35 @@
      "L": 1.5
     },
     "stats": {
-     "cagr": 0.1173,
-     "sharpe": 0.564,
+     "cagr": 0.117,
+     "sharpe": 0.563,
      "max_dd": -0.5112,
      "vol": 0.1652,
-     "final_1000": 56473315.0,
+     "final_1000": 55658455.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0955,
-     "sharpe": 0.444,
+     "cagr": 0.0952,
+     "sharpe": 0.443,
      "max_dd": -0.5683,
      "vol": 0.1654,
-     "final_1000": 8088870.0,
+     "final_1000": 7967763.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1105,
-     "sharpe": 0.523,
+     "cagr": 0.1103,
+     "sharpe": 0.522,
      "max_dd": -0.6067,
      "vol": 0.167,
-     "final_1000": 31000698.0,
+     "final_1000": 30553385.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0173,
+    "excess_cagr": 0.0172,
     "vol_matched_L": 0.94,
-    "vol_matched_cagr": 0.0967,
+    "vol_matched_cagr": 0.0966,
     "dsr_active": 0.001,
     "t_active": 0.93,
     "subperiods": [
@@ -675,8 +675,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.14,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1379,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3056,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -693,7 +693,7 @@
      "C6": false
     },
     "plateau_share": 0.67,
-    "plateau_score": 0.0173,
+    "plateau_score": 0.0172,
     "pass": false,
     "near_miss": false
    },
@@ -704,36 +704,36 @@
      "L": 2.0
     },
     "stats": {
-     "cagr": 0.1372,
-     "sharpe": 0.551,
+     "cagr": 0.1368,
+     "sharpe": 0.55,
      "max_dd": -0.644,
      "vol": 0.2202,
-     "final_1000": 321420786.0,
+     "final_1000": 314772289.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1046,
-     "sharpe": 0.419,
+     "cagr": 0.1043,
+     "sharpe": 0.418,
      "max_dd": -0.7052,
      "vol": 0.2205,
-     "final_1000": 18316427.0,
+     "final_1000": 17918232.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1278,
-     "sharpe": 0.511,
+     "cagr": 0.1275,
+     "sharpe": 0.51,
      "max_dd": -0.728,
      "vol": 0.2227,
-     "final_1000": 142350573.0,
+     "final_1000": 139406092.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0372,
+    "excess_cagr": 0.037,
     "vol_matched_L": 1.25,
-    "vol_matched_cagr": 0.109,
-    "dsr_active": 0.038,
+    "vol_matched_cagr": 0.1088,
+    "dsr_active": 0.036,
     "t_active": 2.38,
     "subperiods": [
      {
@@ -783,8 +783,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1722,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1693,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3967,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -801,7 +801,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0372,
+    "plateau_score": 0.037,
     "pass": false,
     "near_miss": false
    },
@@ -812,37 +812,37 @@
      "L": 2.5
     },
     "stats": {
-     "cagr": 0.1538,
-     "sharpe": 0.544,
+     "cagr": 0.1534,
+     "sharpe": 0.542,
      "max_dd": -0.7439,
      "vol": 0.2753,
-     "final_1000": 1350202872.0,
+     "final_1000": 1313567903.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1104,
-     "sharpe": 0.404,
+     "cagr": 0.1099,
+     "sharpe": 0.403,
      "max_dd": -0.8174,
      "vol": 0.2757,
-     "final_1000": 30581451.0,
+     "final_1000": 29703961.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1418,
-     "sharpe": 0.503,
+     "cagr": 0.1413,
+     "sharpe": 0.502,
      "max_dd": -0.8145,
      "vol": 0.2783,
-     "final_1000": 478573820.0,
+     "final_1000": 465588707.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0538,
+    "excess_cagr": 0.0535,
     "vol_matched_L": 1.57,
-    "vol_matched_cagr": 0.117,
-    "dsr_active": 0.184,
-    "t_active": 3.26,
+    "vol_matched_cagr": 0.1167,
+    "dsr_active": 0.179,
+    "t_active": 3.25,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -891,8 +891,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2013,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1976,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4784,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -909,7 +909,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0538,
+    "plateau_score": 0.0535,
     "pass": false,
     "near_miss": false
    },
@@ -920,37 +920,37 @@
      "L": 3.0
     },
     "stats": {
-     "cagr": 0.1671,
-     "sharpe": 0.539,
+     "cagr": 0.1665,
+     "sharpe": 0.537,
      "max_dd": -0.8182,
      "vol": 0.3303,
-     "final_1000": 4176926372.0,
+     "final_1000": 4035877126.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1127,
-     "sharpe": 0.394,
+     "cagr": 0.1122,
+     "sharpe": 0.393,
      "max_dd": -0.8899,
      "vol": 0.3308,
-     "final_1000": 37561203.0,
+     "final_1000": 36215460.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1522,
-     "sharpe": 0.499,
+     "cagr": 0.1517,
+     "sharpe": 0.497,
      "max_dd": -0.8771,
      "vol": 0.334,
-     "final_1000": 1174912570.0,
+     "final_1000": 1135237335.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0671,
+    "excess_cagr": 0.0667,
     "vol_matched_L": 1.88,
-    "vol_matched_cagr": 0.1216,
-    "dsr_active": 0.352,
-    "t_active": 3.78,
+    "vol_matched_cagr": 0.1213,
+    "dsr_active": 0.344,
+    "t_active": 3.77,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -999,8 +999,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2271,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2225,
+      "bh_cagr": 0.1486,
       "max_dd": -0.5513,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -1017,7 +1017,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0658,
+    "plateau_score": 0.0654,
     "pass": false,
     "near_miss": false
    },
@@ -1028,35 +1028,35 @@
      "L": 1.0
     },
     "stats": {
-     "cagr": 0.0988,
-     "sharpe": 0.611,
+     "cagr": 0.0986,
+     "sharpe": 0.61,
      "max_dd": -0.4013,
      "vol": 0.1132,
-     "final_1000": 10858844.0,
+     "final_1000": 10767942.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.09,
-     "sharpe": 0.54,
+     "cagr": 0.0898,
+     "sharpe": 0.539,
      "max_dd": -0.4365,
      "vol": 0.1133,
-     "final_1000": 4925009.0,
+     "final_1000": 4883660.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.0969,
-     "sharpe": 0.586,
+     "cagr": 0.0967,
+     "sharpe": 0.585,
      "max_dd": -0.363,
      "vol": 0.1156,
-     "final_1000": 9139139.0,
+     "final_1000": 9062632.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": -0.0012,
     "vol_matched_L": 0.64,
-    "vol_matched_cagr": 0.0787,
+    "vol_matched_cagr": 0.0786,
     "dsr_active": 0.0,
     "t_active": -0.75,
     "subperiods": [
@@ -1107,8 +1107,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1185,
-      "bh_cagr": 0.1502,
+      "cagr": 0.117,
+      "bh_cagr": 0.1486,
       "max_dd": -0.1773,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -1136,35 +1136,35 @@
      "L": 1.5
     },
     "stats": {
-     "cagr": 0.1235,
-     "sharpe": 0.586,
+     "cagr": 0.1232,
+     "sharpe": 0.585,
      "max_dd": -0.5675,
      "vol": 0.1698,
-     "final_1000": 97569319.0,
+     "final_1000": 96161479.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1053,
-     "sharpe": 0.489,
+     "cagr": 0.105,
+     "sharpe": 0.488,
      "max_dd": -0.6067,
      "vol": 0.1699,
-     "final_1000": 19490574.0,
+     "final_1000": 19198760.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1203,
-     "sharpe": 0.561,
+     "cagr": 0.12,
+     "sharpe": 0.56,
      "max_dd": -0.5254,
      "vol": 0.1734,
-     "final_1000": 73423502.0,
+     "final_1000": 72364065.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0235,
+    "excess_cagr": 0.0234,
     "vol_matched_L": 0.97,
-    "vol_matched_cagr": 0.0982,
+    "vol_matched_cagr": 0.098,
     "dsr_active": 0.003,
     "t_active": 1.37,
     "subperiods": [
@@ -1215,8 +1215,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1602,
-      "bh_cagr": 0.1502,
+      "cagr": 0.158,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2691,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -1233,7 +1233,7 @@
      "C6": true
     },
     "plateau_share": 0.75,
-    "plateau_score": 0.0196,
+    "plateau_score": 0.0195,
     "pass": false,
     "near_miss": false
    },
@@ -1244,36 +1244,36 @@
      "L": 2.0
     },
     "stats": {
-     "cagr": 0.1451,
-     "sharpe": 0.573,
+     "cagr": 0.1447,
+     "sharpe": 0.572,
      "max_dd": -0.69,
      "vol": 0.2264,
-     "final_1000": 636752794.0,
+     "final_1000": 623581746.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1172,
-     "sharpe": 0.464,
+     "cagr": 0.1168,
+     "sharpe": 0.463,
      "max_dd": -0.7277,
      "vol": 0.2266,
-     "final_1000": 55982553.0,
+     "final_1000": 54765507.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1402,
-     "sharpe": 0.549,
+     "cagr": 0.1399,
+     "sharpe": 0.547,
      "max_dd": -0.6563,
-     "vol": 0.2312,
-     "final_1000": 419673972.0,
+     "vol": 0.2311,
+     "final_1000": 410993136.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0451,
+    "excess_cagr": 0.0449,
     "vol_matched_L": 1.29,
-    "vol_matched_cagr": 0.11,
-    "dsr_active": 0.096,
+    "vol_matched_cagr": 0.1098,
+    "dsr_active": 0.093,
     "t_active": 2.85,
     "subperiods": [
      {
@@ -1323,8 +1323,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1993,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1962,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3532,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -1341,7 +1341,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0397,
+    "plateau_score": 0.0396,
     "pass": false,
     "near_miss": false
    },
@@ -1352,36 +1352,36 @@
      "L": 2.5
     },
     "stats": {
-     "cagr": 0.1632,
-     "sharpe": 0.566,
+     "cagr": 0.1628,
+     "sharpe": 0.564,
      "max_dd": -0.7796,
      "vol": 0.283,
-     "final_1000": 3012018219.0,
+     "final_1000": 2930293319.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1255,
-     "sharpe": 0.449,
+     "cagr": 0.1251,
+     "sharpe": 0.448,
      "max_dd": -0.813,
      "vol": 0.2833,
-     "final_1000": 116455045.0,
+     "final_1000": 113113538.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1565,
-     "sharpe": 0.541,
+     "cagr": 0.156,
+     "sharpe": 0.54,
      "max_dd": -0.7554,
-     "vol": 0.289,
-     "final_1000": 1695698504.0,
+     "vol": 0.2889,
+     "final_1000": 1649689224.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0632,
+    "excess_cagr": 0.063,
     "vol_matched_L": 1.61,
-    "vol_matched_cagr": 0.1179,
-    "dsr_active": 0.324,
+    "vol_matched_cagr": 0.1176,
+    "dsr_active": 0.317,
     "t_active": 3.7,
     "subperiods": [
      {
@@ -1431,8 +1431,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2352,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2312,
+      "bh_cagr": 0.1486,
       "max_dd": -0.43,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -1449,7 +1449,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0563,
+    "plateau_score": 0.0561,
     "pass": false,
     "near_miss": false
    },
@@ -1460,37 +1460,37 @@
      "L": 3.0
     },
     "stats": {
-     "cagr": 0.1778,
-     "sharpe": 0.561,
+     "cagr": 0.1773,
+     "sharpe": 0.559,
      "max_dd": -0.8446,
      "vol": 0.3396,
-     "final_1000": 10300416435.0,
+     "final_1000": 9952585078.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1302,
-     "sharpe": 0.439,
+     "cagr": 0.1296,
+     "sharpe": 0.437,
      "max_dd": -0.8744,
      "vol": 0.3399,
-     "final_1000": 174979835.0,
+     "final_1000": 168710657.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1687,
-     "sharpe": 0.536,
+     "cagr": 0.1682,
+     "sharpe": 0.535,
      "max_dd": -0.8284,
-     "vol": 0.3468,
-     "final_1000": 4799863645.0,
+     "vol": 0.3467,
+     "final_1000": 4637778637.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0778,
+    "excess_cagr": 0.0774,
     "vol_matched_L": 1.93,
-    "vol_matched_cagr": 0.1221,
-    "dsr_active": 0.511,
-    "t_active": 4.19,
+    "vol_matched_cagr": 0.1217,
+    "dsr_active": 0.503,
+    "t_active": 4.18,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -1539,8 +1539,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2677,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2627,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4997,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -1557,7 +1557,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0671,
+    "plateau_score": 0.0667,
     "pass": false,
     "near_miss": false
    },
@@ -1568,35 +1568,35 @@
      "L": 1.0
     },
     "stats": {
-     "cagr": 0.098,
-     "sharpe": 0.592,
+     "cagr": 0.0979,
+     "sharpe": 0.591,
      "max_dd": -0.4115,
      "vol": 0.1164,
-     "final_1000": 10173157.0,
+     "final_1000": 10087995.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0913,
-     "sharpe": 0.539,
+     "cagr": 0.0911,
+     "sharpe": 0.537,
      "max_dd": -0.4283,
      "vol": 0.1165,
-     "final_1000": 5520359.0,
+     "final_1000": 5474012.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.0952,
-     "sharpe": 0.566,
+     "cagr": 0.095,
+     "sharpe": 0.565,
      "max_dd": -0.3987,
      "vol": 0.1174,
-     "final_1000": 7878424.0,
+     "final_1000": 7812472.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": -0.002,
     "vol_matched_L": 0.66,
-    "vol_matched_cagr": 0.0799,
+    "vol_matched_cagr": 0.0798,
     "dsr_active": 0.0,
     "t_active": -0.79,
     "subperiods": [
@@ -1647,8 +1647,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1108,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1095,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2307,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -1676,37 +1676,37 @@
      "L": 1.5
     },
     "stats": {
-     "cagr": 0.1219,
-     "sharpe": 0.567,
+     "cagr": 0.1216,
+     "sharpe": 0.566,
      "max_dd": -0.5683,
      "vol": 0.1746,
-     "final_1000": 84786046.0,
+     "final_1000": 83562657.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1066,
-     "sharpe": 0.488,
+     "cagr": 0.1064,
+     "sharpe": 0.487,
      "max_dd": -0.5892,
      "vol": 0.1747,
-     "final_1000": 21938959.0,
+     "final_1000": 21610488.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1174,
-     "sharpe": 0.541,
+     "cagr": 0.1172,
+     "sharpe": 0.54,
      "max_dd": -0.5544,
      "vol": 0.1761,
-     "final_1000": 57210210.0,
+     "final_1000": 56384717.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0219,
+    "excess_cagr": 0.0218,
     "vol_matched_L": 0.99,
-    "vol_matched_cagr": 0.0997,
-    "dsr_active": 0.003,
-    "t_active": 1.36,
+    "vol_matched_cagr": 0.0995,
+    "dsr_active": 0.002,
+    "t_active": 1.35,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -1755,8 +1755,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1482,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1461,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3377,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -1773,7 +1773,7 @@
      "C6": true
     },
     "plateau_share": 0.75,
-    "plateau_score": 0.0219,
+    "plateau_score": 0.0218,
     "pass": false,
     "near_miss": false
    },
@@ -1784,37 +1784,37 @@
      "L": 2.0
     },
     "stats": {
-     "cagr": 0.1423,
-     "sharpe": 0.554,
+     "cagr": 0.1419,
+     "sharpe": 0.553,
      "max_dd": -0.6917,
      "vol": 0.2328,
-     "final_1000": 500443991.0,
+     "final_1000": 490092451.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1183,
-     "sharpe": 0.463,
+     "cagr": 0.1179,
+     "sharpe": 0.462,
      "max_dd": -0.7126,
      "vol": 0.2329,
-     "final_1000": 61711688.0,
+     "final_1000": 60370092.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1361,
-     "sharpe": 0.528,
+     "cagr": 0.1357,
+     "sharpe": 0.527,
      "max_dd": -0.7043,
      "vol": 0.2348,
-     "final_1000": 292129785.0,
+     "final_1000": 286087164.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0423,
+    "excess_cagr": 0.0421,
     "vol_matched_L": 1.33,
-    "vol_matched_cagr": 0.1111,
-    "dsr_active": 0.09,
-    "t_active": 2.81,
+    "vol_matched_cagr": 0.1109,
+    "dsr_active": 0.087,
+    "t_active": 2.8,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -1863,8 +1863,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1825,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1795,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4317,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -1881,7 +1881,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0423,
+    "plateau_score": 0.0421,
     "pass": false,
     "near_miss": false
    },
@@ -1892,36 +1892,36 @@
      "L": 2.5
     },
     "stats": {
-     "cagr": 0.1589,
-     "sharpe": 0.547,
+     "cagr": 0.1584,
+     "sharpe": 0.545,
      "max_dd": -0.7858,
-     "vol": 0.291,
-     "final_1000": 2078669060.0,
+     "vol": 0.2909,
+     "final_1000": 2022268664.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1261,
-     "sharpe": 0.448,
+     "cagr": 0.1256,
+     "sharpe": 0.446,
      "max_dd": -0.8044,
      "vol": 0.2912,
-     "final_1000": 122073205.0,
+     "final_1000": 118570493.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1508,
-     "sharpe": 0.521,
+     "cagr": 0.1503,
+     "sharpe": 0.52,
      "max_dd": -0.8189,
      "vol": 0.2935,
-     "final_1000": 1041739428.0,
+     "final_1000": 1013473978.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0589,
+    "excess_cagr": 0.0586,
     "vol_matched_L": 1.66,
-    "vol_matched_cagr": 0.1187,
-    "dsr_active": 0.297,
+    "vol_matched_cagr": 0.1184,
+    "dsr_active": 0.29,
     "t_active": 3.62,
     "subperiods": [
      {
@@ -1971,8 +1971,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2133,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2095,
+      "bh_cagr": 0.1486,
       "max_dd": -0.5139,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -1989,7 +1989,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0589,
+    "plateau_score": 0.0586,
     "pass": false,
     "near_miss": false
    },
@@ -2000,37 +2000,37 @@
      "L": 3.0
     },
     "stats": {
-     "cagr": 0.1714,
-     "sharpe": 0.542,
+     "cagr": 0.1709,
+     "sharpe": 0.54,
      "max_dd": -0.8606,
-     "vol": 0.3492,
-     "final_1000": 6021926069.0,
+     "vol": 0.3491,
+     "final_1000": 5818573638.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1297,
-     "sharpe": 0.438,
+     "cagr": 0.1292,
+     "sharpe": 0.436,
      "max_dd": -0.8866,
      "vol": 0.3494,
-     "final_1000": 168288743.0,
+     "final_1000": 162259294.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1614,
-     "sharpe": 0.516,
+     "cagr": 0.1608,
+     "sharpe": 0.515,
      "max_dd": -0.8965,
      "vol": 0.3522,
-     "final_1000": 2569780724.0,
+     "final_1000": 2483002648.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0714,
+    "excess_cagr": 0.0711,
     "vol_matched_L": 1.99,
-    "vol_matched_cagr": 0.1224,
-    "dsr_active": 0.468,
-    "t_active": 4.08,
+    "vol_matched_cagr": 0.1221,
+    "dsr_active": 0.459,
+    "t_active": 4.07,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -2079,8 +2079,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2404,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2357,
+      "bh_cagr": 0.1486,
       "max_dd": -0.5856,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2097,7 +2097,7 @@
      "C6": false
     },
     "plateau_share": 0.67,
-    "plateau_score": 0.0714,
+    "plateau_score": 0.0711,
     "pass": false,
     "near_miss": false
    },
@@ -2108,35 +2108,35 @@
      "L": 1.0
     },
     "stats": {
-     "cagr": 0.1,
-     "sharpe": 0.593,
+     "cagr": 0.0998,
+     "sharpe": 0.592,
      "max_dd": -0.457,
      "vol": 0.1198,
-     "final_1000": 12093417.0,
+     "final_1000": 11992180.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0943,
-     "sharpe": 0.55,
+     "cagr": 0.0941,
+     "sharpe": 0.549,
      "max_dd": -0.4705,
      "vol": 0.1199,
-     "final_1000": 7261506.0,
+     "final_1000": 7200540.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.0989,
-     "sharpe": 0.584,
+     "cagr": 0.0988,
+     "sharpe": 0.583,
      "max_dd": -0.4775,
      "vol": 0.1202,
-     "final_1000": 11029666.0,
+     "final_1000": 10937333.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": -0.0,
     "vol_matched_L": 0.68,
-    "vol_matched_cagr": 0.0812,
+    "vol_matched_cagr": 0.0811,
     "dsr_active": 0.0,
     "t_active": -0.64,
     "subperiods": [
@@ -2187,8 +2187,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.103,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1017,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2119,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2216,37 +2216,37 @@
      "L": 1.5
     },
     "stats": {
-     "cagr": 0.1244,
-     "sharpe": 0.568,
+     "cagr": 0.1241,
+     "sharpe": 0.567,
      "max_dd": -0.6276,
      "vol": 0.1797,
-     "final_1000": 105607161.0,
+     "final_1000": 104083342.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1107,
-     "sharpe": 0.5,
+     "cagr": 0.1104,
+     "sharpe": 0.499,
      "max_dd": -0.6423,
      "vol": 0.1798,
-     "final_1000": 31534238.0,
+     "final_1000": 31062107.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1228,
-     "sharpe": 0.559,
+     "cagr": 0.1225,
+     "sharpe": 0.558,
      "max_dd": -0.6347,
      "vol": 0.1803,
-     "final_1000": 91584420.0,
+     "final_1000": 90262937.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0244,
+    "excess_cagr": 0.0243,
     "vol_matched_L": 1.02,
-    "vol_matched_cagr": 0.1009,
+    "vol_matched_cagr": 0.1007,
     "dsr_active": 0.005,
-    "t_active": 1.6,
+    "t_active": 1.59,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -2295,8 +2295,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1353,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1332,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3129,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2313,7 +2313,7 @@
      "C6": false
     },
     "plateau_share": 0.67,
-    "plateau_score": 0.0219,
+    "plateau_score": 0.0218,
     "pass": false,
     "near_miss": false
    },
@@ -2324,37 +2324,37 @@
      "L": 2.0
     },
     "stats": {
-     "cagr": 0.1451,
-     "sharpe": 0.556,
+     "cagr": 0.1447,
+     "sharpe": 0.554,
      "max_dd": -0.752,
      "vol": 0.2396,
-     "final_1000": 639432831.0,
+     "final_1000": 626206346.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1232,
-     "sharpe": 0.475,
+     "cagr": 0.1228,
+     "sharpe": 0.474,
      "max_dd": -0.7654,
      "vol": 0.2397,
-     "final_1000": 94908526.0,
+     "final_1000": 92845238.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1428,
-     "sharpe": 0.546,
+     "cagr": 0.1425,
+     "sharpe": 0.545,
      "max_dd": -0.7499,
-     "vol": 0.2405,
-     "final_1000": 525753060.0,
+     "vol": 0.2404,
+     "final_1000": 514878009.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0451,
+    "excess_cagr": 0.0449,
     "vol_matched_L": 1.37,
-    "vol_matched_cagr": 0.1122,
-    "dsr_active": 0.134,
-    "t_active": 3.05,
+    "vol_matched_cagr": 0.112,
+    "dsr_active": 0.13,
+    "t_active": 3.04,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -2403,8 +2403,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1637,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1608,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4029,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -2421,7 +2421,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0423,
+    "plateau_score": 0.0421,
     "pass": false,
     "near_miss": false
    },
@@ -2432,37 +2432,37 @@
      "L": 2.5
     },
     "stats": {
-     "cagr": 0.1618,
-     "sharpe": 0.548,
+     "cagr": 0.1613,
+     "sharpe": 0.547,
      "max_dd": -0.8398,
      "vol": 0.2995,
-     "final_1000": 2665893909.0,
+     "final_1000": 2593560378.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1315,
-     "sharpe": 0.46,
+     "cagr": 0.1311,
+     "sharpe": 0.459,
      "max_dd": -0.8507,
      "vol": 0.2997,
-     "final_1000": 196582629.0,
+     "final_1000": 190941978.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1588,
-     "sharpe": 0.539,
+     "cagr": 0.1584,
+     "sharpe": 0.538,
      "max_dd": -0.8358,
-     "vol": 0.3006,
-     "final_1000": 2071805727.0,
+     "vol": 0.3005,
+     "final_1000": 2015591553.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0618,
+    "excess_cagr": 0.0615,
     "vol_matched_L": 1.71,
-    "vol_matched_cagr": 0.1195,
-    "dsr_active": 0.367,
-    "t_active": 3.82,
+    "vol_matched_cagr": 0.1192,
+    "dsr_active": 0.359,
+    "t_active": 3.81,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -2511,8 +2511,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1878,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1842,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4829,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2529,7 +2529,7 @@
      "C6": false
     },
     "plateau_share": 0.67,
-    "plateau_score": 0.0589,
+    "plateau_score": 0.0586,
     "pass": false,
     "near_miss": false
    },
@@ -2540,37 +2540,37 @@
      "L": 3.0
     },
     "stats": {
-     "cagr": 0.1742,
-     "sharpe": 0.543,
+     "cagr": 0.1736,
+     "sharpe": 0.542,
      "max_dd": -0.8996,
-     "vol": 0.3595,
-     "final_1000": 7579969122.0,
+     "vol": 0.3594,
+     "final_1000": 7324003651.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1355,
-     "sharpe": 0.45,
+     "cagr": 0.1349,
+     "sharpe": 0.449,
      "max_dd": -0.9079,
      "vol": 0.3596,
-     "final_1000": 277516775.0,
+     "final_1000": 267573904.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1705,
-     "sharpe": 0.534,
+     "cagr": 0.1699,
+     "sharpe": 0.533,
      "max_dd": -0.8964,
      "vol": 0.3607,
-     "final_1000": 5549579379.0,
+     "final_1000": 5362177468.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0742,
+    "excess_cagr": 0.0738,
     "vol_matched_L": 2.05,
-    "vol_matched_cagr": 0.1227,
-    "dsr_active": 0.529,
-    "t_active": 4.24,
+    "vol_matched_cagr": 0.1223,
+    "dsr_active": 0.521,
+    "t_active": 4.23,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -2619,8 +2619,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2073,
-      "bh_cagr": 0.1502,
+      "cagr": 0.203,
+      "bh_cagr": 0.1486,
       "max_dd": -0.5537,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2637,7 +2637,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0666,
+    "plateau_score": 0.0663,
     "pass": false,
     "near_miss": false
    },
@@ -2648,37 +2648,37 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.0893,
-     "sharpe": 0.52,
+     "cagr": 0.0891,
+     "sharpe": 0.518,
      "max_dd": -0.523,
      "vol": 0.1174,
-     "final_1000": 4633500.0,
+     "final_1000": 4566749.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0838,
-     "sharpe": 0.477,
+     "cagr": 0.0836,
+     "sharpe": 0.475,
      "max_dd": -0.525,
      "vol": 0.1174,
-     "final_1000": 2808331.0,
+     "final_1000": 2765294.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.0902,
-     "sharpe": 0.524,
+     "cagr": 0.09,
+     "sharpe": 0.522,
      "max_dd": -0.516,
      "vol": 0.1183,
-     "final_1000": 5025520.0,
+     "final_1000": 4964167.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": -0.0107,
     "vol_matched_L": 0.67,
-    "vol_matched_cagr": 0.0803,
+    "vol_matched_cagr": 0.0802,
     "dsr_active": 0.0,
-    "t_active": -1.92,
+    "t_active": -1.93,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -2727,8 +2727,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.098,
-      "bh_cagr": 0.1502,
+      "cagr": 0.0963,
+      "bh_cagr": 0.1486,
       "max_dd": -0.1733,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2756,35 +2756,35 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.0893,
-     "sharpe": 0.512,
+     "cagr": 0.0891,
+     "sharpe": 0.51,
      "max_dd": -0.523,
      "vol": 0.1199,
-     "final_1000": 4627386.0,
+     "final_1000": 4560723.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0822,
-     "sharpe": 0.457,
+     "cagr": 0.082,
+     "sharpe": 0.456,
      "max_dd": -0.525,
      "vol": 0.1199,
-     "final_1000": 2435938.0,
+     "final_1000": 2398608.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.0903,
-     "sharpe": 0.516,
+     "cagr": 0.0901,
+     "sharpe": 0.515,
      "max_dd": -0.516,
      "vol": 0.1209,
-     "final_1000": 5074135.0,
+     "final_1000": 5012189.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": -0.0107,
     "vol_matched_L": 0.68,
-    "vol_matched_cagr": 0.0812,
+    "vol_matched_cagr": 0.0811,
     "dsr_active": 0.0,
     "t_active": -1.87,
     "subperiods": [
@@ -2835,8 +2835,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.0958,
-      "bh_cagr": 0.1502,
+      "cagr": 0.0941,
+      "bh_cagr": 0.1486,
       "max_dd": -0.1817,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2864,37 +2864,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.0881,
-     "sharpe": 0.497,
+     "cagr": 0.0878,
+     "sharpe": 0.495,
      "max_dd": -0.523,
      "vol": 0.1215,
-     "final_1000": 4129281.0,
+     "final_1000": 4069794.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0804,
-     "sharpe": 0.438,
+     "cagr": 0.0801,
+     "sharpe": 0.437,
      "max_dd": -0.525,
      "vol": 0.1215,
-     "final_1000": 2048538.0,
+     "final_1000": 2017145.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.0899,
-     "sharpe": 0.509,
+     "cagr": 0.0896,
+     "sharpe": 0.507,
      "max_dd": -0.516,
      "vol": 0.1221,
-     "final_1000": 4863721.0,
+     "final_1000": 4804343.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": -0.0119,
+    "excess_cagr": -0.012,
     "vol_matched_L": 0.69,
-    "vol_matched_cagr": 0.0818,
+    "vol_matched_cagr": 0.0817,
     "dsr_active": 0.0,
-    "t_active": -1.94,
+    "t_active": -1.95,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -2943,8 +2943,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.0952,
-      "bh_cagr": 0.1502,
+      "cagr": 0.0934,
+      "bh_cagr": 0.1486,
       "max_dd": -0.1817,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -2961,7 +2961,7 @@
      "C6": false
     },
     "plateau_share": 0.5,
-    "plateau_score": -0.0119,
+    "plateau_score": -0.012,
     "pass": false,
     "near_miss": false
    },
@@ -2972,35 +2972,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1091,
-     "sharpe": 0.539,
+     "cagr": 0.1089,
+     "sharpe": 0.538,
      "max_dd": -0.6709,
-     "vol": 0.1567,
-     "final_1000": 27389614.0,
+     "vol": 0.1566,
+     "final_1000": 27035467.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1022,
-     "sharpe": 0.499,
+     "cagr": 0.102,
+     "sharpe": 0.498,
      "max_dd": -0.6735,
      "vol": 0.1567,
-     "final_1000": 14814313.0,
+     "final_1000": 14613162.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1095,
-     "sharpe": 0.539,
+     "cagr": 0.1093,
+     "sharpe": 0.538,
      "max_dd": -0.6695,
      "vol": 0.1576,
-     "final_1000": 28287116.0,
+     "final_1000": 27978981.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": 0.0091,
     "vol_matched_L": 0.89,
-    "vol_matched_cagr": 0.094,
+    "vol_matched_cagr": 0.0938,
     "dsr_active": 0.0,
     "t_active": 0.64,
     "subperiods": [
@@ -3051,8 +3051,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1359,
-      "bh_cagr": 0.1502,
+      "cagr": 0.134,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2187,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -3080,37 +3080,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.11,
-     "sharpe": 0.515,
+     "cagr": 0.1097,
+     "sharpe": 0.513,
      "max_dd": -0.6709,
-     "vol": 0.1698,
-     "final_1000": 29693657.0,
+     "vol": 0.1699,
+     "final_1000": 29172406.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0984,
-     "sharpe": 0.453,
+     "cagr": 0.0981,
+     "sharpe": 0.451,
      "max_dd": -0.6735,
      "vol": 0.1699,
-     "final_1000": 10470490.0,
+     "final_1000": 10266994.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1116,
-     "sharpe": 0.52,
+     "cagr": 0.1113,
+     "sharpe": 0.519,
      "max_dd": -0.6695,
      "vol": 0.1713,
-     "final_1000": 34058708.0,
+     "final_1000": 33491804.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.01,
+    "excess_cagr": 0.0099,
     "vol_matched_L": 0.97,
-    "vol_matched_cagr": 0.0982,
+    "vol_matched_cagr": 0.0981,
     "dsr_active": 0.001,
-    "t_active": 0.9,
+    "t_active": 0.89,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -3159,8 +3159,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1306,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1283,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2283,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -3188,37 +3188,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1099,
-     "sharpe": 0.501,
+     "cagr": 0.1096,
+     "sharpe": 0.499,
      "max_dd": -0.6709,
-     "vol": 0.177,
-     "final_1000": 29317354.0,
+     "vol": 0.1769,
+     "final_1000": 28802708.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0941,
-     "sharpe": 0.42,
+     "cagr": 0.0938,
+     "sharpe": 0.418,
      "max_dd": -0.6735,
      "vol": 0.177,
-     "final_1000": 7153155.0,
+     "final_1000": 7014132.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.111,
-     "sharpe": 0.504,
+     "cagr": 0.1108,
+     "sharpe": 0.503,
      "max_dd": -0.6695,
-     "vol": 0.1784,
-     "final_1000": 32497157.0,
+     "vol": 0.1783,
+     "final_1000": 31956245.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0099,
+    "excess_cagr": 0.0098,
     "vol_matched_L": 1.01,
-    "vol_matched_cagr": 0.1003,
+    "vol_matched_cagr": 0.1001,
     "dsr_active": 0.001,
-    "t_active": 0.95,
+    "t_active": 0.94,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -3267,8 +3267,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1287,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1264,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2408,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -3285,7 +3285,7 @@
      "C6": false
     },
     "plateau_share": 0.67,
-    "plateau_score": 0.0099,
+    "plateau_score": 0.0098,
     "pass": false,
     "near_miss": false
    },
@@ -3296,35 +3296,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1143,
-     "sharpe": 0.514,
+     "cagr": 0.1141,
+     "sharpe": 0.513,
      "max_dd": -0.7624,
      "vol": 0.1819,
-     "final_1000": 43372832.0,
+     "final_1000": 42833260.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1074,
-     "sharpe": 0.479,
+     "cagr": 0.1072,
+     "sharpe": 0.478,
      "max_dd": -0.7661,
      "vol": 0.1819,
-     "final_1000": 23487031.0,
+     "final_1000": 23186031.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1143,
-     "sharpe": 0.512,
+     "cagr": 0.114,
+     "sharpe": 0.51,
      "max_dd": -0.7589,
      "vol": 0.1829,
-     "final_1000": 43204601.0,
+     "final_1000": 42667121.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0143,
+    "excess_cagr": 0.0142,
     "vol_matched_L": 1.04,
-    "vol_matched_cagr": 0.1014,
+    "vol_matched_cagr": 0.1012,
     "dsr_active": 0.014,
     "t_active": 1.96,
     "subperiods": [
@@ -3375,8 +3375,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1624,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1603,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2566,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -3393,7 +3393,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0143,
+    "plateau_score": 0.0142,
     "pass": false,
     "near_miss": false
    },
@@ -3404,37 +3404,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1236,
-     "sharpe": 0.513,
+     "cagr": 0.1233,
+     "sharpe": 0.512,
      "max_dd": -0.7686,
      "vol": 0.2083,
-     "final_1000": 98428039.0,
+     "final_1000": 96682334.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1101,
-     "sharpe": 0.455,
+     "cagr": 0.1098,
+     "sharpe": 0.454,
      "max_dd": -0.7716,
      "vol": 0.2083,
-     "final_1000": 29814173.0,
+     "final_1000": 29256255.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1237,
-     "sharpe": 0.512,
+     "cagr": 0.1234,
+     "sharpe": 0.511,
      "max_dd": -0.7725,
      "vol": 0.2096,
-     "final_1000": 99563304.0,
+     "final_1000": 97979971.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0236,
+    "excess_cagr": 0.0235,
     "vol_matched_L": 1.19,
-    "vol_matched_cagr": 0.1068,
-    "dsr_active": 0.097,
-    "t_active": 2.86,
+    "vol_matched_cagr": 0.1066,
+    "dsr_active": 0.094,
+    "t_active": 2.85,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -3483,8 +3483,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1641,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1616,
+      "bh_cagr": 0.1486,
       "max_dd": -0.274,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -3501,7 +3501,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0181,
+    "plateau_score": 0.018,
     "pass": false,
     "near_miss": false
    },
@@ -3512,37 +3512,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.122,
-     "sharpe": 0.48,
+     "cagr": 0.1216,
+     "sharpe": 0.479,
      "max_dd": -0.7686,
      "vol": 0.2296,
-     "final_1000": 85735313.0,
+     "final_1000": 83358909.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0995,
-     "sharpe": 0.392,
+     "cagr": 0.0991,
+     "sharpe": 0.39,
      "max_dd": -0.7716,
      "vol": 0.2296,
-     "final_1000": 11606512.0,
+     "final_1000": 11256349.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.123,
-     "sharpe": 0.482,
+     "cagr": 0.1226,
+     "sharpe": 0.481,
      "max_dd": -0.7725,
      "vol": 0.2315,
-     "final_1000": 93252071.0,
+     "final_1000": 91300383.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.022,
+    "excess_cagr": 0.0218,
     "vol_matched_L": 1.31,
-    "vol_matched_cagr": 0.1106,
-    "dsr_active": 0.055,
-    "t_active": 2.55,
+    "vol_matched_cagr": 0.1103,
+    "dsr_active": 0.052,
+    "t_active": 2.53,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -3591,8 +3591,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1552,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1519,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3181,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -3609,7 +3609,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.022,
+    "plateau_score": 0.0218,
     "pass": false,
     "near_miss": false
    },
@@ -3620,37 +3620,37 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1151,
-     "sharpe": 0.491,
+     "cagr": 0.1149,
+     "sharpe": 0.49,
      "max_dd": -0.8596,
      "vol": 0.1984,
-     "final_1000": 46713565.0,
+     "final_1000": 46039529.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1085,
-     "sharpe": 0.461,
+     "cagr": 0.1082,
+     "sharpe": 0.459,
      "max_dd": -0.8622,
      "vol": 0.1984,
-     "final_1000": 25900135.0,
+     "final_1000": 25512358.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1158,
-     "sharpe": 0.492,
+     "cagr": 0.1156,
+     "sharpe": 0.491,
      "max_dd": -0.8526,
-     "vol": 0.1994,
-     "final_1000": 49668050.0,
+     "vol": 0.1993,
+     "final_1000": 48951384.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": 0.0151,
     "vol_matched_L": 1.13,
-    "vol_matched_cagr": 0.1049,
-    "dsr_active": 0.078,
-    "t_active": 2.73,
+    "vol_matched_cagr": 0.1047,
+    "dsr_active": 0.075,
+    "t_active": 2.72,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -3699,8 +3699,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1723,
-      "bh_cagr": 0.1502,
+      "cagr": 0.17,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3411,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -3728,37 +3728,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.13,
-     "sharpe": 0.503,
+     "cagr": 0.1297,
+     "sharpe": 0.502,
      "max_dd": -0.8741,
-     "vol": 0.2363,
-     "final_1000": 173170899.0,
+     "vol": 0.2362,
+     "final_1000": 169594962.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1159,
-     "sharpe": 0.45,
+     "cagr": 0.1155,
+     "sharpe": 0.449,
      "max_dd": -0.8773,
      "vol": 0.2363,
-     "final_1000": 49915592.0,
+     "final_1000": 48831995.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1305,
-     "sharpe": 0.503,
+     "cagr": 0.1301,
+     "sharpe": 0.502,
      "max_dd": -0.8668,
      "vol": 0.2381,
-     "final_1000": 180075265.0,
+     "final_1000": 176305825.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0301,
+    "excess_cagr": 0.0299,
     "vol_matched_L": 1.35,
-    "vol_matched_cagr": 0.1117,
-    "dsr_active": 0.341,
-    "t_active": 3.75,
+    "vol_matched_cagr": 0.1114,
+    "dsr_active": 0.332,
+    "t_active": 3.73,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -3807,8 +3807,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1889,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1859,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3408,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -3825,7 +3825,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0236,
+    "plateau_score": 0.0235,
     "pass": false,
     "near_miss": false
    },
@@ -3836,37 +3836,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1368,
-     "sharpe": 0.491,
+     "cagr": 0.1363,
+     "sharpe": 0.489,
      "max_dd": -0.8699,
      "vol": 0.2746,
-     "final_1000": 311531777.0,
+     "final_1000": 300955864.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1102,
-     "sharpe": 0.405,
+     "cagr": 0.1097,
+     "sharpe": 0.403,
      "max_dd": -0.8739,
-     "vol": 0.2746,
-     "final_1000": 30211825.0,
+     "vol": 0.2747,
+     "final_1000": 29088094.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1399,
-     "sharpe": 0.499,
+     "cagr": 0.1394,
+     "sharpe": 0.497,
      "max_dd": -0.8621,
      "vol": 0.2771,
-     "final_1000": 408332692.0,
+     "final_1000": 394687156.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0368,
+    "excess_cagr": 0.0365,
     "vol_matched_L": 1.56,
-    "vol_matched_cagr": 0.1169,
-    "dsr_active": 0.32,
-    "t_active": 3.69,
+    "vol_matched_cagr": 0.1167,
+    "dsr_active": 0.309,
+    "t_active": 3.67,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -3915,8 +3915,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1769,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1728,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3665,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -3933,7 +3933,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.026,
+    "plateau_score": 0.0258,
     "pass": false,
     "near_miss": false
    },
@@ -3945,35 +3945,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1054,
-     "sharpe": 0.617,
+     "cagr": 0.1052,
+     "sharpe": 0.615,
      "max_dd": -0.3782,
      "vol": 0.1241,
-     "final_1000": 19671245.0,
+     "final_1000": 19416897.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0911,
-     "sharpe": 0.511,
+     "cagr": 0.0909,
+     "sharpe": 0.509,
      "max_dd": -0.4238,
      "vol": 0.1242,
-     "final_1000": 5438432.0,
+     "final_1000": 5364588.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1043,
-     "sharpe": 0.6,
+     "cagr": 0.1041,
+     "sharpe": 0.598,
      "max_dd": -0.4315,
      "vol": 0.1264,
-     "final_1000": 17841516.0,
+     "final_1000": 17647167.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": 0.0054,
     "vol_matched_L": 0.71,
-    "vol_matched_cagr": 0.0827,
+    "vol_matched_cagr": 0.0826,
     "dsr_active": 0.0,
     "t_active": -0.2,
     "subperiods": [
@@ -4024,8 +4024,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1146,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1128,
+      "bh_cagr": 0.1486,
       "max_dd": -0.194,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4054,37 +4054,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1068,
-     "sharpe": 0.578,
+     "cagr": 0.1065,
+     "sharpe": 0.576,
      "max_dd": -0.409,
      "vol": 0.1378,
-     "final_1000": 22324834.0,
+     "final_1000": 21932937.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.088,
-     "sharpe": 0.453,
+     "cagr": 0.0877,
+     "sharpe": 0.451,
      "max_dd": -0.4606,
-     "vol": 0.1379,
-     "final_1000": 4098909.0,
+     "vol": 0.138,
+     "final_1000": 4019246.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1062,
-     "sharpe": 0.565,
+     "cagr": 0.106,
+     "sharpe": 0.563,
      "max_dd": -0.4691,
      "vol": 0.1408,
-     "final_1000": 21183878.0,
+     "final_1000": 20831274.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0068,
-    "vol_matched_L": 0.78,
-    "vol_matched_cagr": 0.0876,
+    "excess_cagr": 0.0067,
+    "vol_matched_L": 0.79,
+    "vol_matched_cagr": 0.0875,
     "dsr_active": 0.0,
-    "t_active": 0.02,
+    "t_active": 0.01,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -4133,8 +4133,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1083,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1062,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2361,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4151,7 +4151,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0068,
+    "plateau_score": 0.0067,
     "pass": false,
     "near_miss": false
    },
@@ -4163,37 +4163,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1065,
-     "sharpe": 0.552,
+     "cagr": 0.1063,
+     "sharpe": 0.55,
      "max_dd": -0.4108,
      "vol": 0.1459,
-     "final_1000": 21776562.0,
+     "final_1000": 21394290.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0838,
-     "sharpe": 0.409,
+     "cagr": 0.0835,
+     "sharpe": 0.408,
      "max_dd": -0.4681,
      "vol": 0.146,
-     "final_1000": 2806994.0,
+     "final_1000": 2752439.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1062,
-     "sharpe": 0.542,
+     "cagr": 0.1059,
+     "sharpe": 0.54,
      "max_dd": -0.4721,
      "vol": 0.1488,
-     "final_1000": 21066161.0,
+     "final_1000": 20715517.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0066,
+    "excess_cagr": 0.0064,
     "vol_matched_L": 0.83,
-    "vol_matched_cagr": 0.0904,
+    "vol_matched_cagr": 0.0902,
     "dsr_active": 0.0,
-    "t_active": 0.08,
+    "t_active": 0.07,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -4242,8 +4242,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1061,
-      "bh_cagr": 0.1502,
+      "cagr": 0.104,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2571,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4260,7 +4260,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0066,
+    "plateau_score": 0.0064,
     "pass": false,
     "near_miss": false
    },
@@ -4272,35 +4272,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1117,
-     "sharpe": 0.604,
+     "cagr": 0.1114,
+     "sharpe": 0.602,
      "max_dd": -0.4148,
      "vol": 0.1394,
-     "final_1000": 34377062.0,
+     "final_1000": 33899001.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0958,
-     "sharpe": 0.501,
+     "cagr": 0.0956,
+     "sharpe": 0.499,
      "max_dd": -0.4632,
      "vol": 0.1396,
-     "final_1000": 8348496.0,
+     "final_1000": 8228232.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1108,
-     "sharpe": 0.59,
+     "cagr": 0.1106,
+     "sharpe": 0.588,
      "max_dd": -0.478,
-     "vol": 0.1422,
-     "final_1000": 31906190.0,
+     "vol": 0.1423,
+     "final_1000": 31462490.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0117,
+    "excess_cagr": 0.0116,
     "vol_matched_L": 0.79,
-    "vol_matched_cagr": 0.0881,
+    "vol_matched_cagr": 0.088,
     "dsr_active": 0.0,
     "t_active": 0.34,
     "subperiods": [
@@ -4351,8 +4351,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1387,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1367,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2059,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4369,7 +4369,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0117,
+    "plateau_score": 0.0116,
     "pass": false,
     "near_miss": false
    },
@@ -4381,37 +4381,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1219,
-     "sharpe": 0.589,
+     "cagr": 0.1216,
+     "sharpe": 0.587,
      "max_dd": -0.4741,
-     "vol": 0.1652,
-     "final_1000": 84759117.0,
+     "vol": 0.1653,
+     "final_1000": 83255841.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0993,
-     "sharpe": 0.466,
+     "cagr": 0.099,
+     "sharpe": 0.464,
      "max_dd": -0.5287,
      "vol": 0.1654,
-     "final_1000": 11435848.0,
+     "final_1000": 11221847.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1213,
-     "sharpe": 0.578,
+     "cagr": 0.121,
+     "sharpe": 0.577,
      "max_dd": -0.5402,
      "vol": 0.1684,
-     "final_1000": 80350860.0,
+     "final_1000": 79073058.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0219,
+    "excess_cagr": 0.0218,
     "vol_matched_L": 0.94,
-    "vol_matched_cagr": 0.0968,
+    "vol_matched_cagr": 0.0966,
     "dsr_active": 0.001,
-    "t_active": 1.17,
+    "t_active": 1.16,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -4460,8 +4460,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.136,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1337,
+      "bh_cagr": 0.1486,
       "max_dd": -0.26,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4478,7 +4478,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0219,
+    "plateau_score": 0.0218,
     "pass": false,
     "near_miss": false
    },
@@ -4490,37 +4490,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1228,
-     "sharpe": 0.544,
+     "cagr": 0.1224,
+     "sharpe": 0.542,
      "max_dd": -0.5111,
-     "vol": 0.1879,
-     "final_1000": 92147148.0,
+     "vol": 0.188,
+     "final_1000": 89593021.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0917,
-     "sharpe": 0.394,
+     "cagr": 0.0913,
+     "sharpe": 0.392,
      "max_dd": -0.574,
      "vol": 0.1882,
-     "final_1000": 5753630.0,
+     "final_1000": 5580045.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1227,
-     "sharpe": 0.537,
+     "cagr": 0.1223,
+     "sharpe": 0.535,
      "max_dd": -0.5859,
      "vol": 0.1914,
-     "final_1000": 90699727.0,
+     "final_1000": 88801457.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0228,
+    "excess_cagr": 0.0226,
     "vol_matched_L": 1.07,
-    "vol_matched_cagr": 0.1027,
-    "dsr_active": 0.003,
-    "t_active": 1.36,
+    "vol_matched_cagr": 0.1025,
+    "dsr_active": 0.002,
+    "t_active": 1.35,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -4569,8 +4569,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1266,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1235,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3406,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4587,7 +4587,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0228,
+    "plateau_score": 0.0226,
     "pass": false,
     "near_miss": false
    },
@@ -4599,35 +4599,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1172,
-     "sharpe": 0.609,
+     "cagr": 0.117,
+     "sharpe": 0.607,
      "max_dd": -0.4696,
-     "vol": 0.1486,
-     "final_1000": 56267203.0,
+     "vol": 0.1487,
+     "final_1000": 55455316.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1003,
-     "sharpe": 0.506,
+     "cagr": 0.1001,
+     "sharpe": 0.504,
      "max_dd": -0.5103,
      "vol": 0.1488,
-     "final_1000": 12476568.0,
+     "final_1000": 12289769.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1146,
-     "sharpe": 0.583,
+     "cagr": 0.1144,
+     "sharpe": 0.581,
      "max_dd": -0.4894,
      "vol": 0.1525,
-     "final_1000": 44725920.0,
+     "final_1000": 44080564.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": 0.0172,
     "vol_matched_L": 0.85,
-    "vol_matched_cagr": 0.0913,
+    "vol_matched_cagr": 0.0912,
     "dsr_active": 0.0,
     "t_active": 0.78,
     "subperiods": [
@@ -4678,8 +4678,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1495,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1473,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2515,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4708,35 +4708,35 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1308,
-     "sharpe": 0.593,
+     "cagr": 0.1304,
+     "sharpe": 0.591,
      "max_dd": -0.5197,
      "vol": 0.1826,
-     "final_1000": 184166695.0,
+     "final_1000": 180363697.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1063,
-     "sharpe": 0.473,
+     "cagr": 0.106,
+     "sharpe": 0.471,
      "max_dd": -0.5744,
      "vol": 0.1828,
-     "final_1000": 21309853.0,
+     "final_1000": 20847246.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1283,
-     "sharpe": 0.573,
+     "cagr": 0.1279,
+     "sharpe": 0.571,
      "max_dd": -0.5768,
      "vol": 0.1866,
-     "final_1000": 148563494.0,
+     "final_1000": 145453676.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0308,
+    "excess_cagr": 0.0306,
     "vol_matched_L": 1.04,
-    "vol_matched_cagr": 0.1015,
+    "vol_matched_cagr": 0.1014,
     "dsr_active": 0.009,
     "t_active": 1.81,
     "subperiods": [
@@ -4787,8 +4787,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1628,
-      "bh_cagr": 0.1502,
+      "cagr": 0.16,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2761,
       "bh_max_dd": -0.3422,
       "ok": true,
@@ -4805,7 +4805,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0279,
+    "plateau_score": 0.0278,
     "pass": false,
     "near_miss": false
    },
@@ -4817,37 +4817,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1398,
-     "sharpe": 0.56,
+     "cagr": 0.1393,
+     "sharpe": 0.557,
      "max_dd": -0.5927,
-     "vol": 0.2222,
-     "final_1000": 405015313.0,
+     "vol": 0.2223,
+     "final_1000": 391265811.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.103,
-     "sharpe": 0.411,
+     "cagr": 0.1024,
+     "sharpe": 0.409,
      "max_dd": -0.6544,
      "vol": 0.2225,
-     "final_1000": 15807478.0,
+     "final_1000": 15219517.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1397,
-     "sharpe": 0.553,
+     "cagr": 0.1392,
+     "sharpe": 0.551,
      "max_dd": -0.6582,
      "vol": 0.2267,
-     "final_1000": 400836121.0,
+     "final_1000": 387441103.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0398,
+    "excess_cagr": 0.0395,
     "vol_matched_L": 1.27,
-    "vol_matched_cagr": 0.1093,
-    "dsr_active": 0.041,
-    "t_active": 2.41,
+    "vol_matched_cagr": 0.1091,
+    "dsr_active": 0.038,
+    "t_active": 2.4,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -4896,8 +4896,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1489,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1451,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3588,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -4914,7 +4914,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0308,
+    "plateau_score": 0.0306,
     "pass": false,
     "near_miss": false
    },
@@ -4926,37 +4926,37 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1083,
-     "sharpe": 0.629,
+     "cagr": 0.1081,
+     "sharpe": 0.627,
      "max_dd": -0.3808,
      "vol": 0.1264,
-     "final_1000": 25444603.0,
+     "final_1000": 25115605.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.096,
-     "sharpe": 0.54,
+     "cagr": 0.0958,
+     "sharpe": 0.538,
      "max_dd": -0.4141,
      "vol": 0.1265,
-     "final_1000": 8462129.0,
+     "final_1000": 8347228.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1056,
-     "sharpe": 0.604,
+     "cagr": 0.1054,
+     "sharpe": 0.602,
      "max_dd": -0.4284,
      "vol": 0.1279,
-     "final_1000": 20080858.0,
+     "final_1000": 19862115.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0083,
+    "excess_cagr": 0.0082,
     "vol_matched_L": 0.72,
-    "vol_matched_cagr": 0.0836,
+    "vol_matched_cagr": 0.0834,
     "dsr_active": 0.0,
-    "t_active": 0.01,
+    "t_active": 0.0,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -5005,8 +5005,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1084,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1067,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2001,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5023,7 +5023,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0083,
+    "plateau_score": 0.0082,
     "pass": false,
     "near_miss": false
    },
@@ -5035,37 +5035,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1098,
-     "sharpe": 0.588,
+     "cagr": 0.1095,
+     "sharpe": 0.586,
      "max_dd": -0.3859,
      "vol": 0.1405,
-     "final_1000": 28971589.0,
+     "final_1000": 28463013.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0929,
-     "sharpe": 0.479,
+     "cagr": 0.0926,
+     "sharpe": 0.477,
      "max_dd": -0.4357,
      "vol": 0.1406,
-     "final_1000": 6418934.0,
+     "final_1000": 6294180.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1074,
-     "sharpe": 0.566,
+     "cagr": 0.1071,
+     "sharpe": 0.565,
      "max_dd": -0.4461,
      "vol": 0.1427,
-     "final_1000": 23424695.0,
+     "final_1000": 23034794.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0098,
+    "excess_cagr": 0.0096,
     "vol_matched_L": 0.8,
-    "vol_matched_cagr": 0.0885,
+    "vol_matched_cagr": 0.0884,
     "dsr_active": 0.0,
-    "t_active": 0.23,
+    "t_active": 0.22,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -5114,8 +5114,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1027,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1006,
+      "bh_cagr": 0.1486,
       "max_dd": -0.256,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5132,7 +5132,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0094,
+    "plateau_score": 0.0093,
     "pass": false,
     "near_miss": false
    },
@@ -5144,37 +5144,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1094,
-     "sharpe": 0.562,
+     "cagr": 0.1091,
+     "sharpe": 0.561,
      "max_dd": -0.3808,
      "vol": 0.1485,
-     "final_1000": 28089790.0,
+     "final_1000": 27596693.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0887,
-     "sharpe": 0.435,
+     "cagr": 0.0884,
+     "sharpe": 0.433,
      "max_dd": -0.4343,
      "vol": 0.1486,
-     "final_1000": 4371210.0,
+     "final_1000": 4286255.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1072,
-     "sharpe": 0.544,
+     "cagr": 0.1069,
+     "sharpe": 0.542,
      "max_dd": -0.4401,
      "vol": 0.1506,
-     "final_1000": 23137765.0,
+     "final_1000": 22752639.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0094,
+    "excess_cagr": 0.0093,
     "vol_matched_L": 0.85,
-    "vol_matched_cagr": 0.0913,
+    "vol_matched_cagr": 0.0911,
     "dsr_active": 0.0,
-    "t_active": 0.28,
+    "t_active": 0.27,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -5223,8 +5223,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1009,
-      "bh_cagr": 0.1502,
+      "cagr": 0.0988,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2765,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5241,7 +5241,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0094,
+    "plateau_score": 0.0093,
     "pass": false,
     "near_miss": false
    },
@@ -5253,35 +5253,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.114,
-     "sharpe": 0.61,
+     "cagr": 0.1137,
+     "sharpe": 0.608,
      "max_dd": -0.4687,
      "vol": 0.1421,
-     "final_1000": 42071862.0,
+     "final_1000": 41486794.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1005,
-     "sharpe": 0.524,
+     "cagr": 0.1003,
+     "sharpe": 0.523,
      "max_dd": -0.5012,
      "vol": 0.1422,
-     "final_1000": 12728054.0,
+     "final_1000": 12544700.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1117,
-     "sharpe": 0.59,
+     "cagr": 0.1114,
+     "sharpe": 0.588,
      "max_dd": -0.4807,
      "vol": 0.1439,
-     "final_1000": 34427297.0,
+     "final_1000": 33948537.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.014,
+    "excess_cagr": 0.0139,
     "vol_matched_L": 0.81,
-    "vol_matched_cagr": 0.0891,
+    "vol_matched_cagr": 0.0889,
     "dsr_active": 0.0,
     "t_active": 0.52,
     "subperiods": [
@@ -5332,8 +5332,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1288,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1268,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2411,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5350,7 +5350,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.014,
+    "plateau_score": 0.0139,
     "pass": false,
     "near_miss": false
    },
@@ -5362,37 +5362,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1257,
-     "sharpe": 0.602,
+     "cagr": 0.1253,
+     "sharpe": 0.601,
      "max_dd": -0.4895,
      "vol": 0.168,
-     "final_1000": 117915658.0,
+     "final_1000": 115824323.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1057,
-     "sharpe": 0.496,
+     "cagr": 0.1054,
+     "sharpe": 0.494,
      "max_dd": -0.5318,
      "vol": 0.1681,
-     "final_1000": 20227945.0,
+     "final_1000": 19849416.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1227,
-     "sharpe": 0.581,
+     "cagr": 0.1224,
+     "sharpe": 0.579,
      "max_dd": -0.5347,
-     "vol": 0.1703,
-     "final_1000": 90788268.0,
+     "vol": 0.1704,
+     "final_1000": 89344482.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0257,
+    "excess_cagr": 0.0255,
     "vol_matched_L": 0.96,
-    "vol_matched_cagr": 0.0976,
+    "vol_matched_cagr": 0.0975,
     "dsr_active": 0.003,
-    "t_active": 1.44,
+    "t_active": 1.43,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -5441,8 +5441,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1284,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1261,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2683,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5459,7 +5459,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0244,
+    "plateau_score": 0.0243,
     "pass": false,
     "near_miss": false
    },
@@ -5471,37 +5471,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.127,
-     "sharpe": 0.558,
+     "cagr": 0.1266,
+     "sharpe": 0.556,
      "max_dd": -0.5023,
      "vol": 0.191,
-     "final_1000": 132864890.0,
+     "final_1000": 129182151.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0986,
-     "sharpe": 0.424,
+     "cagr": 0.0981,
+     "sharpe": 0.422,
      "max_dd": -0.5616,
-     "vol": 0.1911,
-     "final_1000": 10657629.0,
+     "vol": 0.1912,
+     "final_1000": 10336093.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1242,
-     "sharpe": 0.54,
+     "cagr": 0.1238,
+     "sharpe": 0.538,
      "max_dd": -0.5589,
      "vol": 0.1938,
-     "final_1000": 103546319.0,
+     "final_1000": 101379180.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.027,
+    "excess_cagr": 0.0268,
     "vol_matched_L": 1.09,
-    "vol_matched_cagr": 0.1033,
-    "dsr_active": 0.006,
-    "t_active": 1.63,
+    "vol_matched_cagr": 0.1032,
+    "dsr_active": 0.005,
+    "t_active": 1.62,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -5550,8 +5550,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1198,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1167,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3536,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5568,7 +5568,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0257,
+    "plateau_score": 0.0255,
     "pass": false,
     "near_miss": false
    },
@@ -5580,35 +5580,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1173,
-     "sharpe": 0.6,
+     "cagr": 0.1171,
+     "sharpe": 0.598,
      "max_dd": -0.4957,
      "vol": 0.152,
-     "final_1000": 56689602.0,
+     "final_1000": 55871620.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1032,
-     "sharpe": 0.516,
+     "cagr": 0.1029,
+     "sharpe": 0.514,
      "max_dd": -0.5305,
      "vol": 0.1521,
-     "final_1000": 16150234.0,
+     "final_1000": 15908433.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1145,
-     "sharpe": 0.579,
+     "cagr": 0.1143,
+     "sharpe": 0.577,
      "max_dd": -0.5347,
-     "vol": 0.1536,
-     "final_1000": 44317009.0,
+     "vol": 0.1537,
+     "final_1000": 43677553.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0173,
+    "excess_cagr": 0.0172,
     "vol_matched_L": 0.87,
-    "vol_matched_cagr": 0.0924,
+    "vol_matched_cagr": 0.0923,
     "dsr_active": 0.0,
     "t_active": 0.84,
     "subperiods": [
@@ -5659,8 +5659,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1376,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1355,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2905,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5677,7 +5677,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0173,
+    "plateau_score": 0.0172,
     "pass": false,
     "near_miss": false
    },
@@ -5689,37 +5689,37 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1339,
-     "sharpe": 0.601,
+     "cagr": 0.1336,
+     "sharpe": 0.599,
      "max_dd": -0.5686,
      "vol": 0.186,
-     "final_1000": 243089683.0,
+     "final_1000": 238069939.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1125,
-     "sharpe": 0.498,
+     "cagr": 0.1121,
+     "sharpe": 0.496,
      "max_dd": -0.6032,
      "vol": 0.1862,
-     "final_1000": 36954790.0,
+     "final_1000": 36152554.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1293,
-     "sharpe": 0.573,
+     "cagr": 0.1289,
+     "sharpe": 0.571,
      "max_dd": -0.5894,
      "vol": 0.1889,
-     "final_1000": 162005823.0,
+     "final_1000": 158614623.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0339,
+    "excess_cagr": 0.0338,
     "vol_matched_L": 1.06,
-    "vol_matched_cagr": 0.1023,
-    "dsr_active": 0.018,
-    "t_active": 2.06,
+    "vol_matched_cagr": 0.1021,
+    "dsr_active": 0.017,
+    "t_active": 2.05,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -5768,17 +5768,17 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1507,
-      "bh_cagr": 0.1502,
+      "cagr": 0.148,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3078,
       "bh_max_dd": -0.3422,
-      "ok": true,
+      "ok": false,
       "ok_2x": false
      }
     ],
     "checks": {
      "C1": true,
-     "C2": true,
+     "C2": false,
      "C3": false,
      "C4": true,
      "C5": true,
@@ -5786,7 +5786,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0308,
+    "plateau_score": 0.0306,
     "pass": false,
     "near_miss": false
    },
@@ -5798,37 +5798,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.146,
-     "sharpe": 0.578,
+     "cagr": 0.1454,
+     "sharpe": 0.576,
      "max_dd": -0.5844,
-     "vol": 0.2258,
-     "final_1000": 689170013.0,
+     "vol": 0.2259,
+     "final_1000": 665773998.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1123,
-     "sharpe": 0.446,
+     "cagr": 0.1118,
+     "sharpe": 0.444,
      "max_dd": -0.644,
-     "vol": 0.226,
-     "final_1000": 36476976.0,
+     "vol": 0.2261,
+     "final_1000": 35120212.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1424,
-     "sharpe": 0.559,
+     "cagr": 0.1419,
+     "sharpe": 0.557,
      "max_dd": -0.6479,
-     "vol": 0.2295,
-     "final_1000": 505470337.0,
+     "vol": 0.2296,
+     "final_1000": 488578686.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.046,
+    "excess_cagr": 0.0456,
     "vol_matched_L": 1.29,
-    "vol_matched_cagr": 0.1099,
-    "dsr_active": 0.082,
-    "t_active": 2.76,
+    "vol_matched_cagr": 0.1097,
+    "dsr_active": 0.078,
+    "t_active": 2.75,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -5877,8 +5877,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1383,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1346,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3765,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -5895,7 +5895,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0369,
+    "plateau_score": 0.0367,
     "pass": false,
     "near_miss": false
    },
@@ -5907,35 +5907,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1098,
-     "sharpe": 0.629,
+     "cagr": 0.1096,
+     "sharpe": 0.627,
      "max_dd": -0.5496,
      "vol": 0.1291,
-     "final_1000": 29082228.0,
+     "final_1000": 28706196.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0988,
-     "sharpe": 0.551,
+     "cagr": 0.0985,
+     "sharpe": 0.549,
      "max_dd": -0.5852,
      "vol": 0.1292,
-     "final_1000": 10849116.0,
+     "final_1000": 10701805.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1087,
-     "sharpe": 0.616,
+     "cagr": 0.1084,
+     "sharpe": 0.614,
      "max_dd": -0.5155,
      "vol": 0.1303,
-     "final_1000": 26268715.0,
+     "final_1000": 25982567.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0098,
+    "excess_cagr": 0.0097,
     "vol_matched_L": 0.74,
-    "vol_matched_cagr": 0.0845,
+    "vol_matched_cagr": 0.0844,
     "dsr_active": 0.0,
     "t_active": 0.13,
     "subperiods": [
@@ -5986,8 +5986,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1009,
-      "bh_cagr": 0.1502,
+      "cagr": 0.0992,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2123,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6004,7 +6004,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0098,
+    "plateau_score": 0.0097,
     "pass": false,
     "near_miss": false
    },
@@ -6016,35 +6016,35 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1114,
-     "sharpe": 0.59,
+     "cagr": 0.1111,
+     "sharpe": 0.588,
      "max_dd": -0.5647,
      "vol": 0.1432,
-     "final_1000": 33531429.0,
+     "final_1000": 32942808.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0958,
-     "sharpe": 0.491,
+     "cagr": 0.0955,
+     "sharpe": 0.489,
      "max_dd": -0.6057,
-     "vol": 0.1432,
-     "final_1000": 8300522.0,
+     "vol": 0.1433,
+     "final_1000": 8139200.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1106,
-     "sharpe": 0.58,
+     "cagr": 0.1103,
+     "sharpe": 0.578,
      "max_dd": -0.5397,
      "vol": 0.145,
-     "final_1000": 31293930.0,
+     "final_1000": 30773046.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0114,
+    "excess_cagr": 0.0113,
     "vol_matched_L": 0.82,
-    "vol_matched_cagr": 0.0894,
+    "vol_matched_cagr": 0.0893,
     "dsr_active": 0.0,
     "t_active": 0.36,
     "subperiods": [
@@ -6095,8 +6095,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.0954,
-      "bh_cagr": 0.1502,
+      "cagr": 0.0934,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2459,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6113,7 +6113,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0105,
+    "plateau_score": 0.0104,
     "pass": false,
     "near_miss": false
    },
@@ -6125,35 +6125,35 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1112,
-     "sharpe": 0.566,
+     "cagr": 0.1109,
+     "sharpe": 0.564,
      "max_dd": -0.5608,
-     "vol": 0.1511,
-     "final_1000": 33001187.0,
+     "vol": 0.1512,
+     "final_1000": 32421874.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.0917,
-     "sharpe": 0.448,
+     "cagr": 0.0914,
+     "sharpe": 0.447,
      "max_dd": -0.6063,
      "vol": 0.1512,
-     "final_1000": 5723624.0,
+     "final_1000": 5612384.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1104,
-     "sharpe": 0.556,
+     "cagr": 0.1101,
+     "sharpe": 0.555,
      "max_dd": -0.5373,
      "vol": 0.1529,
-     "final_1000": 30640398.0,
+     "final_1000": 30130392.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0112,
+    "excess_cagr": 0.0111,
     "vol_matched_L": 0.86,
-    "vol_matched_cagr": 0.0921,
+    "vol_matched_cagr": 0.092,
     "dsr_active": 0.0,
     "t_active": 0.42,
     "subperiods": [
@@ -6204,8 +6204,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.0936,
-      "bh_cagr": 0.1502,
+      "cagr": 0.0916,
+      "bh_cagr": 0.1486,
       "max_dd": -0.27,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6222,7 +6222,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0112,
+    "plateau_score": 0.0111,
     "pass": false,
     "near_miss": false
    },
@@ -6234,35 +6234,35 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1167,
-     "sharpe": 0.618,
+     "cagr": 0.1165,
+     "sharpe": 0.616,
      "max_dd": -0.5994,
      "vol": 0.1449,
-     "final_1000": 53720950.0,
+     "final_1000": 53052644.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1048,
-     "sharpe": 0.544,
+     "cagr": 0.1046,
+     "sharpe": 0.542,
      "max_dd": -0.6346,
      "vol": 0.145,
-     "final_1000": 18708372.0,
+     "final_1000": 18468613.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1161,
-     "sharpe": 0.61,
+     "cagr": 0.1158,
+     "sharpe": 0.609,
      "max_dd": -0.5636,
      "vol": 0.1462,
-     "final_1000": 50732939.0,
+     "final_1000": 50101804.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "excess_cagr": 0.0167,
     "vol_matched_L": 0.83,
-    "vol_matched_cagr": 0.09,
+    "vol_matched_cagr": 0.0899,
     "dsr_active": 0.0,
     "t_active": 0.74,
     "subperiods": [
@@ -6313,8 +6313,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.117,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1153,
+      "bh_cagr": 0.1486,
       "max_dd": -0.24,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6343,36 +6343,36 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1278,
-     "sharpe": 0.603,
+     "cagr": 0.1274,
+     "sharpe": 0.601,
      "max_dd": -0.671,
      "vol": 0.172,
-     "final_1000": 141668635.0,
+     "final_1000": 139156020.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1094,
-     "sharpe": 0.508,
+     "cagr": 0.1091,
+     "sharpe": 0.506,
      "max_dd": -0.7079,
      "vol": 0.1721,
-     "final_1000": 28166977.0,
+     "final_1000": 27639884.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1271,
-     "sharpe": 0.596,
+     "cagr": 0.1268,
+     "sharpe": 0.594,
      "max_dd": -0.6367,
-     "vol": 0.1736,
-     "final_1000": 133782400.0,
+     "vol": 0.1737,
+     "final_1000": 131654888.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0278,
+    "excess_cagr": 0.0276,
     "vol_matched_L": 0.98,
-    "vol_matched_cagr": 0.0989,
-    "dsr_active": 0.006,
+    "vol_matched_cagr": 0.0987,
+    "dsr_active": 0.005,
     "t_active": 1.62,
     "subperiods": [
      {
@@ -6422,8 +6422,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1186,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1164,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2837,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6440,7 +6440,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0257,
+    "plateau_score": 0.0255,
     "pass": false,
     "near_miss": false
    },
@@ -6452,37 +6452,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1277,
-     "sharpe": 0.554,
+     "cagr": 0.1273,
+     "sharpe": 0.552,
      "max_dd": -0.6907,
      "vol": 0.1948,
-     "final_1000": 141590625.0,
+     "final_1000": 137666028.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1008,
-     "sharpe": 0.43,
+     "cagr": 0.1004,
+     "sharpe": 0.428,
      "max_dd": -0.7335,
      "vol": 0.1949,
-     "final_1000": 13020023.0,
+     "final_1000": 12627215.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1271,
-     "sharpe": 0.547,
+     "cagr": 0.1267,
+     "sharpe": 0.546,
      "max_dd": -0.6661,
      "vol": 0.197,
-     "final_1000": 133541197.0,
+     "final_1000": 130746291.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0277,
+    "excess_cagr": 0.0275,
     "vol_matched_L": 1.11,
-    "vol_matched_cagr": 0.1041,
-    "dsr_active": 0.008,
-    "t_active": 1.73,
+    "vol_matched_cagr": 0.1039,
+    "dsr_active": 0.007,
+    "t_active": 1.72,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -6531,8 +6531,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1104,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1074,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3499,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6549,7 +6549,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0274,
+    "plateau_score": 0.0272,
     "pass": false,
     "near_miss": false
    },
@@ -6561,37 +6561,37 @@
      "Lmax": 1.5
     },
     "stats": {
-     "cagr": 0.1203,
-     "sharpe": 0.607,
+     "cagr": 0.12,
+     "sharpe": 0.605,
      "max_dd": -0.6079,
      "vol": 0.1556,
-     "final_1000": 73410545.0,
+     "final_1000": 72524404.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1077,
-     "sharpe": 0.534,
+     "cagr": 0.1075,
+     "sharpe": 0.533,
      "max_dd": -0.6438,
      "vol": 0.1557,
-     "final_1000": 24232185.0,
+     "final_1000": 23931346.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1193,
-     "sharpe": 0.598,
+     "cagr": 0.1191,
+     "sharpe": 0.597,
      "max_dd": -0.5568,
      "vol": 0.1567,
-     "final_1000": 67736416.0,
+     "final_1000": 66918768.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0203,
+    "excess_cagr": 0.0202,
     "vol_matched_L": 0.89,
-    "vol_matched_cagr": 0.0936,
+    "vol_matched_cagr": 0.0935,
     "dsr_active": 0.001,
-    "t_active": 1.09,
+    "t_active": 1.08,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -6640,8 +6640,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1243,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1225,
+      "bh_cagr": 0.1486,
       "max_dd": -0.2946,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6658,7 +6658,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0173,
+    "plateau_score": 0.0172,
     "pass": false,
     "near_miss": false
    },
@@ -6670,36 +6670,36 @@
      "Lmax": 2.0
     },
     "stats": {
-     "cagr": 0.1377,
-     "sharpe": 0.608,
+     "cagr": 0.1373,
+     "sharpe": 0.607,
      "max_dd": -0.6985,
-     "vol": 0.1905,
-     "final_1000": 336485500.0,
+     "vol": 0.1906,
+     "final_1000": 329537155.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.118,
-     "sharpe": 0.516,
+     "cagr": 0.1177,
+     "sharpe": 0.515,
      "max_dd": -0.7348,
-     "vol": 0.1906,
-     "final_1000": 60174469.0,
+     "vol": 0.1907,
+     "final_1000": 58868166.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1357,
-     "sharpe": 0.595,
+     "cagr": 0.1354,
+     "sharpe": 0.593,
      "max_dd": -0.6634,
      "vol": 0.1927,
-     "final_1000": 283639469.0,
+     "final_1000": 277702163.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0377,
+    "excess_cagr": 0.0375,
     "vol_matched_L": 1.09,
-    "vol_matched_cagr": 0.1032,
-    "dsr_active": 0.035,
+    "vol_matched_cagr": 0.1031,
+    "dsr_active": 0.034,
     "t_active": 2.34,
     "subperiods": [
      {
@@ -6749,8 +6749,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1391,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1365,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3075,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6767,7 +6767,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0308,
+    "plateau_score": 0.0307,
     "pass": false,
     "near_miss": false
    },
@@ -6779,37 +6779,37 @@
      "Lmax": 3.0
     },
     "stats": {
-     "cagr": 0.1471,
-     "sharpe": 0.575,
+     "cagr": 0.1465,
+     "sharpe": 0.573,
      "max_dd": -0.7669,
-     "vol": 0.2305,
-     "final_1000": 756233073.0,
+     "vol": 0.2306,
+     "final_1000": 730560394.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1153,
-     "sharpe": 0.454,
+     "cagr": 0.1148,
+     "sharpe": 0.451,
      "max_dd": -0.8048,
-     "vol": 0.2306,
-     "final_1000": 47488535.0,
+     "vol": 0.2307,
+     "final_1000": 45722196.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1466,
-     "sharpe": 0.57,
+     "cagr": 0.1461,
+     "sharpe": 0.568,
      "max_dd": -0.7427,
      "vol": 0.2335,
-     "final_1000": 727227312.0,
+     "final_1000": 702925054.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0471,
+    "excess_cagr": 0.0467,
     "vol_matched_L": 1.31,
-    "vol_matched_cagr": 0.1107,
-    "dsr_active": 0.102,
-    "t_active": 2.88,
+    "vol_matched_cagr": 0.1105,
+    "dsr_active": 0.097,
+    "t_active": 2.87,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -6858,8 +6858,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1257,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1221,
+      "bh_cagr": 0.1486,
       "max_dd": -0.3804,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -6876,7 +6876,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0377,
+    "plateau_score": 0.0375,
     "pass": false,
     "near_miss": false
    },
@@ -6887,37 +6887,37 @@
      "filter": "none"
     },
     "stats": {
-     "cagr": 0.1359,
-     "sharpe": 0.521,
+     "cagr": 0.1369,
+     "sharpe": 0.525,
      "max_dd": -0.8507,
-     "vol": 0.2394,
-     "final_1000": 288849381.0,
+     "vol": 0.2395,
+     "final_1000": 317450037.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1187,
-     "sharpe": 0.457,
+     "cagr": 0.1196,
+     "sharpe": 0.461,
      "max_dd": -0.8584,
      "vol": 0.2395,
-     "final_1000": 63823910.0,
+     "final_1000": 70055751.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1359,
-     "sharpe": 0.521,
+     "cagr": 0.1369,
+     "sharpe": 0.525,
      "max_dd": -0.8507,
-     "vol": 0.2394,
-     "final_1000": 288849381.0,
+     "vol": 0.2395,
+     "final_1000": 317450037.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0359,
+    "excess_cagr": 0.0371,
     "vol_matched_L": 1.36,
-    "vol_matched_cagr": 0.1122,
-    "dsr_active": 0.25,
-    "t_active": 3.49,
+    "vol_matched_cagr": 0.1119,
+    "dsr_active": 0.272,
+    "t_active": 3.57,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -6966,12 +6966,12 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1641,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1711,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4433,
       "bh_max_dd": -0.3422,
       "ok": false,
-      "ok_2x": false
+      "ok_2x": true
      }
     ],
     "checks": {
@@ -6984,7 +6984,7 @@
      "C6": false
     },
     "plateau_share": 0.5,
-    "plateau_score": 0.0359,
+    "plateau_score": 0.0371,
     "pass": false,
     "near_miss": false
    },
@@ -6995,37 +6995,37 @@
      "filter": "sma200"
     },
     "stats": {
-     "cagr": 0.1295,
-     "sharpe": 0.582,
+     "cagr": 0.1305,
+     "sharpe": 0.586,
      "max_dd": -0.4488,
-     "vol": 0.1847,
-     "final_1000": 165508592.0,
+     "vol": 0.1848,
+     "final_1000": 181896560.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1104,
-     "sharpe": 0.489,
+     "cagr": 0.1113,
+     "sharpe": 0.494,
      "max_dd": -0.4686,
-     "vol": 0.1847,
-     "final_1000": 30668017.0,
+     "vol": 0.1848,
+     "final_1000": 33662478.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1235,
-     "sharpe": 0.549,
+     "cagr": 0.1245,
+     "sharpe": 0.554,
      "max_dd": -0.5022,
-     "vol": 0.1866,
-     "final_1000": 97532052.0,
+     "vol": 0.1867,
+     "final_1000": 107189268.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0295,
+    "excess_cagr": 0.0307,
     "vol_matched_L": 1.05,
-    "vol_matched_cagr": 0.102,
-    "dsr_active": 0.006,
-    "t_active": 1.66,
+    "vol_matched_cagr": 0.1018,
+    "dsr_active": 0.007,
+    "t_active": 1.72,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -7074,8 +7074,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1085,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1155,
+      "bh_cagr": 0.1486,
       "max_dd": -0.4488,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -7092,7 +7092,7 @@
      "C6": true
     },
     "plateau_share": 1.0,
-    "plateau_score": 0.0295,
+    "plateau_score": 0.0307,
     "pass": false,
     "near_miss": false
    },
@@ -7103,37 +7103,37 @@
      "filter": "none"
     },
     "stats": {
-     "cagr": 0.1588,
-     "sharpe": 0.504,
+     "cagr": 0.1603,
+     "sharpe": 0.507,
      "max_dd": -0.9597,
-     "vol": 0.3591,
-     "final_1000": 2066959696.0,
+     "vol": 0.3592,
+     "final_1000": 2372002633.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1254,
-     "sharpe": 0.422,
+     "cagr": 0.1269,
+     "sharpe": 0.426,
      "max_dd": -0.9636,
-     "vol": 0.3592,
-     "final_1000": 115746752.0,
+     "vol": 0.3593,
+     "final_1000": 132512329.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1588,
-     "sharpe": 0.504,
+     "cagr": 0.1603,
+     "sharpe": 0.507,
      "max_dd": -0.9597,
-     "vol": 0.3591,
-     "final_1000": 2066959696.0,
+     "vol": 0.3592,
+     "final_1000": 2372002633.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0588,
+    "excess_cagr": 0.0605,
     "vol_matched_L": 2.05,
-    "vol_matched_cagr": 0.1227,
-    "dsr_active": 0.594,
-    "t_active": 4.4,
+    "vol_matched_cagr": 0.1223,
+    "dsr_active": 0.613,
+    "t_active": 4.46,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -7182,8 +7182,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2056,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2164,
+      "bh_cagr": 0.1486,
       "max_dd": -0.6147,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -7200,7 +7200,7 @@
      "C6": false
     },
     "plateau_share": 0.67,
-    "plateau_score": 0.0588,
+    "plateau_score": 0.0605,
     "pass": false,
     "near_miss": false
    },
@@ -7211,37 +7211,37 @@
      "filter": "sma200"
     },
     "stats": {
-     "cagr": 0.1614,
-     "sharpe": 0.566,
+     "cagr": 0.1629,
+     "sharpe": 0.57,
      "max_dd": -0.6273,
-     "vol": 0.277,
-     "final_1000": 2579731223.0,
+     "vol": 0.2772,
+     "final_1000": 2960449235.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.127,
-     "sharpe": 0.457,
+     "cagr": 0.1285,
+     "sharpe": 0.462,
      "max_dd": -0.6608,
-     "vol": 0.2771,
-     "final_1000": 133142134.0,
+     "vol": 0.2773,
+     "final_1000": 152427381.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1518,
-     "sharpe": 0.533,
+     "cagr": 0.1532,
+     "sharpe": 0.538,
      "max_dd": -0.7304,
-     "vol": 0.28,
-     "final_1000": 1131844672.0,
+     "vol": 0.2801,
+     "final_1000": 1298882869.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0614,
+    "excess_cagr": 0.0631,
     "vol_matched_L": 1.58,
-    "vol_matched_cagr": 0.1172,
-    "dsr_active": 0.209,
-    "t_active": 3.36,
+    "vol_matched_cagr": 0.117,
+    "dsr_active": 0.225,
+    "t_active": 3.42,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -7290,8 +7290,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1304,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1409,
+      "bh_cagr": 0.1486,
       "max_dd": -0.6175,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -7308,7 +7308,7 @@
      "C6": false
     },
     "plateau_share": 0.67,
-    "plateau_score": 0.0588,
+    "plateau_score": 0.0605,
     "pass": false,
     "near_miss": false
    },
@@ -7319,37 +7319,37 @@
      "filter": "none"
     },
     "stats": {
-     "cagr": 0.1646,
-     "sharpe": 0.495,
+     "cagr": 0.1666,
+     "sharpe": 0.499,
      "max_dd": -0.9913,
      "vol": 0.4789,
-     "final_1000": 3381242581.0,
+     "final_1000": 4045241939.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1154,
-     "sharpe": 0.405,
+     "cagr": 0.1173,
+     "sharpe": 0.409,
      "max_dd": -0.9932,
      "vol": 0.479,
-     "final_1000": 47912295.0,
+     "final_1000": 57120056.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.1646,
-     "sharpe": 0.495,
+     "cagr": 0.1666,
+     "sharpe": 0.499,
      "max_dd": -0.9913,
      "vol": 0.4789,
-     "final_1000": 3381242581.0,
+     "final_1000": 4045241939.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0646,
+    "excess_cagr": 0.0668,
     "vol_matched_L": 2.73,
-    "vol_matched_cagr": 0.1166,
-    "dsr_active": 0.661,
-    "t_active": 4.58,
+    "vol_matched_cagr": 0.1161,
+    "dsr_active": 0.676,
+    "t_active": 4.63,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -7398,8 +7398,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.2268,
-      "bh_cagr": 0.1502,
+      "cagr": 0.2414,
+      "bh_cagr": 0.1486,
       "max_dd": -0.7465,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -7416,7 +7416,7 @@
      "C6": false
     },
     "plateau_share": 0.5,
-    "plateau_score": 0.0646,
+    "plateau_score": 0.0668,
     "pass": false,
     "near_miss": false
    },
@@ -7427,37 +7427,37 @@
      "filter": "sma200"
     },
     "stats": {
-     "cagr": 0.1836,
-     "sharpe": 0.558,
+     "cagr": 0.1856,
+     "sharpe": 0.563,
      "max_dd": -0.8034,
-     "vol": 0.3694,
-     "final_1000": 16733377814.0,
+     "vol": 0.3695,
+     "final_1000": 20019433712.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_2x": {
-     "cagr": 0.1338,
-     "sharpe": 0.442,
+     "cagr": 0.1357,
+     "sharpe": 0.446,
      "max_dd": -0.8369,
-     "vol": 0.3695,
-     "final_1000": 240250654.0,
+     "vol": 0.3697,
+     "final_1000": 286421907.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
     "stats_delay": {
-     "cagr": 0.17,
-     "sharpe": 0.525,
+     "cagr": 0.172,
+     "sharpe": 0.53,
      "max_dd": -0.8797,
-     "vol": 0.3733,
-     "final_1000": 5344772661.0,
+     "vol": 0.3735,
+     "final_1000": 6394364795.0,
      "start": "1928-01-03",
-     "end": "2026-08-31"
+     "end": "2026-09-30"
     },
-    "excess_cagr": 0.0836,
-    "vol_matched_L": 2.1,
-    "vol_matched_cagr": 0.1228,
-    "dsr_active": 0.48,
-    "t_active": 4.11,
+    "excess_cagr": 0.0858,
+    "vol_matched_L": 2.11,
+    "vol_matched_cagr": 0.1224,
+    "dsr_active": 0.499,
+    "t_active": 4.17,
     "subperiods": [
      {
       "from": "1928-01-01",
@@ -7506,8 +7506,8 @@
      },
      {
       "from": "2013-01-01",
-      "cagr": 0.1387,
-      "bh_cagr": 0.1502,
+      "cagr": 0.1527,
+      "bh_cagr": 0.1486,
       "max_dd": -0.7431,
       "bh_max_dd": -0.3422,
       "ok": false,
@@ -7524,7 +7524,7 @@
      "C6": false
     },
     "plateau_share": 0.5,
-    "plateau_score": 0.063,
+    "plateau_score": 0.065,
     "pass": false,
     "near_miss": false
    }
@@ -8619,75 +8619,75 @@
    "rows": {
     "0.1": {
      "mix": {
-      "cagr": 0.1758,
-      "sharpe": 0.85,
-      "max_dd": -0.3234,
-      "vol": 0.1783,
-      "final_1000": 3805.0,
+      "cagr": 0.1691,
+      "sharpe": 0.816,
+      "max_dd": -0.3237,
+      "vol": 0.1786,
+      "final_1000": 3692.0,
       "start": "2018-07-01",
-      "end": "2026-09-30"
+      "end": "2026-11-09"
      },
      "mix_2x": {
-      "cagr": 0.1745,
-      "sharpe": 0.844,
-      "max_dd": -0.3238,
-      "vol": 0.1784,
-      "final_1000": 3770.0,
+      "cagr": 0.1679,
+      "sharpe": 0.81,
+      "max_dd": -0.3241,
+      "vol": 0.1786,
+      "final_1000": 3659.0,
       "start": "2018-07-01",
-      "end": "2026-09-30"
+      "end": "2026-11-09"
      },
      "core": {
-      "cagr": 0.1507,
-      "sharpe": 0.692,
+      "cagr": 0.1463,
+      "sharpe": 0.671,
       "max_dd": -0.3372,
       "vol": 0.1912,
-      "final_1000": 3183.0,
+      "final_1000": 3131.0,
       "start": "2018-07-01",
-      "end": "2026-09-30"
+      "end": "2026-11-09"
      },
      "windows_ok": [
       true,
       true,
       true,
-      true
+      false
      ],
-     "accepted": true
+     "accepted": false
     },
     "0.2": {
      "mix": {
-      "cagr": 0.2002,
-      "sharpe": 0.999,
-      "max_dd": -0.3112,
-      "vol": 0.171,
-      "final_1000": 4505.0,
+      "cagr": 0.1911,
+      "sharpe": 0.951,
+      "max_dd": -0.3116,
+      "vol": 0.1716,
+      "final_1000": 4313.0,
       "start": "2018-07-01",
-      "end": "2026-09-30"
+      "end": "2026-11-09"
      },
      "mix_2x": {
-      "cagr": 0.1975,
-      "sharpe": 0.986,
-      "max_dd": -0.312,
-      "vol": 0.1711,
-      "final_1000": 4424.0,
+      "cagr": 0.1885,
+      "sharpe": 0.938,
+      "max_dd": -0.3125,
+      "vol": 0.1717,
+      "final_1000": 4235.0,
       "start": "2018-07-01",
-      "end": "2026-09-30"
+      "end": "2026-11-09"
      },
      "core": {
-      "cagr": 0.1507,
-      "sharpe": 0.692,
+      "cagr": 0.1463,
+      "sharpe": 0.671,
       "max_dd": -0.3372,
       "vol": 0.1912,
-      "final_1000": 3183.0,
+      "final_1000": 3131.0,
       "start": "2018-07-01",
-      "end": "2026-09-30"
+      "end": "2026-11-09"
      },
      "windows_ok": [
       true,
       true,
       true,
-      true
+      false
      ],
-     "accepted": true
+     "accepted": false
     }
    }
   }
@@ -8711,16 +8711,16 @@
    },
    "watch:C2_crypto|c=0.1": {
     "key": "C2_crypto|c=0.1",
-    "months": 0,
-    "forward_active_sum": 0.0,
-    "last_month": "2026-09-30",
+    "months": 1,
+    "forward_active_sum": -0.0026,
+    "last_month": "2026-11-30",
     "degraded": null
    },
    "watch:C2_crypto|c=0.2": {
     "key": "C2_crypto|c=0.2",
-    "months": 0,
-    "forward_active_sum": 0.0,
-    "last_month": "2026-09-30",
+    "months": 1,
+    "forward_active_sum": -0.0052,
+    "last_month": "2026-11-30",
     "degraded": null
    }
   }
