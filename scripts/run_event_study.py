@@ -15,7 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from lab import data  # noqa: E402
-from lab.event_study import BENCHMARK, markdown_report, measure_events, summarize  # noqa: E402
+from lab.event_study import (BENCHMARK, executable_events, markdown_report,
+                             measure_events, summarize)  # noqa: E402
 from lab.panel import Panel  # noqa: E402
 
 DEFAULT_FEED = (
@@ -48,6 +49,10 @@ def main() -> int:
     feed["event_date"] = pd.to_datetime(feed["event_date"], errors="coerce")
     feed = feed.dropna(subset=["event_date"])
     feed = feed[feed["event_date"] >= pd.Timestamp(args.start)].copy()
+    feed_rows = len(feed)
+    quality = feed["timestamp_quality"].fillna("unknown").astype(str).str.lower()
+    excluded_unverified = int(quality.isin({"action_date_proxy", "unknown", ""}).sum())
+    feed = executable_events(feed)
     feed["ticker"] = feed["ticker"].astype(str).str.strip().str.upper()
     feed = feed[feed["ticker"].ne("") & feed["ticker"].ne("NAN")]
     if feed.empty:
@@ -87,7 +92,8 @@ def main() -> int:
     returns.to_csv(out / "event_returns.csv", index=False)
     summary.to_csv(out / "event_summary.csv", index=False)
     (out / "event_study.md").write_text(
-        markdown_report(summary, returns, len(feed), len(usable) - 1, excluded, price_start),
+        markdown_report(summary, returns, feed_rows, len(usable) - 1, excluded, price_start,
+                        excluded_unverified_timestamps=excluded_unverified),
         encoding="utf-8",
     )
     print((out / "event_study.md").read_text(encoding="utf-8"))
