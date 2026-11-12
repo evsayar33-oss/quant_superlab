@@ -75,3 +75,9 @@ def test_event_feed_excludes_unverified_action_date_proxies():
     ])
     eligible = executable_events(feed)
     assert set(eligible["event_id"]) == {"live-award", "public-rule"}
+
+
+def test_timestamp_filter_can_leave_no_eligible_rows():
+    from lab.event_study import executable_events
+    feed = pd.DataFrame([{"event_id": "old-award", "timestamp_quality": "action_date_proxy"}])
+    assert executable_events(feed).empty
