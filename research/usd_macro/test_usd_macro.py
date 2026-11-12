@@ -252,7 +252,7 @@ def test_scheduled_bootstrap_sends_only_research_digest(tmp_path):
             expectations_csv=tmp_path/"missing.csv",now=NOW,fetch=mock_fetch,
             send=lambda x:(sent.append(x) or True))
     assert len(sent)==1 and "AL/SAT YOK" in sent[0]
-    assert "ilk" in sent[0].lower()
+    assert "geçmiş haberler" in sent[0].lower()
     assert d["telegram_state"]=="SENT"
     assert len(json.loads((tmp_path/"store"/"notifications.json").read_text()))==1
 
@@ -279,3 +279,30 @@ def test_smoke_does_not_modify_scheduled_store(tmp_path):
     E.run(mode="smoke",output=tmp_path/"dry",expectations_csv=tmp_path/"none.csv",
           now=NOW,fetch=mock_fetch)
     assert not store.exists()
+
+
+def test_bootstrap_bulletin_is_not_resend_as_daily_same_utc_date(tmp_path):
+    sent=[]
+    location=tmp_path/"store"
+    fn=lambda text:(sent.append(text) or True)
+    E.run(mode="scheduled",output=location,
+          expectations_csv=tmp_path/"missing.csv",now=NOW,
+          fetch=mock_fetch,send=fn)
+    E.run(mode="scheduled",output=location,
+          expectations_csv=tmp_path/"missing.csv",now=NOW+timedelta(minutes=10),
+          fetch=mock_fetch,send=fn)
+    assert len(sent)==1
+    assert len(json.loads((location/"notifications.json").read_text()))==1
+
+
+def test_failed_delivery_is_retried_not_false_success(tmp_path):
+    sent=[]
+    location=tmp_path/"store"
+    E.run(mode="scheduled",output=location,
+          expectations_csv=tmp_path/"missing.csv",now=NOW,
+          fetch=mock_fetch,send=lambda text:False)
+    assert not (location/"notifications.json").exists()
+    E.run(mode="scheduled",output=location,
+          expectations_csv=tmp_path/"missing.csv",now=NOW+timedelta(minutes=10),
+          fetch=mock_fetch,send=lambda text:(sent.append(text) or True))
+    assert len(sent)==1

@@ -417,7 +417,14 @@ def run(*, mode: str, output: Path, expectations_csv: Path,
         key=(f"USD|BOOTSTRAP|{today}" if first_run else
              f"USD|HIGH|{today}|"+"|".join(x["event_id"] for x in urgent) if urgent else
              f"USD|DAILY|{today}")
-        should_send=(first_run or bool(urgent) or is_daily) and latest["status"]!="UNAVAILABLE"
+        already_daily=any(
+            x in sent_keys for x in (f"USD|BOOTSTRAP|{today}",f"USD|DAILY|{today}")
+        )
+        # A successful launch bulletin already counts as today's digest.
+        should_send=(
+            (first_run or bool(urgent) or (is_daily and not already_daily))
+            and latest["status"]!="UNAVAILABLE"
+        )
         if should_send and key not in sent_keys:
             try:
                 sent=send(_format_telegram(latest,urgent,launch=first_run))

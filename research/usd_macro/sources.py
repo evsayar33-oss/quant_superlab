@@ -184,6 +184,12 @@ def parse_bls(response: dict, observed_at: datetime) -> dict:
                 value = float(str(r["value"]).replace(",",""))
             except (KeyError,ValueError,TypeError):
                 continue
+            import math
+            if not math.isfinite(value):
+                continue
+            observed_month=observed_at.astimezone(timezone.utc).date()
+            if (int(year),int(p[1:]))>(observed_month.year,observed_month.month):
+                continue
             periods[f"{year}-{int(p[1:]):02d}"]=value
         if periods:
             indexes[series_id]=periods
