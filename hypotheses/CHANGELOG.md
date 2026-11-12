@@ -45,3 +45,4 @@
 - 2026-10-25: H077 run read: 0 of 240 settings pass; no setting shows a 100% win rate over >= 10 trades; best settings win 50-60% with worst single trades of -11% (indices) to -30% (crypto); 0 meet the owner's target.
 
 - 2026-11-12: H078 preregistered before any event-study result. Fixed Radar event families, conservative timestamp-aware next-open execution, 1/5/20/60-session horizons, 60-day per-ticker cooldown, 1x/2x costs, chronological 60/20/20 split, BH correction and locked holdout. No parameter optimization; validation.GATE unchanged. Live bots remain blocked.
+- 2026-11-12: H078 timestamp guard tightened before results: historical USAspending action dates without a verified public timestamp are excluded from primary return calculations; live Radar first-seen UTC timestamps remain eligible.
