@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import io
 import sys
 import urllib.request
@@ -73,8 +74,11 @@ def main() -> int:
         raise SystemExit("No events remain after the requested start-date filter.")
 
     counts = feed["ticker"].value_counts()
-    selected = counts.head(max(1, args.max_tickers)).index.tolist()
-    excluded = max(0, len(counts) - len(selected))
+    # A deterministic hash sample avoids selecting tickers because they have more
+    # historical Radar events (which would overweight repeat-news issuers).
+    all_tickers = counts.index.astype(str).tolist()
+    selected = sorted(all_tickers, key=lambda ticker: hashlib.sha256(ticker.encode()).hexdigest())[:max(1, args.max_tickers)]
+    excluded = max(0, len(all_tickers) - len(selected))
     feed = feed[feed["ticker"].isin(selected)].copy()
     sector_etfs = sorted(set(feed.get("sector_etf", pd.Series(dtype=str)).dropna().astype(str)) - {""})
     tickers = sorted(set(selected + [BENCHMARK] + sector_etfs))
@@ -106,7 +110,7 @@ def main() -> int:
     returns.to_csv(out / "event_returns.csv", index=False)
     summary.to_csv(out / "event_summary.csv", index=False)
     (out / "event_study.md").write_text(
-        markdown_report(summary, returns, feed_rows, len(usable) - 1, excluded, price_start,
+        markdown_report(summary, returns, feed_rows, len(set(usable) & set(selected)), excluded, price_start,
                         excluded_unverified_timestamps=excluded_unverified),
         encoding="utf-8",
     )
