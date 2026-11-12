@@ -46,12 +46,28 @@ def entry_index(known_at, event_date, index: pd.DatetimeIndex,
     return pos if pos < len(idx) else None
 
 
+def partition_event_timestamps(events: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Separate historical-test evidence, forward-only observations and exclusions.
+
+    exact_utc is a source publication timestamp. date_only is retained with
+    conservative next-session entry. first_seen_utc is Radar ingestion time,
+    not publication time, so it is reserved for prospective monitoring.
+    """
+    if events is None or events.empty:
+        empty = pd.DataFrame() if events is None else events.copy()
+        return empty.copy(), empty.copy(), empty.copy()
+    if "timestamp_quality" not in events.columns:
+        return pd.DataFrame(), pd.DataFrame(), events.copy()
+    quality = events["timestamp_quality"].fillna("unknown").astype(str).str.strip().str.lower()
+    historical = events[quality.isin({"exact_utc", "date_only"})].copy()
+    forward_only = events[quality.eq("first_seen_utc")].copy()
+    excluded = events[~quality.isin({"exact_utc", "date_only", "first_seen_utc"})].copy()
+    return historical, forward_only, excluded
+
+
 def executable_events(events: pd.DataFrame) -> pd.DataFrame:
-    """Exclude historical award action dates that are not verified public timestamps."""
-    if events is None or events.empty or "timestamp_quality" not in events.columns:
-        return pd.DataFrame() if events is None else events.copy()
-    quality = events["timestamp_quality"].fillna("unknown").astype(str).str.lower()
-    return events[~quality.isin({"action_date_proxy", "unknown", ""})].copy()
+    """Return only source-timestamped/date-only records for historical testing."""
+    return partition_event_timestamps(events)[0]
 
 
 def _beta(asset_close: pd.Series, bench_close: pd.Series, entry: int,
@@ -274,7 +290,10 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
 
 def markdown_report(summary: pd.DataFrame, returns: pd.DataFrame, feed_rows: int,
                     loaded_tickers: int, excluded_tickers: int, start: str,
-                    excluded_unverified_timestamps: int = 0) -> str:
+                    excluded_unverified_timestamps: int = 0,
+                    forward_only_observations: int = 0,
+                    exact_timestamp_rows: int = 0,
+                    date_only_rows: int = 0) -> str:
     if returns is not None and not returns.empty and {"event_id", "ticker"}.issubset(returns.columns):
         observation_count = len(returns[["event_id", "ticker"]].drop_duplicates())
     else:
@@ -284,13 +303,14 @@ def markdown_report(summary: pd.DataFrame, returns: pd.DataFrame, feed_rows: int
         "",
         "**Status: research only. No live signal or bot integration.**",
         "",
-        f"- Feed rows: {feed_rows}; excluded historical award action-date proxies: {excluded_unverified_timestamps}; price tickers loaded: {loaded_tickers}; tickers excluded by data cap: {excluded_tickers}.",
+        f"- Feed rows: {feed_rows}; exact source timestamps: {exact_timestamp_rows}; date-only records: {date_only_rows}; forward-only Radar first-seen observations: {forward_only_observations}; excluded unverified/proxy rows: {excluded_unverified_timestamps}; price tickers loaded: {loaded_tickers}; tickers excluded by data cap: {excluded_tickers}.",
         f"- Price history start: {start}; event/ticker observations: {observation_count}.",
-        "- Execution: exact publication/first-seen pre-market timestamps may enter at same-session open; intraday/after-close and date-only events enter at the next session open.",
+        "- Execution: exact source-publication timestamps before the market open may enter at that session's open; exact intraday/after-close and date-only events enter at the next session open. Radar first-seen timestamps are forward-only and are not included in historical returns.",
         "- Returns: market-model abnormal return versus SPY, net of round-trip stock costs at 1x and 2x; sector ETF excess is diagnostic where available.",
         "- Chronological split: 60% discovery / 20% validation / 20% locked holdout. Cooldown: one event per ticker per 60 calendar days.",
         "- DSR/PBO are not reported: this is one fixed, pre-registered event design with no parameter search. BH q-values and bootstrap intervals use discovery+validation only; the locked holdout does not affect significance.",
-        "- Limitations: daily bars cannot model intraday execution; date-only Federal Register/Congress events use a conservative next-session entry; historical USAspending action dates without a verified first-public timestamp are excluded from primary returns; delisted/unmatched tickers may be absent (survivorship / entity-match bias).",
+        "- Timestamp policy: exact_utc source publication times and date_only source dates are eligible for the historical study. first_seen_utc is Radar ingestion time, not publication time; it is saved separately and never used to reconstruct historical returns. action_date_proxy/unknown rows are excluded.",
+        "- Limitations: daily bars cannot model intraday execution; date-only source events use a conservative next-session entry; delisted/unmatched tickers may be absent (survivorship / entity-match bias).",
         "",
         "## Results",
         "",

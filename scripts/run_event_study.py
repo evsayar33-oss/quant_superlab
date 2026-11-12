@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from lab import data  # noqa: E402
-from lab.event_study import (BENCHMARK, executable_events, markdown_report,
+from lab.event_study import (BENCHMARK, partition_event_timestamps, markdown_report,
                              measure_events, summarize)  # noqa: E402
 from lab.panel import Panel  # noqa: E402
 
@@ -51,19 +51,27 @@ def main() -> int:
     feed = feed.dropna(subset=["event_date"])
     feed = feed[feed["event_date"] >= pd.Timestamp(args.start)].copy()
     feed_rows = len(feed)
+    historical_feed, forward_only_feed, excluded_feed = partition_event_timestamps(feed)
     quality = feed["timestamp_quality"].fillna("unknown").astype(str).str.lower()
-    excluded_unverified = int(quality.isin({"action_date_proxy", "unknown", ""}).sum())
-    feed = executable_events(feed)
+    exact_rows = int(quality.eq("exact_utc").sum())
+    date_only_rows = int(quality.eq("date_only").sum())
+    forward_only_rows = len(forward_only_feed)
+    excluded_unverified = len(excluded_feed)
+    out = ROOT / args.output
+    out.mkdir(parents=True, exist_ok=True)
+    forward_only_feed.to_csv(out / "forward_only_events.csv", index=False)
+    feed = historical_feed
     if feed.empty:
-        out = ROOT / args.output
-        out.mkdir(parents=True, exist_ok=True)
         empty_returns = pd.DataFrame()
         empty_summary = pd.DataFrame()
         empty_returns.to_csv(out / "event_returns.csv", index=False)
         empty_summary.to_csv(out / "event_summary.csv", index=False)
         (out / "event_study.md").write_text(
             markdown_report(empty_summary, empty_returns, feed_rows, 0, 0, args.start,
-                            excluded_unverified_timestamps=excluded_unverified),
+                            excluded_unverified_timestamps=excluded_unverified,
+                            forward_only_observations=forward_only_rows,
+                            exact_timestamp_rows=exact_rows,
+                            date_only_rows=date_only_rows),
             encoding="utf-8",
         )
         print((out / "event_study.md").read_text(encoding="utf-8"))
@@ -111,7 +119,10 @@ def main() -> int:
     summary.to_csv(out / "event_summary.csv", index=False)
     (out / "event_study.md").write_text(
         markdown_report(summary, returns, feed_rows, len(set(usable) & set(selected)), excluded, price_start,
-                        excluded_unverified_timestamps=excluded_unverified),
+                        excluded_unverified_timestamps=excluded_unverified,
+                        forward_only_observations=forward_only_rows,
+                        exact_timestamp_rows=exact_rows,
+                        date_only_rows=date_only_rows),
         encoding="utf-8",
     )
     print((out / "event_study.md").read_text(encoding="utf-8"))
