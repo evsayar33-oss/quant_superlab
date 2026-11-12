@@ -1,0 +1,14 @@
+# H078 preregistered event-study settings. Do not tune after viewing results.
+start: "2019-01-01"
+horizons: [1, 5, 20, 60]
+cooldown_days: 60
+bootstrap_n: 2000
+seed: 17
+costs:
+  commission: 0.0002
+  slippage: 0.0003
+gate:
+  min_events: 50
+  min_split: 10
+  min_holdout_hit: 0.52
+  q_limit: 0.10
