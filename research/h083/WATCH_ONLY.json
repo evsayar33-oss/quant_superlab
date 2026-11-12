@@ -1,0 +1,32 @@
+{
+  "version": "H083-2026-11-12",
+  "scope": "research_only",
+  "execution_allowed": false,
+  "automatic_order_routing": false,
+  "broker_model": "Midas USD cash equities, $1.50 per side plus modelled execution spread",
+  "source": "H083 619 eligible event records, 119/120 ticker price coverage",
+  "production_gate": {
+    "needs_fresh_prospective_forward_months": 12,
+    "needs_independent_vintage_freeze": true,
+    "needs_PIT_fundamentals_and_listing_audit": true,
+    "needs_statistical_and_economic_alpha": true
+  },
+  "paper_watch_candidates": [
+    {
+      "rule": "monthly_low_beta",
+      "observation_type": "risk_reduction_research_not_alpha",
+      "criteria": "Monthly next-open; post-first-source-event tickers; previous close > SMA200; prior 63d momentum positive; 126d historical beta within [0,1]; trailing 20d dollar volume >= $5m; rank lowest beta; up to five equal cash tickets",
+      "historical_total_return": 0.6009,
+      "historical_max_drawdown": -0.1662,
+      "gate": "not_approved"
+    },
+    {
+      "rule": "monthly_vol_squeeze",
+      "observation_type": "risk_reduction_research_not_alpha",
+      "criteria": "Monthly next-open; post-first-source-event tickers; previous close > SMA50; prior ATR14/close at lower fifth of 126d own historical distribution; trailing 20d dollar volume >= $5m; rank by past 63d momentum; up to five equal cash tickets",
+      "historical_total_return": 0.5175,
+      "historical_max_drawdown": -0.1511,
+      "gate": "not_approved"
+    }
+  ]
+}
