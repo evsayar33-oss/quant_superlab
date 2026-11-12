@@ -253,8 +253,8 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
             "status": "INSUFFICIENT",
         })
     out = pd.DataFrame(rows)
-    for horizon, group in out.groupby("horizon"):
-        out.loc[group.index, "q_value"] = _bh(group["p_value"].astype(float).tolist())
+    # Correct across the complete pre-registered family/category/horizon test family.
+    out["q_value"] = _bh(out["p_value"].astype(float).tolist())
     for i, r in out.iterrows():
         enough = (r["n"] >= min_events and r["discovery_n"] >= min_split
                   and r["validation_n"] >= min_split and r["holdout_n"] >= min_split)
