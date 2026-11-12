@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>quant_superlab · USD Macro Radar</title>
+<meta name="description" content="Fed, enflasyon, istihdam, nominal/reel faiz, USD çapraz teyit, haber ve beklenti denetimi">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color-scheme:dark;
+--bg:#09111e;--panel:#131f30;--border:#2a394c;--text:#edf2fb;--sub:#a8b9cc;--accent:#65c7ff;
+--good:#8ae5ba;--warn:#ffdb8a;--bad:#ff9e9b}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--text);margin:0}
+header{border-bottom:1px solid var(--border);padding:18px max(18px,calc((100vw - 1180px)/2));}
+header a{color:var(--accent);text-decoration:none}h1{font-size:1.38rem;margin:8px 0}
+main{max-width:1180px;margin:auto;padding:18px 16px 56px}
+.sub{color:var(--sub);font-size:.91rem}h2{font-size:1.13rem;margin:2px 0 13px}
+h3{font-size:1rem;margin:0 0 8px}
+p{line-height:1.6}section{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:19px;margin:14px 0}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}
+.metric{border:1px solid var(--border);border-radius:10px;padding:12px;min-height:108px}
+.metric .big{display:block;font-weight:750;font-size:1.18rem;margin:8px 0 4px;overflow-wrap:anywhere}
+.tag{display:inline-block;padding:3px 8px;font-size:.73rem;border-radius:12px;border:1px solid var(--border);color:var(--warn)}
+.good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:14px}
+.grid section{margin:0}ul{margin:8px 0;padding-left:21px}li{line-height:1.6;margin:7px 0}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:550px}
+th,td{border-bottom:1px solid var(--border);padding:11px 9px;text-align:left;vertical-align:top}
+th{color:var(--sub);font-weight:650}td{overflow-wrap:anywhere}
+.wrap{overflow-x:auto}a{color:var(--accent);overflow-wrap:anywhere}button{cursor:pointer;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:9px;padding:9px 12px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tabs button[aria-selected=true]{border-color:var(--accent);color:var(--accent)}
+.tab-pane[hidden]{display:none}#error{display:none;color:var(--warn);padding:12px;border:1px solid var(--border);border-radius:10px;margin:15px 0}
+footer{max-width:1180px;margin:auto;padding:0 18px 30px;color:var(--sub);font-size:.85rem}
+@media (max-width:620px){section{padding:14px}header{padding:15px 18px}main{padding:12px}h1{font-size:1.22rem}}
+</style>
+</head><body>
+<header><a href="index.html">quant_superlab / Arena</a><h1>🇺🇸 USD Macro Radar</h1>
+<div class="sub">Resmî haberler + enflasyon + istihdam + Fed + reel/nominal faiz + USD piyasa teyidi + önceden kaydedilmiş beklentiler</div></header>
+<main>
+<div id="error" role="alert"></div>
+<section>
+  <div class="tag">RESEARCH ONLY · AL/SAT YOK</div>
+  <h2 style="margin-top:12px">USD temel analiz karar destek sistemi</h2>
+  <p class="sub">ABD faizlerinin yükselmesi USD'nin kesin güçleneceği anlamına gelmez.
+  Öncelik; gözlenmiş kaynak zamanı, piyasanın ne beklediği, gerçekleşen verinin sürprizi ve
+  faiz/FX çapraz teyididir. Konsensüs yoksa sistem sürpriz uydurmaz. Statü, gelecek fiyat tahmini değildir.</p>
+  <div class="metrics" id="metrics"><div class="metric">Veriler okunuyor…</div></div>
+</section>
+<div class="tabs" role="tablist" aria-label="USD analiz bölümleri">
+<button role="tab" aria-selected="true" data-tab="overview">6 temel analiz katmanı</button>
+<button role="tab" aria-selected="false" data-tab="expect">Beklentiler & sürprizler</button>
+<button role="tab" aria-selected="false" data-tab="news">Resmî haberler</button>
+<button role="tab" aria-selected="false" data-tab="audit">Kaynak / kanıt denetimi</button>
+</div>
+<div id="overview" class="tab-pane">
+  <div class="grid" id="pillars"></div>
+  <section><h2>USD için koşullu senaryolar</h2><div id="scenarios"></div></section>
+</div>
+<div id="expect" class="tab-pane" hidden>
+  <section><h2>Veri sürprizi: gerçekleşen eksi önceden kilitlenen beklenti</h2>
+    <p class="sub">Bu alan boşsa *piyasa konsensüsü yok* demektir; sonradan girilmiş veya kaynağı belirsiz beklenti kabul edilmez.
+    Beklenti, veri açıklanmadan önce ayrı çalışmada kaydedilmiş olmalıdır; mevcut verinin geçmiş revizyonu alpha kanıtı değildir.</p>
+    <div id="expectation"><p>Kilitli piyasa beklentisi bulunmadı.</p></div>
+  </section>
+  <section><h2>Önümüzdeki beklentiler</h2><div id="upcoming">Henüz kaynaklı takvim kaydı yok.</div></section>
+</div>
+<div id="news" class="tab-pane" hidden>
+  <section><h2>Fed ve BLS ilk gözlem haber kayıtları</h2>
+    <p class="sub">Fed konuşmaları ve BLS yayınları başlıklara göre konu sınıflandırmasına girer.
+    Başlığın Fed'i şahin/güvercin yaptığı veya USD'ye belirli yönde etki ettiği ileri sürülmez.</p>
+    <div class="wrap"><table><thead><tr><th>Yayın (UTC)</th><th>Kaynak / önem</th><th>Başlık</th><th>İlk görüldü (UTC)</th></tr></thead>
+    <tbody id="newsRows"></tbody></table></div>
+  </section>
+</div>
+<div id="audit" class="tab-pane" hidden>
+  <section><h2>Veri durumu ve zaman damgaları</h2>
+    <div class="wrap"><table><thead><tr><th>Kaynak</th><th>Durum</th><th>Bağlantı / eksik</th></tr></thead>
+    <tbody id="sourceRows"></tbody></table></div>
+  </section>
+  <section><h2>Mevcut kapsam dışı kalan kritik bilgiler</h2><ul id="limitations"></ul></section>
+</div>
+</main><footer>
+Bu sayfa bilgilendirme ve araştırma içindir. DXY değildir: ECB'den hesaplanan EUR/JPY/GBP/CHF örnek USD göstergesi kullanılır.
+Fiyat öngörüsü, lisanslı kurum konsensüsü, işlem emri veya yatırım tavsiyesi değildir.
+Son güncelleme: <span id="last">henüz yok</span>.
+</footer>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"—").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=(x,suffix="",dec=2)=>x==null||!Number.isFinite(Number(x))?"—":Number(x).toLocaleString("tr-TR",{maximumFractionDigits:dec,minimumFractionDigits:dec})+suffix;
+const sourceLink=url=>{try{const u=new URL(url);return u.protocol==="https:"?'<a rel="noopener noreferrer" target="_blank" href="'+esc(u.href)+'">Resmî kaynak</a>':"—"}catch{return "—"}};
+function row(label,value){return '<li><span class="sub">'+esc(label)+':</span> '+esc(value==null?"—":value)+'</li>'}
+function render(d){
+  $("error").style.display="none";
+  $("last").textContent=d.generated_utc||"—";
+  const fx=d.market?.fx_ecb||{}, nom=d.market?.nominal_treasury||{},real=d.market?.real_treasury||{};
+  const regimeNames={INSUFFICIENT_EVIDENCE:"Veri yetersiz",MARKET_CONFIGURATION_USD_SUPPORTIVE:"USD lehine çapraz piyasa konfigürasyonu",MARKET_CONFIGURATION_USD_UNSUPPORTIVE:"USD aleyhine çapraz piyasa konfigürasyonu",MIXED_NO_DIRECTION:"Karışık; yön teyidi yok",MIXED_REAL_YIELD_DIVERGENCE:"Reel faizle çelişen görünüm"};
+  const metrics=[
+    ["Gözlem statüsü",d.status],
+    ["USD baskı görünümü",regimeNames[d.regime?.label]||d.regime?.label],
+    ["ECB 4FX USD vekili / 5g",num(fx.proxy_return_5d_pct,"%",3)],
+    ["ABD 2 yıllık faiz / 5g",num(nom.nominal_2y_5d_change_bp," bp",1)],
+    ["ABD 10 yıllık reel getiri",num(real.real_10y_pct,"%",2)],
+    ["Resmî kaynak kapsaması",String(d.coverage_ok_sources??0)+"/"+String(d.coverage_total_sources??6)],
+  ];
+  $("metrics").innerHTML=metrics.map(([k,v])=>'<div class="metric"><div class="sub">'+esc(k)+'</div><span class="big">'+esc(v??"—")+'</span></div>').join("");
+  const labels={INFLATION:"Enflasyon",LABOR:"İstihdam ve ücretler",FED_POLICY:"Fed politikası ve açıklamaları",
+    NOMINAL_AND_REAL_RATES:"Nominal/reel faiz ve eğri",CROSS_FX:"USD ve uluslararası çapraz teyit",
+    RISK_FISCAL_TRADE:"Risk, maliye ve ticaret"};
+  const fieldNames={core_cpi_yoy_pct:"Çekirdek TÜFE yıllık %",headline_cpi_yoy_pct:"Manşet TÜFE yıllık %",
+    latest_core_period:"Çekirdek TÜFE veri dönemi",
+    fred_secondary_core_cpi_sa_yoy_pct:"FRED ikincil çekirdek CPI SA yıllık %",
+    fred_secondary_cpi_sa_yoy_pct:"FRED ikincil CPI SA yıllık %",
+    payroll_monthly_change_thousands:"Tarım dışı istihdam değişimi (bin)",
+    unemployment_pct:"İşsizlik %",ahe_yoy_pct:"Saatlik ücret yıllık %",
+    fred_secondary_payems_change_thousands:"FRED ikincil NFP değişimi (bin)",
+    fred_secondary_unemployment_pct:"FRED ikincil işsizlik %",
+    headline_events:"Resmî Fed haber adedi",treasury_2y_pct:"2 yıl faizi %",
+    treasury_10y_pct:"10 yıl faizi %",treasury_real_10y_pct:"10 yıl reel faizi %",
+    ten_minus_two_bp:"10y–2y fark (bp)",nyfed_sofr_pct:"NY Fed SOFR % (Fed hedefi değil)",
+    ecb_eurusd:"EUR/USD",ecb_usdjpy:"USD/JPY",
+    usd_proxy_5d_pct:"4FX USD vekili 5g %"};
+  $("pillars").innerHTML=(d.pillars||[]).map(p=>{
+     const fields=Object.entries(p).filter(([k])=>k in fieldNames);
+     return '<section><h3>'+esc(labels[p.pillar]||p.pillar)+'</h3><p class="sub">'+esc(p.context)+'</p><ul>'+
+       fields.map(([k,v])=>row(fieldNames[k],typeof v==="number"?num(v,"",3):v)).join("")+
+       '</ul><div class="tag">ALPHA KANITI YOK</div></section>';
+  }).join("");
+  $("scenarios").innerHTML=(d.scenarios||[]).map(x=>'<p><b>'+esc(x.name)+'</b><br><span class="sub">'+esc(x.when)+'</span></p>').join("");
+  const ss=d.surprises||[];
+  $("expectation").innerHTML=ss.length?'<div class="wrap"><table><thead><tr><th>Gösterge / dönem</th><th>Önceden belirlenen</th><th>İlk gerçek</th><th>Fark</th><th>Denetim</th></tr></thead><tbody>'+
+    ss.map(x=>'<tr><td>'+esc(x.indicator_id+" / "+x.period)+'</td><td>'+esc(x.expected_value+" "+x.unit)+'</td>'+
+       '<td>'+esc(x.actual_first_observed)+'</td><td>'+esc(x.surprise_actual_minus_expected)+'</td>'+
+       '<td>'+esc(x.evaluation)+' '+sourceLink(x.source_url)+'</td></tr>').join("")+
+    '</tbody></table></div>':"<p>Henüz önceden kilitlenmiş beklenti yok. Bu boşluk 'beklenti sıfır' anlamına gelmez.</p>";
+  $("upcoming").innerHTML=(d.upcoming_expectations||[]).length?
+     (d.upcoming_expectations||[]).map(x=>'<p>'+esc(x.indicator_id+" / "+x.period+" · "+x.release_at_utc)+' · '+sourceLink(x.source_url)+'</p>').join(""):
+     "Önceden kaydedilmiş gelecek veri beklentisi bulunmadı.";
+  $("newsRows").innerHTML=(d.recent_events||[]).map(x=>'<tr><td>'+esc(x.published_utc)+'</td><td>'+esc(x.source+" / "+x.priority+" / "+x.category)+'</td>'+
+    '<td><a target="_blank" rel="noopener noreferrer" href="'+esc(x.url)+'">'+esc(x.headline)+'</a><div class="sub">'+esc(x.discovery_status)+'</div></td>'+
+    '<td>'+esc(x.first_seen_utc)+'</td></tr>').join("")||'<tr><td colspan="4">Henüz uygun resmî haber yok.</td></tr>';
+  $("sourceRows").innerHTML=Object.entries(d.sources||{}).map(([name,x])=>'<tr><td>'+esc(name)+'</td><td class="'+(x.state==="OK"?"good":"bad")+'">'+esc(x.state)+'</td><td>'+
+      sourceLink(x.url)+' <span class="sub">'+esc(x.error||"")+'</span></td></tr>').join("");
+  $("limitations").innerHTML=(d.limitations||[]).map(x=>'<li>'+esc(x)+'</li>').join("");
+}
+async function load(){
+ const base=["../decisions/usd/latest.json","https://raw.githubusercontent.com/evsayar33-oss/quant_superlab/main/decisions/usd/latest.json"];
+ for(const url of base){
+   try{const r=await fetch(url+(url.includes("?")?"&":"?")+"cache="+Date.now(),{cache:"no-store"});
+       if(r.ok){const data=await r.json();if(data.schema_version==="USD_MACRO_V1_2026_11"){render(data);return}}}
+   catch(err){}
+ }
+ $("error").style.display="block";
+ $("error").textContent="USD Radar henüz ilk resmî veri anlık görüntüsünü yayımlamadı veya veri kaynağına erişilemiyor. GitHub Actions'daki USD Macro Radar çalışmasını kontrol edin.";
+ $("metrics").innerHTML='<div class="metric"><span class="big">İlk canlı çalıştırma bekleniyor</span><div class="sub">Veri yokken fiyat yönü üretilemez.</div></div>';
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
+ const name=b.dataset.tab;
+ document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",String(x===b)));
+ document.querySelectorAll(".tab-pane").forEach(x=>x.hidden=x.id!==name);
+}));
+load();
+</script></body></html>
