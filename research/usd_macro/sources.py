@@ -21,6 +21,8 @@ FED_RSS = "https://www.federalreserve.gov/feeds/press_monetary.xml"
 FED_ARCHIVE = "https://www.federalreserve.gov/newsevents/pressreleases/2026-press-fomc.htm"
 BLS_RSS = "https://www.bls.gov/feed/bls_latest.rss"
 BLS_API = "https://api.bls.gov/publicAPI/v1/timeseries/data/"
+NYFED_SOFR = "https://markets.newyorkfed.org/api/rates/secured/sofr/last/7.json"
+FRED_CONTEXT = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS,UNRATE,CPIAUCSL,CPILFESL"
 SERIES = {
     "cpi_all": ("CUUR0000SA0", "CPI-U all items, NSA index", "INDEX"),
     "cpi_core": ("CUUR0000SA0L1E", "CPI-U less food & energy, NSA index", "INDEX"),
@@ -30,7 +32,8 @@ SERIES = {
 }
 ALLOWED_DOMAINS = {
     "www.ecb.europa.eu", "home.treasury.gov", "www.federalreserve.gov",
-    "www.bls.gov", "api.bls.gov",
+    "www.bls.gov", "api.bls.gov", "markets.newyorkfed.org",
+    "fred.stlouisfed.org",
 }
 
 
@@ -123,21 +126,27 @@ def parse_treasury(csv_text: str, today: date, *, real: bool = False) -> dict:
         raise ValueError("Treasury CSV endpoint returned HTML")
     values = []
     reader = csv.DictReader(StringIO(csv_text))
-    if reader.fieldnames is None or "Date" not in reader.fieldnames:
-        raise ValueError("Treasury CSV missing Date header")
+    if not reader.fieldnames:
+        raise ValueError("Treasury CSV missing header")
+    # Treasury real-curve CSV may differ in capitalization/spacing.
+    columns = {"".join(ch.lower() for ch in col if ch.isalnum()):col
+               for col in reader.fieldnames if col}
+    if "date" not in columns or "10yr" not in columns or (not real and "2yr" not in columns):
+        raise ValueError("Treasury CSV missing required date/tenor columns")
     for r in reader:
+        raw_date=str(r.get(columns["date"],"")).strip()
         try:
-            d = datetime.strptime(r["Date"].strip(), "%m/%d/%Y").date()
-        except (ValueError, AttributeError):
+            d = datetime.strptime(raw_date, "%m/%d/%Y").date()
+        except ValueError:
             try:
-                d = date.fromisoformat(r["Date"].strip())
-            except (ValueError, AttributeError):
+                d = date.fromisoformat(raw_date)
+            except ValueError:
                 continue
         if d > today:
             continue
         try:
-            v10 = float(r["10 Yr"])
-            v2 = float(r["2 Yr"]) if not real else None
+            v10 = float(r[columns["10yr"]])
+            v2 = float(r[columns["2yr"]]) if not real else None
             if not (-5 < v10 < 30 and (real or -5 < v2 < 30)):
                 continue
         except (KeyError, ValueError, TypeError):
@@ -224,6 +233,76 @@ def parse_bls(response: dict, observed_at: datetime) -> dict:
     return latest
 
 
+
+def parse_nyfed_sofr(raw: dict, today: date) -> dict:
+    rows=[]
+    for row in raw.get("refRates",[]):
+        try:
+            day=date.fromisoformat(row["effectiveDate"])
+            v=float(row["percentRate"])
+            if day<=today and 0<=v<30:
+                rows.append((day,v))
+        except (KeyError,TypeError,ValueError):
+            continue
+    rows.sort()
+    if not rows:
+        raise ValueError("NY Fed API returned no observed SOFR")
+    d,v=rows[-1]
+    return {"source":NYFED_SOFR,"date":d.isoformat(),
+            "sofr_pct":v,"age_calendar_days":(today-d).days,
+            "fresh":(today-d).days<=6,
+            "label":"OVERNIGHT_SECURED_FUNDING_NOT_FED_FUTURES",
+            "prior_observation_pct":rows[-2][1] if len(rows)>1 else None}
+
+
+def parse_fred_context(csv_text: str, today: date) -> dict:
+    """FRED public graph download: secondary current-vintage context, NOT first-release BLS."""
+    rdr=csv.DictReader(StringIO(csv_text))
+    if not rdr.fieldnames:
+        raise ValueError("FRED CSV missing headers")
+    columns={key.upper():key for key in rdr.fieldnames if key}
+    date_col=columns.get("OBSERVATION_DATE",columns.get("DATE"))
+    if not date_col:
+        raise ValueError("FRED missing observation date column")
+    watched=["PAYEMS","UNRATE","CPIAUCSL","CPILFESL"]
+    record={key:[] for key in watched}
+    for row in rdr:
+        try:
+            day=date.fromisoformat(str(row[date_col]).strip())
+            if day>today:
+                continue
+        except (ValueError,TypeError):
+            continue
+        for key in watched:
+            if key not in columns:
+                continue
+            try:
+                number=float(row[columns[key]])
+                if not __import__("math").isfinite(number):
+                    continue
+                record[key].append((day,number))
+            except (KeyError,ValueError,TypeError):
+                continue
+    result={"source":FRED_CONTEXT,
+            "label":"FRED_SECONDARY_CURRENT_VINTAGE_NOT_BLS_FIRST_RELEASE",
+            "not_consensus":True,"not_point_in_time":True}
+    for key in watched:
+        d=sorted(record[key])
+        if not d:
+            continue
+        latest=d[-1]
+        result[key.lower()+"_date"]=latest[0].isoformat()
+        result[key.lower()+"_value"]=latest[1]
+        result[key.lower()+"_fresh"]=(today-latest[0]).days<=55
+        if len(d)>=2:
+            result[key.lower()+"_change_1m_raw"]=round(latest[1]-d[-2][1],3)
+        if len(d)>=13 and d[-13][1]>0:
+            result[key.lower()+"_yoy_pct"]=round((latest[1]/d[-13][1]-1)*100,3)
+    if "payems_value" not in result or "unrate_value" not in result:
+        raise ValueError("FRED context missing core labor macro series")
+    return result
+
+
 def _rss_date(s: str):
     if not s:
         return None
@@ -291,7 +370,6 @@ def parse_rss(xml_text: str, *, origin: str, observed: datetime, allowed_host: s
     return result[:100]
 
 
-
 def parse_fed_archive(html_text: str, observed: datetime, *, max_age_days: int = 50) -> list[dict]:
     """Official Fed FOMC archive fallback. DATE_ONLY is never a precise publication tick."""
     import re
@@ -343,6 +421,8 @@ def collect(now: datetime, *, fetch=safe_request) -> tuple[dict,dict]:
              lambda s:parse_treasury(s,today,real=True),None),
         ("bls_actuals",BLS_API,lambda s:parse_bls(__import__("json").loads(s),now),
              {"seriesid":[item[0] for item in SERIES.values()]}),
+        ("fred_secondary",FRED_CONTEXT,lambda s:parse_fred_context(s,today),None),
+        ("nyfed_sofr",NYFED_SOFR,lambda s:parse_nyfed_sofr(__import__("json").loads(s),today),None),
         ("fed_news",FED_RSS,lambda s:parse_rss(s,origin="FED",observed=now,
                                                 allowed_host="www.federalreserve.gov"),None),
         ("bls_news",BLS_RSS,lambda s:parse_rss(s,origin="BLS",observed=now,
