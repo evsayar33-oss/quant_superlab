@@ -337,6 +337,8 @@ def classify_headline(text: str, origin: str) -> tuple[str,str]:
 def parse_rss(xml_text: str, *, origin: str, observed: datetime, allowed_host: str,
               max_age_days: int=35) -> list[dict]:
     root=ET.fromstring(xml_text)
+    if root.tag.split("}")[-1].lower() not in {"rss","feed","rdf"}:
+        raise ValueError("Source returned HTML or non-RSS XML")
     result=[]
     for item in root.iter():
         if item.tag.split("}")[-1] not in {"item","entry"}:
