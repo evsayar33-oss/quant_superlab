@@ -82,3 +82,24 @@ def test_timestamp_filter_can_leave_no_eligible_rows():
     from lab.event_study import executable_events
     feed = pd.DataFrame([{"event_id": "old-award", "timestamp_quality": "action_date_proxy"}])
     assert executable_events(feed).empty
+
+
+def test_locked_holdout_does_not_change_discovery_significance():
+    rows = []
+    dates = pd.bdate_range("2020-01-01", periods=80)
+    for i, d in enumerate(dates):
+        value = 0.01 if i < 70 else -0.01
+        rows.append({
+            "event_id": f"seal-{i}", "ticker": "TST", "event_family": "corporate_capex",
+            "category": "chips", "known_at": d.isoformat(), "event_date": d.date().isoformat(),
+            "horizon": 20, "net_spy_excess_2x": value, "net_stock_return_2x": value * 2,
+        })
+    first = summarize(pd.DataFrame(rows), min_events=50, min_split=10, bootstrap_n=200, q_limit=1.0).iloc[0]
+    changed = [dict(row) for row in rows]
+    for row in changed[-16:]:
+        row["net_spy_excess_2x"] = 0.03
+        row["net_stock_return_2x"] = 0.06
+    second = summarize(pd.DataFrame(changed), min_events=50, min_split=10, bootstrap_n=200, q_limit=1.0).iloc[0]
+    assert first["p_value"] == second["p_value"]
+    assert first["q_value"] == second["q_value"]
+    assert first["holdout_excess_mean"] != second["holdout_excess_mean"]
