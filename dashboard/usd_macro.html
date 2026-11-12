@@ -92,9 +92,10 @@ function render(d){
   $("error").style.display="none";
   $("last").textContent=d.generated_utc||"—";
   const fx=d.market?.fx_ecb||{}, nom=d.market?.nominal_treasury||{},real=d.market?.real_treasury||{};
+  const regimeNames={INSUFFICIENT_EVIDENCE:"Veri yetersiz",MARKET_CONFIGURATION_USD_SUPPORTIVE:"USD lehine çapraz piyasa konfigürasyonu",MARKET_CONFIGURATION_USD_UNSUPPORTIVE:"USD aleyhine çapraz piyasa konfigürasyonu",MIXED_NO_DIRECTION:"Karışık; yön teyidi yok",MIXED_REAL_YIELD_DIVERGENCE:"Reel faizle çelişen görünüm"};
   const metrics=[
     ["Gözlem statüsü",d.status],
-    ["USD baskı görünümü",d.regime?.label],
+    ["USD baskı görünümü",regimeNames[d.regime?.label]||d.regime?.label],
     ["ECB 4FX USD vekili / 5g",num(fx.proxy_return_5d_pct,"%",3)],
     ["ABD 2 yıllık faiz / 5g",num(nom.nominal_2y_5d_change_bp," bp",1)],
     ["ABD 10 yıllık reel getiri",num(real.real_10y_pct,"%",2)],

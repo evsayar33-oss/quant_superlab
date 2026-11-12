@@ -328,10 +328,10 @@ def _summary(data, source_states, expectations, observations, events, new_events
             "USD proxy is not DXY; scoring not validated against forward USD returns.",
         ],
         "scenarios":[
-            {"name":"USD supportive conditional","when":"2-year nominal and real yields rise alongside broad FX confirmation; external differential must also support."},
-            {"name":"USD weakening conditional","when":"Real/short yields and USD FX proxy decline together; watch foreign monetary policies."},
-            {"name":"Risk-off bifurcation","when":"Systemic stress can strengthen safe-haven USD despite falling US yields or weaken USD on US-specific stress."},
-            {"name":"Inflation surprise ambiguity","when":"Hot CPI can reprice Fed higher but also weaken real growth and increase US risk premia."},
+            {"name":"USD lehine koşullu görünüm","when":"ABD kısa vadeli nominal ve uzun vadeli reel getiriler yükselirken dövizlerde USD teyidi görülür; yabancı faiz farkları ayrıca değerlendirilmelidir."},
+            {"name":"USD aleyhine koşullu görünüm","when":"ABD kısa ve reel getiriler ile USD çapraz göstergesi birlikte geriler; diğer merkez bankalarının para politikası kontrol edilir."},
+            {"name":"Riskten kaçışta iki yönlü senaryo","when":"Küresel stres güvenli liman USD'yi güçlendirebilir; ABD'ye özgü finansman veya güven riski USD'yi zayıflatabilir."},
+            {"name":"Enflasyon sürprizinde belirsizlik","when":"Yüksek enflasyon Fed faiz beklentisini yükseltebilir; reel büyüme ve ABD risk primine olumsuz etkisi USD sonucunu tersine çevirebilir."},
         ],
         "approved_alpha":False,"trade_authorization":False,
         "broker_execution":False,"telegram_trade_signals":False,
@@ -342,9 +342,16 @@ def _summary(data, source_states, expectations, observations, events, new_events
 def _format_telegram(report: dict, events: list[dict], *, launch=False) -> str:
     e=html.escape
     s=report["regime"]
+    Turkish={
+        "INSUFFICIENT_EVIDENCE":"Veri yetersiz",
+        "MARKET_CONFIGURATION_USD_SUPPORTIVE":"USD lehine çapraz piyasa konfigürasyonu",
+        "MARKET_CONFIGURATION_USD_UNSUPPORTIVE":"USD aleyhine çapraz piyasa konfigürasyonu",
+        "MIXED_NO_DIRECTION":"Karışık görünüm; yön teyidi yok",
+        "MIXED_REAL_YIELD_DIVERGENCE":"Reel faizle çelişen görünüm",
+    }
     lines=[
         "<b>🇺🇸 USD MAKRO RADAR | TEMEL ANALİZ</b>",
-        "<b>Durum:</b> "+e(s["label"]),
+        "<b>Durum:</b> "+e(Turkish.get(s["label"],s["label"])),
         f"Kaynak: {report['coverage_ok_sources']}/{report['coverage_total_sources']} resmî akış",
         "Sürpriz: "+str(report["expectation_coverage"]["confirmed_ex_ante_surprises"])+
         " önceden kilitlenmiş beklenti karşılaştırması",
