@@ -272,13 +272,17 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
 def markdown_report(summary: pd.DataFrame, returns: pd.DataFrame, feed_rows: int,
                     loaded_tickers: int, excluded_tickers: int, start: str,
                     excluded_unverified_timestamps: int = 0) -> str:
+    if returns is not None and not returns.empty and {"event_id", "ticker"}.issubset(returns.columns):
+        observation_count = len(returns[["event_id", "ticker"]].drop_duplicates())
+    else:
+        observation_count = len(returns["event_id"].unique()) if returns is not None and not returns.empty and "event_id" in returns else 0
     lines = [
         "# H078 — Federal event study",
         "",
         "**Status: research only. No live signal or bot integration.**",
         "",
         f"- Feed rows: {feed_rows}; excluded historical award action-date proxies: {excluded_unverified_timestamps}; price tickers loaded: {loaded_tickers}; tickers excluded by data cap: {excluded_tickers}.",
-        f"- Price history start: {start}; event observations: {len(returns['event_id'].unique()) if not returns.empty else 0}.",
+        f"- Price history start: {start}; event/ticker observations: {observation_count}.",
         "- Execution: exact publication/first-seen pre-market timestamps may enter at same-session open; intraday/after-close and date-only events enter at the next session open.",
         "- Returns: market-model abnormal return versus SPY, net of round-trip stock costs at 1x and 2x; sector ETF excess is diagnostic where available.",
         "- Chronological split: 60% discovery / 20% validation / 20% locked holdout. Cooldown: one event per ticker per 60 calendar days.",
