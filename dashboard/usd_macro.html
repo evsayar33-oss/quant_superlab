@@ -77,7 +77,7 @@ footer{max-width:1180px;margin:auto;padding:0 18px 30px;color:var(--sub);font-si
   <section><h2>Mevcut kapsam dışı kalan kritik bilgiler</h2><ul id="limitations"></ul></section>
 </div>
 </main><footer>
-Bu sayfa bilgilendirme ve araştırma içindir. **DXY değildir**: ECB'den hesaplanan EUR/JPY/GBP/CHF örnek USD göstergesi kullanılır.
+Bu sayfa bilgilendirme ve araştırma içindir. DXY değildir: ECB'den hesaplanan EUR/JPY/GBP/CHF örnek USD göstergesi kullanılır.
 Fiyat öngörüsü, lisanslı kurum konsensüsü, işlem emri veya yatırım tavsiyesi değildir.
 Son güncelleme: <span id="last">henüz yok</span>.
 </footer>
@@ -105,11 +105,17 @@ function render(d){
     NOMINAL_AND_REAL_RATES:"Nominal/reel faiz ve eğri",CROSS_FX:"USD ve uluslararası çapraz teyit",
     RISK_FISCAL_TRADE:"Risk, maliye ve ticaret"};
   const fieldNames={core_cpi_yoy_pct:"Çekirdek TÜFE yıllık %",headline_cpi_yoy_pct:"Manşet TÜFE yıllık %",
-    latest_core_period:"Çekirdek TÜFE veri dönemi",payroll_monthly_change_thousands:"Tarım dışı istihdam değişimi (bin)",
+    latest_core_period:"Çekirdek TÜFE veri dönemi",
+    fred_secondary_core_cpi_sa_yoy_pct:"FRED ikincil çekirdek CPI SA yıllık %",
+    fred_secondary_cpi_sa_yoy_pct:"FRED ikincil CPI SA yıllık %",
+    payroll_monthly_change_thousands:"Tarım dışı istihdam değişimi (bin)",
     unemployment_pct:"İşsizlik %",ahe_yoy_pct:"Saatlik ücret yıllık %",
+    fred_secondary_payems_change_thousands:"FRED ikincil NFP değişimi (bin)",
+    fred_secondary_unemployment_pct:"FRED ikincil işsizlik %",
     headline_events:"Resmî Fed haber adedi",treasury_2y_pct:"2 yıl faizi %",
     treasury_10y_pct:"10 yıl faizi %",treasury_real_10y_pct:"10 yıl reel faizi %",
-    ten_minus_two_bp:"10y–2y fark (bp)",ecb_eurusd:"EUR/USD",ecb_usdjpy:"USD/JPY",
+    ten_minus_two_bp:"10y–2y fark (bp)",nyfed_sofr_pct:"NY Fed SOFR % (Fed hedefi değil)",
+    ecb_eurusd:"EUR/USD",ecb_usdjpy:"USD/JPY",
     usd_proxy_5d_pct:"4FX USD vekili 5g %"};
   $("pillars").innerHTML=(d.pillars||[]).map(p=>{
      const fields=Object.entries(p).filter(([k])=>k in fieldNames);

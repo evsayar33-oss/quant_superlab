@@ -73,6 +73,16 @@ def mock_fetch(url,post):
         return json.dumps(bls_sample())
     if url==S.FED_RSS:return rss_sample()
     if url==S.BLS_RSS:return rss_sample("BLS")
+    if url==S.FRED_CONTEXT:
+        dates=[date(2025,9,1)+timedelta(days=31*i) for i in range(14)]
+        months=sorted({f"{d.year}-{d.month:02d}-01" for d in dates})
+        return "observation_date,PAYEMS,UNRATE,CPIAUCSL,CPILFESL\n"+"\n".join(
+            f"{m},{160000+i*120},4.1,{300+i*.4:.2f},{280+i*.35:.2f}"
+            for i,m in enumerate(months))
+    if url==S.NYFED_SOFR:
+        return json.dumps({"refRates":[
+            {"effectiveDate":"2026-11-12","percentRate":4.15},
+            {"effectiveDate":"2026-11-11","percentRate":4.17}]})
     raise ValueError("Unexpected URL")
 
 
@@ -238,7 +248,7 @@ def test_source_failures_never_create_fabricated_metrics(tmp_path):
 def test_offline_synthetic_six_source_smoke_research_only(tmp_path):
     d=E.run(mode="smoke",output=tmp_path/"out",
             expectations_csv=tmp_path/"missing.csv",now=NOW,fetch=mock_fetch)
-    assert d["coverage_ok_sources"]==6
+    assert d["coverage_ok_sources"]==8
     assert d["market"]["fx_ecb"]["label"].endswith("NOT_DXY")
     assert len(d["pillars"])==6
     assert d["new_forward_events"]==0
@@ -306,3 +316,37 @@ def test_failed_delivery_is_retried_not_false_success(tmp_path):
           expectations_csv=tmp_path/"missing.csv",now=NOW+timedelta(minutes=10),
           fetch=mock_fetch,send=lambda text:(sent.append(text) or True))
     assert len(sent)==1
+
+
+def test_treasury_uppercase_real_csv_header():
+    text=treasury_sample(True).replace("Date,5 Yr,10 Yr","DATE,5 YR,10 YR")
+    parsed=S.parse_treasury(text,NOW.date(),real=True)
+    assert parsed["real_10y_pct"]>2
+
+
+def test_fred_secondary_never_used_as_official_survey_consensus():
+    d=E.run(mode="smoke",output=Path("/tmp")/"usd_test_no_surprise",
+            expectations_csv=Path("/does_not_exist.csv"),now=NOW,fetch=mock_fetch)
+    assert d["market"]["fred_secondary"]["label"].startswith("FRED_SECONDARY")
+    assert d["market"]["fred_secondary"]["not_consensus"] is True
+    assert d["expectation_coverage"]["confirmed_ex_ante_surprises"]==0
+
+
+def test_nyfed_sofr_is_not_fed_futures_rate():
+    info=S.parse_nyfed_sofr({"refRates":[{"effectiveDate":"2026-11-10",
+                    "percentRate":4.10}]},NOW.date())
+    assert info["label"]=="OVERNIGHT_SECURED_FUNDING_NOT_FED_FUTURES"
+
+
+def test_fed_rss_blocked_fallback_archive_is_date_only():
+    fake_html='<html><a href="/newsevents/pressreleases/monetary20261028a.htm">Federal Reserve issues FOMC statement</a></html>'
+    fallback=S.parse_fed_archive(fake_html,NOW)
+    assert fallback[0]["timestamp_quality"]=="DATE_ONLY_NOT_EXACT"
+    assert fallback[0]["category"]=="FED_POLICY"
+    def fetch(url,post):
+        if url==S.FED_RSS:return "<html>Not an RSS feed</html>"
+        if url==S.FED_ARCHIVE:return fake_html
+        return mock_fetch(url,post)
+    data,health=S.collect(NOW,fetch=fetch)
+    assert health["fed_news"]["fallback"]=="FED_ARCHIVE_DATE_ONLY"
+    assert data["fed_news"][0]["source"]=="FED_ARCHIVE"

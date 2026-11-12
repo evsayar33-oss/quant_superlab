@@ -233,6 +233,8 @@ def _regime(data: dict, sources: dict):
 
 def _pillars(data: dict, sources: dict, locks: list, surprises: list) -> list[dict]:
     bls=data.get("bls_actuals",{})
+    fred=data.get("fred_secondary",{})
+    sofr=data.get("nyfed_sofr",{})
     def b(x,field):
         return bls.get(x,{}).get(field)
     latest={
@@ -240,13 +242,17 @@ def _pillars(data: dict, sources: dict, locks: list, surprises: list) -> list[di
             "core_cpi_yoy_pct":b("cpi_core","yoy_pct_current_vintage"),
             "headline_cpi_yoy_pct":b("cpi_all","yoy_pct_current_vintage"),
             "latest_core_period":b("cpi_core","period"),
-            "context":"Çekirdek CPI / manşet CPI trendleri; daha yüksek enflasyon otomatik USD-pozitif değildir.",
+            "fred_secondary_core_cpi_sa_yoy_pct":fred.get("cpilfesl_yoy_pct"),
+            "fred_secondary_cpi_sa_yoy_pct":fred.get("cpiaucsl_yoy_pct"),
+            "context":"BLS ilk yayın API'si başarısızsa ayrı FRED SA güncel revizyon verisi gösterilir; bu piyasa konsensüsü/sürprizi değildir.",
         },
         "LABOR":{
             "payroll_monthly_change_thousands":b("nonfarm","change_1m_raw"),
             "unemployment_pct":b("unemployment","value"),
             "ahe_yoy_pct":b("ahe","yoy_pct_current_vintage"),
-            "context":"BLS cari revizyon; önceki açıklama dönemi yeniden yazılmış olabilir.",
+            "fred_secondary_payems_change_thousands":fred.get("payems_change_1m_raw"),
+            "fred_secondary_unemployment_pct":fred.get("unrate_value"),
+            "context":"BLS API ilk gözlem yoksa FRED'in ikincil güncel revizyon serisi ayrı belirtilir; resmî ilk duyuru sürprizi değildir.",
         },
         "FED_POLICY":{
             "headline_events":len(data.get("fed_news",[])),
@@ -257,7 +263,8 @@ def _pillars(data: dict, sources: dict, locks: list, surprises: list) -> list[di
             "treasury_10y_pct":data.get("nominal_treasury",{}).get("nominal_10y_pct"),
             "treasury_real_10y_pct":data.get("real_treasury",{}).get("real_10y_pct"),
             "ten_minus_two_bp":data.get("nominal_treasury",{}).get("curve_10y_minus_2y_bp"),
-            "context":"Gerçek faiz, eğri ve vade primi ayrıştırılmadan kesin USD yönü atanmaz.",
+            "nyfed_sofr_pct":sofr.get("sofr_pct"),
+            "context":"SOFR piyasa fonlama referansıdır, Fed hedef faizi/futures olasılığı değildir. Nominal/reel eğri tek başına yön kanıtlamaz.",
         },
         "CROSS_FX":{
             "ecb_eurusd":data.get("fx_ecb",{}).get("eurusd"),
@@ -299,7 +306,7 @@ def _summary(data, source_states, expectations, observations, events, new_events
         "status":status,"coverage_ok_sources":successes,
         "coverage_total_sources":len(source_states),
         "sources":source_states,
-        "market":{k:v for k,v in data.items() if k in ("fx_ecb","nominal_treasury","real_treasury")},
+        "market":{k:v for k,v in data.items() if k in ("fx_ecb","nominal_treasury","real_treasury","nyfed_sofr","fred_secondary")},
         "bls_latest":data.get("bls_actuals",{}),
         "regime":_regime(data,source_states),
         "pillars":_pillars(data,source_states,expectations,evaluated),
@@ -314,6 +321,7 @@ def _summary(data, source_states, expectations, observations, events, new_events
         "limitations":[
             "Fed official communication is headline-classified; not a model of central-bank language.",
             "No licensed survey consensus, ECB/OIS relative policy curve, CFTC positions or full BEA PCE/GDP source in v1.",
+            "FRED secondary macro and NY Fed SOFR are context, not a substitute for BLS first-release consensus surprises.",
             "Official series can revise; backfilled old data is not point-in-time.",
             "USD proxy is not DXY; scoring not validated against forward USD returns.",
         ],
@@ -462,5 +470,5 @@ if __name__=="__main__":
     result=run(mode=args.mode,output=Path(args.output),
                expectations_csv=Path(args.expectations))
     # Smoke checks real primary-source reachability. No fake green when all blocked.
-    if args.mode=="smoke" and result["coverage_ok_sources"]<3:
-        sys.exit("USD macro official-source live smoke failed minimum 3/6")
+    if args.mode=="smoke" and result["coverage_ok_sources"]<4:
+        sys.exit("USD macro official-source live smoke failed minimum 4/8")

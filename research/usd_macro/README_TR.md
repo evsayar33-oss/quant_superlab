@@ -10,7 +10,7 @@ kanıt sicilinden tamamen ayrıdır.
   resmî bağlantılar, FX/faiz referansı, beklenti denetimi, olası senaryolar.
   `decisions/usd/latest.json` üzerinden çalışır; veri yoksa boş ve doğru
   durum gösterir. Bu, mevcut Arena ekranını bozmaz.
-- `research/usd_macro/sources.py` — **6 bağımsız resmî veri yolu**:
+- `research/usd_macro/sources.py` — **8 bağımsız resmî / merkez bankası veri yolu**:
   1. ECB 90 günlük EUR, JPY, GBP, CHF döviz referansları: kendi
      ağırlıkları (EUR %45, JPY %25, GBP %20, CHF %10) ile
      USD çapraz piyasa yönü. **DXY değildir ve DXY yerine pazarlanmaz.**
@@ -18,8 +18,13 @@ kanıt sicilinden tamamen ayrıdır.
   3. ABD Hazine 10y TIPS reel getirisi ve 5 seans değişimi.
   4. BLS v1 API: manşet/core TÜFE, NFP, işsizlik, özel sektör saatlik
      ücret (cari revizyon/vintage). CPI yıllık ve NFP aylık değişim.
-  5. Federal Reserve'in parasal politika resmi RSS başlıkları.
+  5. Federal Reserve'in parasal politika resmî RSS başlıkları; RSS erişimi engellenirse Fed FOMC resmî basın arşivi (yalnız DATE_ONLY, asla kesin yayın saati değil).
   6. BLS'in resmî RSS haber başlıkları.
+  7. FRED (St. Louis Fed) açık CSV: PAYEMS, UNRATE, CPIAUCSL,
+     CPILFESL. **İkincil güncel-vintage bağlamdır; BLS'in
+     ilk yayımlanan resmî verisi, piyasa anketi veya sürpriz değildir.**
+  8. New York Fed resmî SOFR API; gecelik teminatlı fonlama
+     oranı. **Fed hedef faizi veya FedWatch olasılığı değildir.**
 - `research/usd_macro/engine.py` — araştırma katmanları:
   **enflasyon, işgücü, Fed, faiz ve reel faiz, USD çapraz teyit,
   maliye/risk/ticaret**. Her gösterge aynı anda güncellenmeyebilir.
@@ -106,10 +111,14 @@ python research/usd_macro/engine.py --mode scheduled --output decisions/usd
 ```
 
 `smoke` gerçek 6 kaynağı dener, sonuçları yalnız artifact'a yazar,
-**Telegram göndermez**; en az 3 başarılı resmî kaynak olmadan yeşil
+**Telegram göndermez**; en az 4 başarılı resmî/merkez bankası veri kaynağı olmadan yeşil
 olamaz. Dış kaynak blokajı, stale fiyatlar ve eksik veri açık uyarıdır.
 
 Önerilen sonraki aşama: gerçek bir dış konsensüs/nowcast kaynağı lisansı,
 Fed metin analizi için doğrulanan metin kanıtı, reel faiz farkları,
 USD forward-reaction etiketleri ve ex-ante walk-forward risk karşılaştırması.
 Bu aşamaların hiçbiri V1'de test edilmiş alpha olarak ileri sürülmez.
+
+### GitHub Actions gerçek bağlantı testi notu
+
+BLS API, BLS RSS ve Fed RSS bazı bulut çalıştırıcılarına 403/503 veya geçersiz XML dönebilir. Her kaynak kendi hata durumunu gösterir; Fed FOMC basın arşivi tarih-düzeyli yedek olarak kullanılabilir. FRED verisi BLS ilk yayın sürprizini taklit etmez. Bütün kaynaklar arızalıysa USD yorumu verilmez; kısmi başarısızlık `PARTIAL` olur.

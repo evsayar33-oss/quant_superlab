@@ -18,6 +18,7 @@ USER_AGENT = "quant_superlab-usd-macro/1.0 (noncommercial research; github.com/e
 ECB_FX = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
 TREASURY_BASE = "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv"
 FED_RSS = "https://www.federalreserve.gov/feeds/press_monetary.xml"
+FED_ARCHIVE = "https://www.federalreserve.gov/newsevents/pressreleases/2026-press-fomc.htm"
 BLS_RSS = "https://www.bls.gov/feed/bls_latest.rss"
 BLS_API = "https://api.bls.gov/publicAPI/v1/timeseries/data/"
 SERIES = {
@@ -290,6 +291,46 @@ def parse_rss(xml_text: str, *, origin: str, observed: datetime, allowed_host: s
     return result[:100]
 
 
+
+def parse_fed_archive(html_text: str, observed: datetime, *, max_age_days: int = 50) -> list[dict]:
+    """Official Fed FOMC archive fallback. DATE_ONLY is never a precise publication tick."""
+    import re
+    from html import unescape
+    from hashlib import sha256
+    results=[]
+    matches=re.findall(
+        r'href="([^"]*monetary([0-9]{8})[a-z][.]htm)"[^>]*>(.*?)</a>',
+        html_text, flags=re.I|re.S
+    )
+    for url,datecode,title_html in matches:
+        try:
+            from urllib.parse import urljoin
+            link=urljoin("https://www.federalreserve.gov",url)
+            if urlparse(link).hostname!="www.federalreserve.gov":
+                continue
+            d=datetime.strptime(datecode,"%Y%m%d").replace(tzinfo=timezone.utc)
+            if d>observed or observed-d>timedelta(days=max_age_days):
+                continue
+        except ValueError:
+            continue
+        title=unescape(re.sub(r'<[^>]+>',' ',title_html))
+        title=re.sub(r'\\s+',' ',title).strip()[:300]
+        if not title:
+            continue
+        category,impact=classify_headline(title+" FOMC", "FED")
+        results.append({
+            "event_id":sha256(("FED_ARCHIVE|"+link).encode()).hexdigest()[:20],
+            "source":"FED_ARCHIVE","headline":title,"url":link,
+            "published_utc":d.isoformat(),"timestamp_quality":"DATE_ONLY_NOT_EXACT",
+            "first_seen_utc":observed.isoformat(),
+            "category":category,"priority":impact,
+            "direction":"UNASSESSED_NEWS_NOT_TRADE_SIGNAL",
+        })
+    if not results:
+        raise ValueError("Fed FOMC archive has no recent recognized official statement links")
+    return results[:50]
+
+
 def collect(now: datetime, *, fetch=safe_request) -> tuple[dict,dict]:
     """Independent fail-closed sources, never quietly fill missing with guesses."""
     today=now.date()
@@ -315,6 +356,21 @@ def collect(now: datetime, *, fetch=safe_request) -> tuple[dict,dict]:
             sources[name]={"state":"OK","url":url,"asof_utc":now.isoformat(),
                            "records":len(data) if isinstance(data,list) else 1}
         except Exception as exc:
+            if name=="fed_news":
+                try:
+                    raw=fetch(FED_ARCHIVE,post=None)
+                    news=parse_fed_archive(raw,now)
+                    result[name]=news
+                    sources[name]={"state":"OK","url":FED_ARCHIVE,
+                                   "fallback":"FED_ARCHIVE_DATE_ONLY",
+                                   "asof_utc":now.isoformat(),"records":len(news)}
+                    continue
+                except Exception as fallback_exc:
+                    sources[name]={"state":"ERROR","url":url,
+                                   "error":type(exc).__name__+":"+str(exc)[:70],
+                                   "fallback_error":type(fallback_exc).__name__+
+                                                    ":"+str(fallback_exc)[:80]}
+                    continue
             sources[name]={"state":"ERROR","url":url,
                            "error":type(exc).__name__+":"+str(exc)[:140]}
     return result,sources
