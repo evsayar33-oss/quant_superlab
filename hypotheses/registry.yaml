@@ -764,3 +764,13 @@
   start: "1990-01-01"
   status: study
   note: "Buy below / sell above the options-implied expected range, exit back at the reference price. 48 settings x 5 assets = 240 trials. Locked last 2 years. Owner target CAGR >= 25%, recovery <= 600 days reported."
+
+# ---- 2026-11-12: Federal Incentive Radar event study (pre-registered; fixed design, no parameter search).
+- id: H078
+  study: federal_event_study
+  universe: "Directly matched US listed tickers from federal-incentive-radar + SPY + sector ETFs"
+  timeframe: 1d
+  for_system: research_only
+  start: "2019-01-01"
+  status: study
+  note: "Fixed event families: federal_award, corporate_capex, policy_regulatory. Entry at first executable daily open after known_at; date-only events enter next session. Historical USAspending action-date proxies without verified public timestamps are excluded; live first-seen UTC timestamps remain eligible. Horizons 1/5/20/60; 60-calendar-day per-ticker cooldown; market-model excess vs SPY, sector ETF diagnostic; round-trip 1x/2x costs; chronological 60/20/20 split; BH q-values and bootstrap intervals use discovery+validation only, never the locked holdout. No DSR/PBO because no parameter sweep. Candidate gate additionally requires positive 2x-cost raw stock return and positive SPY-relative excess in every chronological split, with raw holdout hit rate >= 52%; candidate status is research-only and cannot authorize a bot."
