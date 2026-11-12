@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from lab.event_study import entry_index, measure_events, summarize
+from lab.event_study import entry_index, measure_events, summarize, partition_event_timestamps
 from lab.panel import Panel
 
 
@@ -67,21 +67,29 @@ def test_event_summary_has_chronological_holdout_and_no_false_candidate():
     assert row["holdout_stock_mean"] < 0 and row["status"] == "REJECT"
 
 
-def test_event_feed_excludes_unverified_action_date_proxies():
-    from lab.event_study import executable_events
+def test_timestamp_partition_keeps_radar_first_seen_out_of_historical_backtest():
     feed = pd.DataFrame([
-        {"event_id": "live-award", "timestamp_quality": "first_seen_utc"},
+        {"event_id": "verified-publication", "timestamp_quality": "exact_utc"},
+        {"event_id": "public-date", "timestamp_quality": "date_only"},
+        {"event_id": "radar-ingestion", "timestamp_quality": "first_seen_utc"},
         {"event_id": "old-award", "timestamp_quality": "action_date_proxy"},
-        {"event_id": "public-rule", "timestamp_quality": "date_only"},
+        {"event_id": "unknown", "timestamp_quality": "unknown"},
     ])
-    eligible = executable_events(feed)
-    assert set(eligible["event_id"]) == {"live-award", "public-rule"}
+    historical, forward_only, excluded = partition_event_timestamps(feed)
+    assert set(historical["event_id"]) == {"verified-publication", "public-date"}
+    assert set(forward_only["event_id"]) == {"radar-ingestion"}
+    assert set(excluded["event_id"]) == {"old-award", "unknown"}
 
 
-def test_timestamp_filter_can_leave_no_eligible_rows():
-    from lab.event_study import executable_events
-    feed = pd.DataFrame([{"event_id": "old-award", "timestamp_quality": "action_date_proxy"}])
-    assert executable_events(feed).empty
+def test_timestamp_filter_can_leave_no_historical_rows():
+    feed = pd.DataFrame([
+        {"event_id": "radar-ingestion", "timestamp_quality": "first_seen_utc"},
+        {"event_id": "old-award", "timestamp_quality": "action_date_proxy"},
+    ])
+    historical, forward_only, excluded = partition_event_timestamps(feed)
+    assert historical.empty
+    assert len(forward_only) == 1
+    assert len(excluded) == 1
 
 
 def test_locked_holdout_does_not_change_discovery_significance():
