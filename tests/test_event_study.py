@@ -64,3 +64,14 @@ def test_event_summary_has_chronological_holdout_and_no_false_candidate():
     row = summary.iloc[0]
     assert row["discovery_mean"] > 0 and row["validation_mean"] > 0
     assert row["holdout_mean"] < 0 and row["status"] == "REJECT"
+
+
+def test_event_feed_excludes_unverified_action_date_proxies():
+    from lab.event_study import executable_events
+    feed = pd.DataFrame([
+        {"event_id": "live-award", "timestamp_quality": "first_seen_utc"},
+        {"event_id": "old-award", "timestamp_quality": "action_date_proxy"},
+        {"event_id": "public-rule", "timestamp_quality": "date_only"},
+    ])
+    eligible = executable_events(feed)
+    assert set(eligible["event_id"]) == {"live-award", "public-rule"}
