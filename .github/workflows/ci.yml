@@ -11,7 +11,7 @@ jobs:
         with: {python-version: '3.11', cache: pip}
       - run: pip install -r requirements.txt pytest
       - run: python tests/test_core.py
-      - run: python -m pytest -q tests/test_event_study.py
+      - run: python -m pytest -q tests/test_event_study.py tests/test_h079.py
       - run: pip install -r ict/requirements.txt
       - run: cd ict && python -m pytest -q
   terminal:
