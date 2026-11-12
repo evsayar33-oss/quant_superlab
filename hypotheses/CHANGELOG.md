@@ -43,3 +43,5 @@
 - 2026-10-25: H076 run read: 0 of 88 settings meet the owner's target (CAGR >= 25%, recovery <= 600 days) in both the walk-forward OOS and the locked holdout; 0 leads. Long/short settings were worse than long-only on almost every job.
 - 2026-10-25: H077 implied-volatility range reversion pre-registered (config/volrange.yaml) BEFORE any result: 240 trials, D-checks + locked 2-year holdout + DSR >= 0.95. validation.GATE unchanged.
 - 2026-10-25: H077 run read: 0 of 240 settings pass; no setting shows a 100% win rate over >= 10 trades; best settings win 50-60% with worst single trades of -11% (indices) to -30% (crypto); 0 meet the owner's target.
+
+- 2026-11-12: H078 preregistered before any event-study result. Fixed Radar event families, conservative timestamp-aware next-open execution, 1/5/20/60-session horizons, 60-day per-ticker cooldown, 1x/2x costs, chronological 60/20/20 split, BH correction and locked holdout. No parameter optimization; validation.GATE unchanged. Live bots remain blocked.
