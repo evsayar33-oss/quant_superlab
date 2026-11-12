@@ -255,7 +255,7 @@ def markdown_report(summary: pd.DataFrame, returns: pd.DataFrame, feed_rows: int
         "",
         f"- Feed rows: {feed_rows}; excluded historical award action-date proxies: {excluded_unverified_timestamps}; price tickers loaded: {loaded_tickers}; tickers excluded by data cap: {excluded_tickers}.",
         f"- Price history start: {start}; event observations: {len(returns['event_id'].unique()) if not returns.empty else 0}.",
-        "- Execution: exact pre-market timestamps may enter at same-session open; intraday/after-close and date-only events enter at the next session open.",
+        "- Execution: exact publication/first-seen pre-market timestamps may enter at same-session open; intraday/after-close and date-only events enter at the next session open.",
         "- Returns: market-model abnormal return versus SPY, net of round-trip stock costs at 1x and 2x; sector ETF excess is diagnostic where available.",
         "- Chronological split: 60% discovery / 20% validation / 20% locked holdout. Cooldown: one event per ticker per 60 calendar days.",
         "- DSR/PBO are not reported: this is one fixed, pre-registered event design with no parameter search. BH q-values adjust the event-family/category/horizon tests.",
