@@ -149,6 +149,7 @@ def measure_events(events: pd.DataFrame, panel: Panel, per_side_cost: float = 0.
                 continue
             if not np.isfinite(asset_lr).all() or not np.isfinite(bench_lr).all():
                 continue
+            gross_stock = float(np.expm1(np.sum(asset_lr)))
             gross_spy = float(np.expm1(np.sum(asset_lr - beta * bench_lr)))
             row = {
                 "event_id": str(event.get("event_id") or ""),
@@ -161,6 +162,9 @@ def measure_events(events: pd.DataFrame, panel: Panel, per_side_cost: float = 0.
                 "exit_date": idx[end].date().isoformat(),
                 "horizon": int(horizon),
                 "beta_spy": beta,
+                "gross_stock_return": gross_stock,
+                "net_stock_return_1x": _net_return(gross_stock, per_side_cost, 1.0),
+                "net_stock_return_2x": _net_return(gross_stock, per_side_cost, 2.0),
                 "gross_spy_excess": gross_spy,
                 "net_spy_excess_1x": _net_return(gross_spy, per_side_cost, 1.0),
                 "net_spy_excess_2x": _net_return(gross_spy, per_side_cost, 2.0),
@@ -209,10 +213,17 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
             if column not in g.columns:
                 g[column] = g.index.astype(str) if column == "event_id" else ""
         g = g.sort_values(["known_at", "event_date", "event_id", "ticker"]).drop_duplicates(["event_id", "ticker"])
-        x = pd.to_numeric(g["net_spy_excess_2x"], errors="coerce").dropna().to_numpy()
+        x = pd.to_numeric(g["net_spy_excess_2x"], errors="coerce").to_numpy()
+        raw_col = "net_stock_return_2x" if "net_stock_return_2x" in g.columns else "net_spy_excess_2x"
+        raw = pd.to_numeric(g[raw_col], errors="coerce").to_numpy()
+        ok = np.isfinite(x) & np.isfinite(raw)
+        x, raw = x[ok], raw[ok]
         n = len(x)
         n_train, n_val = int(n * 0.6), int(n * 0.2)
         train, val, hold = x[:n_train], x[n_train:n_train + n_val], x[n_train + n_val:]
+        raw_train = raw[:n_train]
+        raw_val = raw[n_train:n_train + n_val]
+        raw_hold = raw[n_train + n_val:]
         pval = float(stats.ttest_1samp(x, 0.0).pvalue) if n >= 3 and np.std(x, ddof=1) > 0 else 1.0
         if n:
             boot = rng.choice(x, size=(bootstrap_n, n), replace=True).mean(axis=1)
@@ -221,14 +232,21 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
             ci_low = ci_high = np.nan
         rows.append({
             "event_family": key[0], "category": key[1], "horizon": int(key[2]),
-            "n": n, "mean_net_2x": float(np.mean(x)) if n else np.nan,
-            "hit_rate": float(np.mean(x > 0)) if n else np.nan,
+            "n": n,
+            "mean_net_stock_2x": float(np.mean(raw)) if n else np.nan,
+            "stock_hit_rate": float(np.mean(raw > 0)) if n else np.nan,
+            "mean_net_excess_2x": float(np.mean(x)) if n else np.nan,
+            "excess_hit_rate": float(np.mean(x > 0)) if n else np.nan,
             "p_value": pval, "q_value": np.nan,
             "ci95_low": float(ci_low), "ci95_high": float(ci_high),
-            "discovery_n": len(train), "discovery_mean": float(np.mean(train)) if len(train) else np.nan,
-            "validation_n": len(val), "validation_mean": float(np.mean(val)) if len(val) else np.nan,
-            "holdout_n": len(hold), "holdout_mean": float(np.mean(hold)) if len(hold) else np.nan,
-            "holdout_hit": float(np.mean(hold > 0)) if len(hold) else np.nan,
+            "discovery_n": len(train), "discovery_excess_mean": float(np.mean(train)) if len(train) else np.nan,
+            "validation_n": len(val), "validation_excess_mean": float(np.mean(val)) if len(val) else np.nan,
+            "holdout_n": len(hold), "holdout_excess_mean": float(np.mean(hold)) if len(hold) else np.nan,
+            "holdout_excess_hit": float(np.mean(hold > 0)) if len(hold) else np.nan,
+            "discovery_stock_mean": float(np.mean(raw_train)) if len(raw_train) else np.nan,
+            "validation_stock_mean": float(np.mean(raw_val)) if len(raw_val) else np.nan,
+            "holdout_stock_mean": float(np.mean(raw_hold)) if len(raw_hold) else np.nan,
+            "holdout_stock_hit": float(np.mean(raw_hold > 0)) if len(raw_hold) else np.nan,
             "status": "INSUFFICIENT",
         })
     out = pd.DataFrame(rows)
@@ -239,10 +257,12 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
                   and r["validation_n"] >= min_split and r["holdout_n"] >= min_split)
         if not enough:
             out.at[i, "status"] = "INSUFFICIENT"
-        elif (r["discovery_mean"] > 0 and r["validation_mean"] > 0 and r["holdout_mean"] > 0
-              and r["holdout_hit"] >= min_holdout_hit and r["q_value"] <= q_limit):
+        elif (r["discovery_excess_mean"] > 0 and r["validation_excess_mean"] > 0
+              and r["holdout_excess_mean"] > 0 and r["discovery_stock_mean"] > 0
+              and r["validation_stock_mean"] > 0 and r["holdout_stock_mean"] > 0
+              and r["holdout_stock_hit"] >= min_holdout_hit and r["q_value"] <= q_limit):
             out.at[i, "status"] = "CANDIDATE"
-        elif r["holdout_mean"] <= 0:
+        elif r["holdout_stock_mean"] <= 0 or r["holdout_excess_mean"] <= 0:
             out.at[i, "status"] = "REJECT"
         else:
             out.at[i, "status"] = "WATCH"
@@ -271,8 +291,10 @@ def markdown_report(summary: pd.DataFrame, returns: pd.DataFrame, feed_rows: int
     if summary is None or summary.empty:
         lines.append("No measurable events. Check feed availability, ticker matching and OHLCV coverage.")
     else:
-        cols = ["event_family", "category", "horizon", "n", "mean_net_2x", "hit_rate", "q_value",
-                "discovery_mean", "validation_mean", "holdout_mean", "holdout_hit", "status"]
+        cols = ["event_family", "category", "horizon", "n", "mean_net_stock_2x", "stock_hit_rate",
+                "mean_net_excess_2x", "excess_hit_rate", "q_value", "discovery_stock_mean",
+                "validation_stock_mean", "holdout_stock_mean", "holdout_stock_hit",
+                "discovery_excess_mean", "validation_excess_mean", "holdout_excess_mean", "status"]
         lines.append("| " + " | ".join(cols) + " |")
         lines.append("|" + "|".join(["---"] * len(cols)) + "|")
         for row in summary[cols].to_dict("records"):
@@ -285,7 +307,7 @@ def markdown_report(summary: pd.DataFrame, returns: pd.DataFrame, feed_rows: int
         "",
         "## Decision rule",
         "",
-        f"A category is a candidate only with at least 50 independent events, at least 10 events in each chronological split, positive 2x-cost net excess return in discovery, validation and holdout, holdout hit rate >= 52%, and BH q <= 0.10.",
+        f"A category is a candidate only with at least 50 independent events, at least 10 events in each chronological split, positive 2x-cost raw stock return AND positive SPY-relative excess in discovery, validation and holdout, raw holdout hit rate >= 52%, and BH q <= 0.10.",
         "A candidate is not approved for live trading. It must pass a separate execution, robustness, and forward paper-trading review.",
     ]
     return "\n".join(lines) + "\n"
