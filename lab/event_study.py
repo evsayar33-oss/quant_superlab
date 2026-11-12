@@ -204,7 +204,11 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
     rows = []
     keys = ["event_family", "category", "horizon"]
     for key, group in returns.groupby(keys, dropna=False):
-        g = group.sort_values(["known_at", "event_date", "event_id", "ticker"]).drop_duplicates(["event_id", "ticker"])
+        g = group.copy()
+        for column in ("known_at", "event_date", "event_id", "ticker"):
+            if column not in g.columns:
+                g[column] = g.index.astype(str) if column == "event_id" else ""
+        g = g.sort_values(["known_at", "event_date", "event_id", "ticker"]).drop_duplicates(["event_id", "ticker"])
         x = pd.to_numeric(g["net_spy_excess_2x"], errors="coerce").dropna().to_numpy()
         n = len(x)
         n_train, n_val = int(n * 0.6), int(n * 0.2)
