@@ -319,9 +319,9 @@ def _summary(data, source_states, expectations, observations, events, new_events
         ],
         "scenarios":[
             {"name":"USD supportive conditional","when":"2-year nominal and real yields rise alongside broad FX confirmation; external differential must also support."},
-            {"name":"USD weakening conditional","Real/short yields and USD FX proxy decline together; watch foreign monetary policies."},
-            {"name":"Risk-off bifurcation","Systemic stress can strengthen safe-haven USD despite falling US yields or weaken USD on US-specific stress."},
-            {"name":"Inflation surprise ambiguity","Hot CPI can reprice Fed higher but also weaken real growth and increase US risk premia."},
+            {"name":"USD weakening conditional","when":"Real/short yields and USD FX proxy decline together; watch foreign monetary policies."},
+            {"name":"Risk-off bifurcation","when":"Systemic stress can strengthen safe-haven USD despite falling US yields or weaken USD on US-specific stress."},
+            {"name":"Inflation surprise ambiguity","when":"Hot CPI can reprice Fed higher but also weaken real growth and increase US risk premia."},
         ],
         "approved_alpha":False,"trade_authorization":False,
         "broker_execution":False,"telegram_trade_signals":False,
