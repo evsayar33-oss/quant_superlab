@@ -25,13 +25,13 @@ def attach_point_in_time_cap(returns: pd.DataFrame, fundamentals: pd.DataFrame |
         raise ValueError(f"Missing PIT fundamentals columns: {sorted(missing)}")
     cap = fundamentals.copy()
     cap["ticker"] = cap["ticker"].astype(str).str.upper().str.strip()
-    cap["asof_date"] = pd.to_datetime(cap["asof_date"], errors="coerce")
+    cap["asof_date"] = pd.to_datetime(cap["asof_date"], errors="coerce").astype("datetime64[ns]")
     cap["market_cap_usd"] = pd.to_numeric(cap["market_cap_usd"], errors="coerce")
     cap = cap.dropna(subset=["asof_date", "market_cap_usd"])
     cap = cap[cap["market_cap_usd"] > 0]
     cap = cap.sort_values("asof_date")
     out["ticker"] = out["ticker"].astype(str).str.upper().str.strip()
-    out["_event_dt"] = pd.to_datetime(out["event_date"], errors="coerce")
+    out["_event_dt"] = pd.to_datetime(out["event_date"], errors="coerce").astype("datetime64[ns]")
     # The as-of timestamp must precede the event calendar day, not merely the
     # trade entry. This avoids using same-day fundamentals released after news.
     out["_lookup_dt"] = out["_event_dt"] - pd.Timedelta(nanoseconds=1)

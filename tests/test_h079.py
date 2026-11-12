@@ -58,3 +58,15 @@ def test_small_samples_are_retained_not_rejected():
     out = diagnostics(attach_point_in_time_cap(sample_returns(), None))
     assert len(out) == 2
     assert set(out["status"]) == {"INSUFFICIENT_SAMPLE"}
+
+
+def test_pit_asof_handles_mixed_datetime_precision_and_multiple_tickers():
+    caps = pd.DataFrame([
+        {"ticker": "BBB", "asof_date": pd.Timestamp("2024-03-01").as_unit("us"), "market_cap_usd": 500},
+        {"ticker": "AAA", "asof_date": pd.Timestamp("2024-03-01").as_unit("ns"), "market_cap_usd": 1000},
+        {"ticker": "AAA", "asof_date": pd.Timestamp("2024-03-10").as_unit("us"), "market_cap_usd": 10},
+    ])
+    result = attach_point_in_time_cap(sample_returns(), caps)
+    assert np.isclose(result.loc[0, "amount_to_cap"], 0.2)
+    assert np.isclose(result.loc[1, "amount_to_cap"], 0.2)
+    assert pd.to_datetime(result.loc[0, "cap_asof_date"]) < pd.Timestamp("2024-03-10")
