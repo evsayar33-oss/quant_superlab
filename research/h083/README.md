@@ -41,7 +41,14 @@ current US trading day.
 - Global fixed period boundaries (2025-07-31, 2026-06-02) and **exit-date purge**.
 - Monthly clustered one-sided test, **Benjamini-Hochberg q <= .10** across all
   34 Track A rules; another family of 10 Track B rules corrected separately.
-- No PBO/DSR/Relevance or White Reality Check computed; no misleading claim.
+- Separate **10-rule rotation-family** overfit audit: stationary-block White
+  Reality Check, 8-block CSCV PBO (70 partitions), approximate Deflated Sharpe
+  Ratio. These are diagnostic estimates on **already exposed** historical data,
+  NOT forward/untouched holdout proof or release clearance.
+- Execution stress audit: 0/5/15/30bp each side applied to frozen realized
+  trade ledgers. This is an approximate stress, not a fresh cash-rebalanced run.
+- Concentration audit: profit contributions by top one/two tickers, and
+  full-account SPY buy-and-hold NAV with identical fee/impact assumptions.
 - **All historical results already exposed in H078–H082**, including 2026;
   `REUSED_TEST` is not a sealed out-of-sample test.
 
@@ -64,7 +71,7 @@ current US trading day.
 ### Run
 
 ```
-python -m pytest -q research/h083/test_h083.py
+python -m pytest -q research/h083/test_h083.py research/h083/test_h083_robustness.py
 python research/h083/run_h083.py \
   --events research/h083/H081_eligible_snapshot.csv \
   --output results/h083

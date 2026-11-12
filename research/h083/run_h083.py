@@ -20,6 +20,9 @@ from h083_styles import (SEAL_DATE,STYLES,COMMISSION_USD,SLIP_BPS,DEFAULT_NOTION
                           _normalize_bars,evaluate,time_split,summary,
                           month_bootstrap_ci,cash_nav_replay,_index)
 from h083_rotation import (ROTATION_RULES,causal_features,equity_rotation,evaluate_rotation)
+from h083_robustness import (benchmark_nav, monthly_excess, white_reality_check,
+                              cscv_pbo, deflated_sharpe_approx, friction_stress,
+                              winner_concentration)
 
 
 def main():
@@ -152,9 +155,30 @@ def main():
             ['LOW_SAMPLE','UNSTABLE_PRETEST','NO_SIGNIFICANCE'],default='PAPER_WATCH')
         rot['certified_alpha']=False
         rot.to_csv(out/'rotation_strategy_summary.csv',index=False)
-        pd.concat(rot_nav,ignore_index=True).to_csv(out/'rotation_daily_nav.csv',index=False)
-        pd.concat(rot_trades,ignore_index=True).to_csv(out/'rotation_trade_ledger.csv',index=False)
-    else:rot=pd.DataFrame()
+        combined_nav=pd.concat(rot_nav,ignore_index=True)
+        combined_ledger=pd.concat(rot_trades,ignore_index=True)
+        combined_nav.to_csv(out/'rotation_daily_nav.csv',index=False)
+        combined_ledger.to_csv(out/'rotation_trade_ledger.csv',index=False)
+        bench=benchmark_nav(spy,combined_nav[combined_nav.rule==rotation[0]['name']].date)
+        bench.to_csv(out/'benchmark_spy_daily_nav.csv',index=False)
+        r=bench.nav.pct_change(fill_method=None).fillna(0)
+        benchmark_stats={'spy_total_return':float(bench.nav.iloc[-1]/10000-1),
+                         'spy_max_drawdown':float((bench.nav/bench.nav.cummax()-1).min()),
+                         'spy_daily_sharpe':float(np.sqrt(252)*r.mean()/r.std(ddof=1)) if r.std(ddof=1)>0 else None,
+                         'start':str(bench.date.iloc[0].date()),'end':str(bench.date.iloc[-1].date())}
+        (out/'benchmark_spy_metrics.json').write_text(json.dumps(benchmark_stats,indent=2),encoding='utf-8')
+        ex=monthly_excess(combined_nav,bench)
+        ex.to_csv(out/'rotation_monthly_excess_vs_spy.csv')
+        from h083_styles import CUT_2
+        pre=ex.loc[ex.index<CUT_2]
+        robustness={**white_reality_check(pre),**cscv_pbo(pre),**deflated_sharpe_approx(pre),
+                    'family':'10 predeclared rotation strategies',
+                    'data_reused':True,'no_production_approval':True}
+        (out/'multiple_testing_robustness.json').write_text(json.dumps(robustness,indent=2),encoding='utf-8')
+        friction_stress(combined_ledger).to_csv(out/'fixed_ledger_execution_stress.csv',index=False)
+        winner_concentration(combined_ledger).to_csv(out/'rotation_winner_concentration.csv',index=False)
+    else:
+        rot=pd.DataFrame();benchmark_stats={};robustness={}
     if rot_invalid:pd.DataFrame(rot_invalid).to_csv(out/'rotation_invalid.csv',index=False)
     # Portfolio comparisons are descriptive, not sealed OOS; don't deploy.
     statuses=summ.status.value_counts().to_dict()
@@ -180,6 +204,10 @@ def main():
         pd.DataFrame(nav_rows).to_markdown(index=False,floatfmt='.4f') if nav_rows else 'No portfolio samples.',
         '', '## Rotating (no fixed event horizon) stock portfolio strategies',
         rot.to_markdown(index=False,floatfmt='.4f') if not rot.empty else 'No valid rotation NAV results.',
+        '', '## SPY buy-and-hold full-account comparator',
+        json.dumps(benchmark_stats,indent=2),
+        '', '## Multiple selection and overfitting audit',
+        json.dumps(robustness,indent=2),
         '', '## Crucial gaps',
         'No complete Midas tradability audit, split/delist PIT pricing, earnings fundamental archive, or truly unseen evaluation sample.',
         'Sector strength requires the sector ETF series. Missing sector data is not forward-filled.',
