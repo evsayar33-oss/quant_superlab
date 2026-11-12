@@ -1,0 +1,53 @@
+name: H084 - Independent winner-memory verification (research only)
+on:
+  push:
+    branches:
+      - research/h084-winner-memory
+    paths:
+      - research/h084/**
+      - .github/workflows/h084.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  independent-h084:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONPATH: research/h084
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reproducible prerequisites
+        run: python -m pip install 'pandas>=2.2,<4' 'numpy>=1.26,<3' 'pytest>=8,<10'
+      - name: Test no-lookahead and cash-veto invariants
+        run: python -m pytest -q research/h084/test_h084_recheck.py
+      - name: Download original successful H083 run inputs
+        run: |
+          gh run download 43225656166 \
+            --repo evsayar33-oss/quant_superlab \
+            --name h083-midas-multistyle-research \
+            --dir results/h083
+      - name: Verify frozen input hashes
+        run: |
+          printf '%s  %s\n' \
+            'b2b6dbebded543253068e4dfc5176587f4e96ef643c9bbb6d6bbfeb23b98e89e' 'results/h083/rotation_trade_ledger.csv' \
+            'f97d5ae646c3da71721415089946840ca051f45b0fd32df6bacb3caee78fbecd' 'results/h083/all_style_trades.csv' \
+            | sha256sum --check
+      - name: Independently recompute 20 H084 research variants and verify published findings
+        run: >-
+          python research/h084/h084_recheck.py
+          --h083-results results/h083
+          --output results/h084
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h084-independent-verification
+          path: results/h084/
+          if-no-files-found: warn
