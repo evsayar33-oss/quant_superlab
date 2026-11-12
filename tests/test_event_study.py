@@ -59,11 +59,12 @@ def test_event_summary_has_chronological_holdout_and_no_false_candidate():
             "event_id": f"e{i}", "event_family": "corporate_capex", "category": "chips",
             "known_at": d.isoformat(), "event_date": d.date().isoformat(), "horizon": 20,
             "net_spy_excess_2x": 0.01 if i < 70 else -0.01,
+            "net_stock_return_2x": 0.02 if i < 70 else -0.02,
         })
     summary = summarize(pd.DataFrame(rows), min_events=50, min_split=10, bootstrap_n=200, q_limit=1.0)
     row = summary.iloc[0]
-    assert row["discovery_mean"] > 0 and row["validation_mean"] > 0
-    assert row["holdout_mean"] < 0 and row["status"] == "REJECT"
+    assert row["discovery_excess_mean"] > 0 and row["validation_excess_mean"] > 0
+    assert row["holdout_stock_mean"] < 0 and row["status"] == "REJECT"
 
 
 def test_event_feed_excludes_unverified_action_date_proxies():
