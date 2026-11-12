@@ -1,0 +1,92 @@
+name: USD Macro Radar — official-source fundamental research
+on:
+  push:
+    branches:
+      - research/usd-macro-fundamental-radar
+    paths:
+      - "research/usd_macro/**"
+      - "dashboard/usd_macro.html"
+      - ".github/workflows/usd_macro.yml"
+  pull_request:
+    paths:
+      - "research/usd_macro/**"
+      - "dashboard/usd_macro.html"
+      - ".github/workflows/usd_macro.yml"
+  workflow_dispatch:
+  schedule:
+    # Coverage of 08:30 ET BLS releases across EDT/EST; also FOMC/late reactions.
+    - cron: "45 12,14,18,22 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: usd-macro-radar-persistent-state
+  cancel-in-progress: false
+
+jobs:
+  usd-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned-major lightweight research requirements
+        run: python -m pip install 'requests>=2.31,<3' 'pytest>=8,<10'
+      - name: No-lookahead, news, source, expectation-lock, FX and Telegram tests
+        run: python -m pytest -q research/usd_macro/test_usd_macro.py
+      - name: Official-source live read-only smoke (no bot, no writeback)
+        run: >-
+          python research/usd_macro/engine.py
+          --mode smoke
+          --output results/usd_macro
+          --expectations research/usd_macro/expectations.csv
+      - name: Archive live raw-source diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: usd-macro-official-source-smoke
+          path: results/usd_macro/
+          if-no-files-found: warn
+          retention-days: 14
+
+  usd-forward:
+    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    needs: usd-verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install production collector requirements
+        run: python -m pip install 'requests>=2.31,<3'
+      - name: Forward-only USD source poll; published snapshots; informational Telegram
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: >-
+          python research/usd_macro/engine.py
+          --mode scheduled
+          --output decisions/usd
+          --expectations research/usd_macro/expectations.csv
+      - name: Persist only USD research snapshots to main
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add decisions/usd/
+          if git diff --cached --quiet; then
+            echo 'No USD state changes'; exit 0
+          fi
+          git commit -m 'USD Macro Radar: first-observed official-source snapshot'
+          for retry in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((retry * 5))
+          done
+          echo 'USD Macro state persistence FAILED; do not claim bot exactly-once delivery' >&2
+          exit 1
