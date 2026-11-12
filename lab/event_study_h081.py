@@ -82,7 +82,7 @@ def spy_prior_regimes(spy_close: pd.Series, lookback: int = 200) -> pd.DataFrame
     regime = np.where(close > sma, "RISK_ON", "RISK_OFF")
     out = pd.DataFrame({"available_at": close.index + pd.Timedelta(hours=23, minutes=59),
                         "regime": regime})
-    return out.loc[sma.notna()].reset_index(drop=True)
+    return out.loc[sma.notna().to_numpy()].reset_index(drop=True)
 
 
 def final_decisions(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
