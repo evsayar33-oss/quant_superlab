@@ -224,9 +224,12 @@ def summarize(returns: pd.DataFrame, min_events: int = 50, min_split: int = 10,
         raw_train = raw[:n_train]
         raw_val = raw[n_train:n_train + n_val]
         raw_hold = raw[n_train + n_val:]
-        pval = float(stats.ttest_1samp(x, 0.0).pvalue) if n >= 3 and np.std(x, ddof=1) > 0 else 1.0
-        if n:
-            boot = rng.choice(x, size=(bootstrap_n, n), replace=True).mean(axis=1)
+        # The locked holdout must not influence significance or confidence intervals.
+        pre_holdout = x[:n_train + n_val]
+        pval = (float(stats.ttest_1samp(pre_holdout, 0.0).pvalue)
+                if len(pre_holdout) >= 3 and np.std(pre_holdout, ddof=1) > 0 else 1.0)
+        if len(pre_holdout):
+            boot = rng.choice(pre_holdout, size=(bootstrap_n, len(pre_holdout)), replace=True).mean(axis=1)
             ci_low, ci_high = np.quantile(boot, [0.025, 0.975])
         else:
             ci_low = ci_high = np.nan
@@ -286,7 +289,7 @@ def markdown_report(summary: pd.DataFrame, returns: pd.DataFrame, feed_rows: int
         "- Execution: exact publication/first-seen pre-market timestamps may enter at same-session open; intraday/after-close and date-only events enter at the next session open.",
         "- Returns: market-model abnormal return versus SPY, net of round-trip stock costs at 1x and 2x; sector ETF excess is diagnostic where available.",
         "- Chronological split: 60% discovery / 20% validation / 20% locked holdout. Cooldown: one event per ticker per 60 calendar days.",
-        "- DSR/PBO are not reported: this is one fixed, pre-registered event design with no parameter search. BH q-values adjust the event-family/category/horizon tests.",
+        "- DSR/PBO are not reported: this is one fixed, pre-registered event design with no parameter search. BH q-values and bootstrap intervals use discovery+validation only; the locked holdout does not affect significance.",
         "- Limitations: daily bars cannot model intraday execution; date-only Federal Register/Congress events use a conservative next-session entry; historical USAspending action dates without a verified first-public timestamp are excluded from primary returns; delisted/unmatched tickers may be absent (survivorship / entity-match bias).",
         "",
         "## Results",
