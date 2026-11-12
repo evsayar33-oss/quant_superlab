@@ -1,0 +1,39 @@
+name: H081 — Evidence and final research gates
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "Earliest event date"
+        default: "2019-01-01"
+        required: true
+      max_tickers:
+        description: "Price universe limit"
+        default: "600"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  h081:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt tabulate
+      - run: python -m pytest -q tests/test_h081.py
+      - run: >-
+          python scripts/run_h081.py
+          --start "${{ inputs.start }}"
+          --max-tickers "${{ inputs.max_tickers }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h081-evidence-final-research
+          path: results/h081/
+          if-no-files-found: warn
