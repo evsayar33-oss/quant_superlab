@@ -49,8 +49,12 @@ def entry_index(known_at, event_date, index: pd.DatetimeIndex,
 def _beta(asset_close: pd.Series, bench_close: pd.Series, entry: int,
           lookback: int = 252, min_obs: int = 60) -> float | None:
     lo = max(1, entry - lookback)
-    a = np.log(asset_close.iloc[lo:entry] / asset_close.iloc[lo - 1:entry - 1]).to_numpy()
-    b = np.log(bench_close.iloc[lo:entry] / bench_close.iloc[lo - 1:entry - 1]).to_numpy()
+    a_now = asset_close.iloc[lo:entry].to_numpy(dtype=float)
+    a_prev = asset_close.iloc[lo - 1:entry - 1].to_numpy(dtype=float)
+    b_now = bench_close.iloc[lo:entry].to_numpy(dtype=float)
+    b_prev = bench_close.iloc[lo - 1:entry - 1].to_numpy(dtype=float)
+    a = np.log(a_now / a_prev)
+    b = np.log(b_now / b_prev)
     ok = np.isfinite(a) & np.isfinite(b)
     if ok.sum() < min_obs or np.var(b[ok]) <= 1e-12:
         return None
