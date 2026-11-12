@@ -58,7 +58,7 @@ def test_event_summary_has_chronological_holdout_and_no_false_candidate():
         rows.append({
             "event_id": f"e{i}", "event_family": "corporate_capex", "category": "chips",
             "known_at": d.isoformat(), "event_date": d.date().isoformat(), "horizon": 20,
-            "net_spy_excess_2x": 0.01 if i < 55 else -0.01,
+            "net_spy_excess_2x": 0.01 if i < 70 else -0.01,
         })
     summary = summarize(pd.DataFrame(rows), min_events=50, min_split=10, bootstrap_n=200, q_limit=1.0)
     row = summary.iloc[0]
