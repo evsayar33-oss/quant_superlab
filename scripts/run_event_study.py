@@ -53,6 +53,20 @@ def main() -> int:
     quality = feed["timestamp_quality"].fillna("unknown").astype(str).str.lower()
     excluded_unverified = int(quality.isin({"action_date_proxy", "unknown", ""}).sum())
     feed = executable_events(feed)
+    if feed.empty:
+        out = ROOT / args.output
+        out.mkdir(parents=True, exist_ok=True)
+        empty_returns = pd.DataFrame()
+        empty_summary = pd.DataFrame()
+        empty_returns.to_csv(out / "event_returns.csv", index=False)
+        empty_summary.to_csv(out / "event_summary.csv", index=False)
+        (out / "event_study.md").write_text(
+            markdown_report(empty_summary, empty_returns, feed_rows, 0, 0, args.start,
+                            excluded_unverified_timestamps=excluded_unverified),
+            encoding="utf-8",
+        )
+        print((out / "event_study.md").read_text(encoding="utf-8"))
+        return 0
     feed["ticker"] = feed["ticker"].astype(str).str.strip().str.upper()
     feed = feed[feed["ticker"].ne("") & feed["ticker"].ne("NAN")]
     if feed.empty:
