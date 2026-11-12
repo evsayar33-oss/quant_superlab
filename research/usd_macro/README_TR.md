@@ -122,3 +122,5 @@ Bu aşamaların hiçbiri V1'de test edilmiş alpha olarak ileri sürülmez.
 ### GitHub Actions gerçek bağlantı testi notu
 
 BLS API, BLS RSS ve Fed RSS bazı bulut çalıştırıcılarına 403/503 veya geçersiz XML dönebilir. Her kaynak kendi hata durumunu gösterir; Fed FOMC basın arşivi tarih-düzeyli yedek olarak kullanılabilir. FRED verisi BLS ilk yayın sürprizini taklit etmez. Bütün kaynaklar arızalıysa USD yorumu verilmez; kısmi başarısızlık `PARTIAL` olur.
+
+**Kısmi kaynak kuralı:** Sekiz resmî/kurumsal veri yolundan herhangi biri başarısızsa genel durum `PARTIAL` olarak kalır. FRED güncel-revizyon verisinin varlığı, erişilemeyen BLS ilk yayınını veya anket beklentisini başarılı saymaz. Fed FOMC arşiv yedeği çalışırsa yalnız gün çözünürlükte haber zamanı taşır; 2027 ve sonraki yıllar için arşiv yılı çalışma tarihinde belirlenir.

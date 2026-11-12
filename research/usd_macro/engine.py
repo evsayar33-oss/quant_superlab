@@ -290,8 +290,10 @@ def _summary(data, source_states, expectations, observations, events, new_events
     fresh=sum(bool(data.get(k,{}).get("fresh"))
               for k in ("fx_ecb","nominal_treasury","real_treasury"))
     evaluated=_actual_surprises(expectations,observations,now)
+    # Do not call coverage complete while a release/news source is missing.
+    # BLS API/RSS may block GitHub runners; never mask that with FRED fallbacks.
     status=("UNAVAILABLE" if successes==0 else
-            "PARTIAL" if successes<6 or fresh<2 else
+            "PARTIAL" if successes<len(source_states) or fresh<2 else
             "OBSERVED_RESEARCH")
     evidence={
         "required_market_consensus":"NOT_AVAILABLE_BY_DEFAULT",

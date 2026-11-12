@@ -440,10 +440,11 @@ def collect(now: datetime, *, fetch=safe_request) -> tuple[dict,dict]:
         except Exception as exc:
             if name=="fed_news":
                 try:
-                    raw=fetch(FED_ARCHIVE,post=None)
+                    archive_url=FED_ARCHIVE.replace("2026-press-fomc",f"{now.year}-press-fomc")
+                    raw=fetch(archive_url,post=None)
                     news=parse_fed_archive(raw,now)
                     result[name]=news
-                    sources[name]={"state":"OK","url":FED_ARCHIVE,
+                    sources[name]={"state":"OK","url":archive_url,
                                    "fallback":"FED_ARCHIVE_DATE_ONLY",
                                    "asof_utc":now.isoformat(),"records":len(news)}
                     continue

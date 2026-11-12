@@ -350,3 +350,17 @@ def test_fed_rss_blocked_fallback_archive_is_date_only():
     data,health=S.collect(NOW,fetch=fetch)
     assert health["fed_news"]["fallback"]=="FED_ARCHIVE_DATE_ONLY"
     assert data["fed_news"][0]["source"]=="FED_ARCHIVE"
+
+
+def test_bls_api_and_news_outage_is_explicit_partial_not_complete(tmp_path):
+    def partial_fetch(url,post):
+        if url in (S.BLS_API,S.BLS_RSS):
+            raise RuntimeError("upstream denied")
+        return mock_fetch(url,post)
+    report=E.run(mode="smoke",output=tmp_path/"partial",
+                 expectations_csv=tmp_path/"none.csv",now=NOW,fetch=partial_fetch)
+    assert report["status"]=="PARTIAL"
+    assert report["sources"]["bls_actuals"]["state"]=="ERROR"
+    assert report["coverage_ok_sources"]==6
+    assert report["bls_latest"]=={}
+    assert report["market"]["fred_secondary"]["not_point_in_time"]
