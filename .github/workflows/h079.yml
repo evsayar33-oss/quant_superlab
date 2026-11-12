@@ -1,0 +1,38 @@
+name: H079 — Cross-sector event diagnostics
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "First event date"
+        required: true
+        default: "2019-01-01"
+      max_tickers:
+        description: "Maximum tickers"
+        required: true
+        default: "600"
+
+permissions:
+  contents: read
+
+jobs:
+  h079:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt tabulate
+      - name: Run all-family research diagnostics
+        run: >-
+          python scripts/run_h079.py
+          --start "${{ inputs.start }}"
+          --max-tickers "${{ inputs.max_tickers }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: h079-cross-sector-diagnostics
+          path: results/h079/
+          if-no-files-found: error
