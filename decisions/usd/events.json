@@ -1,0 +1,15 @@
+[
+  {
+    "category": "FED_POLICY",
+    "direction": "UNASSESSED_NEWS_NOT_TRADE_SIGNAL",
+    "discovery_status": "BOOTSTRAP_NOT_NEW",
+    "event_id": "118b91c9d624c91fb798",
+    "first_seen_utc": "2026-11-13T02:57:00.184059+00:00",
+    "headline": "Federal Reserve issues FOMC statement",
+    "priority": "HIGH",
+    "published_utc": "2026-10-28T00:00:00+00:00",
+    "source": "FED_ARCHIVE",
+    "timestamp_quality": "DATE_ONLY_NOT_EXACT",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm"
+  }
+]

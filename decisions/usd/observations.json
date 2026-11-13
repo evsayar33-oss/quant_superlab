@@ -1,0 +1,38 @@
+[
+  {
+    "first_seen_utc": "2026-11-13T02:57:00.184059+00:00",
+    "indicator_id": "ahe_yoy_pct",
+    "key": "ahe_yoy_pct|2026-10",
+    "last_seen_utc": "2026-11-13T02:57:00.184059+00:00",
+    "period": "2026-10",
+    "revisions": [],
+    "source_series": "CES0500000003",
+    "unit": "PCT_YOY",
+    "value_first_observed": 3.121,
+    "value_latest_observed": 3.121
+  },
+  {
+    "first_seen_utc": "2026-11-13T02:57:00.184059+00:00",
+    "indicator_id": "nonfarm_change_k",
+    "key": "nonfarm_change_k|2026-10",
+    "last_seen_utc": "2026-11-13T02:57:00.184059+00:00",
+    "period": "2026-10",
+    "revisions": [],
+    "source_series": "CES0000000001",
+    "unit": "THOUSANDS",
+    "value_first_observed": 165.0,
+    "value_latest_observed": 165.0
+  },
+  {
+    "first_seen_utc": "2026-11-13T02:57:00.184059+00:00",
+    "indicator_id": "unemployment_pct",
+    "key": "unemployment_pct|2026-10",
+    "last_seen_utc": "2026-11-13T02:57:00.184059+00:00",
+    "period": "2026-10",
+    "revisions": [],
+    "source_series": "LNS14000000",
+    "unit": "PERCENT",
+    "value_first_observed": 4.1,
+    "value_latest_observed": 4.1
+  }
+]
