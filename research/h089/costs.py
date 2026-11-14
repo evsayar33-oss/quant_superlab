@@ -50,7 +50,7 @@ def calculate(q,metadata,notional,fee_bps):
             "scenario_complete_realistic_execution":False}
 
 
-def collect(quote_file=EVID/"quotes.jsonl",meta_file=EVID/"h089_venue.jsonl",now=None):
+def collect(quote_file=EVID/"h089_quotes.jsonl",meta_file=EVID/"h089_venue.jsonl",now=None):
     now=now or utcnow()
     quotes=read_chain(quote_file);metas=read_chain(meta_file)
     if not quotes or not metas:raise ValueError("no persisted market observations")
@@ -78,8 +78,10 @@ def collect(quote_file=EVID/"quotes.jsonl",meta_file=EVID/"h089_venue.jsonl",now
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--path",default=str(OUT))
+    ap.add_argument("--quote-file",default=str(EVID/"h089_quotes.jsonl"))
+    ap.add_argument("--meta-file",default=str(EVID/"h089_venue.jsonl"))
     args=ap.parse_args()
-    r=collect()
+    r=collect(quote_file=args.quote_file,meta_file=args.meta_file)
     h=append_chain(r,args.path)
     print(canonical({"hash":h,"venues":list(r["costs"]),"unknown":r["unknown"],
                      "real_execution_verified":False}))
