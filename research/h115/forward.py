@@ -147,6 +147,9 @@ def compute_targets(snapshot):
  missing=required-set(snapshot["prices"])|required-set(snapshot["history"])
  if missing:raise ValueError("MISSING_EQUITY_MARKS:"+",".join(sorted(missing)))
  history=snapshot["history"];targets={}
+ latest_spy=history["SPY"].index[-1]
+ if any(history[a].index[-1]!=latest_spy for a in required):
+  raise ValueError("MISMATCHED_CLOSED_EQUITY_SESSIONS")
  for arm,(kind,rule,assets) in ARMS.items():
   if any(a not in history or a not in snapshot["prices"] for a in assets):
    # Future-only diagnostics may be unavailable independently of equities.
@@ -212,22 +215,43 @@ def note_outage(state,now_utc,exc):
 def report(state,now_utc):
  elapsed=(now_utc.date()-pd.Timestamp(state["started_date"]).date()).days
  n=len(state["records"]);by_arm={}
- for arm,v in state["nav"].items():
+ weeks=len({pd.Timestamp(r["session"]).isocalendar()[:2] for r in state["records"]})
+ bdays=max(0,len(pd.bdate_range(state["started_date"],now_utc.date().isoformat())))
+ coverage=n/max(1,bdays)
+ for arm,navs in state["nav"].items():
   rebalances=sum(1 for r in state["records"] if r["returns"].get(arm,{}).get("turnover",0)>0)
-  by_arm[arm]={"nav":v,"net_return_base":v["base"]-1,"rebalances":rebalances,
-   "beats_spy_at_base":(v["base"]>state["bench_latest"]) if state["bench_latest"] is not None else None,
+  observed_path=[1.]+[float(r["nav"][arm]["base"]) for r in state["records"]]
+  peaks=np.maximum.accumulate(np.asarray(observed_path,float))
+  mdd=float(np.min(np.asarray(observed_path)/peaks-1)) if len(observed_path)>1 else 0.
+  final=navs["base"]
+  baseline=(state["bench_latest"] if state["bench_latest"] is not None else None)
+  # These are research MANUAL REVIEW eligibility checks, never approval.
+  diagnostic_only=("DIAGNOSTIC" in arm or "CONTROL" in arm)
+  review_ready=bool(elapsed>=180 and n>=85 and weeks>=20 and rebalances>=25
+    and coverage>=.85 and len(state["outages"])<=max(1,int(.05*n))
+    and final>1. and navs["stress"]>1. and baseline is not None
+    and final>baseline and mdd>=-.20 and not diagnostic_only)
+  by_arm[arm]={"nav":navs,"net_return_base":final-1,"rebalances":rebalances,
+   "max_drawdown_mark_to_mark":mdd,"beats_spy_at_base":(final>baseline) if baseline is not None else None,
+   "review_ready_only":review_ready,"manual_review_required":True,
+   "approval_blockers":["no executable exchange fill audit","no verified point-in-time stock membership"
+    if arm.startswith("US30_") else "no independent provider verification",
+    "research-only futures proxy" if "FUTURES" in arm else "prospective sample uncertainty"],
    "execution_verified":False}
  checkpoints={}
  for day in (30,90,180):
-  checkpoints[str(day)]={"reached":elapsed>=day,
-   "observed_sessions":n,"outages":len(state["outages"]),
-   "coverage_warning":n<max(1,int(min(elapsed,day)*.55)),
-   "live_trading_approval":False}
+  minimum={30:8,90:38,180:85}[day]
+  checkpoints[str(day)]={"reached":elapsed>=day,"observed_sessions":n,
+   "observed_calendar_weeks":weeks,"trading_day_coverage_proxy":round(coverage,4),
+   "min_observed_sessions":minimum,"sample_adequacy":n>=minimum,
+   "outages":len(state["outages"]),"live_trading_approval":False}
  return {"schema":SCHEMA,"elapsed_calendar_days":elapsed,"started_at":state["started_at"],
   "ends_at_calendar_date":state["end_date"],"last_session":state["last_session"],
-  "observed_sessions":n,"outages":len(state["outages"]),"finalized":state["finalized"],
-  "benchmark_spy_nav":state["bench_latest"],"arms":by_arm,"checkpoints":checkpoints,
-  "alpha_accepted":False,"execution_verified":False,"contract_roll_verified":False,
+  "observed_sessions":n,"observed_weeks":weeks,
+  "trading_day_coverage_proxy":round(coverage,4),"outages":len(state["outages"]),
+  "finalized":state["finalized"],"benchmark_spy_nav":state["bench_latest"],
+  "arms":by_arm,"checkpoints":checkpoints,"alpha_accepted":False,
+  "execution_verified":False,"contract_roll_verified":False,
   "point_in_time_stock_membership_verified":False,"paper_only":True,
   "limitations":["Intraday 5-minute Yahoo reference price is delayed/non-executable; NOT a broker quote",
   "Futures continuous contracts ignore roll/expiry and are diagnostic only",
