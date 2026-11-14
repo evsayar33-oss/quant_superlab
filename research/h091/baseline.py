@@ -114,7 +114,43 @@ def trade(bars:list[dict],s:dict,tf:int,target_type:str,
     return {"entry_ms":bars[i+1]["ts"],"exit_ms":bars[exit_i]["ts"],
             "family":s["family"],"side":s["side"],"tf_hours":tf,
             "target_type":target_type,"entry_proxy":entry,"exit_proxy":xp,
-            "risk_proxy":risk,"net_R":net_r,"exit_cause":exit_cause}
+            "risk_proxy":risk,"net_R":net_r,
+            "net_R_double_cost":gross_r-2*(cost_bps/10000)*entry/risk,
+            "exit_cause":exit_cause}
+
+
+
+def nonoverlapping(trades:list[dict])->list[dict]:
+    """One position per strategy at a time; sort by actual entry then end."""
+    last_exit=-1
+    selected=[]
+    for t in sorted(trades,key=lambda z:(z["entry_ms"],z["exit_ms"])):
+        if t["entry_ms"]<=last_exit:continue
+        selected.append(t)
+        last_exit=t["exit_ms"]
+    return selected
+
+
+def metrics(trades:list[dict])->dict:
+    if not trades:
+        return {"n":0,"win_rate":None,"mean_net_R":None,
+                "mean_net_R_double_cost":None,"t_stat":None,
+                "max_drawdown_R":None,"sample_ge_30":False}
+    values=[t["net_R"] for t in trades]
+    avg=mean(values)
+    if len(values)>1:
+        var=sum((v-avg)**2 for v in values)/(len(values)-1)
+        tstat=avg/(var/len(values))**.5 if var>1e-14 else None
+    else:tstat=None
+    equity=0.;peak=0.;maxdd=0.
+    for v in values:
+        equity+=v;peak=max(peak,equity)
+        maxdd=max(maxdd,peak-equity)
+    return {"n":len(trades),"win_rate":mean(v>0 for v in values),
+            "mean_net_R":avg,
+            "mean_net_R_double_cost":mean(t["net_R_double_cost"] for t in trades),
+            "t_stat":tstat,"max_drawdown_R":maxdd,
+            "sample_ge_30":len(trades)>=30}
 
 
 def research(bars:list[dict],symbol:str)->dict:
@@ -143,7 +179,7 @@ def research(bars:list[dict],symbol:str)->dict:
                 for target in TARGETS:
                     tr=[trade(b,s,tf,target,COST_BPS_PER_ROUNDTRIP[symbol])
                         for s in cand]
-                    tr=[x for x in tr if x is not None]
+                    tr=nonoverlapping([x for x in tr if x is not None])
                     # Purge trades crossing split: prevent training/validation contamination
                     train=[x for x in tr if x["exit_ms"]<b[cut]["ts"]]
                     hold=[x for x in tr if x["entry_ms"]>=b[cut]["ts"]]
@@ -153,6 +189,8 @@ def research(bars:list[dict],symbol:str)->dict:
                         "hold_mean_net_R":mean(x["net_R"] for x in hold) if hold else None,
                         "hold_win_rate":mean(x["net_R"]>0 for x in hold) if hold else None,
                         "hold_net_R_sum":sum(x["net_R"] for x in hold) if hold else None,
+                        "train_statistics":metrics(train),
+                        "hold_statistics":metrics(hold),
                         "hold_unvalidated":True,
                         "why_unvalidated":"historical periods already researched, 1 venue, no funding/true slippage, overlapping concurrent signals"})
     output["trial_count"]=len(output["trials"])
