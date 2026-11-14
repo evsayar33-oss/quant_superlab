@@ -9,7 +9,7 @@ from __future__ import annotations
 import math
 from collections import defaultdict
 from datetime import datetime, timezone
-from .engine import evaluate_recipe, utc
+from engine import evaluate_recipe, utc
 
 
 def route(candidates: list[dict], *, max_total_risk: float = 0.02,
