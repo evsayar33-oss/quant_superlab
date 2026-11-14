@@ -112,9 +112,9 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS):
     if not prev or prev.get("status") not in ("BASELINE","MARK_TO_MARKET","NO_NEW_CLOSE"):
         return {"status":"BASELINE","positions":positions,
                 "marks":{s:prices[s] for s in needed},
-                "nav_scenarios":{k:START_NAV for k in fee_bps},
+                "nav_scenarios":{k:START_NAV*(1-sum(abs(v) for v in positions.values())*bps/10000) for k,bps in fee_bps.items()},
                 "first_seen_utc":stamp(seen),"forward_pnl_verified":False,
-                "note":"first later observed close sets basis, no pre-baseline gains"}
+                "note":"first later observed close sets basis; scenario entry fee charged, no pre-baseline gains"}
     old=prev["marks"]
     if any(s not in old for s in needed):
         return {"status":"MISSING_PRIOR_MARK","forward_pnl_verified":False}
@@ -128,8 +128,9 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS):
     gross=sum(old_positions.get(s,0)*(prices[s]["close"]/old[s]["close"]-1)
               for s in needed)
     if gross<=-1 or not math.isfinite(gross):raise ValueError("invalid return")
-    # Next period's desired weights are taken from the first-seen snapshot for this
-    # initial version, NOT inferred from backfilled strategy NAV.
+    # Positions remain frozen to first-seen snapshot in v1. Subsequent changes
+    # are NOT replayed or claimed as executed; a future ledger version must
+    # capture and apply each timestamped rebalance prospectively.
     turnover=sum(abs(positions.get(s,0)-old_positions.get(s,0))
                  for s in needed)
     nav={}
