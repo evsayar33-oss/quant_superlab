@@ -1,0 +1,52 @@
+name: H085 — Independent strategy derivatives (research-only)
+on:
+  push:
+    branches:
+      - research/h085-independent-meta-derivatives
+    paths:
+      - 'research/h085/**'
+      - '.github/workflows/h085.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONPATH: 'research/h085:.'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deterministic research dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'pandas>=2.2,<4' 'pytest>=8,<10'
+      - name: Causal, cost and negative-case unit tests
+        run: python -m pytest -q research/h085/test_h085.py
+      - name: Retrieve original H083 frozen trade history
+        run: |
+          gh run download 43225656166 \
+            --repo evsayar33-oss/quant_superlab \
+            --name h083-midas-multistyle-research \
+            --dir results/h083
+          printf '%s  %s\n' \
+            'b2b6dbebded543253068e4dfc5176587f4e96ef643c9bbb6d6bbfeb23b98e89e' 'results/h083/rotation_trade_ledger.csv' \
+            'f97d5ae646c3da71721415089946840ca051f45b0fd32df6bacb3caee78fbecd' 'results/h083/all_style_trades.csv' \
+            | sha256sum --check
+      - name: Recompute all H085 variants, failure and cost diagnostics
+        run: >-
+          python research/h085/h085.py
+          --h083-results results/h083
+          --output results/h085
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h085-exploratory-derivatives
+          path: results/h085/
+          if-no-files-found: warn
+          retention-days: 30
