@@ -79,11 +79,12 @@ def tick(state,now_ms,quotes):
   q=quotes[venue];bars=q["bars"]
   closed4=aggregate(bars)
   if len(closed4)<76:raise ValueError("NO_4H_WARMUP")
-  ind=indicators(closed4,FOUR)
-  last=len(closed4)-1
-  # Indicators deliberately omit final index; signal uses last fully closed 4h bar,
-  # with one extra complete bar required by indicators implementation.
-  sig_i=last-1
+  # H109 indicators reserve the final array slot for next-bar execution.
+  # Append an indicator-only sentinel (never used as a candle or price fill)
+  # so the newest *closed* 4H candle can be evaluated causally.
+  sentinel={**closed4[-1],"ts":closed4[-1]["ts"]+FOUR}
+  ind=indicators(closed4+[sentinel],FOUR)
+  sig_i=len(closed4)-1
   if ind[sig_i] is None:raise ValueError("NO_VALID_SIGNAL_WINDOW")
   for family,side in STRATEGIES:
    key=f"{venue}_BTC_4H_{family}_{side}"
