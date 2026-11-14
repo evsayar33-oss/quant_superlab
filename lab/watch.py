@@ -41,10 +41,26 @@ def tradable_assets() -> set | None:
     return {t for t, x in v.get("assets", {}).items() if x.get("markets")}
 
 
+def require_full_watch_universe(available, expected, cls: str) -> None:
+    """Do not publish a frozen paper book when a vendor drops an asset."""
+    missing = sorted(set(expected) - set(available))
+    if missing:
+        raise RuntimeError(
+            f"PAPER_DATA_INCOMPLETE: {cls} missing {missing}; "
+            "refuse to publish changed-universe NAV"
+        )
+
+
 def idea_returns(idea: dict, panels: dict, synthetic: bool = False, only: set | None = None):
     cls = idea["cls"]
     if cls not in panels:
-        panels[cls] = mega.load_class(cls, mega.cfg_load(), synthetic)
+        source_cfg = mega.cfg_load()
+        loaded = mega.load_class(cls, source_cfg, synthetic)
+        if not synthetic:
+            universes = yaml.safe_load((ROOT / 'config' / 'universes.yaml').read_text())
+            expected = universes[source_cfg['classes'][cls]]['tickers']
+            require_full_watch_universe(loaded[0].columns, expected, cls)
+        panels[cls] = loaded
     p, costs = panels[cls]
     if only is not None:
         keep = [a for a in p.columns if a in only]
