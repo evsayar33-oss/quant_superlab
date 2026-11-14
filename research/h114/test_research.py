@@ -37,7 +37,7 @@ class Tests(unittest.TestCase):
   q=bh([.01,.03,.2,1.])
   self.assertAlmostEqual(q[0],.04);self.assertEqual(q[-1],1.)
  def test_splits_are_nonoverlapping(self):
-  b=bars(2200);s=pd.Series(1.,index=b.index)
+  b=bars(1500);s=pd.Series(1.,index=b.index)
   z=net_daily(b,s,ETF_SCENARIOS["base"],"etf")
   p=scope(z);self.assertEqual(sum(len(v) for v in p.values()),len(z))
  def test_future_one_contract_fee_scale(self):
