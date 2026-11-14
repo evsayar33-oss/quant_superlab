@@ -25,10 +25,10 @@ class H089Tests(unittest.TestCase):
         init={"seen":T0,"positions":{"YM=F":1},"closed_bar":"2026-11-13"}
         one=compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-16",T1)},T1)
         self.assertEqual(one["status"],"BASELINE")
-        self.assertEqual(one["nav_scenarios"]["base_5bps"],1000)
+        self.assertAlmostEqual(one["nav_scenarios"]["base_5bps"],999.5)
         two=compute_one("H065",init,one,{"YM=F":mark(110,"2026-11-17",T2)},T2)
         self.assertEqual(two["status"],"MARK_TO_MARKET")
-        self.assertAlmostEqual(two["nav_scenarios"]["base_5bps"],1100)
+        self.assertAlmostEqual(two["nav_scenarios"]["base_5bps"],1099.45)
         self.assertFalse(two["forward_pnl_verified"])
 
     def test_reject_future_or_prior_marks(self):
