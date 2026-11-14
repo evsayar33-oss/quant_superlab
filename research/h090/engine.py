@@ -80,6 +80,19 @@ class Event:
             raise ValueError("event attrs must be mapping")
         if utc(e.occurred_at) > utc(e.observed_at):
             raise ValueError("future event observed before occurrence")
+        if e.kind == "FIB_POSITION":
+            lo = number(e.attrs.get("range_low"))
+            hi = number(e.attrs.get("range_high"))
+            price = number(e.attrs.get("reference_price"))
+            if not (0 < lo < hi and price > 0):
+                raise ValueError("invalid anchored Fibonacci range or price")
+            anchor = utc(e.attrs.get("range_anchored_asof"))
+            if anchor > utc(e.occurred_at):
+                raise ValueError("Fibonacci anchor unknown at event time")
+            midpoint=(lo+hi)/2.0
+            inferred="above_05" if price > midpoint else "below_05" if price < midpoint else "at_05"
+            if e.attrs.get("position") != inferred:
+                raise ValueError("Fibonacci 0.5 position not supported by anchors")
         if e.kind == "LIQ_NOT_TAKEN":
             start = utc(e.attrs["window_start"])
             end = utc(e.attrs["window_end"])
