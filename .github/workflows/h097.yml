@@ -1,0 +1,60 @@
+name: H097 — Walk-forward evidence and funding audit (read-only)
+on:
+  push:
+    branches:
+      - research/h097-evidence-gates
+    paths:
+      - 'research/h097/**'
+      - '.github/workflows/h097.yml'
+  pull_request:
+    paths:
+      - 'research/h097/**'
+      - '.github/workflows/h097.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h095 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h096 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h097 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Real BTC ETH OHLC and public funding observations
+        run: python research/h097/run.py --pages 12 --out results/h097
+      - name: Fail closed on research acceptance
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("results/h097/summary.json")
+          if p.exists():
+              d=json.loads(p.read_text())
+              assert d["alpha_accepted"] is False
+              assert d["research_complete"] is False
+              assert d["production_modified"] is False
+              assert d["h089_modified"] is False
+              assert d["measured_execution_costs_verified"] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h097-independent-evidence-${{ github.run_id }}
+          path: results/h097/
+          retention-days: 90
+          if-no-files-found: warn
