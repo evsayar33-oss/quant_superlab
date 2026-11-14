@@ -135,7 +135,7 @@ def audit():
     # Historical results do not necessarily have daily-trade underlying series.
     sources={
         "H062":{"path":"decisions/mega/result.json","trials":mega["n_trials_total"],
-                "d4_candidates":len(mega.get("d4_candidates",[])),
+                "d4_candidates":mega.get("d4_candidates",0),
                 "finalists":len(mega.get("finalists",[])),
                 "winners":len(mega.get("winners",[])),
                 "time_machine_survivors":m_tm.get("n_survivors"),
