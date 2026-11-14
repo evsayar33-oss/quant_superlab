@@ -21,19 +21,19 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 
 URL = os.environ.get("QUANT_LAB_URL",
-                     "https://raw.githubusercontent.com/evsayar33-oss/quant_lab/main/decisions/registry.json")
+                     "https://raw.githubusercontent.com/evsayar33-oss/quant_superlab/main/decisions/registry.json")
 MAX_AGE_DAYS = 10
 _cache: dict = {}
 
 
 def fetch(url: str = URL, timeout: int = 15) -> dict | None:
-    if url in _cache:
-        return _cache[url]
+    # Always re-fetch approval; stale decisions must never remain in a long-lived bot.
     try:
         with urllib.request.urlopen(url, timeout=timeout) as r:
             _cache[url] = json.loads(r.read().decode())
             return _cache[url]
     except Exception as e:  # noqa: BLE001
+        _cache.pop(url, None)
         print(f"[quant_lab] registry fetch failed: {e}")
         return None
 
@@ -43,7 +43,7 @@ def _fresh(h: dict) -> bool:
         age = datetime.now(timezone.utc) - datetime.fromisoformat(h["validated_at"])
     except Exception:  # noqa: BLE001
         return False
-    return age <= timedelta(days=MAX_AGE_DAYS)
+    return timedelta(0) <= age <= timedelta(days=MAX_AGE_DAYS)
 
 
 def approved(system: str | None = None, url: str = URL) -> list[dict]:
@@ -73,7 +73,7 @@ def allocation(system: str, url: str = URL) -> dict:
 
 
 ARENA_URL = os.environ.get("QUANT_LAB_ARENA_URL",
-                           "https://raw.githubusercontent.com/evsayar33-oss/quant_lab/main/decisions/arena/{tf}/switcher.json")
+                           "https://raw.githubusercontent.com/evsayar33-oss/quant_superlab/main/decisions/arena/{tf}/switcher.json")
 ARENA_MAX_AGE_HOURS = 30
 
 
@@ -89,7 +89,7 @@ def arena_allocation(timeframe: str = "4h", url: str = ARENA_URL) -> list[dict]:
         age = datetime.now(timezone.utc) - datetime.fromisoformat(sw["updated_at"])
     except Exception:  # noqa: BLE001
         return []
-    if age > timedelta(hours=ARENA_MAX_AGE_HOURS):
+    if age < timedelta(0) or age > timedelta(hours=ARENA_MAX_AGE_HOURS):
         print("[quant_lab] arena switcher is stale -> ignored")
         return []
     return list(sw.get("picks", []))

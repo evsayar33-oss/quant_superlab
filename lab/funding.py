@@ -11,6 +11,8 @@ short perp needs margin top-ups after big rallies (1x margin is liquidated only 
 from __future__ import annotations
 
 import io
+import json
+import urllib.error
 import time
 import urllib.request
 import zipfile
@@ -31,10 +33,23 @@ def load(symbol: str, start: str = "2020-01") -> pd.Series:
     path = CACHE / f"funding_{symbol}.csv"
     have = pd.read_csv(path, index_col=0, parse_dates=True).iloc[:, 0] if path.exists() else pd.Series(dtype=float)
     months = pd.period_range(start, pd.Timestamp.now(tz="UTC").tz_localize(None) - pd.offsets.MonthBegin(1), freq="M")
+    # Finite negative cache: missing archive months are not zero-rate observations.
+    # Retain the absence marker across Actions runs to avoid repeated pre-listing 404s.
+    missing_path = CACHE / f"funding_{symbol}.missing.json"
+    try:
+        missing = json.loads(missing_path.read_text()) if missing_path.exists() else {}
+        if not isinstance(missing, dict):
+            missing = {}
+    except (OSError, ValueError):
+        missing = {}
+    now = time.time()
+    missing = {k: v for k, v in missing.items() if isinstance(v, (int, float)) and v > now}
     got = set(have.index.to_period("M").astype(str)) if len(have) else set()
     parts = [have]
     for m in months:
         ms = str(m)
+        if missing.get(ms, 0) > now:
+            continue
         if ms in got and ms != str(months[-1]):
             continue
         try:
@@ -45,12 +60,22 @@ def load(symbol: str, start: str = "2020-01") -> pd.Series:
             rcol = next(c for c in df.columns if "rate" in c.lower())
             s = pd.Series(df[rcol].astype(float).values, index=pd.to_datetime(df[tcol], unit="ms"))
             parts.append(s)
+            missing.pop(ms, None)
             time.sleep(0.2)
-        except Exception as e:  # noqa: BLE001 - a missing month is skipped, the report shows the data range
+        except urllib.error.HTTPError as e:
+            if e.code in (404, 410):
+                # Recently closed months may be posted late: retry after 7 days.
+                # Older prelisting months can be retried less frequently.
+                last_period = pd.Period(pd.Timestamp.now(tz="UTC").strftime("%Y-%m"), "M")
+                missing[ms] = now + (7 if m >= last_period - 2 else 30) * 86400
+            else:
+                print(f"[funding] {symbol} {ms}: HTTP {e.code}; will retry")
+        except Exception as e:  # noqa: BLE001 - transient errors must never be negative cached
             print(f"[funding] {symbol} {ms}: {e}")
     out = pd.concat(parts).sort_index()
     out = out[~out.index.duplicated(keep="last")]
     out.rename("funding").to_csv(path)
+    missing_path.write_text(json.dumps(missing, sort_keys=True))
     return out
 
 

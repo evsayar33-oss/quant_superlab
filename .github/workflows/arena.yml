@@ -1,11 +1,7 @@
 name: Arena (paper, every 4h)
 
-# 9 minutes after every 4h bar closes (UTC): for every timeframe arena (4h, 1d) recompute its strategies on the latest CLOSED bar,
-# retire decaying ones, run the regime switcher, send Telegram changes, deploy the dashboard to GitHub Pages.
-# Starts by itself: until the monthly "Arena screen" has put members in decisions/arena/roster.json,
-# every run stops after a 5-second check (no install, no download, no commit).
-# One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
-
+# Split six books across isolated jobs: one scope cannot consume the time budget
+# of the others. Existing screening and approval rules are unchanged.
 on:
   schedule:
     - cron: '9 0,4,8,12,16,20 * * *'
@@ -22,19 +18,39 @@ concurrency:
 
 jobs:
   arena:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        timeframe: ['4h', '1d']
+        side: ['both', 'long', 'short']
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    outputs:
-      go: ${{ steps.ready.outputs.go }}
     steps:
       - uses: actions/checkout@v4
-      - name: Is the arena populated?
+      - name: Check isolated roster and schedule
         id: ready
+        env:
+          TF: ${{ matrix.timeframe }}
+          SIDE: ${{ matrix.side }}
+          EVENT: ${{ github.event_name }}
         run: |
-          if python3 -c "import json,sys,glob; sys.exit(0 if any(m['status'] in ('active','control') for f in glob.glob('decisions/arena/*/roster.json') for m in json.load(open(f))['members']) else 1)" 2>/dev/null; then
+          KEY="$TF"; if [ "$SIDE" != "both" ]; then KEY="${TF}_${SIDE}"; fi
+          echo "key=$KEY" >> "$GITHUB_OUTPUT"
+          if KEY="$KEY" python3 - <<'PY'
+          import json, os, pathlib, sys
+          p = pathlib.Path("decisions/arena") / os.environ["KEY"] / "roster.json"
+          try:
+              members = json.loads(p.read_text())["members"]
+              sys.exit(0 if any(m.get("status") in ("active", "control") for m in members) else 1)
+          except (OSError, ValueError, KeyError):
+              sys.exit(1)
+          PY
+          then
             echo "go=true" >> "$GITHUB_OUTPUT"
           else
-            echo "go=false" >> "$GITHUB_OUTPUT"; echo "Arena is empty: run 'Arena screen' first. Skipping."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+            echo "No populated roster for $KEY; skipping"
           fi
       - if: steps.ready.outputs.go == 'true'
         uses: actions/setup-python@v5
@@ -45,30 +61,64 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data/cache
-          key: arena-data-all-${{ github.run_id }}
+          key: arena-data-${{ matrix.timeframe }}-${{ matrix.side }}-${{ github.run_id }}
           restore-keys: |
-            arena-data-all-
+            arena-data-${{ matrix.timeframe }}-${{ matrix.side }}-
+            arena-data-${{ matrix.timeframe }}-
             arena-data-
       - if: steps.ready.outputs.go == 'true'
-        name: Arena run
+        name: Compute only this book
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-          LAB_CACHE_HOURS: "0"          # always refresh (incremental: only the new bars are downloaded)
-        run: python run.py --arena --site site --telegram
+          LAB_CACHE_HOURS: '0'
+        run: python run.py --arena --timeframe ${{ matrix.timeframe }} --side ${{ matrix.side }} --site site --telegram
       - if: steps.ready.outputs.go == 'true'
-        name: Commit arena state to main
-        run: bash scripts/commit_arena.sh "Arena $(date -u +%F_%H%M)"
+        name: Persist only this book
+        run: bash scripts/commit_arena.sh "Arena ${{ steps.ready.outputs.key }} $(date -u +%F_%H%M)" "${{ steps.ready.outputs.key }}"
+      - if: steps.ready.outputs.go == 'true'
+        name: Upload isolated dashboard data
+        uses: actions/upload-artifact@v4
+        with:
+          name: arena-site-${{ steps.ready.outputs.key }}
+          path: site/data_*.json
+          if-no-files-found: error
+          retention-days: 2
+
+  package-site:
+    needs: arena
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: arena-site-*
+          path: site
+          merge-multiple: true
+      - name: Validate and bundle dashboard
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import shutil
+          site = Path("site")
+          files = sorted(site.glob("data_*.json"))
+          if not files:
+              raise SystemExit("No new dashboard data; refusing an empty deployment")
+          for p in files:
+              json.loads(p.read_text())
+          (site / "tfs.json").write_text(json.dumps([p.stem[5:] for p in files]))
+          shutil.copy("dashboard/index.html", site / "index.html")
+          (site / ".nojekyll").write_text("")
+          PY
       - uses: actions/upload-pages-artifact@v3
-        if: steps.ready.outputs.go == 'true' && hashFiles('site/tfs.json') != ''
         with:
           path: site
 
   deploy:
-    needs: arena
-    if: needs.arena.result == 'success' && needs.arena.outputs.go == 'true'
+    needs: package-site
     runs-on: ubuntu-latest
-    continue-on-error: true            # Pages not enabled yet -> the arena itself still succeeded
+    continue-on-error: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
