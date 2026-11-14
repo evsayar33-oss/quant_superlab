@@ -1,0 +1,51 @@
+name: H105 — Paired venue robustness audit (read-only)
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/h105/**'
+      - '.github/workflows/h105.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h104 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h105 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/h104/run.py --days 180 --okx-pages 60 --out results/h104
+      - run: python research/h105/audit.py --source results/h104 --out results/h105/summary.json
+      - name: Enforce no alpha approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('results/h105/summary.json').read_text())
+          assert r['alpha_accepted'] is False
+          assert r['prospective_oos_verified'] is False
+          assert r['execution_verified'] is False
+          assert len(r['comparisons'])>0
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h105-paired-audit-${{ github.run_id }}
+          path: |
+            results/h104/summary.json
+            results/h105/
+          retention-days: 90
+          if-no-files-found: warn
