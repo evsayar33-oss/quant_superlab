@@ -71,7 +71,7 @@ def collect(fetch=get,now=None):
     now=now or utcnow()
     rec={"schema":"H089.funding_overlap.v1","collected_at_utc":stamp(now),
          "kind":"RECENT_HISTORICAL_CROSS_VENUE_FUNDING_DIAGNOSTIC_NOT_H056_BACKTEST",
-         "source_rows":{},"comparisons":{},"errors":{},
+         "source_rows":{},"source_records":{},"comparisons":{},"errors":{},
          "H056_independent_strategy_replay_verified":False}
     for symbol in SYMBOLS:
         sources={}
@@ -80,6 +80,8 @@ def collect(fetch=get,now=None):
             try:
                 sources[venue]=fetch_history(venue,symbol,fetch)
                 rec["source_rows"][key]=len(sources[venue])
+                rec["source_records"][key]=[{"funding_time_ms":t,"rate":v}
+                                             for t,v in sorted(sources[venue].items())]
             except Exception as e:
                 rec["errors"][key]=type(e).__name__+": "+str(e)[:150]
         if len(sources)==2:rec["comparisons"][symbol]=compare(sources["okx"],sources["bitget"])
