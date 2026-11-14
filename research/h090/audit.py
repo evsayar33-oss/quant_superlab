@@ -57,7 +57,7 @@ def load_catalog(path: Path = CATALOG) -> dict:
 def audit(catalog: dict | None = None) -> dict:
     c = catalog or load_catalog()
     from engine import EVENT_KINDS, TIMEFRAMES, load_recipes
-    if not set(c["event_types"]).issubset(EVENT_KIN):
+    if not set(c["event_types"]).issubset(EVENT_KINDS):
         raise ValueError("unrecognized events in research catalog")
     if not set(c["timeframes"]).issubset(TIMEFRAMES):
         raise ValueError("unrecognized timeframes")
