@@ -1,0 +1,34 @@
+{
+  "alpha_accepted": false,
+  "ends_ms": 1797257406425,
+  "finalized": false,
+  "last_tick_ms": 1794665406425,
+  "outages": [],
+  "positions": {},
+  "rejected": [],
+  "research_only": true,
+  "schema": "h111.paper.v1",
+  "started_ms": 1794665406425,
+  "ticks": [
+    {
+      "closed_trades": 0,
+      "open_positions": 0,
+      "quotes": {
+        "gate": {
+          "ask": 66507.0,
+          "bar_hash": "8177a17043e80a362329a60e97946b5f503c7a1d5dfe0b320051a4bcaac2b207",
+          "bid": 66506.9,
+          "quote_ms": 1794665406425
+        },
+        "okx": {
+          "ask": 66515.5,
+          "bar_hash": "03ddc6895b4c01668f6c822bc9f7d6fb5f764907b95fea7250ddab94d6f341a1",
+          "bid": 66515.4,
+          "quote_ms": 1794665407562
+        }
+      },
+      "ts": 1794665406425
+    }
+  ],
+  "trades": []
+}
