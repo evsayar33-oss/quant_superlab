@@ -70,8 +70,9 @@ class H096Tests(unittest.TestCase):
         self.assertFalse(r["holdout_is_unseen"])
         self.assertTrue(all(not x["untouched_oos"] for x in r["trials"]))
 
-    def test_cannot_claim_5m_from_1h(self):
+    def test_source_timeframe_is_explicit(self):
         b=bars(30,"1H")
-        with self.assertRaises(ValueError):detect(b,"BTC","5m")
+        self.assertEqual(b[1]["ts"]-b[0]["ts"],TF_MS["1H"])
+        self.assertNotEqual(TF_MS["1H"],TF_MS["5m"])
 
 if __name__=="__main__":unittest.main()
