@@ -1,0 +1,73 @@
+name: H091-H094 — Real market entry research (read-only)
+on:
+  push:
+    branches:
+      - research/h091-h094-real-evidence-pipeline
+    paths:
+      - 'research/h091/**'
+      - 'research/h093/**'
+      - 'research/h094/**'
+      - '.github/workflows/h091_h094.yml'
+  pull_request:
+    paths:
+      - 'research/h091/**'
+      - 'research/h093/**'
+      - 'research/h094/**'
+      - '.github/workflows/h091_h094.yml'
+  workflow_dispatch:
+    inputs:
+      pages:
+        description: 'OKX historical 1H pages per symbol; each ~100 bars'
+        required: false
+        default: '12'
+permissions:
+  contents: read
+
+concurrency:
+  group: h091-h094-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h091 -p 'test_*.py' -v
+
+  real_vendor_smoke:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Collect read-only real OKX historical BTC/ETH bars; independently cross-check Bitget
+        run: |
+          python research/h091/run.py --symbols BTC ETH --pages 12 --out results/h091_h094
+      - name: Verify no accepted alpha or production changes
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('results/h091_h094/program.json')
+          if path.exists():
+              r=json.loads(path.read_text())
+              assert r['research_complete'] is False
+              assert r['verified_alpha_claims']==0
+              assert r['production_registry_modified'] is False
+              print('H091-H094 research-only evidence retained')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h091-h094-real-evidence-${{ github.run_id }}
+          path: results/h091_h094/
+          if-no-files-found: warn
+          retention-days: 90
