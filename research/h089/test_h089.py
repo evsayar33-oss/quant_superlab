@@ -33,6 +33,21 @@ class H089Tests(unittest.TestCase):
         self.assertAlmostEqual(two["nav_scenarios"]["base_5bps"],1099.45)
         self.assertFalse(two["forward_pnl_verified"])
 
+    def test_rebalance_only_after_new_first_seen_decision(self):
+        init={"seen":T0,"positions":{"YM=F":1},"closed_bar":"2026-11-13"}
+        baseline=compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-16",T1)},T1)
+        target={"seen":T1+timedelta(hours=1),"positions":{},"closed_bar":"2026-11-16"}
+        before=compute_one("H065",init,baseline,{"YM=F":mark(110,"2026-11-17",T2)},T2,
+                           target=target)
+        self.assertEqual(before["positions"],{})
+        self.assertAlmostEqual(before["turnover_one_way_notional"],1)
+        self.assertAlmostEqual(before["nav_scenarios"]["base_5bps"],1098.900275)
+        after=compute_one("H065",init,before,{"YM=F":mark(120,"2026-11-18",T2+timedelta(days=1))},
+                          T2+timedelta(days=1),target=target)
+        self.assertEqual(after["positions"],{})
+        self.assertAlmostEqual(after["gross_return"],0)
+        self.assertEqual(after["turnover_one_way_notional"],0)
+
     def test_reject_future_or_prior_marks(self):
         init={"seen":T0,"positions":{"YM=F":1}}
         self.assertEqual(compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-13",T1)},T1)["status"],"AWAITING_POST_FIRST_SEEN_CLOSE")
