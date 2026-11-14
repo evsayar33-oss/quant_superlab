@@ -30,7 +30,7 @@ def check_bars(bars, tf):
         previous=b["ts"]
 
 
-def event(symbol,tf,kind,side,bar_index,bars,attrs,source="OKX_1H_CLOSED"):
+def event(symbol,tf,kind,side,bar_index,bars,attrs,source="OKX_CLOSED_OHLC"):
     observed=bars[bar_index]["ts"]+TF_MS[tf]
     stable={"symbol":symbol,"timeframe":tf,"kind":kind,"side":side,
             "bar_index":bar_index,"observed_at_ms":observed,
@@ -49,7 +49,7 @@ def segments(bars,tf):
     if start<len(bars):yield start,len(bars)
 
 
-def detect(bars,symbol,tf="1H",left=2,right=2,ob_lookback=8,source="OKX_CLOSED_OHLC"):
+def detect(bars,symbol,tf="1H",left=2,right=2,ob_lookback=8):
     if symbol not in ("BTC","ETH"):raise ValueError("unsupported symbol")
     if not 1<=left<=10 or not 1<=right<=10 or not 2<=ob_lookback<=30:
         raise ValueError("invalid research parameters")
@@ -157,8 +157,6 @@ def detect(bars,symbol,tf="1H",left=2,right=2,ob_lookback=8,source="OKX_CLOSED_O
                                      {"range_high":hi[1],"range_low":lo[1],
                                       "high_pivot_bar":hi[0],"low_pivot_bar":lo[0],
                                       "midpoint":midpoint,"position":pos}))
-    for item in out:
-        item["source"]=source
     out.sort(key=lambda x:(x["observed_at_ms"],x["event_id"]))
     return {"schema":"H095.events.v1","symbol":symbol,"timeframe":tf,
             "definition":"CONFIRMED_PIVOT_CANDLE_RULES_RESEARCH_NOT_DISCRETIONARY_ICT",
