@@ -1,0 +1,53 @@
+name: H087 — Full repository audit and 70-way risk synthesis
+on:
+  push:
+    branches:
+      - research/h087-repo-wide-synthesis-20261114
+    paths:
+      - 'research/h087/**'
+      - '.github/workflows/h087.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  read-only-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 38
+    env:
+      PYTHONPATH: 'research/h087:.'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install bounded audit dependencies
+        run: python -m pip install 'numpy>=1.26,<3' 'pandas>=2.2,<4' 'PyYAML>=6,<7' 'pytest>=8,<10'
+      - name: Verify fee, alignment and multiple-test offline controls
+        run: python -m pytest -q research/h087/test_h087.py
+      - name: Audit every tracked file and all saved result families
+        run: python research/h087/audit.py
+      - name: 'Post-hoc H056: annual sign test, doubled costs and delist stress'
+        run: python research/h087/h056_followup.py
+      - name: Fetch frozen original H085 and H086 result artifacts
+        run: |
+          mkdir -p results/h085 results/h086
+          gh run download 43571747386 --repo evsayar33-oss/quant_superlab --name h085-exploratory-derivatives --dir results/h085
+          gh run download 43576823624 --repo evsayar33-oss/quant_superlab --name h086-5-frozen-hypotheses-independent-datasets --dir results/h086
+          test -f results/h085/H085_REPORT.json
+          test -f results/h086/H086_COMPLETE_RESULTS.json
+      - name: Execute every 70-way crossover and 2x cost placebo tests
+        run: python research/h087/crossover.py
+      - name: Compose complete Turkish source-based audit
+        run: python research/h087/report.py
+      - name: Upload all proof and failed-path logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h087-comprehensive-repo-evidence
+          path: results/h087/
+          retention-days: 30
+          if-no-files-found: warn
