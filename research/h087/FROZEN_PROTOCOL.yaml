@@ -1,0 +1,108 @@
+study: H087
+type: repo_wide_evidence_audit_and_cross_family_stress
+freeze_date_utc: '2026-11-14'
+status: EXPLORATORY_REUSED_HISTORY
+not_authorized: [live_orders, production_decision_updates, ACCEPT_assignments, gate_changes]
+scope:
+  full_repo_manifest: git_ls_files
+  evidence_family_inventory:
+    - hypothesis_registry_and_decision_gate
+    - multi_asset_mega_H062
+    - assetbook_H073
+    - coreassets_H074
+    - MLbook_H076
+    - volrange_H077
+    - macro_and_index_synthesis_H072
+    - ICT_SMC_confluence_and_stages
+    - H083_event_rotation
+    - H084_causal_memory
+    - H085_prior_meta_portfolios
+    - H086_external_VIX_risk
+    - arena_directional_rosters_and_timemachine
+    - asset_level_protection_and_CPPI
+    - xsec_and_carry
+    - funding_and_provider_integrity
+    - prospective_live_H052_H054
+    - prospective_paper_H063_H065
+    - USD_macro
+    - terminal_and_bot_nonalpha_infrastructure
+  not_all_methods_are_combinable: true
+cross_family:
+  inputs:
+    H085: 'GitHub Actions frozen artifact run 43571747386; 14 monthly strategies at 25bp (and standalone 50bp as reference)'
+    H086: 'GitHub Actions frozen artifact run 43576823624; daily lagged H086A-E exposures and RF'
+  prior_registry_variants: 14
+  risk_controls: [H086A,H086B,H086C,H086D,H086E]
+  total_combinations: 70
+  source_monthly_window: ['2023-02-28','2026-08-31']
+  early_diagnostic_window: ['2023-02-28','2024-12-31']
+  late_diagnostic_window: ['2025-01-01','2026-08-31']
+  data_exposure: 'both H085 and H086 samples already reported; ALL results REUSED_TEST, no untouched holdout'
+  signal_timing: 'H086 exposure at last daily close of month t-1 for H085 portfolio return in month t; no contemporaneous weight'
+  portfolio_formula: 'r = exposure * H085_monthly_net_return_25bp + (1-exposure)*compound_monthly_Fama_RF - overlay_turnover_cost'
+  extra_oneway_turnover_cost_bps: [10,20]
+  turnover: 'absolute change of the overlay exposure; initial change from 1.0 charged'
+  all_central_variants_equal_status: true
+  controls:
+    - monthly_spy_benchmark_from_H085
+    - each_H085_no_overlay_at_matching_dates
+    - static_weight_equal_to_each_overlay_average_exposure_using_training_only
+    - shifted_VIX_overlay_timing_placebo
+    - inverse_performance_sensitivity_delete_best_two_months
+    - fixed_prior_window_selection_not_use_2025_2026_to_rank
+  inferential:
+    familywise_white_reality_check_block_months: 3
+    familywise_bootstrap_iterations: 2000
+    bootstrap_seed: 87031
+    min_finite_months_for_correction: 36
+    max_stat_statistic: 'max mean monthly excess versus H085 SPY, centered stationary-block bootstrap jointly across all 70'
+    placebo: 'circular_shift_nonzero_1_through_Nminus1 over risk weight matrix; compare MAX performance among all 70 in each shift'
+    one_sided_alpha: 0.05
+  prespecified_acceptance_diagnostic:
+    - late_total_net_above_H085_SPY
+    - late_2x_cost_total_above_H085_SPY
+    - early_mean_monthly_active_positive
+    - late_mean_monthly_active_positive
+    - positive_after_delete_2_best_late_active_months
+    - max_stat_familywise_p_le_005
+    - shifted_weight_placebo_max_p_le_005
+    - positive_relative_to_training_constant_exposure_control
+    - at_least_18_late_calendar_months
+    - no_missing_dates
+    - no_source_hash_mismatch
+  no_live_accepts_even_if_diagnostic_pass: true
+audit:
+  live_return_H052_H054:
+    descriptive: 'first-seen forward H052/H054 4h return CSV, check temporal coverage and duplicates'
+    rechecks:
+      - paired_4h_return_correlation_and_effective_independence
+      - stationary_block_bootstrap_sharpe_and_cumulative_return
+      - one_sided_positive_mean_test_4h_blocks_30_bars
+      - best_5_bars_deletion
+      - daily_aggregate_consistency
+      - zero_return_share
+    bootstrap_n: 2000
+    seed: 87091
+    do_not_backfill_future_data: true
+  historical_family:
+    require_source_timestamp_and_ntrials
+    indicators: [n_trials, accepted, gated, last_data_bar, dates, testability, limitations]
+    prohibit_adding_return_series_without_reproducible_date_alignment: true
+  placebo_ict:
+    use_all_available_per_asset_placebo_summary_results
+    do_not_claim_statistical_significance_from_only_two_placebos: true
+publication:
+  outputs:
+    - H087_REPO_INVENTORY.json
+    - H087_AUDIT.json
+    - H087_SYNTHESIS_70.csv
+    - H087_STAT_TESTS.json
+    - H087_LIVE_STRESS.json
+    - H087_REPORT_TR.md
+  honesty: 'do not claim every theoretical combination was run; enumerate exact 70 new and archived family trial totals separately'
+  limits:
+    - 'No sealed data, reuse of 2023-2026 H085 and H086 outcomes'
+    - 'Fama RF and SPY monthly index not identical execution venues'
+    - 'Monthly risk overlay is NAV proxy without order-level simulation'
+    - 'Venue exchangeability and funding not established across strategy families'
+    - 'No guarantee of absence of chance; statistical tests only estimate chance under assumptions'
