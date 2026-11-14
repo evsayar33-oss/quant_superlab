@@ -85,6 +85,51 @@ def fetch_okx(symbol: str, *, pages: int=12, get=get_json, now=None,
             "execution_fills_verified":False}
 
 
+def parse_bitget(payload:dict)->list[dict]:
+    if str(payload.get("code"))!="00000" or not isinstance(payload.get("data"),list):
+        raise ValueError("BITGET_RESPONSE_INVALID")
+    result=[]
+    for row in payload["data"]:
+        if len(row)<7:raise ValueError("BITGET_CANDLE_SHAPE")
+        ts=int(row[0])
+        if ts%HOUR_MS:raise ValueError("NON_HOURLY_TIMESTAMP")
+        o,h,l,c=(float(v) for v in row[1:5])
+        if not all(math.isfinite(v) and v>0 for v in (o,h,l,c)) or l>min(o,c) or h<max(o,c):
+            raise ValueError("INVALID_BITGET_OHLC")
+        result.append({"ts":ts,"open":o,"high":h,"low":l,"close":c})
+    if len({r["ts"] for r in result})!=len(result):
+        raise ValueError("DUPLICATE_BITGET_CANDLE")
+    return result
+
+
+def fetch_bitget_recent(symbol:str, *, get=get_json, now=None)->dict:
+    """Independent 100 last 1H USDT futures bars, not full historical replication."""
+    if symbol not in SYMBOLS:raise ValueError("UNSUPPORTED_SYMBOL")
+    now=now or now_utc()
+    url="https://api.bitget.com/api/v3/market/history-candles?"+urllib.parse.urlencode({
+        "category":"USDT-FUTURES","symbol":symbol+"USDT","interval":"1H",
+        "type":"market","limit":"100"})
+    bars=sorted((r for r in parse_bitget(get(url))
+                 if r["ts"]+HOUR_MS<=int(now.timestamp()*1000)),key=lambda x:x["ts"])
+    return {"symbol":symbol,"venue":"BITGET","instrument":symbol+"USDT",
+            "bar":"1H","bars":bars,"bar_count":len(bars),
+            "retrieved_at_utc":now.isoformat(),"source":url,
+            "real_public_exchange_bars":True}
+
+
+def compare_venues(primary:list[dict],secondary:list[dict])->dict:
+    a={r["ts"]:r for r in primary};b={r["ts"]:r for r in secondary}
+    common=sorted(set(a)&set(b))
+    if not common:return {"matched_closed_bars":0,"max_close_divergence_bps":None,
+                          "independent_venue_overlap_verified":False}
+    diffs=[abs(a[t]["close"]-b[t]["close"])/((a[t]["close"]+b[t]["close"])/2)*10000 for t in common]
+    return {"matched_closed_bars":len(common),"max_close_divergence_bps":max(diffs),
+            "median_close_divergence_bps":sorted(diffs)[len(diffs)//2],
+            "independent_venue_overlap_verified":True,
+            "same_underlying_independent_economic_market":False,
+            "notes":"cross-venue bar check only, not independent alpha nor executable arbitrage"}
+
+
 def digest(data:bytes)->str:return hashlib.sha256(data).hexdigest()
 
 
