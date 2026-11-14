@@ -106,7 +106,7 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS):
     if any(dt(prices[s]["collected_at_utc"])<seen for s in needed):
         return {"status":"PRICE_NOT_PROSPECTIVELY_OBSERVED","forward_pnl_verified":False}
     if any(prices[s]["closed_bar_date"]<=seen.date().isoformat() for s in needed):
-        return {"status":"PRICE_NOT_AFTER_FIRST_SEEN","forward_pnl_verified":False}
+        return {"status":"AWAITING_POST_FIRST_SEEN_CLOSE","forward_pnl_verified":False}
     if len({prices[s]["closed_bar_date"] for s in needed})>1:
         return {"status":"NON_SYNCHRONOUS_MARKS","forward_pnl_verified":False}
     if not prev or prev.get("status") not in ("BASELINE","MARK_TO_MARKET","NO_NEW_CLOSE"):
@@ -191,7 +191,11 @@ def main():
     digest=append_chain(rec,args.path)
     print(canonical({"hash":digest,"ideas":{k:v["status"] for k,v in rec["ideas"].items()},
                      "errors":rec["price_errors"],"all_ideas_marked":rec["all_ideas_marked"]}))
-    if not rec["all_ideas_marked"]:
+    # An initial waiting state is legitimate until a *later* market close exists.
+    # It is not a valid NAV mark and is not counted toward forward returns.
+    invalid=[v["status"] for v in rec["ideas"].values() if v["status"] not in
+             ("BASELINE","MARK_TO_MARKET","NO_NEW_CLOSE","AWAITING_POST_FIRST_SEEN_CLOSE")]
+    if invalid:
         raise SystemExit("INCOMPLETE_FORWARD_MARKS: saved gaps, no synthetic returns")
 
 
