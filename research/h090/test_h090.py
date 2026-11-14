@@ -40,11 +40,21 @@ class H090Contracts(unittest.TestCase):
         self.assertEqual([s["kind"] for s in r["sequence"]],
                          ["LIQ_SWEEP","MSS_CONFIRM","OB_TOUCH"])
 
+    def test_fibonacci_anchor_future_or_incorrect_midpoint_rejected(self):
+        attrs={"position":"below_05","range_anchored_asof":"2026-10-31T23:00:00Z",
+               "range_low":50,"range_high":150,"reference_price":80}
+        e=ev("fib","FIB_POSITION","H4","2026-11-01T00:00:00Z",attrs=attrs)
+        self.assertEqual(Event.parse(e).attrs["position"],"below_05")
+        b=copy.deepcopy(e);b["attrs"]["reference_price"]=120
+        with self.assertRaises(ValueError):Event.parse(b)
+        b=copy.deepcopy(e);b["attrs"]["range_anchored_asof"]="2026-11-02T00:00:00Z"
+        with self.assertRaises(ValueError):Event.parse(b)
+
     def test_sweep_mss_ob_sequence_and_liquidity_tp(self):
         r=self.recipes["H090_LIQ_MSS_OB_TARGET"]
         a=[
-          ev("f4","FIB_POSITION","H4","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31"}),
-          ev("f1","FIB_POSITION","H1","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31"}),
+          ev("f4","FIB_POSITION","H4","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31T23:00:00Z","range_low":50,"range_high":150,"reference_price":80}),
+          ev("f1","FIB_POSITION","H1","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31T23:00:00Z","range_low":50,"range_high":150,"reference_price":80}),
           ev("tp","LIQ_TARGET","H4","2026-11-01T00:00:00Z",attrs={"price":120.0}),
           ev("s","LIQ_SWEEP","H4","2026-11-01T01:00:00Z"),
           ev("m","MSS_CONFIRM","H1","2026-11-01T02:00:00Z"),
@@ -62,8 +72,8 @@ class H090Contracts(unittest.TestCase):
     def test_ob_out_of_order_and_distant_confirmation_rejected(self):
         r=self.recipes["H090_LIQ_MSS_OB_TARGET"]
         a=[
-          ev("f4","FIB_POSITION","H4","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"x"}),
-          ev("f1","FIB_POSITION","H1","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"x"}),
+          ev("f4","FIB_POSITION","H4","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31T23:00:00Z","range_low":50,"range_high":150,"reference_price":80}),
+          ev("f1","FIB_POSITION","H1","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31T23:00:00Z","range_low":50,"range_high":150,"reference_price":80}),
           ev("tp","LIQ_TARGET","H4","2026-11-01T00:00:00Z",attrs={"price":120.0}),
           ev("m","MSS_CONFIRM","H1","2026-11-01T01:00:00Z"),
           ev("s","LIQ_SWEEP","H4","2026-11-01T02:00:00Z"),
@@ -75,8 +85,8 @@ class H090Contracts(unittest.TestCase):
     def test_explicit_unswept_must_certify_window_and_reject_sweep(self):
         r=self.recipes["H090_UNSWEPT_OB_FVG"]
         a=[
-          ev("pd","FIB_POSITION","D","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"a"}),
-          ev("p4","FIB_POSITION","H4","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"a"}),
+          ev("pd","FIB_POSITION","D","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31T23:00:00Z","range_low":50,"range_high":150,"reference_price":80}),
+          ev("p4","FIB_POSITION","H4","2026-11-01T00:00:00Z",attrs={"position":"below_05","range_anchored_asof":"2026-10-31T23:00:00Z","range_low":50,"range_high":150,"reference_price":80}),
           ev("target","BLOCK_TARGET","D","2026-11-01T00:00:00Z",attrs={"price":125}),
           ev("no","LIQ_NOT_TAKEN","H4","2026-11-01T01:00:00Z",attrs={"window_start":"2026-10-31T00:00:00Z","window_end":"2026-11-01T00:00:00Z"}),
           ev("ob","OB_TOUCH","H1","2026-11-01T02:00:00Z"),
