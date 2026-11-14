@@ -1,0 +1,105 @@
+name: H111 — 30-day forward paper
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "start once, then scheduled hourly ticks"
+        required: true
+        type: choice
+        options: [start, tick]
+        default: start
+  schedule:
+    - cron: '10 * * * *'
+  pull_request:
+    paths:
+      - 'research/h111/**'
+      - '.github/workflows/h111.yml'
+permissions:
+  contents: write
+concurrency:
+  group: h111-forward-paper-global
+  cancel-in-progress: false
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h111 -p 'test_*.py' -v
+  smoke:
+    if: github.event_name == 'pull_request'
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Live read-only BTC OHLC and bid ask source smoke
+        run: |
+          python - <<'PY'
+          import sys,time
+          sys.path.insert(0,'research/h111')
+          from engine import snapshot
+          now=int(time.time()*1000)
+          for venue in ('okx','gate'):
+              x=snapshot(venue,now)
+              assert x['ask']>=x['bid']>0
+              print(venue,len(x['bars']),x['quote_ms'])
+          PY
+  paper:
+    if: github.event_name != 'pull_request'
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recover persistent state without modifying main
+        run: |
+          mkdir -p results/h111
+          if git ls-remote --exit-code origin refs/heads/paper/h111-30d >/dev/null 2>&1; then
+            git fetch origin refs/heads/paper/h111-30d:refs/remotes/origin/paper/h111-30d
+            git show origin/paper/h111-30d:state.json > results/h111/state.json
+          fi
+      - name: Forward observation
+        env:
+          MODE: ${{ github.event_name == 'schedule' && 'tick' || inputs.mode }}
+        run: python research/h111/run.py --mode "$MODE" --state results/h111/state.json --out results/h111/report
+      - name: Persist observation on dedicated branch (not main)
+        run: |
+          if [ ! -f results/h111/state.json ]; then
+            echo 'No active study; no state to commit.'
+            exit 0
+          fi
+          cp results/h111/state.json /tmp/h111-state.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git ls-remote --exit-code origin refs/heads/paper/h111-30d >/dev/null 2>&1; then
+            git checkout -B paper/h111-30d origin/paper/h111-30d
+          else
+            git checkout --orphan paper/h111-30d
+            git rm -rf . >/dev/null
+          fi
+          cp /tmp/h111-state.json state.json
+          git add state.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'H111 prospective paper observation'
+            git push origin HEAD:refs/heads/paper/h111-30d
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h111-paper-report-${{ github.run_id }}
+          path: |
+            results/h111/report/
+          retention-days: 90
+          if-no-files-found: warn
