@@ -41,8 +41,10 @@ jobs:
           LAB_CACHE_HOURS: "0"
         run: |
           M="${{ github.event.inputs.mode }}"; [ -z "$M" ] && M=daily
-          if [ "$M" = "lev" ]; then python -m lab.watch lev --telegram; fi
+          if [ "$M" = "lev" ]; then python -m lab.watch lev --telegram; exit 0; fi
           if [ "$M" = "lev070" ]; then python -m lab.watch lev --cfg config/watch_h070.yaml --telegram; exit 0; fi
+          if [ "$M" = "venues" ]; then python -m lab.venues; exit 0; fi
+          if [ "$M" != "daily" ]; then echo "Invalid mode: $M" >&2; exit 2; fi
           # venue list: on demand, every Monday, or when missing (a failure must never stop the paper record)
           if [ "$M" != "daily" ] || [ "$(date -u +%u)" = "1" ] || [ ! -f decisions/watch/venues.json ]; then python -m lab.venues || echo "venues check failed"; fi
           python -m lab.watch daily --telegram
@@ -50,5 +52,12 @@ jobs:
         run: |
           git config user.name "github-actions"; git config user.email "actions@github.com"
           git add decisions/watch
-          git commit -m "Paper watch $(date -u +%F)" || exit 0
-          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
+          if git diff --cached --quiet; then echo "No paper changes"; exit 0; fi
+          git commit -m "Paper watch $(date -u +%F)"
+          for i in 1 2 3; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          echo "Paper history persistence FAILED" >&2
+          exit 1

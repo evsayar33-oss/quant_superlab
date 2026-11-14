@@ -8,13 +8,15 @@ SUB="${2:-}"          # optional: only this timeframe folder (parallel screen jo
 git config user.name "quant-lab-bot"
 git config user.email "actions@users.noreply.github.com"
 SRC="decisions/arena${SUB:+/$SUB}"
-rm -rf /tmp/arena_dec && mkdir -p /tmp/arena_dec && cp -r "$SRC"/. /tmp/arena_dec/
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+cp -r "$SRC"/. "$TMP"/
 for i in 1 2 3 4 5 6; do
   git fetch -q origin main
   git reset -q --hard origin/main
   mkdir -p "$SRC"
-  cp -r /tmp/arena_dec/. "$SRC"/
-  git add decisions/arena
+  cp -r "$TMP"/. "$SRC"/
+  git add "$SRC"
   git diff --cached --quiet && { echo "[arena] nothing to commit"; exit 0; }
   git commit -q -m "$MSG"
   if git push -q origin HEAD:main; then echo "[arena] pushed"; exit 0; fi

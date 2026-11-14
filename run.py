@@ -276,6 +276,7 @@ def arena_panel(cfg: dict, synthetic: bool) -> tuple[Panel, Costs]:
 def do_arena(a, hyps) -> None:
     from lab import arena
     built = []
+    failures = []
     for cfg in arena_cfgs(a):
         arena.use(cfg["key"])
         if a.arena and not a.screen and cfg["side"] != "both" and not arena.ROSTER.exists():
@@ -289,12 +290,15 @@ def do_arena(a, hyps) -> None:
             traceback.print_exc()
             if a.telegram:
                 telegram(f"⚠️ arena {cfg['timeframe']} hata: {e}")
+            failures.append(cfg["key"])
             continue
         if out:
             built.append(cfg["key"])
     if a.site and built:
         from lab import dashboard
         dashboard.write_index(a.site, built)
+    if a.arena and failures:
+        raise RuntimeError(f"Arena incomplete: failed {failures}")
 
 
 def _arena_one(a, hyps, cfg) -> dict | None:

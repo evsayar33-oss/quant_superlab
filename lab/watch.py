@@ -10,7 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -187,6 +187,31 @@ def append_history(st: dict) -> Path:
     return f
 
 
+def append_observations(st: dict) -> Path:
+    """First-seen snapshots only. Do not backfill missing historical sessions.
+
+    The earlier history.csv is a recomputed price-path report, not an
+    independently observed forward ledger.
+    """
+    f = OUT / "observations.csv"
+    observed = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    rows = []
+    for hid, r in st["ideas"].items():
+        rows.append({"run_date": st["date"], "idea": hid,
+                     "first_observed_utc": observed, "latest_closed_bar": r["bar"],
+                     "positions": json.dumps(r["held"], sort_keys=True),
+                     "recomputed_1x_1000": r["paper_1x"].get("final_1000"),
+                     "record_type": "FIRST_SEEN_SNAPSHOT_NOT_FORWARD_PNL"})
+    new = pd.DataFrame(rows)
+    if f.exists():
+        old = pd.read_csv(f, dtype={"run_date": str, "idea": str})
+        previous = old.set_index(["run_date", "idea"]).index
+        current = new.set_index(["run_date", "idea"]).index
+        new = pd.concat([old, new[~current.isin(previous)]], ignore_index=True)
+    new.to_csv(f, index=False)
+    return f
+
+
 def reminders(cfg: dict, today: date | None = None) -> list[str]:
     """Telegram reminders around each review date. Before: 7 days and 1 day ahead. After: every Monday until
     the review file decisions/watch/review_YYYY-MM.md exists (the scheduled review may fail or be forgotten)."""
@@ -205,7 +230,7 @@ def reminders(cfg: dict, today: date | None = None) -> list[str]:
 
 
 def daily_markdown(st: dict) -> str:
-    L = ["# Paper izleme: H063–H065", "", f"Başlangıç: {st['start']}. Son çalışma: {st['date']}. Sadece sanal para; emir gönderilmez.", "",
+    L = ["# Paper izleme: H063–H065", "", f"Başlangıç: {st['start']}. Son çalışma: {st['date']}. Sadece sanal para; emir gönderilmez.", "", "UYARI: NAV geçmiş fiyatlardan yeniden hesaplanır; gerçek zamanlı ileri performans sicili değildir. İlk gözlem kanıtı: observations.csv. Eksik tarihler sonradan doldurulmaz.", "",
          "| Hipotez | Fikir | Son bar | Pozisyon (+1 = varlığın 1/N payı tam long, −1 = tam short) | Paper 1x $1000 → | Başlangıç kaldıraç | Paper başlangıç $1000 → | Seçilen (tavan) kaldıraç | Paper tavan $1000 → | Sadece işlenebilir varlıklar 1x |",
          "|---|---|---|---|---|---|---|---|---|---|"]
     for hid, r in st["ideas"].items():
@@ -247,6 +272,7 @@ def main(argv=None):
         (OUT / "report.md").write_text(md)
         (OUT / "OZET.md").write_text(md)
         append_history(st)
+        append_observations(st)
         print(md)
         rem = reminders(cfg)
         if x.telegram and rem:
