@@ -70,7 +70,7 @@ class H095Tests(unittest.TestCase):
         with self.assertRaises(ValueError):detect(bad,"BTC")
         bad=[dict(x) for x in b];bad[0]["low"]=12
         with self.assertRaises(ValueError):detect(bad,"BTC")
-        with self.assertRaises(ValueError):detect(b,"BTC","15m")
+        with self.assertRaises(ValueError):detect(b,"BTC","2m")
         with self.assertRaises(ValueError):detect(b,"SOL")
 
     def test_deterministic_and_no_live_execution(self):
