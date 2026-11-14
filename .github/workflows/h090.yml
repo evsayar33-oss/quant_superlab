@@ -1,0 +1,54 @@
+name: H090 — Research architecture and coverage audit
+on:
+  push:
+    branches:
+      - research/h090-institutional-research-architecture
+    paths:
+      - 'research/h090/**'
+      - '.github/workflows/h090.yml'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'research/h090/**'
+      - '.github/workflows/h090.yml'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts_and_coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Causal event, risk and audit regression tests (offline)
+        run: python -m unittest discover -s research/h090 -p 'test_*.py' -v
+      - name: Produce explicit missing-capability and experimental scope report
+        run: python research/h090/audit.py --output-dir results/h090_audit
+      - name: Check no accepted research, no production authorization
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('results/h090_audit/coverage.json').read_text())
+          assert a['kind']=='COVERAGE_AUDIT_NOT_HISTORICAL_BACKTEST_NOT_ALPHA'
+          assert a['research_complete'] is False
+          assert a['portfolio_alpha_verified'] is False
+          assert a['paper_prospective_replay_complete'] is False
+          assert a['real_fills_verified'] is False
+          assert len(a['unverified_requirements']) > 0
+          print('H090 contracts OK, research incomplete as expected, no ACCEPT')
+          PY
+      - name: Upload research gap inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h090-research-coverage-${{ github.run_id }}
+          path: results/h090_audit/
+          if-no-files-found: warn
+          retention-days: 90
