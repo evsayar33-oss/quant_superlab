@@ -1,0 +1,51 @@
+name: H101 — Trade-level costs and sample diagnostics (read-only)
+on:
+  push:
+    branches: [research/h101-trade-level-cost-sample-audit]
+    paths: ['research/h101/**', '.github/workflows/h101.yml']
+  pull_request:
+    paths: ['research/h101/**', '.github/workflows/h101.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m unittest discover -s research/h099 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h100 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h101 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python research/h101/run.py --pages 8 --out results/h101
+      - name: Enforce research-only status
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("results/h101/summary.json")
+          if p.exists():
+              d=json.loads(p.read_text())
+              assert d["alpha_accepted"] is False
+              assert d["historical_tail_is_fresh_oos"] is False
+              assert d["real_execution_cost_verified"] is False
+              assert d["research_complete"] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h101-trade-cost-sample-${{ github.run_id }}
+          path: results/h101/
+          retention-days: 90
+          if-no-files-found: warn
