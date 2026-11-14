@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pandas as pd
 from research.h115.forward import (
  ARMS,STOCKS,SCENARIOS,digest,seed,verify,apply,note_outage,report,run,
- side_cost,compute_targets,normalize_history)
+ side_cost,compute_targets,normalize_history,extract_intraday)
 NOW=datetime(2026,11,16,16,30,tzinfo=timezone.utc)
 def sample(session="2026-11-16",price=100.):
  d=pd.DataFrame({"Open":[99.],"High":[101.],"Low":[98.],"Close":[100.],"Volume":[1000.]},
@@ -68,6 +68,14 @@ class Tests(unittest.TestCase):
  def test_freeze_detects_config_change(self):
   s=seed(NOW);s["freeze"]["h114_sha"]="not current"
   with self.assertRaisesRegex(ValueError,"FREEZE_MISMATCH"):verify(s)
+ def test_provider_intraday_timezone_cannot_be_erased(self):
+  idx=pd.date_range("2026-11-16 15:30",periods=2,freq="5min",tz="UTC")
+  raw=pd.DataFrame({"Close":[100.,101.]},index=idx)
+  q=extract_intraday(raw,"SPY")
+  self.assertIsNotNone(q.index.tz)
+  self.assertEqual(q.index[-1].tz_convert("America/New_York").hour,10)
+  with self.assertRaisesRegex(ValueError,"TIMESTAMP_MISSING_TIMEZONE"):
+   extract_intraday(raw.tz_localize(None),"SPY")
  def test_future_diagnostic_does_not_approve(self):
   s=seed(NOW)
   self.assertFalse(report(s,NOW)["alpha_accepted"])
