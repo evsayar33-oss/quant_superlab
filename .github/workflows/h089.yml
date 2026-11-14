@@ -43,10 +43,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Real public OKX Bitget funding/metadata (read only)
+      - name: Real four-venue quotes and OKX Bitget funding/metadata (read only)
         run: |
           mkdir -p results/h089-smoke
+          python research/h088/evidence.py --path results/h089-smoke/quotes.jsonl
           python research/h089/venues.py --path results/h089-smoke/venue.jsonl
+          python research/h089/costs.py --path results/h089-smoke/cost.jsonl --quote-file results/h089-smoke/quotes.jsonl --meta-file results/h089-smoke/venue.jsonl
       - name: Install market close data client
         run: pip install yfinance
       - name: Real Yahoo forward marks (read only; no retroactive NAV)
@@ -78,11 +80,17 @@ jobs:
         shell: bash
         run: |
           set +e
+          python research/h088/evidence.py --path decisions/evidence/h089_quotes.jsonl
+          Q=$?
           python research/h089/venues.py
           V=$?
+          python research/h089/costs.py
+          C=$?
           python research/h089/forward.py
           F=$?
+          echo "quote_status=$Q" >> "$GITHUB_OUTPUT"
           echo "venue_status=$V" >> "$GITHUB_OUTPUT"
+          echo "cost_status=$C" >> "$GITHUB_OUTPUT"
           echo "forward_status=$F" >> "$GITHUB_OUTPUT"
           exit 0
       - name: Persist hash-chain evidence even on incomplete inputs
@@ -91,7 +99,7 @@ jobs:
           set -euo pipefail
           git config user.name github-actions
           git config user.email actions@github.com
-          git add decisions/evidence/h089_venue.jsonl decisions/evidence/h089_forward.jsonl
+          git add decisions/evidence/h089_venue.jsonl decisions/evidence/h089_forward.jsonl decisions/evidence/h089_quotes.jsonl decisions/evidence/h089_cost.jsonl
           if git diff --cached --quiet; then
             echo 'H089: no evidence generated' >&2
             exit 1
@@ -109,7 +117,7 @@ jobs:
       - name: Enforce complete provider and forward checks
         if: always()
         run: |
-          if [ "${{ steps.collect.outputs.venue_status }}" != "0" ] || [ "${{ steps.collect.outputs.forward_status }}" != "0" ]; then
+          if [ "${{ steps.collect.outputs.quote_status }}" != "0" ] || [ "${{ steps.collect.outputs.venue_status }}" != "0" ] || [ "${{ steps.collect.outputs.cost_status }}" != "0" ] || [ "${{ steps.collect.outputs.forward_status }}" != "0" ]; then
             echo "H089 incomplete: examine committed evidence" >&2
             exit 1
           fi
@@ -121,5 +129,7 @@ jobs:
           path: |
             decisions/evidence/h089_venue.jsonl
             decisions/evidence/h089_forward.jsonl
+            decisions/evidence/h089_quotes.jsonl
+            decisions/evidence/h089_cost.jsonl
           if-no-files-found: warn
           retention-days: 90
