@@ -9,6 +9,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from forward import compute_one,collect,first_seen,read_chain
 from venues import okx_meta,bitget_meta,funding,collect as collect_venue
 from costs import calculate
+from funding_overlap import parse_history,compare
 
 T0=datetime(2026,11,14,10,16,tzinfo=timezone.utc)
 T1=datetime(2026,11,17,12,tzinfo=timezone.utc)
@@ -102,6 +103,23 @@ class H089Tests(unittest.TestCase):
         self.assertIsNone(unknown["top_level_capacity_sufficient"])
         self.assertIsNone(unknown["indicative_roundtrip_spread_plus_fees_bps"])
         self.assertFalse(r["real_fill_cost_verified"])
+
+    def test_historical_funding_aligns_exactly_not_interpolated(self):
+        okx=parse_history("okx","BTCUSDT",{"code":"0","data":[
+            {"fundingTime":"1000","realizedRate":"0.001"},
+            {"fundingTime":"2000","realizedRate":"0.002"}]})
+        bitget=parse_history("bitget","BTCUSDT",{"code":"00000","data":[
+            {"fundingTime":"2000","fundingRate":"0.003"},
+            {"fundingTime":"3000","fundingRate":"0.004"}]})
+        r=compare(okx,bitget)
+        self.assertEqual(r["overlap_count"],1)
+        self.assertEqual(r["overlap_timestamps"],[2000])
+        self.assertAlmostEqual(r["mean_diff"],-0.001)
+        self.assertFalse(r["source_agreement_verified"])
+        with self.assertRaises(ValueError):
+            parse_history("okx","BTCUSDT",{"code":"0","data":[
+                {"fundingTime":"1000","fundingRate":"0.001"},
+                {"fundingTime":"1000","fundingRate":"0.001"}]})
 
     def test_chain_broken_never_accepted(self):
         with tempfile.TemporaryDirectory() as d:
