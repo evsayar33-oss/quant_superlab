@@ -1,0 +1,158 @@
+{
+  "alpha_accepted": false,
+  "bench_first": null,
+  "bench_latest": null,
+  "end_date": "2027-05-13",
+  "finalized": false,
+  "freeze": {
+    "arms_hash": "a02b102d76fa8071956ab55e4f4fdaf48a594c4058f725ddff360cc78973c949",
+    "benchmark": "SPY",
+    "checkpoints": [
+      30,
+      90,
+      180
+    ],
+    "h114_sha": "f09ff9d6c148e3ff9328c5131d539a157b53f769502e5ac5c47b70b2b89ca71a",
+    "h115_sha": "2264d5366d075bdfc4ea5470c28fc2fcd3aaeb0d8fb677b8af2038719aed7a60",
+    "markets": [
+      "GLD",
+      "SLV",
+      "SPY",
+      "QQQ",
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "AMZN",
+      "GOOGL",
+      "META",
+      "JPM",
+      "V",
+      "XOM",
+      "JNJ",
+      "PG",
+      "MA",
+      "HD",
+      "AVGO",
+      "LLY",
+      "ABBV",
+      "MRK",
+      "PEP",
+      "KO",
+      "WMT",
+      "BAC",
+      "CVX",
+      "ORCL",
+      "CSCO",
+      "ADBE",
+      "CRM",
+      "NFLX",
+      "AMD",
+      "QCOM",
+      "CAT",
+      "SI=F",
+      "ES=F"
+    ],
+    "scenarios": [
+      "base",
+      "stress",
+      "double_stress"
+    ],
+    "schema": "h115.prospective.v1"
+  },
+  "head": "0000000000000000000000000000000000000000000000000000000000000000",
+  "last_session": null,
+  "marks": {},
+  "nav": {
+    "ES_trend_efficiency_FUTURES_DIAGNOSTIC": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "ETF_four_asset_trend": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "ETF_index_pair_trend": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "ETF_metal_pair_wick": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "GLD_vol_state_DIAGNOSTIC": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "QQQ_trend_efficiency_DIAGNOSTIC": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "SI_gap_repair_FUTURES_DIAGNOSTIC": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "SLV_wick_reclaim": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "SPY_trend_efficiency": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "US30_defensive_efficiency": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "US30_gap_repair_CONTROL": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "US30_residual_momentum": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "US30_shock_recovery_CONTROL": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    },
+    "US30_volatility_calm": {
+      "base": 1.0,
+      "double_stress": 1.0,
+      "stress": 1.0
+    }
+  },
+  "outages": [],
+  "positions": {
+    "ES_trend_efficiency_FUTURES_DIAGNOSTIC": {},
+    "ETF_four_asset_trend": {},
+    "ETF_index_pair_trend": {},
+    "ETF_metal_pair_wick": {},
+    "GLD_vol_state_DIAGNOSTIC": {},
+    "QQQ_trend_efficiency_DIAGNOSTIC": {},
+    "SI_gap_repair_FUTURES_DIAGNOSTIC": {},
+    "SLV_wick_reclaim": {},
+    "SPY_trend_efficiency": {},
+    "US30_defensive_efficiency": {},
+    "US30_gap_repair_CONTROL": {},
+    "US30_residual_momentum": {},
+    "US30_shock_recovery_CONTROL": {},
+    "US30_volatility_calm": {}
+  },
+  "records": [],
+  "schema": "h115.prospective.v1",
+  "started_at": "2026-11-14T15:37:12.545337+00:00",
+  "started_date": "2026-11-14"
+}
