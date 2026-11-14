@@ -49,6 +49,7 @@ jobs:
           python research/h088/evidence.py --path results/h089-smoke/quotes.jsonl
           python research/h089/venues.py --path results/h089-smoke/venue.jsonl
           python research/h089/costs.py --path results/h089-smoke/cost.jsonl --quote-file results/h089-smoke/quotes.jsonl --meta-file results/h089-smoke/venue.jsonl
+          python research/h089/funding_overlap.py --path results/h089-smoke/funding_overlap.jsonl
       - name: Install market close data client
         run: pip install yfinance
       - name: Real Yahoo forward marks (read only; no retroactive NAV)
@@ -86,11 +87,14 @@ jobs:
           V=$?
           python research/h089/costs.py
           C=$?
+          python research/h089/funding_overlap.py
+          H=$?
           python research/h089/forward.py
           F=$?
           echo "quote_status=$Q" >> "$GITHUB_OUTPUT"
           echo "venue_status=$V" >> "$GITHUB_OUTPUT"
           echo "cost_status=$C" >> "$GITHUB_OUTPUT"
+          echo "funding_overlap_status=$H" >> "$GITHUB_OUTPUT"
           echo "forward_status=$F" >> "$GITHUB_OUTPUT"
           exit 0
       - name: Persist hash-chain evidence even on incomplete inputs
@@ -99,7 +103,7 @@ jobs:
           set -euo pipefail
           git config user.name github-actions
           git config user.email actions@github.com
-          git add decisions/evidence/h089_venue.jsonl decisions/evidence/h089_forward.jsonl decisions/evidence/h089_quotes.jsonl decisions/evidence/h089_cost.jsonl
+          git add decisions/evidence/h089_venue.jsonl decisions/evidence/h089_forward.jsonl decisions/evidence/h089_quotes.jsonl decisions/evidence/h089_cost.jsonl decisions/evidence/h089_funding_overlap.jsonl
           if git diff --cached --quiet; then
             echo 'H089: no evidence generated' >&2
             exit 1
@@ -117,7 +121,7 @@ jobs:
       - name: Enforce complete provider and forward checks
         if: always()
         run: |
-          if [ "${{ steps.collect.outputs.quote_status }}" != "0" ] || [ "${{ steps.collect.outputs.venue_status }}" != "0" ] || [ "${{ steps.collect.outputs.cost_status }}" != "0" ] || [ "${{ steps.collect.outputs.forward_status }}" != "0" ]; then
+          if [ "${{ steps.collect.outputs.quote_status }}" != "0" ] || [ "${{ steps.collect.outputs.venue_status }}" != "0" ] || [ "${{ steps.collect.outputs.cost_status }}" != "0" ] || [ "${{ steps.collect.outputs.funding_overlap_status }}" != "0" ] || [ "${{ steps.collect.outputs.forward_status }}" != "0" ]; then
             echo "H089 incomplete: examine committed evidence" >&2
             exit 1
           fi
@@ -131,5 +135,6 @@ jobs:
             decisions/evidence/h089_forward.jsonl
             decisions/evidence/h089_quotes.jsonl
             decisions/evidence/h089_cost.jsonl
+            decisions/evidence/h089_funding_overlap.jsonl
           if-no-files-found: warn
           retention-days: 90
