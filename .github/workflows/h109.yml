@@ -1,4 +1,4 @@
-name: H109 — Negative-control diagnostic (read-only)
+name: H109 — ONE-SHOT multi-strategy research campaign
 on:
   workflow_dispatch:
   pull_request:
@@ -7,46 +7,88 @@ on:
       - '.github/workflows/h109.yml'
 permissions:
   contents: read
+concurrency:
+  group: h109-one-shot-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   regression:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - run: python -m unittest discover -s research/h103 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h104 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h105 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h106 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h107 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h108 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h109 -p 'test_*.py' -v
   evidence:
     needs: regression
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python research/h104/run.py --days 180 --okx-pages 60 --out results/h104
-      - run: python research/h106/run.py --source results/h104 --out results/h106
-      - run: python research/h109/audit.py --source results/h106 --out results/h109/summary.json
-      - name: Enforce research-only
+      - name: Acquire immutable research-only BTC ETH OHLC with source SHA
+        run: python research/h104/run.py --days 180 --okx-pages 60 --out results/h104
+      - name: Reproduce paired-venue historical baseline H105
+        run: python research/h105/audit.py --source results/h104 --out results/h105/summary.json
+      - name: Reproduce cross-asset experiment H106
+        run: python research/h106/run.py --source results/h104 --out results/h106
+      - name: Audit trading costs and exposure H107
+        run: python research/h107/audit.py --source results/h106 --out results/h107/summary.json
+      - name: Weekly-block robustness H108
+        run: python research/h108/audit.py --source results/h106 --out results/h108/summary.json
+      - name: Fixed-sign negative control H109
+        run: python research/h109/audit.py --source results/h106 --out results/h109/summary.json
+      - name: Entire preregistered candidate matrix and committee decision
+        run: python research/h109/campaign_run.py --source results/h104 --out results/h109/campaign
+      - name: Validate completed artifact and all non-production gates
         run: |
           python - <<'PY'
-          import json
+          import json,hashlib
           from pathlib import Path
-          r=json.loads(Path('results/h109/summary.json').read_text())
-          assert r['alpha_accepted'] is False
-          assert r['prospective_oos_verified'] is False
-          assert r['real_execution_verified'] is False
-          assert set(r['venues'])=={'okx','gate'}
+          roots=["h105","h106","h107","h108","h109"]
+          for stage in roots:
+              p=Path("results")/stage/"summary.json"
+              r=json.loads(p.read_text())
+              assert r["alpha_accepted"] is False,stage
+              assert r["prospective_oos_verified"] is False,stage
+          folder=Path("results/h109/campaign")
+          summary=json.loads((folder/"summary.json").read_text())
+          trials=json.loads((folder/"trials.json").read_text())
+          assert summary["alpha_accepted"] is False
+          assert summary["prospective_oos_verified"] is False
+          assert summary["real_execution_verified"] is False
+          assert summary["portfolio_nav_verified"] is False
+          assert summary["venue_level_trials"]==144
+          assert summary["paired_candidates"]==72
+          assert summary["non_control_pairs"]==64
+          assert len(trials)==144
+          assert len(summary["data_not_testable"])>=7
+          assert (folder/"matrix.csv").is_file()
+          assert (folder/"committee.md").is_file()
+          for trial in trials:
+              path=folder/"ledgers"/(trial["id"]+".json")
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==trial["ledger_sha256"]
+          print({"decision_counts":summary["decision_counts"],"alpha_accepted":False})
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: h109-negative-control-${{ github.run_id }}
+          name: h109-one-shot-campaign-${{ github.run_id }}
           path: |
+            results/h104/summary.json
+            results/h105/summary.json
             results/h106/summary.json
+            results/h107/summary.json
+            results/h108/summary.json
             results/h109/
           retention-days: 90
           if-no-files-found: warn
