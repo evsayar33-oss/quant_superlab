@@ -248,7 +248,7 @@ def main():
   verdict[(r["family"],r["asset"],r["rule"])]=float(z)
  for r in records:
   r["q_all_base_bh"]=verdict[(r["family"],r["asset"],r["rule"])]
-  s=r["splits"];r["positive_all_three"]=all(s[x].get("avg_daily",0)>0 and s[x].get("active_days",0)>=15
+  s=r["splits"];r["positive_all_three"]=all(s[x].get("return",0)>0 and s[x].get("avg_daily",0)>0 and s[x].get("active_days",0)>=15
    for x in ("discovery","validation","reused_holdout"))
   r["research_watch"]=bool(r["positive_all_three"] and r["q_all_base_bh"]<=.10
     and r["total"]["traded_days"]>=30 and r["cost"] in ("base","stress"))
