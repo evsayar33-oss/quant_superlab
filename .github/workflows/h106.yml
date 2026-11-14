@@ -1,0 +1,51 @@
+name: H106 — Cross-asset relative-strength research (read-only)
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/h106/**'
+      - '.github/workflows/h106.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h105 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h106 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/h104/run.py --days 180 --okx-pages 60 --out results/h104
+      - run: python research/h106/run.py --source results/h104 --out results/h106
+      - name: Enforce research-only
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('results/h106/summary.json').read_text())
+          assert r['alpha_accepted'] is False
+          assert r['prospective_oos_verified'] is False
+          assert r['real_execution_verified'] is False
+          assert len(r['results'])==2
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h106-cross-asset-${{ github.run_id }}
+          path: |
+            results/h104/summary.json
+            results/h106/
+          retention-days: 90
+          if-no-files-found: warn
