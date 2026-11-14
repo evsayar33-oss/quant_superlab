@@ -55,8 +55,43 @@ class EvidenceTests(unittest.TestCase):
         rec=collect(fetcher=fake,clock=lambda:datetime(2026,11,14,tzinfo=timezone.utc))
         self.assertFalse(rec["complete"])
         self.assertEqual(len(rec["sources"]),2)
-        self.assertEqual(len(rec["comparisons"]),0)
-        self.assertEqual(len(rec["errors"]),2)
+        self.assertTrue(all(not pairs for pairs in rec["comparisons"].values()))
+        self.assertEqual(len(rec["errors"]),6)
+
+    def test_okx_bitget_are_same_contract_class_but_multiplier_unknown(self):
+        raw_okx={"code":"0","data":[{"instId":"BTC-USDT-SWAP",
+              "bidPx":"100","askPx":"101","bidSz":"5","askSz":"3","ts":str(self.ts)}]}
+        raw_bitget={"code":"00000","data":[{"symbol":"BTCUSDT",
+              "bidPr":"100.1","askPr":"100.2","bidSz":"4","askSz":"6","ts":str(self.ts)}]}
+        for provider,raw in [("okx",raw_okx),("bitget",raw_bitget)]:
+            q=parse(provider,"BTCUSDT",raw,self.ts+1000)
+            self.assertEqual(q["instrument_class"],"USDT_LINEAR_PERPETUAL")
+            self.assertFalse(q["size_in_base_units_verified"])
+            cost=executable_proxy(q,1000,4)
+            self.assertIsNone(cost["top_of_book_covers_notional"])
+            self.assertIsNone(cost["indicative_roundtrip_spread_plus_fees_bps"])
+        with self.assertRaises(ValueError):
+            parse("okx","ETHUSDT",raw_okx,self.ts+1000)
+
+    def test_two_valid_independent_venues_suffice_while_errors_recorded(self):
+        def fake(provider,symbol):
+            if provider in ("binance","bybit"):raise TimeoutError("venue blocked")
+            base=symbol.replace("USDT","")
+            if provider=="okx":
+                raw={"code":"0","data":[{"instId":f"{base}-USDT-SWAP",
+                     "bidPx":"100","askPx":"100.1","bidSz":"2","askSz":"5",
+                     "ts":str(self.ts)}]}
+            else:
+                raw={"code":"00000","data":[{"symbol":symbol,
+                     "bidPr":"100","askPr":"100.2","bidSz":"2","askSz":"5",
+                     "ts":str(self.ts)}]}
+            return parse(provider,symbol,raw,self.ts+1000)
+        rec=collect(fetcher=fake,clock=lambda:datetime(2026,11,14,tzinfo=timezone.utc))
+        self.assertTrue(rec["complete"])
+        self.assertEqual(len(rec["sources"]),4)
+        self.assertEqual(len(rec["errors"]),4)
+        self.assertEqual(len(rec["comparisons"]["BTCUSDT"]),1)
+        self.assertEqual(rec["comparisons"]["BTCUSDT"][0]["venues"],["bitget","okx"])
 
     def test_hash_chain_detects_mutation(self):
         with tempfile.TemporaryDirectory() as d:
