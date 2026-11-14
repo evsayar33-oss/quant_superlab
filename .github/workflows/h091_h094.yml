@@ -20,8 +20,6 @@ on:
         description: 'OKX historical 1H pages per symbol; each ~100 bars'
         required: false
         default: '12'
-  permissions: {}
-
 permissions:
   contents: read
 
