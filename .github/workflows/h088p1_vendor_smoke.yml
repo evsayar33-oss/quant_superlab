@@ -1,0 +1,72 @@
+name: H088p1 — Real vendor fallback & Paper Watch smoke (read only)
+on:
+  push:
+    branches:
+      - fix/h088p1-provider-fallback-forward-integrity-20261114
+    paths:
+      - 'research/h088/**'
+      - '.github/workflows/h088p1_vendor_smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vendors:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run source integrity unit tests
+        run: python -m unittest discover -s research/h088 -p 'test_*.py' -v
+      - name: Try all 4 actual exchange APIs — no archival commit
+        run: |
+          mkdir -p results/h088-smoke
+          python research/h088/evidence.py --notional 1000 --path results/h088-smoke/quotes.jsonl
+      - name: Always save actual HTTP errors or valid quotes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h088p1-real-provider-smoke
+          path: results/h088-smoke/
+          if-no-files-found: warn
+
+  paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install actual watch dependencies
+        run: pip install -r requirements.txt
+      - name: Read-only real Yahoo paper study (no git commit / no orders)
+        env:
+          LAB_CACHE_HOURS: '0'
+        run: python -m lab.watch daily
+      - name: Inspect generated paper state freshness and universe evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('decisions/watch/state.json')
+          x=json.loads(p.read_text())
+          print('paper date:',x.get('date'))
+          for k,v in x.get('ideas',{}).items():
+              print(k,'closed bar:',v.get('bar'),'positions:',v.get('held'))
+          assert len(x.get('ideas',{}))==3
+          PY
+      - name: Always save outputs from real vendor test without production changes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h088p1-real-paper-watch-smoke
+          path: |
+            decisions/watch/state.json
+            decisions/watch/observations.csv
+            decisions/watch/history.csv
+          if-no-files-found: warn
