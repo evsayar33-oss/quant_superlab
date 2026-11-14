@@ -1,0 +1,53 @@
+name: H095 — Causal ICT events (research-only)
+on:
+  push:
+    branches:
+      - research/h095-causal-ict-events
+    paths:
+      - 'research/h095/**'
+      - '.github/workflows/h095.yml'
+  pull_request:
+    paths:
+      - 'research/h095/**'
+      - '.github/workflows/h095.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h095 -p 'test_*.py' -v
+  real_source:
+    needs: contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Real OKX BTC ETH closed 1H and 4H causal event inventory
+        run: python research/h095/run.py --pages 12 --out results/h095
+      - name: Assert research-only report
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("results/h095/summary.json").read_text())
+          assert r["status"]=="EVENT_INVENTORY_NOT_BACKTEST"
+          assert not r["event_profits_verified"] and not r["production_modified"]
+          assert len(r["instruments"])==2 and not r["real_data_errors"]
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h095-event-evidence-${{ github.run_id }}
+          path: results/h095/
+          retention-days: 90
+          if-no-files-found: warn
