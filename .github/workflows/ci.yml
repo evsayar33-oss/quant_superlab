@@ -15,6 +15,7 @@ jobs:
       - run: python -m pytest -q tests/test_event_study.py tests/test_h079.py tests/test_h080.py tests/test_h081.py
       - run: pip install -r ict/requirements.txt
       - run: cd ict && python -m pytest -q
+      - run: python -m unittest discover -s research/h090 -p 'test_*.py' -v
       - run: python -m pytest -q research/h083/test_h083.py research/h083/test_h083_robustness.py research/h084/test_h084_recheck.py research/usd_macro/test_usd_macro.py
   terminal:
     runs-on: ubuntu-latest
