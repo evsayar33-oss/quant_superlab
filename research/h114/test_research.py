@@ -2,7 +2,7 @@ import sys, unittest
 from pathlib import Path
 import numpy as np,pandas as pd
 sys.path.insert(0,str(Path(__file__).parent))
-from research import normalized,sigs,net_daily,ETF_SCENARIOS,FUTURE_SCENARIOS,FAMILIES,PORTFOLIOS,STOCKS,scope,bh
+from research import normalized,sigs,net_daily,ETF_SCENARIOS,FUTURE_SCENARIOS,FAMILIES,PORTFOLIOS,STOCKS,scope,bh,positive_splits
 def bars(n=520):
  x=np.arange(n,dtype=float)
  o=100+0.05*x+np.sin(x/3)
@@ -40,6 +40,12 @@ class Tests(unittest.TestCase):
   b=bars(1500);s=pd.Series(1.,index=b.index)
   z=net_daily(b,s,ETF_SCENARIOS["base"],"etf")
   p=scope(z);self.assertEqual(sum(len(v) for v in p.values()),len(z))
+ def test_split_arithmetic_positive_is_not_enough(self):
+  s={x:{"return":.02,"avg_daily":.0001,"active_days":20}
+    for x in ("discovery","validation","reused_holdout")}
+  self.assertTrue(positive_splits(s))
+  s["reused_holdout"]["return"]=-.001
+  self.assertFalse(positive_splits(s))
  def test_future_one_contract_fee_scale(self):
   b=bars();b.attrs["ticker"]="NQ=F"
   s=pd.Series(1.,index=b.index)
