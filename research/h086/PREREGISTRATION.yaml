@@ -1,0 +1,81 @@
+# H086 — pre-registered, independent-source hypothesis freeze
+# First committed BEFORE acquiring, parsing or evaluating H086 market/VIX returns.
+# Research only. Read-only; no trading bot signals, ACCEPT registrations or orders.
+study_id: H086
+freeze_utc_date: '2026-11-14'
+source_a:
+  name: 'Kenneth R. French Dartmouth Data Library, F-F Research Data Factors [Daily]'
+  url: 'https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip'
+  fields: ['Mkt-RF','RF']
+  market: 'CRSP value-weight US equity research proxy, not SPY or an ETF'
+  return_units: percent
+source_b:
+  name: 'Cboe VIX historical daily closes'
+  url: 'https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv'
+  fields: ['DATE','CLOSE']
+  return_units: VIX index points
+data:
+  start: '1990-01-02'
+  end: '2026-08-31'
+  min_overlap: 6000
+  maximum_vix_missing_fraction: 0.01
+  forward_fill_trading_days: 1
+  missing_policy: 'fail_closed_after_alignment; no synthetic returns'
+splits:
+  discovery: ['1990-01-02','2009-12-31']
+  validation: ['2010-01-01','2018-12-31']
+  untouched_holdout_one_shot: ['2019-01-01','2026-08-31']
+execution:
+  decision_timing: 'features and VIX at CLOSE t-1; position at start of t; return for t'
+  benchmark: '1x CRSP market proxy, buy-and-hold, RF on cash'
+  position_bounds: [0.0,1.0]
+  fee_bps_oneway: [10,20]
+  turnover: 'abs(target_weight - previous_weight); initial position charged'
+  currency: USD
+  date_alignment: 'NYSE-dated close observations; no open/close fill modeling'
+hypotheses:
+  H086A:
+    name: 'Volatility shock defensive hedge'
+    formula: '0.0 weight for 5 sessions after VIX 5-day jump >=25% AND market prior day <=-1%; otherwise 1.0'
+    parameters: {vix_5d_jump: 0.25, prior_market_return: -0.01, defense_sessions: 5}
+  H086B:
+    name: 'VIX absolute risk band'
+    formula: '0.5 weight if prior daily VIX CLOSE >=25; otherwise 1.0'
+    parameters: {vix_level: 25.0, defensive_weight: 0.5}
+  H086C:
+    name: 'Market volatility targeting capped'
+    formula: 'weight = clip(0.12/(std of prior 21 daily market returns * sqrt(252)),0.3,1.0)'
+    parameters: {lookback_sessions: 21, vol_target_annual: 0.12, min_weight: 0.3, max_weight: 1.0}
+  H086D:
+    name: 'VIX-relative historical median de-risk'
+    formula: '0.5 weight when VIX prior close > median of prior 252 VIX closes, otherwise 1.0'
+    parameters: {vix_lookback_sessions: 252, defensive_weight: 0.5}
+  H086E:
+    name: 'VIX stress plus market drawdown'
+    formula: '0.25 weight when VIX prior close >=25 and 63-day market total-return momentum at t-1 is negative, otherwise 1.0'
+    parameters: {vix_level: 25.0, momentum_sessions: 63, defensive_weight: 0.25}
+selection_and_release:
+  # All pre-registered hypotheses are evaluated; none may be modified after seeing data.
+  min_validation_years: 7
+  min_untouched_holdout_years: 6
+  required_validation_active_cagr_excess: 0.01
+  required_holdout_active_cagr_excess: 0.01
+  required_maxdd_vs_benchmark: 'strategy_maxDD_not_worse_than_benchmark'
+  required_holdout_positive_subperiods: ['2019-01-01/2022-12-31','2023-01-01/2026-08-31']
+  stress_cost_2x: 'holdout_CAGR_excess_vs_base_benchmark_positive'
+  inferential_test: 'paired monthly active returns stationary block bootstrap, fixed_seed_86014'
+  bootstrap_replicates: 2000
+  bootstrap_mean_block_months: 3
+  familywise_control: 'Holm-Bonferroni across 5 holdout comparisons; one-sided alpha 0.05'
+  required_market_exposure_fraction: 0.5
+  portfolio_nav_start: 1.0
+  verdict_logic: 'all required validation AND holdout AND stress AND corrected significance; otherwise REJECT or INCONCLUSIVE'
+  human_release: 'No historical test alone authorizes live trading; forward paper and audit still required'
+metadata:
+  researched_ideas_count: 5
+  optimization_policy: 'no threshold tuning, no recomputing candidates in response to holdout'
+  explicit_limits:
+    - 'Historical VIX and CRSP datasets may be retroactively revised and are not vintage point-in-time'
+    - 'Fama-French market portfolio is a research proxy, not directly tradable; execution assumes proxy at close-to-close'
+    - 'Even independent-source historical holdout is not prospective future data'
+    - 'No short selling or margin; costs approximate ETF implementation'
