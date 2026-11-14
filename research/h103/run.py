@@ -1,6 +1,6 @@
 """H103 read-only fixed-hypothesis exploratory scan."""
 from __future__ import annotations
-import argparse,hashlib,json,sys
+import argparse,hashlib,json,sys,importlib.util
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/"research"/"h096"))
@@ -8,7 +8,11 @@ from market import fetch as okx_fetch
 from engine import aggregate
 sys.path.insert(0,str(ROOT/"research"/"h098"))
 from venues import fetch as venue_fetch
-from engine import HOUR,evaluate
+spec=importlib.util.spec_from_file_location('h103_engine',ROOT/'research'/'h103'/'engine.py')
+h103_engine=importlib.util.module_from_spec(spec)
+spec.loader.exec_module(h103_engine)
+HOUR=h103_engine.HOUR
+evaluate=h103_engine.evaluate
 
 def write(path,obj):
     path.parent.mkdir(parents=True,exist_ok=True)
