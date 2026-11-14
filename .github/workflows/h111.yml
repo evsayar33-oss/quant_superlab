@@ -29,6 +29,28 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m unittest discover -s research/h111 -p 'test_*.py' -v
+  smoke:
+    if: github.event_name == 'pull_request'
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Live read-only BTC OHLC and bid ask source smoke
+        run: |
+          python - <<'PY'
+          import sys,time
+          sys.path.insert(0,'research/h111')
+          from engine import snapshot
+          now=int(time.time()*1000)
+          for venue in ('okx','gate'):
+              x=snapshot(venue,now)
+              assert x['ask']>=x['bid']>0
+              print(venue,len(x['bars']),x['quote_ms'])
+          PY
   paper:
     if: github.event_name != 'pull_request'
     needs: regression
