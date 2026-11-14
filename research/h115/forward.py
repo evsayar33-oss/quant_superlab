@@ -73,12 +73,19 @@ def normalize_history(df,session):
  if not np.isfinite(b.iloc[-250:].to_numpy(float)).all() or (b[["Open","High","Low","Close"]].iloc[-250:]<=0).any().any():raise ValueError("INVALID_HISTORY_PRICES")
  if (pd.Timestamp(session)-b.index[-1]).days>5:raise ValueError("STALE_CLOSED_DAILY_BAR")
  return b
+def extract_intraday(raw,symbol):
+ """Preserve provider UTC/NY timezone; lab.data._split strips it."""
+ frame=raw[symbol] if isinstance(raw.columns,pd.MultiIndex) else raw
+ if not isinstance(frame.index,pd.DatetimeIndex) or frame.index.tz is None:
+  raise ValueError("INTRADAY_TIMESTAMP_MISSING_TIMEZONE")
+ if "Close" not in frame:raise ValueError("INTRADAY_CLOSE_MISSING")
+ return frame.dropna(subset=["Close"]).sort_index()
 def live_market_data(now_utc):
  """Two distinct feeds: daily closed candles and intraday recent 5m price proxies.
  The latter are NOT executable broker quotes and may be delayed.
  """
  import yfinance as yf
- from lab.data import _yf_download,_split
+ from lab.data import _yf_download
  local=now_utc.astimezone(NY)
  if local.weekday()>4 or not (10<=local.hour<16):
   return None
@@ -94,10 +101,9 @@ def live_market_data(now_utc):
   try:
    raw=yf.download(chunk,period="5d",interval="5m",auto_adjust=True,
     progress=False,threads=False,group_by="ticker")
-   tickers=_split(raw,chunk)
    for symbol in chunk:
-    if symbol not in tickers or tickers[symbol].empty:raise ValueError("NO_INTRADAY_QUOTE")
-    frame=tickers[symbol].dropna(subset=["Close"]).sort_index()
+    frame=extract_intraday(raw,symbol)
+    if frame.empty:raise ValueError("NO_INTRADAY_QUOTE")
     if frame.empty:raise ValueError("NO_INTRADAY_CLOSE")
     idx=pd.Timestamp(frame.index[-1])
     if idx.tzinfo is None:raise ValueError("QUOTETIME_NO_TZ")
