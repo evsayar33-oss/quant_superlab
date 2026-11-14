@@ -245,7 +245,8 @@ def event_summary(audit: pd.DataFrame):
         z = audit[audit[name]]
         rows.append({"variant": name, "events": int(len(z)),
                      "mean_excess_vs_spy": float(z.excess_vs_spy.mean()) if len(z) else None,
-                     "net_ticket_pnl": float(z.midas_net.sum()) if len(z) else 0.,
+                     "mean_ticket_net_return": float(z.midas_net.mean()) if len(z) else None,
+                     "sum_ticket_return_fractions_NOT_PNL": float(z.midas_net.sum()) if len(z) else 0.,
                      "win_frac": float((z.midas_net > 0).mean()) if len(z) else None,
                      "approval": False, "evidence": "REUSED_TEST_NO_PORTFOLIO"})
     return pd.DataFrame(rows)
