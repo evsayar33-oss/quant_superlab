@@ -1,0 +1,125 @@
+name: H089 — Independent costs and prospective paper NAV
+on:
+  push:
+    branches:
+      - research/h089-forward-cost-independent-audit-20261114
+    paths:
+      - 'research/h089/**'
+      - '.github/workflows/h089.yml'
+  schedule:
+    - cron: '50 23 * * 1-5'
+  workflow_run:
+    workflows:
+      - Paper watch H063-H065
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quant-superlab-h089
+  cancel-in-progress: false
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h089 -p 'test_*.py' -v
+
+  real_source_smoke:
+    if: github.event_name == 'push'
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Real public OKX Bitget funding/metadata (read only)
+        run: |
+          mkdir -p results/h089-smoke
+          python research/h089/venues.py --path results/h089-smoke/venue.jsonl
+      - name: Install market close data client
+        run: pip install yfinance
+      - name: Real Yahoo forward marks (read only; no retroactive NAV)
+        run: |
+          python research/h089/forward.py --path results/h089-smoke/forward.jsonl
+      - name: Preserve diagnostics on failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h089-real-smoke-${{ github.run_id }}
+          path: results/h089-smoke/
+          if-no-files-found: warn
+
+  collect:
+    if: github.event_name != 'push' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install yfinance
+      - name: Collect independently labeled venue and forward scenario evidence
+        id: collect
+        shell: bash
+        run: |
+          set +e
+          python research/h089/venues.py
+          V=$?
+          python research/h089/forward.py
+          F=$?
+          echo "venue_status=$V" >> "$GITHUB_OUTPUT"
+          echo "forward_status=$F" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist hash-chain evidence even on incomplete inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add decisions/evidence/h089_venue.jsonl decisions/evidence/h089_forward.jsonl
+          if git diff --cached --quiet; then
+            echo 'H089: no evidence generated' >&2
+            exit 1
+          fi
+          git commit -m "H089 timestamped independent-cost and paper-mark evidence $(date -u +%FT%TZ)"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          echo 'H089 evidence persistence FAILED' >&2
+          exit 1
+      - name: Enforce complete provider and forward checks
+        if: always()
+        run: |
+          if [ "${{ steps.collect.outputs.venue_status }}" != "0" ] || [ "${{ steps.collect.outputs.forward_status }}" != "0" ]; then
+            echo "H089 incomplete: examine committed evidence" >&2
+            exit 1
+          fi
+      - name: Preserve evidence artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h089-evidence-${{ github.run_id }}
+          path: |
+            decisions/evidence/h089_venue.jsonl
+            decisions/evidence/h089_forward.jsonl
+          if-no-files-found: warn
+          retention-days: 90
