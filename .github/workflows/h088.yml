@@ -8,6 +8,11 @@ on:
       - '.github/workflows/h088.yml'
   schedule:
     - cron: '25 23 * * 1-5'
+  workflow_run:
+    workflows:
+      - Paper watch H063-H065
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -27,7 +32,7 @@ jobs:
           python-version: '3.11'
       - run: python -m unittest discover -s research/h088 -p 'test_*.py' -v
   collect:
-    if: github.event_name != 'push'
+    if: github.event_name != 'push' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     needs: regression
     runs-on: ubuntu-latest
     timeout-minutes: 12
