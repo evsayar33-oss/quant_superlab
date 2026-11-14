@@ -1,0 +1,58 @@
+name: H110 — Realistic cost reassessment
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/h110/**'
+      - '.github/workflows/h110.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h110 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reproduce H109 immutable source evidence
+        run: python research/h104/run.py --days 180 --okx-pages 60 --out results/h104
+      - name: Reproduce all H109 historical trade ledgers
+        run: python research/h109/campaign_run.py --source results/h104 --out results/h109/campaign
+      - name: Reprice all 144 H109 trials under execution profiles
+        run: python research/h110/reassess.py --source results/h109/campaign --out results/h110
+      - name: Validate full audit
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('results/h110/summary.json').read_text())
+          assert r['trial_count']==144 and r['paired_count']==72
+          assert r['alpha_accepted'] is False
+          assert r['prospective_oos_verified'] is False
+          assert r['execution_verified'] is False
+          assert r['funding_verified'] is False
+          assert r['profiles']['taker_base']['entry_fee']+r['profiles']['taker_base']['exit_fee']==10
+          assert len(json.loads(Path('results/h110/trials.json').read_text()))==144
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h110-cost-reassessment-${{ github.run_id }}
+          path: |
+            results/h109/campaign/manifest.json
+            results/h109/campaign/summary.json
+            results/h110/
+          retention-days: 90
+          if-no-files-found: warn
