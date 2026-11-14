@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE))
-from venues import fetch,validate,TF
+from venues import fetch,validate,TF,ProviderError,VENUES
 from evidence import compare,event_concordance,cost_sensitivity,evidence_gate,snapshot,funding_observed
 
 class H098Tests(unittest.TestCase):
@@ -24,6 +24,51 @@ class H098Tests(unittest.TestCase):
         from datetime import datetime,timezone
         r=fetch("bybit","ETH","1H",get=mock,now=datetime.fromtimestamp(70*step/1000,timezone.utc))
         self.assertEqual(r["count"],70)
+
+    def test_gate_perpetual_candles(self):
+        from datetime import datetime,timezone
+        step=TF["15m"]
+        def mock(url):
+            self.assertIn("futures/usdt/candlesticks",url)
+            self.assertIn("BTC_USDT",url)
+            return [{"t":i*step//1000,"o":"100","h":"102","l":"98","c":"101"}
+                    for i in range(65)]
+        r=fetch("gate","BTC","15m",get=mock,
+                now=datetime.fromtimestamp(65*step/1000,timezone.utc))
+        self.assertEqual(r["count"],65)
+        self.assertEqual(r["market_type"],"USDT_PERPETUAL")
+
+    def test_bitget_perpetual_candles(self):
+        from datetime import datetime,timezone
+        step=TF["1H"]
+        def mock(url):
+            self.assertIn("USDT-FUTURES",url)
+            return {"code":"00000","data":[[i*step,"100","102","98","101"]
+                                            for i in range(65)]}
+        r=fetch("bitget","ETH","1H",get=mock,
+                now=datetime.fromtimestamp(65*step/1000,timezone.utc))
+        self.assertEqual(r["count"],65)
+
+    def test_mexc_perpetual_candles(self):
+        from datetime import datetime,timezone
+        step=TF["15m"]
+        def mock(url):
+            self.assertIn("ETH_USDT",url)
+            return {"success":True,"data":{"time":[i*step//1000 for i in range(65)],
+                    "open":[100]*65,"high":[102]*65,"low":[98]*65,"close":[101]*65}}
+        r=fetch("mexc","ETH","15m",get=mock,
+                now=datetime.fromtimestamp(65*step/1000,timezone.utc))
+        self.assertEqual(r["count"],65)
+
+    def test_provider_failure_classification(self):
+        from urllib.error import HTTPError
+        def blocked(url):
+            raise ProviderError("HTTP_451","unknown","Unavailable For Legal Reasons")
+        with self.assertRaises(ProviderError) as ctx:
+            fetch("binance","BTC","15m",get=blocked)
+        self.assertEqual(ctx.exception.category,"HTTP_451")
+        self.assertEqual(ctx.exception.venue,"binance")
+        self.assertEqual(len(VENUES),5)
 
     def test_duplicate_conflict_and_future(self):
         step=TF["5m"]
