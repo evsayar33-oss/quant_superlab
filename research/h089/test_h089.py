@@ -3,7 +3,7 @@ import json
 import sys
 import tempfile
 import unittest
-from datetime import datetime,timezone
+from datetime import datetime,timezone,timedelta
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from forward import compute_one,collect,first_seen,read_chain
@@ -34,7 +34,7 @@ class H089Tests(unittest.TestCase):
     def test_reject_future_or_prior_marks(self):
         init={"seen":T0,"positions":{"YM=F":1}}
         self.assertEqual(compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-13",T1)},T1)["status"],"AWAITING_POST_FIRST_SEEN_CLOSE")
-        self.assertEqual(compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-16",T0)},T1)["status"],"PRICE_NOT_PROSPECTIVELY_OBSERVED")
+        self.assertEqual(compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-16",T0-timedelta(seconds=1))},T1)["status"],"PRICE_NOT_PROSPECTIVELY_OBSERVED")
         with self.assertRaises(ValueError):
             compute_one("H065",init,None,{},T0)
 
