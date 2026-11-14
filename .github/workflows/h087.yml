@@ -30,6 +30,8 @@ jobs:
         run: python -m pytest -q research/h087/test_h087.py
       - name: Audit every tracked file and all saved result families
         run: python research/h087/audit.py
+      - name: Post-hoc test H056 local carry winner: annual sign null, 2x fee and delist stress
+        run: python research/h087/h056_followup.py
       - name: Fetch frozen original H085 and H086 result artifacts
         run: |
           mkdir -p results/h085 results/h086
