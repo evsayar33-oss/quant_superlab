@@ -12,7 +12,7 @@ class H098Tests(unittest.TestCase):
         def mock(url):
             return [[i*step,"100","102","98","101"] for i in range(60)]
         from datetime import datetime,timezone
-        r=fetch("BTC","15m",get=mock,now=datetime.fromtimestamp(60*step/1000,timezone.utc))
+        r=fetch("binance","BTC","15m",get=mock,now=datetime.fromtimestamp(60*step/1000,timezone.utc))
         self.assertEqual(r["count"],60)
         self.assertEqual(r["gap_count"],0)
 
@@ -22,7 +22,7 @@ class H098Tests(unittest.TestCase):
             return {"retCode":0,"result":{"list":[[i*step,"100","102","98","101"]
                                                for i in reversed(range(70))]}}
         from datetime import datetime,timezone
-        r=fetch("ETH","1H",get=mock,now=datetime.fromtimestamp(70*step/1000,timezone.utc))
+        r=fetch("bybit","ETH","1H",get=mock,now=datetime.fromtimestamp(70*step/1000,timezone.utc))
         self.assertEqual(r["count"],70)
 
     def test_duplicate_conflict_and_future(self):
