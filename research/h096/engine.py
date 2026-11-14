@@ -87,13 +87,14 @@ def setup(bars,events,parent_events,tf):
 
 def simulate(bars,signal,target,fee_bps,tf):
     i=signal["entry_index"];d=1 if signal["side"]=="long" else -1
-    if i>=len(bars):return None
+    if i+MAX_HOLD>len(bars):return None
+    if i>0 and bars[i]["ts"]-bars[i-1]["ts"]!=TF_MS[tf]:return None
     entry=bars[i]["open"];risk=signal["risk"];stop=entry-d*risk
     if target=="PIVOT":
         tp=signal["pivot_target"]
         if tp is None or d*(tp-entry)<risk*.25:return None
     else:tp=entry+d*(1 if target=="1R" else 2)*risk
-    last=min(i+MAX_HOLD-1,len(bars)-1)
+    last=i+MAX_HOLD-1
     price=bars[last]["close"];exit_i=last;cause="TIME"
     for j in range(i,last+1):
         b=bars[j]
