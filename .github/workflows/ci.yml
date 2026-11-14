@@ -22,6 +22,7 @@ jobs:
       - run: python -m unittest discover -s research/h097 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h098 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h099 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h100 -p 'test_*.py' -v
       - run: python -m pytest -q research/h083/test_h083.py research/h083/test_h083_robustness.py research/h084/test_h084_recheck.py research/usd_macro/test_usd_macro.py
   terminal:
     runs-on: ubuntu-latest
