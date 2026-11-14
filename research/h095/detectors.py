@@ -11,7 +11,7 @@ import json
 import math
 
 HOUR=3600000
-TF_MS={"1H":HOUR,"4H":4*HOUR}
+TF_MS={"5m":300000,"15m":900000,"1H":HOUR,"4H":4*HOUR,"1D":24*HOUR}
 KINDS={"SWING_HIGH","SWING_LOW","LIQ_SWEEP","MSS","BOS","OB_FORMED",
        "OB_TOUCH","FVG_FORMED","FVG_TOUCH","IFVG_CONFIRMED","FIB_POSITION"}
 
@@ -30,7 +30,7 @@ def check_bars(bars, tf):
         previous=b["ts"]
 
 
-def event(symbol,tf,kind,side,bar_index,bars,attrs,source="OKX_1H_CLOSED"):
+def event(symbol,tf,kind,side,bar_index,bars,attrs,source="OKX_CLOSED_OHLC"):
     observed=bars[bar_index]["ts"]+TF_MS[tf]
     stable={"symbol":symbol,"timeframe":tf,"kind":kind,"side":side,
             "bar_index":bar_index,"observed_at_ms":observed,
