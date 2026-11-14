@@ -37,12 +37,6 @@ jobs:
         run: |
           KEY="$TF"; if [ "$SIDE" != "both" ]; then KEY="${TF}_${SIDE}"; fi
           echo "key=$KEY" >> "$GITHUB_OUTPUT"
-          # Daily bars only need refreshing after the UTC midnight cutoff.
-          if [ "$TF" = "1d" ] && [ "$EVENT" = "schedule" ] && [ "$(date -u +%H)" != "00" ]; then
-            echo "go=false" >> "$GITHUB_OUTPUT"
-            echo "Skip redundant 1d scan at this hour"
-            exit 0
-          fi
           if KEY="$KEY" python3 - <<'PY'
           import json, os, pathlib, sys
           p = pathlib.Path("decisions/arena") / os.environ["KEY"] / "roster.json"
