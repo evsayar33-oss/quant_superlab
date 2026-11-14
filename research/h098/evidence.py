@@ -87,3 +87,13 @@ def snapshot(symbol,tf,events,source_hash,asof_ms):
     payload["sha256"]=hashlib.sha256(json.dumps(payload,sort_keys=True,
                                               separators=(",",":")).encode()).hexdigest()
     return payload
+
+def event_concordance(primary_events,secondary_events):
+    """Descriptive detector repeatability, not matched trades or alpha."""
+    def key(e):return (e["observed_at_ms"],e["kind"],e["side"])
+    a={key(e) for e in primary_events};b={key(e) for e in secondary_events}
+    overlap=a&b
+    return {"primary_events":len(a),"independent_events":len(b),
+            "exact_timestamp_kind_side_matches":len(overlap),
+            "jaccard":len(overlap)/len(a|b) if a|b else None,
+            "strategy_return_replication_verified":False}
