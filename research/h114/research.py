@@ -272,9 +272,9 @@ def main():
  (out/"all_models.json").write_text(json.dumps(records,indent=2,allow_nan=False)+"\n")
  rows=[]
  for r in records:
-  base={k:r[k] for k in ("family","asset","rule","cost","positive_all_three","research_watch","q_all_base_bh","alpha_accepted")}
+  row_base={k:r[k] for k in ("family","asset","rule","cost","positive_all_three","research_watch","q_all_base_bh","alpha_accepted")}
   for k in ("discovery","validation","reused_holdout","total"):
-   row={**base,"split":k,**r["splits"].get(k,r["total"] if k=="total" else {})}
+   row={**row_base,"split":k,**r["splits"].get(k,r["total"] if k=="total" else {})}
    rows.append(row)
  pd.DataFrame(rows).to_csv(out/"results_by_split.csv",index=False)
  pd.DataFrame(store,columns=["date","net","gross","pos","turn","asset","rule"]).to_csv(out/"base_single_daily_returns.csv",index=False) if not store else pd.concat(store,ignore_index=True).to_csv(out/"base_single_daily_returns.csv",index=False)
