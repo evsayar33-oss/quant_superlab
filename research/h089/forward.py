@@ -59,6 +59,23 @@ def first_seen(path=WATCH):
     return by
 
 
+
+def latest_decisions(path=WATCH,now=None):
+    """Latest actually observed decisions, never recomputed historic state."""
+    now=now or utcnow()
+    out={}
+    with Path(path).open(newline="") as f:
+        for row in csv.DictReader(f):
+            if row.get("record_type")!="FIRST_SEEN_SNAPSHOT_NOT_FORWARD_PNL":continue
+            seen=dt(row["first_observed_utc"])
+            if seen>now:continue
+            idea=row["idea"]
+            if idea not in out or seen>out[idea]["seen"]:
+                out[idea]={"seen":seen,"positions":valid_weights(json.loads(row["positions"])),
+                           "closed_bar":row["latest_closed_bar"]}
+    return out
+
+
 def get_latest_closed(symbol, now=None):
     """Fetch Yahoo daily close with 1-day interval, timestamped on collection.
 
@@ -94,11 +111,12 @@ def latest_per_idea(records):
     return result
 
 
-def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS):
+def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS,target=None):
     positions=initial["positions"]
     seen=initial["seen"]
+    target=target or initial
     if now<=seen:raise ValueError("observation before first seen")
-    needed=set(positions)
+    needed=set(positions)|set(target["positions"])
     if prev and prev.get("status") in ("BASELINE","MARK_TO_MARKET","NO_NEW_CLOSE"):
         needed|=set(prev.get("positions",{}))
     absent=sorted(needed-set(prices))
@@ -113,7 +131,8 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS):
         return {"status":"BASELINE","positions":positions,
                 "marks":{s:prices[s] for s in needed},
                 "nav_scenarios":{k:START_NAV*(1-sum(abs(v) for v in positions.values())*bps/10000) for k,bps in fee_bps.items()},
-                "first_seen_utc":stamp(seen),"forward_pnl_verified":False,
+                "first_seen_utc":stamp(seen),"last_applied_decision_utc":stamp(seen),
+                "forward_pnl_verified":False,
                 "note":"first later observed close sets basis; scenario entry fee charged, no pre-baseline gains"}
     old=prev["marks"]
     if any(s not in old for s in needed):
@@ -128,11 +147,13 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS):
     gross=sum(old_positions.get(s,0)*(prices[s]["close"]/old[s]["close"]-1)
               for s in needed)
     if gross<=-1 or not math.isfinite(gross):raise ValueError("invalid return")
-    # Positions remain frozen to first-seen snapshot in v1. Subsequent changes
-    # are NOT replayed or claimed as executed; a future ledger version must
-    # capture and apply each timestamped rebalance prospectively.
-    turnover=sum(abs(positions.get(s,0)-old_positions.get(s,0))
-                 for s in needed)
+    # New observed decisions apply only AFTER this close-to-close mark. The
+    # next interval then holds the new weights; never rewrite earlier returns.
+    last_applied=dt(prev.get("last_applied_decision_utc",stamp(seen)))
+    apply=(target["seen"]>last_applied and target["seen"]<=now and
+           all(target["closed_bar"]<=prices[s]["closed_bar_date"] for s in needed))
+    positions=target["positions"] if apply else old_positions
+    turnover=sum(abs(positions.get(s,0)-old_positions.get(s,0)) for s in needed)
     nav={}
     for k,bps in fee_bps.items():
         oldnav=float(prev["nav_scenarios"][k])
@@ -140,6 +161,7 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS):
     return {"status":"MARK_TO_MARKET","positions":positions,
             "marks":{s:prices[s] for s in needed},"nav_scenarios":nav,
             "gross_return":gross,"turnover_one_way_notional":turnover,
+            "last_applied_decision_utc":stamp(target["seen"] if apply else last_applied),
             "forward_pnl_verified":False,
             "note":"scenario-only close marks; no broker fills, futures roll or financing"}
 
@@ -161,9 +183,10 @@ def collect(now=None,watch=WATCH,out=OUT,price_fetch=get_latest_closed):
     now=now or utcnow()
     first=first_seen(watch)
     if not first:raise ValueError("no real first-seen observations")
+    latest=latest_decisions(watch,now)
     history=read_chain(out)
     prev=latest_per_idea(history)
-    symbols=sorted({s for r in first.values() for s in r["positions"]})
+    symbols=sorted({s for r in list(first.values())+list(latest.values()) for s in r["positions"]})
     # A zero-position strategy requires no price mark; no fabricated return.
     prices={};errors={}
     for symbol in symbols:
@@ -171,7 +194,7 @@ def collect(now=None,watch=WATCH,out=OUT,price_fetch=get_latest_closed):
         except Exception as e:errors[symbol]=type(e).__name__+": "+str(e)[:140]
     ideas={}
     for idea,initial in sorted(first.items()):
-        ideas[idea]=compute_one(idea,initial,prev.get(idea),prices,now)
+        ideas[idea]=compute_one(idea,initial,prev.get(idea),prices,now,target=latest.get(idea))
     rec={"schema":"H089.forward.v1","collected_at_utc":stamp(now),
          "kind":"SCENARIO_PAPER_NAV_NOT_REALIZED_EXECUTION",
          "first_seen_source_sha256":hashlib.sha256(Path(watch).read_bytes()).hexdigest(),
