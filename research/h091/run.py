@@ -17,6 +17,7 @@ sys.path.insert(0,str(ROOT/"research"/"h091"))
 sys.path.insert(0,str(ROOT/"research"/"h094"))
 from market import fetch_okx,fetch_bitget_recent,compare_venues,save_snapshot
 from baseline import research
+from sequence import chronology_research
 from gates import classify,coverage
 
 
@@ -44,6 +45,10 @@ def run(symbols:list[str],out:Path,pages:int=12)->dict:
             result["data_earliest_utc"]=raw["earliest_utc"]
             result["data_latest_utc"]=raw["latest_utc"]
             result["price_reference_type"]="OKX_USDT_SWAP_BAR_PROXY_NOT_FILL"
+            sequence=chronology_research(raw["bars"],symbol)
+            (out/(symbol+"_chronology_proxies.json")).write_text(json.dumps(sequence,indent=2,sort_keys=True)+"\n")
+            result["chronology_proxy_trial_count"]=sequence["trial_count"]
+            result["chronology_proxy_alpha_verified"]=False
             verdict=classify(result)
             records.append(result);gates.append(verdict)
             (out/(symbol+"_exploratory.json")).write_text(json.dumps(result,indent=2,sort_keys=True)+"\n")
@@ -59,12 +64,14 @@ def run(symbols:list[str],out:Path,pages:int=12)->dict:
     report["real_input_verified"]=len(records)>0
     report["research_complete"]=False
     report["real_strategy_proof_complete"]=False
+    report["chronology_proxy_trials"]=sum(x.get("chronology_proxy_trial_count",0) for x in records)
     report["independent_price_bar_comparisons"]={v["symbol"]:v.get("independent_cross_venue_check") for v in records}
     (out/"program.json").write_text(json.dumps(report,indent=2,sort_keys=True,default=list)+"\n")
     summary=["# H091–H094 — Independent Research Evidence", "",
              "**Exploratory only: NO live orders, NO ACCEPT, NO new proven alpha.**","",
              f"Real public OKX snapshots: {len(records)}/{len(symbols)} assets.",
              f"Test variants (not independent trials): {report['trials']}.",
+             "Chronological sequence trials use proxies, not fully confirmed ICT MSS/iFVG.",
              "Historical 70/30 cut is descriptive; these dates are NOT untouched holdout.",
              "Costs modeled: 10 bps round-trip assumed, actual spread/funding/slippage unverified.",
              "Concurrent signals are NOT portfolio-NAV-tested.",
