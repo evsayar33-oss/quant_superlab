@@ -41,7 +41,9 @@ def aggregate(rows,tf):
 def parent_asof(event_ms,parents,context):
     """Only parent events observed at or before signal close."""
     if not parents:return {"status":"NOT_TESTABLE_NO_PARENT_BARS"}
-    recent=[p for p in parents if p["observed_at_ms"]<=event_ms]
+    recent=[p for p in parents if p["observed_at_ms"]<=event_ms and
+            p["kind"] in ("MSS","BOS","LIQ_SWEEP","IFVG_CONFIRMED") and
+            event_ms-p["observed_at_ms"]<=8*TF_MS[context]]
     if not recent:return {"status":"NOT_TESTABLE_NO_CONFIRMED_PARENT_EVENT"}
     item=max(recent,key=lambda x:x["observed_at_ms"])
     return {"status":"KNOWN","kind":item["kind"],"side":item["side"],
