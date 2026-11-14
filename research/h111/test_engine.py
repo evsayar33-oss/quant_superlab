@@ -2,7 +2,7 @@ import tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 from engine import HOUR,FOUR,SCHEMA,seed,tick,summary,close_trade
-from run import run
+from research.h111.run import run
 class Tests(unittest.TestCase):
  def test_seed_30_days(self):
   s=seed(100*HOUR)
