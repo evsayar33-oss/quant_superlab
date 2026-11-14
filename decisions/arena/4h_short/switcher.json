@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-14T11:33:45+00:00",
- "data_end": "2026-11-14 04:00:00",
+ "updated_at": "2026-11-14T18:05:18+00:00",
+ "data_end": "2026-11-14 12:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -64,7 +64,7 @@
    "timeframe": "4h",
    "weight": 0.1333,
    "position": "flat",
-   "regime": "range"
+   "regime": "trend_down"
   },
   {
    "id": "A0010",
@@ -81,7 +81,7 @@
    "timeframe": "4h",
    "weight": 0.1333,
    "position": "short",
-   "regime": "range"
+   "regime": "trend_down"
   },
   {
    "id": "A0042",
@@ -105,16 +105,16 @@
    "timeframe": "4h",
    "weight": 0.1333,
    "position": "flat",
-   "regime": "range"
+   "regime": "trend_down"
   }
  ],
  "forward": {
   "since": "2026-10-20",
   "days": 24,
-  "ret": 0.0272,
-  "sharpe": 2.279,
-  "ew_ret": -0.0038,
-  "ew_sharpe": -0.242,
+  "ret": 0.0318,
+  "sharpe": 2.605,
+  "ew_ret": 0.0039,
+  "ew_sharpe": 0.41,
   "max_dd": -0.0508
  },
  "regimes": {
@@ -156,7 +156,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-12 20:00:00",
    "share": {
-    "range": 0.716,
+    "range": 0.715,
     "trend_up": 0.076,
     "trend_down": 0.05,
     "volatile": 0.158
@@ -301,7 +301,7 @@
    "share": {
     "range": 0.689,
     "trend_up": 0.061,
-    "trend_down": 0.074,
+    "trend_down": 0.075,
     "volatile": 0.176
    }
   },
@@ -390,7 +390,7 @@
     "range": 0.727,
     "trend_up": 0.037,
     "trend_down": 0.077,
-    "volatile": 0.159
+    "volatile": 0.158
    }
   },
   "THETA/USDT": {
@@ -405,9 +405,9 @@
    }
   },
   "IMX/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-11-10 20:00:00",
+   "now": "trend_down",
+   "now_tr": "Trend ↓",
+   "since": "2026-11-14 08:00:00",
    "share": {
     "range": 0.722,
     "trend_up": 0.051,
@@ -438,9 +438,9 @@
    }
   },
   "ARB/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-11-10 20:00:00",
+   "now": "trend_down",
+   "now_tr": "Trend ↓",
+   "since": "2026-11-14 08:00:00",
    "share": {
     "range": 0.642,
     "trend_up": 0.048,
@@ -453,7 +453,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-10 20:00:00",
    "share": {
-    "range": 0.698,
+    "range": 0.699,
     "trend_up": 0.04,
     "trend_down": 0.084,
     "volatile": 0.177
