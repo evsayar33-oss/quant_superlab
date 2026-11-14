@@ -63,7 +63,7 @@ def test_market_proxy_plus_cash_consistent():
 
 def test_source_aligner_fails_instead_of_imputing_missing_days():
     p=example_panel(300)
-    cfg={"data":{"start":"1999-01-01","end":"2001-01-01",
+    cfg={"data":{"start":"1999-01-01","end":"2000-02-29",
                  "maximum_vix_missing_fraction":.01,
                  "forward_fill_trading_days":1,"min_overlap":100}}
     v=p.vix.copy()
