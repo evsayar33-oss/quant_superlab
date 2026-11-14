@@ -135,17 +135,17 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS,target=None):
                 "forward_pnl_verified":False,
                 "note":"first later observed close sets basis; scenario entry fee charged, no pre-baseline gains"}
     old=prev["marks"]
-    if any(s not in old for s in needed):
+    if any(s not in old for s in old_positions):
         return {"status":"MISSING_PRIOR_MARK","forward_pnl_verified":False}
     dates={prices[s]["closed_bar_date"] for s in needed}
-    if dates and all(prices[s]["closed_bar_date"]==old[s]["closed_bar_date"] for s in needed):
+    if old_positions and all(prices[s]["closed_bar_date"]==old[s]["closed_bar_date"] for s in old_positions):
         return {**prev,"status":"NO_NEW_CLOSE","forward_pnl_verified":False}
-    if any(prices[s]["closed_bar_date"]<=old[s]["closed_bar_date"] for s in needed):
+    if any(prices[s]["closed_bar_date"]<=old[s]["closed_bar_date"] for s in old_positions):
         return {"status":"STALE_OR_MIXED_BAR","forward_pnl_verified":False}
     # Hold prior weights across observed close-to-close interval. No intra-day fill assumed.
     old_positions=prev["positions"]
-    gross=sum(old_positions.get(s,0)*(prices[s]["close"]/old[s]["close"]-1)
-              for s in needed)
+    gross=sum(old_positions[s]*(prices[s]["close"]/old[s]["close"]-1)
+              for s in old_positions)
     if gross<=-1 or not math.isfinite(gross):raise ValueError("invalid return")
     # New observed decisions apply only AFTER this close-to-close mark. The
     # next interval then holds the new weights; never rewrite earlier returns.
