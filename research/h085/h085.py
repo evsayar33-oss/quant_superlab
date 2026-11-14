@@ -55,6 +55,11 @@ def read_monthly(h083: Path):
     if len(joined) < 30:
         raise ValueError("Insufficient matching daily NAV rows")
     end = joined.resample("ME").last()
+    # Exclude incomplete last month; the frozen source ends 2026-11-11.
+    last_month_end = joined.index.max().to_period("M").to_timestamp("M")
+    excluded_partial = (last_month_end - joined.index.max()).days >= 4
+    if excluded_partial:
+        end = end.iloc[:-1]
     ret = end.pct_change(fill_method=None).iloc[1:].dropna(how="any")
     if len(ret) < 12 or ret.shape[1] < 4:
         raise ValueError("Too little monthly strategy evidence")
@@ -64,6 +69,7 @@ def read_monthly(h083: Path):
         "rotation_strategies": daily.shape[1],
         "aligned_daily_rows": int(len(joined)),
         "month_rows": int(len(ret)),
+        "excluded_partial_last_month": bool(excluded_partial),
         "data_start": str(joined.index.min().date()),
         "data_end": str(joined.index.max().date()),
         "nav_source_sha256": hashlib.sha256(nav_file.read_bytes()).hexdigest(),
