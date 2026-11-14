@@ -1,0 +1,58 @@
+name: P11 post-merge — Read-only real-provider diagnostics
+on:
+  push:
+    branches:
+      - diagnostics/p11-readonly-postmerge-20261114
+    paths:
+      - 'diagnostics/p11_readonly_probe.py'
+      - '.github/workflows/p11_readonly_smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: python -m pip install -r requirements.txt
+      - name: Run real Paper Watch on ephemeral checkout (NO commit/Telegram)
+        env:
+          LAB_CACHE_HOURS: '0'
+        run: |
+          mkdir -p results/p11_postmerge
+          set -o pipefail
+          python -m lab.watch daily 2>&1 | tee results/p11_postmerge/watch_run.log
+      - name: Verify real first-observed daily output and source freshness
+        run: python diagnostics/p11_readonly_probe.py --mode watch
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p11-real-watch-readonly
+          path: results/p11_postmerge/
+          if-no-files-found: warn
+          retention-days: 14
+
+  sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: python -m pip install -r requirements.txt
+      - name: Verify primary client URLs, two live crypto sources, funding and Arena matrix
+        env:
+          LAB_CACHE_HOURS: '0'
+        run: python diagnostics/p11_readonly_probe.py --mode sources
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p11-source-readonly
+          path: results/p11_postmerge/
+          if-no-files-found: warn
+          retention-days: 14
