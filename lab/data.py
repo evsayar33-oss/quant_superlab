@@ -46,29 +46,52 @@ def resample(df: pd.DataFrame, tf: str) -> pd.DataFrame:
 
 
 def _yf_download(tickers: list[str], start: str, interval: str = "1d") -> dict[str, pd.DataFrame]:
+    """Serial Yahoo reads with missing-ticker recovery; no partial-batch acceptance.
+
+    A non-empty Yahoo response may omit requested instruments. Their histories
+    must not silently disappear from the frozen backtest/paper universe.
+    """
     import yfinance as yf
 
     out: dict[str, pd.DataFrame] = {}
     if not tickers:
         return out
     kw = {"start": start} if interval == "1d" else {"period": "730d"}
-    frames = []
-    for i in range(0, len(tickers), 25):            # small batches + retries: Yahoo rate limits
+    for i in range(0, len(tickers), 25):
         chunk = tickers[i:i + 25]
-        for attempt in range(4):
+        missing = list(chunk)
+        for attempt in range(3):
+            if not missing:
+                break
+            request = chunk if attempt == 0 else missing
             try:
-                raw = yf.download(chunk, interval=interval, auto_adjust=True, progress=False,
-                                  group_by="ticker", threads=True, **kw)
+                raw = yf.download(request, interval=interval, auto_adjust=True,
+                                  progress=False, group_by="ticker", threads=False, **kw)
                 if raw is not None and len(raw):
-                    frames.append((chunk, raw))
-                    break
+                    out.update(_split(raw, request))
+                    missing = [t for t in chunk if t not in out]
             except Exception as e:  # noqa: BLE001
-                print(f"[data] yfinance attempt {attempt + 1} failed: {e}")
-            time.sleep(5 * (attempt + 1))
-    for chunk, raw in frames:
-        out.update(_split(raw, chunk))
+                print(f"[data] Yahoo batch attempt {attempt + 1} failed: {e}")
+            if missing and attempt < 2:
+                time.sleep(2 * (attempt + 1))
+        for t in list(missing):
+            for attempt in range(2):
+                try:
+                    raw = yf.download(t, interval=interval, auto_adjust=True,
+                                      progress=False, group_by="ticker", threads=False, **kw)
+                    if raw is not None and len(raw):
+                        one = _split(raw, [t])
+                        if t in one:
+                            out[t] = one[t]
+                            break
+                except Exception as e:  # noqa: BLE001
+                    print(f"[data] Yahoo {t} serial attempt {attempt + 1} failed: {e}")
+                if attempt == 0:
+                    time.sleep(2)
+        missing = [t for t in chunk if t not in out]
+        if missing:
+            print(f"[data] ERROR incomplete Yahoo response: missing {missing}")
     return out
-
 
 def _split(raw: pd.DataFrame, tickers: list[str]) -> dict[str, pd.DataFrame]:
     out: dict[str, pd.DataFrame] = {}

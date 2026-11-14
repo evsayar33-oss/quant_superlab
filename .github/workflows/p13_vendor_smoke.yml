@@ -1,0 +1,53 @@
+name: P13 — Real Yahoo universe-integrity smoke (read-only)
+on:
+  push:
+    branches:
+      - fix/p13-watch-data-integrity-20261114
+    paths:
+      - 'lab/data.py'
+      - 'lab/watch.py'
+      - 'tests/test_data_integrity.py'
+      - '.github/workflows/p13_vendor_smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  yahoo-watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11', cache: pip}
+      - run: python -m pip install -r requirements.txt pytest
+      - name: Offline frozen-universe regression
+        run: python -m pytest -q tests/test_data_integrity.py
+      - name: Real US futures daily data; fail on incomplete universe
+        env:
+          LAB_CACHE_HOURS: '0'
+        run: |
+          mkdir -p results/p13
+          set -o pipefail
+          python -m lab.watch daily 2>&1 | tee results/p13/watch.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('decisions/watch')
+          rows = json.loads((p / 'state.json').read_text())
+          expected = {'H063', 'H064', 'H065'}
+          assert set(rows['ideas']) == expected
+          assert (p / 'observations.csv').exists()
+          for k in ('H063', 'H064'):
+              assets = rows['ideas'][k]['tradable_assets']
+              assert assets and 'GC=F' in assets, (k, assets)
+          print('COMPLETE_METALS_UNIVERSE_CONFIRMED')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p13-real-yahoo-watch-readonly
+          path: results/p13/
+          if-no-files-found: warn
+          retention-days: 14
