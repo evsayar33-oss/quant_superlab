@@ -1,0 +1,75 @@
+name: H088 — Prospective independent market evidence
+on:
+  schedule:
+    - cron: '25 23 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quant-superlab-h088-prospective
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Regression — deterministic no-network controls
+        run: python -m unittest discover -s research/h088 -p 'test_*.py' -v
+      - name: Capture exchange observations and first-seen paper decisions
+        id: capture
+        shell: bash
+        run: |
+          set +e
+          python research/h088/evidence.py --notional 1000
+          Q=$?
+          python research/h088/watch_capture.py
+          W=$?
+          echo "quote_status=$Q" >> "$GITHUB_OUTPUT"
+          echo "watch_status=$W" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist observations even if one exchange is down
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add decisions/evidence/
+          if git diff --cached --quiet; then
+            echo 'NO_NEW_EVIDENCE: refusing false success' >&2
+            exit 1
+          fi
+          git commit -m "H088 prospective quote and decision evidence $(date -u +%FT%TZ)"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          echo 'EVIDENCE_PERSISTENCE_FAILED: no forward proof' >&2
+          exit 1
+      - name: Flag missing, stale or incomplete evidence
+        if: always()
+        shell: bash
+        run: |
+          if [ "${{ steps.capture.outputs.quote_status }}" != "0" ] || [ "${{ steps.capture.outputs.watch_status }}" != "0" ]; then
+            echo 'H088 evidence incomplete; inspect committed JSONL errors and source freshness' >&2
+            exit 1
+          fi
+      - name: Upload evidence on all outcomes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h088-prospective-evidence-${{ github.run_id }}
+          path: decisions/evidence/
+          if-no-files-found: warn
+          retention-days: 90
