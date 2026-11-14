@@ -11,9 +11,14 @@ import time
 from datetime import datetime,timezone
 from urllib.parse import urlencode
 from pathlib import Path
-import sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"h091"))
-from market import get_json,SYMBOLS
+import urllib.request
+SYMBOLS={"BTC":"BTC-USDT-SWAP","ETH":"ETH-USDT-SWAP"}
+
+def get_json(url,timeout=18):
+    req=urllib.request.Request(url,headers={"User-Agent":"quant-superlab-h096-research/1.0","Accept":"application/json"})
+    with urllib.request.urlopen(req,timeout=timeout) as response:
+        if response.status!=200:raise ValueError("HTTP_NOT_OK")
+        return json.load(response)
 
 BARS={"5m":("5m",300000),"15m":("15m",900000),"1H":("1H",3600000),
       "1D":("1Dutc",86400000)}
