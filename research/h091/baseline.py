@@ -40,9 +40,11 @@ def features(bars:list[dict],lookback:int=20)->list[dict]:
     out=[]
     for i in range(lookback,len(bars)-1):
         current=bars[i];history=bars[i-lookback:i]
-        if any(b["ts"]+HOUR*(bars[1]["ts"]-bars[0]["ts"])//HOUR!=
-               bars[j+1]["ts"] for j,b in enumerate(bars[max(0,i-lookback):i],start=max(0,i-lookback))
-               if j+1<len(bars)):
+        tf_ms=bars[1]["ts"]-bars[0]["ts"]
+        if tf_ms not in (HOUR,4*HOUR):
+            raise ValueError("unknown timeframe spacing")
+        if any(bars[k+1]["ts"]-bars[k]["ts"]!=tf_ms
+               for k in range(i-lookback,i)):
             # missing candle invalidates rolling lookback
             continue
         hh=max(x["high"] for x in history)
