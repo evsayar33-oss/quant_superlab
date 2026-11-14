@@ -167,7 +167,7 @@ def audit_cross_assets(bars,records):
     records.append({"family":"multi_asset","asset":name,"rule":fam,"cost":cost,
      "total":metrics_frame(d),"splits":m,"p_discovery":month_pvalue(scope(d)["discovery"]) if cost=="base" else None,
      "real_fills_verified":False,"historical_reused":True,"accepted":False})
-def stock_portfolios(bars,records):
+def stock_portfolios(bars,records,stock_store):
  # Cross-sectional stock signals: screen solely with information known at previous close.
  available=[a for a in STOCKS if a in bars]
  if len(available)<25:raise ValueError("INSUFFICIENT_US_STOCK_COVERAGE")
@@ -210,9 +210,17 @@ def stock_portfolios(bars,records):
    d=pd.DataFrame({"net":net,"pos":weights.abs().sum(axis=1),"turn":turn})
    m={k:metrics_frame(v) for k,v in scope(d).items()}
    benchmark=(spy["Open"].shift(-1)/spy["Open"]-1).reindex(d.index)
+   excess=(net-benchmark)
+   excess_d=pd.DataFrame({"net":excess.fillna(0.)},index=d.index)
+   p_excess=month_pvalue(scope(excess_d)["discovery"]) if cname=="base" else None
+   if cname=="base":
+    stock_store.append(pd.DataFrame({"date":d.index,"rule":rule,"net":net.to_numpy(),
+     "spy_open_to_open":benchmark.to_numpy(),"net_minus_spy":excess.to_numpy(),
+     "turn":turn.to_numpy(),"pos":d["pos"].to_numpy()}))
    records.append({"family":"us_stock_cross_section","asset":"US30","rule":rule,"cost":cname,
     "total":metrics_frame(d),"splits":m,
     "p_discovery":month_pvalue(scope(d)["discovery"]) if cname=="base" else None,
+    "p_discovery_vs_spy":p_excess,
     "benchmark_spy_return":float((1+benchmark.dropna()).prod()-1),
     "stocks_loaded":len(aligned),"historical_reused":True,"accepted":False,
     "survivorship_point_in_time_verified":False})
@@ -227,10 +235,10 @@ def main():
   except Exception as e:errors[a]=str(e)
  if any(s not in bars for s in SINGLES):raise RuntimeError("MISSING_REQUIRED_MARKET:"+str(errors))
  if len([a for a in STOCKS if a in bars])<25:raise RuntimeError("MISSING_STOCK_COVERAGE:"+str(errors))
- records=[];store=[]
+ records=[];store=[];stock_store=[]
  for a in SINGLES:audit_single(a,bars[a],bars["SPY"],records,store)
  audit_cross_assets(bars,records)
- stock_portfolios(bars,records)
+ stock_portfolios(bars,records,stock_store)
  # BH adjustment across ALL registered base-cost family variants, not only the winners.
  base=[r for r in records if r["cost"]=="base"]
  q=bh([r["p_discovery"] for r in base])
@@ -268,6 +276,12 @@ def main():
     "ETF fee $1.50 per side per $2k ticket and assumed slippage may not match user broker",
     "Open gaps, overnight news, order rejections and intra-session liquidity remain unverified",
     "Many models tested: BH across entire family, not a discovery significance guarantee"]}
+ stocks=[r for r in base if r["family"]=="us_stock_cross_section"]
+ q_stock=bh([r["p_discovery_vs_spy"] for r in stocks])
+ result["stock_vs_spy_discovery"]=[{"rule":r["rule"],"p":r["p_discovery_vs_spy"],
+   "q_five_stock_bh":float(z),"benchmark_spy_total":r["benchmark_spy_return"],
+   "strategy_total":r["total"]["return"],"positive_all_three":r["positive_all_three"]}
+  for r,z in zip(stocks,q_stock)]
  (out/"summary.json").write_text(json.dumps(result,indent=2,allow_nan=False)+"\n")
  (out/"all_models.json").write_text(json.dumps(records,indent=2,allow_nan=False)+"\n")
  rows=[]
@@ -278,6 +292,7 @@ def main():
    rows.append(row)
  pd.DataFrame(rows).to_csv(out/"results_by_split.csv",index=False)
  pd.DataFrame(store,columns=["date","net","gross","pos","turn","asset","rule"]).to_csv(out/"base_single_daily_returns.csv",index=False) if not store else pd.concat(store,ignore_index=True).to_csv(out/"base_single_daily_returns.csv",index=False)
+ if stock_store:pd.concat(stock_store,ignore_index=True).to_csv(out/"stock_strategy_daily_vs_spy.csv",index=False)
  (out/"report_tr.md").write_text("# H114 — Yeni çoklu piyasa stratejileri\n\n"
  +"Önceki stratejilerin yeniden fiyatlandırılması **değildir**. "
  +"Tamamen yeni sinyal aileleriyle yeni tarihsel denemeler yapılmıştır.\n\n"
