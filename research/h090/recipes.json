@@ -1,0 +1,162 @@
+{
+  "schema": "H090.recipes.v1",
+  "status": "PROTOTYPES_NOT_BACKTESTED",
+  "recipes": [
+    {
+      "id": "H090_LIQ_MSS_OB_TARGET",
+      "kind": "technical",
+      "side": "long",
+      "sequence": [
+        {
+          "kind": "LIQ_SWEEP",
+          "timeframe": "H4"
+        },
+        {
+          "kind": "MSS_CONFIRM",
+          "timeframe": "H1"
+        },
+        {
+          "kind": "OB_TOUCH",
+          "timeframe": "M15"
+        }
+      ],
+      "fib_alignment": {
+        "H4": "below_05",
+        "H1": "below_05"
+      },
+      "target_event": "LIQ_TARGET",
+      "max_hours_between": 48,
+      "notes": "Liquidity taken -> MSS -> OB retest; opposing liquidity previously available; long-discount exploratory"
+    },
+    {
+      "id": "H090_UNSWEPT_OB_FVG",
+      "kind": "technical",
+      "side": "long",
+      "sequence": [
+        {
+          "kind": "LIQ_NOT_TAKEN",
+          "timeframe": "H4"
+        },
+        {
+          "kind": "OB_TOUCH",
+          "timeframe": "H1"
+        },
+        {
+          "kind": "FVG_TOUCH",
+          "timeframe": "M15"
+        }
+      ],
+      "fib_alignment": {
+        "D": "below_05",
+        "H4": "below_05"
+      },
+      "target_event": "BLOCK_TARGET",
+      "max_hours_between": 48,
+      "notes": "No-sweep requires actual audited observation window; blocked FVG route"
+    },
+    {
+      "id": "H090_FVG_IFVG_CONFIRM",
+      "kind": "technical",
+      "side": "short",
+      "sequence": [
+        {
+          "kind": "STRUCTURE_BREAK",
+          "timeframe": "H4"
+        },
+        {
+          "kind": "IFVG_CONFIRM",
+          "timeframe": "H1"
+        }
+      ],
+      "target_event": "FVG_TARGET",
+      "max_hours_between": 72,
+      "notes": "Short structure -> iFVG confirmation sequence"
+    },
+    {
+      "id": "H090_EQUITY_PIT_FUNDAMENTAL_OB",
+      "kind": "technical_fundamental",
+      "side": "long",
+      "sequence": [
+        {
+          "kind": "STRUCTURE_BREAK",
+          "timeframe": "D"
+        },
+        {
+          "kind": "OB_TOUCH",
+          "timeframe": "H4"
+        }
+      ],
+      "fundamental": {
+        "field": "quality_rank_available",
+        "equals": "high",
+        "timeframe": "D",
+        "max_age_hours": 2160
+      },
+      "target_event": "BLOCK_TARGET",
+      "max_hours_between": 720,
+      "notes": "Research prototype; fundamentals availability must reflect disclosure+lag; equity market only"
+    },
+    {
+      "id": "H090_MACRO_METALS_LIQ",
+      "kind": "technical_macro",
+      "side": "short",
+      "sequence": [
+        {
+          "kind": "LIQ_SWEEP",
+          "timeframe": "H4"
+        },
+        {
+          "kind": "MSS_CONFIRM",
+          "timeframe": "H1"
+        },
+        {
+          "kind": "FVG_TOUCH",
+          "timeframe": "M15"
+        }
+      ],
+      "macro": {
+        "field": "usd_real_yield_regime",
+        "equals": "restrictive",
+        "timeframe": "D",
+        "max_age_hours": 72
+      },
+      "target_event": "LIQ_TARGET",
+      "max_hours_between": 72,
+      "notes": "Macro release-as-of controls required; gold/silver prototype only"
+    },
+    {
+      "id": "H090_CRYPTO_TECH_FUND_MACRO",
+      "kind": "technical_fundamental_macro",
+      "side": "long",
+      "sequence": [
+        {
+          "kind": "LIQ_SWEEP",
+          "timeframe": "H4"
+        },
+        {
+          "kind": "MSS_CONFIRM",
+          "timeframe": "H1"
+        },
+        {
+          "kind": "FVG_TOUCH",
+          "timeframe": "M15"
+        }
+      ],
+      "fundamental": {
+        "field": "onchain_quality_regime",
+        "equals": "supportive",
+        "timeframe": "D",
+        "max_age_hours": 72
+      },
+      "macro": {
+        "field": "usd_liquidity_regime",
+        "equals": "easing",
+        "timeframe": "D",
+        "max_age_hours": 72
+      },
+      "target_event": "LIQ_TARGET",
+      "max_hours_between": 72,
+      "notes": "Onchain metric is not accounting fundamental; availability and revisions explicit"
+    }
+  ]
+}
