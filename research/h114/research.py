@@ -105,6 +105,10 @@ def metrics_frame(d):
   "max_dd":float((nav/nav.cummax()-1).min()),"avg_daily":float(s.mean()),
   "traded_days":int((d["turn"]>0).sum()),"turnover_sum":float(d["turn"].sum()),
   "active_days":int((d["pos"]!=0).sum())}
+def positive_splits(s):
+ return all(s[x].get("return",0)>0 and s[x].get("avg_daily",0)>0
+  and s[x].get("active_days",0)>=15
+  for x in ("discovery","validation","reused_holdout"))
 def bh(ps):
  v=np.asarray(ps,float);n=len(v);out=np.empty(n);order=np.argsort(v);cur=1.
  for k in range(n-1,-1,-1):
@@ -248,8 +252,7 @@ def main():
   verdict[(r["family"],r["asset"],r["rule"])]=float(z)
  for r in records:
   r["q_all_base_bh"]=verdict[(r["family"],r["asset"],r["rule"])]
-  s=r["splits"];r["positive_all_three"]=all(s[x].get("return",0)>0 and s[x].get("avg_daily",0)>0 and s[x].get("active_days",0)>=15
-   for x in ("discovery","validation","reused_holdout"))
+  s=r["splits"];r["positive_all_three"]=positive_splits(s)
   r["research_watch"]=bool(r["positive_all_three"] and r["q_all_base_bh"]<=.10
     and r["total"]["traded_days"]>=30 and r["cost"] in ("base","stress"))
   # No historical selection is allowed to turn research results into certified alpha.
