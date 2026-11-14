@@ -244,6 +244,7 @@ def run(mode,state_path,out_path,now_utc=None):
    print("NO_ACTIVE_STUDY");return None
   state=json.loads(state_path.read_text());verify(state)
  else:raise ValueError("INVALID_MODE")
+ failed_observation=False
  if not state["finalized"] and now_utc.date()>=pd.Timestamp(state["end_date"]).date():
   state["finalized"]=True
  elif mode=="tick" and not state["finalized"]:
@@ -252,6 +253,7 @@ def run(mode,state_path,out_path,now_utc=None):
    if snapshot is not None and snapshot["session"]!=state["last_session"]:
     apply(state,snapshot)
   except Exception as exc:
+   failed_observation=True
    note_outage(state,now_utc,exc)
    print("H115_FAIL_CLOSED:",type(exc).__name__,str(exc),file=sys.stderr)
  state_path.parent.mkdir(parents=True,exist_ok=True)
@@ -259,6 +261,7 @@ def run(mode,state_path,out_path,now_utc=None):
  out_path.mkdir(parents=True,exist_ok=True)
  (out_path/"summary.json").write_text(json.dumps(report(state,now_utc),indent=2,sort_keys=True,allow_nan=False)+"\n")
  (out_path/"state.json").write_text(json.dumps(state,indent=2,sort_keys=True,allow_nan=False)+"\n")
+ (out_path/"execution_status.txt").write_text("OUTAGE\n" if failed_observation else "OK\n")
  print(json.dumps({"mode":mode,"observed":len(state["records"]),"outages":len(state["outages"]),"finalized":state["finalized"]}))
  return state
 if __name__=="__main__":
