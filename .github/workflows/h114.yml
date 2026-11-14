@@ -41,6 +41,8 @@ jobs:
           assert r['models']>=90 and r['scenario_rows']==r['models']*4,r
           assert len(r['markets'])==8 and r['us_stocks_loaded']>=25
           assert r['alpha_accepted'] is False and r['verified_prospective'] is False
+          assert len(r['stock_vs_spy_discovery']) == 5
+          assert Path('results/h114/stock_strategy_daily_vs_spy.csv').stat().st_size>20000
           assert Path('results/h114/results_by_split.csv').stat().st_size>10000
           assert Path('results/h114/base_single_daily_returns.csv').stat().st_size>100000
           print('Actual new research verified:',r['models'],r['scenario_rows'])
