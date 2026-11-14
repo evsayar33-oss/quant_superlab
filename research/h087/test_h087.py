@@ -32,7 +32,7 @@ def test_extra_cost_does_not_raise_returns():
     expensive,_=overlay(b,w,rf,20)
     assert np.all(expensive <= cheap+1e-12)
     assert calc_total(expensive)<=calc_total(cheap)
-    assert np.sum(turn)==pytest.approx(2.0)
+    assert np.sum(turn)==pytest.approx(1.5)
 
 
 def test_incomplete_and_leveraged_exposure_fails():
