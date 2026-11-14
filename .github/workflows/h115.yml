@@ -1,0 +1,92 @@
+name: H115 — 180-day H114 forward paper
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [start, tick]
+        required: true
+        default: start
+        description: "start ONCE on main; ticks normally scheduled"
+  schedule:
+    - cron: '20 16,17 * * 1-5'
+  pull_request:
+    paths:
+      - 'research/h115/**'
+      - '.github/workflows/h115.yml'
+permissions:
+  contents: write
+concurrency:
+  group: h115-paper-global
+  cancel-in-progress: false
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install prerequisites
+        run: pip install numpy pandas scipy pyyaml yfinance
+      - name: Offline evidence integrity and causal execution regression
+        run: python -m unittest discover -s research/h115 -p 'test_*.py' -v
+  paper:
+    if: github.event_name != 'pull_request'
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy pandas scipy pyyaml yfinance
+      - name: Recover H115-only durable evidence
+        run: |
+          mkdir -p results/h115
+          if git ls-remote --exit-code origin refs/heads/paper/h115-180d >/dev/null 2>&1; then
+            git fetch origin refs/heads/paper/h115-180d:refs/remotes/origin/paper/h115-180d
+            git show origin/paper/h115-180d:state.json > results/h115/state.json
+          fi
+      - name: Prospective observation (strictly no orders)
+        env:
+          MODE: ${{ github.event_name == 'schedule' && 'tick' || inputs.mode }}
+        run: python -m research.h115.forward --mode "$MODE" --state results/h115/state.json --out results/h115/report
+      - name: Persist only dedicated paper branch; preserve existing history
+        run: |
+          if [ ! -f results/h115/state.json ]; then
+            echo "No active H115 experiment: schedule cannot auto-start."
+            exit 0
+          fi
+          cp results/h115/state.json /tmp/h115-state.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git ls-remote --exit-code origin refs/heads/paper/h115-180d >/dev/null 2>&1; then
+            git checkout -B paper/h115-180d origin/paper/h115-180d
+          else
+            git checkout --orphan paper/h115-180d
+            git rm -rf . >/dev/null
+          fi
+          cp /tmp/h115-state.json state.json
+          git add state.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'H115 prospective paper evidence'
+            git push origin HEAD:refs/heads/paper/h115-180d
+          fi
+      - name: Fail workflow for any missing market evidence (after durable state commit)
+        run: |
+          if [ -f results/h115/report/execution_status.txt ] && grep -q OUTAGE results/h115/report/execution_status.txt; then
+            echo 'Prospective observation failed closed; outage committed to paper branch.'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h115-180d-paper-${{ github.run_id }}
+          path: results/h115/report/
+          retention-days: 90
+          if-no-files-found: warn
