@@ -33,7 +33,7 @@ class H089Tests(unittest.TestCase):
 
     def test_reject_future_or_prior_marks(self):
         init={"seen":T0,"positions":{"YM=F":1}}
-        self.assertEqual(compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-13",T1)},T1)["status"],"PRICE_NOT_AFTER_FIRST_SEEN")
+        self.assertEqual(compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-13",T1)},T1)["status"],"AWAITING_POST_FIRST_SEEN_CLOSE")
         self.assertEqual(compute_one("H065",init,None,{"YM=F":mark(100,"2026-11-16",T0)},T1)["status"],"PRICE_NOT_PROSPECTIVELY_OBSERVED")
         with self.assertRaises(ValueError):
             compute_one("H065",init,None,{},T0)
