@@ -130,7 +130,7 @@ def lev_markdown(o: dict, cfg: dict) -> str:
     return "\n".join(L) + "\n"
 
 
-def daily(cfg: dict, synthetic: bool = False) -> tuple[dict, list[str]]:
+def daily(cfg: dict, synthetic: bool = False, suffix: str = "") -> tuple[dict, list[str]]:
     OUT.mkdir(parents=True, exist_ok=True)
     prev = json.loads((OUT / "state.json").read_text()) if (OUT / "state.json").exists() else {}
     levj = json.loads((OUT / f"leverage{suffix}.json").read_text()) if (OUT / f"leverage{suffix}.json").exists() else {"ideas": {}}
@@ -242,7 +242,7 @@ def main(argv=None):
                 (f" → yıllık {v['rows'][str(v['pick']) + 'x']['full']['cagr']:+.0%}, DD {v['rows'][str(v['pick']) + 'x']['full']['max_dd']:+.0%}" if v["pick"] else "")
                 for h, v in o["ideas"].items()) + "\n⚠️ Kaldıraç kenar yaratmaz; paper kayıt gerçek testtir.")
     else:
-        st, msgs = daily(cfg, x.synthetic)
+        st, msgs = daily(cfg, x.synthetic, suffix=suffix)
         md = daily_markdown(st)
         (OUT / "report.md").write_text(md)
         (OUT / "OZET.md").write_text(md)
