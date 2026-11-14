@@ -5,7 +5,7 @@ with recent contrary body. Every sequence explicitly identifies proxies.
 """
 from __future__ import annotations
 from statistics import mean
-from baseline import compress,features,trade,COST_BPS_PER_ROUNDTRIP
+from baseline import compress,features,trade,nonoverlapping,metrics,COST_BPS_PER_ROUNDTRIP
 
 WINDOW_BARS=24
 RECIPES=("LIQ_THEN_OB_BREAK","LIQ_THEN_OB_BREAK_THEN_FVG",
@@ -77,13 +77,15 @@ def chronology_research(raw_bars:list[dict],symbol:str)->dict:
                 for target in ("fixed_1r","fixed_2r","structural"):
                     trades=[trade(bars,s,tf,target,COST_BPS_PER_ROUNDTRIP[symbol])
                             for s in eligible]
-                    trades=[t for t in trades if t is not None]
+                    trades=nonoverlapping([t for t in trades if t is not None])
                     ins=[t for t in trades if t["exit_ms"]<bars[cut]["ts"]]
                     hold=[t for t in trades if t["entry_ms"]>=bars[cut]["ts"]]
                     rows.append({"tf_hours":tf,"sequence":mode,"side":side,
                         "target_type":target,"train_n":len(ins),"hold_n":len(hold),
                         "train_mean_net_R":mean(t["net_R"] for t in ins) if ins else None,
                         "hold_mean_net_R":mean(t["net_R"] for t in hold) if hold else None,
+                        "train_statistics":metrics(ins),
+                        "hold_statistics":metrics(hold),
                         "out_of_sample_independent":False,
                         "event_sequences_proxy_only":True})
     return {"schema":"H092.chronology_proxy.v1","symbol":symbol,
