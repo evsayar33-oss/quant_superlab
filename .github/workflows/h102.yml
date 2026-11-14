@@ -1,0 +1,53 @@
+name: H102 — Economic edge diagnostics (read-only)
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/h102/**'
+      - '.github/workflows/h102.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h099 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h100 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h101 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h102 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python research/h101/run.py --pages 8 --out results/h101
+      - run: python research/h102/audit.py --source results/h101 --out results/h102/diagnostics.json
+      - name: Enforce no alpha approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('results/h102/diagnostics.json').read_text())
+          assert d['alpha_accepted'] is False
+          assert d['prospective_oos_verified'] is False
+          assert d['real_execution_cost_verified'] is False
+          assert d['research_complete'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h102-economic-diagnostics-${{ github.run_id }}
+          path: |
+            results/h101/
+            results/h102/
+          retention-days: 90
+          if-no-files-found: warn
