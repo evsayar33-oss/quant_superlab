@@ -1,0 +1,54 @@
+name: H114 — New gold silver SPY NQ US stocks discovery
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/h114/**'
+      - '.github/workflows/h114.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install quantitative research dependencies
+        run: pip install numpy pandas scipy yfinance pyyaml
+      - name: Test causal signals costs scenarios and splits
+        run: python -m unittest discover -s research/h114 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy pandas scipy yfinance pyyaml
+      - name: Run NEW 8-market + US30 signals on actual archived daily prices
+        run: python research/h114/research.py --out results/h114 --start 2015-01-01
+      - name: Fail closed unless actual new simulation produced a full matrix
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('results/h114/summary.json').read_text())
+          assert r['models']>=90 and r['scenario_rows']==r['models']*4,r
+          assert len(r['markets'])==8 and r['us_stocks_loaded']>=25
+          assert r['alpha_accepted'] is False and r['verified_prospective'] is False
+          assert Path('results/h114/results_by_split.csv').stat().st_size>10000
+          assert Path('results/h114/base_single_daily_returns.csv').stat().st_size>100000
+          print('Actual new research verified:',r['models'],r['scenario_rows'])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h114-new-strategy-research-${{ github.run_id }}
+          path: results/h114/
+          retention-days: 90
+          if-no-files-found: warn
