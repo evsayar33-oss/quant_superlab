@@ -99,7 +99,8 @@ class ResearchTests(unittest.TestCase):
     def test_real_bar_proxy_sequence_is_not_confirmed_mss(self):
         r=chronology_research(make_bars(540),"BTC")
         self.assertEqual(r["schema"],"H092.chronology_proxy.v1")
-        self.assertEqual(r["trial_count"],36)
+        self.assertEqual(r["trial_count"],18)
+        self.assertEqual(r["coverage"][0]["status"],"NOT_TESTABLE_SHORT_HISTORY")
         self.assertFalse(r["forward_alpha_verified"])
         self.assertTrue(all(x["event_sequences_proxy_only"] for x in r["rows"]))
 
