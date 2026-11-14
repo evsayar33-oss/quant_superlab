@@ -1,0 +1,60 @@
+name: H096 — Real multitimeframe and cost research (read-only)
+on:
+  push:
+    branches:
+      - research/h096-multitimeframe-performance
+    paths:
+      - 'research/h096/**'
+      - 'research/h095/detectors.py'
+      - '.github/workflows/h096.yml'
+  pull_request:
+    paths:
+      - 'research/h096/**'
+      - 'research/h095/detectors.py'
+      - '.github/workflows/h096.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s research/h095 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h096 -p 'test_*.py' -v
+  real_data:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Real OKX BTC ETH 5m 15m 1H 4H UTC daily read-only research
+        run: python research/h096/run.py --pages 12 --out results/h096
+      - name: Enforce no live strategy acceptance
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("results/h096/summary.json")
+          if p.exists():
+              r=json.loads(p.read_text())
+              assert not r["research_complete"]
+              assert not r["alpha_accepted"]
+              assert not r["production_modified"]
+              print("H096 research-only gates preserved")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h096-multitimeframe-evidence-${{ github.run_id }}
+          path: results/h096/
+          if-no-files-found: warn
+          retention-days: 90
