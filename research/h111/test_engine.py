@@ -25,7 +25,7 @@ class Tests(unittest.TestCase):
  def test_outage_persists_no_phantom(self):
   with tempfile.TemporaryDirectory() as d:
    path=Path(d)/"state.json";out=Path(d)/"out"
-   with patch("run.snapshot",side_effect=ValueError("NETWORK_DOWN")):
+   with patch("research.h111.run.snapshot",side_effect=ValueError("NETWORK_DOWN")):
     state=run("start",path,out,now_ms=100*HOUR)
    self.assertEqual(len(state["outages"]),1)
    self.assertEqual(len(state["ticks"]),0)
