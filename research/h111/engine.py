@@ -73,7 +73,7 @@ def exits(state,key,pos,bars,now_ms,bid,ask):
 def tick(state,now_ms,quotes):
  if state["schema"]!=SCHEMA or state["finalized"]:raise ValueError("INVALID_STATE")
  if state["last_tick_ms"] is not None and now_ms<=state["last_tick_ms"]:raise ValueError("NON_MONOTONIC_TICK")
- if now_ms<state["started_ms"] or now_ms>state["ends_ms"]+2*HOUR:raise ValueError("OUTSIDE_WINDOW")
+ if now_ms<state["started_ms"]:raise ValueError("OUTSIDE_WINDOW")
  if set(quotes)!=set(VENUES):raise ValueError("BOTH_VENUES_REQUIRED")
  for venue in VENUES:
   q=quotes[venue];bars=q["bars"]
