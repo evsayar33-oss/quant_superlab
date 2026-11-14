@@ -9,6 +9,7 @@ sys.path.insert(0,str(HERE.parents[0]/"h093"))
 sys.path.insert(0,str(HERE.parents[0]/"h094"))
 from market import parse_okx,parse_bitget,fetch_okx,compare_venues,HOUR_MS
 from baseline import compress,features,trade,research
+from sequence import chronology_research
 from fusion import asof_context,same_cohort_ablation
 from gates import classify
 
@@ -94,6 +95,13 @@ class ResearchTests(unittest.TestCase):
         self.assertFalse(r["historical_oos_is_new_unseen_data"])
         self.assertFalse(r["fill_verified"])
         self.assertTrue(all(x["hold_unvalidated"] for x in r["trials"]))
+
+    def test_real_bar_proxy_sequence_is_not_confirmed_mss(self):
+        r=chronology_research(make_bars(540),"BTC")
+        self.assertEqual(r["schema"],"H092.chronology_proxy.v1")
+        self.assertEqual(r["trial_count"],36)
+        self.assertFalse(r["forward_alpha_verified"])
+        self.assertTrue(all(x["event_sequences_proxy_only"] for x in r["rows"]))
 
     def test_pit_future_release_and_stale_macro_not_used(self):
         entry="2026-11-12T12:00:00Z"
