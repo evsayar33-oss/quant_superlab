@@ -11,7 +11,7 @@ import json
 import math
 
 HOUR=3600000
-TF_MS={"1H":HOUR,"4H":4*HOUR}
+TF_MS={"5m":300000,"15m":900000,"1H":HOUR,"4H":4*HOUR,"1D":24*HOUR}
 KINDS={"SWING_HIGH","SWING_LOW","LIQ_SWEEP","MSS","BOS","OB_FORMED",
        "OB_TOUCH","FVG_FORMED","FVG_TOUCH","IFVG_CONFIRMED","FIB_POSITION"}
 
@@ -49,7 +49,7 @@ def segments(bars,tf):
     if start<len(bars):yield start,len(bars)
 
 
-def detect(bars,symbol,tf="1H",left=2,right=2,ob_lookback=8):
+def detect(bars,symbol,tf="1H",left=2,right=2,ob_lookback=8,source="OKX_CLOSED_OHLC"):
     if symbol not in ("BTC","ETH"):raise ValueError("unsupported symbol")
     if not 1<=left<=10 or not 1<=right<=10 or not 2<=ob_lookback<=30:
         raise ValueError("invalid research parameters")
@@ -157,6 +157,8 @@ def detect(bars,symbol,tf="1H",left=2,right=2,ob_lookback=8):
                                      {"range_high":hi[1],"range_low":lo[1],
                                       "high_pivot_bar":hi[0],"low_pivot_bar":lo[0],
                                       "midpoint":midpoint,"position":pos}))
+    for item in out:
+        item["source"]=source
     out.sort(key=lambda x:(x["observed_at_ms"],x["event_id"]))
     return {"schema":"H095.events.v1","symbol":symbol,"timeframe":tf,
             "definition":"CONFIRMED_PIVOT_CANDLE_RULES_RESEARCH_NOT_DISCRETIONARY_ICT",
