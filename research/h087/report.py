@@ -136,5 +136,28 @@ f"- **Yeni canlı ACCEPT = {t['new_live_accepts']}.** H087 hiçbir trading siste
 "- `H087_AUDIT.json`: araştırma ailesi, kaynak, karar, arena ve ICT durumları.",
 "- `H087_LIVE_STRESS.json`: 4h ileri kayıtları ve bağımlılık testleri.",
 ]
+h56_file=OUT/"H087_H056_POSTHOC.json"
+if h56_file.exists():
+    x=json.loads(h56_file.read_text())
+    lines += [
+        "",
+        "## Ek — H056 funding-carry kazanç görünüyor: rastlantı riski ve canlı yetki denetimi",
+        "",
+        f"- Kendi xsec işindeki ACCEPT: {x['local_xsec_accepted']}. Ancak merkezi registry H056 kararı: {x['central_registry_H056_verdict']}. Birleşik H054+H056 portföy kararı: {x['H054_mix_accepted']}.",
+        f"- BTC korelasyonu: {x['corr_with_BTC']:+.3f}, H054 bot korelasyonu: {x['corr_with_H054_bot']:+.3f}. Bu, muhtemel çeşitlendirme işareti olabilir; broker ile onaylanmış gerçek fonlama getirisi değildir.",
+        "- 2026 tamamlanmamış olduğundan, aşağıdaki **beş tam takvim yılı** (2021–2025) ile ek, sonradan yapılan şans testi uygulandı.",
+        "",
+        "| Kaynak maliyet senaryosu | Pozitif yıl / 5 | Yıllık işaret kontrolü tam p | En iyi yıl çıkarılınca 4 yıllık bileşik getiri |",
+        "|---|---:|---:|---:|",
+    ]
+    for name,z in x["year_block_sensitivity"].items():
+        lines.append(f"| {name} | {z['positive_years']}/5 | {z['one_sided_exact_sign_p']:.4f} | {pct(z['wealth_without_best_year'])} |")
+    lines += [
+        "",
+        "- Yıllık işaret testi, getirilerin büyüklüğünü değil yalnızca artı/eksi işaretini kullanır; bağımsız ve eşit olasılıklı yıllar varsayar. **n=5**, sonuç istatistiksel üstünlüğü kanıtlamak için yetersizdir.",
+        "- Geçmiş Binance verisindeki funding ile gerçekten işlem yapılabilecek Bitget kontrat fonlaması birebir aynı değildir. Delist, gerçek likidite, kaldıraç tasfiye ve sermaye maliyeti eksik kalabilir.",
+        "- Bu sonradan ek test bir 'yeni mühürlü holdout' değildir; H056'nın kârlı görünmesini temkinli yorumlamak için oluşturulmuş kontrol raporudur.",
+    ]
+
 (OUT/"H087_REPORT_TR.md").write_text("\n".join(lines)+"\n")
 print(f"H087 report created: {len(lines)} lines")
