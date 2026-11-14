@@ -11,6 +11,7 @@ HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE))
 from engine import Event, evaluate_recipe, load_recipes, validate_recipe
 from audit import audit, load_catalog, render_markdown
+from orchestrator import route, scan
 
 def ev(id,kind,tf,at,*,side="long",attrs=None,symbol="BTC",source="synthetic_fixture"):
     return {"event_id":id,"symbol":symbol,"kind":kind,"timeframe":tf,"side":side,
@@ -138,6 +139,34 @@ class H090Contracts(unittest.TestCase):
         c=load_catalog()
         c["capabilities"][0]["source"]="../../etc/passwd"
         with self.assertRaises(ValueError):audit(c)
+
+    def test_multi_strategy_opposing_signals_abstain(self):
+        base={"kind":"RESEARCH_SIGNAL_NOT_ORDER_NOT_BACKTEST","symbol":"BTC",
+              "entry_at_utc":"2026-11-01T03:00:00Z","event_ids":["s","m","o"]}
+        long={**base,"recipe_id":"long","side":"long"}
+        short={**base,"recipe_id":"short","side":"short"}
+        result=route([long,short])
+        self.assertEqual(result["accepted_research_intents"],[])
+        self.assertEqual(len(result["rejected_research_intents"]),2)
+        self.assertTrue(all(x["reason"]=="OPPOSING_SIGNALS_ABSTAIN"
+                            for x in result["rejected_research_intents"]))
+        self.assertEqual(result["executed_orders"],0)
+
+    def test_multi_strategy_risk_cap_and_duplicate_protection(self):
+        base={"kind":"RESEARCH_SIGNAL_NOT_ORDER_NOT_BACKTEST","symbol":"BTC",
+              "side":"long","entry_at_utc":"2026-11-01T03:00:00Z","event_ids":["a"]}
+        a={**base,"recipe_id":"r1"}
+        b={**base,"recipe_id":"r2"}
+        c={**base,"recipe_id":"r3"}
+        result=route([a,b,c],max_total_risk=0.01,
+                     max_symbol_risk=0.01,per_signal_risk=0.005)
+        self.assertEqual(len(result["accepted_research_intents"]),2)
+        self.assertEqual(len(result["rejected_research_intents"]),1)
+        self.assertAlmostEqual(result["total_risk_intent_fraction"],0.01)
+        with self.assertRaises(ValueError):route([a,a])
+        with self.assertRaises(ValueError):route([a],per_signal_risk=0.02,
+                                                  max_symbol_risk=0.01)
+        with self.assertRaises(ValueError):route([{**a,"kind":"LIVE_ORDER"}])
 
     def test_recipe_rejects_missing_condition_or_unknown_side(self):
         x=copy.deepcopy(self.recipes["H090_EQUITY_PIT_FUNDAMENTAL_OB"])
