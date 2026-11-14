@@ -11,7 +11,7 @@ sys.path.insert(0,str(ROOT/"research"/"h096"))
 from market import fetch as okx_fetch
 sys.path.insert(0,str(ROOT/"research"/"h097"))
 from funding import fetch as funding_fetch
-from venues import fetch as independent_fetch
+from venues import fetch as independent_fetch, VENUES, ProviderError
 from evidence import compare,event_concordance,evidence_gate,snapshot,cost_sensitivity
 
 def write(path,obj):
@@ -24,7 +24,7 @@ def run(out,pages=8):
     out.mkdir(parents=True,exist_ok=True)
     report={"schema":"H098.independent_evidence.v1","status":"RESEARCH_ONLY",
             "comparisons":{},"funding":{},"errors":{},"snapshots":{},
-            "sources":{},"cost_scenarios":{},
+            "sources":{},"cost_scenarios":{},"venue_health":{},
             "alpha_accepted":False,"h089_modified":False,"production_modified":False}
     valid=[];funding_ok=[];snaps=[]
     for symbol in ("BTC","ETH"):
@@ -50,7 +50,7 @@ def run(out,pages=8):
             except Exception as e:
                 report["errors"][f"{key}_okx"]={"type":type(e).__name__,"detail":str(e)[:180]}
                 continue
-            for venue in ("binance","bybit"):
+            for venue in VENUES:
                 k=f"{key}_{venue}"
                 try:
                     secondary=independent_fetch(venue,symbol,tf)
@@ -62,16 +62,23 @@ def run(out,pages=8):
                         events,detect(bars,symbol,tf)["events"])
                     report["comparisons"][k]=stats
                     valid.append(stats)
+                    report["venue_health"][k]={"status":stats["status"],"bars":len(bars),
+                                                "overlap":stats.get("overlap",0)}
                 except Exception as e:
+                    category=e.category if isinstance(e,ProviderError) else "UNEXPECTED_ERROR"
                     report["comparisons"][k]={"status":"NOT_VERIFIED_PROVIDER_ERROR",
                                                "error_type":type(e).__name__,
+                                               "error_category":category,
                                                "detail":str(e)[:180],
                                                "comparable":False}
+                    report["venue_health"][k]={"status":"UNAVAILABLE","category":category}
     for label,params in {"low":(4,2,2,0),"medium":(8,5,5,2),
                          "stress":(16,12,12,10)}.items():
         report["cost_scenarios"][label]=cost_sensitivity(
             100,101,"long",*params)
     report["gates"]=evidence_gate(valid,funding_ok,snaps)
+    report["independent_venue_status"]=("AVAILABLE" if report["gates"]["cross_venue_candle_comparisons"]>0
+                                          else "DEGRADED_NO_INDEPENDENT_VENUE")
     write(out/"summary.json",report)
     if report["errors"] or not snaps:
         raise SystemExit("H098_PRIMARY_SOURCE_INCOMPLETE")
