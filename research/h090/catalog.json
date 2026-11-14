@@ -1,0 +1,451 @@
+{
+  "schema": "H090.catalog.v1",
+  "stage": "ARCHITECTURE_AND_SYNTHETIC_CONTRACT_TESTS_ONLY",
+  "research_only": true,
+  "production_authorized": false,
+  "universe": [
+    "NQ",
+    "SPX",
+    "XAU",
+    "XAG",
+    "BTC",
+    "ETH"
+  ],
+  "timeframes": [
+    "M",
+    "W",
+    "D",
+    "H4",
+    "H1",
+    "M15",
+    "M5"
+  ],
+  "families": [
+    {
+      "id": "ict_structure",
+      "kind": "technical",
+      "examples": [
+        "OB",
+        "BB",
+        "MB",
+        "RB",
+        "PB",
+        "VB",
+        "FVG",
+        "iFVG",
+        "MSS",
+        "BOS",
+        "LIQ",
+        "FIB_50"
+      ]
+    },
+    {
+      "id": "trend_momentum",
+      "kind": "technical",
+      "examples": [
+        "ts_momentum",
+        "cross_section_momentum",
+        "breakout"
+      ]
+    },
+    {
+      "id": "mean_reversion",
+      "kind": "technical",
+      "examples": [
+        "RSI",
+        "IBS",
+        "swing_reversion"
+      ]
+    },
+    {
+      "id": "volatility",
+      "kind": "risk",
+      "examples": [
+        "vol_target",
+        "vol_breakout",
+        "dispersion"
+      ]
+    },
+    {
+      "id": "order_flow",
+      "kind": "microstructure",
+      "examples": [
+        "volume_imbalance",
+        "book_depth",
+        "dealer_flow"
+      ]
+    },
+    {
+      "id": "fundamental_value_quality",
+      "kind": "fundamental",
+      "examples": [
+        "value_ep",
+        "quality_roe",
+        "fscore",
+        "earnings_growth"
+      ]
+    },
+    {
+      "id": "macro_rates_fx",
+      "kind": "macro",
+      "examples": [
+        "DXY",
+        "real_yields",
+        "rate_surprise",
+        "liquidity"
+      ]
+    },
+    {
+      "id": "carry_funding",
+      "kind": "carry",
+      "examples": [
+        "funding_carry",
+        "basis",
+        "roll_yield"
+      ]
+    },
+    {
+      "id": "cross_asset_regime",
+      "kind": "macro",
+      "examples": [
+        "risk_on_off",
+        "correlation_break",
+        "vol_regime"
+      ]
+    },
+    {
+      "id": "event_news",
+      "kind": "event",
+      "examples": [
+        "CPI",
+        "FOMC",
+        "NFP",
+        "earnings"
+      ]
+    },
+    {
+      "id": "stat_arb",
+      "kind": "relative_value",
+      "examples": [
+        "pairs_zscore",
+        "cointegration"
+      ]
+    },
+    {
+      "id": "portfolio_combination",
+      "kind": "portfolio",
+      "examples": [
+        "ensemble",
+        "regime_switch",
+        "risk_budget",
+        "conflict_resolution"
+      ]
+    }
+  ],
+  "event_types": [
+    "FIB_POSITION",
+    "LIQ_SWEEP",
+    "LIQ_NOT_TAKEN",
+    "STRUCTURE_BREAK",
+    "MSS_CONFIRM",
+    "OB_TOUCH",
+    "FVG_TOUCH",
+    "IFVG_CONFIRM",
+    "BB_TOUCH",
+    "MB_TOUCH",
+    "TREND_BREAK",
+    "BLOCK_TARGET",
+    "LIQ_TARGET",
+    "FVG_TARGET",
+    "FUNDAMENTAL_AVAILABLE",
+    "MACRO_AVAILABLE",
+    "RISK_REGIME"
+  ],
+  "capabilities": [
+    {
+      "id": "ict_zones_htf",
+      "layer": "technical",
+      "source": "ict/ictlab/context.py",
+      "evidence": "build_zones",
+      "status": "existing_partial",
+      "gap": "Zones M/W/D/H4 projected to H1; independent entries on every timeframe not wired"
+    },
+    {
+      "id": "ict_fvg_ob_msb",
+      "layer": "technical",
+      "source": "ict/ictlab/features.py",
+      "evidence": "detect_all",
+      "status": "existing_partial",
+      "gap": "FVG/OB/MSB exist; causal LIQ->MSS/iFVG distinction and event-specific TP not implemented"
+    },
+    {
+      "id": "fib_multi_tf",
+      "layer": "technical",
+      "source": "ict/ictlab/context.py",
+      "evidence": "rule_filters",
+      "status": "existing_partial",
+      "gap": "PD is prior weekly 0.5; M/W/D/H4/H1 independent range anchors and alignment absent"
+    },
+    {
+      "id": "liq_ordering",
+      "layer": "event",
+      "source": "ict/ictlab/features.py",
+      "evidence": "liquidity_sweeps",
+      "status": "existing_partial",
+      "gap": "Monthly sweep state exists, timestamped sweep-first entry grammar absent"
+    },
+    {
+      "id": "entry_tp_binding",
+      "layer": "execution",
+      "source": "ict/ictlab/simulate.py",
+      "evidence": "simulate",
+      "status": "existing_partial",
+      "gap": "Fixed RR exits, not actual opposite block/liquidity/FVG target resolver"
+    },
+    {
+      "id": "fundamental_pit",
+      "layer": "fundamental",
+      "source": "lab/fundamentals.py",
+      "evidence": "def load",
+      "status": "existing_partial",
+      "gap": "PIT equities fundamentals not integrated in ICT/mega causally"
+    },
+    {
+      "id": "fundamental_factors",
+      "layer": "fundamental",
+      "source": "lab/strategies/fundamental_factors.py",
+      "evidence": "def derive",
+      "status": "existing_partial",
+      "gap": "Value/quality/momentum composites exist, not systematic ICT cross"
+    },
+    {
+      "id": "macro_synthesis",
+      "layer": "macro",
+      "source": "lab/synthesis.py",
+      "evidence": "def load_us_daily",
+      "status": "existing_partial",
+      "gap": "Macro portfolio synthesis separate from intraday ICT event ledger"
+    },
+    {
+      "id": "mega_fundamentals",
+      "layer": "combination",
+      "source": "lab/mega.py",
+      "evidence": "with_fundamentals=False",
+      "status": "existing_partial",
+      "gap": "Mega explicitly does not request fundamentals; technical+fundamental combined search not covered"
+    },
+    {
+      "id": "trade_execution",
+      "layer": "execution",
+      "source": "lab/trade_engine.py",
+      "evidence": "class ExitCfg",
+      "status": "existing_partial",
+      "gap": "Conservative generic orders, lacks event-type target and signal provenance"
+    },
+    {
+      "id": "h089_evidence",
+      "layer": "monitoring",
+      "source": "research/h089/forward.py",
+      "evidence": "def collect",
+      "status": "existing_partial",
+      "gap": "Separate H063-H065 prospective paper watch; not an H090 prospective trial"
+    },
+    {
+      "id": "full_mtf_entries",
+      "layer": "entry",
+      "source": null,
+      "evidence": null,
+      "status": "missing",
+      "gap": "Systematic OB/LIQ entry comparison at M/W/D/H4/H1/M15/M5"
+    },
+    {
+      "id": "technical_fundamental_event_join",
+      "layer": "combination",
+      "source": null,
+      "evidence": null,
+      "status": "missing",
+      "gap": "Point-in-time joined fundamentals + technical trigger with measured incremental lift"
+    },
+    {
+      "id": "technical_macro_event_join",
+      "layer": "combination",
+      "source": null,
+      "evidence": null,
+      "status": "missing",
+      "gap": "Time release-aware macro joins and technical entry family comparison"
+    },
+    {
+      "id": "type_bound_targets",
+      "layer": "execution",
+      "source": null,
+      "evidence": null,
+      "status": "missing",
+      "gap": "Entry family target event resolution with invalidation and partial execution"
+    },
+    {
+      "id": "research_family_coverage_ci",
+      "layer": "governance",
+      "source": "research/h090/audit.py",
+      "evidence": "def audit",
+      "status": "foundation_only",
+      "gap": "Declarative coverage report, not automatic semantic completeness proof"
+    }
+  ],
+  "research_requirements": [
+    {
+      "id": "base_ob_all_tf",
+      "family": "ict_structure",
+      "capabilities": [
+        "ict_zones_htf",
+        "full_mtf_entries"
+      ],
+      "goal": "OB independently across timeframes, entry and exit matched",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "base_liq_all_tf",
+      "family": "ict_structure",
+      "capabilities": [
+        "liq_ordering",
+        "full_mtf_entries"
+      ],
+      "goal": "LIQ independently across timeframes",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "fib_all_tf_05",
+      "family": "ict_structure",
+      "capabilities": [
+        "fib_multi_tf"
+      ],
+      "goal": "Anchored dealing range 0.5 above/below at each timeframe",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "liq_then_mss_then_ob",
+      "family": "ict_structure",
+      "capabilities": [
+        "liq_ordering",
+        "ict_fvg_ob_msb",
+        "type_bound_targets"
+      ],
+      "goal": "LIQ sweep precedes structure confirmation and entry; target opposing LIQ",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "no_sweep_block_fvg",
+      "family": "ict_structure",
+      "capabilities": [
+        "liq_ordering",
+        "ict_fvg_ob_msb",
+        "type_bound_targets"
+      ],
+      "goal": "Explicit unswept window, OB + FVG confluence, block/FVG target",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "ifvg_after_structure",
+      "family": "ict_structure",
+      "capabilities": [
+        "ict_fvg_ob_msb",
+        "type_bound_targets"
+      ],
+      "goal": "iFVG after MSS; causal event state",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "daily_block_priority",
+      "family": "ict_structure",
+      "capabilities": [
+        "ict_zones_htf",
+        "full_mtf_entries"
+      ],
+      "goal": "Daily blocks vs other TF with conflict tie-break",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "entry_family_target_matrix",
+      "family": "ict_structure",
+      "capabilities": [
+        "type_bound_targets"
+      ],
+      "goal": "OB/LIQ/FVG entry by own and cross targets vs fixed R",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "technical_fundamental_equity",
+      "family": "fundamental_value_quality",
+      "capabilities": [
+        "fundamental_pit",
+        "technical_fundamental_event_join"
+      ],
+      "goal": "US/BIST release-available equities fundamental and technical signal ablation",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "technical_macro_crypto",
+      "family": "macro_rates_fx",
+      "capabilities": [
+        "technical_macro_event_join"
+      ],
+      "goal": "Crypto technical+funding+macro availability comparison",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "technical_macro_metals",
+      "family": "macro_rates_fx",
+      "capabilities": [
+        "technical_macro_event_join"
+      ],
+      "goal": "Gold/silver technical + USD/real-yields macro join",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "orderflow_microstructure",
+      "family": "order_flow",
+      "capabilities": [
+        "type_bound_targets"
+      ],
+      "goal": "True L2/footprint event reproducibility, no OHLC proxy assertions",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "ensemble_conflict_risk",
+      "family": "portfolio_combination",
+      "capabilities": [
+        "trade_execution",
+        "technical_macro_event_join"
+      ],
+      "goal": "Overlap conflict and portfolio risk budget across strategies",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "funding_carry_pit",
+      "family": "carry_funding",
+      "capabilities": [
+        "h089_evidence"
+      ],
+      "goal": "Historical settlement + executable hedges + capacity and fill costs",
+      "state": "UNTESTED"
+    },
+    {
+      "id": "robust_forward_oos",
+      "family": "portfolio_combination",
+      "capabilities": [
+        "h089_evidence"
+      ],
+      "goal": "Nested walk-forward and frozen prospective H090 portfolio; never reuse H089 as H090 win",
+      "state": "UNTESTED"
+    }
+  ],
+  "research_protocol": {
+    "discovery": "time-sorted nested train folds, purged/embargoed by holding horizon",
+    "selection": "Within training, rank by cost-net R expectancy confidence bound; win rate diagnostic only",
+    "model_comparison": "Ablation technical only / fundamental only / macro only / pairwise / complete model on identical trades and time cuts",
+    "costs": "market-specific true fee/spread/funding/impact; unknown remains UNKNOWN",
+    "validation": "frozen untouched independent holdout, cross-asset regimes, negative controls, block bootstrap, reality-check for multiplicity, time machine",
+    "publication": "No ACCEPT or live instruction from H090 without independent fresh evaluation and existing registry gates",
+    "missing_data": "NOT_TESTABLE, never success or zero PnL",
+    "audit": "Every research requirement has explicit completion state and supporting immutable evidence pointer; not inferred from catalog existence"
+  }
+}
