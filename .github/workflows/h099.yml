@@ -1,0 +1,52 @@
+name: H099 — Independent trade-proxy replication (read-only)
+on:
+  push:
+    branches: [research/h099-independent-trade-replication]
+    paths: ['research/h099/**', '.github/workflows/h099.yml']
+  pull_request:
+    paths: ['research/h099/**', '.github/workflows/h099.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m unittest discover -s research/h095 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h096 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h098 -p 'test_*.py' -v
+      - run: python -m unittest discover -s research/h099 -p 'test_*.py' -v
+  independent_evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python research/h099/run.py --pages 8 --out results/h099
+      - name: Enforce research-only and no accepted alpha
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("results/h099/summary.json")
+          if p.exists():
+              d=json.loads(p.read_text())
+              assert not d["alpha_accepted"]
+              assert not d["h089_modified"]
+              assert not d["production_modified"]
+              assert not d["real_execution_verified"]
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h099-independent-trade-proxies-${{ github.run_id }}
+          path: results/h099/
+          retention-days: 90
+          if-no-files-found: warn
