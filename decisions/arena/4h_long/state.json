@@ -11,7 +11,7 @@
   "A0009": "flat",
   "A0010": "flat",
   "A0011": "flat",
-  "A0012": "long",
+  "A0012": "flat",
   "A0013": "flat",
   "A0014": "flat",
   "A0015": "flat",
@@ -41,7 +41,7 @@
   "A0039": "flat",
   "A0040": "flat",
   "A0041": "flat",
-  "A0042": "long",
+  "A0042": "flat",
   "A0043": "flat",
   "A0044": "flat",
   "A0045": "flat",
@@ -109,19 +109,6 @@
   "A0089": 0.2
  },
  "last_summary": "2026-10-20",
- "last_bar": "2026-11-14 04:00:00",
- "updated_at": "2026-11-14T11:37:00+00:00",
- "h052": {
-  "BTC/USDT": 0.0,
-  "ETH/USDT": 0.0
- },
- "book_status": {
-  "A": "inside",
-  "B": "inside",
-  "B2": "inside",
-  "C": "inside",
-  "C2": "inside",
-  "K1": "below",
-  "K2": "below"
- }
+ "last_bar": "2026-11-14 12:00:00",
+ "updated_at": "2026-11-14T18:04:46+00:00"
 }
