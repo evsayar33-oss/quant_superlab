@@ -15,7 +15,7 @@ BASE=Path(__file__).resolve().parent
 ROOT=BASE.parents[1]
 sys.path.insert(0,str(ROOT/"research"/"h091"))
 sys.path.insert(0,str(ROOT/"research"/"h094"))
-from market import fetch_okx,save_snapshot
+from market import fetch_okx,fetch_bitget_recent,compare_venues,save_snapshot
 from baseline import research
 from gates import classify,coverage
 
@@ -28,8 +28,16 @@ def run(symbols:list[str],out:Path,pages:int=12)->dict:
             raw=fetch_okx(symbol,pages=pages)
             path=save_snapshot(raw,out/"market")
             source_manifest.append(path)
+            verification={"status":"NOT_TESTABLE_SECOND_VENUE"}
+            try:
+                secondary=fetch_bitget_recent(symbol)
+                verification=compare_venues(raw["bars"],secondary["bars"])
+                verification["bitget_bar_count"]=secondary["bar_count"]
+            except Exception as secondary_error:
+                verification["reason"]=type(secondary_error).__name__+": "+str(secondary_error)[:180]
             result=research(raw["bars"],symbol)
-            result["independent_price_source_count"]=raw["independent_price_source_count"]
+            result["independent_cross_venue_check"]=verification
+            result["independent_price_source_count"]=(2 if verification.get("independent_venue_overlap_verified") and verification.get("matched_closed_bars",0)>=24 else 1)
             result["input_sha256"]=path["sha256"]
             result["input_gaps"]=len(raw["gaps"])
             result["market_retrieved_at_utc"]=raw["retrieved_at_utc"]
@@ -51,6 +59,7 @@ def run(symbols:list[str],out:Path,pages:int=12)->dict:
     report["real_input_verified"]=len(records)>0
     report["research_complete"]=False
     report["real_strategy_proof_complete"]=False
+    report["independent_price_bar_comparisons"]={v["symbol"]:v.get("independent_cross_venue_check") for v in records}
     (out/"program.json").write_text(json.dumps(report,indent=2,sort_keys=True,default=list)+"\n")
     summary=["# H091–H094 — Independent Research Evidence", "",
              "**Exploratory only: NO live orders, NO ACCEPT, NO new proven alpha.**","",
