@@ -85,11 +85,11 @@ audit:
     seed: 87091
     do_not_backfill_future_data: true
   historical_family:
-    require_source_timestamp_and_ntrials
+    require_source_timestamp_and_ntrials: true
     indicators: [n_trials, accepted, gated, last_data_bar, dates, testability, limitations]
     prohibit_adding_return_series_without_reproducible_date_alignment: true
   placebo_ict:
-    use_all_available_per_asset_placebo_summary_results
+    use_all_available_per_asset_placebo_summary_results: true
     do_not_claim_statistical_significance_from_only_two_placebos: true
 publication:
   outputs:
