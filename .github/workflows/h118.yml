@@ -31,6 +31,27 @@ jobs:
       - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
       - name: Test accounting, causality, no duplicate fills and state continuity
         run: python -m unittest discover -s research/h118 -p 'test_*.py' -v
+  market_smoke:
+    if: github.event_name == 'pull_request'
+    needs: offline_regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3' 'ccxt>=4.5,<5'
+      - name: Read only OKX actual closed 4h bars and timestamped bid ask
+        run: |
+          python - <<'PY'
+          import time
+          from research.h118.engine import market_snapshot,MODELS,SYMBOLS
+          s=market_snapshot(int(time.time()*1000))
+          assert set(s["target_weights"])==set(MODELS)
+          assert set(s["quotes"])==set(SYMBOLS)
+          print("OKX spot access verified, closed candle",s["last_candle_ms"])
+          PY
   paper:
     if: github.event_name != 'pull_request'
     needs: offline_regressions
