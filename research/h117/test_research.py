@@ -5,8 +5,7 @@ import sys
 import numpy as np
 import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent))
-from research.h117.research import MODELS, build, spaced_rebalance, wide_band, mix
-from research.h116 import research as h116
+from research import MODELS, build, spaced_rebalance, wide_band, mix, h116
 
 
 def synthetic(n=1850):
