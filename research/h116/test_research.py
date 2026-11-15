@@ -40,7 +40,7 @@ class H116Tests(unittest.TestCase):
             pd.testing.assert_frame_equal(w[n].iloc[:-1], future[n].iloc[:-1])
 
     def test_turnover_cost_is_monotonic(self):
-        o, c = synthetic()
+        o, c = synthetic(2400)
         w = make_weights(c)["h054_mom2"]
         low = simulate(o, w, 15)
         high = simulate(o, w, 45)
@@ -50,7 +50,10 @@ class H116Tests(unittest.TestCase):
         idx = pd.date_range("2020-12-30", periods=25, freq="4h")
         syms = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT"]
         o = pd.DataFrame(100., index=idx, columns=syms)
-        o.iloc[-4:, :] = [100., 110., 110., 110.]
+        o.loc[idx[-4], "BTCUSDT"] = 100.0
+        o.loc[idx[-3], "BTCUSDT"] = 110.0
+        o.loc[idx[-2], "BTCUSDT"] = 110.0
+        o.loc[idx[-1], "BTCUSDT"] = 110.0
         w = pd.DataFrame(0., index=idx, columns=syms)
         w.iloc[-5, 0] = 1.0
         out = simulate(o, w, 0)
