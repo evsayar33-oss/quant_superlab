@@ -1,0 +1,126 @@
+{
+  "accounts": {
+    "mom2_baseline": {
+      "cash": 10000.0,
+      "nav": 10000.0,
+      "qty": {
+        "BNBUSDT": 0.0,
+        "BTCUSDT": 0.0,
+        "ETHUSDT": 0.0,
+        "SOLUSDT": 0.0
+      },
+      "trades": 0,
+      "turnover_usdt": 0.0
+    },
+    "regime_7d_band20": {
+      "cash": 10000.0,
+      "nav": 10000.0,
+      "qty": {
+        "BNBUSDT": 0.0,
+        "BTCUSDT": 0.0,
+        "ETHUSDT": 0.0,
+        "SOLUSDT": 0.0
+      },
+      "trades": 0,
+      "turnover_usdt": 0.0
+    },
+    "regime_band30": {
+      "cash": 10000.0,
+      "nav": 10000.0,
+      "qty": {
+        "BNBUSDT": 0.0,
+        "BTCUSDT": 0.0,
+        "ETHUSDT": 0.0,
+        "SOLUSDT": 0.0
+      },
+      "trades": 0,
+      "turnover_usdt": 0.0
+    }
+  },
+  "asset_symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT",
+    "BNBUSDT"
+  ],
+  "cash_initial": 10000.0,
+  "ends_ms": 1802546877617,
+  "fee_bps_per_side": 15.0,
+  "finalized": false,
+  "last_candle_ms": 1794744000000,
+  "last_tick_ms": 1794770877617,
+  "market": "okx",
+  "models": [
+    "mom2_baseline",
+    "regime_band30",
+    "regime_7d_band20"
+  ],
+  "outages": [],
+  "schema": "h118.prospective_spot.v1",
+  "started_ms": 1794770877617,
+  "ticks": [
+    {
+      "candle_ms": 1794744000000,
+      "candle_sha256": {
+        "BNBUSDT": "29b76b365962a0a5dddfe6f6bc0c96cdf9cb8163ac9cf6771b8b6abb95d36473",
+        "BTCUSDT": "972bb1b381f2854e2734681a5c457ae3be3d87774084cdcfd502f8c0249f95c2",
+        "ETHUSDT": "d39931ee73f496333ff57a08872fbbbe7020eba3781705649355da8d8de86c5f",
+        "SOLUSDT": "83bea8d2f77e5085e14c3125cc788cd9160bb4410d862e8087bcb96552d4705c"
+      },
+      "nav": {
+        "mom2_baseline": 10000.0,
+        "regime_7d_band20": 10000.0,
+        "regime_band30": 10000.0
+      },
+      "observed_ms": 1794770877617,
+      "paper_fills": {
+        "mom2_baseline": [],
+        "regime_7d_band20": [],
+        "regime_band30": []
+      },
+      "quote_snapshots": {
+        "BNBUSDT": {
+          "ask": 591.52,
+          "bid": 591.47,
+          "quote_ms": 1794770886473
+        },
+        "BTCUSDT": {
+          "ask": 64936.9,
+          "bid": 64936.8,
+          "quote_ms": 1794770881962
+        },
+        "ETHUSDT": {
+          "ask": 1823.26,
+          "bid": 1823.25,
+          "quote_ms": 1794770883171
+        },
+        "SOLUSDT": {
+          "ask": 71.6,
+          "bid": 71.59,
+          "quote_ms": 1794770885075
+        }
+      },
+      "target_weights": {
+        "mom2_baseline": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        },
+        "regime_7d_band20": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        },
+        "regime_band30": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        }
+      },
+      "venue": "okx"
+    }
+  ]
+}
