@@ -1,0 +1,28 @@
+name: Vectorbt research parity (manual, non-production)
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "lab/adapters/vbt_research.py"
+      - "dashboard/vectorbt_research.py"
+      - "tests/test_vbt_research.py"
+      - "requirements-research-ui.txt"
+      - ".github/workflows/vbt_research.yml"
+permissions:
+  contents: read
+jobs:
+  offline-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install optional research requirements
+        run: pip install -r requirements-research-ui.txt
+      - name: Compile Python modules
+        run: python -m compileall -q lab/adapters/vbt_research.py dashboard/vectorbt_research.py tests/test_vbt_research.py
+      - name: Execute isolated regression and actual vectorbt parity tests
+        run: python -m pytest -q tests/test_vbt_research.py
