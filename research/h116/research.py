@@ -83,7 +83,10 @@ def load_prices(start: str = START) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
             absent = len(span.difference(frame.index))
             raise ValueError(f"{symbol}:GAP_OR_MISALIGNED_BARS:{absent}")
         raw[symbol] = frame
-        digest = hashlib.sha256(pd.util.hash_pandas_object(frame, index=True).values.tobytes()).hexdigest()
+        # Canonical CSV bytes, not pandas-internal hash (which varies by library version).
+        stable = frame.to_csv(index=True, float_format="%.12f",
+                              date_format="%Y-%m-%dT%H:%M:%S", lineterminator="\n")
+        digest = hashlib.sha256(stable.encode("utf-8")).hexdigest()
         metadata[symbol] = {"first": str(frame.index[0]), "last": str(frame.index[-1]),
                             "bars": len(frame), "sha256_ohlcv": digest}
     opens = pd.DataFrame({s: raw[s]["Open"] for s in SYMBOLS}, index=span)
