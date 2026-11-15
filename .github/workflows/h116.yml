@@ -9,7 +9,7 @@ permissions:
   contents: read
 concurrency:
   group: h116-research
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   regression:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install numpy pandas requests
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
       - run: python -m unittest discover -s research/h116 -p 'test_*.py' -v
   evidence:
     needs: regression
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install numpy pandas requests
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
       - name: Acquire actual archived Binance 4h bars and evaluate fixed strategies
         run: python research/h116/research.py --out results/h116
       - name: Evidence structural gates (not profitability gates)
