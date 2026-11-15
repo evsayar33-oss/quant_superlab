@@ -1,0 +1,106 @@
+name: H118 — 90-day three-strategy prospective PAPER
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Start once on main; then automatic 4-hour ticks'
+        required: true
+        type: choice
+        options: [start, tick]
+        default: start
+  schedule:
+    - cron: '20 0,4,8,12,16,20 * * *'
+  pull_request:
+    paths:
+      - 'research/h118/**'
+      - '.github/workflows/h118.yml'
+permissions:
+  contents: write
+concurrency:
+  group: h118-prospective-global
+  cancel-in-progress: false
+jobs:
+  offline_regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
+      - name: Test accounting, causality, no duplicate fills and state continuity
+        run: python -m unittest discover -s research/h118 -p 'test_*.py' -v
+  market_smoke:
+    if: github.event_name == 'pull_request'
+    needs: offline_regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3' 'ccxt>=4.5,<5'
+      - name: Read only OKX actual closed 4h bars and timestamped bid ask
+        run: |
+          python - <<'PY'
+          import time
+          from research.h118.engine import market_snapshot,MODELS,SYMBOLS
+          s=market_snapshot(int(time.time()*1000))
+          assert set(s["target_weights"])==set(MODELS)
+          assert set(s["quotes"])==set(SYMBOLS)
+          print("OKX spot access verified, closed candle",s["last_candle_ms"])
+          PY
+  paper:
+    if: github.event_name != 'pull_request'
+    needs: offline_regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3' 'ccxt>=4.5,<5'
+      - name: Restore state-only branch; never modify main
+        run: |
+          mkdir -p results/h118
+          if git ls-remote --exit-code origin refs/heads/paper/h118-90d >/dev/null 2>&1; then
+            git fetch origin refs/heads/paper/h118-90d:refs/remotes/origin/paper/h118-90d
+            git show origin/paper/h118-90d:state.json > results/h118/state.json
+          fi
+      - name: Observe closed candles and fresh quotes; no broker orders
+        env:
+          MODE: ${{ github.event_name == 'schedule' && 'tick' || inputs.mode }}
+        run: python research/h118/engine.py --mode "$MODE" --state results/h118/state.json --out results/h118/report
+      - name: Persist observation ledger on dedicated state branch
+        run: |
+          if [ ! -s results/h118/state.json ]; then
+            echo "No active study; intentional scheduled no-op"
+            exit 0
+          fi
+          cp results/h118/state.json /tmp/h118-state.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git ls-remote --exit-code origin refs/heads/paper/h118-90d >/dev/null 2>&1; then
+            git checkout -B paper/h118-90d origin/paper/h118-90d
+          else
+            git checkout --orphan paper/h118-90d
+            git rm -rf . >/dev/null
+          fi
+          cp /tmp/h118-state.json state.json
+          git add state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "H118 prospective read-only paper observation"
+            git push origin HEAD:refs/heads/paper/h118-90d
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h118-paper-observation-${{ github.run_id }}
+          path: results/h118/report/
+          retention-days: 90
+          if-no-files-found: warn
