@@ -113,8 +113,9 @@ def market_snapshot(now_ms: int) -> dict:
     if now_ms - (last + BAR_MS) > MAX_CANDLE_AGE_MS:
         raise ValueError("STALE_CLOSED_CANDLE")
     closes = pd.DataFrame({s: frames[s]["Close"] for s in SYMBOLS})
+    research_weights = h117.build(closes)
     return {"last_candle_ms": last, "quotes": quotes,
-            "target_weights": {model: {s: float(h117.build(closes)[model].iloc[-1][s])
+            "target_weights": {model: {s: float(research_weights[model].iloc[-1][s])
                                        for s in SYMBOLS} for model in MODELS},
             "candle_sha256": source_sha, "venue": MARKET}
 
