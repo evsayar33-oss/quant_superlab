@@ -1,0 +1,56 @@
+name: H116 — 4H crypto spot profit discovery
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/h116/**'
+      - '.github/workflows/h116.yml'
+permissions:
+  contents: read
+concurrency:
+  group: h116-research
+  cancel-in-progress: true
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
+      - run: python -m unittest discover -s research/h116 -p 'test_*.py' -v
+  evidence:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
+      - name: Acquire actual archived Binance 4h bars and evaluate fixed strategies
+        run: python research/h116/research.py --out results/h116
+      - name: Evidence structural gates (not profitability gates)
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d = Path('results/h116')
+          s = json.loads((d/'summary.json').read_text())
+          assert s['model_count'] == 13 and s['scenario_count'] == 39
+          assert not s['alpha_accepted'] and not s['production_bot_modified']
+          assert len(s['history']) == 4 and all(x['bars'] > 9000 for x in s['history'].values())
+          assert (d/'matrix.csv').stat().st_size > 5000
+          assert len(list(d.glob('nav_*_15bps.csv'))) == 13
+          print('H116 full real-data comparison completed; alpha_accepted stays false')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h116-spot-discovery
+          path: results/h116/
+          retention-days: 90
+          if-no-files-found: warn

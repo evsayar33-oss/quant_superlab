@@ -1,0 +1,55 @@
+name: H117 — Spot turnover and net profit durability
+on:
+  pull_request:
+    paths:
+      - 'research/h117/**'
+      - '.github/workflows/h117.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: h117-research
+  cancel-in-progress: true
+jobs:
+  regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
+      - run: python -m unittest discover -s research/h117 -p 'test_*.py' -v
+  evidence:
+    needs: regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
+      - name: 15 strategies vs 3 explicit transaction-cost scenarios
+        run: python research/h117/research.py --out results/h117
+      - name: Structural evidence only (never force a profit winner)
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("results/h117")
+          s=json.loads((p/"summary.json").read_text())
+          assert s["model_count"] == 15 and s["scenarios"] == 45
+          assert not s["alpha_accepted"] and not s["future_profit_verified"]
+          assert len(s["source_data"]) == 4
+          assert (p/"matrix.csv").stat().st_size > 3000
+          print("H117 full source-backed historical matrix complete")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h117-spot-turnover-discovery
+          path: results/h117/
+          retention-days: 90
+          if-no-files-found: warn
