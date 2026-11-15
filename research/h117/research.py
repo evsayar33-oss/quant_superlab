@@ -13,7 +13,15 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from research.h116 import research as h116
+import importlib.util
+
+# The unittest discovery path contains another module called research.py;
+# import the H116 reference by exact file path to avoid shadowing.
+_spec = importlib.util.spec_from_file_location("h116_reference", ROOT / "research/h116/research.py")
+if _spec is None or _spec.loader is None:
+    raise ImportError("MISSING_H116_REFERENCE")
+h116 = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(h116)
 
 MODELS = (
     "mom2_baseline", "regime_raw",
