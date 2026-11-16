@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-15T21:05:17+00:00",
- "data_end": "2026-11-15 16:00:00",
+ "updated_at": "2026-11-16T06:21:36+00:00",
+ "data_end": "2026-11-16 00:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -13,25 +13,8 @@
   "halflife_days": 30,
   "top_k": 5
  },
- "cash": 0.4,
+ "cash": 0.6,
  "picks": [
-  {
-   "id": "A0097",
-   "coin": "BTC/USDT",
-   "rule": "donchian_breakout",
-   "params": {
-    "entry": 100,
-    "exit": 10
-   },
-   "exit_id": 13,
-   "filter": "htf_week_sma10",
-   "confirm": null,
-   "side": "short",
-   "timeframe": "4h",
-   "weight": 0.2,
-   "position": "flat",
-   "regime": "volatile"
-  },
   {
    "id": "A0001",
    "coin": "ARB/USDT",
@@ -45,7 +28,23 @@
    "confirm": null,
    "side": "short",
    "timeframe": "4h",
-   "weight": 0.1,
+   "weight": 0.08,
+   "position": "flat",
+   "regime": "trend_down"
+  },
+  {
+   "id": "A0002",
+   "coin": "ARB/USDT",
+   "rule": "smc_bos",
+   "params": {
+    "k": 2
+   },
+   "exit_id": 13,
+   "filter": "low_vol",
+   "confirm": null,
+   "side": "short",
+   "timeframe": "4h",
+   "weight": 0.08,
    "position": "flat",
    "regime": "trend_down"
   },
@@ -62,7 +61,7 @@
    "confirm": null,
    "side": "short",
    "timeframe": "4h",
-   "weight": 0.1,
+   "weight": 0.08,
    "position": "flat",
    "regime": "trend_down"
   },
@@ -79,7 +78,7 @@
    "confirm": null,
    "side": "short",
    "timeframe": "4h",
-   "weight": 0.1,
+   "weight": 0.08,
    "position": "flat",
    "regime": "trend_down"
   },
@@ -100,18 +99,18 @@
    "confirm": null,
    "side": "short",
    "timeframe": "4h",
-   "weight": 0.1,
+   "weight": 0.08,
    "position": "flat",
    "regime": "trend_down"
   }
  ],
  "forward": {
   "since": "2026-10-20",
-  "days": 25,
+  "days": 26,
   "ret": 0.0448,
-  "sharpe": 3.481,
-  "ew_ret": 0.0142,
-  "ew_sharpe": 1.195,
+  "sharpe": 3.459,
+  "ew_ret": 0.0147,
+  "ew_sharpe": 1.228,
   "max_dd": -0.0508
  },
  "regimes": {
@@ -204,9 +203,9 @@
    }
   },
   "LINK/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-14 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-15 20:00:00",
    "share": {
     "range": 0.707,
     "trend_up": 0.066,
@@ -221,7 +220,7 @@
    "share": {
     "range": 0.693,
     "trend_up": 0.053,
-    "trend_down": 0.09,
+    "trend_down": 0.091,
     "volatile": 0.164
    }
   },
@@ -274,7 +273,7 @@
    "now_tr": "Yatay",
    "since": "2026-10-27 00:00:00",
    "share": {
-    "range": 0.687,
+    "range": 0.688,
     "trend_up": 0.062,
     "trend_down": 0.078,
     "volatile": 0.172
@@ -342,7 +341,7 @@
    "share": {
     "range": 0.685,
     "trend_up": 0.047,
-    "trend_down": 0.07,
+    "trend_down": 0.071,
     "volatile": 0.197
    }
   },
@@ -364,7 +363,7 @@
    "share": {
     "range": 0.715,
     "trend_up": 0.043,
-    "trend_down": 0.07,
+    "trend_down": 0.071,
     "volatile": 0.172
    }
   },
@@ -431,7 +430,7 @@
     "range": 0.711,
     "trend_up": 0.065,
     "trend_down": 0.054,
-    "volatile": 0.169
+    "volatile": 0.17
    }
   },
   "OP/USDT": {
@@ -452,7 +451,7 @@
    "share": {
     "range": 0.641,
     "trend_up": 0.048,
-    "trend_down": 0.094,
+    "trend_down": 0.095,
     "volatile": 0.216
    }
   },
@@ -468,11 +467,11 @@
    }
   },
   "SUI/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-14 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-15 20:00:00",
    "share": {
-    "range": 0.703,
+    "range": 0.704,
     "trend_up": 0.05,
     "trend_down": 0.072,
     "volatile": 0.175
@@ -483,7 +482,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-10 20:00:00",
    "share": {
-    "range": 0.741,
+    "range": 0.742,
     "trend_up": 0.036,
     "trend_down": 0.075,
     "volatile": 0.148
