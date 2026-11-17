@@ -4,8 +4,23 @@ from pathlib import Path
 import sys
 import numpy as np
 import pandas as pd
-sys.path.insert(0, str(Path(__file__).parent))
-from research import MODELS, build, spaced_rebalance, wide_band, mix, h116
+import importlib.util
+
+# Load the adjacent H117 implementation by file path: the repository also has
+# a top-level research/ directory, so importing 'research' is ambiguous.
+_spec = importlib.util.spec_from_file_location(
+    "h117_under_test", Path(__file__).with_name("research.py")
+)
+if _spec is None or _spec.loader is None:
+    raise ImportError("MISSING_H117_IMPLEMENTATION")
+_module = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_module)
+MODELS = _module.MODELS
+build = _module.build
+spaced_rebalance = _module.spaced_rebalance
+wide_band = _module.wide_band
+mix = _module.mix
+h116 = _module.h116
 
 
 def synthetic(n=1850):
