@@ -47,8 +47,8 @@
   "ends_ms": 1802546877617,
   "fee_bps_per_side": 15.0,
   "finalized": false,
-  "last_candle_ms": 1794859200000,
-  "last_tick_ms": 1794884210285,
+  "last_candle_ms": 1794902400000,
+  "last_tick_ms": 1794922138877,
   "market": "okx",
   "models": [
     "mom2_baseline",
@@ -350,6 +350,69 @@
           "ask": 71.75,
           "bid": 71.74,
           "quote_ms": 1794884218173
+        }
+      },
+      "target_weights": {
+        "mom2_baseline": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        },
+        "regime_7d_band20": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        },
+        "regime_band30": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        }
+      },
+      "venue": "okx"
+    },
+    {
+      "candle_ms": 1794902400000,
+      "candle_sha256": {
+        "BNBUSDT": "b2a4147bfeb901714303087c8b93c6f52c3cb21901dceceeca07da1cd152040d",
+        "BTCUSDT": "d99da14508fc62d541a4fa99811f7baaf9bb4b23abc85feb102df7e693257442",
+        "ETHUSDT": "ac643bf28c0269d1e34537c2b5c76f3abd0972ee6dfcdef78c28e292272c0f2e",
+        "SOLUSDT": "b6931e793a976744a707d5c43d26b2b38549921c3c4100416f1068e4d0d864ba"
+      },
+      "nav": {
+        "mom2_baseline": 10000.0,
+        "regime_7d_band20": 10000.0,
+        "regime_band30": 10000.0
+      },
+      "observed_ms": 1794922138877,
+      "paper_fills": {
+        "mom2_baseline": [],
+        "regime_7d_band20": [],
+        "regime_band30": []
+      },
+      "quote_snapshots": {
+        "BNBUSDT": {
+          "ask": 593.47,
+          "bid": 593.42,
+          "quote_ms": 1794922147464
+        },
+        "BTCUSDT": {
+          "ask": 65124.8,
+          "bid": 65124.7,
+          "quote_ms": 1794922142467
+        },
+        "ETHUSDT": {
+          "ask": 1827.15,
+          "bid": 1827.14,
+          "quote_ms": 1794922143671
+        },
+        "SOLUSDT": {
+          "ask": 74.09,
+          "bid": 74.08,
+          "quote_ms": 1794922145861
         }
       },
       "target_weights": {
