@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-16T18:31:00+00:00",
- "data_end": "2026-11-16 12:00:00",
+ "updated_at": "2026-11-17T03:02:02+00:00",
+ "data_end": "2026-11-16 20:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -108,9 +108,9 @@
   "since": "2026-10-20",
   "days": 26,
   "ret": -0.0026,
-  "sharpe": -3.135,
-  "ew_ret": -0.0144,
-  "ew_sharpe": -10.37,
+  "sharpe": -3.115,
+  "ew_ret": -0.0141,
+  "ew_sharpe": -10.092,
   "max_dd": -0.0048
  },
  "regimes": {
@@ -133,7 +133,7 @@
     "range": 0.653,
     "trend_up": 0.092,
     "trend_down": 0.07,
-    "volatile": 0.185
+    "volatile": 0.186
    }
   },
   "SOL/USDT": {
@@ -209,7 +209,7 @@
    "share": {
     "range": 0.707,
     "trend_up": 0.066,
-    "trend_down": 0.055,
+    "trend_down": 0.056,
     "volatile": 0.171
    }
   },
@@ -218,7 +218,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-14 20:00:00",
    "share": {
-    "range": 0.693,
+    "range": 0.692,
     "trend_up": 0.053,
     "trend_down": 0.091,
     "volatile": 0.164
@@ -269,13 +269,13 @@
    }
   },
   "NEAR/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-10-27 00:00:00",
+   "now": "trend_down",
+   "now_tr": "Trend ↓",
+   "since": "2026-11-16 16:00:00",
    "share": {
     "range": 0.688,
     "trend_up": 0.062,
-    "trend_down": 0.078,
+    "trend_down": 0.079,
     "volatile": 0.172
    }
   },
@@ -284,7 +284,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-14 20:00:00",
    "share": {
-    "range": 0.692,
+    "range": 0.691,
     "trend_up": 0.045,
     "trend_down": 0.08,
     "volatile": 0.184
@@ -308,7 +308,7 @@
    "share": {
     "range": 0.688,
     "trend_up": 0.061,
-    "trend_down": 0.075,
+    "trend_down": 0.076,
     "volatile": 0.175
    }
   },
@@ -352,7 +352,7 @@
    "share": {
     "range": 0.689,
     "trend_up": 0.06,
-    "trend_down": 0.094,
+    "trend_down": 0.095,
     "volatile": 0.156
    }
   },
@@ -383,9 +383,9 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-14 16:00:00",
    "share": {
-    "range": 0.736,
+    "range": 0.735,
     "trend_up": 0.046,
-    "trend_down": 0.069,
+    "trend_down": 0.07,
     "volatile": 0.149
    }
   },
@@ -460,9 +460,9 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-14 20:00:00",
    "share": {
-    "range": 0.698,
+    "range": 0.697,
     "trend_up": 0.04,
-    "trend_down": 0.085,
+    "trend_down": 0.086,
     "volatile": 0.177
    }
   },
@@ -489,9 +489,9 @@
    }
   },
   "MINA/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-10-27 20:00:00",
+   "now": "trend_down",
+   "now_tr": "Trend ↓",
+   "since": "2026-11-16 20:00:00",
    "share": {
     "range": 0.73,
     "trend_up": 0.035,
