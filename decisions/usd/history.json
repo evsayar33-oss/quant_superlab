@@ -46,5 +46,13 @@
     "source_success_count": 7,
     "status": "PARTIAL",
     "usd_proxy_5d_pct": 1.6853
+  },
+  {
+    "nominal_2y_pct": 4.8,
+    "regime": "MARKET_CONFIGURATION_USD_SUPPORTIVE",
+    "run_utc": "2026-11-18T03:53:23.850172+00:00",
+    "source_success_count": 7,
+    "status": "PARTIAL",
+    "usd_proxy_5d_pct": 1.6853
   }
 ]
