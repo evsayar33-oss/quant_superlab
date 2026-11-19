@@ -296,7 +296,7 @@ def descriptive_asset_review(ledger):
             for c in ledger["calls"]:
                 if c["asset"] != asset:
                     continue
-                h = c["horizons"][horizon]
+                h = c["horizons"].get(horizon, {})
                 if h.get("status") != "GRADED":
                     continue
                 gross, reference = h.get("gross_return"), h.get("baseline_long_return")
