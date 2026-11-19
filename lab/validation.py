@@ -81,22 +81,30 @@ def block_bootstrap(r: pd.Series, n: int = 1000, block: int | None = None, seed:
         return {"p_sharpe_pos": None, "cagr_p05": None, "maxdd_p05": None}
     rng = np.random.default_rng(seed)
     T = len(x)
+    # Circular stationary block bootstrap: start uniformly over ALL
+    # observations, extend the current block with probability 1-1/block.
+    # This models alternative return paths; a permutation of the exact
+    # same trades CANNOT estimate terminal-return uncertainty.
+    p_restart = 1.0 / block
     srs, cg, dd = [], [], []
     for _ in range(n):
-        out = np.empty(T); i = 0
-        while i < T:
-            s = rng.integers(0, T - block)
-            L = min(rng.geometric(1 / block), T - i)
-            seg = x[s:s + L]
-            out[i:i + len(seg)] = seg
-            i += max(len(seg), 1)
+        out = np.empty(T)
+        source = int(rng.integers(0, T))
+        for i in range(T):
+            if i and rng.random() < p_restart:
+                source = int(rng.integers(0, T))
+            out[i] = x[source]
+            source = (source + 1) % T
         srs.append(out.mean() / out.std() * math.sqrt(metrics.ann()) if out.std() > 0 else 0)
         eq = np.cumprod(1 + out)
         cg.append(eq[-1] ** (metrics.ann() / T) - 1 if eq[-1] > 0 else -1)
-        dd.append((eq / np.maximum.accumulate(eq) - 1).min())
+        dd.append((eq / np.maximum.accumulate(np.r_[1., eq])[1:] - 1).min())
     return {"p_sharpe_pos": round(float(np.mean(np.array(srs) > 0)), 3),
             "cagr_p05": round(float(np.percentile(cg, 5)), 4),
-            "maxdd_p05": round(float(np.percentile(dd, 5)), 4)}
+            "maxdd_p05": round(float(np.percentile(dd, 5)), 4),
+            "method": "CIRCULAR_STATIONARY_RETURN_BLOCK_BOOTSTRAP",
+            "simulated_paths": n,
+            "is_hypothetical_not_broker_fills": True}
 
 
 def yearly_sharpe(r: pd.Series) -> dict:
