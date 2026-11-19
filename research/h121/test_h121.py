@@ -126,6 +126,36 @@ class H121Contracts(unittest.TestCase):
         self.assertEqual(parsed["fees_paid_raw_accounting"], 4)
         self.assertEqual(parsed["reported_total_change_pct"], -2.2)
 
+    def test_bid_ask_cost_telemetry_does_not_claim_fill_or_depth(self):
+        input_data = fixture()
+        report = h.parse_band30(input_data)
+        q = report["execution_quality"]
+        self.assertEqual(q["observed_top_of_book_quote_count"], 1)
+        self.assertGreater(q["observed_median_spread_bps"], 0)
+        self.assertEqual(q["observed_spread_p95_bps"], q["observed_median_spread_bps"])
+        self.assertIsNone(q["observed_max_quote_age_ms"])
+        self.assertEqual(q["quotes_without_displayed_depth"], 1)
+        self.assertFalse(q["broker_executed_fills_verified"])
+        self.assertFalse(q["order_size_market_impact_calibrated"])
+        mom = h.parse_mom2(input_data)
+        self.assertFalse(mom["contemporaneous_bid_ask_per_fill_available"])
+        self.assertFalse(mom["actual_orderbook_impact_or_queue_position_verified"])
+
+    def test_quote_telemetry_rejects_future_or_crossed_book(self):
+        data = fixture()
+        raw = json.loads(data[("band30","state.json")])
+        quote = raw["ticks"][0]["quotes"]["BTC/USDT"]
+        quote["received_ms"] = 1_000
+        quote["ts"] = 50_000
+        data[("band30","state.json")] = json.dumps(raw)
+        with self.assertRaisesRegex(ValueError, "UNRELIABLE_FUTURE"):
+            h.parse_band30(data)
+        quote["received_ms"] = quote["ts"] + 100
+        quote["bid"] = quote["ask"] + 1
+        data[("band30","state.json")] = json.dumps(raw)
+        with self.assertRaisesRegex(ValueError,"CROSSED_ORDERBOOK"):
+            h.parse_band30(data)
+
     def test_source_security_and_hash_chain(self):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d) / "events.jsonl"
