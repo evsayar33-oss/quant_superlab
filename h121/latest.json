@@ -1,15 +1,26 @@
 {
-  "alerts_pending": 0,
-  "asof_utc": "2026-11-19T18:56:30.565024+00:00",
+  "alerts_pending": 1,
+  "asof_utc": "2026-11-19T20:28:56.222987+00:00",
   "band30": {
     "end_utc": "2027-02-13T19:34:07.202000+00:00",
+    "execution_quality": {
+      "book_spread_is_not_total_fill_cost": true,
+      "broker_executed_fills_verified": false,
+      "full_orderbook_depth_or_queue_position_verified": false,
+      "observed_max_quote_age_ms": 1026,
+      "observed_median_spread_bps": 0.112,
+      "observed_spread_p95_bps": 1.394,
+      "observed_top_of_book_quote_count": 84,
+      "order_size_market_impact_calibrated": false,
+      "quotes_without_displayed_depth": 84
+    },
     "finalized": false,
     "gaps": 4,
     "initial_nominal_usdt": 10000,
-    "last_bar_utc": "2026-11-19T12:00:00+00:00",
-    "last_observed_utc": "2026-11-19T16:10:53.927000+00:00",
+    "last_bar_utc": "2026-11-19T16:00:00+00:00",
+    "last_observed_utc": "2026-11-19T20:10:55.431000+00:00",
     "missing_candles": 4,
-    "observations": 20,
+    "observations": 21,
     "outages": 4,
     "paper_nav": 10000.0,
     "paper_only": true,
@@ -20,8 +31,8 @@
   },
   "band30_delay_bars": 0,
   "book_isolation": "MOM2_MAIN_AND_BAND30_DISTINCT_NO_COMBINED_NAV",
-  "events_new": 0,
-  "events_total": 0,
+  "events_new": 1,
+  "events_total": 1,
   "h116_h117_not_independent_bitget_pnl": true,
   "live_trading_enabled": false,
   "method_limits": [
@@ -32,8 +43,11 @@
     "Missing bars must not be interpolated; absence of trades is not zero alpha"
   ],
   "mom2": {
+    "actual_orderbook_impact_or_queue_position_verified": false,
     "approved_paper": true,
+    "contemporaneous_bid_ask_per_fill_available": false,
     "equity_rows": 86,
+    "execution_price_basis": "LAST_CLOSE_PLUS_ASSUMED_FIXED_SLIPPAGE_AND_FEES",
     "fees_paid_raw_accounting": 4.392399999999999,
     "full_history_not_mom2_forward_pnl": true,
     "full_log_drawdown_from_peak_pct": -5.057,
@@ -53,18 +67,18 @@
       "ETH/USDT": 0.0
     }
   },
-  "mom2_delay_bars": 1,
+  "mom2_delay_bars": 2,
   "not_executable_pnl": true,
   "official_lab_accept": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h121.h054.paper_intelligence.v1",
   "source_commits": {
-    "band30": "cf8a34efe0e9c75b5c8274e00381edaaf86297d0",
+    "band30": "b0d846f47d73a7c1facfbf843034152e29502f8b",
     "mom2": "597f675e49e3e8c62c398ae34c0f3abadaf38c13"
   },
   "source_repo": "evsayar33-oss/h054_spot_bot",
   "source_sha256": {
-    "band30:state.json": "f11492c9dbeb5d08513269048ae2b9ea6668b1db6033ac43345d78d1234ce7e3",
+    "band30:state.json": "7a6190b00b6b55232939c619f37cf70f77234cf5b1ec952104e3ceab0d15e96d",
     "mom2:logs/equity.csv": "d437fd9114604476775de82be79e869f3a06f2e9b0e67c468741fbf9ff59360e",
     "mom2:logs/trades.csv": "81240d7334cee7058d51fadfcf21caf9ac7224513f0de7406295bb8dbce91914",
     "mom2:state/paper.json": "b70e22c86d6dd1fb47813e8b42b71223da273b5378e41a5da98d26ff1163b390",
