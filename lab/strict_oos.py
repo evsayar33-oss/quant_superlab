@@ -172,8 +172,14 @@ def nested_walk_forward(cand, panel, costs, stage1, runs, train_years=3.0,
         selected_bars.append(pd.Series(key, index=test_index))
         if isinstance(cand, CD.RuleCandidate) and not isinstance(trades, pd.DataFrame):
             raise ValueError("STRICT_OOS_MISSING_RULE_TRADE_LEDGER")
+        train_sr = cache[key][0].reindex(index[a:t0])
+        if train_sr.isna().any() or not np.isfinite(train_sr.to_numpy(dtype=float)).all():
+            raise ValueError("STRICT_OOS_TRAIN_SELECTION_MISSING_DATA")
+        is_sharpe = (float(train_sr.mean() / train_sr.std() * math.sqrt(ppy))
+                     if train_sr.std() > 0 else None)
         logs.append({
             "test_start": str(test_index[0]), "test_end": str(test_index[-1]),
+            "is_sharpe": round(is_sharpe, 3) if is_sharpe is not None else None,
             "train_start": str(index[a]), "train_end": str(index[t0-1]),
             "variant": key,
             "train_eligible_variants": len(set(available)),
