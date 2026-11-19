@@ -108,3 +108,9 @@ configurations enter the selection-related trial burden.
 Original diagnostic robustness tests remain available for research,
 but do not veto the actually tested stitched OOS policy when they
 were measured on a different last-selected model over all history.
+
+When history is too short even to form the first outer test fold,
+validation now records **WATCH / INSUFFICIENT_OOS_HISTORY_NO_FOLDS**
+rather than terminating the workflow or declaring a strategy unprofitable.
+No return, trade, or statistical significance is invented. A genuinely
+missing observation inside a test fold remains an error.
