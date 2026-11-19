@@ -1,0 +1,135 @@
+name: H119 — Autonomous Alpha Discovery, Validation Bridge and Telegram Milestones
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/h119.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '37 1,5,9,13,17,21 * * *'
+  pull_request:
+    paths:
+      - 'research/h119/**'
+      - '.github/workflows/h119.yml'
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: quant-superlab-h119-autonomous-alpha
+  cancel-in-progress: false
+jobs:
+  independent_regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Strict SHA continuity, evidence, multi-market economics and notification tests
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s research/h119 -p 'test_*.py' -v
+          python -m compileall -q research/h119
+  original_lab_core_regressions:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Existing validation.GATE and strategy parity prerequisites
+        run: |
+          python -m pip install -r requirements.txt
+          python tests/test_core.py
+  fetch_and_evaluate:
+    if: >-
+      github.event_name != 'pull_request' &&
+      github.ref == 'refs/heads/main'
+    needs: independent_regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Open isolated H119 SHA-evidence state, never write to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          BRANCH='research/h119-autonomous-evidence'
+          ROOT="$RUNNER_TEMP/h119-research-state"
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch --no-tags origin "$BRANCH"
+            git worktree add -b h119-state-worktree "$ROOT" FETCH_HEAD
+            for file in events.jsonl receipts.jsonl manifest.json; do
+              test -f "$ROOT/research_evidence/h119/$file" || {
+                echo "::error::H119_PREVIOUS_EVIDENCE_MISSING_$file"; exit 1;
+              }
+            done
+          else
+            git worktree add -b h119-state-worktree "$ROOT" HEAD
+            mkdir -p "$ROOT/research_evidence/h119"
+          fi
+          echo "H119_GIT_ROOT=$ROOT" >> "$GITHUB_ENV"
+          echo "H119_STATE_ROOT=$ROOT/research_evidence/h119" >> "$GITHUB_ENV"
+      - name: Verify pinned read-only V12/V13 BIST, US, crypto evidence; qualify proposals
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m research.h119.engine \
+            --state "$H119_STATE_ROOT" \
+            --registry decisions/registry.json \
+            --out results/h119/report
+          cat results/h119/report/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish complete reproducible research report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h119-autonomous-research-${{ github.run_id }}
+          path: results/h119/report/
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Persist SHA-linked research before any notification
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$H119_GIT_ROOT"
+          cp results/h119/report/report.json "$H119_STATE_ROOT/latest.json"
+          git -C "$ROOT" config user.name 'github-actions[bot]'
+          git -C "$ROOT" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$ROOT" add research_evidence/h119/
+          if git -C "$ROOT" diff --cached --quiet; then
+            echo 'H119_NO_NEW_EVIDENCE'
+          else
+            git -C "$ROOT" commit -m 'research(h119): pin and evaluate BIST/US/crypto evidence [skip ci]'
+            git -C "$ROOT" push origin HEAD:refs/heads/research/h119-autonomous-evidence
+          fi
+      - name: Deliver significant strategy milestones, or create GitHub Issue fallback
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m research.h119.notify --state "$H119_STATE_ROOT"
+      - name: Persist signed notification receipts, retry undelivered events on next poll
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$H119_GIT_ROOT"
+          git -C "$ROOT" add research_evidence/h119/receipts.jsonl
+          if git -C "$ROOT" diff --cached --quiet; then
+            echo 'H119_NO_DELIVERY_RECEIPT_CHANGE'
+          else
+            git -C "$ROOT" commit -m 'research(h119): signed delivered milestone receipt [skip ci]'
+            git -C "$ROOT" push origin HEAD:refs/heads/research/h119-autonomous-evidence
+          fi
