@@ -1,0 +1,133 @@
+name: H120 — Tier-1 Independent Intelligence Bridge
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/h120.yml'
+  workflow_dispatch:
+  schedule:
+    # Every six hours, independent of H119/Early Radar and Tier-1 producer.
+    - cron: '49 1,7,13,19 * * *'
+  pull_request:
+    paths:
+      - 'research/h120/**'
+      - '.github/workflows/h120.yml'
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: quant-superlab-h120-tier1-independent-evidence
+  cancel-in-progress: false
+jobs:
+  tier1_contract_tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Assert isolation, source integrity, multiple tests, no live promotion and delivery
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s research/h120 -p 'test_*.py' -v
+          python -m compileall -q research/h120
+  lab_guard_regressions:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original quant_superlab validation and bot parity tests
+        run: |
+          python -m pip install -r requirements.txt
+          python tests/test_core.py
+  evaluate_tier1_only:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: tier1_contract_tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Create independent append-only H120 evidence worktree (NEVER Tier-1 state or H119)
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/h120-tier1-evidence"
+          BRANCH=research/h120-tier1-evidence
+          if git ls-remote --exit-code --heads origin "refs/heads/$BRANCH" >/dev/null 2>&1; then
+            git fetch --no-tags origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"
+            git worktree add --detach "$ROOT" "refs/remotes/origin/$BRANCH"
+            for f in manifest.json events.jsonl receipts.jsonl; do
+              if [ ! -f "$ROOT/tier1_h120/$f" ]; then
+                echo "::error::Existing H120 evidence missing $f. Refusing data reset."
+                exit 1
+              fi
+            done
+          else
+            git worktree add --detach "$ROOT" HEAD
+            git -C "$ROOT" checkout --orphan "$BRANCH"
+            git -C "$ROOT" rm -rf . >/dev/null || true
+            mkdir -p "$ROOT/tier1_h120"
+          fi
+          echo "H120_WORKTREE=$ROOT" >> "$GITHUB_ENV"
+          echo "H120_STATE=$ROOT/tier1_h120" >> "$GITHUB_ENV"
+      - name: Inspect Tier-1 only — pinned independent audit and official sealed research outcomes
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m research.h120.engine --state "$H120_STATE"
+      - name: Persist Tier-1 source SHA, event history and report BEFORE delivery
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$H120_WORKTREE"
+          git -C "$ROOT" config user.name github-actions\[bot\]
+          git -C "$ROOT" config user.email 41898282+github-actions\[bot\]@users.noreply.github.com
+          git -C "$ROOT" add tier1_h120
+          if ! git -C "$ROOT" diff --cached --quiet; then
+            git -C "$ROOT" commit -m 'research(h120): pin Tier-1 independent evidence [skip ci]'
+            git -C "$ROOT" push origin HEAD:refs/heads/research/h120-tier1-evidence
+          fi
+      - name: Notify only sealed decisions, rigorously qualified leads or material audit outages
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m research.h120.notify --state "$H120_STATE"
+      - name: Commit delivery receipts only after Telegram or assigned Issue acknowledgement
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$H120_WORKTREE"
+          git -C "$ROOT" add tier1_h120/receipts.jsonl tier1_h120/latest.json
+          if ! git -C "$ROOT" diff --cached --quiet; then
+            git -C "$ROOT" commit -m 'research(h120): confirmed Tier-1 notice receipt [skip ci]'
+            git -C "$ROOT" push origin HEAD:refs/heads/research/h120-tier1-evidence
+          fi
+      - name: Retain current Tier-1 report as independent CI artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: h120-tier1-audit-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/h120-tier1-evidence/tier1_h120/latest.json
+          retention-days: 90
+          if-no-files-found: warn
