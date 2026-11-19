@@ -1,0 +1,28 @@
+{
+  "accepted": {
+    "H052": {
+      "accepted_at": "2026-10-17T17:53:48+00:00",
+      "dsr": 0.956,
+      "live_degraded": false,
+      "oos_cagr": 0.1855,
+      "strategy": "core_dual_trend_vt"
+    },
+    "H054": {
+      "accepted_at": "2026-10-17T18:34:11+00:00",
+      "dsr": 0.965,
+      "live_degraded": false,
+      "oos_cagr": 0.2022,
+      "strategy": "core_dual_trend_vt_band"
+    }
+  },
+  "research_only": true,
+  "schema": "QS.h119.autonomous_alpha.v1",
+  "source_commits": {
+    "crypto": "287bbfc4b7002f0b021ef4396fbd7d8a985555cf",
+    "equity": "66401c7e032a625680b4528e63d8df7fbae16297",
+    "patterns": "13d099704cf1a3356b1adb4a2ecdec5787d2a6fc"
+  },
+  "source_count": 3,
+  "updated_utc": "2026-11-19T14:03:47.330384+00:00",
+  "writes_lab_registry": false
+}

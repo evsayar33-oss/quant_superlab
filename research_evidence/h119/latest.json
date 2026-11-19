@@ -1,0 +1,58 @@
+{
+  "asof_utc": "2026-11-19T14:03:47.330384+00:00",
+  "limitations": [
+    "H119 never changes hypotheses/registry.yaml or decisions/registry.json",
+    "upstream event patterns are not a deployable backtest until native data/DSR/PBO/Reality Check pass",
+    "upstream quote marks and source costs are not real exchange fills",
+    "historical PIT membership, liquidity and all contract costs are unverified",
+    "registered proposal is NOT quant_superlab ACCEPT"
+  ],
+  "markets": {
+    "BIST": {
+      "costed_research_candidates": 0,
+      "forward_trials_frozen": 0,
+      "future_test_decisions": 0,
+      "matured_first_seen_horizon_counts": {
+        "1": 0,
+        "10": 0,
+        "3": 0,
+        "5": 0
+      },
+      "source_reported_variants": 64,
+      "v12_pre_move_observations": 23
+    },
+    "CRYPTO_PERPETUAL": {
+      "asof_first_seen_observations": 0,
+      "costed_research_candidates": 0,
+      "forward_trials_frozen": 0,
+      "future_test_decisions": 0,
+      "source_age_minutes": 1.002,
+      "source_reported_variants": 92,
+      "source_status": "FRESH_V8_RESEARCH_OBSERVATIONS"
+    },
+    "US": {
+      "costed_research_candidates": 0,
+      "forward_trials_frozen": 0,
+      "future_test_decisions": 0,
+      "matured_first_seen_horizon_counts": {
+        "1": 0,
+        "10": 0,
+        "3": 0,
+        "5": 0
+      },
+      "source_reported_variants": 64,
+      "v12_pre_move_observations": 20
+    }
+  },
+  "new_hypotheses_or_milestones": 0,
+  "new_lab_accepts": 0,
+  "notifications_waiting_delivery": 1,
+  "schema": "QS.h119.autonomous_alpha.v1",
+  "source_commits": {
+    "crypto": "287bbfc4b7002f0b021ef4396fbd7d8a985555cf",
+    "equity": "66401c7e032a625680b4528e63d8df7fbae16297",
+    "patterns": "13d099704cf1a3356b1adb4a2ecdec5787d2a6fc"
+  },
+  "status": "RESEARCH_ONLY_NO_NEW_OFFICIAL_LAB_APPROVAL",
+  "total_evidence_events": 1
+}
