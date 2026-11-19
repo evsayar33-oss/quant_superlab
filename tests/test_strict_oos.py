@@ -115,6 +115,22 @@ class StrictWalkForwardTests(unittest.TestCase):
         base["oos_selection_provenance"]["fold_execution_verified"]=True
         self.assertNotEqual(validation.verdict(base)[0],"ACCEPT")
 
+    def test_monte_carlo_separates_new_path_risk_from_permutation(self):
+        from lab import robustness as rb
+        values = np.random.default_rng(19).normal(.0005, .011, 140)
+        block = validation.block_bootstrap(pd.Series(values), n=200, block=5, seed=99)
+        self.assertEqual(block["method"], "CIRCULAR_STATIONARY_RETURN_BLOCK_BOOTSTRAP")
+        self.assertEqual(block["simulated_paths"], 200)
+        self.assertGreater(block["cagr_p05"], -1.01)
+        self.assertLess(block["cagr_p05"], 1.0)
+        self.assertLess(block["maxdd_p05"], 0.0)
+        ledger = pd.DataFrame({"ret": [.04,-.03,.02,-.01,.03,-.02,.04,-.01,.02,-.03],
+                               "weight": [1.] * 10})
+        shuffle = rb.mc_trade_shuffle(ledger, n=200, seed=99)
+        self.assertEqual(shuffle["method"],"TRADE_ORDER_PERMUTATION_DRAWDOWN_ONLY")
+        self.assertTrue(shuffle["terminal_wealth_order_invariant"])
+        self.assertAlmostEqual(shuffle["final_p05"],shuffle["final_median"],places=3)
+
     def test_rule_needs_genuine_fold_trades_and_robustness(self):
         base = {
             "oos":{"years":4.0,"max_dd":-.10},
