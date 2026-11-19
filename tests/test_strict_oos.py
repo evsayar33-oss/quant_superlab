@@ -95,6 +95,34 @@ class StrictWalkForwardTests(unittest.TestCase):
         # An inherited trade is not itself a reason to reject the policy
         # when actual model-transition turnover was charged.
 
+    def test_contiguous_same_model_trade_crosses_reporting_fold_without_rejection(self):
+        idx, p, first, cache, _ = make_case()
+        seq = np.linspace(.01, .02, len(idx))
+        def make_row(values, trades=None):
+            return (pd.Series(values, index=idx),
+                    pd.Series(0.0, index=idx),
+                    pd.DataFrame(trades or []))
+        trade = {"entry": idx[14], "exit": idx[16], "ret": .08}
+        records = {
+            "A": make_row(seq),
+            "B": make_row(-seq),
+            "A_exit2": make_row(seq * 2.0, [trade]),
+            "B_exit2": make_row(-seq * 2.0),
+        }
+        def fake_run(c, panel, variants, costs):
+            return {v.key: records[v.key] for v in variants}, {}
+        with patch.object(CD, "run_all", side_effect=fake_run):
+            out = strict_oos.nested_walk_forward(
+                FakeRule(), p, Costs(.001, .0005), first,
+                {k: records[k] for k in ("A", "B")},
+                train_years=1, test_months=6, warm=0, ppy=10)
+        self.assertGreaterEqual(len(out["folds"]), 2)
+        self.assertTrue(all(row["variant"] == "A_exit2" for row in out["folds"]))
+        self.assertEqual(len(out["trades"]), 1)
+        self.assertEqual(out["cross_boundary_trades"], 0)
+        self.assertTrue(out["fold_execution_verified"])
+        self.assertEqual(out["folds"][1]["completed_fold_trades"], 1)
+
     def test_actual_turnover_is_charged_at_strategy_handoff(self):
         _, p, first, data, mock_run = make_case()
         with patch.object(CD, "run_all", side_effect=mock_run):
