@@ -58,7 +58,7 @@
   "A0056": "flat",
   "A0057": "flat",
   "A0058": "flat",
-  "A0059": "short",
+  "A0059": "flat",
   "A0060": "flat",
   "A0061": "flat",
   "A0062": "flat",
@@ -112,6 +112,15 @@
   "A0035": 0.08
  },
  "last_summary": "2026-11-17",
- "last_bar": "2026-11-18 20:00:00",
- "updated_at": "2026-11-19T01:59:36+00:00"
+ "last_bar": "2026-11-19 08:00:00",
+ "updated_at": "2026-11-19T13:04:46+00:00",
+ "book_status": {
+  "A": "inside",
+  "B": "inside",
+  "B2": "inside",
+  "C": "inside",
+  "C2": "inside",
+  "K1": "below",
+  "K2": "below"
+ }
 }
