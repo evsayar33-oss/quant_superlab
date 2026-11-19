@@ -237,9 +237,15 @@ def validate_source(evidence, when):
             raise ValueError("H120_FUTURE_OBSERVATION")
         if utc(c["publication_utc"]) > utc(c["observed_utc"]):
             raise ValueError("H120_PUBLICATION_AFTER_FIRST_SEEN")
-        for h in HORIZONS:
-            if not isinstance(c.get("horizons", {}).get(h), dict):
-                raise ValueError("H120_MISSING_FORECAST_HORIZON")
+        # The source auditor emits only *observed* horizon records.
+        # Pending/stale/unpriceable rows can have one or zero horizons:
+        # absence means MISSING, NEVER an invented grade or a hard crash.
+        horizon_data = c.get("horizons")
+        if not isinstance(horizon_data, dict):
+            raise ValueError("H120_INVALID_FORECAST_HORIZONS")
+        for h, details in horizon_data.items():
+            if h not in HORIZONS or not isinstance(details, dict):
+                raise ValueError("H120_UNEXPECTED_FORECAST_HORIZON")
         if c.get("entry_allowed") not in (True, False):
             raise ValueError("H120_MISSING_ENTRY_PERMISSION")
     return observed
