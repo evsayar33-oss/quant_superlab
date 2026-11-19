@@ -169,6 +169,35 @@ class StrictWalkForwardTests(unittest.TestCase):
         self.assertAlmostEqual(out["oos"].loc[day],
                                entries["A_exit2"][0].loc[day],places=8)
 
+    def test_no_data_for_outer_fold_is_inconclusive_not_pipeline_failure(self):
+        idx, p, first, cache, _ = make_case()
+        out = strict_oos.nested_walk_forward(
+            FakeRule(), p, Costs(), first,
+            {k: cache[k] for k in ("A", "B")},
+            train_years=3, test_months=6, warm=0, ppy=10)
+        self.assertEqual(out["folds"], [])
+        self.assertFalse(out["complete"])
+        self.assertEqual(out["missing_test_bars"], 0)
+        # Even an otherwise positive-looking set of metrics cannot turn
+        # an empty OOS evaluation into ACCEPT or a strategy-failure claim.
+        report = {
+            "oos":{"years":4, "max_dd":-.1},
+            "gate_sharpe":1.2,"gate_sharpe_basis":"raw",
+            "dsr":.97,"n_trials":1,
+            "bootstrap":{"p_sharpe_pos":.99},
+            "yearly_sharpe":{"2022":1,"2023":1,"2024":1,"2025":1},
+            "stress_2x_cost":{"sharpe":1.2},"benchmark":{"sharpe":0},
+            "pbo":None,"reality_check_p":None,
+            "kind":"strategy","oos_selection_provenance":{
+                "train_only_seeds":True,"independent_fold_count":0,
+                "fold_transition_accounting_complete":False,
+                "test_return_gaps":0,
+            },
+        }
+        verdict, reasons = validation.verdict(report)
+        self.assertEqual(verdict,"WATCH")
+        self.assertIn("INSUFFICIENT_OOS_HISTORY_NO_FOLDS", reasons)
+
     def test_all_missing_folds_fail_closed(self):
         _,p,first,data,_ = make_case()
         with patch.object(CD,"run_all",return_value=({},{"A_exit2":"failed"})):
