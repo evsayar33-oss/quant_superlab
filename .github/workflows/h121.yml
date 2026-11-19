@@ -1,0 +1,127 @@
+name: H121 — H054 MOM2 + Regime Band-30 isolated PAPER intelligence
+on:
+  pull_request:
+    paths:
+      - 'research/h121/**'
+      - 'research/bridge_guard.py'
+      - '.github/workflows/h121.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/h121/**'
+      - 'research/bridge_guard.py'
+      - '.github/workflows/h121.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '32 2,8,14,20 * * *'
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: quant-superlab-h121-h054-readonly
+  cancel-in-progress: false
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: H121 source and journal regression, no strategy mutation
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s research/h121 -p 'test_*.py' -v
+          python -m compileall -q research/h121 research/bridge_guard.py
+  lab_core_regression:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          python -m pip install -r requirements.txt
+          python tests/test_core.py
+  source_observer:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare private H121 evidence worktree inside Superlab only
+        shell: bash
+        run: |
+          set -euo pipefail
+          BRANCH='research/h121-h054-evidence'
+          ROOT="$RUNNER_TEMP/h121-state"
+          if git ls-remote --exit-code --heads origin "refs/heads/$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"
+            git worktree add --detach "$ROOT" "refs/remotes/origin/$BRANCH"
+            for file in manifest.json latest.json events.jsonl receipts.jsonl; do
+              if [ ! -f "$ROOT/h121/$file" ]; then
+                echo "::error::Previously published H121 state file absent: $file"
+                exit 1
+              fi
+            done
+          else
+            git worktree add --detach "$ROOT" HEAD
+            git -C "$ROOT" checkout --orphan "$BRANCH"
+            git -C "$ROOT" rm -rf . >/dev/null
+            mkdir -p "$ROOT/h121"
+          fi
+          echo "H121_ROOT=$ROOT" >> "$GITHUB_ENV"
+          echo "H121_STATE=$ROOT/h121" >> "$GITHUB_ENV"
+      - name: Audit two distinct source-paper books by immutable commit SHA
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m research.h121.engine --state "$H121_STATE"
+      - name: Publish SHA-linked evidence BEFORE attempting to notify
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C "$H121_ROOT" config user.name 'github-actions[bot]'
+          git -C "$H121_ROOT" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$H121_ROOT" add h121
+          if ! git -C "$H121_ROOT" diff --cached --quiet; then
+            git -C "$H121_ROOT" commit -m 'research(h121): independent paper evidence [skip ci]'
+            git -C "$H121_ROOT" push origin HEAD:refs/heads/research/h121-h054-evidence
+          fi
+      - name: Notify newly meaningful PAPER evidence only
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python -c "from research.bridge_guard import notify_main; notify_main('QS.h121.h054.paper_intelligence.v1')" --state "$H121_STATE"
+      - name: Publish successful delivery receipts separately
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C "$H121_ROOT" add h121/receipts.jsonl h121/latest.json
+          if ! git -C "$H121_ROOT" diff --cached --quiet; then
+            git -C "$H121_ROOT" commit -m 'research(h121): acknowledged notifications [skip ci]'
+            git -C "$H121_ROOT" push origin HEAD:refs/heads/research/h121-h054-evidence
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: h121-h054-paper-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/h121-state/h121/latest.json
+          retention-days: 90
+          if-no-files-found: warn
