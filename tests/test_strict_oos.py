@@ -98,16 +98,18 @@ class StrictWalkForwardTests(unittest.TestCase):
     def test_contiguous_same_model_trade_crosses_reporting_fold_without_rejection(self):
         idx, p, first, cache, _ = make_case()
         seq = np.linspace(.01, .02, len(idx))
+        noisy = seq + .006 * np.sin(np.arange(len(idx)))
+        stable = .022 + .0003 * np.sin(np.arange(len(idx)))
         def make_row(values, trades=None):
             return (pd.Series(values, index=idx),
                     pd.Series(0.0, index=idx),
                     pd.DataFrame(trades or []))
         trade = {"entry": idx[14], "exit": idx[16], "ret": .08}
         records = {
-            "A": make_row(seq),
-            "B": make_row(-seq),
-            "A_exit2": make_row(seq * 2.0, [trade]),
-            "B_exit2": make_row(-seq * 2.0),
+            "A": make_row(noisy),
+            "B": make_row(-noisy),
+            "A_exit2": make_row(stable, [trade]),
+            "B_exit2": make_row(-stable),
         }
         def fake_run(c, panel, variants, costs):
             return {v.key: records[v.key] for v in variants}, {}
