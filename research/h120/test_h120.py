@@ -128,6 +128,19 @@ class TestTier1OnlyBridge(unittest.TestCase):
         _, e = h.evaluate(base, {}, T)
         self.assertEqual(len(e), 0)
 
+    def test_source_can_omit_unobserved_horizon_without_false_grades(self):
+        e = raw_audit()
+        e["ledger"]["calls"][0]["horizons"] = {"4": {"status": "PENDING_PRICE"}}
+        e["ledger"]["calls"][1]["horizons"] = {}
+        result, notices = h.evaluate(e, {}, T)
+        self.assertEqual(notices, [])
+        self.assertEqual(result["grades"]["24"]["observations"], 7)
+        self.assertTrue(all(not d["selection_allowed"]
+                            for d in result["descriptive_asset_diagnostics"]))
+        e["ledger"]["calls"][1]["horizons"] = {"12": {"status": "GRADED"}}
+        with self.assertRaisesRegex(ValueError, "UNEXPECTED_FORECAST_HORIZON"):
+            h.evaluate(e, {}, T)
+
     def test_future_and_stale_source_fails_closed(self):
         e = raw_audit()
         e["ledger"]["calls"][0]["publication_utc"] = "2026-11-19T12:00:00+00:00"
