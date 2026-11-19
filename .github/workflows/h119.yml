@@ -78,6 +78,8 @@ jobs:
           echo "H119_GIT_ROOT=$ROOT" >> "$GITHUB_ENV"
           echo "H119_STATE_ROOT=$ROOT/research_evidence/h119" >> "$GITHUB_ENV"
       - name: Verify pinned read-only V12/V13 BIST, US, crypto evidence; qualify proposals
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
