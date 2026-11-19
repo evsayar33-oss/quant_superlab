@@ -435,6 +435,9 @@ def run(state_path, fetch=http_text, current=None):
     evidence = fetch_evidence(old_manifest.get("source_commits", {}), fetch)
     report, candidates = evaluate(evidence, old_manifest, now)
     events = append_ledger(root / "events.jsonl", candidates)
+    # An empty but present journal is a valid evidence baseline. Without
+    # this marker, a quiet first run would look like lost history on poll 2.
+    (root / "events.jsonl").touch(exist_ok=True)
     receipts_path = root / "receipts.jsonl"
     receipts_path.touch(exist_ok=True)
     receipts = read_ledger(receipts_path)
