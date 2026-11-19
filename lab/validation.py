@@ -121,6 +121,15 @@ def verdict(rep: dict) -> tuple[str, list[str]]:
             ok = False
             why.append(msg)
     g = GATE
+    # Never promote an incomplete or globally-selected historical sweep.
+    proof = rep.get("oos_selection_provenance", {})
+    check(proof.get("train_only_seeds") is True
+          and proof.get("independent_fold_count", 0) >= 1,
+          "OOS folds lack train-only candidate provenance")
+    check(proof.get("test_return_gaps", 1) == 0,
+          "missing observations in stitched OOS")
+    check(proof.get("fold_execution_verified") is True,
+          "fold boundary trades/model-switch execution costs not verified")
     main_sr = rep["gate_sharpe"]
     check(o["years"] >= g["min_oos_years"], f"OOS too short ({o['years']}y < {g['min_oos_years']}y)")
     check(rep["dsr"] >= g["min_dsr"], f"DSR {rep['dsr']} < {g['min_dsr']} (luck not excluded after {rep['n_trials']} trials)")
@@ -134,19 +143,31 @@ def verdict(rep: dict) -> tuple[str, list[str]]:
     check(frac >= g["min_pos_year_frac"], f"only {frac:.0%} of OOS years positive")
     check(rep["stress_2x_cost"]["sharpe"] > rep["benchmark"].get("sharpe", 0),
           "with 2x costs it does not beat the equal-weight benchmark")
-    if rep["pbo"] is not None:
-        check(rep["pbo"] <= g["max_pbo"], f"PBO {rep['pbo']} > {g['max_pbo']} (variant selection is overfit)")
-    if rep.get("reality_check_p") is not None:
-        check(rep["reality_check_p"] <= g["max_reality_check_p"],
-              f"Reality Check p {rep['reality_check_p']} > {g['max_reality_check_p']} (best variant may be data-mined)")
+    if rep["n_trials"] > 1:
+        check(rep["pbo"] is not None and rep["pbo"] <= g["max_pbo"],
+              f"PBO missing or > {g['max_pbo']} for multiple trials")
+        check(rep.get("reality_check_p") is not None
+              and rep["reality_check_p"] <= g["max_reality_check_p"],
+              f"Reality Check p missing or > {g['max_reality_check_p']}")
+    elif rep["pbo"] is not None:
+        check(rep["pbo"] <= g["max_pbo"], "PBO above gate")
     ts = rep.get("trade_stats") or {}
-    if "n_trades" in ts:
-        check(ts["n_trades"] >= g["min_trades"], f"only {ts['n_trades']} OOS trades (< {g['min_trades']})")
+    if rep.get("kind") == "rule":
+        check("n_trades" in ts and ts["n_trades"] >= g["min_trades"],
+              f"only {ts.get('n_trades', 'UNKNOWN')} genuine fold-closed OOS trades (< {g['min_trades']})")
+        check(rep.get("robustness_studies_requested") is True,
+              "mandatory rule robustness study not executed")
     rob = rep.get("robustness", {})
     d = rob.get("delay") or {}
+    if rep.get("kind") == "rule":
+        check(d.get("retained") is not None,
+              "rule delay robustness missing")
     if d.get("retained") is not None:
         check(d["retained"] >= g["min_delay_retained"], f"1-bar delay keeps only {d['retained']:.0%} of Sharpe (latency-fragile)")
     re_ = rob.get("random_entry") or {}
+    if rep.get("kind") == "rule":
+        check(re_.get("p_value") is not None,
+              "random-entry comparison missing")
     if re_.get("p_value") is not None:
         check(re_["p_value"] <= g["max_random_entry_p"], f"random entries match it (p={re_['p_value']}): the edge is in the exits, not the signal")
     nb = rob.get("neighbourhood") or {}
