@@ -1,0 +1,45 @@
+name: H119 Telegram — Direct Connection Test
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/h119_telegram_smoke.yml']
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/h119_telegram_smoke.yml'
+      - 'research/h119/telegram_smoke.py'
+      - 'research/h119/test_telegram_smoke.py'
+permissions:
+  contents: read
+concurrency:
+  group: h119-direct-telegram-test
+  cancel-in-progress: false
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify no false positive if message not acknowledged
+        run: python -m unittest research.h119.test_telegram_smoke -v
+  direct-telegram-test:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: offline
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Send real H119 Telegram connection test and require Telegram acknowledgement
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -m research.h119.telegram_smoke
+          echo 'H119 Telegram API confirmed message acceptance.' >> "$GITHUB_STEP_SUMMARY"
