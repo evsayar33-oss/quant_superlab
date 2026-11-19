@@ -23,11 +23,19 @@ variant's ledger, not the variant actually selected in each test fold.
   and is not used to create OOS alpha claims.
 - Old full-history-selected OOS Sharpe is retained as a DIAGNOSTIC
   comparison, not as a gate input.
-- Cross-boundary trades inherited from an earlier model are excluded
-  from the completed OOS trade count. Model switches without a fully
-  verified transition fill model cannot automatically earn ACCEPT.
-- Required PBO, White Reality Check and rule diagnostics cannot be
-  silently missing while granting ACCEPT.
+- A position can legitimately span walk-forward reporting windows.
+  A closed trade contributes once to OOS statistics if the same model
+  was actually selected for the trade's entire lifetime.
+- Selecting a new model at a fold boundary is a normal strategy operation,
+  not an automatic failure. The first OOS bar's cached turnover cost is
+  replaced with its cost-accounted rebalance from the previously held
+  portfolio, preserving intra-bar entry/exit turnover.
+- This is a historical **simulated** handoff using the existing costs,
+  not evidence of broker-verified fills or order-book queue priority.
+- Required PBO and White Reality Check must have sufficient statistical
+  data when multiple variants were evaluated. Full-history diagnostic
+  delay, random entry, and neighbouring-parameter checks remain visible
+  but cannot act as hard gates against a different stitched OOS policy.
 
 Existing hypothesis entries and model weights are unchanged.
 Historical ACCEPT decisions are not silently rewritten. This change
@@ -57,9 +65,12 @@ Neither method simulates exchange orders or guarantees future profits.
 - Transaction prices are still modelled using per-market fee/slippage
   assumptions. No live executable fills or market impact are inferred.
 - A historical price-time feed does not prove quote arrival time.
-- A strategy switch across a walk-forward boundary still requires a
-  dedicated execution replay. Until proven, strict validation fails
-  closed on a potential ACCEPT, rather than charging zero and passing.
+- Handoff costs are calibrated to the existing proportional commission
+  and slippage model; true bid/ask depth, partial fills and execution
+  timing require a broker or recorded order-book replay. The result
+  must never be called exchange-realized PnL.
+- Statistical parameters and regularization must not be selected using
+  OOS outcomes. Train-only fold selection still applies.
 - 30-day PAPER observation windows do not replace adequate multi-regime
   independent OOS evidence.
 
@@ -78,3 +89,22 @@ Verification:
 
 A green CI verifies algorithm contracts, not that any specific
 strategy has passed the newly more conservative ACCEPT gate.
+
+## Fairness correction: 2026-11-19
+
+The first strict OOS patch contained an overly conservative
+`cross_boundary_trades == 0 and model_switches == 0` approval
+condition. That would reject almost any adaptive model whose valid
+trade crossed a calendar fold boundary or that changed parameters
+over time. This was removed: actual simulated portfolio handoff turnover
+is debited in the test return path, including same-bar churn. The
+PAPER / source / LIVE engine is not changed.
+
+In addition, retrospective full-history staged variant sweeps are no
+longer run or counted *again* as trials that were not available to the
+fold-by-fold candidate selector. Only fold-authorized candidate
+configurations enter the selection-related trial burden.
+
+Original diagnostic robustness tests remain available for research,
+but do not veto the actually tested stitched OOS policy when they
+were measured on a different last-selected model over all history.
