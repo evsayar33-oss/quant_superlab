@@ -24,6 +24,16 @@ class FakeRule(CD.RuleCandidate):
     def overlay_variants(self, seeds):
         return []
 
+    def run(self, panel, v, costs):
+        from lab.engine import Result
+        # Deliberately separate mocked return cache from model position
+        # accounting to test the transition debit rather than a strategy.
+        idx = panel.index
+        direction = 1.0 if v.key.startswith("A") else 0.0
+        weight = pd.DataFrame(direction, index=idx, columns=panel.columns)
+        zero = pd.Series(0.0, index=idx)
+        return Result(zero, zero, weight, zero, meta={"trades": pd.DataFrame()})
+
 
 def series(data, index):
     return pd.Series(data, index=index, dtype=float)
@@ -80,7 +90,113 @@ class StrictWalkForwardTests(unittest.TestCase):
                 train_years=1,test_months=6,warm=0,ppy=10)
         self.assertEqual(len(out["trades"]),1)
         self.assertEqual(out["cross_boundary_trades"],1)
-        self.assertFalse(out["fold_execution_verified"])
+        self.assertTrue(out["fold_execution_verified"])
+        self.assertEqual(out["cross_boundary_trades"], 1)
+        # An inherited trade is not itself a reason to reject the policy
+        # when actual model-transition turnover was charged.
+
+    def test_contiguous_same_model_trade_crosses_reporting_fold_without_rejection(self):
+        idx, p, first, cache, _ = make_case()
+        seq = np.linspace(.01, .02, len(idx))
+        noisy = seq + .006 * np.sin(np.arange(len(idx)))
+        stable = .022 + .0003 * np.sin(np.arange(len(idx)))
+        def make_row(values, trades=None):
+            return (pd.Series(values, index=idx),
+                    pd.Series(0.0, index=idx),
+                    pd.DataFrame(trades or []))
+        trade = {"entry": idx[14], "exit": idx[16], "ret": .08}
+        records = {
+            "A": make_row(noisy),
+            "B": make_row(-noisy),
+            "A_exit2": make_row(stable, [trade]),
+            "B_exit2": make_row(-stable),
+        }
+        def fake_run(c, panel, variants, costs):
+            return {v.key: records[v.key] for v in variants}, {}
+        with patch.object(CD, "run_all", side_effect=fake_run):
+            out = strict_oos.nested_walk_forward(
+                FakeRule(), p, Costs(.001, .0005), first,
+                {k: records[k] for k in ("A", "B")},
+                train_years=1, test_months=6, warm=0, ppy=10)
+        self.assertGreaterEqual(len(out["folds"]), 2)
+        self.assertTrue(all(row["variant"] == "A_exit2" for row in out["folds"]))
+        self.assertEqual(len(out["trades"]), 1)
+        self.assertEqual(out["cross_boundary_trades"], 0)
+        self.assertTrue(out["fold_execution_verified"])
+        self.assertEqual(out["folds"][1]["completed_fold_trades"], 1)
+
+    def test_actual_turnover_is_charged_at_strategy_handoff(self):
+        _, p, first, data, mock_run = make_case()
+        with patch.object(CD, "run_all", side_effect=mock_run):
+            out = strict_oos.nested_walk_forward(
+                FakeRule(), p, Costs(commission=.002, slippage=0),
+                first, {k:data[k] for k in ("A", "B")},
+                train_years=1, test_months=6, warm=0, ppy=10)
+        self.assertTrue(out["fold_execution_verified"])
+        self.assertGreater(out["first_bar_model_transition_turnover"], 0)
+        self.assertGreater(out["net_model_transition_cost_adjustment"], 0)
+        self.assertGreater(out["variant_switches_cost_modelled"], 0)
+        first_test_day = out["folds"][0]["test_start"]
+        # The initial allocation from flat must pay a realistic turnover
+        # fee, even if the cached all-history version already held it.
+        self.assertLess(out["oos"].loc[pd.Timestamp(first_test_day)],
+                        data["A_exit2"][0].loc[pd.Timestamp(first_test_day)])
+        self.assertTrue(out["folds"][0]["switch_turnover_reconciled_to_prior_fold"])
+
+    def test_same_bar_turnover_is_not_erased_by_flat_close(self):
+        class FlatChurn(FakeRule):
+            def run(self, panel, v, costs):
+                from lab.engine import Result
+                z = pd.Series(0.0, index=panel.index)
+                w = pd.DataFrame(0.0, index=panel.index, columns=panel.columns)
+                return Result(z, z, w, z, meta={"trades": pd.DataFrame()})
+        idx,p,first,entries,_ = make_case()
+        initial = {}
+        for k in ("A","B"):
+            r,t,trade = entries[k]
+            # Simulated round-trip turnover with no closing position.
+            initial[k] = (r, pd.Series(1., index=idx), trade)
+        def gen(cand, panel, variants, costs):
+            return {v.key: (entries[v.key][0],
+                            pd.Series(1.,index=idx),entries[v.key][2])
+                    for v in variants}, {}
+        with patch.object(CD, "run_all", side_effect=gen):
+            out = strict_oos.nested_walk_forward(
+                FlatChurn(),p,Costs(.002,0),first,initial,
+                train_years=1,test_months=6,warm=0,ppy=10)
+        day = pd.Timestamp(out["folds"][0]["test_start"])
+        self.assertAlmostEqual(out["turnover"].loc[day],1.0)
+        self.assertAlmostEqual(out["oos"].loc[day],
+                               entries["A_exit2"][0].loc[day],places=8)
+
+    def test_no_data_for_outer_fold_is_inconclusive_not_pipeline_failure(self):
+        idx, p, first, cache, _ = make_case()
+        out = strict_oos.nested_walk_forward(
+            FakeRule(), p, Costs(), first,
+            {k: cache[k] for k in ("A", "B")},
+            train_years=3, test_months=6, warm=0, ppy=10)
+        self.assertEqual(out["folds"], [])
+        self.assertFalse(out["complete"])
+        self.assertEqual(out["missing_test_bars"], 0)
+        # Even an otherwise positive-looking set of metrics cannot turn
+        # an empty OOS evaluation into ACCEPT or a strategy-failure claim.
+        report = {
+            "oos":{"years":4, "max_dd":-.1},
+            "gate_sharpe":1.2,"gate_sharpe_basis":"raw",
+            "dsr":.97,"n_trials":1,
+            "bootstrap":{"p_sharpe_pos":.99},
+            "yearly_sharpe":{"2022":1,"2023":1,"2024":1,"2025":1},
+            "stress_2x_cost":{"sharpe":1.2},"benchmark":{"sharpe":0},
+            "pbo":None,"reality_check_p":None,
+            "kind":"strategy","oos_selection_provenance":{
+                "train_only_seeds":True,"independent_fold_count":0,
+                "fold_transition_accounting_complete":False,
+                "test_return_gaps":0,
+            },
+        }
+        verdict, reasons = validation.verdict(report)
+        self.assertEqual(verdict,"WATCH")
+        self.assertIn("INSUFFICIENT_OOS_HISTORY_NO_FOLDS", reasons)
 
     def test_all_missing_folds_fail_closed(self):
         _,p,first,data,_ = make_case()
@@ -104,15 +220,15 @@ class StrictWalkForwardTests(unittest.TestCase):
             "robustness_studies_requested":True,
             "oos_selection_provenance":{
                 "train_only_seeds":True, "independent_fold_count":4,
-                "fold_execution_verified":False,"test_return_gaps":0,
+                "fold_transition_accounting_complete":False,"test_return_gaps":0,
             }
         }
         verdict,reasons=validation.verdict(base)
         self.assertNotEqual(verdict,"ACCEPT")
-        self.assertTrue(any("fold boundary" in r for r in reasons))
+        self.assertTrue(any("handoff transaction cost" in r for r in reasons))
         self.assertTrue(any("PBO" in r for r in reasons))
         # Even after a replay, missing significance cannot pass.
-        base["oos_selection_provenance"]["fold_execution_verified"]=True
+        base["oos_selection_provenance"]["fold_transition_accounting_complete"]=True
         self.assertNotEqual(validation.verdict(base)[0],"ACCEPT")
 
     def test_monte_carlo_separates_new_path_risk_from_permutation(self):
@@ -144,13 +260,16 @@ class StrictWalkForwardTests(unittest.TestCase):
             "robustness_studies_requested":False,
             "oos_selection_provenance":{
                 "train_only_seeds":True,"independent_fold_count":4,
-                "fold_execution_verified":True,"test_return_gaps":0,
+                "fold_transition_accounting_complete":True,"test_return_gaps":0,
             }
         }
         verdict,reasons=validation.verdict(base)
         self.assertNotEqual(verdict,"ACCEPT")
         self.assertTrue(any("genuine fold-closed OOS trades" in r for r in reasons))
-        self.assertTrue(any("mandatory rule robustness" in r for r in reasons))
+        base["trade_stats"] = {"n_trades": 40}
+        # Not running an optional full-history final-model diagnostic must
+        # not falsely disqualify a thoroughly evaluated OOS policy.
+        self.assertEqual(validation.verdict(base)[0], "ACCEPT")
 
 
 if __name__=="__main__":

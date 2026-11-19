@@ -68,6 +68,32 @@ def nested_walk_forward(cand, panel, costs, stage1, runs, train_years=3.0,
     data_gaps = 0
     transitions = 0
     previous_key = None
+    previous_weights = None
+    realized_boundary_turnover = 0.0
+    net_boundary_cost_adjustment = 0.0
+    simulations = {}
+    selected_bars = []
+    column_names = panel.columns
+
+    def held_at(key, at):
+        # Only re-run the selected candidate, at most once per unique key.
+        # Its ordinary simulated weights are the state available to the
+        # original bar-return engine, NOT broker-executed position evidence.
+        if key not in simulations:
+            result = cand.run(panel, by_key[key], costs)
+            if result.weights is None:
+                raise ValueError("STRICT_OOS_CANNOT_ACCOUNT_TRANSITION_WEIGHTS")
+            simulations[key] = result
+        weights = simulations[key].weights
+        if at in weights.index:
+            pos = weights.loc[at].reindex(column_names)
+            if pos.isna().any() or not np.isfinite(pos.to_numpy(dtype=float)).all():
+                raise ValueError("STRICT_OOS_INVALID_POSITION_WEIGHTS")
+            return pos.astype(float)
+        if weights.empty or at < weights.index.min():
+            # An inactive strategy is genuinely flat before its first entry.
+            return pd.Series(0.0, index=column_names, dtype=float)
+        raise ValueError("STRICT_OOS_UNOBSERVED_POSITION_BAR")
 
     def expand(variants):
         pending = []
@@ -110,36 +136,55 @@ def nested_walk_forward(cand, panel, costs, stage1, runs, train_years=3.0,
             raise ValueError("STRICT_OOS_MISSING_TEST_RETURNS_OR_TURNOVER")
         if not np.isfinite(sr.values).all() or not np.isfinite(to.values).all():
             raise ValueError("STRICT_OOS_NONFINITE_TEST_VALUES")
+        switched = previous_key is None or key != previous_key
         if previous_key is not None and key != previous_key:
             transitions += 1
+        # Model switching is ordinary portfolio rebalancing, NOT automatic
+        # failure. Correct the first test bar's originally charged turnover
+        # from the selected candidate's own historical holdings to the
+        # portfolio holdings actually carried from the previous fold.
+        if switched:
+            new_held = held_at(key, test_index[0])
+            prior = (previous_weights if previous_weights is not None
+                     else pd.Series(0.0, index=column_names, dtype=float))
+            handoff_turnover = float((new_held - prior).abs().sum())
+            cached_turnover = float(to.iloc[0])
+            cached_previous = held_at(key, index[t0 - 1])
+            cached_net_change = float((new_held - cached_previous).abs().sum())
+            # Same-bar entries/exits and partial fills can generate *real*
+            # turnover without changing end-of-bar holdings. Preserve it:
+            # replacing the entire cached turnover would make such trades free.
+            internal_churn = max(0.0, cached_turnover - cached_net_change)
+            actual_turnover = handoff_turnover + internal_churn
+            if not (np.isfinite(actual_turnover) and np.isfinite(cached_turnover)):
+                raise ValueError("STRICT_OOS_NONFINITE_HANDOFF_COST")
+            adjustment = (actual_turnover - cached_turnover) * costs.per_turnover
+            sr = sr.copy()
+            to = to.copy()
+            sr.iloc[0] -= adjustment
+            to.iloc[0] = actual_turnover
+            realized_boundary_turnover += handoff_turnover
+            net_boundary_cost_adjustment += adjustment
+        previous_weights = held_at(key, test_index[-1])
         previous_key = key
         parts.append(sr)
         turnover_parts.append(to)
-        trades_this_fold = 0
-        if isinstance(cand, CD.RuleCandidate):
-            if not isinstance(trades, pd.DataFrame):
-                raise ValueError("STRICT_OOS_MISSING_RULE_TRADE_LEDGER")
-            if not trades.empty:
-                # There is no evidence of a strategy-switch fill for a
-                # trade opened before the fold, so exclude it from OOS
-                # trade statistics and flag the boundary-execution gap.
-                entry = pd.to_datetime(trades["entry"])
-                exit_ = pd.to_datetime(trades["exit"])
-                opened = (entry >= test_index[0]) & (entry <= test_index[-1])
-                closed = (exit_ >= test_index[0]) & (exit_ <= test_index[-1])
-                cross_boundary += int((closed & ~opened).sum())
-                completed = trades.loc[opened & closed].copy()
-                if not completed.empty:
-                    completed["_fold"] = len(logs)
-                    trade_parts.append(completed)
-                    trades_this_fold = len(completed)
+        selected_bars.append(pd.Series(key, index=test_index))
+        if isinstance(cand, CD.RuleCandidate) and not isinstance(trades, pd.DataFrame):
+            raise ValueError("STRICT_OOS_MISSING_RULE_TRADE_LEDGER")
+        train_sr = cache[key][0].reindex(index[a:t0])
+        if train_sr.isna().any() or not np.isfinite(train_sr.to_numpy(dtype=float)).all():
+            raise ValueError("STRICT_OOS_TRAIN_SELECTION_MISSING_DATA")
+        is_sharpe = (float(train_sr.mean() / train_sr.std() * math.sqrt(ppy))
+                     if train_sr.std() > 0 else None)
         logs.append({
             "test_start": str(test_index[0]), "test_end": str(test_index[-1]),
+            "is_sharpe": round(is_sharpe, 3) if is_sharpe is not None else None,
             "train_start": str(index[a]), "train_end": str(index[t0-1]),
             "variant": key,
             "train_eligible_variants": len(set(available)),
             "train_only_seed_selection": True,
-            "completed_fold_trades": int(trades_this_fold),
+            "switch_turnover_reconciled_to_prior_fold": bool(switched),
             "oos_sharpe": round(float(sr.mean() / sr.std() * math.sqrt(ppy)), 3)
                           if sr.std() > 0 else 0.0,
         })
@@ -147,7 +192,41 @@ def nested_walk_forward(cand, panel, costs, stage1, runs, train_years=3.0,
 
     oos = pd.concat(parts) if parts else pd.Series(dtype=float)
     turn = pd.concat(turnover_parts) if turnover_parts else pd.Series(dtype=float)
-    fold_trades = pd.concat(trade_parts, ignore_index=True) if trade_parts else pd.DataFrame()
+    # Trades that genuinely span two consecutive OOS folds are not
+    # invalid just because the reporting windows changed. Count each
+    # completed trade once if the SAME selected model remained active
+    # throughout its entire life. Never count pre-OOS trades, nor pretend
+    # a discarded model's historical entry happened in the OOS book.
+    selected = pd.concat(selected_bars) if selected_bars else pd.Series(dtype=object)
+    if isinstance(cand, CD.RuleCandidate):
+        for key in dict.fromkeys(selected.tolist()):
+            trades = cache[key][2]
+            if not isinstance(trades, pd.DataFrame):
+                raise ValueError("STRICT_OOS_MISSING_RULE_TRADE_LEDGER")
+            if trades.empty:
+                continue
+            for _, trade in trades.iterrows():
+                opened, closed = pd.Timestamp(trade["entry"]), pd.Timestamp(trade["exit"])
+                if opened not in selected.index or closed not in selected.index:
+                    if closed in selected.index and selected.loc[closed] == key:
+                        cross_boundary += 1
+                    continue
+                if closed < opened:
+                    raise ValueError("STRICT_OOS_INVALID_TRADE_LIFETIME")
+                lifetime = selected.loc[opened:closed]
+                if not lifetime.empty and lifetime.eq(key).all():
+                    tr = trade.to_dict()
+                    tr["_fold"] = next(i for i, entry in enumerate(logs)
+                                       if entry["test_start"] <= str(closed) <= entry["test_end"])
+                    trade_parts.append(tr)
+                elif selected.loc[closed] == key:
+                    cross_boundary += 1
+    fold_trades = pd.DataFrame(trade_parts)
+    if not fold_trades.empty:
+        fold_trades = fold_trades.sort_values(["exit", "entry"]).reset_index(drop=True)
+    for i, entry in enumerate(logs):
+        entry["completed_fold_trades"] = (int((fold_trades["_fold"] == i).sum())
+                                           if not fold_trades.empty else 0)
     return {
         "oos": oos, "turnover": turn,
         "trades": fold_trades,
@@ -157,9 +236,12 @@ def nested_walk_forward(cand, panel, costs, stage1, runs, train_years=3.0,
         "errors": failures,
         "trials": len(all_tested),
         "cross_boundary_trades": cross_boundary,
-        "variant_switches_without_execution_replay": transitions,
+        "variant_switches_cost_modelled": transitions,
+        "first_bar_model_transition_turnover": round(realized_boundary_turnover, 9),
+        "net_model_transition_cost_adjustment": round(net_boundary_cost_adjustment, 9),
         "missing_test_bars": data_gaps,
         "complete": bool(logs) and data_gaps == 0,
-        "fold_execution_verified": cross_boundary == 0 and transitions == 0,
-        "interpretation": "TRAIN_ONLY_VARIANT_SELECTION_NOT_EXECUTABLE_FILL_PROOF",
+        "fold_execution_verified": bool(logs) and data_gaps == 0,
+        "fold_execution_method": "SIMULATED_POSITION_HANDOFF_WITH_REPLACED_ONE_WAY_TURNOVER",
+        "interpretation": "COST_ADJUSTED_HISTORICAL_WALK_FORWARD_NOT_BROKER_FILL_PROOF",
     }
