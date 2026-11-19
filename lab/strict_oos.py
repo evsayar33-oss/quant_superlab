@@ -147,17 +147,23 @@ def nested_walk_forward(cand, panel, costs, stage1, runs, train_years=3.0,
             new_held = held_at(key, test_index[0])
             prior = (previous_weights if previous_weights is not None
                      else pd.Series(0.0, index=column_names, dtype=float))
-            actual_turnover = float((new_held - prior).abs().sum())
+            handoff_turnover = float((new_held - prior).abs().sum())
             cached_turnover = float(to.iloc[0])
+            cached_previous = held_at(key, index[t0 - 1])
+            cached_net_change = float((new_held - cached_previous).abs().sum())
+            # Same-bar entries/exits and partial fills can generate *real*
+            # turnover without changing end-of-bar holdings. Preserve it:
+            # replacing the entire cached turnover would make such trades free.
+            internal_churn = max(0.0, cached_turnover - cached_net_change)
+            actual_turnover = handoff_turnover + internal_churn
             if not (np.isfinite(actual_turnover) and np.isfinite(cached_turnover)):
                 raise ValueError("STRICT_OOS_NONFINITE_HANDOFF_COST")
-            # Replace, rather than add to, the cached turnover charge.
             adjustment = (actual_turnover - cached_turnover) * costs.per_turnover
             sr = sr.copy()
             to = to.copy()
             sr.iloc[0] -= adjustment
             to.iloc[0] = actual_turnover
-            realized_boundary_turnover += actual_turnover
+            realized_boundary_turnover += handoff_turnover
             net_boundary_cost_adjustment += adjustment
         previous_weights = held_at(key, test_index[-1])
         previous_key = key
