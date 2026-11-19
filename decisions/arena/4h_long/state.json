@@ -108,16 +108,7 @@
   "A0055": 0.08,
   "A0058": 0.08
  },
- "last_summary": "2026-11-17",
- "last_bar": "2026-11-18 20:00:00",
- "updated_at": "2026-11-19T01:59:40+00:00",
- "book_status": {
-  "A": "inside",
-  "B": "inside",
-  "B2": "inside",
-  "C": "inside",
-  "C2": "inside",
-  "K1": "below",
-  "K2": "below"
- }
+ "last_summary": "2026-11-19",
+ "last_bar": "2026-11-19 16:00:00",
+ "updated_at": "2026-11-19T23:07:56+00:00"
 }
