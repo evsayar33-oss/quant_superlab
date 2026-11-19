@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from research.h119 import engine as h
 from research.h119 import notify as n
@@ -224,6 +225,9 @@ class H119Contracts(unittest.TestCase):
                 "evidence": {}, "lab_verdict": "NOT_EVALUATED",
             }
             h.append_chain(state / "events.jsonl", [ev], 1770000000000)
+            (state / "latest.json").write_text(json.dumps({
+                "schema": h.SCHEMA, "notifications_waiting_delivery": 1,
+            }), encoding="utf-8")
             sends = []
             def send(text, tok, chat):
                 sends.append(text)
@@ -235,6 +239,21 @@ class H119Contracts(unittest.TestCase):
             self.assertEqual(n.notify(state, token="token", chat="chat",
                                       transport=send, when=NOW)["delivered"], 0)
             self.assertEqual(len(sends), 1)
+            updated = json.loads((state / "latest.json").read_text(encoding="utf-8"))
+            self.assertEqual(updated["notifications_waiting_delivery"], 0)
+            self.assertEqual(updated["notification_delivery"]["method"], "TELEGRAM")
+
+    def test_github_fallback_assigns_and_mentions_owner_for_notification(self):
+        alert = {"id": "notice1", "kind": "NOTIFICATION_READY",
+                 "schema": h.SCHEMA, "market": "QUANT_SUPERLAB"}
+        with patch.object(n, "request_json", side_effect=[[], {"number": 47}]) as mock:
+            sent, reference = n.fallback_issue(
+                "Health check", [alert], "readwrite", "evsayar33-oss/quant_superlab")
+            self.assertTrue(sent)
+            self.assertEqual(reference, "47")
+            data = mock.call_args.args[1]
+            self.assertEqual(data["assignees"], ["evsayar33-oss"])
+            self.assertIn("@evsayar33-oss", data["body"])
 
     def test_notification_failure_keeps_event_pending(self):
         with tempfile.TemporaryDirectory() as d:
