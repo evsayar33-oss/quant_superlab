@@ -216,9 +216,10 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
     has_oos = len(oos) > max(30, ppy / 8)
 
     final_key = wf_log[-1]["variant"] if wf_log else R.columns[0]
-    # A fold chosen AFTER the final date is not the variant used in older
-    # OOS test windows. Count only trades opened and CLOSED inside the
-    # corresponding fold, excluding historical/overlapping boundary trades.
+    # The last fold's selected strategy is NOT retroactively assumed to
+    # have been traded in all earlier folds. OOS trade statistics reflect
+    # the sequence actually selected by training, including legitimate
+    # trades carried across contiguous folds with the same selected model.
     final_v = strict["variants"].get(final_key)
     if final_v is None:
         raise ValueError("STRICT_OOS_FINAL_VARIANT_PROVENANCE_MISSING")
