@@ -109,15 +109,21 @@ def fallback_issue(text, events, token, repo):
             return True, "existing_issue"
         if len(existing) < 100:
             break
+    owner = repo.split("/")[0]
     details = (
-        "**Autonomous research milestone; NOT an order instruction.**\n\n"
+        "@" + owner + " - **H119 research notification for the repository owner.**\n\n"
+        + "**Autonomous research milestone; NOT an order instruction.**\n\n"
         + text + "\n\n"
         + "Event IDs (receipt deduplication):\n"
         + "\n".join("- " + x["id"] for x in events)
         + "\n\nTelegram credentials may be missing or Telegram may have "
           "been unreachable; check Actions secrets TELEGRAM_TOKEN, CHAT_ID."
     )
-    response = request_json(base, {"title": title, "body": details}, token)
+    # Assigned issues appear in GitHub's assigned notifications (subject to
+    # the owner's own account notification preferences). Mere issue creation
+    # does not reliably alert an unsubscribed repository owner.
+    response = request_json(base, {"title": title, "body": details,
+                                   "assignees": [owner]}, token)
     return bool(response.get("number")), str(response.get("number"))
 
 
@@ -164,8 +170,26 @@ def notify(state_dir, token=None, chat=None, github_token=None, repo=None,
         "method": method, "reference": receipt_ref,
         "delivered_utc": timestamp.isoformat(),
     } for x in batch]
-    append_chain(state / "receipts.jsonl", records,
-                 int(timestamp.timestamp() * 1000))
+    receipts = append_chain(state / "receipts.jsonl", records,
+                            int(timestamp.timestamp() * 1000))
+    # The step-1 scan report is intentionally generated before notification.
+    # Reconcile the persisted latest report after receipt confirmation.
+    latest = state / "latest.json"
+    if latest.exists():
+        data = json.loads(latest.read_text(encoding="utf-8"))
+        if data.get("schema") != SCHEMA:
+            raise ValueError("H119_INVALID_LATEST_REPORT")
+        delivered = {x["event_id"] for x in receipts}
+        data["notifications_waiting_delivery"] = sum(
+            x["kind"] in NOTIFY_EVENT_TYPES and x["id"] not in delivered
+            for x in events)
+        data["notification_delivery"] = {
+            "status": "MILESTONES_DELIVERED",
+            "method": method, "delivered": len(batch),
+            "last_delivery_utc": timestamp.isoformat(),
+        }
+        latest.write_text(json.dumps(data, indent=2, sort_keys=True,
+                                     ensure_ascii=False) + "\n", encoding="utf-8")
     return {
         "status": "MILESTONES_DELIVERED", "method": method,
         "delivered": len(batch), "pending": len(pending) - len(batch),
