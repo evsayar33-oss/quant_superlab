@@ -34,10 +34,16 @@ def mc_trade_shuffle(tlog: pd.DataFrame, n: int = 1000, seed: int = 1) -> dict:
     for _ in range(n):
         x = rng.permutation(r)
         eq = np.cumprod(1 + x)
-        dds.append((eq / np.maximum.accumulate(eq) - 1).min())
+        dds.append((eq / np.maximum.accumulate(np.r_[1., eq])[1:] - 1).min())
         fin.append(eq[-1] - 1)
-    return {"maxdd_median": round(float(np.median(dds)), 4), "maxdd_p95": round(float(np.percentile(dds, 5)), 4),
-            "final_p05": round(float(np.percentile(fin, 5)), 4), "final_median": round(float(np.median(fin)), 4)}
+    return {"maxdd_median": round(float(np.median(dds)), 4),
+            "maxdd_p95": round(float(np.percentile(dds, 5)), 4),
+            "final_p05": round(float(np.percentile(fin, 5)), 4),
+            "final_median": round(float(np.median(fin)), 4),
+            "terminal_wealth_order_invariant": True,
+            "terminal_profit_interval_is_not_a_forecast": True,
+            "method": "TRADE_ORDER_PERMUTATION_DRAWDOWN_ONLY",
+            "return_uncertainty_method": "USE_OOS_CIRCULAR_BLOCK_BOOTSTRAP_INSTEAD"}
 
 
 def random_entry_test(cand, p: Panel, v, costs: Costs, n: int = 25, seed: int = 2) -> dict:
