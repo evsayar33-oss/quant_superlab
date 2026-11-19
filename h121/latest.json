@@ -1,0 +1,78 @@
+{
+  "alerts_pending": 0,
+  "asof_utc": "2026-11-19T18:56:30.565024+00:00",
+  "band30": {
+    "end_utc": "2027-02-13T19:34:07.202000+00:00",
+    "finalized": false,
+    "gaps": 4,
+    "initial_nominal_usdt": 10000,
+    "last_bar_utc": "2026-11-19T12:00:00+00:00",
+    "last_observed_utc": "2026-11-19T16:10:53.927000+00:00",
+    "missing_candles": 4,
+    "observations": 20,
+    "outages": 4,
+    "paper_nav": 10000.0,
+    "paper_only": true,
+    "paper_return_pct": 0.0,
+    "start_utc": "2026-11-15T19:34:07.202000+00:00",
+    "trade_count": 0,
+    "uses_observed_bitget_bid_ask": true
+  },
+  "band30_delay_bars": 0,
+  "book_isolation": "MOM2_MAIN_AND_BAND30_DISTINCT_NO_COMBINED_NAV",
+  "events_new": 0,
+  "events_total": 0,
+  "h116_h117_not_independent_bitget_pnl": true,
+  "live_trading_enabled": false,
+  "method_limits": [
+    "Full MOM2 main log predates MOM2 revision, hence no isolated MOM2 net return",
+    "The Band-30 ledger is 10000 USDT and distinct from 1000-USDT H054",
+    "Paper balance and bid/ask references are not broker execution fills",
+    "Perpetual funding and hedged cash cannot be inferred from spot-only H116/H117",
+    "Missing bars must not be interpolated; absence of trades is not zero alpha"
+  ],
+  "mom2": {
+    "approved_paper": true,
+    "equity_rows": 86,
+    "fees_paid_raw_accounting": 4.392399999999999,
+    "full_history_not_mom2_forward_pnl": true,
+    "full_log_drawdown_from_peak_pct": -5.057,
+    "funding_paid_raw_accounting": -0.04101276381731949,
+    "initial_nominal_usdt": 1000,
+    "latest_4h_bar_utc": "2026-11-19T08:00:00+00:00",
+    "max_recorded_nav": 1030.12,
+    "model_revision_segments_not_separated": true,
+    "nav": 978.03,
+    "not_broker_fills": true,
+    "observed_at_utc": "2026-11-19T12:52:08+00:00",
+    "paper_order_errors": 0,
+    "paper_order_rows": 30,
+    "reported_total_change_pct": -2.197,
+    "target_weights": {
+      "BTC/USDT": 0.0,
+      "ETH/USDT": 0.0
+    }
+  },
+  "mom2_delay_bars": 1,
+  "not_executable_pnl": true,
+  "official_lab_accept": "NOT_RUN",
+  "research_only": true,
+  "schema": "QS.h121.h054.paper_intelligence.v1",
+  "source_commits": {
+    "band30": "cf8a34efe0e9c75b5c8274e00381edaaf86297d0",
+    "mom2": "597f675e49e3e8c62c398ae34c0f3abadaf38c13"
+  },
+  "source_repo": "evsayar33-oss/h054_spot_bot",
+  "source_sha256": {
+    "band30:state.json": "f11492c9dbeb5d08513269048ae2b9ea6668b1db6033ac43345d78d1234ce7e3",
+    "mom2:logs/equity.csv": "d437fd9114604476775de82be79e869f3a06f2e9b0e67c468741fbf9ff59360e",
+    "mom2:logs/trades.csv": "81240d7334cee7058d51fadfcf21caf9ac7224513f0de7406295bb8dbce91914",
+    "mom2:state/paper.json": "b70e22c86d6dd1fb47813e8b42b71223da273b5378e41a5da98d26ff1163b390",
+    "mom2:state/state.json": "1a22a172cb5cdc5ff5d77e63b200574d9e7e2feee39d449bfac25a9180ddc2b0"
+  },
+  "strategy_research_links": [
+    "H054-MOM2",
+    "H116",
+    "H117"
+  ]
+}

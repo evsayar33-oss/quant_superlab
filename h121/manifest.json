@@ -1,0 +1,49 @@
+{
+  "asof_utc": "2026-11-19T18:56:30.565024+00:00",
+  "band30": {
+    "end_utc": "2027-02-13T19:34:07.202000+00:00",
+    "finalized": false,
+    "gaps": 4,
+    "initial_nominal_usdt": 10000,
+    "last_bar_utc": "2026-11-19T12:00:00+00:00",
+    "last_observed_utc": "2026-11-19T16:10:53.927000+00:00",
+    "missing_candles": 4,
+    "observations": 20,
+    "outages": 4,
+    "paper_nav": 10000.0,
+    "paper_only": true,
+    "paper_return_pct": 0.0,
+    "start_utc": "2026-11-15T19:34:07.202000+00:00",
+    "trade_count": 0,
+    "uses_observed_bitget_bid_ask": true
+  },
+  "band30_delay_bars": 0,
+  "mom2": {
+    "approved_paper": true,
+    "equity_rows": 86,
+    "fees_paid_raw_accounting": 4.392399999999999,
+    "full_history_not_mom2_forward_pnl": true,
+    "full_log_drawdown_from_peak_pct": -5.057,
+    "funding_paid_raw_accounting": -0.04101276381731949,
+    "initial_nominal_usdt": 1000,
+    "latest_4h_bar_utc": "2026-11-19T08:00:00+00:00",
+    "max_recorded_nav": 1030.12,
+    "model_revision_segments_not_separated": true,
+    "nav": 978.03,
+    "not_broker_fills": true,
+    "observed_at_utc": "2026-11-19T12:52:08+00:00",
+    "paper_order_errors": 0,
+    "paper_order_rows": 30,
+    "reported_total_change_pct": -2.197,
+    "target_weights": {
+      "BTC/USDT": 0.0,
+      "ETH/USDT": 0.0
+    }
+  },
+  "mom2_delay_bars": 1,
+  "schema": "QS.h121.h054.paper_intelligence.v1",
+  "sources": {
+    "band30": "cf8a34efe0e9c75b5c8274e00381edaaf86297d0",
+    "mom2": "597f675e49e3e8c62c398ae34c0f3abadaf38c13"
+  }
+}
