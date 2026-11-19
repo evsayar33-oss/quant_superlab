@@ -35,3 +35,21 @@ observed historical gaps remain explicit.
 
 Commands: python -m unittest discover -s research/h121 -p 'test_*.py' -v
 and original python tests/test_core.py on PR.
+
+## Additional read-only execution quality accounting
+
+Band-30's already-frozen Bitget PAPER ticks record the actual top bid/ask
+and quote timestamps. H121 now reports quote count, historical median and
+95th-percentile observed top-book spread, quote age, and missing displayed
+size. It does not synthesize fills or add these spreads to existing fees a
+second time. These are diagnostic values and do not alter band30 NAV.
+
+The MOM2 PAPER engine, by contrast, uses last-close reference prices plus
+assumed fixed fees/slippage; it does not record contemporaneous bid/ask
+and full order-book depth for each simulated order. H121 explicitly marks
+this as an unknown execution-calibration gap, not a profitable or failed
+trading decision.
+
+No market-impact capacity, queue priority or brokerage fills are independently
+verified for either strategy. No source code, secrets, alerts or already
+running PAPER windows are modified by this diagnostics-only addition.
