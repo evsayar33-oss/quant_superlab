@@ -1,5 +1,5 @@
 {
-  "asof_utc": "2026-11-19T14:03:47.330384+00:00",
+  "asof_utc": "2026-11-19T14:08:59.689768+00:00",
   "limitations": [
     "H119 never changes hypotheses/registry.yaml or decisions/registry.json",
     "upstream event patterns are not a deployable backtest until native data/DSR/PBO/Reality Check pass",
@@ -46,7 +46,7 @@
   },
   "new_hypotheses_or_milestones": 0,
   "new_lab_accepts": 0,
-  "notifications_waiting_delivery": 1,
+  "notifications_waiting_delivery": 0,
   "schema": "QS.h119.autonomous_alpha.v1",
   "source_commits": {
     "crypto": "287bbfc4b7002f0b021ef4396fbd7d8a985555cf",
