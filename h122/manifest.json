@@ -1,0 +1,23 @@
+{
+  "econ": {
+    "pending_primary_verification": 0
+  },
+  "forward": null,
+  "h083_attempt": {
+    "attempt_id": "2026-11-19T03:30:54.972004+00:00|H083",
+    "attempted_at_utc": "2026-11-19T03:30:54.972004+00:00",
+    "counts_as_forward_month": false,
+    "reason": "OUTSIDE_17_ET_AFTERCLOSE_SLOT",
+    "session": "2026-11-18",
+    "state": "SKIPPED"
+  },
+  "h083_skipped_session_streak": 1,
+  "last_source_commit": "08652ea3e7b2711b2946b923ef0ec78b9d37ec78",
+  "schema": "QS.h122.federal_evidence.v1",
+  "seen_utc": "2026-11-19T19:04:17.598188+00:00",
+  "watch": {
+    "data_coverage_ok": true,
+    "data_coverage_pct": 0.8425,
+    "feature_asof": "2026-11-18"
+  }
+}
