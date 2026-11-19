@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/h120.yml'
+      - 'research/h120/**'
   workflow_dispatch:
   schedule:
     # Every six hours, independent of H119/Early Radar and Tier-1 producer.
