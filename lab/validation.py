@@ -22,6 +22,7 @@ import pandas as pd
 
 from lab import candidates as CD
 from lab import metrics, robustness as RB
+from lab import strict_oos as SO
 from lab.engine import Costs
 from lab.panel import Panel
 from lab.trade_engine import trade_stats
@@ -168,6 +169,11 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
     cand = CD.from_spec(spec)
     vs = cand.variants()
     runs, errors = CD.run_all(cand, p, vs, costs)
+    # These seeds are selected before any full-sample staged diagnostics.
+    # The strict OOS engine must NEVER receive candidates generated using
+    # future, full-history top_keys().
+    fold_initial_variants = list(vs)
+    fold_initial_runs = dict(runs)
     if not runs:
         raise RuntimeError(f"all variants failed: {list(errors.values())[:3]}")
 
@@ -190,7 +196,23 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
     trial_srs = list((R.mean() / R.std().replace(0, np.nan)).dropna())
     ppy = p.ppy
 
-    oos, oos_to, wf_log = walk_forward(R, TO, train_years, test_months, ppy=ppy)
+    # Full-sample stage-2/3/overlay sweeps are only exploratory diagnostics.
+    # The lab gate uses genuinely fold-local train-only variant generation.
+    legacy_oos, _, _ = walk_forward(R, TO, train_years, test_months, ppy=ppy)
+    strict = SO.nested_walk_forward(
+        cand, p, costs, fold_initial_variants, fold_initial_runs,
+        train_years, test_months, ppy=ppy,
+    )
+    oos, oos_to, wf_log = strict["oos"], strict["turnover"], strict["folds"]
+    if not strict["complete"]:
+        raise ValueError("STRICT_OOS_HAS_NO_INDEPENDENT_FOLDS")
+    # All evaluated variants, including those tried only in nested folds,
+    # count toward the multiple-testing burden. This cannot increase
+    # the apparent significance by omitting newly tested configurations.
+    extra_runs = {**runs, **strict["cache"]}
+    R, TO = _matrix(extra_runs, p.index)
+    n_trials = max(n_trials, len(R.columns) + len(set(strict["errors"]) - set(errors)))
+    trial_srs = list((R.mean() / R.std().replace(0, np.nan)).dropna())
     ew = CD.StrategyCandidate("equal_weight")
     bench = list(CD.run_all(ew, p, ew.variants(), costs, workers=1)[0].values())[0][0]
     b_oos = bench.reindex(oos.index).fillna(0) if len(oos) else bench
@@ -198,11 +220,16 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
     has_oos = len(oos) > max(30, ppy / 8)
 
     final_key = wf_log[-1]["variant"] if wf_log else R.columns[0]
-    final_v = next(v for v in vs if v.key == final_key)
-    trades = runs[final_key][2]
+    # A fold chosen AFTER the final date is not the variant used in older
+    # OOS test windows. Count only trades opened and CLOSED inside the
+    # corresponding fold, excluding historical/overlapping boundary trades.
+    final_v = strict["variants"].get(final_key)
+    if final_v is None:
+        raise ValueError("STRICT_OOS_FINAL_VARIANT_PROVENANCE_MISSING")
+    trades = strict["cache"][final_key][2]
     tstats = None
-    if isinstance(trades, pd.DataFrame) and has_oos:
-        tstats = trade_stats(trades[trades["exit"] >= oos.index[0]], len(oos) / ppy)
+    if isinstance(cand, CD.RuleCandidate) and has_oos:
+        tstats = trade_stats(strict["trades"], len(oos) / ppy)
 
     # ---- risk-free and currency
     rf = p.rf_per_bar() if p.rf_annual is not None else None
@@ -229,6 +256,19 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
                   "funding_annual": costs.funding_annual, "borrow_annual": costs.borrow_annual},
         "survivorship_mask": p.member is not None,
         "n_trials": n_trials,
+        "oos_selection_provenance": {
+            "method": "FOLD_LOCAL_TRAIN_ONLY_STAGED_SELECTION",
+            "train_only_seeds": True,
+            "independent_fold_count": len(wf_log),
+            "fold_trades_completed": int(len(strict["trades"])),
+            "cross_boundary_trades_excluded": strict["cross_boundary_trades"],
+            "unverified_variant_switches": strict["variant_switches_without_execution_replay"],
+            "fold_execution_verified": strict["fold_execution_verified"],
+            "test_return_gaps": strict["missing_test_bars"],
+            "legacy_full_sample_seeded_oos_sharpe_DIAGNOSTIC_ONLY":
+                round(metrics.sharpe(legacy_oos), 3) if len(legacy_oos) > 1 else None,
+            "note": "Future data excluded from stage seed selection; fills at model transitions still require independent execution proof",
+        },
         "train_years": train_years, "test_months": test_months,
         "failed_variants": len(errors),
         "full_sample_top": full_sweep,
@@ -252,6 +292,7 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
         "final_params": final_v.params,
         "robustness": {},
         "studies": {},
+        "robustness_studies_requested": bool(studies),
     }
     if studies and has_oos:
         rob = rep["robustness"]
