@@ -1,5 +1,5 @@
 {
-  "asof_utc": "2026-11-19T14:08:59.689768+00:00",
+  "asof_utc": "2026-11-19T14:20:40.523386+00:00",
   "limitations": [
     "H119 never changes hypotheses/registry.yaml or decisions/registry.json",
     "upstream event patterns are not a deployable backtest until native data/DSR/PBO/Reality Check pass",
