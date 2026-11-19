@@ -3,6 +3,7 @@ import io
 import json
 import unittest
 import urllib.error
+import urllib.parse
 from research.h119.telegram_smoke import send_test
 
 
@@ -34,7 +35,8 @@ class TestDirectTelegramSmoke(unittest.TestCase):
         self.assertIn("ACKNOWLEDGED", status)
         self.assertEqual(len(calls), 1)
         self.assertIn(b"12345", calls[0][1])
-        self.assertIn(b"baglant", calls[0][1].lower())
+        payload = urllib.parse.parse_qs(calls[0][1].decode("utf-8"))
+        self.assertIn("bağlantısı", payload["text"][0])
 
     def test_missing_secret_fails(self):
         with self.assertRaisesRegex(RuntimeError, "MISSING_SECRETS"):
