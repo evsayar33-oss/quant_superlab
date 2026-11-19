@@ -124,10 +124,20 @@ def append_chain(path, entries, base_ms):
 
 
 def http_text(url):
-    req = urllib.request.Request(url, headers={
+    headers = {
         "User-Agent": "quant-superlab-h119-read-only/1",
         "Accept": "application/vnd.github+json" if "api.github.com" in url
-                  else "text/plain"})
+                  else "text/plain",
+    }
+    # Public unauthenticated GitHub REST calls have a small shared runner
+    # quota. Use the ephemeral Actions token for API calls only. Never print
+    # the token, URL authorization parameters or request headers.
+    if url.startswith("https://api.github.com/"):
+        token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
+        if token:
+            headers["Authorization"] = "Bearer " + token
+            headers["X-GitHub-Api-Version"] = "2022-11-28"
+    req = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(req, timeout=22) as res:
         return res.read().decode("utf-8")
 
