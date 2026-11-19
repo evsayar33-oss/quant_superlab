@@ -163,6 +163,26 @@ class H119Contracts(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "DUPLICATE_CRYPTO_VARIANT"):
             h.analyze(src, {k: COMMIT for k in h.BRANCHES}, registry(), NOW)
 
+    def test_source_api_uses_ephemeral_github_token_only_for_api(self):
+        class Response:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+            def read(self):
+                return b'{"ok":true}'
+        captured = []
+        def fake_urlopen(req, timeout):
+            captured.append(req)
+            return Response()
+        with patch.dict("os.environ", {"GITHUB_TOKEN": "test-ephemeral-token"}):
+            with patch.object(h.urllib.request, "urlopen", side_effect=fake_urlopen):
+                self.assertEqual(h.http_text("https://api.github.com/repos/a/b/git/ref/heads/main"), '{"ok":true}')
+                self.assertEqual(h.http_text("https://raw.githubusercontent.com/a/b/main/file"), '{"ok":true}')
+        self.assertEqual(captured[0].get_header("Authorization"), "Bearer test-ephemeral-token")
+        self.assertEqual(captured[0].get_header("X-github-api-version"), "2022-11-28")
+        self.assertIsNone(captured[1].get_header("Authorization"))
+
     def test_source_rewrite_is_rejected_before_ingestion(self):
         source = source_fixture()
         old = "b" * 40
