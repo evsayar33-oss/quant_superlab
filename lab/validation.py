@@ -171,6 +171,10 @@ def verdict(rep: dict) -> tuple[str, list[str]]:
     # measurements in the report; do not use them as fake OOS evidence.
     if ok:
         return "ACCEPT", ["all gate checks passed"]
+    # No independent OOS observations is a pending evaluation, not proof
+    # that the trading hypothesis failed or that the CI pipeline crashed.
+    if proof.get("independent_fold_count", 0) == 0:
+        return "WATCH", why + ["INSUFFICIENT_OOS_HISTORY_NO_FOLDS"]
     soft = main_sr > 0 and rep["dsr"] >= 0.5 and o["years"] >= 1
     return ("WATCH" if soft else "REJECT"), why
 
@@ -202,8 +206,9 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
         train_years, test_months, ppy=ppy,
     )
     oos, oos_to, wf_log = strict["oos"], strict["turnover"], strict["folds"]
-    if not strict["complete"]:
-        raise ValueError("STRICT_OOS_HAS_NO_INDEPENDENT_FOLDS")
+    # Insufficient history means WATCH with zero independent folds,
+    # not a runtime exception or an invented positive OOS result.
+    # Actual missing/nonfinite data inside an observed fold still raise.
     runs = strict["cache"]
     errors.update(strict["errors"])
     R, TO = _matrix(runs, p.index)
