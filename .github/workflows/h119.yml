@@ -126,7 +126,7 @@ jobs:
         run: |
           set -euo pipefail
           ROOT="$H119_GIT_ROOT"
-          git -C "$ROOT" add research_evidence/h119/receipts.jsonl
+          git -C "$ROOT" add research_evidence/h119/receipts.jsonl research_evidence/h119/latest.json
           if git -C "$ROOT" diff --cached --quiet; then
             echo 'H119_NO_DELIVERY_RECEIPT_CHANGE'
           else
