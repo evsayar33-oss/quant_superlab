@@ -11,6 +11,7 @@ import io
 import json
 import math
 import os
+import statistics
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -113,6 +114,9 @@ def parse_mom2(bodies):
         "funding_paid_raw_accounting": number(paper["funding_paid"]),
         "fees_paid_raw_accounting": number(paper["fees_paid"], 0),
         "not_broker_fills": True,
+        "execution_price_basis": "LAST_CLOSE_PLUS_ASSUMED_FIXED_SLIPPAGE_AND_FEES",
+        "contemporaneous_bid_ask_per_fill_available": False,
+        "actual_orderbook_impact_or_queue_position_verified": False,
     }
 
 
@@ -124,6 +128,9 @@ def parse_band30(bodies):
     if not isinstance(ticks, list):
         raise ValueError("H121_MISSING_BAND30_TICKS")
     old = -1
+    quoted_spread_bps = []
+    book_age_ms = []
+    missing_book_size = 0
     for tick in ticks:
         if (not isinstance(tick.get("candle_ms"), int)
                 or tick["candle_ms"] <= old or tick["candle_ms"] % BAR_MS != 0):
@@ -142,8 +149,18 @@ def parse_band30(bodies):
             q = tick["quotes"].get(sym, {})
             if not isinstance(q, dict):
                 raise ValueError("H121_INVALID_ORDERBOOK_EVIDENCE")
-            if "ask" in q and "bid" in q and number(q["ask"], 0) < number(q["bid"], 0):
-                raise ValueError("H121_CROSSED_ORDERBOOK")
+            if "ask" in q and "bid" in q:
+                ask, bid = number(q["ask"], 0), number(q["bid"], 0)
+                if bid <= 0 or ask < bid:
+                    raise ValueError("H121_CROSSED_ORDERBOOK")
+                quoted_spread_bps.append(20000.0 * (ask - bid) / (ask + bid))
+                if "ts" in q and "received_ms" in q:
+                    source_age = int(q["received_ms"]) - int(q["ts"])
+                    if source_age < -5000:
+                        raise ValueError("H121_QUOTE_FROM_UNRELIABLE_FUTURE")
+                    book_age_ms.append(max(0, source_age))
+                if "bid_size" not in q or "ask_size" not in q:
+                    missing_book_size += 1
     if ticks and old != state.get("last_candle_ms"):
         raise ValueError("H121_BAND30_STATE_TICKS_NOT_ALIGNED")
     gap = state.get("continuity_gaps", [])
@@ -170,6 +187,22 @@ def parse_band30(bodies):
         "outages": len(outages),
         "finalized": state["finalized"],
         "uses_observed_bitget_bid_ask": True,
+        # Only actual contemporaneous top-of-book quotes are measured.
+        # Do NOT claim exchange-realized fill or depth-adjusted impact.
+        "execution_quality": {
+            "observed_top_of_book_quote_count": len(quoted_spread_bps),
+            "observed_median_spread_bps": round(statistics.median(quoted_spread_bps), 3)
+                                          if quoted_spread_bps else None,
+            "observed_spread_p95_bps": round(sorted(quoted_spread_bps)[
+                max(0, math.ceil(.95*len(quoted_spread_bps)) - 1)], 3)
+                                          if quoted_spread_bps else None,
+            "observed_max_quote_age_ms": max(book_age_ms) if book_age_ms else None,
+            "quotes_without_displayed_depth": missing_book_size,
+            "full_orderbook_depth_or_queue_position_verified": False,
+            "broker_executed_fills_verified": False,
+            "order_size_market_impact_calibrated": False,
+            "book_spread_is_not_total_fill_cost": True,
+        },
         "paper_only": True,
     }
 
