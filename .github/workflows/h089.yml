@@ -6,6 +6,10 @@ on:
     paths:
       - 'research/h089/**'
       - '.github/workflows/h089.yml'
+  pull_request:
+    paths:
+      - 'research/h089/**'
+      - '.github/workflows/h089.yml'
   schedule:
     - cron: '50 23 * * 1-5'
   workflow_run:
@@ -64,7 +68,7 @@ jobs:
           if-no-files-found: warn
 
   collect:
-    if: github.event_name != 'push' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    if: github.event_name != 'push' && github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     needs: regression
     runs-on: ubuntu-latest
     timeout-minutes: 20

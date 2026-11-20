@@ -42,3 +42,17 @@
 | Realized broker PnL / statistically validated alpha | NOT COMPLETE |
 
 **No production trading files or central strategy decisions are modified.**
+
+## Forward 2x scenario compatibility (20 November 2026)
+
+The frozen H065 observations include 100%-notional ES=F and 100%-notional
+YM=F concurrently (gross notional exposure 2.0). The old <=1.0 gross
+constraint crashed independent H089 forward monitoring. H089 now preserves
+both as observed, never rescales either sleeve or edits the source signals.
+Scenario-only daily close-to-close marks use actual reported 2x notional
+weights and charge the existing 2/5/10 bps cost hypotheses against full
+gross entry and subsequent turnover. **No financing, margin, liquidation,
+roll, broker fill or funding cost is thereby verified.** Outputs explicitly
+mark those unknowns and remain not executable verified PnL. Any gross
+exposure above the documented 2x scenario limit still fails closed.
+Existing first-seen timestamps and SHA-linked prior evidence are untouched.

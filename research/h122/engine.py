@@ -105,8 +105,17 @@ def validate(sha, data, now):
             or watch.get("validated_alpha") is not False
             or watch.get("decision") != "WATCH_ONLY_NO_TRADE"):
         raise ValueError("H122_WATCH_IS_MISREPRESENTED_AS_APPROVED_ALPHA")
-    if watch.get("ok") is not True:
-        raise ValueError("H122_WATCH_REPORT_NOT_OK")
+    # Source data outage is a real observable research state, not alpha.
+    # Preserve the outage and emit a coverage alert rather than terminating
+    # before our independent evidence and notification receipts are written.
+    if watch.get("ok") not in (True, False):
+        raise ValueError("H122_WATCH_REPORT_STATUS_UNKNOWN")
+    if watch["ok"] is False:
+        if (watch.get("data_coverage_ok") is not False
+                or watch.get("candidates") != 0
+                or not isinstance(watch.get("reason"), str)
+                or not watch["reason"].strip()):
+            raise ValueError("H122_UNSAFE_WATCH_OUTAGE_REPORT")
     watch_time = b.utc(watch["generated_at_utc"])
     if watch_time > now:
         raise ValueError("H122_WATCH_GENERATED_IN_FUTURE")
@@ -245,6 +254,8 @@ def evaluate(sha, data, hashes, workflows, previous, now):
             "feature_asof": watch["feature_asof"],
             "data_coverage_pct": watch["data_coverage_pct"],
             "data_coverage_ok": watch["data_coverage_ok"],
+            "source_report_ok": watch["ok"],
+            "source_failure_reason": watch.get("reason") if watch["ok"] is False else None,
             "eligible_tickers": watch["eligible_tickers"],
             "priced_tickers": watch["priced_tickers"],
             "liquid_tickers": watch["liquid_tickers"],

@@ -59,3 +59,15 @@ exist without resetting the ongoing experiments.
 
 Test: python -m unittest discover -s research/h122 -p 'test_*.py' -v
 No H119, H120, H121, H054, Tier-1 or Radar live logic changes.
+
+## Source coverage outages (20 November 2026)
+
+If Federal Radar explicitly publishes `ok=false` with insufficient price
+coverage, zero watch candidates and `data_coverage_ok=false`, H122 now
+records the actual source failure reason and coverage percentage, and emits
+one transition alert when previously healthy coverage is lost. It does not
+interpret a missing/partial price feed as a losing or winning strategy.
+Contradictory reports, fabricated approvals, corrupt metrics and missing
+required data still fail validation. The original Radar data and H083
+experiment clock are never modified; no fills or retrospective metrics are
+fabricated.

@@ -74,6 +74,29 @@ class H089Tests(unittest.TestCase):
             f.write_text(f.read_text().replace('"{""YM=F"": 1}"','"{""YM=F"": 5}"'))
             with self.assertRaises(ValueError):first_seen(f)
 
+    def test_two_sleeves_gross_two_not_silently_normalized(self):
+        from forward import valid_weights
+        weights=valid_weights({"YM=F":1.0,"ES=F":1.0})
+        self.assertEqual(sum(abs(v) for v in weights.values()),2.0)
+        initial={"seen":T0,"positions":weights,"closed_bar":"2026-11-13"}
+        baseline=compute_one("H065",initial,None,{
+            "YM=F":mark(100,"2026-11-16",T1),
+            "ES=F":mark(100,"2026-11-16",T1),
+        },T1)
+        self.assertEqual(baseline["status"],"BASELINE")
+        self.assertAlmostEqual(baseline["nav_scenarios"]["base_5bps"],999.0)
+        self.assertEqual(baseline["gross_notional_exposure"],2.0)
+        self.assertFalse(baseline["financing_margin_liquidation_verified"])
+        next_mark=compute_one("H065",initial,baseline,{
+            "YM=F":mark(110,"2026-11-17",T2),
+            "ES=F":mark(105,"2026-11-17",T2),
+        },T2)
+        self.assertAlmostEqual(next_mark["gross_return"],0.15)
+        self.assertAlmostEqual(next_mark["nav_scenarios"]["base_5bps"],1148.85)
+        self.assertFalse(next_mark["forward_pnl_verified"])
+        with self.assertRaises(ValueError):
+            valid_weights({"YM=F":1.0,"ES=F":1.0,"NQ=F":1.0})
+
     def test_official_okx_metadata_unit_gate(self):
         def ok(url):
             return {"code":"0","data":[{"instId":"BTC-USDT-SWAP",
