@@ -24,6 +24,9 @@ WATCH=ROOT/"decisions"/"watch"/"observations.csv"
 OUT=ROOT/"decisions"/"evidence"/"h089_forward.jsonl"
 SCENARIOS={"optimistic_2bps":2.0,"base_5bps":5.0,"stress_10bps":10.0}
 START_NAV=1000.0
+# H065 now publishes two concurrent 100%-notional futures sleeves. Preserve
+# that actual 2x exposure in scenario-only accounting; never rescale to 1x.
+MAX_SCENARIO_GROSS=2.0
 
 
 def dt(s):
@@ -40,7 +43,8 @@ def valid_weights(w):
             raise ValueError("bad position")
         if not math.isfinite(v) or abs(v)>1:raise ValueError("bad weight")
         if abs(v)>1e-12:z[k]=float(v)
-    if sum(abs(v) for v in z.values())>1.000001:raise ValueError("gross leverage >1")
+    if sum(abs(v) for v in z.values())>MAX_SCENARIO_GROSS+1e-6:
+        raise ValueError("gross exposure exceeds documented 2x scenario limit")
     return z
 
 
@@ -133,7 +137,9 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS,target=None):
                 "nav_scenarios":{k:START_NAV*(1-sum(abs(v) for v in positions.values())*bps/10000) for k,bps in fee_bps.items()},
                 "first_seen_utc":stamp(seen),"last_applied_decision_utc":stamp(seen),
                 "forward_pnl_verified":False,
-                "note":"first later observed close sets basis; scenario entry fee charged, no pre-baseline gains"}
+                "gross_notional_exposure":sum(abs(v) for v in positions.values()),
+                "financing_margin_liquidation_verified":False,
+                "note":"first later observed close sets basis; scenario entry fee charged, no pre-baseline gains; leveraged futures financing/margin unknown"}
     old=prev["marks"]
     old_positions=prev["positions"]
     if any(s not in old for s in old_positions):
@@ -163,7 +169,9 @@ def compute_one(idea,initial,prev,prices,now,fee_bps=SCENARIOS,target=None):
             "gross_return":gross,"turnover_one_way_notional":turnover,
             "last_applied_decision_utc":stamp(target["seen"] if apply else last_applied),
             "forward_pnl_verified":False,
-            "note":"scenario-only close marks; no broker fills, futures roll or financing"}
+            "gross_notional_exposure":sum(abs(v) for v in positions.values()),
+            "financing_margin_liquidation_verified":False,
+            "note":"scenario-only close marks; no broker fills, futures roll, margin or financing"}
 
 
 def read_chain(path):
@@ -202,7 +210,9 @@ def collect(now=None,watch=WATCH,out=OUT,price_fetch=get_latest_closed):
          "scenario_one_way_bps":SCENARIOS,
          "all_ideas_marked":all(v["status"] in ("BASELINE","MARK_TO_MARKET","NO_NEW_CLOSE") for v in ideas.values()),
          "broker_fills_verified":False,"funding_verified":False,
-         "roll_adjusted_futures_returns_verified":False}
+         "roll_adjusted_futures_returns_verified":False,
+         "max_scenario_gross_notional":MAX_SCENARIO_GROSS,
+         "leveraged_financing_and_margin_verified":False}
     return rec
 
 
