@@ -1,12 +1,12 @@
 {
-  "asof_utc": "2026-11-20T09:13:00.322111+00:00",
-  "audit_age_hours": 6.83,
+  "asof_utc": "2026-11-20T21:34:08.522172+00:00",
+  "audit_age_hours": 1.09,
   "descriptive_asset_diagnostics": [
     {
       "always_long_hit": 0.0,
       "asset": "SPX",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 2,
+      "graded_raw_rows_not_independent": 3,
       "horizon_hours": 24,
       "model_direction_hit": 1.0,
       "selection_allowed": false
@@ -15,7 +15,7 @@
       "always_long_hit": 0.0,
       "asset": "NQ",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 2,
+      "graded_raw_rows_not_independent": 3,
       "horizon_hours": 24,
       "model_direction_hit": 1.0,
       "selection_allowed": false
@@ -24,7 +24,7 @@
       "always_long_hit": 0.0,
       "asset": "XAG",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 2,
+      "graded_raw_rows_not_independent": 3,
       "horizon_hours": 24,
       "model_direction_hit": 1.0,
       "selection_allowed": false
@@ -107,8 +107,8 @@
     "No automatic hypothesis/registry update, paper reset or live model changes"
   ],
   "new_events": 0,
-  "observed_calls": 95,
-  "observed_snapshots": 234,
+  "observed_calls": 103,
+  "observed_snapshots": 258,
   "official_gate": "NOT_RUN",
   "pending_notifications": 0,
   "production_logic": "UNCHANGED",
@@ -117,13 +117,13 @@
   "schema": "QS.h120.tier1_intelligence.v1",
   "source": "evsayar33-oss/tier1_quant_terminal",
   "source_commits": {
-    "audit/30d-evidence": "029b362763182cd7d27bcb44c6315373698747bb"
+    "audit/30d-evidence": "bfc05a65c0b4dee203f1dabe18a7bddbe5661109"
   },
   "source_hashes": {
-    "ledger": "eb68624724a7cf188f0ea98475264036ddfed73cc2c89602e70f239a0ec776f0",
-    "summary": "b1c43527fd07c7a9ce403af8a52bc5a3b3bf8fcf888fb637f0a64a626b0479f0"
+    "ledger": "656ef436d60a35025e66fa4d25f0624fff9873295cb2b408bc90ee72b69b49dc",
+    "summary": "e3ef9cf319281f1bf1c2dbe193dcc3c30848fcc95349aea9ac4b5f0c0ff8a2bd"
   },
   "state_branch": "research/h120-tier1-evidence",
-  "tier1_audit_utc": "2026-11-20T02:23:18.442625+00:00",
+  "tier1_audit_utc": "2026-11-20T20:28:44.197109+00:00",
   "total_events": 0
 }
