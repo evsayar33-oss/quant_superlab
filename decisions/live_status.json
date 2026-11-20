@@ -1,20 +1,20 @@
 {
   "H052": {
-    "live_bars": 193,
+    "live_bars": 199,
     "live_return": -0.1066,
-    "live_sharpe": -3.43,
+    "live_sharpe": -3.378,
     "live_max_dd": -0.1362,
     "degraded": false,
     "why": "ok",
-    "checked_at": "2026-11-19T00:45:38+00:00"
+    "checked_at": "2026-11-20T00:57:08+00:00"
   },
   "H054": {
-    "live_bars": 193,
+    "live_bars": 199,
     "live_return": -0.1096,
-    "live_sharpe": -3.429,
+    "live_sharpe": -3.377,
     "live_max_dd": -0.1404,
     "degraded": false,
     "why": "ok",
-    "checked_at": "2026-11-19T00:45:38+00:00"
+    "checked_at": "2026-11-20T00:57:08+00:00"
   }
 }
