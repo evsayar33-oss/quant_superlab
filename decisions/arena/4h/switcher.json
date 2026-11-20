@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-20T07:10:29+00:00",
- "data_end": "2026-11-20 00:00:00",
+ "updated_at": "2026-11-20T17:04:38+00:00",
+ "data_end": "2026-11-20 12:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -107,10 +107,10 @@
  "forward": {
   "since": "2026-10-16",
   "days": 34,
-  "ret": -0.0098,
-  "sharpe": -0.306,
-  "ew_ret": 0.0097,
-  "ew_sharpe": 1.023,
+  "ret": -0.0065,
+  "sharpe": -0.159,
+  "ew_ret": 0.0111,
+  "ew_sharpe": 1.148,
   "max_dd": -0.1223
  },
  "regimes": {
@@ -159,9 +159,9 @@
    }
   },
   "XRP/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-15 08:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-20 04:00:00",
    "share": {
     "range": 0.72,
     "trend_up": 0.051,
@@ -207,7 +207,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-17 08:00:00",
    "share": {
-    "range": 0.707,
+    "range": 0.708,
     "trend_up": 0.066,
     "trend_down": 0.056,
     "volatile": 0.171
@@ -276,7 +276,7 @@
     "range": 0.688,
     "trend_up": 0.062,
     "trend_down": 0.079,
-    "volatile": 0.172
+    "volatile": 0.171
    }
   },
   "FIL/USDT": {
@@ -284,7 +284,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-20 00:00:00",
    "share": {
-    "range": 0.69,
+    "range": 0.691,
     "trend_up": 0.045,
     "trend_down": 0.081,
     "volatile": 0.184
@@ -390,9 +390,9 @@
    }
   },
   "SNX/USDT": {
-   "now": "trend_up",
-   "now_tr": "Trend ↑",
-   "since": "2026-11-20 00:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-20 12:00:00",
    "share": {
     "range": 0.727,
     "trend_up": 0.037,
@@ -416,7 +416,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-15 12:00:00",
    "share": {
-    "range": 0.722,
+    "range": 0.723,
     "trend_up": 0.051,
     "trend_down": 0.079,
     "volatile": 0.147
@@ -438,8 +438,8 @@
    "now_tr": "Yatay",
    "since": "2026-11-20 00:00:00",
    "share": {
-    "range": 0.689,
-    "trend_up": 0.07,
+    "range": 0.69,
+    "trend_up": 0.069,
     "trend_down": 0.088,
     "volatile": 0.153
    }
@@ -460,7 +460,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-14 20:00:00",
    "share": {
-    "range": 0.696,
+    "range": 0.695,
     "trend_up": 0.04,
     "trend_down": 0.088,
     "volatile": 0.176
