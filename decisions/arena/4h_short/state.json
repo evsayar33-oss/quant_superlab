@@ -3,7 +3,7 @@
   "A0001": "flat",
   "A0002": "short",
   "A0003": "flat",
-  "A0004": "flat",
+  "A0004": "short",
   "A0005": "short",
   "A0006": "flat",
   "A0007": "flat",
@@ -31,7 +31,7 @@
   "A0029": "flat",
   "A0030": "short",
   "A0031": "flat",
-  "A0032": "flat",
+  "A0032": "short",
   "A0033": "flat",
   "A0034": "flat",
   "A0035": "flat",
@@ -96,7 +96,7 @@
   "A0094": "flat",
   "A0095": "flat",
   "A0096": "flat",
-  "A0097": "flat",
+  "A0097": "short",
   "A0098": "flat",
   "A0099": "flat",
   "A0100": "flat",
@@ -112,6 +112,15 @@
   "A0035": 0.08
  },
  "last_summary": "2026-11-19",
- "last_bar": "2026-11-19 16:00:00",
- "updated_at": "2026-11-19T23:08:17+00:00"
+ "last_bar": "2026-11-20 00:00:00",
+ "updated_at": "2026-11-20T07:09:09+00:00",
+ "book_status": {
+  "A": "inside",
+  "B": "inside",
+  "B2": "inside",
+  "C": "inside",
+  "C2": "inside",
+  "K1": "below",
+  "K2": "below"
+ }
 }
