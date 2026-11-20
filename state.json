@@ -2,48 +2,9 @@
   "alpha_accepted": false,
   "ends_ms": 1797257406425,
   "finalized": false,
-  "last_tick_ms": 1795173928024,
+  "last_tick_ms": 1795205048177,
   "outages": [],
-  "positions": {
-    "gate_BTC_4H_zscore_revert_long": {
-      "direction": 1,
-      "entry": 62134.8,
-      "entry_book_ask": 62134.8,
-      "entry_book_bid": 62134.7,
-      "entry_ms": 1795120126240,
-      "entry_quote_ms": 1795120126240,
-      "entry_source_sha256": "c6f7324ac85fc6b984aa43a5a569c945490fd3b358e33e8cb37e8f9ecd34b9ff",
-      "family": "zscore_revert",
-      "key": "gate_BTC_4H_zscore_revert_long",
-      "last_examined_bar_ms": 1795168800000,
-      "risk": 2229.1999999999994,
-      "side": "long",
-      "signal_ms": 1795104000000,
-      "stop": 59905.600000000006,
-      "target": 65478.600000000006,
-      "unobserved_entry_hour": true,
-      "venue": "gate"
-    },
-    "okx_BTC_4H_zscore_revert_long": {
-      "direction": 1,
-      "entry": 62127.6,
-      "entry_book_ask": 62127.6,
-      "entry_book_bid": 62127.5,
-      "entry_ms": 1795120126240,
-      "entry_quote_ms": 1795120127563,
-      "entry_source_sha256": "23f1cb2ff9ac81ef14e95f858cd5fec573a78c1c1c3c7e4edd5cc2fb537a8630",
-      "family": "zscore_revert",
-      "key": "okx_BTC_4H_zscore_revert_long",
-      "last_examined_bar_ms": 1795168800000,
-      "risk": 2230.0857142857153,
-      "side": "long",
-      "signal_ms": 1795104000000,
-      "stop": 59897.514285714286,
-      "target": 65472.72857142857,
-      "unobserved_entry_hour": true,
-      "venue": "okx"
-    }
-  },
+  "positions": {},
   "rejected": [],
   "research_only": true,
   "schema": "h111.paper.v1",
@@ -67,7 +28,11 @@
     "okx_BTC_4H_zscore_revert_long_1795104000000",
     "okx_BTC_4H_two_bar_reversal_short_1795104000000",
     "gate_BTC_4H_zscore_revert_long_1795104000000",
-    "gate_BTC_4H_two_bar_reversal_short_1795104000000"
+    "gate_BTC_4H_two_bar_reversal_short_1795104000000",
+    "okx_BTC_4H_zscore_revert_long_1795190400000",
+    "okx_BTC_4H_two_bar_reversal_short_1795190400000",
+    "gate_BTC_4H_zscore_revert_long_1795190400000",
+    "gate_BTC_4H_two_bar_reversal_short_1795190400000"
   ],
   "started_ms": 1794665406425,
   "ticks": [
@@ -450,7 +415,83 @@
         }
       },
       "ts": 1795173928024
+    },
+    {
+      "closed_trades": 2,
+      "open_positions": 0,
+      "quotes": {
+        "gate": {
+          "ask": 58540.4,
+          "bar_hash": "036fbc02412e04bd532cb565b4799feea046c6004f944458ba894db0c7edf6ac",
+          "bid": 58540.3,
+          "quote_ms": 1795205048177
+        },
+        "okx": {
+          "ask": 58534.9,
+          "bar_hash": "61dcaf5e2c621e63123502ec071b76c947eb3b78ad4381751d46d82b33cfa898",
+          "bid": 58534.8,
+          "quote_ms": 1795205048569
+        }
+      },
+      "ts": 1795205048177
     }
   ],
-  "trades": []
+  "trades": [
+    {
+      "direction": 1,
+      "entry": 62127.6,
+      "entry_book_ask": 62127.6,
+      "entry_book_bid": 62127.5,
+      "entry_ms": 1795120126240,
+      "entry_quote_ms": 1795120127563,
+      "entry_source_sha256": "23f1cb2ff9ac81ef14e95f858cd5fec573a78c1c1c3c7e4edd5cc2fb537a8630",
+      "exit_ms": 1795190400000,
+      "exit_price": 59897.514285714286,
+      "family": "zscore_revert",
+      "gross_r": -0.999999999999999,
+      "key": "okx_BTC_4H_zscore_revert_long",
+      "last_examined_bar_ms": 1795183200000,
+      "net_r": {
+        "12": -1.033430607407786,
+        "16": -1.0445741432103817,
+        "20": -1.0557176790129774
+      },
+      "reason": "STOP_PROXY",
+      "risk": 2230.0857142857153,
+      "side": "long",
+      "signal_ms": 1795104000000,
+      "stop": 59897.514285714286,
+      "target": 65472.72857142857,
+      "unobserved_entry_hour": true,
+      "venue": "okx"
+    },
+    {
+      "direction": 1,
+      "entry": 62134.8,
+      "entry_book_ask": 62134.8,
+      "entry_book_bid": 62134.7,
+      "entry_ms": 1795120126240,
+      "entry_quote_ms": 1795120126240,
+      "entry_source_sha256": "c6f7324ac85fc6b984aa43a5a569c945490fd3b358e33e8cb37e8f9ecd34b9ff",
+      "exit_ms": 1795190400000,
+      "exit_price": 59905.600000000006,
+      "family": "zscore_revert",
+      "gross_r": -0.999999999999999,
+      "key": "gate_BTC_4H_zscore_revert_long",
+      "last_examined_bar_ms": 1795183200000,
+      "net_r": {
+        "12": -1.0334477660147128,
+        "16": -1.0445970213529507,
+        "20": -1.0557462766911887
+      },
+      "reason": "STOP_PROXY",
+      "risk": 2229.1999999999994,
+      "side": "long",
+      "signal_ms": 1795104000000,
+      "stop": 59905.600000000006,
+      "target": 65478.600000000006,
+      "unobserved_entry_hour": true,
+      "venue": "gate"
+    }
+  ]
 }
