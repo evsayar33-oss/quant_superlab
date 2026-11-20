@@ -53,3 +53,17 @@ trading decision.
 No market-impact capacity, queue priority or brokerage fills are independently
 verified for either strategy. No source code, secrets, alerts or already
 running PAPER windows are modified by this diagnostics-only addition.
+
+## Prospective liquidity coverage (20 November 2026)
+
+Bitget Band-30's existing source PAPER workflow now archives current top
+bid/ask displayed sizes (source change PR #24) without altering its NAV,
+trade decisions, or paper fill prices. H121 matches a simulated PAPER
+trade's observed timestamp and side to the SAME source tick's quote.
+It counts how often simulated order USDT exceeds *displayed top-level*
+notional and how many past trades lack contemporaneous size entirely.
+
+This does **not** pretend larger orders failed, invent deeper order-book
+prices, or retroactively restate profit. Top-quote capacity is a partial
+liquidity warning, not guaranteed or executable fill volume. No bot or
+strategy settings changed and the ongoing 90-day forward ledger stays intact.

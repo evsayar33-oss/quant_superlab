@@ -40,7 +40,7 @@ def fixture():
         "schema": "h054.regime_band30.bitget.paper.v1",
         "start_ms": last - 24*3600000, "end_ms": last + 90*86400000,
         "last_candle_ms": last, "finalized": False, "cash": 10000,
-        "ticks": [tick], "continuity_gaps": [],
+        "ticks": [tick], "trades": [], "continuity_gaps": [],
         "outages": [], "qty": {}, 
     }
     return {
@@ -140,6 +140,49 @@ class H121Contracts(unittest.TestCase):
         mom = h.parse_mom2(input_data)
         self.assertFalse(mom["contemporaneous_bid_ask_per_fill_available"])
         self.assertFalse(mom["actual_orderbook_impact_or_queue_position_verified"])
+
+    def test_future_order_capacity_is_observed_not_faked(self):
+        data = fixture()
+        state = json.loads(data[("band30","state.json")])
+        tick = state["ticks"][0]
+        tick["quotes"]["BTC/USDT"].update({
+            "bid_size": 2., "ask_size": 3.,
+            "top_bid_notional_usdt": 129998.,
+            "top_ask_notional_usdt": 195000.,
+        })
+        state["trades"] = [
+            {"observed_ms": tick["observed_ms"], "asset": "BTC/USDT",
+             "side": "buy", "usdt": 200000, "px": 65000},
+            {"observed_ms": tick["observed_ms"], "asset": "BTC/USDT",
+             "side": "sell", "usdt": 1000, "px": 64999},
+            {"observed_ms": tick["observed_ms"]-1000, "asset": "BTC/USDT",
+             "side": "buy", "usdt": 1000, "px": 65000},
+        ]
+        state["ticks"][0]["trades"] = 3
+        data[("band30","state.json")] = json.dumps(state)
+        result = h.parse_band30(data)
+        cap = result["execution_quality"]["prospective_top_level_capacity"]
+        self.assertEqual(cap["paper_trade_rows"],3)
+        self.assertEqual(cap["evaluated_at_observed_top_quote"],2)
+        self.assertEqual(cap["unknown_or_unavailable_size"],1)
+        self.assertEqual(cap["exceeds_top_quote_notional"],1)
+        self.assertGreater(cap["max_order_to_displayed_top_notional"],1.0)
+        self.assertFalse(result["execution_quality"]["broker_executed_fills_verified"])
+        self.assertFalse(result["execution_quality"]["order_size_market_impact_calibrated"])
+
+    def test_old_paper_trades_lacking_quote_size_remain_unknown(self):
+        data = fixture()
+        state = json.loads(data[("band30","state.json")])
+        observed = state["ticks"][0]["observed_ms"]
+        state["trades"] = [{"observed_ms": observed, "asset": "BTC/USDT",
+                            "side": "buy", "usdt": 1000, "px": 65000}]
+        state["ticks"][0]["trades"] = 1
+        data[("band30","state.json")] = json.dumps(state)
+        cap = h.parse_band30(data)["execution_quality"]["prospective_top_level_capacity"]
+        self.assertEqual(cap["paper_trade_rows"],1)
+        self.assertEqual(cap["evaluated_at_observed_top_quote"],0)
+        self.assertEqual(cap["unknown_or_unavailable_size"],1)
+        self.assertIsNone(cap["max_order_to_displayed_top_notional"])
 
     def test_quote_telemetry_rejects_future_or_crossed_book(self):
         data = fixture()

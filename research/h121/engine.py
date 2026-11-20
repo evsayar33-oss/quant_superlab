@@ -172,6 +172,42 @@ def parse_band30(bodies):
             raise ValueError("H121_BAD_CANDLE_GAP_COUNT")
     if state.get("finalized") not in (True, False):
         raise ValueError("H121_MISSING_FINALITY")
+    # Compare only actually observed, contemporaneous top-of-book
+    # *displayed* notional against subsequent PAPER order sizes.
+    # Depth cannot be inferred for historical ticks that never stored it.
+    tick_index = {t["observed_ms"]: t for t in ticks}
+    capacity = {"paper_trade_rows": 0, "evaluated_at_observed_top_quote": 0,
+                "unknown_or_unavailable_size": 0, "exceeds_top_quote_notional": 0,
+                "max_order_to_displayed_top_notional": None}
+    ratios = []
+    if not isinstance(state.get("trades"), list):
+        raise ValueError("H121_MISSING_BAND30_ORDER_LOG")
+    for order in state["trades"]:
+        capacity["paper_trade_rows"] += 1
+        observed = order.get("observed_ms")
+        tick = tick_index.get(observed)
+        sym, side = order.get("asset"), order.get("side")
+        if tick is None or sym not in SYMBOLS or side not in ("buy", "sell"):
+            capacity["unknown_or_unavailable_size"] += 1
+            continue
+        q = tick["quotes"].get(sym, {})
+        amount = number(order["usdt"], 0)
+        depth_key = "top_ask_notional_usdt" if side == "buy" else "top_bid_notional_usdt"
+        shown = q.get(depth_key)
+        if shown is None or not isinstance(shown, (int,float)) or shown <= 0:
+            capacity["unknown_or_unavailable_size"] += 1
+            continue
+        shown = number(shown, 0)
+        ratio = amount / shown
+        ratios.append(ratio)
+        capacity["evaluated_at_observed_top_quote"] += 1
+        if ratio > 1.000001:
+            capacity["exceeds_top_quote_notional"] += 1
+    if ratios:
+        capacity["max_order_to_displayed_top_notional"] = round(max(ratios), 4)
+    if (capacity["evaluated_at_observed_top_quote"]
+            + capacity["unknown_or_unavailable_size"] != capacity["paper_trade_rows"]):
+        raise ValueError("H121_TRADE_CAPACITY_RECONCILIATION")
     last_nav = number(ticks[-1]["nav"], 0) if ticks else number(state.get("cash"), 0)
     return {
         "start_utc": datetime.fromtimestamp(state["start_ms"]/1000, timezone.utc).isoformat(),
@@ -198,6 +234,8 @@ def parse_band30(bodies):
                                           if quoted_spread_bps else None,
             "observed_max_quote_age_ms": max(book_age_ms) if book_age_ms else None,
             "quotes_without_displayed_depth": missing_book_size,
+            "prospective_top_level_capacity": capacity,
+            "top_quote_capacity_not_multilevel_executability": True,
             "full_orderbook_depth_or_queue_position_verified": False,
             "broker_executed_fills_verified": False,
             "order_size_market_impact_calibrated": False,
