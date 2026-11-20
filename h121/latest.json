@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-20T10:21:18.266838+00:00",
+  "asof_utc": "2026-11-20T10:27:52.236112+00:00",
   "band30": {
     "end_utc": "2027-02-13T19:34:07.202000+00:00",
     "execution_quality": {
@@ -12,7 +12,15 @@
       "observed_spread_p95_bps": 1.394,
       "observed_top_of_book_quote_count": 96,
       "order_size_market_impact_calibrated": false,
-      "quotes_without_displayed_depth": 96
+      "prospective_top_level_capacity": {
+        "evaluated_at_observed_top_quote": 0,
+        "exceeds_top_quote_notional": 0,
+        "max_order_to_displayed_top_notional": null,
+        "paper_trade_rows": 0,
+        "unknown_or_unavailable_size": 0
+      },
+      "quotes_without_displayed_depth": 96,
+      "top_quote_capacity_not_multilevel_executability": true
     },
     "finalized": false,
     "gaps": 4,
@@ -74,7 +82,7 @@
   "schema": "QS.h121.h054.paper_intelligence.v1",
   "source_commits": {
     "band30": "1668a1fa962be814fa9060a3ac6ed803e5233ba1",
-    "mom2": "15c152c5090ed34ec30f2c0eb18092666f74a7be"
+    "mom2": "bc15573442cb0080076f7c89f35a9bf9c46df009"
   },
   "source_repo": "evsayar33-oss/h054_spot_bot",
   "source_sha256": {
