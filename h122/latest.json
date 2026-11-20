@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-20T11:28:48.756911+00:00",
+  "asof_utc": "2026-11-20T12:13:05.071375+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -25,7 +25,7 @@
     "source_report_ok": false,
     "watch_candidates": 0
   },
-  "events_new": 1,
+  "events_new": 0,
   "events_total": 1,
   "executable_broker_pnl": null,
   "five_event_hypotheses": {
