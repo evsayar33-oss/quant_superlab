@@ -143,6 +143,30 @@ class TestFederalIndependent(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"SKIPPED_CANNOT_COUNT"):
             h.evaluate(SHA,data,{}, {}, {},NOW)
 
+    def test_real_source_watch_outage_is_preserved_and_alerted_once(self):
+        data = values()
+        _, old, _ = h.evaluate(SHA, data, {}, {}, {}, NOW)
+        outage = values()
+        outage["event_watch_status.json"].update({
+            "ok": False, "data_coverage_ok": False,
+            "data_coverage_pct": 0.726, "candidates": 0,
+            "by_rule": {"monthly_low_beta": 0, "monthly_vol_squeeze": 0},
+            "reason": "INSUFFICIENT_PRICE_COVERAGE",
+        })
+        report, old2, events = h.evaluate(SHA, outage, {}, {}, old, NOW)
+        self.assertEqual(report["event_watch"]["source_report_ok"], False)
+        self.assertEqual(report["event_watch"]["source_failure_reason"],
+                         "INSUFFICIENT_PRICE_COVERAGE")
+        self.assertEqual(report["event_watch"]["watch_candidates"], 0)
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["kind"], "H083_COVERAGE_LOST")
+        self.assertEqual(report["official_lab_accept"], "NOT_RUN")
+        _, _, repeated = h.evaluate(SHA, outage, {}, {}, old2, NOW)
+        self.assertEqual(repeated, [])
+        outage["event_watch_status.json"]["candidates"] = 1
+        with self.assertRaisesRegex(ValueError, "UNSAFE_WATCH_OUTAGE"):
+            h.evaluate(SHA, outage, {}, {}, old, NOW)
+
     def test_h083_source_missing_forward_never_claims_no_profit(self):
         data=values()
         result,_,_=h.evaluate(SHA,data,{}, {}, {},NOW)
