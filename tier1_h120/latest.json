@@ -1,12 +1,12 @@
 {
-  "asof_utc": "2026-11-19T15:08:27.023555+00:00",
-  "audit_age_hours": 3.31,
+  "asof_utc": "2026-11-20T01:27:33.257764+00:00",
+  "audit_age_hours": 4.72,
   "descriptive_asset_diagnostics": [
     {
       "always_long_hit": 0.0,
       "asset": "SPX",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 1,
+      "graded_raw_rows_not_independent": 2,
       "horizon_hours": 24,
       "model_direction_hit": 1.0,
       "selection_allowed": false
@@ -15,7 +15,7 @@
       "always_long_hit": 0.0,
       "asset": "NQ",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 1,
+      "graded_raw_rows_not_independent": 2,
       "horizon_hours": 24,
       "model_direction_hit": 1.0,
       "selection_allowed": false
@@ -24,7 +24,7 @@
       "always_long_hit": 0.0,
       "asset": "XAG",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 1,
+      "graded_raw_rows_not_independent": 2,
       "horizon_hours": 24,
       "model_direction_hit": 1.0,
       "selection_allowed": false
@@ -39,12 +39,12 @@
       "selection_allowed": false
     },
     {
-      "always_long_hit": 0.5,
+      "always_long_hit": 0.4,
       "asset": "BTC",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 4,
+      "graded_raw_rows_not_independent": 5,
       "horizon_hours": 24,
-      "model_direction_hit": 0.5,
+      "model_direction_hit": 0.6,
       "selection_allowed": false
     },
     {
@@ -57,12 +57,12 @@
       "selection_allowed": false
     },
     {
-      "always_long_hit": 0.75,
+      "always_long_hit": 0.8,
       "asset": "ETH",
       "data_label": "OVERLAPPING_AND_PROXY_NOT_TRADEABLE",
-      "graded_raw_rows_not_independent": 4,
+      "graded_raw_rows_not_independent": 5,
       "horizon_hours": 24,
-      "model_direction_hit": 0.25,
+      "model_direction_hit": 0.2,
       "selection_allowed": false
     }
   ],
@@ -70,15 +70,15 @@
   "final_study_decisions": [],
   "grades": {
     "24": {
-      "always_long_hit": 0.1429,
-      "assumed_40bps_mean_bps": 38.67,
-      "bonferroni_12_p": 0.75,
-      "directional_uplift": 0.7142,
+      "always_long_hit": 0.1667,
+      "assumed_40bps_mean_bps": 57.22,
+      "bonferroni_12_p": 0.231445,
+      "directional_uplift": 0.6666,
       "grade": "NOT_ENOUGH_INDEPENDENT_EVIDENCE",
       "horizon_hours": 24,
       "independent_asset_assumption_verified": false,
-      "model_hit": 0.8571,
-      "observations": 7,
+      "model_hit": 0.8333,
+      "observations": 12,
       "official_lab_gate": "NOT_RUN",
       "realized_executable_pnl": null,
       "source_verdict": "INSUFFICIENT"
@@ -107,8 +107,8 @@
     "No automatic hypothesis/registry update, paper reset or live model changes"
   ],
   "new_events": 0,
-  "observed_calls": 89,
-  "observed_snapshots": 210,
+  "observed_calls": 92,
+  "observed_snapshots": 222,
   "official_gate": "NOT_RUN",
   "pending_notifications": 0,
   "production_logic": "UNCHANGED",
@@ -117,13 +117,13 @@
   "schema": "QS.h120.tier1_intelligence.v1",
   "source": "evsayar33-oss/tier1_quant_terminal",
   "source_commits": {
-    "audit/30d-evidence": "8317719f63ab03916b2c4dbacdca41a3573e3451"
+    "audit/30d-evidence": "21d9bad52dcf3a4e660463d37e5360e500d63125"
   },
   "source_hashes": {
-    "ledger": "05098862f7af462f0b7d50dca1f81cdb57bd96490b123101a6e5429b6c15a96d",
-    "summary": "c77609858ab46ecda02ae8595eb24726c9081315445d215104e1225353874c99"
+    "ledger": "b979ff423ebe4a59e6d42e6391b6b9947e0b0cc9760f576d5f9c98da94ee939a",
+    "summary": "e8398b1fd15a0a2e08005da8e07a89966b783d241e5963e12a715b57f9982cd6"
   },
   "state_branch": "research/h120-tier1-evidence",
-  "tier1_audit_utc": "2026-11-19T11:49:35.751140+00:00",
+  "tier1_audit_utc": "2026-11-19T20:44:24.593917+00:00",
   "total_events": 0
 }
