@@ -160,7 +160,7 @@ class TestFederalIndependent(unittest.TestCase):
         self.assertEqual(report["event_watch"]["watch_candidates"], 0)
         self.assertEqual(len(events), 1)
         self.assertEqual(events[0]["kind"], "H083_COVERAGE_LOST")
-        self.assertEqual(report["official_lab_accept"], "NOT_RUN")
+        self.assertEqual(report["original_lab_gate"], "NOT_RUN")
         _, _, repeated = h.evaluate(SHA, outage, {}, {}, old2, NOW)
         self.assertEqual(repeated, [])
         outage["event_watch_status.json"]["candidates"] = 1
