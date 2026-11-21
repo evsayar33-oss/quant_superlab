@@ -106,6 +106,28 @@ class TestFederalIndependent(unittest.TestCase):
         self.assertEqual(ev[0]["kind"],"H083_REPEATED_SKIPPED_SESSIONS")
         self.assertFalse(ev[0]["broker_trade_authorized"])
 
+    def test_completed_research_without_matured_month_is_valid(self):
+        data = values()
+        data["h083_last_attempt.json"].update({
+            "state": "COMPLETED_RESEARCH",
+            "reason": "AFTER_NYSE_CLOSE",
+            "counts_as_forward_month": False,
+        })
+        data["h083_forward_status.json"] = {
+            "ok": True, "broker_ordering": False, "information_only": True,
+            "monitor_rules": ["monthly_low_beta", "monthly_vol_squeeze"],
+            "research_approved_styles": 0,
+            "generated_utc": "2026-11-19T11:30:00+00:00",
+            "last_complete_nyse_session": "2026-11-18",
+            "forward_months_closed": 0, "cohorts_frozen_this_run": 0,
+            "approved_paper_rules": [], "data_coverage_ok": True,
+        }
+        report, _, events = h.evaluate(SHA, data, {}, {}, {}, NOW)
+        self.assertEqual(events, [])
+        self.assertFalse(report["h083"]["last_attempt"]["counts_as_forward_month"])
+        self.assertEqual(report["h083"]["published_forward_report"]["forward_months_closed"], 0)
+        self.assertTrue(report["no_official_alpha_approval"])
+
     def test_mature_month_is_not_trade_permission(self):
         data=values()
         f={
