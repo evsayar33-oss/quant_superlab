@@ -232,6 +232,9 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
     tstats = None
     if isinstance(cand, CD.RuleCandidate) and has_oos:
         tstats = trade_stats(strict["trades"], len(oos) / ppy)
+        from lab.adapters.reference import audit_oos_fills
+        from lab.trade_engine import EXIT_GRID
+        execution_audit = audit_oos_fills(p, strict["trades"], strict["variants"], EXIT_GRID, costs)
 
     # ---- risk-free and currency
     rf = p.rf_per_bar() if p.rf_annual is not None else None
@@ -289,6 +292,7 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
         "regimes": metrics.regime_breakdown(oos, p.bench, p.macro) if has_oos else {},
         "calendar": metrics.calendar_profile(oos) if has_oos else {},
         "trade_stats": tstats,
+        "execution_audit": execution_audit if tstats is not None else {"status": "not_applicable"},
         "walk_forward": wf_log,
         "wf_efficiency": RB.wf_efficiency(wf_log, oos) if has_oos else None,
         "final_variant": final_key,

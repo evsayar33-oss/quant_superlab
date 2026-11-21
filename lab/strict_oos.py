@@ -216,6 +216,7 @@ def nested_walk_forward(cand, panel, costs, stage1, runs, train_years=3.0,
                 lifetime = selected.loc[opened:closed]
                 if not lifetime.empty and lifetime.eq(key).all():
                     tr = trade.to_dict()
+                    tr["_variant"] = key
                     tr["_fold"] = next(i for i, entry in enumerate(logs)
                                        if entry["test_start"] <= str(closed) <= entry["test_end"])
                     trade_parts.append(tr)
