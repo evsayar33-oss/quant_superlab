@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-21T12:39:33+00:00",
- "data_end": "2026-11-21 08:00:00",
+ "updated_at": "2026-11-21T21:45:20+00:00",
+ "data_end": "2026-11-21 16:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -64,7 +64,7 @@
    "side": "long",
    "timeframe": "4h",
    "weight": 0.2,
-   "position": "flat",
+   "position": "long",
    "regime": "volatile"
   },
   {
@@ -115,17 +115,17 @@
    "timeframe": "4h",
    "weight": 0.2,
    "position": "flat",
-   "regime": "trend_down"
+   "regime": "volatile"
   }
  ],
  "forward": {
   "since": "2026-10-20",
   "days": 31,
-  "ret": -0.0026,
-  "sharpe": -2.885,
-  "ew_ret": -0.0204,
-  "ew_sharpe": -11.489,
-  "max_dd": -0.0048
+  "ret": -0.0041,
+  "sharpe": -4.029,
+  "ew_ret": -0.02,
+  "ew_sharpe": -11.167,
+  "max_dd": -0.0063
  },
  "regimes": {
   "BTC/USDT": {
@@ -140,9 +140,9 @@
    }
   },
   "ETH/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-20 20:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 12:00:00",
    "share": {
     "range": 0.652,
     "trend_up": 0.092,
@@ -195,9 +195,9 @@
    }
   },
   "DOGE/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-21 00:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 16:00:00",
    "share": {
     "range": 0.695,
     "trend_up": 0.048,
@@ -233,7 +233,7 @@
    "since": "2026-11-20 20:00:00",
    "share": {
     "range": 0.692,
-    "trend_up": 0.053,
+    "trend_up": 0.052,
     "trend_down": 0.092,
     "volatile": 0.164
    }
@@ -283,9 +283,9 @@
    }
   },
   "NEAR/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-11-17 04:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 16:00:00",
    "share": {
     "range": 0.688,
     "trend_up": 0.062,
@@ -298,7 +298,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-21 08:00:00",
    "share": {
-    "range": 0.691,
+    "range": 0.69,
     "trend_up": 0.045,
     "trend_down": 0.081,
     "volatile": 0.184
@@ -316,9 +316,9 @@
    }
   },
   "AAVE/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-11-17 08:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 16:00:00",
    "share": {
     "range": 0.689,
     "trend_up": 0.061,
@@ -338,9 +338,9 @@
    }
   },
   "XLM/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-21 04:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-21 16:00:00",
    "share": {
     "range": 0.707,
     "trend_up": 0.043,
@@ -349,9 +349,9 @@
    }
   },
   "ALGO/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-20 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-21 12:00:00",
    "share": {
     "range": 0.685,
     "trend_up": 0.047,
@@ -441,7 +441,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-21 04:00:00",
    "share": {
-    "range": 0.711,
+    "range": 0.71,
     "trend_up": 0.065,
     "trend_down": 0.054,
     "volatile": 0.171
@@ -470,9 +470,9 @@
    }
   },
   "APT/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-14 20:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 16:00:00",
    "share": {
     "range": 0.695,
     "trend_up": 0.04,
@@ -507,7 +507,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-19 08:00:00",
    "share": {
-    "range": 0.729,
+    "range": 0.73,
     "trend_up": 0.035,
     "trend_down": 0.077,
     "volatile": 0.159
