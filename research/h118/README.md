@@ -28,3 +28,23 @@ At 30, 60 and 90 elapsed days, compare cumulative NAV, model-by-model drawdown, 
 - Repository Actions permissions must allow the workflow to create and push paper/h118-90d. If blocked, **do not** claim observations persist.
 - No pre-start synthetic holdings or retrospective profit counting.
 - The requested strategy, Regime Band-30, remains a research comparator and is **not** installed as the actual h054_spot_bot trading strategy.
+
+## Prospective no-trade diagnostics (not a new strategy)
+
+When a *new* closed 4h candle is observed, the existing frozen H117 weights
+are unchanged; H118 additionally records `signal_trace` on that new tick and
+`latest_signal_trace` in summary.json. This distinguishes:
+
+- H054-MOM2's BTC/ETH eligibility (200-day SMA, 2-of-3 momentum votes);
+- BTC-gated regime accounts (BTC 200-day SMA and positive 90-day momentum);
+- a remaining **unresolved** band / rebalance gate if an eligible candidate
+  exists but the frozen target weights stay zero.
+
+The trace uses the already-fetched OKX closes and **never** changes weights,
+fees, execution quotes, virtual positions, experiment start, prior ticks or
+accounting. Diagnostics can fail without preventing a real PAPER observation;
+`TRACE_UNAVAILABLE` is clearly recorded. Older observations are not
+retrospectively labelled. A zero-weight decision during a risk-off market is
+not itself a code failure. Model improvement requires a separate,
+predeclared cost-aware out-of-sample comparison; no automatic parameter tuning
+or promotion is included.
