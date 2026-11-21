@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-21T15:13:36.384484+00:00",
+  "asof_utc": "2026-11-21T23:57:02.698230+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -25,7 +25,7 @@
     "source_report_ok": true,
     "watch_candidates": 7
   },
-  "events_new": 1,
+  "events_new": 0,
   "events_total": 2,
   "executable_broker_pnl": null,
   "five_event_hypotheses": {
@@ -88,7 +88,7 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "45fe8f2f8cd8e4c10bfb516e9450360101be3c5a",
+  "source_commit_sha": "d668b57695ae89b0da4b7bf82e43b9e7e07698c6",
   "source_hashes": {
     "economic_intelligence_status.json": "94a5163a14fce6f25f5b004fade2c145a3e56f02076141eb7165f387fa3ff0f1",
     "event_watch_status.json": "bf3916f5f464bbce7f90ed087e8152e63e8a126964d738ebe7f97d1c442a170f",

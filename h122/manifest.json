@@ -19,9 +19,9 @@
     "state": "COMPLETED_RESEARCH"
   },
   "h083_skipped_session_streak": 0,
-  "last_source_commit": "45fe8f2f8cd8e4c10bfb516e9450360101be3c5a",
+  "last_source_commit": "d668b57695ae89b0da4b7bf82e43b9e7e07698c6",
   "schema": "QS.h122.federal_evidence.v1",
-  "seen_utc": "2026-11-21T15:13:36.384484+00:00",
+  "seen_utc": "2026-11-21T23:57:02.698230+00:00",
   "watch": {
     "data_coverage_ok": true,
     "data_coverage_pct": 0.8356,
