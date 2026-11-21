@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-20T12:13:05.071375+00:00",
+  "asof_utc": "2026-11-21T00:57:33.305267+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -14,11 +14,11 @@
       "monthly_vol_squeeze": 0
     },
     "data_coverage_ok": false,
-    "data_coverage_pct": 0.726,
+    "data_coverage_pct": 0.7945,
     "eligible_tickers": 146,
-    "feature_asof": "2026-11-19",
-    "liquid_tickers": 94,
-    "priced_tickers": 106,
+    "feature_asof": "2026-11-20",
+    "liquid_tickers": 108,
+    "priced_tickers": 116,
     "source_decision": "WATCH_ONLY_NO_TRADE",
     "source_failure_reason": "INSUFFICIENT_PRICE_COVERAGE",
     "source_first_seen_forward_only": 22,
@@ -81,10 +81,10 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "7c62c5c07260e57fd9526280ac3426b8b6897215",
+  "source_commit_sha": "030d99fd033cd7d91f9132334e5326baecf3dbe3",
   "source_hashes": {
-    "economic_intelligence_status.json": "62f2aad508f2f01975f2fbc1a7175c649ee54a836a8a01521e0e1093bfb0f401",
-    "event_watch_status.json": "0e27e22141f56b88c091da0fcd612cfb91f8ea724b1e567b0488d3d6537afef3",
+    "economic_intelligence_status.json": "94a5163a14fce6f25f5b004fade2c145a3e56f02076141eb7165f387fa3ff0f1",
+    "event_watch_status.json": "f3c4488a8a0afa2c775e91c15a5f9b5ee077e965b677cdb69e8887bd96e08b90",
     "h083_last_attempt.json": "7c9adfe6803f5780e97354eda84a039f84fab513ce816405ec5a3414bbbc8c67"
   },
   "source_repo": "evsayar33-oss/federal-incentive-radar",
