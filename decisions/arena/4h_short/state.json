@@ -1,10 +1,10 @@
 {
  "positions": {
   "A0001": "flat",
-  "A0002": "short",
+  "A0002": "flat",
   "A0003": "flat",
   "A0004": "short",
-  "A0005": "short",
+  "A0005": "flat",
   "A0006": "flat",
   "A0007": "flat",
   "A0008": "flat",
@@ -16,7 +16,7 @@
   "A0014": "flat",
   "A0015": "flat",
   "A0016": "short",
-  "A0017": "short",
+  "A0017": "flat",
   "A0018": "short",
   "A0019": "flat",
   "A0020": "short",
@@ -96,30 +96,30 @@
   "A0094": "flat",
   "A0095": "flat",
   "A0096": "flat",
-  "A0097": "short",
+  "A0097": "flat",
   "A0098": "flat",
   "A0099": "flat",
   "A0100": "flat",
-  "A0101": "short",
+  "A0101": "flat",
   "A0102": "flat",
   "A0103": "flat"
  },
  "switcher": {
-  "A0001": 0.08,
-  "A0002": 0.08,
-  "A0003": 0.08,
-  "A0011": 0.08,
-  "A0035": 0.08
+  "A0097": 0.2,
+  "A0001": 0.1,
+  "A0002": 0.1,
+  "A0003": 0.1,
+  "A0011": 0.1
  },
  "last_summary": "2026-11-19",
- "last_bar": "2026-11-20 20:00:00",
- "updated_at": "2026-11-21T01:32:41+00:00",
+ "last_bar": "2026-11-21 08:00:00",
+ "updated_at": "2026-11-21T12:40:24+00:00",
  "book_status": {
   "A": "inside",
   "B": "inside",
   "B2": "inside",
   "C": "above",
-  "C2": "inside",
+  "C2": "above",
   "K1": "below",
   "K2": "below"
  }
