@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-20T07:19:46+00:00",
- "data_end": "2026-11-19 00:00:00",
+ "updated_at": "2026-11-21T01:42:56+00:00",
+ "data_end": "2026-11-20 00:00:00",
  "universe": "crypto_alts",
  "timeframe": "1d",
  "usable": false,
@@ -111,11 +111,11 @@
  ],
  "forward": {
   "since": "2026-10-20",
-  "days": 29,
-  "ret": 0.0438,
-  "sharpe": 3.401,
-  "ew_ret": 0.0779,
-  "ew_sharpe": 7.018,
+  "days": 30,
+  "ret": 0.0685,
+  "sharpe": 4.621,
+  "ew_ret": 0.0909,
+  "ew_sharpe": 7.763,
   "max_dd": -0.0232
  },
  "regimes": {
@@ -137,7 +137,7 @@
    "share": {
     "range": 0.619,
     "trend_up": 0.099,
-    "trend_down": 0.092,
+    "trend_down": 0.093,
     "volatile": 0.19
    }
   },
@@ -180,7 +180,7 @@
    "since": "2026-10-30 00:00:00",
    "share": {
     "range": 0.63,
-    "trend_up": 0.074,
+    "trend_up": 0.073,
     "trend_down": 0.102,
     "volatile": 0.194
    }
@@ -190,7 +190,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-09 00:00:00",
    "share": {
-    "range": 0.579,
+    "range": 0.578,
     "trend_up": 0.067,
     "trend_down": 0.13,
     "volatile": 0.225
@@ -201,18 +201,18 @@
    "now_tr": "Volatil",
    "since": "2026-11-15 00:00:00",
    "share": {
-    "range": 0.683,
+    "range": 0.682,
     "trend_up": 0.059,
     "trend_down": 0.117,
     "volatile": 0.142
    }
   },
   "LINK/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-15 00:00:00",
+   "now": "trend_down",
+   "now_tr": "Trend ↓",
+   "since": "2026-11-20 00:00:00",
    "share": {
-    "range": 0.63,
+    "range": 0.629,
     "trend_up": 0.093,
     "trend_down": 0.093,
     "volatile": 0.185
@@ -223,9 +223,9 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-10 00:00:00",
    "share": {
-    "range": 0.666,
+    "range": 0.665,
     "trend_up": 0.048,
-    "trend_down": 0.128,
+    "trend_down": 0.129,
     "volatile": 0.158
    }
   },
@@ -259,13 +259,13 @@
     "range": 0.686,
     "trend_up": 0.102,
     "trend_down": 0.057,
-    "volatile": 0.154
+    "volatile": 0.155
    }
   },
   "ATOM/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-17 00:00:00",
+   "now": "trend_down",
+   "now_tr": "Trend ↓",
+   "since": "2026-11-20 00:00:00",
    "share": {
     "range": 0.657,
     "trend_up": 0.048,
@@ -278,9 +278,9 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-16 00:00:00",
    "share": {
-    "range": 0.63,
+    "range": 0.629,
     "trend_up": 0.077,
-    "trend_down": 0.13,
+    "trend_down": 0.131,
     "volatile": 0.163
    }
   },
@@ -346,7 +346,7 @@
    "share": {
     "range": 0.673,
     "trend_up": 0.054,
-    "trend_down": 0.095,
+    "trend_down": 0.096,
     "volatile": 0.178
    }
   },
@@ -355,7 +355,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-15 00:00:00",
    "share": {
-    "range": 0.656,
+    "range": 0.655,
     "trend_up": 0.061,
     "trend_down": 0.123,
     "volatile": 0.16
@@ -377,10 +377,10 @@
    "now_tr": "Trend ↓",
    "since": "2026-10-30 00:00:00",
    "share": {
-    "range": 0.659,
+    "range": 0.658,
     "trend_up": 0.051,
     "trend_down": 0.13,
-    "volatile": 0.161
+    "volatile": 0.16
    }
   },
   "CRV/USDT": {
@@ -388,7 +388,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-06 00:00:00",
    "share": {
-    "range": 0.708,
+    "range": 0.707,
     "trend_up": 0.052,
     "trend_down": 0.088,
     "volatile": 0.153
@@ -417,14 +417,14 @@
    }
   },
   "IMX/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-01 00:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-20 00:00:00",
    "share": {
     "range": 0.628,
     "trend_up": 0.066,
     "trend_down": 0.141,
-    "volatile": 0.165
+    "volatile": 0.164
    }
   },
   "INJ/USDT": {
@@ -439,9 +439,9 @@
    }
   },
   "OP/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-15 00:00:00",
+   "now": "trend_down",
+   "now_tr": "Trend ↓",
+   "since": "2026-11-20 00:00:00",
    "share": {
     "range": 0.669,
     "trend_up": 0.055,
@@ -465,9 +465,9 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-04 00:00:00",
    "share": {
-    "range": 0.662,
+    "range": 0.661,
     "trend_up": 0.045,
-    "trend_down": 0.123,
+    "trend_down": 0.124,
     "volatile": 0.17
    }
   },
@@ -476,10 +476,10 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-09 00:00:00",
    "share": {
-    "range": 0.619,
-    "trend_up": 0.078,
-    "trend_down": 0.102,
-    "volatile": 0.202
+    "range": 0.618,
+    "trend_up": 0.077,
+    "trend_down": 0.103,
+    "volatile": 0.201
    }
   },
   "PYTH/USDT": {
@@ -498,7 +498,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-10-27 00:00:00",
    "share": {
-    "range": 0.653,
+    "range": 0.652,
     "trend_up": 0.054,
     "trend_down": 0.119,
     "volatile": 0.174
