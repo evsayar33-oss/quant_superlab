@@ -2,22 +2,29 @@
   "econ": {
     "pending_primary_verification": 0
   },
-  "forward": null,
-  "h083_attempt": {
-    "attempt_id": "2026-11-20T03:19:00.653437+00:00|H083",
-    "attempted_at_utc": "2026-11-20T03:19:00.653437+00:00",
-    "counts_as_forward_month": false,
-    "reason": "OUTSIDE_17_ET_AFTERCLOSE_SLOT",
-    "session": "2026-11-19",
-    "state": "SKIPPED"
+  "forward": {
+    "approved_paper_rules": [],
+    "cohorts_frozen_this_run": 0,
+    "data_coverage_ok": true,
+    "forward_months_closed": 0,
+    "generated_utc": "2026-11-21T03:14:33.927162+00:00",
+    "last_complete_nyse_session": "2026-11-20"
   },
-  "h083_skipped_session_streak": 2,
-  "last_source_commit": "030d99fd033cd7d91f9132334e5326baecf3dbe3",
+  "h083_attempt": {
+    "attempt_id": "2026-11-21T03:14:33.927162+00:00|H083",
+    "attempted_at_utc": "2026-11-21T03:14:33.927162+00:00",
+    "counts_as_forward_month": false,
+    "reason": "AFTER_NYSE_CLOSE",
+    "session": "2026-11-20",
+    "state": "COMPLETED_RESEARCH"
+  },
+  "h083_skipped_session_streak": 0,
+  "last_source_commit": "45fe8f2f8cd8e4c10bfb516e9450360101be3c5a",
   "schema": "QS.h122.federal_evidence.v1",
-  "seen_utc": "2026-11-21T00:57:33.305267+00:00",
+  "seen_utc": "2026-11-21T15:13:36.384484+00:00",
   "watch": {
-    "data_coverage_ok": false,
-    "data_coverage_pct": 0.7945,
+    "data_coverage_ok": true,
+    "data_coverage_pct": 0.8356,
     "feature_asof": "2026-11-20"
   }
 }
