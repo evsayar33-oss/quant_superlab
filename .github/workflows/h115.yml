@@ -8,8 +8,11 @@ on:
         required: true
         default: start
         description: "start ONCE on main; ticks normally scheduled"
+  # Four distributed chances across NY daytime (DST and standard time).
+  # GitHub cron is best-effort and may start hours late; only genuine
+  # within-session observations can enter the frozen research ledger.
   schedule:
-    - cron: '20 16,17 * * 1-5'
+    - cron: '30 14,16,18,20 * * 1-5'
   pull_request:
     paths:
       - 'research/h115/**'
@@ -83,6 +86,28 @@ jobs:
             echo 'Prospective observation failed closed; outage committed to paper branch.'
             exit 1
           fi
+      - name: Reject prolonged silent zero-session PAPER status
+        run: |
+          python - <<'PY'
+          import json,sys
+          from datetime import datetime,timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          import pandas as pd
+          p=Path('results/h115/state.json')
+          if not p.exists():
+              sys.exit('H115_NO_PAPER_STATE')
+          st=json.loads(p.read_text())
+          now=datetime.now(timezone.utc)
+          local=now.astimezone(ZoneInfo('America/New_York'))
+          sessions=len(st.get('records',[]))
+          started=pd.Timestamp(st['started_at']).date().isoformat()
+          weekdays=max(0,len(pd.bdate_range(started,now.date().isoformat()))-1)
+          if not sessions and weekdays>=3 and local.weekday()<5 and local.hour>=16:
+              sys.exit('H115_STALLED: 3+ weekdays since start; no observed session. '
+                       'GitHub job may have fired outside the eligible NY window.')
+          print('H115_SESSIONS', sessions, 'NY_CLOCK',local.strftime('%Y-%m-%dT%H:%M'))
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
