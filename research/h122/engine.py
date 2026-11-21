@@ -97,8 +97,9 @@ def validate(sha, data, now):
     when = b.utc(attempt["attempted_at_utc"])
     if when > now:
         raise ValueError("H122_ATTEMPT_FROM_FUTURE")
-    if attempt["state"] == "COMPLETED_RESEARCH" and attempt.get("counts_as_forward_month") is False:
-        raise ValueError("H122_COMPLETED_CANNOT_BE_NON_FORWARD")
+    # COMPLETED_RESEARCH means the after-close observer ran, not that a
+    # monthly cohort matured. The source explicitly publishes False when
+    # there are zero completed forward months; this is valid evidence.
     if attempt["state"] == "SKIPPED" and attempt.get("counts_as_forward_month") is not False:
         raise ValueError("H122_SKIPPED_CANNOT_COUNT_AS_FORWARD")
     if (watch.get("watch_only") is not True
