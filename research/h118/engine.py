@@ -114,9 +114,23 @@ def market_snapshot(now_ms: int) -> dict:
         raise ValueError("STALE_CLOSED_CANDLE")
     closes = pd.DataFrame({s: frames[s]["Close"] for s in SYMBOLS})
     research_weights = h117.build(closes)
+    targets = {model: {s: float(research_weights[model].iloc[-1][s])
+                       for s in SYMBOLS} for model in MODELS}
+    try:
+        from research.h118.decision_diagnostics import explain
+        signal_trace = explain(closes, targets)
+        print("H118_SIGNAL_REASONS:", json.dumps({
+            name: value["reason"] for name, value in signal_trace["models"].items()}))
+    except Exception as exc:
+        # Never fail a genuine prospective observation or alter frozen weights
+        # merely because its optional diagnostic cannot be generated.
+        signal_trace = {"version": 1, "diagnostic_only": True,
+                        "status": "TRACE_UNAVAILABLE",
+                        "exception_type": type(exc).__name__}
+        print("H118_TRACE_UNAVAILABLE:", type(exc).__name__)
     return {"last_candle_ms": last, "quotes": quotes,
-            "target_weights": {model: {s: float(research_weights[model].iloc[-1][s])
-                                       for s in SYMBOLS} for model in MODELS},
+            "target_weights": targets,
+            "signal_trace": signal_trace,
             "candle_sha256": source_sha, "venue": MARKET}
 
 
@@ -196,6 +210,9 @@ def apply(state: dict, now_ms: int, snapshot: dict) -> bool:
              "candle_sha256": snapshot["candle_sha256"],
              "target_weights": snapshot["target_weights"], "paper_fills": fills,
              "nav": {m: next_accounts[m]["nav"] for m in MODELS}}
+    # Optional prospective signal reasons are not a source for fills or NAV.
+    if isinstance(snapshot.get("signal_trace"), dict):
+        entry["signal_trace"] = snapshot["signal_trace"]
     # Atomic state update: do not persist partial fills from a failed model.
     state["accounts"] = next_accounts
     state["last_tick_ms"] = now_ms
@@ -215,6 +232,7 @@ def report(state: dict) -> dict:
             "start_utc": datetime.fromtimestamp(state["started_ms"]/1000, timezone.utc).isoformat(),
             "end_utc": datetime.fromtimestamp(state["ends_ms"]/1000, timezone.utc).isoformat(),
             "observations": n, "outages": len(state["outages"]),
+            "latest_signal_trace": (state["ticks"][-1].get("signal_trace") if n else None),
             "expected_4h_observations_approx": coverage,
             "coverage_ratio_approx": round(n/coverage, 4),
             "investable_market": "OKX SPOT (paper only)", "real_fills": False,
