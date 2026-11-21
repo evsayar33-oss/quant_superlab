@@ -3,6 +3,9 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+import pandas as pd
+import numpy as np
+from decision_diagnostics import explain
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
 from engine import BAR_MS, CAPITAL, MODELS, SYMBOLS, apply, run, seed, validate
@@ -18,6 +21,35 @@ def snapshot(t):
 
 
 class Tests(unittest.TestCase):
+    def test_downtrend_carries_explicit_cash_reasons(self):
+        i=np.arange(1350)
+        prices=np.exp(-0.00035*i+0.017*np.sin(i/19))
+        close=pd.DataFrame({a:prices*100 for a in SYMBOLS},
+                           index=pd.date_range("2025-01-01",periods=len(i),
+                                               freq="4h",tz="UTC"))
+        target={m:{a:0.0 for a in SYMBOLS} for m in MODELS}
+        trace=explain(close,target)
+        self.assertFalse(trace["btc_regime_on"])
+        self.assertEqual(trace["models"]["regime_band30"]["reason"],"BTC_REGIME_OFF")
+        self.assertEqual(trace["models"]["regime_7d_band20"]["reason"],"BTC_REGIME_OFF")
+        self.assertEqual(trace["models"]["mom2_baseline"]["reason"],"NO_ELIGIBLE_BTC_ETH")
+        self.assertTrue(trace["diagnostic_only"])
+
+    def test_trace_does_not_change_accounting_or_duplicate_fills(self):
+        t=100*BAR_MS
+        first=seed(t);second=seed(t)
+        observed=snapshot(t)
+        withtrace=snapshot(t)
+        withtrace["signal_trace"]={"version":1,"models":{"mom2_baseline":{"reason":"ACTIVE_TARGET"}}}
+        self.assertTrue(apply(first,t,observed))
+        self.assertTrue(apply(second,t,withtrace))
+        self.assertEqual(first["accounts"],second["accounts"])
+        self.assertEqual(first["ticks"][0]["paper_fills"],second["ticks"][0]["paper_fills"])
+        self.assertNotIn("signal_trace",first["ticks"][0])
+        self.assertIn("signal_trace",second["ticks"][0])
+        self.assertFalse(apply(second,t+1,withtrace))
+        self.assertEqual(len(second["ticks"]),1)
+
     def test_study_clock_and_accounts(self):
         t=100*BAR_MS
         s=seed(t);validate(s)
