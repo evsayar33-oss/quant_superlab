@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-21T21:45:20+00:00",
- "data_end": "2026-11-21 16:00:00",
+ "updated_at": "2026-11-22T06:43:01+00:00",
+ "data_end": "2026-11-22 00:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -13,119 +13,105 @@
   "halflife_days": 30,
   "top_k": 5
  },
- "cash": 0.0,
+ "cash": 0.6,
  "picks": [
   {
-   "id": "A0007",
-   "coin": "INJ/USDT",
-   "rule": "cmf_flow",
+   "id": "A0032",
+   "coin": "BTC/USDT",
+   "rule": "rsi_midline",
    "params": {
-    "n": 10,
-    "th": 0.2
-   },
-   "exit_id": 37,
-   "filter": "regime_bench200",
-   "confirm": null,
-   "side": "long",
-   "timeframe": "4h",
-   "weight": 0.2,
-   "position": "flat",
-   "regime": "volatile"
-  },
-  {
-   "id": "A0018",
-   "coin": "DOT/USDT",
-   "rule": "macd_divergence",
-   "params": {
-    "k": 3,
-    "fast": 12,
-    "slow": 26
+    "n": 28,
+    "level": 60
    },
    "exit_id": 20,
-   "filter": "regime_bench200",
+   "filter": "low_vol",
    "confirm": null,
    "side": "long",
    "timeframe": "4h",
-   "weight": 0.2,
+   "weight": 0.08,
    "position": "flat",
-   "regime": "trend_down"
-  },
-  {
-   "id": "A0022",
-   "coin": "INJ/USDT",
-   "rule": "mfi_reversal",
-   "params": {
-    "n": 10,
-    "lo": 10
-   },
-   "exit_id": 37,
-   "filter": "adx20",
-   "confirm": null,
-   "side": "long",
-   "timeframe": "4h",
-   "weight": 0.2,
-   "position": "long",
    "regime": "volatile"
   },
   {
-   "id": "A0033",
-   "coin": "SOL/USDT",
-   "rule": "cci_breakout",
+   "id": "A0043",
+   "coin": "BTC/USDT",
+   "rule": "linreg_slope",
    "params": {
-    "n": 40,
-    "level": 150
+    "n": 20,
+    "th": 0.0005
    },
-   "exit_id": 28,
-   "filter": "none",
-   "confirm": {
-    "rule": "ma_cross",
-    "params": {
-     "kind": "dema",
-     "pair": [
-      20,
-      50
-     ]
-    },
-    "within": 5
-   },
+   "exit_id": 20,
+   "filter": "low_vol",
+   "confirm": null,
    "side": "long",
    "timeframe": "4h",
-   "weight": 0.2,
+   "weight": 0.08,
    "position": "flat",
-   "regime": "range"
+   "regime": "volatile"
   },
   {
-   "id": "A0091",
-   "coin": "DOGE/USDT",
-   "rule": "ultimate_reversal",
+   "id": "A0044",
+   "coin": "BTC/USDT",
+   "rule": "price_ma",
    "params": {
-    "a": 5,
-    "lo": 30
+    "kind": "ema",
+    "n": 150
    },
-   "exit_id": 28,
-   "filter": "none",
-   "confirm": {
-    "rule": "pivot_bounce",
-    "params": {
-     "window": 5
-    },
-    "within": 3
-   },
+   "exit_id": 20,
+   "filter": "low_vol",
+   "confirm": null,
    "side": "long",
    "timeframe": "4h",
-   "weight": 0.2,
+   "weight": 0.08,
+   "position": "flat",
+   "regime": "volatile"
+  },
+  {
+   "id": "A0055",
+   "coin": "BTC/USDT",
+   "rule": "atr_breakout",
+   "params": {
+    "n": 20,
+    "k": 1.5
+   },
+   "exit_id": 0,
+   "filter": "low_vol",
+   "confirm": null,
+   "side": "long",
+   "timeframe": "4h",
+   "weight": 0.08,
+   "position": "flat",
+   "regime": "volatile"
+  },
+  {
+   "id": "A0058",
+   "coin": "BTC/USDT",
+   "rule": "ichimoku_cloud",
+   "params": {
+    "cfg": [
+     9,
+     26,
+     52
+    ]
+   },
+   "exit_id": 20,
+   "filter": "low_vol",
+   "confirm": null,
+   "side": "long",
+   "timeframe": "4h",
+   "weight": 0.08,
    "position": "flat",
    "regime": "volatile"
   }
  ],
  "forward": {
   "since": "2026-10-20",
-  "days": 31,
-  "ret": -0.0041,
-  "sharpe": -4.029,
-  "ew_ret": -0.02,
-  "ew_sharpe": -11.167,
-  "max_dd": -0.0063
+  "days": 32,
+  "ret": -0.0101,
+  "sharpe": -6.262,
+  "ew_ret": -0.0211,
+  "ew_sharpe": -11.612,
+  "max_dd": -0.0122
  },
  "regimes": {
   "BTC/USDT": {
@@ -136,7 +122,7 @@
     "range": 0.647,
     "trend_up": 0.106,
     "trend_down": 0.064,
-    "volatile": 0.182
+    "volatile": 0.183
    }
   },
   "ETH/USDT": {
@@ -151,9 +137,9 @@
    }
   },
   "SOL/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-11-19 08:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.698,
     "trend_up": 0.082,
@@ -173,9 +159,9 @@
    }
   },
   "XRP/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-11-20 04:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.72,
     "trend_up": 0.051,
@@ -202,13 +188,13 @@
     "range": 0.695,
     "trend_up": 0.048,
     "trend_down": 0.075,
-    "volatile": 0.181
+    "volatile": 0.182
    }
   },
   "AVAX/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-21 00:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.706,
     "trend_up": 0.062,
@@ -232,7 +218,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-20 20:00:00",
    "share": {
-    "range": 0.692,
+    "range": 0.691,
     "trend_up": 0.052,
     "trend_down": 0.092,
     "volatile": 0.164
@@ -243,7 +229,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-21 08:00:00",
    "share": {
-    "range": 0.709,
+    "range": 0.708,
     "trend_up": 0.058,
     "trend_down": 0.062,
     "volatile": 0.171
@@ -289,8 +275,8 @@
    "share": {
     "range": 0.688,
     "trend_up": 0.062,
-    "trend_down": 0.079,
-    "volatile": 0.171
+    "trend_down": 0.078,
+    "volatile": 0.172
    }
   },
   "FIL/USDT": {
@@ -305,9 +291,9 @@
    }
   },
   "UNI/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-20 20:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.694,
     "trend_up": 0.043,
@@ -327,9 +313,9 @@
    }
   },
   "ETC/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-20 20:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.702,
     "trend_up": 0.05,
@@ -366,7 +352,7 @@
    "share": {
     "range": 0.688,
     "trend_up": 0.06,
-    "trend_down": 0.096,
+    "trend_down": 0.095,
     "volatile": 0.156
    }
   },
@@ -382,9 +368,9 @@
    }
   },
   "AXS/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-20 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.699,
     "trend_up": 0.052,
@@ -393,9 +379,9 @@
    }
   },
   "CRV/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-21 00:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.734,
     "trend_up": 0.046,
@@ -408,7 +394,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-20 12:00:00",
    "share": {
-    "range": 0.727,
+    "range": 0.728,
     "trend_up": 0.037,
     "trend_down": 0.077,
     "volatile": 0.158
@@ -448,9 +434,9 @@
    }
   },
   "OP/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-20 16:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.689,
     "trend_up": 0.069,
@@ -463,7 +449,7 @@
    "now_tr": "Trend ↓",
    "since": "2026-11-14 08:00:00",
    "share": {
-    "range": 0.638,
+    "range": 0.637,
     "trend_up": 0.048,
     "trend_down": 0.099,
     "volatile": 0.215
@@ -481,9 +467,9 @@
    }
   },
   "SUI/USDT": {
-   "now": "trend_down",
-   "now_tr": "Trend ↓",
-   "since": "2026-11-21 00:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-21 20:00:00",
    "share": {
     "range": 0.704,
     "trend_up": 0.05,
@@ -509,7 +495,7 @@
    "share": {
     "range": 0.73,
     "trend_up": 0.035,
-    "trend_down": 0.077,
+    "trend_down": 0.076,
     "volatile": 0.159
    }
   }
