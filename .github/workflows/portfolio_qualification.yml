@@ -36,6 +36,21 @@ jobs:
           python -m research.portfolio_qualification.audit --out out/portfolio_qualification
           python -m research.portfolio_qualification.synthesis --out out/portfolio_qualification
           cat out/portfolio_qualification/audit.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Reproduce Eaverse V7 empirical PBO with pinned source commits (read-only)
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -m research.portfolio_qualification.eaverse_bridge \
+            --out out/portfolio_qualification/eaverse_bridge.json
+          python - <<'PY'
+          import json, os
+          r=json.load(open("out/portfolio_qualification/eaverse_bridge.json"))
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+              f.write("Eaverse source-SHA-pinned independent CSCV reproduction: " +
+                      str(r["reproduced"]) + "/" + str(r["assets_checked"]) +
+                      "; central lab ACCEPT granted: 0.\\n")
+          PY
       - name: Upload research-only report; no GitHub writes, no Telegram
         if: always()
         uses: actions/upload-artifact@v4
