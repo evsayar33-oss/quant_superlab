@@ -207,7 +207,16 @@ def native_summary(repo, contents):
              "outcomes_count": len(v) if isinstance(v, (list, dict)) else None,
              "forecast_shape": list(a)[:15] if isinstance(a, dict) else type(a).__name__,
              "selected_alpha_proven": False}
-        asof = a.get("generated_utc") or a.get("asof_utc") if isinstance(a, dict) else None
+        # Forecasts are keyed by target/series, not a single report header.
+        # Published 'issued' timestamps, never forecast target dates, define
+        # what information was actually knowable at this scan.
+        asof = None
+        if isinstance(a, dict):
+            stamps = [utc(row.get("issued")) for row in a.values()
+                      if isinstance(row, dict)]
+            stamps = [t for t in stamps if t is not None]
+            asof = max(stamps).isoformat() if stamps else (
+                a.get("generated_utc") or a.get("asof_utc"))
     elif repo == "h054_spot_bot":
         a, h = j.get("paper_status", {}), j.get("local_registry", {}).get("hypotheses", {})
         m = {"paper_equity": a.get("equity"),
