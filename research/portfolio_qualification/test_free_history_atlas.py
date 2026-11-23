@@ -29,9 +29,8 @@ class FreeHistoricalSourceDiligence(unittest.TestCase):
         d={x["id"]:x for x in load_catalog()["sources"]}
         self.assertIn("LICENSED",d["TR_BIST_DATASTORE"]["access_model"])
         self.assertIn("IP_ALLOWLIST",d["TR_MKK_KAP_API"]["access_model"])
-        self.assertIn("SURVIVOR",d["TR_BIST_PIT_RECONSTRUCTED"]["signals"]
-                      [0].upper().replace("HISTORICAL_MEMBERSHIP","SURVIVOR")
-                      if False else "SURVIVOR")
+        self.assertIn("historical_membership",
+                      d["TR_BIST_PIT_RECONSTRUCTED"]["signals"])
         self.assertFalse(d["CR_TARDIS_SAMPLES"]["historical_pit_ready"])
 
     def test_repo_specific_diligence_and_report(self):
