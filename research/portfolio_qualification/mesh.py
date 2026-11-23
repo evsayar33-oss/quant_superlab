@@ -39,7 +39,9 @@ MAX_ROWS = 25000
 NATIVE_SOURCES = {
     "quant_superlab": (
         ("registry", "@default", "decisions/registry.json", True),
-        ("hypotheses", "@default", "hypotheses/registry.yaml", False)),
+        ("hypotheses", "@default", "hypotheses/registry.yaml", False),
+        ("early_bridge", "research/h119-autonomous-evidence", "research_evidence/h119/latest.json", False),
+        ("tier1_bridge", "research/h120-tier1-evidence", "tier1_h120/latest.json", False)),
     "early_accumulation_radar": (
         ("crypto", "research/v13-crypto-alpha-evidence", "research_archive/v13_crypto/latest.json", True),
         ("v11", "research/v11-pattern-evidence", "research_archive/v11/latest.json", False),
@@ -59,18 +61,23 @@ NATIVE_SOURCES = {
     "h054_spot_bot": (
         ("paper_status", "@default", "state/state.json", True),
         ("paper_balances", "@default", "state/paper.json", False),
-        ("local_registry", "@default", "decisions/registry.json", False)),
+        ("local_registry", "@default", "decisions/registry.json", False),
+        ("independent_band30", "paper/regime-band30-bitget", "state.json", False)),
     "us_f1_bot": (
         ("demo", "@default", "data/state.json", True),
         ("shadow", "@default", "data/shadow/paired_state.json", False)),
     "bist_orderflow_quant": (
-        ("variants", "@default", "data/variants_report.json", True),
+        ("daily_state", "@default", "data/engine_state_v3.json", True),
+        ("variants", "@default", "data/variants_report.json", False),
         ("backtest", "@default", "data/backtest_report_v3.json", False),
-        ("forward_signals", "@default", "data/signals_ledger.csv", False)),
+        ("forward_signals", "@default", "data/signals_ledger.csv", False),
+        ("trade_log", "@default", "data/trade_log.csv", False)),
     "tier1_quant_terminal": (
-        ("performance", "@default", "performance_ledger.json", True),
-        ("historical", "@default", "validation_reports/historical_replay_summary.json", False),
-        ("state", "@default", "terminal_state.json", False)),
+        ("state", "state", "terminal_state.json", True),
+        ("performance", "state", "performance_ledger.json", False),
+        ("research30", "state", "research_30d/observations.csv", False),
+        ("research30_manifest", "state", "research_30d/manifest.json", False),
+        ("historical", "reports", "validation_reports/historical_replay_summary.json", False)),
     "islem_onerisi_alarmi": (
         ("strategy_book", "@default", "STRATEGY_BOOK.md", True),
         ("forward", "@default", "results/forward_test_nq_spx_xau.csv", False)),
@@ -167,8 +174,15 @@ def native_summary(repo, contents):
             a = {}
         m = {"registered_variants": len(a),
              "verdicts": dict(Counter(v.get("verdict", "UNKNOWN") for v in a.values())),
-             "accepted_ids": sorted(k for k, v in a.items() if v.get("verdict") == "ACCEPT")}
-        asof = j.get("registry", {}).get("updated")
+             "accepted_ids": sorted(k for k, v in a.items() if v.get("verdict") == "ACCEPT"),
+             "h119_new_milestones": j.get("early_bridge", {}).get("new_hypotheses_or_milestones"),
+             "h120_observed_snapshots": j.get("tier1_bridge", {}).get("observed_snapshots")}
+        stamps = [utc(v) for v in (
+            j.get("registry", {}).get("updated"),
+            j.get("early_bridge", {}).get("asof_utc"),
+            j.get("tier1_bridge", {}).get("asof_utc"))]
+        stamps = [v for v in stamps if v is not None]
+        asof = max(stamps).isoformat() if stamps else None
     elif repo == "early_accumulation_radar":
         a = j.get("crypto", {})
         b = j.get("v11", {})
@@ -182,10 +196,12 @@ def native_summary(repo, contents):
     elif repo == "eaverse":
         panel = j.get("release_panel", {})
         m = {"panel_keys": sorted(panel)[:25] if isinstance(panel, dict) else [],
-             "paper_candidate_count": len(panel.get("candidates", []))
-                 if isinstance(panel, dict) and isinstance(panel.get("candidates"), list) else None,
+             "reported_entries": len(panel.get("entries", []))
+                 if isinstance(panel, dict) and isinstance(panel.get("entries"), list) else None,
+             "native_research_present": isinstance(panel.get("research"), dict)
+                 if isinstance(panel, dict) else False,
              "release_is_forward_truth": False}
-        asof = (panel.get("generated_utc") or panel.get("generated_at")
+        asof = (panel.get("published_at") or panel.get("generated_utc") or panel.get("generated_at")
                 if isinstance(panel, dict) else None)
     elif repo == "federal-incentive-radar":
         a, f, w = (j.get(k, {}) for k in ("h083", "forward", "watch"))
@@ -219,8 +235,11 @@ def native_summary(repo, contents):
                 a.get("generated_utc") or a.get("asof_utc"))
     elif repo == "h054_spot_bot":
         a, h = j.get("paper_status", {}), j.get("local_registry", {}).get("hypotheses", {})
+        b = j.get("independent_band30", {})
         m = {"paper_equity": a.get("equity"),
              "approved_reason": a.get("why"), "bar": a.get("last_bar"),
+             "independent_band30_ticks": len(b.get("ticks", [])),
+             "independent_band30_finalized": b.get("finalized"),
              "live_verdicts": {k: v.get("live_verdict") for k, v in h.items()},
              "paper_verdicts": {k: v.get("verdict") for k, v in h.items()}}
         asof = a.get("updated_at")
@@ -234,17 +253,25 @@ def native_summary(repo, contents):
              "shadow_closed_candidate": len(b.get("candidate", {}).get("closed_cycles", []))}
         asof = s.get("date")  # session date, NOT timestamp evidence.
     elif repo == "bist_orderflow_quant":
-        a, b = j.get("variants", {}), j.get("backtest", {})
+        a, b, live = j.get("variants", {}), j.get("backtest", {}), j.get("daily_state", {})
         m = {"historical_variant_count": len(a.get("variants", [])),
              "backtest_cagr_pct": b.get("portfolio", {}).get("cagr_pct"),
-             "period": b.get("period"), "historical_pit_verified": False}
-        asof = a.get("generated_at")
+             "period": b.get("period"), "historical_pit_verified": False,
+             "actual_last_closed_bist_session": live.get("last_eod_date"),
+             "live_state_run_type": live.get("last_run", {}).get("mode"),
+             "live_state_run_status": live.get("last_run", {}).get("status")}
+        asof = live.get("last_run", {}).get("utc") or a.get("generated_at")
     elif repo == "tier1_quant_terminal":
-        a, b = j.get("performance", {}), j.get("historical", {})
+        a, b, live = (j.get(k, {}) for k in ("performance", "historical", "state"))
+        row_count = sum(1 for line in contents.get("research30", b"").splitlines()[1:]
+                        if line.strip())
         m = {"performance_records": len(a.get("records", [])),
              "historical_graded": b.get("summary", {}).get("records_graded"),
+             "research30_samples": row_count,
+             "research30_experiment_status": j.get("research30_manifest", {}).get("status"),
+             "native_state_status": live.get("status"),
              "research30_forward_gate_approved": False}
-        asof = a.get("meta", {}).get("last_cycle")
+        asof = live.get("last_updated") or a.get("meta", {}).get("last_cycle")
     elif repo == "islem_onerisi_alarmi":
         m = {"strategy_book_bytes": len(contents.get("strategy_book", b"")),
              "forward_csv_present": "forward" in contents,
