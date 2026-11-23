@@ -75,3 +75,13 @@ contract and regression tests**, not completed strategy synthesis or full
 historical/OOS/forward execution. Actual market-specific validation engines
 must be built or extended in isolated source-repo PRs after reviewing each
 strategy family and accessible data. It is unsafe to claim those runs happened.
+
+## Private-repository boundary
+
+`us_f1_bot` is private. The `quant_superlab` workflow's repository-scoped
+`GITHUB_TOKEN` cannot read its private source files. The audit reports those
+file fetches as unavailable and never fills the gap from historical numbers,
+asks for an overprivileged PAT, or publishes private strategy state into this
+potentially public repository's Actions artifacts. Interactive authorized
+GitHub connector review can evaluate that repo separately. An UNKNOWN in this
+portfolio report must never be treated as a positive or a negative proof.
