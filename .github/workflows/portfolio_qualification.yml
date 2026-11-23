@@ -30,7 +30,6 @@ jobs:
           python -m unittest discover -s research/portfolio_qualification -p 'test_*.py' -v
           python -m compileall -q research/portfolio_qualification
       - name: Snapshot public source commits and classify evidence read-only
-        if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -38,7 +37,7 @@ jobs:
           python -m research.portfolio_qualification.synthesis --out out/portfolio_qualification
           cat out/portfolio_qualification/audit.md >> "$GITHUB_STEP_SUMMARY"
       - name: Upload research-only report; no GitHub writes, no Telegram
-        if: always() && github.event_name != 'pull_request'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: portfolio-qualification-${{ github.run_id }}
