@@ -223,6 +223,9 @@ def main():
     (path / "audit.md").write_text(render_md(result), encoding="utf-8")
     print("PORTFOLIO_QUALIFICATION", result["projects_audited"],
           "projects;", result["source_errors_count"], "unavailable files")
+    for project in result["project_reports"]:
+        for key, kind in sorted(project["source_errors"].items()):
+            print("SOURCE_UNAVAILABLE", project["repo"], key, kind)
 
 
 if __name__ == "__main__":
