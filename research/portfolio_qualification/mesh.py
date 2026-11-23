@@ -371,9 +371,18 @@ def tier1_asof_flow_study(raw):
         for x in data:
             if x.get("asset") != asset or x.get("market") != "spot":
                 continue
-            t = utc(x.get("ts"))
+            hour = utc(x.get("ts"))
+            actual_ms = safe_number(x.get("observed_at_ms"))
             price = safe_number(x.get("reference_price"))
-            if t is None or price is None or price <= 0:
+            if hour is None or actual_ms is None or price is None or price <= 0:
+                continue
+            try:
+                t = datetime.fromtimestamp(actual_ms / 1000, timezone.utc)
+            except (OverflowError, OSError, ValueError):
+                continue
+            # 'ts' is an hour label. Use the later ACTUAL observation time
+            # for feature eligibility so a 08:03 quote is never a signal at 08:00.
+            if not hour <= t <= hour + timedelta(hours=1):
                 continue
             records.append((t, price, x))
         records.sort(key=lambda x: x[0])
@@ -400,9 +409,14 @@ def tier1_asof_flow_study(raw):
                     continue
                 if variant.endswith("book_agree"):
                     book = safe_number(item.get("book_imbalance"))
-                    # Book snapshot is same-timestamp evidence only; if not
-                    # available, it is MISSING, not 'disagrees'.
-                    if book is None or book == 0 or book * im <= 0:
+                    book_ms = safe_number(item.get("book_ts"))
+                    observed_ms = safe_number(item.get("observed_at_ms"))
+                    # Indicative book snapshot must precede the actual signal
+                    # observation and be within five minutes; never substitute
+                    # stale L1, a later book, or orderbook depth for actual fills.
+                    if (book is None or book == 0 or book * im <= 0
+                        or book_ms is None or observed_ms is None
+                        or not 0 <= observed_ms - book_ms <= 5 * 60 * 1000):
                         continue
                 future = next(((ft, fp) for ft, fp, _ in rows[i + 1:]
                                if stamp + timedelta(hours=4) <= ft
