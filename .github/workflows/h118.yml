@@ -25,12 +25,21 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install 'numpy==2.4.6' 'pandas==3.0.6' 'requests>=2.31,<3'
       - name: Test accounting, causality, no duplicate fills and state continuity
         run: python -m unittest discover -s research/h118 -p 'test_*.py' -v
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
   market_smoke:
     if: github.event_name == 'pull_request'
     needs: offline_regressions
@@ -38,6 +47,9 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -52,6 +64,12 @@ jobs:
           assert set(s["quotes"])==set(SYMBOLS)
           print("OKX spot access verified, closed candle",s["last_candle_ms"])
           PY
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
   paper:
     if: github.event_name != 'pull_request'
     needs: offline_regressions
@@ -61,6 +79,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -104,3 +125,9 @@ jobs:
           path: results/h118/report/
           retention-days: 90
           if-no-files-found: warn
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi

@@ -4,9 +4,13 @@ on:
   pull_request:
 jobs:
   lab:
+    timeout-minutes: 360
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with: {python-version: '3.11', cache: pip}
       - run: pip install -r requirements.txt pytest
@@ -27,22 +31,48 @@ jobs:
       - run: python -m unittest discover -s research/h100 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h101 -p 'test_*.py' -v
       - run: python -m pytest -q research/h083/test_h083.py research/h083/test_h083_robustness.py research/h084/test_h084_recheck.py research/usd_macro/test_usd_macro.py
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
   terminal:
+    timeout-minutes: 360
     runs-on: ubuntu-latest
     defaults: {run: {working-directory: terminal}}
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - run: npm ci
       - run: npm test
       - run: npx tsc --noEmit -p server
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
   bot:
+    timeout-minutes: 360
     runs-on: ubuntu-latest
     defaults: {run: {working-directory: bots/core3_bot}}
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install -r requirements.txt
       - run: python tests/test_bot.py
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi

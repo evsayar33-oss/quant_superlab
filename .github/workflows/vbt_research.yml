@@ -16,6 +16,9 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -26,3 +29,9 @@ jobs:
         run: python -m compileall -q lab/adapters/vbt_research.py dashboard/vectorbt_research.py tests/test_vbt_research.py
       - name: Execute isolated regression and actual vectorbt parity tests
         run: python -m pytest -q tests/test_vbt_research.py
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
