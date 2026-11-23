@@ -1,6 +1,6 @@
 {
-  "asof_utc": "2026-11-22T20:29:17.850728+00:00",
-  "audit_age_hours": 5.05,
+  "asof_utc": "2026-11-23T09:51:01.763519+00:00",
+  "audit_age_hours": 6.97,
   "descriptive_asset_diagnostics": [
     {
       "always_long_hit": 0.0,
@@ -107,8 +107,8 @@
     "No automatic hypothesis/registry update, paper reset or live model changes"
   ],
   "new_events": 0,
-  "observed_calls": 131,
-  "observed_snapshots": 330,
+  "observed_calls": 139,
+  "observed_snapshots": 354,
   "official_gate": "NOT_RUN",
   "pending_notifications": 0,
   "production_logic": "UNCHANGED",
@@ -117,13 +117,13 @@
   "schema": "QS.h120.tier1_intelligence.v1",
   "source": "evsayar33-oss/tier1_quant_terminal",
   "source_commits": {
-    "audit/30d-evidence": "54992315aabb7da3204d6c3fb0b6eb30a76edc56"
+    "audit/30d-evidence": "7b9ee63f1f7393d17cb89e05d78092acb8c40044"
   },
   "source_hashes": {
-    "ledger": "8cb73261d6e7b5c7279598cba93734fc795dc9a758cf7be73dba646179342fc5",
-    "summary": "9dae5dba506ca5625d8744a69942cbfef7ab1745067a0302d3a659d94c05d042"
+    "ledger": "333b31ceb78e0f29194065b2db3adefc78b3c58ce604dfa9deb11204d9b204ee",
+    "summary": "5c62a7d44cbad798a08811aec1aefcc583ef48b9ceef45c66f56dd5a1b0b5a72"
   },
   "state_branch": "research/h120-tier1-evidence",
-  "tier1_audit_utc": "2026-11-22T15:26:13.496316+00:00",
+  "tier1_audit_utc": "2026-11-23T02:53:05.725925+00:00",
   "total_events": 0
 }
