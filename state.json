@@ -2,7 +2,7 @@
   "alpha_accepted": false,
   "ends_ms": 1797257406425,
   "finalized": false,
-  "last_tick_ms": 1795394894451,
+  "last_tick_ms": 1795424226697,
   "outages": [],
   "positions": {},
   "rejected": [],
@@ -48,7 +48,11 @@
     "okx_BTC_4H_zscore_revert_long_1795377600000",
     "okx_BTC_4H_two_bar_reversal_short_1795377600000",
     "gate_BTC_4H_zscore_revert_long_1795377600000",
-    "gate_BTC_4H_two_bar_reversal_short_1795377600000"
+    "gate_BTC_4H_two_bar_reversal_short_1795377600000",
+    "okx_BTC_4H_zscore_revert_long_1795406400000",
+    "okx_BTC_4H_two_bar_reversal_short_1795406400000",
+    "gate_BTC_4H_zscore_revert_long_1795406400000",
+    "gate_BTC_4H_two_bar_reversal_short_1795406400000"
   ],
   "started_ms": 1794665406425,
   "ticks": [
@@ -602,6 +606,25 @@
         }
       },
       "ts": 1795394894451
+    },
+    {
+      "closed_trades": 2,
+      "open_positions": 0,
+      "quotes": {
+        "gate": {
+          "ask": 61445.1,
+          "bar_hash": "4d400abe3dd81fa958cada41de764105dd414bc1eb988a2d82856b6697a314d2",
+          "bid": 61445.0,
+          "quote_ms": 1795424226697
+        },
+        "okx": {
+          "ask": 61443.5,
+          "bar_hash": "6595097fedba86a567f817078c4cdec251edf6da89d2757d94e1468f150c94de",
+          "bid": 61443.4,
+          "quote_ms": 1795424227672
+        }
+      },
+      "ts": 1795424226697
     }
   ],
   "trades": [
