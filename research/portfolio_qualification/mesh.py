@@ -351,6 +351,96 @@ def ict_holdout(study_text):
             "selection_from_holdout_permitted": False, "validated_alpha": False}
 
 
+def tier1_asof_flow_study(raw):
+    """Two fixed, genuinely observed future 4h hypotheses: taker direction,
+    and signed-taker direction only when the observed book agrees.
+
+    This is hypothesis comparison, NEVER an actual entry/exit fill or an
+    independent trading proof. Book/tape snapshot coverage is bounded;
+    neither sample can establish CVD or market-wide order flow.
+    """
+    if not raw:
+        return {"status": "RESEARCH30_SOURCE_UNAVAILABLE", "tested": {}}
+    try:
+        data = list(csv.DictReader(io.StringIO(raw.decode("utf-8-sig"))))
+    except UnicodeError:
+        return {"status": "RESEARCH30_SOURCE_INVALID_ENCODING", "tested": {}}
+    by_asset = {}
+    for asset in ("BTC", "ETH"):
+        records = []
+        for x in data:
+            if x.get("asset") != asset or x.get("market") != "spot":
+                continue
+            t = utc(x.get("ts"))
+            price = safe_number(x.get("reference_price"))
+            if t is None or price is None or price <= 0:
+                continue
+            records.append((t, price, x))
+        records.sort(key=lambda x: x[0])
+        # Dedup repeated source provider observations at the same hour.
+        unique = {}
+        for t, price, row in records:
+            unique[t] = (t, price, row)
+        by_asset[asset] = [unique[t] for t in sorted(unique)]
+    tested = {}
+    for variant in ("signed_taker_only", "signed_taker_and_book_agree"):
+        totals = Counter()
+        by_symbol = {}
+        for asset, rows in by_asset.items():
+            prior_start = None
+            n = hit = always_long = 0
+            pending = 0
+            for i, (stamp, price, item) in enumerate(rows):
+                if prior_start and stamp < prior_start + timedelta(hours=4):
+                    continue
+                if item.get("status") != "OK_SAMPLE":
+                    continue
+                im = safe_number(item.get("imbalance"))
+                if im is None or im == 0:
+                    continue
+                if variant.endswith("book_agree"):
+                    book = safe_number(item.get("book_imbalance"))
+                    # Book snapshot is same-timestamp evidence only; if not
+                    # available, it is MISSING, not 'disagrees'.
+                    if book is None or book == 0 or book * im <= 0:
+                        continue
+                future = next(((ft, fp) for ft, fp, _ in rows[i + 1:]
+                               if stamp + timedelta(hours=4) <= ft
+                               <= stamp + timedelta(hours=5)), None)
+                if future is None:
+                    pending += 1
+                    continue
+                change = future[1] / price - 1
+                if change == 0:
+                    continue
+                n += 1
+                hit += (im > 0) == (change > 0)
+                always_long += change > 0
+                prior_start = stamp
+            by_symbol[asset] = {
+                "nonoverlapping_matured_n": n,
+                "direction_hit_rate": round(hit / n, 5) if n else None,
+                "always_long_same_sample": round(always_long / n, 5) if n else None,
+                "pending_no_4h_to_5h_future": pending,
+            }
+            totals["n"] += n
+        tested[variant] = {
+            "assets": by_symbol,
+            "total_matured_nonoverlap": totals["n"],
+            "status": ("DESCRIPTIVE_ONLY_NOT_COSTED_ALPHA" if totals["n"] >= 100
+                       else "INSUFFICIENT_GENUINE_4H_HORIZONS"),
+            "do_not_optimize_on_future_outcomes": True,
+            "trade_authorized": False,
+        }
+    return {
+        "status": "TIER1_PROSPECTIVE_SIGNED_FLOW_EXPLORATORY",
+        "from_real_source_samples_only": True,
+        "no_continuous_cvd_or_executable_fills": True,
+        "tested": tested,
+        "readiness_for_paper": False,
+    }
+
+
 def native_study(repo, contents):
     j = {k: json_obj(raw) for k, raw in contents.items()}
     if repo == "bist_orderflow_quant":
@@ -392,8 +482,10 @@ def native_study(repo, contents):
         return {"status": "OFFICIAL_ACCEPT_VERDICTS_DISTINCT_FROM_NEW_HYPOTHESES",
                 "proposed_candidate_accepted": False}
     if repo == "tier1_quant_terminal":
-        return {"status": "HISTORICAL_REPLAY_DISTINCT_FROM_30D_PROSPECTIVE",
-                "forward_strategy_validated": False}
+        study = tier1_asof_flow_study(contents.get("research30", b""))
+        study["historical_replay_not_forward_proof"] = True
+        study["forward_strategy_validated"] = False
+        return study
     raise ValueError("UNKNOWN_REPO_NATIVE_STUDY")
 
 
