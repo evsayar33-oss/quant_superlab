@@ -11,8 +11,11 @@ remain UNKNOWN, never silently treated as failures or wins.
 1. **OBSERVE**: collect timestamped, real, quality-checked input with explicit
    source, availability, missingness and immutable evidence reference.
 2. **DESIGN**: formulate a finite, domain-relevant family of independent
-   information dimensions. The generated singletons/pairs are **research ideas
-   only**. Real raw features, economically coherent interactions, benchmarks,
+   information dimensions. Only explicitly allowlisted repo-specific triggers
+   and economically coherent pairs are proposed: risk filters cannot become
+   stand-alone strategies, and the system does NOT blindly try all pairs.
+   Generated proposals are **research ideas only**, not executions. Real raw
+   features, economically coherent interactions, benchmarks,
    threshold grids, fixed calendars and negative controls must be registered
    per source repo *before seeing outcome labels*. The broad design catalogue
    is **not** itself a preregistration or backtest.
