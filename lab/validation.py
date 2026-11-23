@@ -284,6 +284,7 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
         "gate_sharpe_basis": basis,
         "dsr": round(metrics.dsr(oos, n_trials, trial_srs), 3) if has_oos else 0.0,
         "pbo": round(pbo_v, 3) if pbo_v is not None else None,
+        "pbo_coverage": metrics.pbo_coverage(R.iloc[int(ppy):]) if n_trials > 1 else None,
         "reality_check_p": round(rc, 3) if rc is not None else None,
         "benchmark": metrics.summary(b_oos) if len(b_oos) > 30 else {"sharpe": 0},
         "stress_2x_cost": {"sharpe": round(metrics.sharpe(stress), 3) if has_oos else 0.0},
