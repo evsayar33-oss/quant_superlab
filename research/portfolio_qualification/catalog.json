@@ -25,6 +25,19 @@
       ],
       "missing": [
         "Per-candidate independent forward and executed fills cannot be assumed from ACCEPT label"
+      ],
+      "allowed_singletons": [
+        "registered_strategy"
+      ],
+      "allowed_pairs": [
+        [
+          "registered_strategy",
+          "risk_overlay"
+        ],
+        [
+          "registered_strategy",
+          "regime_filter"
+        ]
       ]
     },
     {
@@ -56,6 +69,26 @@
         "Signed trade tape/CVD for broad universe",
         "L2 replenishment / depth",
         "Complete cadence to mature future labels"
+      ],
+      "allowed_singletons": [
+        "activity_anomaly",
+        "positioning_open_interest",
+        "funding_basis",
+        "execution_liquidity"
+      ],
+      "allowed_pairs": [
+        [
+          "activity_anomaly",
+          "positioning_open_interest"
+        ],
+        [
+          "activity_anomaly",
+          "funding_basis"
+        ],
+        [
+          "activity_anomaly",
+          "execution_liquidity"
+        ]
       ]
     },
     {
@@ -86,6 +119,24 @@
       "missing": [
         "24-month independent PIT/reconstitution verification",
         "Matured forward research and executable fills"
+      ],
+      "allowed_singletons": [
+        "direct_federal_award",
+        "regulatory_event"
+      ],
+      "allowed_pairs": [
+        [
+          "direct_federal_award",
+          "verified_beneficiary"
+        ],
+        [
+          "regulatory_event",
+          "event_asof_issuer_link"
+        ],
+        [
+          "direct_federal_award",
+          "event_asof_issuer_link"
+        ]
       ]
     },
     {
@@ -112,6 +163,25 @@
       "missing": [
         "Matured independent forward decisions",
         "Verified futures confirmation coverage"
+      ],
+      "allowed_singletons": [
+        "tic_flow",
+        "flow_position",
+        "flow_persistence"
+      ],
+      "allowed_pairs": [
+        [
+          "tic_flow",
+          "futures_confirmation"
+        ],
+        [
+          "flow_position",
+          "futures_confirmation"
+        ],
+        [
+          "flow_persistence",
+          "futures_confirmation"
+        ]
       ]
     },
     {
@@ -137,6 +207,24 @@
       ],
       "missing": [
         "New LIVE authorization separate from PAPER_ACCEPT"
+      ],
+      "allowed_singletons": [
+        "multi_horizon_momentum",
+        "sma_regime"
+      ],
+      "allowed_pairs": [
+        [
+          "sma_regime",
+          "multi_horizon_momentum"
+        ],
+        [
+          "multi_horizon_momentum",
+          "vol_target"
+        ],
+        [
+          "sma_regime",
+          "rebalance_band"
+        ]
       ]
     },
     {
@@ -163,6 +251,24 @@
       "missing": [
         "PIT sector labels and delisted historical members",
         "Untouched independent post-freeze OOS"
+      ],
+      "allowed_singletons": [
+        "multi_horizon_momentum",
+        "earnings_surprise"
+      ],
+      "allowed_pairs": [
+        [
+          "multi_horizon_momentum",
+          "earnings_surprise"
+        ],
+        [
+          "multi_horizon_momentum",
+          "sector_concentration_risk"
+        ],
+        [
+          "multi_horizon_momentum",
+          "name_concentration_risk"
+        ]
       ]
     },
     {
@@ -190,6 +296,24 @@
         "PIT delisted price recovery",
         "PIT issuer publication times",
         "New independent OOS"
+      ],
+      "allowed_singletons": [
+        "sector_momentum",
+        "quality_valuation"
+      ],
+      "allowed_pairs": [
+        [
+          "sector_momentum",
+          "quality_valuation"
+        ],
+        [
+          "sector_momentum",
+          "liquidity_filter"
+        ],
+        [
+          "quality_valuation",
+          "drawdown_risk"
+        ]
       ]
     },
     {
@@ -211,6 +335,25 @@
       ],
       "missing": [
         "Current independently graded forward 30-day evidence"
+      ],
+      "allowed_singletons": [
+        "macro_liquidity",
+        "dealer_positioning",
+        "signed_taker_flow"
+      ],
+      "allowed_pairs": [
+        [
+          "macro_liquidity",
+          "dealer_positioning"
+        ],
+        [
+          "signed_taker_flow",
+          "cross_asset_divergence"
+        ],
+        [
+          "macro_liquidity",
+          "cross_asset_divergence"
+        ]
       ]
     },
     {
@@ -227,6 +370,26 @@
       ],
       "missing": [
         "Read-only Release PAPER state and distinct approved candidate receipts"
+      ],
+      "allowed_singletons": [
+        "trend_momentum",
+        "compression_volatility",
+        "volume_liquidity",
+        "macro_event_surprise"
+      ],
+      "allowed_pairs": [
+        [
+          "trend_momentum",
+          "volume_liquidity"
+        ],
+        [
+          "compression_volatility",
+          "volume_liquidity"
+        ],
+        [
+          "macro_event_surprise",
+          "trend_momentum"
+        ]
       ]
     },
     {
@@ -243,6 +406,25 @@
       ],
       "missing": [
         "Independent prospective fill ledger and explicit approval"
+      ],
+      "allowed_singletons": [
+        "market_structure",
+        "liquidity_sweep",
+        "displacement"
+      ],
+      "allowed_pairs": [
+        [
+          "market_structure",
+          "liquidity_sweep"
+        ],
+        [
+          "liquidity_sweep",
+          "displacement"
+        ],
+        [
+          "market_structure",
+          "risk_reward"
+        ]
       ]
     }
   ]
