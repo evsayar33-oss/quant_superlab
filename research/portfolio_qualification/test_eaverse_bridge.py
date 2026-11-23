@@ -47,7 +47,7 @@ def fixture():
         "paper_eligible":False,"live_allowed":False,
         "untouched_holdout_read":False,
         "independent_prospective_validated":False,
-        "pbo":pbo, "dsr":{"dsr":0.41},
+        "pbo":pbo, "dsr":{"dsr":bridge.reproduce_dsr(matrix,chosen,64)},
     }
     study={
         "asset":"BTCUSDT","source_digest":source_sha,
@@ -80,12 +80,18 @@ class BridgeTests(unittest.TestCase):
 
     def test_return_vector_digest_and_recomputed_pbo(self):
         stats,study=fixture()
-        stats["pbo"]["pbo"]=1.0-stats["pbo"]["pbo"]
+        stats["pbo"]["pbo"]=round((stats["pbo"]["pbo"]+0.17)%1.0,6)
         with self.assertRaisesRegex(ValueError,"PBO_REPLICATION_MISMATCH"):
             bridge.audit_one("BTCUSDT",signed(stats),signed(study),"c"*40)
         stats,study=fixture()
         stats["weekly_panel"]["net_return_paths"][0][0]+=0.1
         with self.assertRaisesRegex(ValueError,"MATRIX_SHA_MISMATCH"):
+            bridge.audit_one("BTCUSDT",signed(stats),signed(study),"c"*40)
+
+    def test_approx_dsr_source_claim_independently_rejected_if_changed(self):
+        stats,study=fixture()
+        stats["dsr"]["dsr"]=round((stats["dsr"]["dsr"]+0.2)%1.0,6)
+        with self.assertRaisesRegex(ValueError,"DSR_INDEPENDENT_REPLICATION_MISMATCH"):
             bridge.audit_one("BTCUSDT",signed(stats),signed(study),"c"*40)
 
     def test_tampered_foreign_variant_or_authorization_rejected(self):
