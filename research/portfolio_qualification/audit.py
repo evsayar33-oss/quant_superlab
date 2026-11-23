@@ -51,6 +51,14 @@ def collect(project, fetch=get_text, token=None):
     name = project["name"]
     repo = "evsayar33-oss/" + name
     pins, evidence, errors = {}, {}, {}
+    # The central repo is public. Never copy private repository content into
+    # its Actions artifacts, even if permissions change in the future.
+    if project.get("source_visibility") == "private":
+        return {"repo": repo, "ref_pins": {}, "evidence": {},
+                "errors": {name: "PRIVATE_SOURCE_NOT_COLLECTED_IN_PUBLIC_CI"
+                           for name in project["feeds"]},
+                "observed_sources": [],
+                "missing_sources": sorted(project["feeds"])}
     for alias, (ref, path) in project["feeds"].items():
         try:
             if (not ref or path.startswith("/") or ".." in path.split("/")
