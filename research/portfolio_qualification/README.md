@@ -82,8 +82,9 @@ strategy family and accessible data. It is unsafe to claim those runs happened.
 ## Private-repository boundary
 
 `us_f1_bot` is private. The `quant_superlab` workflow's repository-scoped
-`GITHUB_TOKEN` cannot read its private source files. The audit reports those
-file fetches as unavailable and never fills the gap from historical numbers,
+`GITHUB_TOKEN` cannot read its private source files. Even if permissions
+change, the audit deliberately **never fetches private files** and reports
+the evidence as unavailable rather than filling it from historical numbers,
 asks for an overprivileged PAT, or publishes private strategy state into this
 potentially public repository's Actions artifacts. Interactive authorized
 GitHub connector review can evaluate that repo separately. An UNKNOWN in this
