@@ -114,6 +114,40 @@ def reproduce_pbo(panel, blocks=8):
             "nonflat_variants":len(eligible)}
 
 
+def reproduce_dsr(values, selected, train_count, trial_count=256):
+    """Independent DSR reproduction from source's aligned weekly return panel."""
+    training=values[:train_count]
+    validation=[row[selected] for row in values[train_count:]]
+    if (len(validation)<20 or trial_count<len(training[0]) or
+        not math.isfinite(_sharpe(validation))):
+        return None
+    candidate_srs=[_sharpe([row[col] for row in training])
+                   for col in range(len(training[0]))]
+    candidate_srs=[x for x in candidate_srs if math.isfinite(x)]
+    if len(candidate_srs)<2:
+        return None
+    avg=sum(candidate_srs)/len(candidate_srs)
+    variance=sum((x-avg)**2 for x in candidate_srs)/(len(candidate_srs)-1)
+    dispersion=max(math.sqrt(variance),1/math.sqrt(len(training)))
+    normal=NormalDist()
+    gamma=.5772156649015329
+    expected=dispersion*((1-gamma)*normal.inv_cdf(1-1/trial_count)+
+                         gamma*normal.inv_cdf(1-1/(trial_count*math.e)))
+    mu=sum(validation)/len(validation)
+    centered=[x-mu for x in validation]
+    std=math.sqrt(sum(x*x for x in centered)/len(centered))
+    if std<=1e-12:
+        return None
+    skew=sum((x/std)**3 for x in centered)/len(centered)
+    kurt=sum((x/std)**4 for x in centered)/len(centered)
+    sr=_sharpe(validation)
+    uncertainty=1-skew*sr+(kurt-1)*sr*sr/4
+    if not math.isfinite(uncertainty) or uncertainty<=0:
+        return None
+    return round(normal.cdf((sr-expected)*math.sqrt(len(validation)-1)/
+                            math.sqrt(uncertainty)),6)
+
+
 def _validate(panel, stats, study):
     if stats.get("schema")!="eaverse.v7.aligned_empirical_trials.v1":
         raise ValueError("UNREGISTERED_SOURCE_STATISTICAL_SCHEMA")
@@ -192,7 +226,12 @@ def _validate(panel, stats, study):
     if d is not None and (isinstance(d,bool) or not isinstance(d,(int,float)) or
                           not 0<=d<=1):
         raise ValueError("DSR_REPORT_INVALID")
-    return reproduced
+    index=keys.index(chosen)
+    reproduced_dsr=reproduce_dsr(values,index,train_count)
+    if (reproduced_dsr is None)!=(d is None) or (
+        d is not None and abs(reproduced_dsr-d)>0.000005):
+        raise ValueError("DSR_INDEPENDENT_REPLICATION_MISMATCH")
+    return {"pbo":reproduced, "dsr":reproduced_dsr}
 
 
 def _review_prerequisites(stats, study):
@@ -206,10 +245,9 @@ def _review_prerequisites(stats, study):
         "registered_before_outcomes": False,
         "matched_controls_verified": False,
         "independent_oos_verified": False,
-        "cost_stress_verified": True,
+        "cost_stress_verified": False,  # hypothetical cost stress != verified venue fills
         "realistic_fill_assumptions_verified": False,
-        "multi_testing_adjusted": bool(stats.get("pbo",{}).get("pbo") is not None and
-                                       stats.get("dsr",{}).get("dsr") is not None),
+        "multi_testing_adjusted": False,  # approximate retrospective diagnostics only
         "regime_robustness_verified": False,
         "prospective_outcomes_matured": False,
     }
@@ -245,6 +283,9 @@ def audit_one(symbol, stats_ledger, study_ledger, ref_sha):
         raise ValueError("MISMATCHED_SOURCE_SYMBOL")
     reproduced=_validate(stats.get("weekly_panel"),stats,study)
     review=_review_prerequisites(stats,study)
+    status=("INDEPENDENTLY_REPRODUCED_HISTORICAL_CSCV_ONLY_NO_ACCEPT"
+            if reproduced["pbo"] is not None else
+            "SOURCE_ALIGNED_BUT_STATISTICS_INSUFFICIENT_NO_ACCEPT")
     return {
         "symbol":symbol, "source_repository":SOURCE_REPO,
         "source_commit_sha":ref_sha,
@@ -254,10 +295,11 @@ def audit_one(symbol, stats_ledger, study_ledger, ref_sha):
         "read_only":True,"central_passport_evaluated":True,
         "central_lab_backtest_invoked":False,
         "central_lab_accept":False,"paper_approved":False,"live_allowed":False,
-        "status":"INDEPENDENTLY_REPRODUCED_HISTORICAL_CSCV_ONLY_NO_ACCEPT",
-        "reproduced_pbo":reproduced,
+        "status":status,
+        "reproduced_pbo":reproduced["pbo"],
         "source_approx_dsr":stats["dsr"].get("dsr"),
-        "dsr_independent_replication_complete":False,
+        "reproduced_approx_dsr":reproduced["dsr"],
+        "dsr_independent_replication_complete":True,
         "central_gate_status":review["status"],
         "central_gate_blockers":review["blockers"],
         "risk_note":"Independent OOS, delist-aware issuer PIT, venue-native fills and prospective evidence not proven",
