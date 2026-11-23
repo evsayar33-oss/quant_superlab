@@ -90,6 +90,25 @@ class Qualification(unittest.TestCase):
         self.assertTrue(all(x["validation"] == "NOT_RUN" and
                             not x["paper_approved"] for x in d["projects"]["early_accumulation_radar"]))
 
+    def test_repo_semantics_reject_blind_factor_combinations(self):
+        q = plan(self.catalog)["projects"]["quant_superlab"]
+        families = [tuple(x["signal_information_groups"]) for x in q]
+        self.assertIn(("registered_strategy",), families)
+        self.assertNotIn(("risk_overlay",), families)  # a risk filter is not a strategy
+        self.assertNotIn(("regime_filter",), families)
+        self.assertNotIn(("regime_filter", "risk_overlay"), families)
+        self.assertEqual(len(q), 4)  # baseline, champion, two coherent overlays
+
+    def test_unregistered_pairing_is_never_silently_mined(self):
+        p = copy.deepcopy(self.projects["quant_superlab"])
+        p["allowed_pairs"].append(["risk_overlay", "regime_filter"])
+        from research.portfolio_qualification.synthesis import designs
+        self.assertIn(("regime_filter", "risk_overlay"),
+                      [tuple(x["signal_information_groups"]) for x in designs(p)])
+        p["allowed_pairs"].append(["regime_filter", "risk_overlay"])
+        with self.assertRaises(ValueError):
+            designs(p)
+
     def test_all_designs_deterministic(self):
         self.assertEqual(plan(self.catalog), plan(self.catalog))
 
