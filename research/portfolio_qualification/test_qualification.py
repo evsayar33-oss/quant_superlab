@@ -70,6 +70,17 @@ class Qualification(unittest.TestCase):
         self.assertEqual(r["status"], "UNKNOWN_SOURCE_EVIDENCE")
         self.assertFalse(r["new_live_approval"])
 
+    def test_private_source_is_never_read_or_exposed(self):
+        def forbid(*_args):
+            raise AssertionError("PRIVATE_SOURCE_FETCH_ATTEMPTED")
+        project = self.projects["us_f1_bot"]
+        self.assertEqual(project["source_visibility"], "private")
+        item = collect(project, fetch=forbid)
+        self.assertEqual(item["evidence"], {})
+        self.assertEqual(set(item["errors"]), {"demo", "paired"})
+        self.assertTrue(all(x == "PRIVATE_SOURCE_NOT_COLLECTED_IN_PUBLIC_CI"
+                            for x in item["errors"].values()))
+
     def test_public_source_ref_is_commit_pinned(self):
         seen = []
         def fake(url, token):
