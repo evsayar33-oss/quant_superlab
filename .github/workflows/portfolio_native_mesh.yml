@@ -1,0 +1,79 @@
+name: Native strategy research evidence mesh (NO TRADING)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/portfolio_native_mesh.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/portfolio_native_mesh.yml'
+      - 'research/portfolio_qualification/mesh.py'
+      - 'research/portfolio_qualification/test_mesh.py'
+permissions:
+  contents: write
+concurrency:
+  group: native-strategy-evidence-mesh
+  cancel-in-progress: false
+jobs:
+  source-research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Native evidence integrity and domain contract tests
+        run: |
+          python -m unittest discover -s research/portfolio_qualification -p 'test_*.py' -v
+          python -m compileall -q research/portfolio_qualification
+      - name: Restore ONLY independent research evidence branch
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$RUNNER_TEMP/native-mesh-state"
+          B="research/strategy-mesh-evidence"
+          if git ls-remote --exit-code --heads origin "$B" >/dev/null 2>&1; then
+            git fetch --depth=1 origin "refs/heads/$B"
+            git worktree add --detach "$R" FETCH_HEAD
+          else
+            git worktree add --detach "$R" HEAD
+          fi
+          mkdir -p "$R/observations/strategy_mesh"
+          echo "MESH_STATE=$R" >> "$GITHUB_ENV"
+      - name: Evaluate official local strategies and append SHA-linked *observations*
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m research.portfolio_qualification.mesh \
+            --repo quant_superlab --root . \
+            --ledger "$MESH_STATE/observations/strategy_mesh/observations.jsonl" \
+            --out out/native_mesh
+          cat out/native_mesh/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Persist independent evidence with no main branch write
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C "$MESH_STATE" config user.name 'github-actions[bot]'
+          git -C "$MESH_STATE" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$MESH_STATE" add observations/strategy_mesh/observations.jsonl
+          if git -C "$MESH_STATE" diff --cached --quiet; then
+            echo "MESH_NO_NEW_NATIVE_OBSERVATION" >> "$GITHUB_STEP_SUMMARY"
+          else
+            git -C "$MESH_STATE" commit -m "research(mesh): append actual source snapshot [skip ci]"
+            git -C "$MESH_STATE" push origin HEAD:refs/heads/research/strategy-mesh-evidence
+          fi
+      - name: Preserve all research diagnostics without Telegram or orders
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: quant-mesh-${{ github.run_id }}
+          path: out/native_mesh/
+          retention-days: 90
+          if-no-files-found: warn
