@@ -39,7 +39,9 @@ MAX_ROWS = 25000
 NATIVE_SOURCES = {
     "quant_superlab": (
         ("registry", "@default", "decisions/registry.json", True),
-        ("hypotheses", "@default", "hypotheses/registry.yaml", False)),
+        ("hypotheses", "@default", "hypotheses/registry.yaml", False),
+        ("early_bridge", "research/h119-autonomous-evidence", "research_evidence/h119/latest.json", False),
+        ("tier1_bridge", "research/h120-tier1-evidence", "tier1_h120/latest.json", False)),
     "early_accumulation_radar": (
         ("crypto", "research/v13-crypto-alpha-evidence", "research_archive/v13_crypto/latest.json", True),
         ("v11", "research/v11-pattern-evidence", "research_archive/v11/latest.json", False),
@@ -59,18 +61,23 @@ NATIVE_SOURCES = {
     "h054_spot_bot": (
         ("paper_status", "@default", "state/state.json", True),
         ("paper_balances", "@default", "state/paper.json", False),
-        ("local_registry", "@default", "decisions/registry.json", False)),
+        ("local_registry", "@default", "decisions/registry.json", False),
+        ("independent_band30", "paper/regime-band30-bitget", "state.json", False)),
     "us_f1_bot": (
         ("demo", "@default", "data/state.json", True),
         ("shadow", "@default", "data/shadow/paired_state.json", False)),
     "bist_orderflow_quant": (
-        ("variants", "@default", "data/variants_report.json", True),
+        ("daily_state", "@default", "data/engine_state_v3.json", True),
+        ("variants", "@default", "data/variants_report.json", False),
         ("backtest", "@default", "data/backtest_report_v3.json", False),
-        ("forward_signals", "@default", "data/signals_ledger.csv", False)),
+        ("forward_signals", "@default", "data/signals_ledger.csv", False),
+        ("trade_log", "@default", "data/trade_log.csv", False)),
     "tier1_quant_terminal": (
-        ("performance", "@default", "performance_ledger.json", True),
-        ("historical", "@default", "validation_reports/historical_replay_summary.json", False),
-        ("state", "@default", "terminal_state.json", False)),
+        ("state", "state", "terminal_state.json", True),
+        ("performance", "state", "performance_ledger.json", False),
+        ("research30", "state", "research_30d/observations.csv", False),
+        ("research30_manifest", "state", "research_30d/manifest.json", False),
+        ("historical", "reports", "validation_reports/historical_replay_summary.json", False)),
     "islem_onerisi_alarmi": (
         ("strategy_book", "@default", "STRATEGY_BOOK.md", True),
         ("forward", "@default", "results/forward_test_nq_spx_xau.csv", False)),
@@ -167,8 +174,15 @@ def native_summary(repo, contents):
             a = {}
         m = {"registered_variants": len(a),
              "verdicts": dict(Counter(v.get("verdict", "UNKNOWN") for v in a.values())),
-             "accepted_ids": sorted(k for k, v in a.items() if v.get("verdict") == "ACCEPT")}
-        asof = j.get("registry", {}).get("updated")
+             "accepted_ids": sorted(k for k, v in a.items() if v.get("verdict") == "ACCEPT"),
+             "h119_new_milestones": j.get("early_bridge", {}).get("new_hypotheses_or_milestones"),
+             "h120_observed_snapshots": j.get("tier1_bridge", {}).get("observed_snapshots")}
+        stamps = [utc(v) for v in (
+            j.get("registry", {}).get("updated"),
+            j.get("early_bridge", {}).get("asof_utc"),
+            j.get("tier1_bridge", {}).get("asof_utc"))]
+        stamps = [v for v in stamps if v is not None]
+        asof = max(stamps).isoformat() if stamps else None
     elif repo == "early_accumulation_radar":
         a = j.get("crypto", {})
         b = j.get("v11", {})
@@ -182,10 +196,12 @@ def native_summary(repo, contents):
     elif repo == "eaverse":
         panel = j.get("release_panel", {})
         m = {"panel_keys": sorted(panel)[:25] if isinstance(panel, dict) else [],
-             "paper_candidate_count": len(panel.get("candidates", []))
-                 if isinstance(panel, dict) and isinstance(panel.get("candidates"), list) else None,
+             "reported_entries": len(panel.get("entries", []))
+                 if isinstance(panel, dict) and isinstance(panel.get("entries"), list) else None,
+             "native_research_present": isinstance(panel.get("research"), dict)
+                 if isinstance(panel, dict) else False,
              "release_is_forward_truth": False}
-        asof = (panel.get("generated_utc") or panel.get("generated_at")
+        asof = (panel.get("published_at") or panel.get("generated_utc") or panel.get("generated_at")
                 if isinstance(panel, dict) else None)
     elif repo == "federal-incentive-radar":
         a, f, w = (j.get(k, {}) for k in ("h083", "forward", "watch"))
@@ -219,8 +235,11 @@ def native_summary(repo, contents):
                 a.get("generated_utc") or a.get("asof_utc"))
     elif repo == "h054_spot_bot":
         a, h = j.get("paper_status", {}), j.get("local_registry", {}).get("hypotheses", {})
+        b = j.get("independent_band30", {})
         m = {"paper_equity": a.get("equity"),
              "approved_reason": a.get("why"), "bar": a.get("last_bar"),
+             "independent_band30_ticks": len(b.get("ticks", [])),
+             "independent_band30_finalized": b.get("finalized"),
              "live_verdicts": {k: v.get("live_verdict") for k, v in h.items()},
              "paper_verdicts": {k: v.get("verdict") for k, v in h.items()}}
         asof = a.get("updated_at")
@@ -234,17 +253,25 @@ def native_summary(repo, contents):
              "shadow_closed_candidate": len(b.get("candidate", {}).get("closed_cycles", []))}
         asof = s.get("date")  # session date, NOT timestamp evidence.
     elif repo == "bist_orderflow_quant":
-        a, b = j.get("variants", {}), j.get("backtest", {})
+        a, b, live = j.get("variants", {}), j.get("backtest", {}), j.get("daily_state", {})
         m = {"historical_variant_count": len(a.get("variants", [])),
              "backtest_cagr_pct": b.get("portfolio", {}).get("cagr_pct"),
-             "period": b.get("period"), "historical_pit_verified": False}
-        asof = a.get("generated_at")
+             "period": b.get("period"), "historical_pit_verified": False,
+             "actual_last_closed_bist_session": live.get("last_eod_date"),
+             "live_state_run_type": live.get("last_run", {}).get("mode"),
+             "live_state_run_status": live.get("last_run", {}).get("status")}
+        asof = live.get("last_run", {}).get("utc") or a.get("generated_at")
     elif repo == "tier1_quant_terminal":
-        a, b = j.get("performance", {}), j.get("historical", {})
+        a, b, live = (j.get(k, {}) for k in ("performance", "historical", "state"))
+        row_count = sum(1 for line in contents.get("research30", b"").splitlines()[1:]
+                        if line.strip())
         m = {"performance_records": len(a.get("records", [])),
              "historical_graded": b.get("summary", {}).get("records_graded"),
+             "research30_samples": row_count,
+             "research30_experiment_status": j.get("research30_manifest", {}).get("status"),
+             "native_state_status": live.get("status"),
              "research30_forward_gate_approved": False}
-        asof = a.get("meta", {}).get("last_cycle")
+        asof = live.get("last_updated") or a.get("meta", {}).get("last_cycle")
     elif repo == "islem_onerisi_alarmi":
         m = {"strategy_book_bytes": len(contents.get("strategy_book", b"")),
              "forward_csv_present": "forward" in contents,
@@ -324,6 +351,110 @@ def ict_holdout(study_text):
             "selection_from_holdout_permitted": False, "validated_alpha": False}
 
 
+def tier1_asof_flow_study(raw):
+    """Two fixed, genuinely observed future 4h hypotheses: taker direction,
+    and signed-taker direction only when the observed book agrees.
+
+    This is hypothesis comparison, NEVER an actual entry/exit fill or an
+    independent trading proof. Book/tape snapshot coverage is bounded;
+    neither sample can establish CVD or market-wide order flow.
+    """
+    if not raw:
+        return {"status": "RESEARCH30_SOURCE_UNAVAILABLE", "tested": {}}
+    try:
+        data = list(csv.DictReader(io.StringIO(raw.decode("utf-8-sig"))))
+    except UnicodeError:
+        return {"status": "RESEARCH30_SOURCE_INVALID_ENCODING", "tested": {}}
+    by_asset = {}
+    for asset in ("BTC", "ETH"):
+        records = []
+        for x in data:
+            if x.get("asset") != asset or x.get("market") != "spot":
+                continue
+            hour = utc(x.get("ts"))
+            actual_ms = safe_number(x.get("observed_at_ms"))
+            price = safe_number(x.get("reference_price"))
+            if hour is None or actual_ms is None or price is None or price <= 0:
+                continue
+            try:
+                t = datetime.fromtimestamp(actual_ms / 1000, timezone.utc)
+            except (OverflowError, OSError, ValueError):
+                continue
+            # 'ts' is an hour label. Use the later ACTUAL observation time
+            # for feature eligibility so a 08:03 quote is never a signal at 08:00.
+            if not hour <= t <= hour + timedelta(hours=1):
+                continue
+            records.append((t, price, x))
+        records.sort(key=lambda x: x[0])
+        # Dedup repeated source provider observations at the same hour.
+        unique = {}
+        for t, price, row in records:
+            unique[t] = (t, price, row)
+        by_asset[asset] = [unique[t] for t in sorted(unique)]
+    tested = {}
+    for variant in ("signed_taker_only", "signed_taker_and_book_agree"):
+        totals = Counter()
+        by_symbol = {}
+        for asset, rows in by_asset.items():
+            prior_start = None
+            n = hit = always_long = 0
+            pending = 0
+            for i, (stamp, price, item) in enumerate(rows):
+                if prior_start and stamp < prior_start + timedelta(hours=4):
+                    continue
+                if item.get("status") != "OK_SAMPLE":
+                    continue
+                im = safe_number(item.get("imbalance"))
+                if im is None or im == 0:
+                    continue
+                if variant.endswith("book_agree"):
+                    book = safe_number(item.get("book_imbalance"))
+                    book_ms = safe_number(item.get("book_ts"))
+                    observed_ms = safe_number(item.get("observed_at_ms"))
+                    # Indicative book snapshot must precede the actual signal
+                    # observation and be within five minutes; never substitute
+                    # stale L1, a later book, or orderbook depth for actual fills.
+                    if (book is None or book == 0 or book * im <= 0
+                        or book_ms is None or observed_ms is None
+                        or not 0 <= observed_ms - book_ms <= 5 * 60 * 1000):
+                        continue
+                future = next(((ft, fp) for ft, fp, _ in rows[i + 1:]
+                               if stamp + timedelta(hours=4) <= ft
+                               <= stamp + timedelta(hours=5)), None)
+                if future is None:
+                    pending += 1
+                    continue
+                change = future[1] / price - 1
+                if change == 0:
+                    continue
+                n += 1
+                hit += (im > 0) == (change > 0)
+                always_long += change > 0
+                prior_start = stamp
+            by_symbol[asset] = {
+                "nonoverlapping_matured_n": n,
+                "direction_hit_rate": round(hit / n, 5) if n else None,
+                "always_long_same_sample": round(always_long / n, 5) if n else None,
+                "pending_no_4h_to_5h_future": pending,
+            }
+            totals["n"] += n
+        tested[variant] = {
+            "assets": by_symbol,
+            "total_matured_nonoverlap": totals["n"],
+            "status": ("DESCRIPTIVE_ONLY_NOT_COSTED_ALPHA" if totals["n"] >= 100
+                       else "INSUFFICIENT_GENUINE_4H_HORIZONS"),
+            "do_not_optimize_on_future_outcomes": True,
+            "trade_authorized": False,
+        }
+    return {
+        "status": "TIER1_PROSPECTIVE_SIGNED_FLOW_EXPLORATORY",
+        "from_real_source_samples_only": True,
+        "no_continuous_cvd_or_executable_fills": True,
+        "tested": tested,
+        "readiness_for_paper": False,
+    }
+
+
 def native_study(repo, contents):
     j = {k: json_obj(raw) for k, raw in contents.items()}
     if repo == "bist_orderflow_quant":
@@ -365,8 +496,10 @@ def native_study(repo, contents):
         return {"status": "OFFICIAL_ACCEPT_VERDICTS_DISTINCT_FROM_NEW_HYPOTHESES",
                 "proposed_candidate_accepted": False}
     if repo == "tier1_quant_terminal":
-        return {"status": "HISTORICAL_REPLAY_DISTINCT_FROM_30D_PROSPECTIVE",
-                "forward_strategy_validated": False}
+        study = tier1_asof_flow_study(contents.get("research30", b""))
+        study["historical_replay_not_forward_proof"] = True
+        study["forward_strategy_validated"] = False
+        return study
     raise ValueError("UNKNOWN_REPO_NATIVE_STUDY")
 
 

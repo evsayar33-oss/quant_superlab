@@ -126,6 +126,83 @@ class MeshEvidenceContract(unittest.TestCase):
             self.assertEqual(s["data_status"], "MISSING_REQUIRED_PRIMARY_EVIDENCE")
             self.assertFalse(s["paper_approved_by_mesh"])
 
+    def test_capital_flow_issued_time_not_future_target(self):
+        data = {
+            "2027-12-01/TIC": {
+                "target": "2027-12-01",
+                "issued": "2026-11-22T08:49:23Z",
+                "estimate": 10}}
+        m, asof = native_summary("global_capital_radar", {
+            "forecasts": json.dumps(data).encode()})
+        self.assertEqual(asof, "2026-11-22T08:49:23+00:00")
+
+    def test_live_bist_session_not_stale_historical_variant_date(self):
+        data = {"last_run": {"utc": "2026-11-23T03:00:00Z",
+                              "mode": "REFRESH", "status": "OK"},
+                "last_eod_date": "2026-11-20"}
+        _, asof = native_summary("bist_orderflow_quant", {
+            "daily_state": json.dumps(data).encode(),
+            "variants": b'{"generated_at":"2026-10-15T16:13:20Z","variants":[]}'})
+        self.assertEqual(asof, "2026-11-23T03:00:00Z")
+
+    def test_tier1_real_observation_clock_and_future_only_horizon(self):
+        import csv, io
+        from research.portfolio_qualification.mesh import tier1_asof_flow_study
+        start = datetime(2026, 11, 23, 1, tzinfo=timezone.utc)
+        rows = []
+        for offset, price in ((0, 100), (240, 102), (300, 103), (480, 104)):
+            observed = start + timedelta(minutes=offset, seconds=180)
+            rows.append({"ts": observed.replace(minute=0, second=0).isoformat(),
+                         "observed_at_ms": str(int(observed.timestamp() * 1000)),
+                         "asset": "BTC", "market": "spot", "status": "OK_SAMPLE",
+                         "reference_price": str(price), "imbalance": "0.45",
+                         "book_imbalance": "0.3",
+                         "book_ts": str(int((observed -
+                                             timedelta(seconds=40)).timestamp() * 1000))})
+        output = io.StringIO()
+        w = csv.DictWriter(output, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+        z = tier1_asof_flow_study(output.getvalue().encode())
+        self.assertEqual(z["status"], "TIER1_PROSPECTIVE_SIGNED_FLOW_EXPLORATORY")
+        self.assertEqual(z["tested"]["signed_taker_only"]["assets"]["BTC"]
+                         ["nonoverlapping_matured_n"], 2)
+        self.assertEqual(z["tested"]["signed_taker_and_book_agree"]["assets"]["BTC"]
+                         ["nonoverlapping_matured_n"], 2)
+        self.assertFalse(z["readiness_for_paper"])
+
+    def test_tier1_book_future_timestamp_never_qualifies(self):
+        import csv, io
+        from research.portfolio_qualification.mesh import tier1_asof_flow_study
+        start = datetime(2026, 11, 23, 1, tzinfo=timezone.utc)
+        rows = []
+        for offset, price in ((0, 100), (300, 110)):
+            obs = start + timedelta(minutes=offset, seconds=120)
+            rows.append({"ts": obs.replace(minute=0, second=0).isoformat(),
+                         "observed_at_ms": str(int(obs.timestamp()*1000)),
+                         "asset": "ETH", "market": "spot", "status": "OK_SAMPLE",
+                         "reference_price": str(price), "imbalance": "0.5",
+                         "book_imbalance": "0.2",
+                         "book_ts": str(int((obs + timedelta(seconds=120)).timestamp()*1000))})
+        f = io.StringIO()
+        w = csv.DictWriter(f,fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+        r = tier1_asof_flow_study(f.getvalue().encode())
+        self.assertEqual(r["tested"]["signed_taker_only"]["assets"]["ETH"]
+                         ["nonoverlapping_matured_n"], 1)
+        self.assertEqual(r["tested"]["signed_taker_and_book_agree"]["assets"]["ETH"]
+                         ["nonoverlapping_matured_n"], 0)
+
+    def test_eaverse_real_release_published_clock_is_used(self):
+        x = {"published_at": "2026-11-23T08:00:00Z",
+             "entries": [{"id": "x"}, {"id": "y"}],
+             "research": {"state": "paper"}}
+        m, a = native_summary("eaverse", {
+            "release_panel": json.dumps(x).encode()})
+        self.assertEqual(a, "2026-11-23T08:00:00Z")
+        self.assertEqual(m["reported_entries"], 2)
+
     def test_h054_paper_denial_not_live(self):
         m, _ = native_summary("h054_spot_bot", {
             "paper_status": b'{"equity":987,"why":"PAPER_ONLY"}',

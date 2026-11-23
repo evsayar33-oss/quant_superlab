@@ -66,3 +66,29 @@ Each source checkout should use a pinned SHA of this module and keep
 research branch observations private to itself. Eaverse Release-held PAPER
 data require a separate local release download; if absent the system
 fails closed. No access-token privilege expansion is necessary.
+
+### V2 source-cadence correction (Nov 23)
+
+The first release exposed a material evidence-timing gap: Tier1 live
+observations, signed-trade samples and the 30-day microstructure study are
+written to its separate `state` branch, not stale main; its historical
+replay results are on `reports`. The V2 bridge reads both at their actual
+commit SHAs. It runs two fixed, descriptive 4-hour prospective checks on
+real completed Tier1 observations: signed spot taker direction, and the same
+sign only when a five-minute-fresh book imbalance agrees. The experimental
+clock is the **actual observed-at timestamp**, not the truncated bar hour.
+No dynamic threshold search, real fills, return guarantee, funding claims or
+PAPER authorization is generated.
+
+BIST now uses the published `data/engine_state_v3.json:last_run.utc` and
+latest closed BIST session as its live source clock, separate from the
+October static variant report. Eaverse uses the Release's `published_at`
+and actual entries count, rather than an unknown or invented market time.
+H054 preserves its separate band-30 PAPER evidence and does not interpret it
+as LIVE permission. The Quant Lab also audits the independent H119/H120
+source-observer timestamps without interpreting WATCH as official ACCEPT.
+
+All V2 source-spec changes require the source workflows to be deliberately
+re-pinned to this new module SHA. The old V1 evidence remains readable;
+changed source fingerprints are additional provenance, not retroactive
+alpha or duplicated hypothetical trades.
