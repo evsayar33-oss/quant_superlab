@@ -6,7 +6,6 @@ accepted PAPER experiments. Existing repo strategy logic remains authoritative.
 from __future__ import annotations
 import argparse
 import hashlib
-import itertools
 import json
 from pathlib import Path
 from .audit import load_catalog
@@ -16,9 +15,26 @@ def designs(project):
     groups = project["families"]
     if not groups or len(groups) != len(set(groups)) or len(groups) > 12:
         raise ValueError("INVALID_REPO_FEATURE_FAMILIES")
-    # Deliberately bound combinatorial mining: baseline + singles + distinct pairs.
-    variants = [()] + [(x,) for x in groups] + list(itertools.combinations(groups, 2))
-    if len(variants) > 79:
+    # Each repo must authorize economically coherent *research designs*.
+    # A group may be a confirmation filter or risk control, NOT a solo trigger.
+    singles = project.get("allowed_singletons")
+    pairs = project.get("allowed_pairs")
+    if not isinstance(singles, list) or not isinstance(pairs, list):
+        raise ValueError("MISSING_PROJECT_SPECIFIC_HYPOTHESIS_GRAMMAR")
+    if len(singles) != len(set(singles)) or any(x not in groups for x in singles):
+        raise ValueError("INVALID_SINGLETON_HYPOTHESIS")
+    cleaned = []
+    for pair in pairs:
+        if (not isinstance(pair, list) or len(pair) != 2 or pair[0] == pair[1]
+                or any(x not in groups for x in pair)):
+            raise ValueError("INVALID_PAIR_HYPOTHESIS")
+        # Canonicalize pairing to prevent accidental double counting.
+        canonical_pair = tuple(sorted(pair))
+        if canonical_pair in cleaned:
+            raise ValueError("DUPLICATE_PAIR_HYPOTHESIS")
+        cleaned.append(canonical_pair)
+    variants = [()] + [(x,) for x in singles] + cleaned
+    if len(variants) > 30:
         raise ValueError("UNBOUNDED_HYPOTHESIS_SEARCH")
     proposals = []
     for family in variants:
