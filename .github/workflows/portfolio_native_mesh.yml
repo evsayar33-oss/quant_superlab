@@ -1,6 +1,8 @@
 name: Native strategy research evidence mesh (NO TRADING)
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '5 8 * * *' # best effort, next source data only
   push:
     branches: [main]
     paths:
