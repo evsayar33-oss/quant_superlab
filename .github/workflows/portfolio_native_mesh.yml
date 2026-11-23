@@ -7,11 +7,15 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/portfolio_native_mesh.yml'
+      - 'research/portfolio_qualification/mesh.py'
+      - 'research/source_discovery/telemetry.py'
   pull_request:
     paths:
       - '.github/workflows/portfolio_native_mesh.yml'
       - 'research/portfolio_qualification/mesh.py'
       - 'research/portfolio_qualification/test_mesh.py'
+      - 'research/portfolio_qualification/test_free_history*.py'
+      - 'research/source_discovery/telemetry.py'
 permissions:
   contents: write
 concurrency:
