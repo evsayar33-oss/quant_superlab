@@ -1,0 +1,46 @@
+name: Portfolio strategy qualification audit (RESEARCH ONLY)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '51 6 * * *' # best effort; daily nontrading evidence check
+  pull_request:
+    paths:
+      - 'research/portfolio_qualification/**'
+      - '.github/workflows/portfolio_qualification.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/portfolio_qualification.yml'
+permissions:
+  contents: read
+concurrency:
+  group: quant-superlab-portfolio-qualification-readonly
+  cancel-in-progress: false
+jobs:
+  evidence-classification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline source-failure and no-promotion regression
+        run: |
+          python -m unittest discover -s research/portfolio_qualification -p 'test_*.py' -v
+          python -m compileall -q research/portfolio_qualification
+      - name: Snapshot public source commits and classify evidence read-only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -m research.portfolio_qualification.audit --out out/portfolio_qualification
+          python -m research.portfolio_qualification.synthesis --out out/portfolio_qualification
+          cat out/portfolio_qualification/audit.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload research-only report; no GitHub writes, no Telegram
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-qualification-${{ github.run_id }}
+          path: out/portfolio_qualification/
+          retention-days: 90
+          if-no-files-found: warn

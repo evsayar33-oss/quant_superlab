@@ -1,0 +1,441 @@
+{
+  "schema": "QS.portfolio_qualification.catalog.v1",
+  "principles": [
+    "Each source repo preserves its strategy semantics",
+    "No signal or candidate is promoted from a green CI run or routine WATCH",
+    "No imputed missing prices/OI/flow",
+    "Existing broker/PAPER/registry gates are never modified"
+  ],
+  "projects": [
+    {
+      "name": "quant_superlab",
+      "domain": "cross_market_lab",
+      "scope": "Official hypothesis registry: registered strategies only",
+      "profile": "lab",
+      "feeds": {
+        "registry": [
+          "main",
+          "decisions/registry.json"
+        ]
+      },
+      "families": [
+        "registered_strategy",
+        "risk_overlay",
+        "regime_filter"
+      ],
+      "missing": [
+        "Per-candidate independent forward and executed fills cannot be assumed from ACCEPT label"
+      ],
+      "allowed_singletons": [
+        "registered_strategy"
+      ],
+      "allowed_pairs": [
+        [
+          "registered_strategy",
+          "risk_overlay"
+        ],
+        [
+          "registered_strategy",
+          "regime_filter"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "early_accumulation_radar",
+      "domain": "event_before_price",
+      "scope": "Pre-impulse V8-V13, equity V12/V13 (distinct experimental families)",
+      "profile": "early",
+      "feeds": {
+        "crypto": [
+          "research/v13-crypto-alpha-evidence",
+          "research_archive/v13_crypto/latest.json"
+        ],
+        "association": [
+          "research/v11-pattern-evidence",
+          "research_archive/v11/latest.json"
+        ],
+        "equity": [
+          "research/v13-alpha-evidence",
+          "research_archive/v13/latest.json"
+        ]
+      },
+      "families": [
+        "activity_anomaly",
+        "positioning_open_interest",
+        "funding_basis",
+        "execution_liquidity"
+      ],
+      "missing": [
+        "Signed trade tape/CVD for broad universe",
+        "L2 replenishment / depth",
+        "Complete cadence to mature future labels"
+      ],
+      "allowed_singletons": [
+        "activity_anomaly",
+        "positioning_open_interest",
+        "funding_basis",
+        "execution_liquidity"
+      ],
+      "allowed_pairs": [
+        [
+          "activity_anomaly",
+          "positioning_open_interest"
+        ],
+        [
+          "activity_anomaly",
+          "funding_basis"
+        ],
+        [
+          "activity_anomaly",
+          "execution_liquidity"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "federal-incentive-radar",
+      "domain": "causal_event_alpha",
+      "scope": "H083 two-month PAPER separate from five independent 20-session event-alpha questions",
+      "profile": "federal",
+      "feeds": {
+        "h083": [
+          "data",
+          "h083_last_attempt.json"
+        ],
+        "forward": [
+          "data",
+          "h083_forward_status.json"
+        ],
+        "watch": [
+          "data",
+          "event_watch_status.json"
+        ]
+      },
+      "families": [
+        "direct_federal_award",
+        "regulatory_event",
+        "verified_beneficiary",
+        "event_asof_issuer_link"
+      ],
+      "missing": [
+        "24-month independent PIT/reconstitution verification",
+        "Matured forward research and executable fills"
+      ],
+      "allowed_singletons": [
+        "direct_federal_award",
+        "regulatory_event"
+      ],
+      "allowed_pairs": [
+        [
+          "direct_federal_award",
+          "verified_beneficiary"
+        ],
+        [
+          "regulatory_event",
+          "event_asof_issuer_link"
+        ],
+        [
+          "direct_federal_award",
+          "event_asof_issuer_link"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "global_capital_radar",
+      "domain": "capital_flow_before_price",
+      "scope": "Macro/ownership/flow persistence; price-only is a comparator not an early trigger",
+      "profile": "capital",
+      "feeds": {
+        "selection": [
+          "main",
+          "history/method_selection.json"
+        ],
+        "validation": [
+          "main",
+          "history/validation.json"
+        ]
+      },
+      "families": [
+        "tic_flow",
+        "flow_position",
+        "flow_persistence",
+        "futures_confirmation"
+      ],
+      "missing": [
+        "Matured independent forward decisions",
+        "Verified futures confirmation coverage"
+      ],
+      "allowed_singletons": [
+        "tic_flow",
+        "flow_position",
+        "flow_persistence"
+      ],
+      "allowed_pairs": [
+        [
+          "tic_flow",
+          "futures_confirmation"
+        ],
+        [
+          "flow_position",
+          "futures_confirmation"
+        ],
+        [
+          "flow_persistence",
+          "futures_confirmation"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "h054_spot_bot",
+      "domain": "regime_rotation",
+      "scope": "H054-MOM2 PAPER and Regime Band-30 independent PAPER",
+      "profile": "h054",
+      "feeds": {
+        "registry": [
+          "main",
+          "decisions/registry.json"
+        ],
+        "status": [
+          "main",
+          "state/state.json"
+        ]
+      },
+      "families": [
+        "sma_regime",
+        "multi_horizon_momentum",
+        "vol_target",
+        "rebalance_band"
+      ],
+      "missing": [
+        "New LIVE authorization separate from PAPER_ACCEPT"
+      ],
+      "allowed_singletons": [
+        "multi_horizon_momentum",
+        "sma_regime"
+      ],
+      "allowed_pairs": [
+        [
+          "sma_regime",
+          "multi_horizon_momentum"
+        ],
+        [
+          "multi_horizon_momentum",
+          "vol_target"
+        ],
+        [
+          "sma_regime",
+          "rebalance_band"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "us_f1_bot",
+      "domain": "us_momentum_earnings",
+      "scope": "Momentum with earnings F1 and concentration-controls: candidate shadow vs existing demo",
+      "profile": "usf1",
+      "feeds": {
+        "demo": [
+          "main",
+          "data/state.json"
+        ],
+        "paired": [
+          "main",
+          "data/shadow/paired_state.json"
+        ]
+      },
+      "families": [
+        "multi_horizon_momentum",
+        "earnings_surprise",
+        "name_concentration_risk",
+        "sector_concentration_risk"
+      ],
+      "missing": [
+        "PIT sector labels and delisted historical members",
+        "Untouched independent post-freeze OOS"
+      ],
+      "allowed_singletons": [
+        "multi_horizon_momentum",
+        "earnings_surprise"
+      ],
+      "allowed_pairs": [
+        [
+          "multi_horizon_momentum",
+          "earnings_surprise"
+        ],
+        [
+          "multi_horizon_momentum",
+          "sector_concentration_risk"
+        ],
+        [
+          "multi_horizon_momentum",
+          "name_concentration_risk"
+        ]
+      ],
+      "source_visibility": "private"
+    },
+    {
+      "name": "bist_orderflow_quant",
+      "domain": "bist_reel_return",
+      "scope": "BIST portfolio ranking vs CPI/USD/gold/deposit under historical universe membership",
+      "profile": "bist",
+      "feeds": {
+        "backtest": [
+          "main",
+          "data/backtest_report_v3.json"
+        ],
+        "variants": [
+          "main",
+          "data/variants_report.json"
+        ]
+      },
+      "families": [
+        "sector_momentum",
+        "quality_valuation",
+        "liquidity_filter",
+        "drawdown_risk"
+      ],
+      "missing": [
+        "PIT delisted price recovery",
+        "PIT issuer publication times",
+        "New independent OOS"
+      ],
+      "allowed_singletons": [
+        "sector_momentum",
+        "quality_valuation"
+      ],
+      "allowed_pairs": [
+        [
+          "sector_momentum",
+          "quality_valuation"
+        ],
+        [
+          "sector_momentum",
+          "liquidity_filter"
+        ],
+        [
+          "quality_valuation",
+          "drawdown_risk"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "tier1_quant_terminal",
+      "domain": "macro_cross_asset",
+      "scope": "Multi-asset research forecast and 30-day ledger independently from current decision engine",
+      "profile": "tier1",
+      "feeds": {
+        "historical": [
+          "main",
+          "validation_reports/historical_replay_summary.json"
+        ]
+      },
+      "families": [
+        "macro_liquidity",
+        "dealer_positioning",
+        "signed_taker_flow",
+        "cross_asset_divergence"
+      ],
+      "missing": [
+        "Current independently graded forward 30-day evidence"
+      ],
+      "allowed_singletons": [
+        "macro_liquidity",
+        "dealer_positioning",
+        "signed_taker_flow"
+      ],
+      "allowed_pairs": [
+        [
+          "macro_liquidity",
+          "dealer_positioning"
+        ],
+        [
+          "signed_taker_flow",
+          "cross_asset_divergence"
+        ],
+        [
+          "macro_liquidity",
+          "cross_asset_divergence"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "eaverse",
+      "domain": "cross_market_technical_exploration",
+      "scope": "Multi-factor hypothesis enumerator and PAPER state held in Releases, not main JSON",
+      "profile": "eaverse",
+      "feeds": {},
+      "families": [
+        "trend_momentum",
+        "compression_volatility",
+        "volume_liquidity",
+        "macro_event_surprise"
+      ],
+      "missing": [
+        "Read-only Release PAPER state and distinct approved candidate receipts"
+      ],
+      "allowed_singletons": [
+        "trend_momentum",
+        "compression_volatility",
+        "volume_liquidity",
+        "macro_event_surprise"
+      ],
+      "allowed_pairs": [
+        [
+          "trend_momentum",
+          "volume_liquidity"
+        ],
+        [
+          "compression_volatility",
+          "volume_liquidity"
+        ],
+        [
+          "macro_event_surprise",
+          "trend_momentum"
+        ]
+      ],
+      "source_visibility": "public"
+    },
+    {
+      "name": "islem_onerisi_alarmi",
+      "domain": "ict_technical_rules",
+      "scope": "ICT order/market-structure evidence; backtests not automatically executable",
+      "profile": "ict",
+      "feeds": {},
+      "families": [
+        "market_structure",
+        "liquidity_sweep",
+        "displacement",
+        "risk_reward"
+      ],
+      "missing": [
+        "Independent prospective fill ledger and explicit approval"
+      ],
+      "allowed_singletons": [
+        "market_structure",
+        "liquidity_sweep",
+        "displacement"
+      ],
+      "allowed_pairs": [
+        [
+          "market_structure",
+          "liquidity_sweep"
+        ],
+        [
+          "liquidity_sweep",
+          "displacement"
+        ],
+        [
+          "market_structure",
+          "risk_reward"
+        ]
+      ],
+      "source_visibility": "public"
+    }
+  ]
+}
