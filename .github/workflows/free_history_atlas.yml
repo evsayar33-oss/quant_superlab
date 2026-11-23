@@ -1,0 +1,55 @@
+name: Free historical market-data atlas and provenance checks (RESEARCH ONLY)
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/free_history_atlas.yml'
+      - 'research/source_discovery/**'
+      - 'research/portfolio_qualification/mesh.py'
+      - 'research/portfolio_qualification/test_free_history*.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/free_history_atlas.yml'
+      - 'research/source_discovery/**'
+      - 'research/portfolio_qualification/mesh.py'
+permissions:
+  contents: read
+jobs:
+  historical-data-diligence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Offline no-leakage/market-source/attribution tests
+        run: |
+          python -m unittest discover -s research/portfolio_qualification -p 'test_free_history_*.py' -v
+          python -m compileall -q research/source_discovery
+          python -m compileall -q research/portfolio_qualification
+      - name: Build source-by-source documented history coverage atlas
+        run: |
+          python -m research.source_discovery.audit --out out/free_history_atlas
+          cat out/free_history_atlas/source_atlas.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Probe two bounded historical archives (no raw data redistribution)
+        run: |
+          python -m research.source_discovery.probe --out out/free_history_atlas
+          python - <<'PY'
+          import json,os
+          j=json.load(open('out/free_history_atlas/actual_archive_probes.json'))
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:
+              f.write("\n## Live source availability (not alpha)\n")
+              for source,r in j["results"].items():
+                  f.write("* "+source+": "+r["status"]+"\n")
+              f.write("\nA green job does NOT imply either source was accessible. "
+                      "Use actual status fields and never promote these sources.\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free-history-atlas-${{ github.run_id }}
+          path: out/free_history_atlas/
+          retention-days: 90
+          if-no-files-found: warn

@@ -26,6 +26,7 @@ from pathlib import Path
 
 from .audit import load_catalog
 from .synthesis import designs
+from research.source_discovery.telemetry import trace_native_sources, SCHEMA as SOURCE_TRACE_SCHEMA
 
 SCHEMA = "QS.mesh.native_observation.v1"
 RESULT_SCHEMA = "QS.mesh.research_design_study.v1"
@@ -526,9 +527,14 @@ def snapshot(root, repo, release_file=None):
         status = "OBSERVED_UNPROMOTED"
     summary, source_asof = native_summary(repo, contents)
     stamp = utc(source_asof)
+    captured = datetime.now(timezone.utc).isoformat()
+    # Aggregate data-shape, source clocks and gaps only, never underlying
+    # prices/private positions/raw market files. Keep in EACH source repo.
+    detailed = trace_native_sources(contents, file_meta, errors, captured)
     return {
         "schema": SCHEMA, "repo": "evsayar33-oss/" + repo,
-        "captured_utc": datetime.now(timezone.utc).isoformat(),
+        "captured_utc": captured,
+        "source_telemetry": detailed,
         "native_observation_utc": stamp.isoformat() if stamp else None,
         "native_observation_raw": str(source_asof) if source_asof is not None else None,
         "source_data_digest": digest({k: v["sha256"] for k, v in file_meta.items()}),
@@ -568,7 +574,15 @@ def append_snapshot(path, snap):
     if snap.get("data_status") != "OBSERVED_UNPROMOTED":
         return {"status": "NO_APPEND_PRIMARY_SOURCE_UNAVAILABLE",
                 "recorded_snapshots": len(old)}
-    if old and old[-1]["source_data_digest"] == snap["source_data_digest"]:
+    same_source = bool(old and old[-1]["source_data_digest"] == snap["source_data_digest"])
+    old_telemetry = old[-1].get("source_telemetry", {}) if old else {}
+    new_telemetry = snap.get("source_telemetry", {})
+    # On installation, record richer evidence ONCE as a same-source revision.
+    # Absolutely do not count this as a fresh market observation or outcome.
+    telemetry_upgrade = bool(same_source and
+        new_telemetry.get("schema") == SOURCE_TRACE_SCHEMA and
+        old_telemetry.get("schema") != SOURCE_TRACE_SCHEMA)
+    if same_source and not telemetry_upgrade:
         return {"status": "UNCHANGED_NATIVE_DATA_NO_SYNTHETIC_NEW_OBSERVATION",
                 "recorded_snapshots": len(old)}
     prev_asof = None
@@ -582,7 +596,8 @@ def append_snapshot(path, snap):
     snap = dict(snap)
     # Historical corrections can be recorded but never counted as new events.
     snap["source_revision_same_observation"] = bool(
-        prev_asof and current_asof and prev_asof == current_asof)
+        telemetry_upgrade or (prev_asof and current_asof and prev_asof == current_asof))
+    snap["telemetry_only_revision"] = bool(telemetry_upgrade)
     previous_capture = utc(old[-1]["captured_utc"]) if old else None
     if previous_capture and utc(snap["captured_utc"]) <= previous_capture:
         raise ValueError("STALE_NEW_CAPTURE_CLOCK")
@@ -593,7 +608,8 @@ def append_snapshot(path, snap):
     with dest.open("a", encoding="utf-8") as f:
         f.write(json.dumps(snap, ensure_ascii=False, sort_keys=True,
                            separators=(",", ":"), allow_nan=False) + "\n")
-    return {"status": "APPENDED_SOURCE_OBSERVATION_OR_REVISION",
+    return {"status": ("RECORDED_TELEMETRY_UPGRADE_NOT_NEW_MARKET_OBSERVATION"
+                       if telemetry_upgrade else "APPENDED_SOURCE_OBSERVATION_OR_REVISION"),
             "recorded_snapshots": len(old) + 1, "new_sha256": snap["sha256"],
             "same_observation_revision": snap["source_revision_same_observation"]}
 
@@ -629,6 +645,7 @@ def run(repo, root, out, ledger, release_file=None):
         "source_data_digest": s["source_data_digest"],
         "native_source_coverage": len(s["inputs"]),
         "native_source_errors": s["input_errors"],
+        "source_telemetry": s["source_telemetry"],
         "source_native_metrics": s["native_metrics"],
         "native_research_analysis": s["research"],
         "research_ideas": len(experiments),
@@ -644,6 +661,9 @@ def run(repo, root, out, ledger, release_file=None):
     out.mkdir(parents=True, exist_ok=True)
     (out / "source_audit.json").write_text(
         json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
+    (out / "source_detail.json").write_text(
+        json.dumps(s["source_telemetry"], indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8")
     (out / "design_queue.json").write_text(
         json.dumps({"schema": "QS.mesh.design_queue.v1", "source": s["repo"],
                     "designs": experiments}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -655,6 +675,11 @@ def run(repo, root, out, ledger, release_file=None):
           "Native study: **" + str(s["research"].get("status", "NO_STUDY")) + "**.",
           "No validated new alpha, independent PAPER_ACCEPT or LIVE_ACCEPT issued.",
           "No source data are published to quant_superlab.",
+          "Metadata-only source traces: **" +
+              str(s["source_telemetry"]["source_count"]) +
+              "** files, missing **" +
+              str(s["source_telemetry"]["missing_source_count"]) + "**.",
+          "Report dates are NOT evidence of earlier public availability.",
           "", "Collection: **" + result["status"] + "**."]
     if s["input_errors"]:
         md += ["", "Missing sources: " + ", ".join(

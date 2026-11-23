@@ -1,0 +1,889 @@
+{
+  "schema": "QS.free_history_atlas.v1",
+  "researched_on_utc": "2026-11-23",
+  "purpose": "Free historical sources to close legitimate research gaps in BIST, US and crypto; discovery, NOT access authorization",
+  "default_policy": "RESEARCH_ONLY_NO_AUTOMATIC_BACKFILL_OR_PROMOTION",
+  "max_sources": 60,
+  "sources": [
+    {
+      "id": "TR_BIST_QUARTERLY_CONSTITUENTS",
+      "market": "BIST",
+      "signals": [
+        "historical_universe",
+        "survivorship",
+        "index_rebalance"
+      ],
+      "documentation_url": "https://www.borsaistanbul.com/en/sayfa/3542/bist-stock-indices",
+      "historical_scope": "quarterly BIST30/50/100 review sheets; some historical versions published",
+      "access_model": "official publication / individual file access verify",
+      "first_available_clock": "index review announced/effective date",
+      "limitations": "Free site provides some documents; full exchange datastore is licensed; requires per-vintage source time",
+      "targets": [
+        "bist_orderflow_quant",
+        "eaverse",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_BIST_PIT_RECONSTRUCTED",
+      "market": "BIST",
+      "signals": [
+        "historical_membership",
+        "delisted_members",
+        "rename"
+      ],
+      "documentation_url": "https://github.com/GocmenCo/bist-constituents",
+      "historical_scope": "2000-01-04 to 2026-10-01; 134 snapshots/927 tickers claimed; last known tier dated 2026-07-01",
+      "access_model": "MIT CODE; underlying BIST data license separate",
+      "first_available_clock": "snapshot_date and original worksheet timestamp",
+      "limitations": "Raw index label is an exclusive tier; final unpublished review may have no membership; no delisted prices or daily membership",
+      "targets": [
+        "bist_orderflow_quant",
+        "quant_superlab",
+        "eaverse"
+      ],
+      "evidence_class": "COMMUNITY_RECONSTRUCTION_WITH_SOURCE_WORKBOOKS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_BIST_DATASTORE",
+      "market": "BIST",
+      "signals": [
+        "daily_stock_ohlcv",
+        "auction_orderflow",
+        "foreign_member_flow",
+        "corporate_actions"
+      ],
+      "documentation_url": "https://datastore.borsaistanbul.com/",
+      "historical_scope": "historical exchange output with official file formats",
+      "access_model": "LICENSED_OR_PAID",
+      "first_available_clock": "actual exchange publication time",
+      "limitations": "Not an unrestricted free historical tick/L2 tape; do not scrape subscription portal",
+      "targets": [
+        "bist_orderflow_quant",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PAID_BOUNDARY",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_BIST_OPEN_REPORTS",
+      "market": "BIST",
+      "signals": [
+        "foreign_member_trades",
+        "short_sales",
+        "index_volatility",
+        "market_statistics"
+      ],
+      "documentation_url": "https://www.borsaistanbul.com/en/data/equity-market-data",
+      "historical_scope": "monthly/historical, weekly/daily depending on published table",
+      "access_model": "PUBLIC_TABLES_FILE_BY_FILE_VERIFY",
+      "first_available_clock": "published report date",
+      "limitations": "Index/aggregate statistics are not issuer-specific historical L2/true signed flow",
+      "targets": [
+        "bist_orderflow_quant",
+        "eaverse",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_KAP_DISCLOSURE_PUBLIC",
+      "market": "BIST",
+      "signals": [
+        "filing_event",
+        "capital_increase",
+        "buyback",
+        "insider_event",
+        "financial_statement"
+      ],
+      "documentation_url": "https://www.kap.org.tr/tr/bist-sirketler",
+      "historical_scope": "historical company disclosures on searchable public site",
+      "access_model": "PUBLIC_SITE_MANUAL_QUERY; automated data API is separate",
+      "first_available_clock": "actual disclosure published timestamp",
+      "limitations": "Website visibility does not authorize bulk crawling; historic revisions/blocked disclosures require special handling",
+      "targets": [
+        "eaverse",
+        "bist_orderflow_quant",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_MKK_KAP_API",
+      "market": "BIST",
+      "signals": [
+        "regulatory_event",
+        "filing_details",
+        "attachment",
+        "corporate_action_status"
+      ],
+      "documentation_url": "https://www.mkk.com.tr/haberler/mkk-api-portal-yayinda",
+      "historical_scope": "MKK KAP data dissemination API, historical depth by subscription/product",
+      "access_model": "REGISTRATION_SUBSCRIPTION_IP_ALLOWLIST_CHECK",
+      "first_available_clock": "disclosure first-publication timestamp",
+      "limitations": "Free test tier is not confirmation of free production; blocked disclosures must be respected; no key exposed",
+      "targets": [
+        "eaverse",
+        "bist_orderflow_quant",
+        "early_accumulation_radar"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_EVDS",
+      "market": "BIST",
+      "signals": [
+        "fx",
+        "interest",
+        "cpi",
+        "credit",
+        "liquidity",
+        "deposit_rate"
+      ],
+      "documentation_url": "https://evds3.tcmb.gov.tr/igmevdsms-dis/documents/showDocument?docId=13",
+      "historical_scope": "long-running macro series, start varies by series",
+      "access_model": "FREE_PERSONAL_KEY",
+      "first_available_clock": "series release plus revision/asof, not only observation period",
+      "limitations": "No automatic vintage equivalence; key in GitHub secrets; revisions separately timestamped",
+      "targets": [
+        "eaverse",
+        "quant_superlab",
+        "bist_orderflow_quant",
+        "global_capital_radar"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_TEFAS_HISTORY",
+      "market": "BIST",
+      "signals": [
+        "fund_price",
+        "fund_nav",
+        "fund_flows_proxy",
+        "allocation"
+      ],
+      "documentation_url": "https://www.tefas.gov.tr/TarihselVeriler.aspx",
+      "historical_scope": "browser-based fund historical prices/portfolio columns",
+      "access_model": "PUBLIC_SITE_EXPORT; NO_DOCUMENTED_PUBLIC_API",
+      "first_available_clock": "fund NAV pricing/published date",
+      "limitations": "May show latest revised fund facts; no supported API, scraping/licensing unverified; fund AUM changes != true fund flow",
+      "targets": [
+        "bist_orderflow_quant",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PUBLIC_BROWSER_NOT_API",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_MKK_RISE",
+      "market": "BIST",
+      "signals": [
+        "domestic_foreign_risk_appetite"
+      ],
+      "documentation_url": "https://www.mkk.com.tr/",
+      "historical_scope": "historic investor risk appetite reports/summaries; exact downloadable series not verified",
+      "access_model": "PUBLIC_REPORTS_ACCESS_RESEARCH",
+      "first_available_clock": "report release date",
+      "limitations": "No promise of ticker-level custody microdata or continuous history",
+      "targets": [
+        "global_capital_radar",
+        "bist_orderflow_quant"
+      ],
+      "evidence_class": "PUBLIC_INDICATOR_CANDIDATE",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "TR_HMB_TREASURY",
+      "market": "BIST",
+      "signals": [
+        "govt_bond_auction",
+        "borrowing_program",
+        "fiscal_cashflow"
+      ],
+      "documentation_url": "https://www.hmb.gov.tr/",
+      "historical_scope": "historical Treasury issuance/financing announcements",
+      "access_model": "PUBLIC_REPORTS_MANUAL_DISCOVERY",
+      "first_available_clock": "announcement and auction result published time",
+      "limitations": "Not a realized issuer-specific stock signal; preannounce vs results must be separate",
+      "targets": [
+        "global_capital_radar",
+        "bist_orderflow_quant"
+      ],
+      "evidence_class": "PUBLIC_INDICATOR_CANDIDATE",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_EDGAR_SUBMISSIONS",
+      "market": "US",
+      "signals": [
+        "8k_event",
+        "forms_3_4_5",
+        "13d_13g",
+        "share_offering",
+        "bankruptcy",
+        "filing_calendar"
+      ],
+      "documentation_url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "historical_scope": "EDGAR filing archive back to 1994/95; per-filer JSON and bulk ZIP",
+      "access_model": "OFFICIAL_FREE_NO_KEY",
+      "first_available_clock": "SEC EDGAR accepted/disseminated time",
+      "limitations": "CIK needed, no ticker-only join; filing acceptance is after fiscal period; corrections may change bulk",
+      "targets": [
+        "eaverse",
+        "quant_superlab",
+        "us_f1_bot",
+        "early_accumulation_radar"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_SEC_COMPANYFACTS",
+      "market": "US",
+      "signals": [
+        "revenue",
+        "earnings",
+        "cashflow",
+        "shares_outstanding",
+        "fundamental_surprise"
+      ],
+      "documentation_url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "historical_scope": "XBRL ~2009 onward broadly, company/field-specific",
+      "access_model": "OFFICIAL_FREE_NO_KEY",
+      "first_available_clock": "filing accepted time and XBRL filed field",
+      "limitations": "Do not use period end as data availability; 10 req/s site-wide; missing/custom tags",
+      "targets": [
+        "quant_superlab",
+        "us_f1_bot",
+        "eaverse",
+        "early_accumulation_radar"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_SEC_13F",
+      "market": "US",
+      "signals": [
+        "institutional_ownership",
+        "concentration",
+        "institutional_rotation"
+      ],
+      "documentation_url": "https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data",
+      "historical_scope": "quarterly historical filings in EDGAR",
+      "access_model": "OFFICIAL_FREE_NO_KEY",
+      "first_available_clock": "13F filing acceptance, often up to 45 days after quarter end",
+      "limitations": "13F excludes shorts and many derivatives; not trade timestamp or current position",
+      "targets": [
+        "quant_superlab",
+        "us_f1_bot",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_NASDAQ_LISTING_DIRECTORY",
+      "market": "US",
+      "signals": [
+        "current_listed_universe",
+        "etf_flag",
+        "security_type"
+      ],
+      "documentation_url": "https://www.nasdaqtrader.com/Trader.aspx?id=SymbolDirectory",
+      "historical_scope": "daily current listings; historical archive requires independent snapshots",
+      "access_model": "OFFICIAL_PUBLIC_CURRENT_ONLY",
+      "first_available_clock": "actual downloaded snapshot UTC",
+      "limitations": "Current symbol roster cannot reconstruct delisted universe; maintain own first-seen snapshots",
+      "targets": [
+        "eaverse",
+        "us_f1_bot",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_SP500_PIT_RECONSTRUCTED",
+      "market": "US",
+      "signals": [
+        "index_membership_history",
+        "delist_survivorship",
+        "issuer_rename"
+      ],
+      "documentation_url": "https://github.com/dfjmax/index-constituents",
+      "historical_scope": "1993 onward community rebuild with snapshot uncertainty; not official S&P licensed history",
+      "access_model": "COMMUNITY_CODE_FREE_LICENSE_CHECK",
+      "first_available_clock": "source effective date vs snapshot observed date",
+      "limitations": "Some boundaries approximate/unreconciled; no historical delisted prices nor complete era ticker→provider map",
+      "targets": [
+        "us_f1_bot",
+        "quant_superlab",
+        "eaverse"
+      ],
+      "evidence_class": "COMMUNITY_RECONSTRUCTION",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_FINRA_REGSHO",
+      "market": "US",
+      "signals": [
+        "offexchange_short_sale_volume",
+        "shorting_pressure_proxy"
+      ],
+      "documentation_url": "https://www.finra.org/finra-data/browse-catalog/short-sale-volume",
+      "historical_scope": "daily historical by security; archive depth varies",
+      "access_model": "OFFICIAL_FREE_PUBLIC_CREDENTIAL_MAY_BE_REQUIRED",
+      "first_available_clock": "daily post-session publication",
+      "limitations": "Off-exchange short-volume is NOT outstanding short interest, no short position reconstruction",
+      "targets": [
+        "us_f1_bot",
+        "eaverse",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_FINRA_SHORT_INTEREST",
+      "market": "US",
+      "signals": [
+        "outstanding_short_position",
+        "crowding"
+      ],
+      "documentation_url": "https://www.finra.org/finra-data/browse-catalog/equity-short-interest/files",
+      "historical_scope": "bi-monthly settlement; OTC archive 2014+; exchange-listed series access differs",
+      "access_model": "OFFICIAL_MIXED_FREE_ACCESS",
+      "first_available_clock": "public report publication later than settlement",
+      "limitations": "Short interest is a stock/position, not daily short traded volume; exchange data may require venue",
+      "targets": [
+        "us_f1_bot",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_CBOE_VOL_INDICES",
+      "market": "US",
+      "signals": [
+        "vix",
+        "skew",
+        "vol_regime",
+        "options_aggregate"
+      ],
+      "documentation_url": "https://www.cboe.com/tradable-products/vix/vix-historical-data/",
+      "historical_scope": "VIX from 1990; other indices vary",
+      "access_model": "OFFICIAL_FREE_CSV_LIMITED",
+      "first_available_clock": "daily close released time",
+      "limitations": "Not full historical per-strike options IV/Greeks or trade-level chain; DataShop licensed",
+      "targets": [
+        "quant_superlab",
+        "tier1_quant_terminal",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_CBOE_OPTIONS_VOLUME",
+      "market": "US",
+      "signals": [
+        "aggregate_put_call",
+        "options_volume",
+        "risk_appetite"
+      ],
+      "documentation_url": "https://www.cboe.com/us/options/market_statistics/historical_data/",
+      "historical_scope": "historical published tables; exact series end dates vary",
+      "access_model": "OFFICIAL_FREE_HISTORICAL_AGGREGATE",
+      "first_available_clock": "aggregated volume release date",
+      "limitations": "Some free put/call history ends 2019; no full paid OPRA orderflow/Greeks",
+      "targets": [
+        "quant_superlab",
+        "tier1_quant_terminal",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_CFTC_COT",
+      "market": "US",
+      "signals": [
+        "futures_positioning",
+        "leveraged_funds",
+        "asset_manager_position"
+      ],
+      "documentation_url": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm",
+      "historical_scope": "weekly historical (financial/legacy series differ; some since 2006)",
+      "access_model": "OFFICIAL_FREE_ARCHIVE",
+      "first_available_clock": "FRIDAY release for TUESDAY reference week",
+      "limitations": "Never forward-fill Tuesday positioning into Tuesday trading decision; identities/classifications can shift",
+      "targets": [
+        "quant_superlab",
+        "global_capital_radar",
+        "tier1_quant_terminal"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_FRED_ALFRED",
+      "market": "US",
+      "signals": [
+        "rates",
+        "inflation_vintage",
+        "recession_risk",
+        "credit_spread",
+        "macro_surprise_proxy"
+      ],
+      "documentation_url": "https://fred.stlouisfed.org/docs/api/fred/realtime_period.html",
+      "historical_scope": "series-specific historical revisions and release vintages",
+      "access_model": "OFFICIAL_FREE_API_KEY",
+      "first_available_clock": "realtime_start/realtime_end vintage dates",
+      "limitations": "FRED current revised series is not the old available value; macro releases have separate exact announcement time",
+      "targets": [
+        "quant_superlab",
+        "eaverse",
+        "tier1_quant_terminal",
+        "global_capital_radar"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_TREASURY_TIC",
+      "market": "US",
+      "signals": [
+        "foreign_treasury_flows",
+        "crossborder_allocation",
+        "global_capital"
+      ],
+      "documentation_url": "https://home.treasury.gov/data/treasury-international-capital-tic-system",
+      "historical_scope": "monthly long-history crossborder holdings/transactions",
+      "access_model": "OFFICIAL_FREE_DOWNLOAD",
+      "first_available_clock": "TIC report publication date after observation month",
+      "limitations": "TIC lag makes it macro regime, not exact pre-price stock trigger",
+      "targets": [
+        "global_capital_radar",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_FEDERAL_AWARDS",
+      "market": "US",
+      "signals": [
+        "contract_award",
+        "agency_spend",
+        "grant_activity"
+      ],
+      "documentation_url": "https://api.usaspending.gov/",
+      "historical_scope": "multi-year U.S. federal award records",
+      "access_model": "OFFICIAL_FREE_API",
+      "first_available_clock": "first public award update/published timestamp",
+      "limitations": "Corrections/backfilled awards, ambiguous issuer mapping and delayed first-seen require explicit audit",
+      "targets": [
+        "federal-incentive-radar",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "US_STOOQ_PRICE",
+      "market": "US",
+      "signals": [
+        "historical_eod_price",
+        "cross_section"
+      ],
+      "documentation_url": "https://stooq.com/dbh/",
+      "historical_scope": "bulk historical EOD packages, detailed span/updated rights verify",
+      "access_model": "FREE_PERSONAL_RESEARCH_REUSE_RESTRICTED",
+      "first_available_clock": "daily next-day refresh/download time",
+      "limitations": "Potential personal-only use and throttled downloads; no reliable delisted total return/PIT corporate adjustments without verification",
+      "targets": [
+        "quant_superlab",
+        "eaverse"
+      ],
+      "evidence_class": "NONOFFICIAL_FREE_UNVERIFIED_LICENSE",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_BINANCE_ARCHIVE_SPOT",
+      "market": "CRYPTO",
+      "signals": [
+        "signed_aggressor_flow",
+        "taker_imbalance",
+        "tick_trades",
+        "spot_momentum"
+      ],
+      "documentation_url": "https://github.com/binance/binance-public-data",
+      "historical_scope": "daily/monthly spot trades aggTrades klines; pair-specific listing date",
+      "access_model": "OFFICIAL_FREE_DOWNLOAD",
+      "first_available_clock": "next-day daily file; archive replacement dates separately tracked",
+      "limitations": "Spot timestamps >=2025-01-01 in microseconds; raw archive may be amended, ZIP checksum MUST be verified; not book depth",
+      "targets": [
+        "early_accumulation_radar",
+        "eaverse",
+        "quant_superlab",
+        "h054_spot_bot"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_BINANCE_ARCHIVE_PERP",
+      "market": "CRYPTO",
+      "signals": [
+        "taker_volume",
+        "perp_trade_flow",
+        "mark_index_basis",
+        "funding_proxy"
+      ],
+      "documentation_url": "https://data.binance.vision/",
+      "historical_scope": "daily/monthly USD-M and COIN-M trades, aggTrades, klines and other by type",
+      "access_model": "OFFICIAL_FREE_DOWNLOAD",
+      "first_available_clock": "archive publication after trade day",
+      "limitations": "Futures quantities vary by product; no proven historical full L2 across all symbols; exchange access may be blocked",
+      "targets": [
+        "early_accumulation_radar",
+        "quant_superlab",
+        "h054_spot_bot",
+        "tier1_quant_terminal"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_OKX_HISTORY",
+      "market": "CRYPTO",
+      "signals": [
+        "L2_depth_imbalance",
+        "liquidity_replenishment",
+        "tick_trades",
+        "funding",
+        "basis"
+      ],
+      "documentation_url": "https://www.okx.com/historical-data",
+      "historical_scope": "tick trades Sep 2021+, funding Mar 2022+, L2 orderbook Mar 2023+, OHLC Jul 2023+",
+      "access_model": "OFFICIAL_HISTORICAL_DOWNLOAD_ACCESS_TEST_REQUIRED",
+      "first_available_clock": "archive download publication; in-file event time",
+      "limitations": "Per-instrument/day archive availability, full L2 format and automated-download permissions must be verified; snapshots != full continuous book by default",
+      "targets": [
+        "early_accumulation_radar",
+        "quant_superlab",
+        "eaverse",
+        "h054_spot_bot"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_KRAKEN_ARCHIVE",
+      "market": "CRYPTO",
+      "signals": [
+        "spot_tape",
+        "true_trade_count",
+        "spot_liquidity",
+        "delisted_pairs"
+      ],
+      "documentation_url": "https://support.kraken.com/articles/360047124832-downloadable-historical-ohlcvt-open-high-low-close-volume-trades-data",
+      "historical_scope": "OHLCVT CSV from first market trade through Sep 30 2026 base then updates; time & sales separate",
+      "access_model": "OFFICIAL_FREE_DOWNLOAD",
+      "first_available_clock": "archive batch date and event timestamps",
+      "limitations": "Trading venue differs from Binance/OKX; no historical Level 2 implied; coverage varies by pair",
+      "targets": [
+        "eaverse",
+        "early_accumulation_radar",
+        "quant_superlab"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_BYBIT_PUBLIC_ARCHIVE",
+      "market": "CRYPTO",
+      "signals": [
+        "futures_trades",
+        "spot_trades",
+        "taker_aggression"
+      ],
+      "documentation_url": "https://public.bybit.com/",
+      "historical_scope": "venue trade CSV archives; instrument/day availability varies",
+      "access_model": "OFFICIAL_PUBLIC_DOWNLOAD_REGION_RESTRICTED",
+      "first_available_clock": "actual archive date and trade timestamp",
+      "limitations": "Some countries/providers return 403; L2 quote-saver domain not presumed official/licensed; no filled gaps",
+      "targets": [
+        "early_accumulation_radar",
+        "quant_superlab",
+        "h054_spot_bot"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_DERIBIT_PUBLIC",
+      "market": "CRYPTO",
+      "signals": [
+        "btc_eth_funding",
+        "options_iv_surface",
+        "options_oi_snapshot",
+        "vol_skew"
+      ],
+      "documentation_url": "https://docs.deribit.com/articles/options-data-collection-best-practices",
+      "historical_scope": "perpetual funding historical; option IV/OI current snapshots; full historical surface not guaranteed",
+      "access_model": "OFFICIAL_PUBLIC_API",
+      "first_available_clock": "option summary as-of; some OI figures delayed up to 8h",
+      "limitations": "Present-day options summary does not reconstruct past Greeks; instrument expiries and settlement regime matter",
+      "targets": [
+        "quant_superlab",
+        "eaverse",
+        "early_accumulation_radar"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_COINMETRICS_COMMUNITY",
+      "market": "CRYPTO",
+      "signals": [
+        "active_addresses",
+        "hashrate",
+        "onchain_transfers",
+        "realized_cap_proxy"
+      ],
+      "documentation_url": "https://github.com/coinmetrics/data",
+      "historical_scope": "per-asset community CSV, historical depth and metric count vary; repo update schedule varies",
+      "access_model": "FREE_COMMUNITY_TIER_TERMS_CHECK",
+      "first_available_clock": "onchain ledger clock vs metric publish time",
+      "limitations": "Metrics are often revised/reconstructed; social/entity heuristics not raw onchain exchange-flow truth",
+      "targets": [
+        "quant_superlab",
+        "early_accumulation_radar",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_DEFILLAMA_FREE",
+      "market": "CRYPTO",
+      "signals": [
+        "stablecoin_supply",
+        "bridge_flows_proxy",
+        "protocol_tvl",
+        "defi_fees"
+      ],
+      "documentation_url": "https://api-docs.defillama.com/",
+      "historical_scope": "protocol TVL/stablecoins historical for supported series; endpoint-specific",
+      "access_model": "PUBLIC_FREE_ENDPOINTS_ONLY",
+      "first_available_clock": "onchain data block time and API publish time",
+      "limitations": "Free yields routes being deprecated/paid; TVL revisions and chain attribution can repaint past values",
+      "targets": [
+        "global_capital_radar",
+        "early_accumulation_radar",
+        "eaverse"
+      ],
+      "evidence_class": "OFFICIAL_PUBLISHER_DOCS",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_CRYPTOLAKE_SAMPLES",
+      "market": "CRYPTO",
+      "signals": [
+        "L2_sample",
+        "depth_replenishment",
+        "microstructure_baseline"
+      ],
+      "documentation_url": "https://crypto-lake.com/free-data/",
+      "historical_scope": "limited free sampled high-frequency trade/L2 coverage, roughly 1yr across samples",
+      "access_model": "FREE_SAMPLE_ONLY",
+      "first_available_clock": "each sample venue/event timestamp",
+      "limitations": "Not a complete all-symbol multi-year free full-depth tape; sample dates not independent general OOS",
+      "targets": [
+        "quant_superlab",
+        "early_accumulation_radar"
+      ],
+      "evidence_class": "DATASET_FREE_SAMPLE",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_TARDIS_SAMPLES",
+      "market": "CRYPTO",
+      "signals": [
+        "option_trade_sample",
+        "orderbook_increment_sample",
+        "liquidation_sample"
+      ],
+      "documentation_url": "https://docs.tardis.dev/downloadable-csv-files/overview",
+      "historical_scope": "first day of each month free per documentation; full history licensed",
+      "access_model": "FREE_SAMPLED_DAYS_ONLY",
+      "first_available_clock": "event time and archive ingest clock",
+      "limitations": "Do not treat isolated free day as continuous 24/7 order book history; commercial feed otherwise",
+      "targets": [
+        "quant_superlab",
+        "early_accumulation_radar"
+      ],
+      "evidence_class": "DATASET_FREE_SAMPLE",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_HYPERLIQUID_PUBLIC",
+      "market": "CRYPTO",
+      "signals": [
+        "perp_open_interest",
+        "funding_snapshot",
+        "dex_positioning"
+      ],
+      "documentation_url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api",
+      "historical_scope": "public market snapshots/trades and DEX historical chain events with method-dependent coverage",
+      "access_model": "OFFICIAL_PUBLIC_API_HISTORY_UNVERIFIED",
+      "first_available_clock": "block time vs indexer observed time",
+      "limitations": "Some APIs expose only recent ticks; per-wallet trading behaviour has privacy/usage risks; retention not established",
+      "targets": [
+        "early_accumulation_radar",
+        "eaverse"
+      ],
+      "evidence_class": "HISTORICAL_DEPTH_UNVERIFIED",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    },
+    {
+      "id": "CR_TOKEN_UNLOCKS",
+      "market": "CRYPTO",
+      "signals": [
+        "token_supply_unlock",
+        "vesting_cliff",
+        "emissions",
+        "governance_vote"
+      ],
+      "documentation_url": "https://defillama.com/unlocks",
+      "historical_scope": "unlock event calendars and current analytics; archive detail depends on source",
+      "access_model": "PUBLIC_VIEW_LICENSE_OR_API_NOT_VERIFIED",
+      "first_available_clock": "announcement vs effective unlock date",
+      "limitations": "Past calendar may be revised ex post; need archived as-known-at vintage; not automatic backtest source",
+      "targets": [
+        "early_accumulation_radar",
+        "eaverse"
+      ],
+      "evidence_class": "HISTORICAL_PIT_UNVERIFIED",
+      "production_approved": false,
+      "alpha_validated": false,
+      "historical_pit_ready": false,
+      "automatic_download_enabled": false
+    }
+  ]
+}
