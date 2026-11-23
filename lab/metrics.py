@@ -224,6 +224,46 @@ def pbo(R: pd.DataFrame, S: int = 16) -> float | None:
     return float(np.mean(np.array(logits) <= 0))
 
 
+
+def pbo_coverage(R: pd.DataFrame, S: int = 16) -> dict:
+    """Describe the EXACT CSCV sample implemented by pbo(), not an alpha estimate.
+
+    R is the matrix passed to pbo: the routine drops all-empty rows, fills
+    remaining missing observations with zero, and excludes flat candidates.
+    Report that imputation transparently. Partitions are dependent, so this
+    method deliberately does NOT fabricate a binomial confidence interval.
+    """
+    if S < 2 or S % 2:
+        raise ValueError("CSCV_SPLITS_MUST_BE_POSITIVE_EVEN")
+    clean = R.dropna(how="all")
+    gaps = int(clean.isna().sum().sum())
+    clean = clean.fillna(0.0)
+    clean = clean.loc[:, clean.std() > 0]
+    rows, variants = clean.shape
+    possible = math.comb(S, S // 2)
+    stride = possible // 2000 + 1 if possible > 2000 else 1
+    used = len(range(0, possible, stride)) if rows >= S * 20 and variants >= 2 else 0
+    return {
+        "method": "CSCV_PBO_FULL_HISTORY_SELECTION_DIAGNOSTIC",
+        "split_count": S,
+        "nonempty_observation_rows": int(rows),
+        "nonflat_variant_count": int(variants),
+        "partitions_possible": int(possible),
+        "partitions_evaluated": int(used),
+        "partition_selection": ("DETERMINISTIC_SYSTEMATIC_SUBSAMPLE" if stride > 1
+                                else "ALL_COMBINATIONS"),
+        "partition_stride": int(stride),
+        "coverage_fraction": round(used / possible, 6),
+        "partial_missing_cells_zero_filled": gaps,
+        "status": ("ESTIMATED" if used else "INSUFFICIENT_OBSERVATIONS_OR_VARIANTS"),
+        "independent_forward_evidence": False,
+        "partition_level_confidence_interval_available": False,
+        "note": ("CSCV partitions overlap and are not independent; sampled PBO is "
+                 "a retrospective selection-risk diagnostic, never a forward "
+                 "loss probability. Review any zero-filled missing observations."),
+    }
+
+
 def reality_check(R: pd.DataFrame, bench: pd.Series | None = None, n: int = 500, block: int = 20,
                   seed: int = 3) -> float | None:
     """White (2000) Reality Check p-value: is the BEST variant better than the benchmark
