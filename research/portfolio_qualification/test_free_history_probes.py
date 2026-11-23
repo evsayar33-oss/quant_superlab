@@ -60,7 +60,7 @@ class HistoricalProbeTests(unittest.TestCase):
         self.assertFalse(z["official_vintage_crosscheck_completed"])
 
     def test_bist_bad_ticker_fails_instead_of_silent_drop(self):
-        x=bist_csv().replace(b"TK0000",b"UNKNOWN_TOO_LONG_SYMBOL",1)
+        x=bist_csv().replace(b"TK0000",b"UNKNOWN_SYMBOL_VALUE_OVER_THE_24_CHAR_LIMIT",1)
         with self.assertRaisesRegex(ValueError,"BAD_TICKER"):
             parse_bist(x)
 
