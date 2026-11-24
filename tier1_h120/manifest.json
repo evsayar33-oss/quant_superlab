@@ -1,7 +1,7 @@
 {
   "calls_seen": 145,
   "last_audit_utc": "2026-11-24T11:03:44.939772+00:00",
-  "last_poll_utc": "2026-11-24T11:25:40.597426+00:00",
+  "last_poll_utc": "2026-11-24T11:39:32.144005+00:00",
   "no_production_changes": true,
   "schema": "QS.h120.tier1_intelligence.v1",
   "source_commits": {
