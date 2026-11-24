@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-23T13:42:11.795691+00:00",
+  "asof_utc": "2026-11-24T04:28:10.566390+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -11,19 +11,19 @@
   "event_watch": {
     "candidate_counts_by_rule": {
       "monthly_low_beta": 5,
-      "monthly_vol_squeeze": 2
+      "monthly_vol_squeeze": 1
     },
     "data_coverage_ok": true,
-    "data_coverage_pct": 0.8356,
+    "data_coverage_pct": 0.8562,
     "eligible_tickers": 146,
-    "feature_asof": "2026-11-20",
-    "liquid_tickers": 109,
-    "priced_tickers": 122,
+    "feature_asof": "2026-11-23",
+    "liquid_tickers": 108,
+    "priced_tickers": 125,
     "source_decision": "WATCH_ONLY_NO_TRADE",
     "source_failure_reason": null,
     "source_first_seen_forward_only": 22,
     "source_report_ok": true,
-    "watch_candidates": 7
+    "watch_candidates": 6
   },
   "events_new": 0,
   "events_total": 2,
@@ -42,10 +42,10 @@
     "published_forward_20_session_net_scores": "NOT_AVAILABLE_AS_READABLE_SOURCE",
     "source_workflow": {
       "conclusion": "success",
-      "created_at": "2026-11-21T13:43:11Z",
-      "event": "schedule",
-      "head_sha": "5b7552f7aa1e6a9aeaa0ab1354a4a919b2910652",
-      "id": 44910254710,
+      "created_at": "2026-11-23T19:57:41Z",
+      "event": "pull_request",
+      "head_sha": "b3f182db28031da2632446d093c8df48828843df",
+      "id": 45254331891,
       "status": "completed"
     }
   },
@@ -88,10 +88,10 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "d668b57695ae89b0da4b7bf82e43b9e7e07698c6",
+  "source_commit_sha": "046af0b900109f94402ad3e1804e9b7cb5041976",
   "source_hashes": {
     "economic_intelligence_status.json": "94a5163a14fce6f25f5b004fade2c145a3e56f02076141eb7165f387fa3ff0f1",
-    "event_watch_status.json": "bf3916f5f464bbce7f90ed087e8152e63e8a126964d738ebe7f97d1c442a170f",
+    "event_watch_status.json": "80cc8386d622015ac3e75aab9249a6a9ef27af29210dc76a182af2de4613e973",
     "h083_forward_status.json": "59d247d4da83aa73a66d62a75565eb7c6dde5a788432d1aa5df2a9f498d826ad",
     "h083_last_attempt.json": "a2cd9115ebb2aa1694a10261db7a2553fc2f856f816d3bfb6e5f0318e818f9f3"
   },
@@ -100,10 +100,10 @@
   "workflow_metadata": {
     "alpha_discovery.yml": {
       "conclusion": "success",
-      "created_at": "2026-11-21T13:43:11Z",
-      "event": "schedule",
-      "head_sha": "5b7552f7aa1e6a9aeaa0ab1354a4a919b2910652",
-      "id": 44910254710,
+      "created_at": "2026-11-23T19:57:41Z",
+      "event": "pull_request",
+      "head_sha": "b3f182db28031da2632446d093c8df48828843df",
+      "id": 45254331891,
       "status": "completed"
     },
     "h083_forward.yml": {
