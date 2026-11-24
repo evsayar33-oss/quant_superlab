@@ -1,15 +1,15 @@
 {
-  "asof_utc": "2026-11-24T11:25:30.825360+00:00",
+  "asof_utc": "2026-11-24T12:50:31.765876+00:00",
   "band30": {
     "end_utc": "2027-02-13T19:34:07.202000+00:00",
     "execution_quality": {
       "book_spread_is_not_total_fill_cost": true,
       "broker_executed_fills_verified": false,
       "full_orderbook_depth_or_queue_position_verified": false,
-      "observed_max_quote_age_ms": 1026,
+      "observed_max_quote_age_ms": 1044,
       "observed_median_spread_bps": 0.143,
       "observed_spread_p95_bps": 1.423,
-      "observed_top_of_book_quote_count": 192,
+      "observed_top_of_book_quote_count": 196,
       "order_size_market_impact_calibrated": false,
       "prospective_top_level_capacity": {
         "evaluated_at_observed_top_quote": 0,
@@ -24,10 +24,10 @@
     "finalized": false,
     "gaps": 4,
     "initial_nominal_usdt": 10000,
-    "last_bar_utc": "2026-11-24T04:00:00+00:00",
-    "last_observed_utc": "2026-11-24T08:10:47.856000+00:00",
+    "last_bar_utc": "2026-11-24T08:00:00+00:00",
+    "last_observed_utc": "2026-11-24T12:10:54.624000+00:00",
     "missing_candles": 4,
-    "observations": 48,
+    "observations": 49,
     "outages": 4,
     "paper_nav": 10000.0,
     "paper_only": true,
@@ -41,22 +41,22 @@
     "actual_orderbook_impact_or_queue_position_verified": false,
     "approved_paper": true,
     "contemporaneous_bid_ask_per_fill_available": false,
-    "equity_rows": 111,
+    "equity_rows": 112,
     "execution_price_basis": "LAST_CLOSE_PLUS_ASSUMED_FIXED_SLIPPAGE_AND_FEES",
-    "fees_paid_raw_accounting": 5.635864999999998,
+    "fees_paid_raw_accounting": 5.6815099999999985,
     "full_history_not_mom2_forward_pnl": true,
-    "full_log_drawdown_from_peak_pct": -5.241,
-    "funding_paid_raw_accounting": 0.09831319274565395,
+    "full_log_drawdown_from_peak_pct": -5.249,
+    "funding_paid_raw_accounting": 0.09712040697373177,
     "initial_nominal_usdt": 1000,
-    "latest_4h_bar_utc": "2026-11-24T04:00:00+00:00",
+    "latest_4h_bar_utc": "2026-11-24T08:00:00+00:00",
     "max_recorded_nav": 1030.12,
     "model_revision_segments_not_separated": true,
-    "nav": 976.13,
+    "nav": 976.05,
     "not_broker_fills": true,
-    "observed_at_utc": "2026-11-24T08:11:01+00:00",
+    "observed_at_utc": "2026-11-24T12:11:09+00:00",
     "paper_order_errors": 0,
-    "paper_order_rows": 87,
-    "reported_total_change_pct": -2.387,
+    "paper_order_rows": 89,
+    "reported_total_change_pct": -2.395,
     "target_weights": {
       "BTC/USDT": 0.0,
       "ETH/USDT": 0.0
@@ -65,7 +65,7 @@
   "mom2_delay_bars": 0,
   "schema": "QS.h121.h054.paper_intelligence.v1",
   "sources": {
-    "band30": "2cc19963169fcd5cbd2c924fe21bc33632deaf6b",
-    "mom2": "2bcaed4d198a8d41b580c1d098986eeba020d8b8"
+    "band30": "548b5ec00a46d43a1df6f6a57a2635898d95468b",
+    "mom2": "45eeeb419a3c1d85611cee431dc9c7f49a291ce7"
   }
 }
