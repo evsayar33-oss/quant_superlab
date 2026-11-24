@@ -74,6 +74,27 @@ def inspect_db(path):
                     if len(errors) < 50:
                         errors.append({"id": row["id"], "error": str(exc)})
         counts["archived_not_replayed"] = db.execute("SELECT count(*) FROM attempts WHERE policy=''").fetchone()[0] + db.execute("SELECT count(*) FROM event_trials WHERE calendar=''").fetchone()[0]
+        if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='foundry_cohorts'").fetchone():
+            from . import eaverse_report_gate
+            for row in db.execute("SELECT evidence,forward,status FROM foundry_cohorts"):
+                cohort=json.loads(row[0])
+                try:
+                    receipt=eaverse_report_gate.review_cohort(cohort)
+                    counts["cohorts_reproduced"]+=1
+                    counts["cohort_pbo_available"]+=int(receipt["pbo"] is not None)
+                    counts["cohort_dsr_available"]+=int(receipt["dsr"] is not None)
+                    forward=json.loads(row[1])
+                    if row[2]=="forward_matured_research_only":
+                        result=forward["result"]
+                        if result["sha256"]!=digest({k:v for k,v in result.items() if k!="sha256"}) or result["bars"]!=90:
+                            raise ValueError("FORWARD_RECEIPT_MISMATCH")
+                        if not math.isclose(math.prod(1+x for x in result["returns"])-1,result["metrics"]["net"],abs_tol=1e-8,rel_tol=1e-8):
+                            raise ValueError("FORWARD_RETURN_MISMATCH")
+                        counts["forward_path_arithmetic_reproduced"]+=1
+                except (ValueError,TypeError,KeyError,OverflowError) as exc:
+                    counts["invalid"]+=1
+                    if len(errors)<50:
+                        errors.append({"id":cohort.get("selected_id"),"error":str(exc)})
     return {"schema": SCHEMA, "counts": dict(counts), "errors": errors,
             "central_lab_accept": False, "paper_approved": False, "live_allowed": False}
 
