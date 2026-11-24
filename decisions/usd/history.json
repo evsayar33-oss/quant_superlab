@@ -102,5 +102,13 @@
     "source_success_count": 7,
     "status": "PARTIAL",
     "usd_proxy_5d_pct": 0.2052
+  },
+  {
+    "nominal_2y_pct": 4.63,
+    "regime": "MIXED_NO_DIRECTION",
+    "run_utc": "2026-11-24T00:24:53.583379+00:00",
+    "source_success_count": 7,
+    "status": "PARTIAL",
+    "usd_proxy_5d_pct": 0.4216
   }
 ]
