@@ -1,17 +1,15 @@
 {
   "repository": "evsayar33-oss/quant_superlab",
-  "observed_at": "2026-11-24T11:28:49.211271+00:00",
+  "observed_at": "2026-11-24T11:47:14.888425+00:00",
   "metrics": {
     "repository_bytes": 14630912,
     "cache_bytes": 4039860122,
-    "artifact_bytes": 44694489,
-    "artifact_count": 379,
-    "release_count": 40,
-    "release_asset_bytes": 3209571
+    "artifact_bytes": 44697326,
+    "artifact_count": 381,
+    "release_count": 43,
+    "release_asset_bytes": 3223184
   },
-  "alerts": [
-    "Archive backlog: 3 near-expiry artifacts remain"
-  ],
+  "alerts": [],
   "errors": [],
   "repaired": [],
   "archives": [
@@ -174,11 +172,23 @@
     {
       "id": 14105220822,
       "tag": "evidence-archive-28210441"
+    },
+    {
+      "id": 14104548702,
+      "tag": "evidence-archive-28209097"
+    },
+    {
+      "id": 14276389835,
+      "tag": "evidence-archive-28552779"
+    },
+    {
+      "id": 14299844305,
+      "tag": "evidence-archive-28599688"
     }
   ],
   "billing_quota": "unknown: account billing permission required",
-  "archive_candidates": 23,
-  "archive_pending": 3,
+  "archive_candidates": 3,
+  "archive_pending": 0,
   "workflow_states": {
     ".github/workflows/adhoc.yml": "active",
     ".github/workflows/arena.yml": "active",
@@ -259,5 +269,5 @@
   },
   "large_files": [],
   "default_branch_commit_age_days": 0,
-  "status": "attention"
+  "status": "ok"
 }
