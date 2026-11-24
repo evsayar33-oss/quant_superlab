@@ -37,18 +37,29 @@ def gate_history(symbol,lookback_days=180,get=None,now=None,page_size=900,max_pa
     all_rows=[];cursor=start;pages=0;retried_pages=[]
     while cursor<end and pages<max_pages:
         page_end=min(end,cursor+page_size*HOUR)
-        url=GATE_URL+"?"+urlencode({"contract":symbol+"_USDT","interval":"1h",
-             "from":cursor//1000,"to":page_end//1000-1})
         failures=[]
         for attempt in range(page_attempts):
             try:
-                raw=get(url)
-                if not isinstance(raw,list):raise ValueError("GATE_RESPONSE_INVALID")
-                parsed=[{"ts":int(r["t"])*1000,"open":r["o"],"high":r["h"],
-                         "low":r["l"],"close":r["c"]} for r in raw]
-                if any(not cursor<=int(r["ts"])<page_end for r in parsed):
-                    raise ValueError("GATE_OUT_OF_WINDOW")
-                # Reject incomplete/invalid responses before advancing the cursor.
+                # A repeated URL can return the same stale page. The last attempt
+                # uses two smaller exact windows; never filter invalid rows away.
+                step=((page_size+1)//2)*HOUR if attempt==2 else page_size*HOUR
+                parsed=[]
+                for lo in range(cursor,page_end,step):
+                    hi=min(lo+step,page_end)
+                    url=GATE_URL+"?"+urlencode({"contract":symbol+"_USDT","interval":"1h",
+                         "from":lo//1000,"to":hi//1000-1})
+                    raw=get(url)
+                    if not isinstance(raw,list):raise ValueError("GATE_RESPONSE_INVALID")
+                    part=[{"ts":int(r["t"])*1000,"open":r["o"],"high":r["h"],
+                           "low":r["l"],"close":r["c"]} for r in raw]
+                    if any(not lo<=int(r["ts"])<hi for r in part):
+                        times=[r['ts'] for r in part]
+                        raise ValueError(f"GATE_OUT_OF_WINDOW requested={lo}:{hi} received={min(times)}:{max(times)}")
+                    part,gaps=canonical(part)
+                    if (gaps or len(part)!=(hi-lo)//HOUR
+                            or part[0]["ts"]!=lo or part[-1]["ts"]!=hi-HOUR):
+                        raise ValueError("GATE_INCOMPLETE_PAGE")
+                    parsed.extend(part)
                 parsed,gaps=canonical(parsed)
                 if (gaps or len(parsed)!=(page_end-cursor)//HOUR
                         or parsed[0]["ts"]!=cursor or parsed[-1]["ts"]!=page_end-HOUR):

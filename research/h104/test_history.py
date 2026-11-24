@@ -37,6 +37,21 @@ class HistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"GATE_INCOMPLETE_PAGE"):
             gate_history("ETH",1,get=fake,now=now,sleep=lambda _:None)
         self.assertEqual(len(calls),3)
+    def test_repeated_bad_response_recovers_using_exact_smaller_windows(self):
+        from urllib.parse import urlparse,parse_qs
+        now=datetime.fromtimestamp(48*3600,tz=timezone.utc)
+        calls=[]
+        def fake(url):
+            q=parse_qs(urlparse(url).query);lo=int(q['from'][0]);hi=int(q['to'][0])
+            calls.append((lo,hi))
+            if hi-lo+1>12*3600:
+                return [{'t':0,'o':'100','h':'101','l':'99','c':'100'}]
+            return [{'t':t,'o':'100','h':'101','l':'99','c':'100'} for t in range(lo,hi+1,3600)]
+        p=gate_history('BTC',1,get=fake,now=now,page_size=24,sleep=lambda _:None)
+        self.assertTrue(p['complete_window'])
+        self.assertEqual(len(p['bars']),24)
+        self.assertEqual(len(calls),4)
+        self.assertEqual(p['retried_pages'][0]['attempts'],3)
     def test_pagination_and_manifest(self):
         now=datetime.fromtimestamp(48*3600,tz=timezone.utc)
         calls=[]
