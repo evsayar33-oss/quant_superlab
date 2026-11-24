@@ -1,16 +1,16 @@
 {
   "repository": "evsayar33-oss/quant_superlab",
-  "observed_at": "2026-11-24T11:25:33.511287+00:00",
+  "observed_at": "2026-11-24T11:28:49.211271+00:00",
   "metrics": {
     "repository_bytes": 14630912,
     "cache_bytes": 4039860122,
-    "artifact_bytes": 44691653,
-    "artifact_count": 377,
-    "release_count": 20,
-    "release_asset_bytes": 2621827
+    "artifact_bytes": 44694489,
+    "artifact_count": 379,
+    "release_count": 40,
+    "release_asset_bytes": 3209571
   },
   "alerts": [
-    "Archive backlog: 23 near-expiry artifacts remain"
+    "Archive backlog: 3 near-expiry artifacts remain"
   ],
   "errors": [],
   "repaired": [],
@@ -94,11 +94,91 @@
     {
       "id": 14829775277,
       "tag": "evidence-archive-29659550"
+    },
+    {
+      "id": 14884429526,
+      "tag": "evidence-archive-29768859"
+    },
+    {
+      "id": 14885492093,
+      "tag": "evidence-archive-29770984"
+    },
+    {
+      "id": 14885706015,
+      "tag": "evidence-archive-29771412"
+    },
+    {
+      "id": 14886640625,
+      "tag": "evidence-archive-29773281"
+    },
+    {
+      "id": 14885681935,
+      "tag": "evidence-archive-29771363"
+    },
+    {
+      "id": 14886715999,
+      "tag": "evidence-archive-29773431"
+    },
+    {
+      "id": 13971084018,
+      "tag": "evidence-archive-27942168"
+    },
+    {
+      "id": 13972705293,
+      "tag": "evidence-archive-27945410"
+    },
+    {
+      "id": 13971924973,
+      "tag": "evidence-archive-27943849"
+    },
+    {
+      "id": 13973076651,
+      "tag": "evidence-archive-27946153"
+    },
+    {
+      "id": 13972239322,
+      "tag": "evidence-archive-27944478"
+    },
+    {
+      "id": 13973281973,
+      "tag": "evidence-archive-27946563"
+    },
+    {
+      "id": 13972633343,
+      "tag": "evidence-archive-27945266"
+    },
+    {
+      "id": 13972254944,
+      "tag": "evidence-archive-27944509"
+    },
+    {
+      "id": 14006285488,
+      "tag": "evidence-archive-28012570"
+    },
+    {
+      "id": 14072607218,
+      "tag": "evidence-archive-28145214"
+    },
+    {
+      "id": 14094269562,
+      "tag": "evidence-archive-28188539"
+    },
+    {
+      "id": 14104736987,
+      "tag": "evidence-archive-28209473"
+    },
+    {
+      "id": 14105210807,
+      "tag": "evidence-archive-28210421"
+    },
+    {
+      "id": 14105220822,
+      "tag": "evidence-archive-28210441"
     }
   ],
   "billing_quota": "unknown: account billing permission required",
-  "archive_candidates": 43,
-  "archive_pending": 23,
+  "archive_candidates": 23,
+  "archive_pending": 3,
   "workflow_states": {
     ".github/workflows/adhoc.yml": "active",
     ".github/workflows/arena.yml": "active",
