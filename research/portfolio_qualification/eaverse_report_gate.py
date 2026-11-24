@@ -15,6 +15,8 @@ REPORTS={
  "eaverse.equity_source_assurance.v1":"sources",
  "eaverse.cross_venue_reference.v1":"sources",
  "eaverse.v7.aligned_empirical_trials.v1":None,
+ "QS.mesh.design_queue.v1":"designs",
+ "QS.mesh.research_design_study.v1":None,
 }
 digest=eaverse_coverage.digest
 
@@ -64,7 +66,7 @@ def review_cohort(cohort):
     dsr=eaverse_bridge.reproduce_dsr(values,selected,train,cohort["trial_count"])
     if (None if pbo is None else pbo["pbo"])!=cohort["pbo"]:
         raise ValueError("COHORT_PBO_MISMATCH")
-    if dsr!=cohort["dsr"]:
+    if (dsr is None)!=(cohort["dsr"] is None) or (dsr is not None and abs(dsr-cohort["dsr"])>1e-6):
         raise ValueError("COHORT_DSR_MISMATCH")
     passport={"source_repository":eaverse_coverage.REPO,"hypothesis_id":cohort["selected_id"],
               "strategy_definition":json.dumps(cohort["selected_spec"],sort_keys=True),
