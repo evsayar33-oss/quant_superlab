@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - 'research/h104/**'
       - 'research/h106/**'
       - '.github/workflows/h106.yml'
 permissions:
