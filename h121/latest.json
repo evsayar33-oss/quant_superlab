@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-23T11:05:59.862462+00:00",
+  "asof_utc": "2026-11-24T01:49:19.800726+00:00",
   "band30": {
     "end_utc": "2027-02-13T19:34:07.202000+00:00",
     "execution_quality": {
@@ -9,8 +9,8 @@
       "full_orderbook_depth_or_queue_position_verified": false,
       "observed_max_quote_age_ms": 1026,
       "observed_median_spread_bps": 0.143,
-      "observed_spread_p95_bps": 1.427,
-      "observed_top_of_book_quote_count": 168,
+      "observed_spread_p95_bps": 1.423,
+      "observed_top_of_book_quote_count": 184,
       "order_size_market_impact_calibrated": false,
       "prospective_top_level_capacity": {
         "evaluated_at_observed_top_quote": 0,
@@ -25,10 +25,10 @@
     "finalized": false,
     "gaps": 4,
     "initial_nominal_usdt": 10000,
-    "last_bar_utc": "2026-11-23T04:00:00+00:00",
-    "last_observed_utc": "2026-11-23T08:10:59.055000+00:00",
+    "last_bar_utc": "2026-11-23T20:00:00+00:00",
+    "last_observed_utc": "2026-11-24T00:11:03.733000+00:00",
     "missing_candles": 4,
-    "observations": 42,
+    "observations": 46,
     "outages": 4,
     "paper_nav": 10000.0,
     "paper_only": true,
@@ -54,22 +54,22 @@
     "actual_orderbook_impact_or_queue_position_verified": false,
     "approved_paper": true,
     "contemporaneous_bid_ask_per_fill_available": false,
-    "equity_rows": 105,
+    "equity_rows": 109,
     "execution_price_basis": "LAST_CLOSE_PLUS_ASSUMED_FIXED_SLIPPAGE_AND_FEES",
-    "fees_paid_raw_accounting": 5.399766999999998,
+    "fees_paid_raw_accounting": 5.541889999999999,
     "full_history_not_mom2_forward_pnl": true,
-    "full_log_drawdown_from_peak_pct": -5.22,
-    "funding_paid_raw_accounting": 0.06854907977216239,
+    "full_log_drawdown_from_peak_pct": -5.255,
+    "funding_paid_raw_accounting": 0.07919317862884895,
     "initial_nominal_usdt": 1000,
-    "latest_4h_bar_utc": "2026-11-23T04:00:00+00:00",
+    "latest_4h_bar_utc": "2026-11-23T20:00:00+00:00",
     "max_recorded_nav": 1030.12,
     "model_revision_segments_not_separated": true,
-    "nav": 976.35,
+    "nav": 975.99,
     "not_broker_fills": true,
-    "observed_at_utc": "2026-11-23T08:11:00+00:00",
+    "observed_at_utc": "2026-11-24T00:11:09+00:00",
     "paper_order_errors": 0,
-    "paper_order_rows": 74,
-    "reported_total_change_pct": -2.365,
+    "paper_order_rows": 83,
+    "reported_total_change_pct": -2.401,
     "target_weights": {
       "BTC/USDT": 0.0,
       "ETH/USDT": 0.0
@@ -81,16 +81,16 @@
   "research_only": true,
   "schema": "QS.h121.h054.paper_intelligence.v1",
   "source_commits": {
-    "band30": "9d9eda88fca4cc5df76169080a53946585f61f1f",
-    "mom2": "3858b43d812270eb1cf40f4d89915c6501157683"
+    "band30": "34e182eecb587e8ecd820011272636a2ae1cb82f",
+    "mom2": "ec0bc4816f15297badb8863e60cf16b5a2f1e3c0"
   },
   "source_repo": "evsayar33-oss/h054_spot_bot",
   "source_sha256": {
-    "band30:state.json": "ea695372c7f678bae9ecefa93928cf911227743478f7cfd21877a09dade2729d",
-    "mom2:logs/equity.csv": "94e2c831c40666b14dd708d4c1ddb8c3a833bb0f9f1899b78ef43a9e185f1c3f",
-    "mom2:logs/trades.csv": "b2611827609eb7527c0599b1201a5f6c0ad2c18ecde18cbf49c2aa294e022597",
-    "mom2:state/paper.json": "0070f9409e5bee2f889f8f77c5fb90c7d603d017f7560c2d1e82bca3cbd5dc00",
-    "mom2:state/state.json": "3e5df78484271bfd4fe3a23b6567c29a48313866df86a213516ec9fb6c45700a"
+    "band30:state.json": "cc1d6036ec0cb6a379b523d8a8875891de170cf8bcb5072d4cbd686106636772",
+    "mom2:logs/equity.csv": "8ce7850e3c3231e6a4278e74b5af0d3b6f0cb7a33bebdf20aa07a0d5ce9c407c",
+    "mom2:logs/trades.csv": "708480dd58577aa5b8cb7ac109e71d10c0065bc7386a642cbc9df0a04f94f0d7",
+    "mom2:state/paper.json": "48201fb35afcd25b4bd95b2128fc4370140437e1c7203479050af2c087b5bdcb",
+    "mom2:state/state.json": "a33640ad778600b773ffd5adb32cfb5fdbff9750935a8a4ae0b80b9662df2061"
   },
   "strategy_research_links": [
     "H054-MOM2",
