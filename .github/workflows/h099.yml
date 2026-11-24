@@ -14,18 +14,30 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: python -m unittest discover -s research/h095 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h096 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h098 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h099 -p 'test_*.py' -v
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
   independent_evidence:
     needs: regression
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: python research/h099/run.py --pages 8 --out results/h099
@@ -50,3 +62,9 @@ jobs:
           path: results/h099/
           retention-days: 90
           if-no-files-found: warn
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi

@@ -19,6 +19,9 @@ jobs:
       PYTHONPATH: 'research/h086:.'
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - name: Install bounded dependencies
@@ -35,3 +38,9 @@ jobs:
           path: results/h086/
           retention-days: 30
           if-no-files-found: warn
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi

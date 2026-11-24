@@ -14,16 +14,28 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: python -m unittest discover -s research/h099 -p 'test_*.py' -v
       - run: python -m unittest discover -s research/h100 -p 'test_*.py' -v
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
   evidence:
     needs: regression
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - name: Refresh H099 immutable research input
@@ -53,3 +65,9 @@ jobs:
             results/h100/summary.json
           retention-days: 90
           if-no-files-found: warn
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi

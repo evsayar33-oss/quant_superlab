@@ -19,6 +19,9 @@ jobs:
       PYTHONPATH: 'research/h083:.'
     steps:
       - uses: actions/checkout@v4
+      - name: Start bounded resource telemetry
+        continue-on-error: true
+        run: python3 scripts/resource_probe.py start
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -38,3 +41,10 @@ jobs:
           name: h083-midas-multistyle-research
           path: results/h083/
           if-no-files-found: warn
+          retention-days: 90
+      - name: Report runner capacity
+        if: always()
+        continue-on-error: true
+        run: |
+          probe="$RUNNER_TEMP/repo-resource-$GITHUB_RUN_ID-$GITHUB_JOB/probe.py"
+          if test -f "$probe"; then python3 "$probe" finish; else echo "::warning::Resource telemetry unavailable"; fi
