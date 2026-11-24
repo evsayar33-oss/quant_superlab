@@ -1,5 +1,5 @@
 {
-  "asof_utc": "2026-11-24T11:25:34.024156+00:00",
+  "asof_utc": "2026-11-24T11:36:01.020015+00:00",
   "limitations": [
     "H119 never changes hypotheses/registry.yaml or decisions/registry.json",
     "upstream event patterns are not a deployable backtest until native data/DSR/PBO/Reality Check pass",
@@ -13,13 +13,13 @@
       "forward_trials_frozen": 0,
       "future_test_decisions": 0,
       "matured_first_seen_horizon_counts": {
-        "1": 0,
+        "1": 23,
         "10": 0,
         "3": 0,
         "5": 0
       },
       "source_reported_variants": 64,
-      "v12_pre_move_observations": 69
+      "v12_pre_move_observations": 92
     },
     "CRYPTO_PERPETUAL": {
       "asof_first_seen_observations": 76,
@@ -35,13 +35,13 @@
       "forward_trials_frozen": 0,
       "future_test_decisions": 0,
       "matured_first_seen_horizon_counts": {
-        "1": 0,
+        "1": 23,
         "10": 0,
         "3": 0,
         "5": 0
       },
       "source_reported_variants": 64,
-      "v12_pre_move_observations": 67
+      "v12_pre_move_observations": 90
     }
   },
   "new_hypotheses_or_milestones": 0,
@@ -50,8 +50,8 @@
   "schema": "QS.h119.autonomous_alpha.v1",
   "source_commits": {
     "crypto": "603917f44a33a771f6d4357502bad5e5d38cad8c",
-    "equity": "85f938cc825f2d8bfde60469be1010ca4441fa90",
-    "patterns": "15ed0fe900b39bd127dffac80bfb1240a34b61ef"
+    "equity": "31fd070f2fcdd0b1aba49ce40b0e47e7286039d3",
+    "patterns": "e641ed06d23c8c0126dc91a6371d31644881bfb4"
   },
   "status": "RESEARCH_ONLY_NO_NEW_OFFICIAL_LAB_APPROVAL",
   "total_evidence_events": 1
