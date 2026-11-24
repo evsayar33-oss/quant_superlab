@@ -1,0 +1,183 @@
+{
+  "repository": "evsayar33-oss/quant_superlab",
+  "observed_at": "2026-11-24T11:25:33.511287+00:00",
+  "metrics": {
+    "repository_bytes": 14630912,
+    "cache_bytes": 4039860122,
+    "artifact_bytes": 44691653,
+    "artifact_count": 377,
+    "release_count": 20,
+    "release_asset_bytes": 2621827
+  },
+  "alerts": [
+    "Archive backlog: 23 near-expiry artifacts remain"
+  ],
+  "errors": [],
+  "repaired": [],
+  "archives": [
+    {
+      "id": 14828543983,
+      "tag": "evidence-archive-29657087"
+    },
+    {
+      "id": 14762347466,
+      "tag": "evidence-archive-29524694"
+    },
+    {
+      "id": 14762736508,
+      "tag": "evidence-archive-29525473"
+    },
+    {
+      "id": 14762163805,
+      "tag": "evidence-archive-29524327"
+    },
+    {
+      "id": 14763186004,
+      "tag": "evidence-archive-29526372"
+    },
+    {
+      "id": 14762911151,
+      "tag": "evidence-archive-29525822"
+    },
+    {
+      "id": 14762442375,
+      "tag": "evidence-archive-29524884"
+    },
+    {
+      "id": 14781372205,
+      "tag": "evidence-archive-29562744"
+    },
+    {
+      "id": 14780808806,
+      "tag": "evidence-archive-29561617"
+    },
+    {
+      "id": 14781735358,
+      "tag": "evidence-archive-29563470"
+    },
+    {
+      "id": 14781184727,
+      "tag": "evidence-archive-29562369"
+    },
+    {
+      "id": 14782070323,
+      "tag": "evidence-archive-29564140"
+    },
+    {
+      "id": 14781686760,
+      "tag": "evidence-archive-29563373"
+    },
+    {
+      "id": 14885633054,
+      "tag": "evidence-archive-29771266"
+    },
+    {
+      "id": 14828760847,
+      "tag": "evidence-archive-29657521"
+    },
+    {
+      "id": 14828072029,
+      "tag": "evidence-archive-29656144"
+    },
+    {
+      "id": 14828696279,
+      "tag": "evidence-archive-29657392"
+    },
+    {
+      "id": 14827772250,
+      "tag": "evidence-archive-29655544"
+    },
+    {
+      "id": 14829036948,
+      "tag": "evidence-archive-29658073"
+    },
+    {
+      "id": 14829775277,
+      "tag": "evidence-archive-29659550"
+    }
+  ],
+  "billing_quota": "unknown: account billing permission required",
+  "archive_candidates": 43,
+  "archive_pending": 23,
+  "workflow_states": {
+    ".github/workflows/adhoc.yml": "active",
+    ".github/workflows/arena.yml": "active",
+    ".github/workflows/arena_screen.yml": "active",
+    ".github/workflows/assetbook.yml": "active",
+    ".github/workflows/calibrate.yml": "active",
+    ".github/workflows/ci.yml": "active",
+    ".github/workflows/core.yml": "active",
+    ".github/workflows/cppi.yml": "active",
+    ".github/workflows/event-study.yml": "active",
+    ".github/workflows/free_history_atlas.yml": "active",
+    ".github/workflows/h060.yml": "active",
+    ".github/workflows/h079.yml": "active",
+    ".github/workflows/h080.yml": "active",
+    ".github/workflows/h081.yml": "active",
+    ".github/workflows/h083.yml": "active",
+    ".github/workflows/h084.yml": "active",
+    ".github/workflows/h085.yml": "active",
+    ".github/workflows/h086.yml": "active",
+    ".github/workflows/h087.yml": "active",
+    ".github/workflows/h088.yml": "active",
+    ".github/workflows/h088p1_vendor_smoke.yml": "active",
+    ".github/workflows/h089.yml": "active",
+    ".github/workflows/h090.yml": "active",
+    ".github/workflows/h091_h094.yml": "active",
+    ".github/workflows/h095.yml": "active",
+    ".github/workflows/h096.yml": "active",
+    ".github/workflows/h097.yml": "active",
+    ".github/workflows/h098.yml": "active",
+    ".github/workflows/h099.yml": "active",
+    ".github/workflows/h100.yml": "active",
+    ".github/workflows/h101.yml": "active",
+    ".github/workflows/h102.yml": "active",
+    ".github/workflows/h103.yml": "active",
+    ".github/workflows/h104.yml": "active",
+    ".github/workflows/h105.yml": "active",
+    ".github/workflows/h106.yml": "active",
+    ".github/workflows/h107.yml": "active",
+    ".github/workflows/h108.yml": "active",
+    ".github/workflows/h109.yml": "active",
+    ".github/workflows/h110.yml": "active",
+    ".github/workflows/h111.yml": "active",
+    ".github/workflows/h114.yml": "active",
+    ".github/workflows/h115.yml": "active",
+    ".github/workflows/h116.yml": "active",
+    ".github/workflows/h117.yml": "active",
+    ".github/workflows/h118.yml": "active",
+    ".github/workflows/h119.yml": "active",
+    ".github/workflows/h119_telegram_smoke.yml": "active",
+    ".github/workflows/h120.yml": "active",
+    ".github/workflows/h121.yml": "active",
+    ".github/workflows/h122.yml": "active",
+    ".github/workflows/immutable_recovery_points.yml": "active",
+    ".github/workflows/live.yml": "active",
+    ".github/workflows/mega.yml": "active",
+    ".github/workflows/mega_baseline.yml": "active",
+    ".github/workflows/mega_tm.yml": "active",
+    ".github/workflows/p11_readonly_smoke.yml": "active",
+    ".github/workflows/p13_vendor_smoke.yml": "active",
+    ".github/workflows/portfolio_native_mesh.yml": "active",
+    ".github/workflows/portfolio_qualification.yml": "active",
+    ".github/workflows/protection.yml": "active",
+    ".github/workflows/repository_guardian.yml": "active",
+    ".github/workflows/scan.yml": "active",
+    ".github/workflows/synthesis.yml": "active",
+    ".github/workflows/timemachine.yml": "active",
+    ".github/workflows/usd_macro.yml": "active",
+    ".github/workflows/validate.yml": "active",
+    ".github/workflows/vbt_research.yml": "active",
+    ".github/workflows/watch.yml": "active",
+    ".github/workflows/xsec.yml": "active"
+  },
+  "operational_warning_budgets": {
+    "repository_bytes": 734003200,
+    "artifact_bytes": 419430400,
+    "cache_bytes": 8589934592,
+    "checkpoint_uncompressed_bytes": 603979776
+  },
+  "large_files": [],
+  "default_branch_commit_age_days": 0,
+  "status": "attention"
+}
