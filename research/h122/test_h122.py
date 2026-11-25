@@ -189,6 +189,59 @@ class TestFederalIndependent(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "UNSAFE_WATCH_OUTAGE"):
             h.evaluate(SHA, outage, {}, {}, old, NOW)
 
+    def test_failed_forward_envelope_preserves_last_success_and_deduplicates(self):
+        data = values()
+        good = {
+            "ok": True, "broker_ordering": False, "information_only": True,
+            "monitor_rules": ["monthly_low_beta", "monthly_vol_squeeze"],
+            "research_approved_styles": 0,
+            "generated_utc": "2026-11-19T11:30:00+00:00",
+            "last_complete_nyse_session": "2026-11-18",
+            "forward_months_closed": 2, "cohorts_frozen_this_run": 0,
+            "approved_paper_rules": [], "data_coverage_ok": True,
+        }
+        data["h083_forward_status.json"] = good
+        _, old, _ = h.evaluate(SHA, data, {}, {}, {}, NOW)
+        data["h083_last_attempt.json"].update({
+            "state": "FAILED", "reason": "RuntimeError", "attempt_id": "failure",
+            "attempted_at_utc": "2026-11-19T16:00:00+00:00",
+            "session": "", "counts_as_forward_month": False,
+        })
+        failure = {
+            "ok": False, "information_only": True, "broker_ordering": False,
+            "last_attempt_utc": "2026-11-19T16:00:00.006+00:00",
+            "error_type": "RuntimeError", "error": "No new decision",
+        }
+        data["h083_forward_status.json"] = failure
+        report, failed, ev = h.evaluate(SHA, data, {}, {}, old, NOW)
+        self.assertEqual([x["kind"] for x in ev], ["H083_RUN_FAILED"])
+        self.assertIsNone(report["h083"]["published_forward_report"])
+        self.assertEqual(report["h083"]["forward_results_status"],
+                         "SOURCE_FAILED_NO_NEW_FORWARD_RESULT")
+        self.assertEqual(failed["forward"], old["forward"])
+        self.assertEqual(report["h083"]["last_verified_forward_report"]["forward_months_closed"], 2)
+        self.assertEqual(h.evaluate(SHA, data, {}, {}, failed, NOW)[2], [])
+        data["h083_last_attempt.json"].update({
+            "state": "SKIPPED", "reason": "WRONG_DST_CRON_SLOT",
+            "attempt_id": "safe-skip", "session": "2026-11-19",
+            "attempted_at_utc": "2026-11-19T17:00:00+00:00",
+        })
+        _, skipped, _ = h.evaluate(SHA, data, {}, {}, failed, NOW)
+        self.assertEqual(skipped["forward"], old["forward"])
+        failure["broker_ordering"] = True
+        with self.assertRaisesRegex(ValueError, "UNSAFE_FORWARD_FAILURE"):
+            h.evaluate(SHA, data, {}, {}, skipped, NOW)
+        failure["broker_ordering"] = False
+        failure["forward_months_closed"] = 99
+        with self.assertRaisesRegex(ValueError, "UNSAFE_FORWARD_FAILURE"):
+            h.evaluate(SHA, data, {}, {}, skipped, NOW)
+        data["h083_forward_status.json"] = dict(good, forward_months_closed=1)
+        with self.assertRaisesRegex(ValueError, "CLOSED_FORWARD_MONTHS_DISAPPEARED"):
+            h.evaluate(SHA, data, {}, {}, skipped, NOW)
+        data["h083_forward_status.json"] = dict(good, forward_months_closed=2)
+        _, _, recovered = h.evaluate(SHA, data, {}, {}, skipped, NOW)
+        self.assertEqual(recovered, [])
+
     def test_h083_source_missing_forward_never_claims_no_profit(self):
         data=values()
         result,_,_=h.evaluate(SHA,data,{}, {}, {},NOW)

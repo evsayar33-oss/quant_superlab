@@ -139,7 +139,27 @@ def validate(sha, data, now):
     for key in ("new_relationships", "total_relationships",
                 "pending_primary_verification"):
         finite_number(econ[key], 0)
-    if forward:
+    if forward is not None and forward.get("ok") is False:
+        # H083 publishes a separate fail-closed envelope instead of success
+        # fields when its runner raises. Never interpret it as a result.
+        if (forward.get("broker_ordering") is not False
+                or forward.get("information_only") is not True
+                or attempt["state"] not in ("FAILED", "SKIPPED")
+                or attempt.get("counts_as_forward_month") is not False
+                or not isinstance(forward.get("error_type"), str)
+                or not forward["error_type"].strip()
+                or not isinstance(forward.get("error"), str)
+                or not forward["error"].strip()
+                or set(forward) - {"ok", "broker_ordering", "information_only",
+                                   "last_attempt_utc", "error_type", "error"}):
+            raise ValueError("H122_UNSAFE_FORWARD_FAILURE_STATUS")
+        failure_at = b.utc(forward["last_attempt_utc"])
+        if (failure_at > now
+                or (attempt["state"] == "FAILED" and
+                    (failure_at < when or forward["error_type"] != attempt.get("reason")))
+                or (attempt["state"] == "SKIPPED" and failure_at > when)):
+            raise ValueError("H122_INCONSISTENT_FORWARD_FAILURE")
+    elif forward is not None:
         if forward.get("ok") is not True or forward.get("broker_ordering") is not False or forward.get("information_only") is not True:
             raise ValueError("H122_UNSAFE_FORWARD_STATUS")
         if set(forward.get("monitor_rules", [])) != H083_RULES:
@@ -175,7 +195,8 @@ def evaluate(sha, data, hashes, workflows, previous, now):
         "attempted_at_utc": attempt["attempted_at_utc"],
         "counts_as_forward_month": attempt.get("counts_as_forward_month"),
     }
-    current_forward = None if not forward else {
+    forward_failure = forward if forward is not None and forward["ok"] is False else None
+    current_forward = None if forward is None or forward_failure is not None else {
         "generated_utc": forward["generated_utc"],
         "last_complete_nyse_session": forward["last_complete_nyse_session"],
         "cohorts_frozen_this_run": forward["cohorts_frozen_this_run"],
@@ -199,7 +220,7 @@ def evaluate(sha, data, hashes, workflows, previous, now):
         old_forward = previous.get("forward")
         if forward is None and old_forward is not None:
             raise ValueError("H122_PUBLISHED_H083_FORWARD_RESULT_DISAPPEARED")
-        if forward is not None and old_forward and forward["forward_months_closed"] < old_forward["forward_months_closed"]:
+        if current_forward and old_forward and current_forward["forward_months_closed"] < old_forward["forward_months_closed"]:
             raise ValueError("H122_CLOSED_FORWARD_MONTHS_DISAPPEARED")
         if old_attempt and b.utc(attempt["attempted_at_utc"]) < b.utc(old_attempt["attempted_at_utc"]):
             # Mutable data branch may be replaced, but silently reverting
@@ -228,7 +249,7 @@ def evaluate(sha, data, hashes, workflows, previous, now):
                     "Radar H083 kaynak sistemi FORWARD_VALIDATED_PAPER etiketi bildirdi. "
                     "Bu yalnızca kaynak kararıdır; bağımsız QS analizi ve gercek broker fill kaniti "
                     "olmadan ACCEPT veya otomatik emir izni degildir.", now))
-        if forward is not None and old_forward is None:
+        if current_forward is not None and old_forward is None:
             events.append(notice("FIRST_PUBLISHED_H083_FORWARD_REPORT",
                 forward["generated_utc"],
                 "Radar ilk dogrulanabilir H083 ileri arastirma raporunu yayimladi. "
@@ -246,8 +267,11 @@ def evaluate(sha, data, hashes, workflows, previous, now):
             "last_attempt": last_attempt,
             "skipped_session_streak_since_h122_start": skip_streak,
             "published_forward_report": current_forward,
+            "forward_failure": forward_failure,
+            "last_verified_forward_report": current_forward or previous.get("forward"),
             "forward_results_status": (
-                "PUBLISHED_SOURCE_ONLY_NOT_SUPERLAB_APPROVED" if forward
+                "SOURCE_FAILED_NO_NEW_FORWARD_RESULT" if forward_failure is not None
+                else "PUBLISHED_SOURCE_ONLY_NOT_SUPERLAB_APPROVED" if current_forward is not None
                 else "NO_PUBLISHED_H083_FORWARD_JSON"),
             "green_workflow_is_not_forward_result": True,
         },
@@ -301,7 +325,8 @@ def evaluate(sha, data, hashes, workflows, previous, now):
             "data_coverage_pct": watch["data_coverage_pct"],
             "feature_asof": watch["feature_asof"],
         },
-        "forward": current_forward,
+        # Retain the last verified success for monotonicity across outages.
+        "forward": current_forward or previous.get("forward"),
         "econ": {"pending_primary_verification": econ["pending_primary_verification"]},
         "seen_utc": now.isoformat(),
     }
