@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-24T14:54:10+00:00",
- "data_end": "2026-11-24 08:00:00",
+ "updated_at": "2026-11-25T00:43:53+00:00",
+ "data_end": "2026-11-24 20:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -108,9 +108,9 @@
   "since": "2026-10-20",
   "days": 34,
   "ret": -0.0101,
-  "sharpe": -6.044,
-  "ew_ret": -0.0194,
-  "ew_sharpe": -9.459,
+  "sharpe": -6.0,
+  "ew_ret": -0.0197,
+  "ew_sharpe": -9.518,
   "max_dd": -0.0122
  },
  "regimes": {
@@ -143,7 +143,7 @@
    "share": {
     "range": 0.698,
     "trend_up": 0.082,
-    "trend_down": 0.077,
+    "trend_down": 0.076,
     "volatile": 0.143
    }
   },
@@ -188,7 +188,7 @@
     "range": 0.694,
     "trend_up": 0.048,
     "trend_down": 0.075,
-    "volatile": 0.182
+    "volatile": 0.183
    }
   },
   "AVAX/USDT": {
@@ -199,7 +199,7 @@
     "range": 0.705,
     "trend_up": 0.062,
     "trend_down": 0.084,
-    "volatile": 0.148
+    "volatile": 0.149
    }
   },
   "LINK/USDT": {
@@ -207,21 +207,21 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 20:00:00",
    "share": {
-    "range": 0.708,
+    "range": 0.707,
     "trend_up": 0.066,
-    "trend_down": 0.056,
+    "trend_down": 0.055,
     "volatile": 0.171
    }
   },
   "DOT/USDT": {
-   "now": "range",
-   "now_tr": "Yatay",
-   "since": "2026-11-23 12:00:00",
+   "now": "volatile",
+   "now_tr": "Volatil",
+   "since": "2026-11-24 16:00:00",
    "share": {
     "range": 0.691,
     "trend_up": 0.052,
     "trend_down": 0.093,
-    "volatile": 0.163
+    "volatile": 0.164
    }
   },
   "LTC/USDT": {
@@ -287,7 +287,7 @@
     "range": 0.69,
     "trend_up": 0.045,
     "trend_down": 0.081,
-    "volatile": 0.184
+    "volatile": 0.185
    }
   },
   "UNI/USDT": {
@@ -307,8 +307,8 @@
    "since": "2026-11-21 16:00:00",
    "share": {
     "range": 0.688,
-    "trend_up": 0.061,
-    "trend_down": 0.076,
+    "trend_up": 0.06,
+    "trend_down": 0.075,
     "volatile": 0.176
    }
   },
@@ -397,7 +397,7 @@
     "range": 0.727,
     "trend_up": 0.037,
     "trend_down": 0.077,
-    "volatile": 0.158
+    "volatile": 0.159
    }
   },
   "THETA/USDT": {
@@ -471,7 +471,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 20:00:00",
    "share": {
-    "range": 0.704,
+    "range": 0.703,
     "trend_up": 0.05,
     "trend_down": 0.073,
     "volatile": 0.174
@@ -482,7 +482,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 20:00:00",
    "share": {
-    "range": 0.741,
+    "range": 0.74,
     "trend_up": 0.035,
     "trend_down": 0.077,
     "volatile": 0.147
