@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-25T00:43:59+00:00",
- "data_end": "2026-11-24 20:00:00",
+ "updated_at": "2026-11-25T14:20:01+00:00",
+ "data_end": "2026-11-25 08:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -121,8 +121,8 @@
   "days": 39,
   "ret": -0.0017,
   "sharpe": 0.045,
-  "ew_ret": 0.0041,
-  "ew_sharpe": 0.422,
+  "ew_ret": 0.0045,
+  "ew_sharpe": 0.452,
   "max_dd": -0.1223
  },
  "regimes": {
@@ -156,7 +156,7 @@
     "range": 0.698,
     "trend_up": 0.082,
     "trend_down": 0.076,
-    "volatile": 0.143
+    "volatile": 0.144
    }
   },
   "BNB/USDT": {
@@ -164,7 +164,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-21 08:00:00",
    "share": {
-    "range": 0.714,
+    "range": 0.713,
     "trend_up": 0.076,
     "trend_down": 0.05,
     "volatile": 0.16
@@ -321,7 +321,7 @@
     "range": 0.688,
     "trend_up": 0.06,
     "trend_down": 0.075,
-    "volatile": 0.176
+    "volatile": 0.177
    }
   },
   "ETC/USDT": {
@@ -484,15 +484,15 @@
    "since": "2026-11-23 20:00:00",
    "share": {
     "range": 0.703,
-    "trend_up": 0.05,
+    "trend_up": 0.049,
     "trend_down": 0.073,
-    "volatile": 0.174
+    "volatile": 0.175
    }
   },
   "PYTH/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-23 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-25 00:00:00",
    "share": {
     "range": 0.74,
     "trend_up": 0.035,
