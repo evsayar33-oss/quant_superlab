@@ -11,20 +11,20 @@
     "last_complete_nyse_session": "2026-11-20"
   },
   "h083_attempt": {
-    "attempt_id": "2026-11-24T06:05:06.095472+00:00|H083",
-    "attempted_at_utc": "2026-11-24T06:05:06.095472+00:00",
+    "attempt_id": "2026-11-25T05:03:32.474678+00:00|H083",
+    "attempted_at_utc": "2026-11-25T05:03:32.474678+00:00",
     "counts_as_forward_month": false,
-    "reason": "OUTSIDE_17_ET_AFTERCLOSE_SLOT",
-    "session": "2026-11-24",
-    "state": "SKIPPED"
+    "reason": "RuntimeError",
+    "session": "",
+    "state": "FAILED"
   },
-  "h083_skipped_session_streak": 1,
-  "last_source_commit": "935b953114185114864eee7cacb524039ecfb93c",
+  "h083_skipped_session_streak": 0,
+  "last_source_commit": "834cb95e95869ce04d53c00185fb027eeb16b5c4",
   "schema": "QS.h122.federal_evidence.v1",
-  "seen_utc": "2026-11-24T21:32:21.957125+00:00",
+  "seen_utc": "2026-11-25T11:23:08.595363+00:00",
   "watch": {
     "data_coverage_ok": false,
-    "data_coverage_pct": 0.7877,
-    "feature_asof": "2026-11-23"
+    "data_coverage_pct": 0.7959,
+    "feature_asof": "2026-11-24"
   }
 }

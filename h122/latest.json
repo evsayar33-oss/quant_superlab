@@ -1,6 +1,6 @@
 {
-  "alerts_pending": 0,
-  "asof_utc": "2026-11-24T21:32:21.957125+00:00",
+  "alerts_pending": 1,
+  "asof_utc": "2026-11-25T11:23:08.595363+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -14,19 +14,19 @@
       "monthly_vol_squeeze": 0
     },
     "data_coverage_ok": false,
-    "data_coverage_pct": 0.7877,
-    "eligible_tickers": 146,
-    "feature_asof": "2026-11-23",
+    "data_coverage_pct": 0.7959,
+    "eligible_tickers": 147,
+    "feature_asof": "2026-11-24",
     "liquid_tickers": 109,
-    "priced_tickers": 115,
+    "priced_tickers": 117,
     "source_decision": "WATCH_ONLY_NO_TRADE",
     "source_failure_reason": "INSUFFICIENT_PRICE_COVERAGE",
     "source_first_seen_forward_only": 22,
     "source_report_ok": false,
     "watch_candidates": 0
   },
-  "events_new": 0,
-  "events_total": 3,
+  "events_new": 1,
+  "events_total": 4,
   "executable_broker_pnl": null,
   "five_event_hypotheses": {
     "SPY_relative_alpha": "NOT_EVALUATED",
@@ -50,17 +50,25 @@
     }
   },
   "h083": {
-    "forward_results_status": "PUBLISHED_SOURCE_ONLY_NOT_SUPERLAB_APPROVED",
+    "forward_failure": {
+      "broker_ordering": false,
+      "error": "İleri izleme veri/akış hatası; yeni karar yok.",
+      "error_type": "RuntimeError",
+      "information_only": true,
+      "last_attempt_utc": "2026-11-25T05:03:32.480763+00:00",
+      "ok": false
+    },
+    "forward_results_status": "SOURCE_FAILED_NO_NEW_FORWARD_RESULT",
     "green_workflow_is_not_forward_result": true,
     "last_attempt": {
-      "attempt_id": "2026-11-24T06:05:06.095472+00:00|H083",
-      "attempted_at_utc": "2026-11-24T06:05:06.095472+00:00",
+      "attempt_id": "2026-11-25T05:03:32.474678+00:00|H083",
+      "attempted_at_utc": "2026-11-25T05:03:32.474678+00:00",
       "counts_as_forward_month": false,
-      "reason": "OUTSIDE_17_ET_AFTERCLOSE_SLOT",
-      "session": "2026-11-24",
-      "state": "SKIPPED"
+      "reason": "RuntimeError",
+      "session": "",
+      "state": "FAILED"
     },
-    "published_forward_report": {
+    "last_verified_forward_report": {
       "approved_paper_rules": [],
       "cohorts_frozen_this_run": 0,
       "data_coverage_ok": true,
@@ -68,11 +76,12 @@
       "generated_utc": "2026-11-21T03:14:33.927162+00:00",
       "last_complete_nyse_session": "2026-11-20"
     },
+    "published_forward_report": null,
     "research_tracks": [
       "monthly_low_beta",
       "monthly_vol_squeeze"
     ],
-    "skipped_session_streak_since_h122_start": 1
+    "skipped_session_streak_since_h122_start": 0
   },
   "known_limitations": [
     "Green H083 Actions run may safely skip on after-close NYSE time guard",
@@ -88,12 +97,12 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "935b953114185114864eee7cacb524039ecfb93c",
+  "source_commit_sha": "834cb95e95869ce04d53c00185fb027eeb16b5c4",
   "source_hashes": {
-    "economic_intelligence_status.json": "94a5163a14fce6f25f5b004fade2c145a3e56f02076141eb7165f387fa3ff0f1",
-    "event_watch_status.json": "cdbbe493109c9f7132b6caa05fe14eac932a3c443ed3d766bd0259cc4f1fd786",
-    "h083_forward_status.json": "59d247d4da83aa73a66d62a75565eb7c6dde5a788432d1aa5df2a9f498d826ad",
-    "h083_last_attempt.json": "e65434a56ade24c566d1872e538689f38f9289c3fb1f16b285f0ad47e268e466"
+    "economic_intelligence_status.json": "8d13692f63ad81016e33e1b400ffcddf0d811bbca2a7fbe5212301fc615807d1",
+    "event_watch_status.json": "fe54f8b533826e5eea6c6d6700bddeece658fbbc7514a55baca3d15aa3ee6174",
+    "h083_forward_status.json": "88e36081097daab17c1aa6779b0d0e40d24a47d18c5ed5374a44f4c33d693009",
+    "h083_last_attempt.json": "5f1ea3e34d31109cc5af3fb5a0a99b90a34e2f07601e41bc5db7520f52acff85"
   },
   "source_repo": "evsayar33-oss/federal-incentive-radar",
   "two_strategy_families_never_combined": true,
@@ -107,11 +116,11 @@
       "status": "completed"
     },
     "h083_forward.yml": {
-      "conclusion": "success",
-      "created_at": "2026-11-24T06:04:26Z",
+      "conclusion": "failure",
+      "created_at": "2026-11-25T04:53:46Z",
       "event": "schedule",
-      "head_sha": "2ca9fd3f696904ceef71535e2bf95fe00847f390",
-      "id": 45337731545,
+      "head_sha": "0a3569deba99088226ff53ab59f56b8e46e21616",
+      "id": 45549854751,
       "status": "completed"
     }
   }
