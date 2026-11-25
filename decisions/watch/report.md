@@ -1,6 +1,6 @@
 # Paper izleme: H063–H065
 
-Başlangıç: 2026-10-22. Son çalışma: 2026-11-24. Sadece sanal para; emir gönderilmez.
+Başlangıç: 2026-10-22. Son çalışma: 2026-11-25. Sadece sanal para; emir gönderilmez.
 
 UYARI: NAV geçmiş fiyatlardan yeniden hesaplanır; gerçek zamanlı ileri performans sicili değildir. İlk gözlem kanıtı: observations.csv. Eksik tarihler sonradan doldurulmaz.
 
