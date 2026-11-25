@@ -1,5 +1,5 @@
 {
-  "asof_utc": "2026-11-24T23:16:05.124244+00:00",
+  "asof_utc": "2026-11-25T10:27:10.259964+00:00",
   "limitations": [
     "H119 never changes hypotheses/registry.yaml or decisions/registry.json",
     "upstream event patterns are not a deployable backtest until native data/DSR/PBO/Reality Check pass",
@@ -26,7 +26,7 @@
       "costed_research_candidates": 0,
       "forward_trials_frozen": 0,
       "future_test_decisions": 0,
-      "source_age_minutes": 64.745,
+      "source_age_minutes": 0.419,
       "source_reported_variants": 92,
       "source_status": "FRESH_V8_RESEARCH_OBSERVATIONS"
     },
@@ -49,7 +49,7 @@
   "notifications_waiting_delivery": 0,
   "schema": "QS.h119.autonomous_alpha.v1",
   "source_commits": {
-    "crypto": "d1f7e0b2f166f1a569ced9626910f685a5742eec",
+    "crypto": "4e49202620634759e17e7d70a51e0f8298960e0f",
     "equity": "db5134ef5a344f0ddd2fda93703c11d5b42741d2",
     "patterns": "c33f61abd49d52428a11eb87c3284f894e8e92df"
   },
