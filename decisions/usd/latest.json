@@ -9,7 +9,7 @@
       "period": "2026-10",
       "prior_month_value": 37.86,
       "prior_year_value": 36.85,
-      "retrieved_utc": "2026-11-26T04:26:41.515688+00:00",
+      "retrieved_utc": "2026-11-26T21:57:39.040232+00:00",
       "series_id": "CES0500000003",
       "source": "https://www.bls.gov/developers/",
       "unit": "USD_HOURLY",
@@ -25,7 +25,7 @@
       "period": "2026-10",
       "prior_month_value": 336.94,
       "prior_year_value": null,
-      "retrieved_utc": "2026-11-26T04:26:41.515688+00:00",
+      "retrieved_utc": "2026-11-26T21:57:39.040232+00:00",
       "series_id": "CUUR0000SA0",
       "source": "https://www.bls.gov/developers/",
       "unit": "INDEX",
@@ -41,7 +41,7 @@
       "period": "2026-10",
       "prior_month_value": 339.287,
       "prior_year_value": null,
-      "retrieved_utc": "2026-11-26T04:26:41.515688+00:00",
+      "retrieved_utc": "2026-11-26T21:57:39.040232+00:00",
       "series_id": "CUUR0000SA0L1E",
       "source": "https://www.bls.gov/developers/",
       "unit": "INDEX",
@@ -57,7 +57,7 @@
       "period": "2026-10",
       "prior_month_value": 159128.0,
       "prior_year_value": 158408.0,
-      "retrieved_utc": "2026-11-26T04:26:41.515688+00:00",
+      "retrieved_utc": "2026-11-26T21:57:39.040232+00:00",
       "series_id": "CES0000000001",
       "source": "https://www.bls.gov/developers/",
       "unit": "THOUSANDS",
@@ -73,7 +73,7 @@
       "period": "2026-10",
       "prior_month_value": 4.2,
       "prior_year_value": null,
-      "retrieved_utc": "2026-11-26T04:26:41.515688+00:00",
+      "retrieved_utc": "2026-11-26T21:57:39.040232+00:00",
       "series_id": "LNS14000000",
       "source": "https://www.bls.gov/developers/",
       "unit": "PERCENT",
@@ -90,7 +90,7 @@
     "required_market_consensus": "NOT_AVAILABLE_BY_DEFAULT",
     "warning": "CPI/PCE/NFP piyasa konsensüsü yoksa sürpriz uydurulmaz. FedWatch veya resmi faiz olasılığı hesaplanmaz."
   },
-  "generated_utc": "2026-11-26T04:26:41.515688+00:00",
+  "generated_utc": "2026-11-26T21:57:39.040232+00:00",
   "limitations": [
     "Fed official communication is headline-classified; not a model of central-bank language.",
     "No licensed survey consensus, ECB/OIS relative policy curve, CFTC positions or full BEA PCE/GDP source in v1.",
@@ -126,25 +126,25 @@
       "unrate_yoy_pct": -6.818
     },
     "fx_ecb": {
-      "age_calendar_days": 1,
+      "age_calendar_days": 0,
       "basket_weights": {
         "CHF": 0.1,
         "EUR": 0.45,
         "GBP": 0.2,
         "JPY": 0.25
       },
-      "date": "2026-11-25",
-      "eurusd": 1.0935,
+      "date": "2026-11-26",
+      "eurusd": 1.0975,
       "fresh": true,
-      "gbpusd": 1.30598,
+      "gbpusd": 1.31037,
       "label": "ECB_REFERENCES_4CCY_USD_PROXY_NOT_DXY",
       "points": 64,
-      "proxy_return_1d_pct": 0.1313,
-      "proxy_return_20d_pct": 1.3798,
-      "proxy_return_5d_pct": 0.1442,
+      "proxy_return_1d_pct": -0.2027,
+      "proxy_return_20d_pct": 1.2159,
+      "proxy_return_5d_pct": -0.0717,
       "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
-      "usdchf": 0.83082,
-      "usdjpy": 159.3233
+      "usdchf": 0.83399,
+      "usdjpy": 159.262
     },
     "nominal_treasury": {
       "age_calendar_days": 1,
@@ -222,10 +222,10 @@
     {
       "consensus_coverage": 0,
       "context": "ECB 4 döviz USD proxy: EUR/JPY/GBP/CHF; DXY veya işlem gören endeks değildir.",
-      "ecb_eurusd": 1.0935,
-      "ecb_usdjpy": 159.3233,
+      "ecb_eurusd": 1.0975,
+      "ecb_usdjpy": 159.262,
       "pillar": "CROSS_FX",
-      "usd_proxy_5d_pct": 0.1442,
+      "usd_proxy_5d_pct": -0.0717,
       "validated_alpha": false
     },
     {
@@ -254,7 +254,7 @@
   "regime": {
     "confidence": "LOW_RESEARCH_ONLY",
     "context": [
-      "ECB 4-döviz USD vekili 5g: +0.14% (DXY değil)",
+      "ECB 4-döviz USD vekili 5g: -0.07% (DXY değil)",
       "ABD 2y nominal getiri 5g: -19.0 bp",
       "ABD 10y reel getiri 5g: -15.0 bp"
     ],
@@ -287,7 +287,7 @@
   "schema_version": "USD_MACRO_V1_2026_11",
   "sources": {
     "bls_actuals": {
-      "asof_utc": "2026-11-26T04:26:41.515688+00:00",
+      "asof_utc": "2026-11-26T21:57:39.040232+00:00",
       "records": 1,
       "state": "OK",
       "url": "https://api.bls.gov/publicAPI/v1/timeseries/data/"
@@ -298,38 +298,38 @@
       "url": "https://www.bls.gov/feed/bls_latest.rss"
     },
     "fed_news": {
-      "asof_utc": "2026-11-26T04:26:41.515688+00:00",
+      "asof_utc": "2026-11-26T21:57:39.040232+00:00",
       "fallback": "FED_ARCHIVE_DATE_ONLY",
       "records": 1,
       "state": "OK",
       "url": "https://www.federalreserve.gov/newsevents/pressreleases/2026-press-fomc.htm"
     },
     "fred_secondary": {
-      "asof_utc": "2026-11-26T04:26:41.515688+00:00",
+      "asof_utc": "2026-11-26T21:57:39.040232+00:00",
       "records": 1,
       "state": "OK",
       "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS,UNRATE,CPIAUCSL,CPILFESL"
     },
     "fx_ecb": {
-      "asof_utc": "2026-11-26T04:26:41.515688+00:00",
+      "asof_utc": "2026-11-26T21:57:39.040232+00:00",
       "records": 1,
       "state": "OK",
       "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     },
     "nominal_treasury": {
-      "asof_utc": "2026-11-26T04:26:41.515688+00:00",
+      "asof_utc": "2026-11-26T21:57:39.040232+00:00",
       "records": 1,
       "state": "OK",
       "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv"
     },
     "nyfed_sofr": {
-      "asof_utc": "2026-11-26T04:26:41.515688+00:00",
+      "asof_utc": "2026-11-26T21:57:39.040232+00:00",
       "records": 1,
       "state": "OK",
       "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/7.json"
     },
     "real_treasury": {
-      "asof_utc": "2026-11-26T04:26:41.515688+00:00",
+      "asof_utc": "2026-11-26T21:57:39.040232+00:00",
       "records": 1,
       "state": "OK",
       "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_real_yield_curve&field_tdr_date_value=2026&page&_format=csv"
@@ -337,6 +337,7 @@
   },
   "status": "PARTIAL",
   "surprises": [],
+  "telegram_state": "SENT",
   "telegram_trade_signals": false,
   "trade_authorization": false,
   "upcoming_expectations": []
