@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-25T13:32:08.935604+00:00",
+  "asof_utc": "2026-11-26T02:28:49.480715+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -10,20 +10,20 @@
   },
   "event_watch": {
     "candidate_counts_by_rule": {
-      "monthly_low_beta": 0,
-      "monthly_vol_squeeze": 0
+      "monthly_low_beta": 5,
+      "monthly_vol_squeeze": 2
     },
-    "data_coverage_ok": false,
-    "data_coverage_pct": 0.7959,
+    "data_coverage_ok": true,
+    "data_coverage_pct": 0.8435,
     "eligible_tickers": 147,
     "feature_asof": "2026-11-24",
-    "liquid_tickers": 109,
-    "priced_tickers": 117,
+    "liquid_tickers": 108,
+    "priced_tickers": 124,
     "source_decision": "WATCH_ONLY_NO_TRADE",
-    "source_failure_reason": "INSUFFICIENT_PRICE_COVERAGE",
+    "source_failure_reason": null,
     "source_first_seen_forward_only": 22,
-    "source_report_ok": false,
-    "watch_candidates": 0
+    "source_report_ok": true,
+    "watch_candidates": 7
   },
   "events_new": 0,
   "events_total": 4,
@@ -97,10 +97,10 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "834cb95e95869ce04d53c00185fb027eeb16b5c4",
+  "source_commit_sha": "0208b03614710e63eb7dc9e7a861c2761894010b",
   "source_hashes": {
-    "economic_intelligence_status.json": "8d13692f63ad81016e33e1b400ffcddf0d811bbca2a7fbe5212301fc615807d1",
-    "event_watch_status.json": "fe54f8b533826e5eea6c6d6700bddeece658fbbc7514a55baca3d15aa3ee6174",
+    "economic_intelligence_status.json": "085a003466748674e373ca8efd41b50e8d05cf2a3895d94a66e519188b94bc2c",
+    "event_watch_status.json": "15f302894ffe464d292f428cfb1cc1305084ce21c0c8b18b36fdd21eb2026ca4",
     "h083_forward_status.json": "88e36081097daab17c1aa6779b0d0e40d24a47d18c5ed5374a44f4c33d693009",
     "h083_last_attempt.json": "5f1ea3e34d31109cc5af3fb5a0a99b90a34e2f07601e41bc5db7520f52acff85"
   },
