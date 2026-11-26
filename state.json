@@ -2,48 +2,9 @@
   "alpha_accepted": false,
   "ends_ms": 1797257406425,
   "finalized": false,
-  "last_tick_ms": 1795669077241,
+  "last_tick_ms": 1795705454272,
   "outages": [],
-  "positions": {
-    "gate_BTC_4H_two_bar_reversal_short": {
-      "direction": -1,
-      "entry": 60527.1,
-      "entry_book_ask": 60527.2,
-      "entry_book_bid": 60527.1,
-      "entry_ms": 1795499844566,
-      "entry_quote_ms": 1795499844566,
-      "entry_source_sha256": "0a14b6dd6d1a2f95609045d51c462840c509649e0e47bb190d7746e13931ec37",
-      "family": "two_bar_reversal",
-      "key": "gate_BTC_4H_two_bar_reversal_short",
-      "last_examined_bar_ms": 1795662000000,
-      "risk": 2821.9000000000005,
-      "side": "short",
-      "signal_ms": 1795478400000,
-      "stop": 63349.0,
-      "target": 56294.25,
-      "unobserved_entry_hour": true,
-      "venue": "gate"
-    },
-    "okx_BTC_4H_two_bar_reversal_short": {
-      "direction": -1,
-      "entry": 60523.8,
-      "entry_book_ask": 60523.9,
-      "entry_book_bid": 60523.8,
-      "entry_ms": 1795499844566,
-      "entry_quote_ms": 1795499845165,
-      "entry_source_sha256": "2cac1d275114e1a8be20145d0c21a0a74dade293157e56cf8f28ba9e062d6c0d",
-      "family": "two_bar_reversal",
-      "key": "okx_BTC_4H_two_bar_reversal_short",
-      "last_examined_bar_ms": 1795662000000,
-      "risk": 2821.7428571428586,
-      "side": "short",
-      "signal_ms": 1795478400000,
-      "stop": 63345.542857142864,
-      "target": 56291.18571428572,
-      "unobserved_entry_hour": true,
-      "venue": "okx"
-    }
-  },
+  "positions": {},
   "rejected": [],
   "research_only": true,
   "schema": "h111.paper.v1",
@@ -811,6 +772,25 @@
         }
       },
       "ts": 1795669077241
+    },
+    {
+      "closed_trades": 4,
+      "open_positions": 0,
+      "quotes": {
+        "gate": {
+          "ask": 60298.4,
+          "bar_hash": "e69cce99bbc1791f1cac64605a92456eb5b12de31d2d3872f6d07e52390004d6",
+          "bid": 60298.3,
+          "quote_ms": 1795705454272
+        },
+        "okx": {
+          "ask": 60320.6,
+          "bar_hash": "8652c4fd108dcdec13692efee93a959b3e15b88bae099fbc19c81dde5eab2979",
+          "bid": 60320.5,
+          "quote_ms": 1795705455427
+        }
+      },
+      "ts": 1795705454272
     }
   ],
   "trades": [
@@ -867,6 +847,62 @@
       "signal_ms": 1795104000000,
       "stop": 59905.600000000006,
       "target": 65478.600000000006,
+      "unobserved_entry_hour": true,
+      "venue": "gate"
+    },
+    {
+      "direction": -1,
+      "entry": 60523.8,
+      "entry_book_ask": 60523.9,
+      "entry_book_bid": 60523.8,
+      "entry_ms": 1795499844566,
+      "entry_quote_ms": 1795499845165,
+      "entry_source_sha256": "2cac1d275114e1a8be20145d0c21a0a74dade293157e56cf8f28ba9e062d6c0d",
+      "exit_ms": 1795705454272,
+      "exit_price": 60320.6,
+      "family": "two_bar_reversal",
+      "gross_r": 0.07201223154889226,
+      "key": "okx_BTC_4H_two_bar_reversal_short",
+      "last_examined_bar_ms": 1795701600000,
+      "net_r": {
+        "12": 0.04627333056571066,
+        "16": 0.03769369690465012,
+        "20": 0.02911406324358958
+      },
+      "reason": "TIME_QUOTE_PROXY",
+      "risk": 2821.7428571428586,
+      "side": "short",
+      "signal_ms": 1795478400000,
+      "stop": 63345.542857142864,
+      "target": 56291.18571428572,
+      "unobserved_entry_hour": true,
+      "venue": "okx"
+    },
+    {
+      "direction": -1,
+      "entry": 60527.1,
+      "entry_book_ask": 60527.2,
+      "entry_book_bid": 60527.1,
+      "entry_ms": 1795499844566,
+      "entry_quote_ms": 1795499844566,
+      "entry_source_sha256": "0a14b6dd6d1a2f95609045d51c462840c509649e0e47bb190d7746e13931ec37",
+      "exit_ms": 1795705454272,
+      "exit_price": 60298.4,
+      "family": "two_bar_reversal",
+      "gross_r": 0.08104468620432936,
+      "key": "gate_BTC_4H_two_bar_reversal_short",
+      "last_examined_bar_ms": 1795701600000,
+      "net_r": {
+        "12": 0.055305815230871774,
+        "16": 0.04672619157305257,
+        "20": 0.038146567915233374
+      },
+      "reason": "TIME_QUOTE_PROXY",
+      "risk": 2821.9000000000005,
+      "side": "short",
+      "signal_ms": 1795478400000,
+      "stop": 63349.0,
+      "target": 56294.25,
       "unobserved_entry_hour": true,
       "venue": "gate"
     }
