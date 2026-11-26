@@ -47,8 +47,8 @@
   "ends_ms": 1802546877617,
   "fee_bps_per_side": 15.0,
   "finalized": false,
-  "last_candle_ms": 1795593600000,
-  "last_tick_ms": 1795616724955,
+  "last_candle_ms": 1795636800000,
+  "last_tick_ms": 1795652572805,
   "market": "okx",
   "models": [
     "mom2_baseline",
@@ -1963,6 +1963,98 @@
           "ask": 67.11,
           "bid": 67.1,
           "quote_ms": 1795616731064
+        }
+      },
+      "signal_trace": {
+        "btc_90d_positive": false,
+        "btc_above_sma200": false,
+        "btc_regime_on": false,
+        "diagnostic_only": true,
+        "eligible_mom2_assets": [],
+        "eligible_rotation_assets": [],
+        "models": {
+          "mom2_baseline": {
+            "reason": "NO_ELIGIBLE_BTC_ETH",
+            "target_exposure": 0.0
+          },
+          "regime_7d_band20": {
+            "reason": "BTC_REGIME_OFF",
+            "target_exposure": 0.0
+          },
+          "regime_band30": {
+            "reason": "BTC_REGIME_OFF",
+            "target_exposure": 0.0
+          }
+        },
+        "momentum_votes": {
+          "BNBUSDT": 0,
+          "BTCUSDT": 0,
+          "ETHUSDT": 0,
+          "SOLUSDT": 0
+        },
+        "version": 1
+      },
+      "target_weights": {
+        "mom2_baseline": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        },
+        "regime_7d_band20": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        },
+        "regime_band30": {
+          "BNBUSDT": 0.0,
+          "BTCUSDT": 0.0,
+          "ETHUSDT": 0.0,
+          "SOLUSDT": 0.0
+        }
+      },
+      "venue": "okx"
+    },
+    {
+      "candle_ms": 1795636800000,
+      "candle_sha256": {
+        "BNBUSDT": "1393d79226f7f32102151d544a676e4c2f71e032cc0122e62c985fb1f2528013",
+        "BTCUSDT": "6dd98e95d037b0874ee426dc5d6d144bf2aa5db9468b7485c715f2de67646700",
+        "ETHUSDT": "d9d020f629e71c951539e4a99615d288a239c3f8808e7bf500709951fb36dad9",
+        "SOLUSDT": "e05725dfe6674d53eaba9f43dce8ac432853914916d28f3432659a10bc88c143"
+      },
+      "nav": {
+        "mom2_baseline": 10000.0,
+        "regime_7d_band20": 10000.0,
+        "regime_band30": 10000.0
+      },
+      "observed_ms": 1795652572805,
+      "paper_fills": {
+        "mom2_baseline": [],
+        "regime_7d_band20": [],
+        "regime_band30": []
+      },
+      "quote_snapshots": {
+        "BNBUSDT": {
+          "ask": 558.03,
+          "bid": 558.02,
+          "quote_ms": 1795652579271
+        },
+        "BTCUSDT": {
+          "ask": 60982.0,
+          "bid": 60981.9,
+          "quote_ms": 1795652575165
+        },
+        "ETHUSDT": {
+          "ask": 1708.82,
+          "bid": 1708.81,
+          "quote_ms": 1795652576063
+        },
+        "SOLUSDT": {
+          "ask": 71.26,
+          "bid": 71.25,
+          "quote_ms": 1795652577474
         }
       },
       "signal_trace": {
