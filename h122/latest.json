@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-26T02:28:49.480715+00:00",
+  "asof_utc": "2026-11-26T13:12:29.686119+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -11,19 +11,19 @@
   "event_watch": {
     "candidate_counts_by_rule": {
       "monthly_low_beta": 5,
-      "monthly_vol_squeeze": 2
+      "monthly_vol_squeeze": 5
     },
     "data_coverage_ok": true,
-    "data_coverage_pct": 0.8435,
+    "data_coverage_pct": 0.8571,
     "eligible_tickers": 147,
-    "feature_asof": "2026-11-24",
-    "liquid_tickers": 108,
-    "priced_tickers": 124,
+    "feature_asof": "2026-11-25",
+    "liquid_tickers": 109,
+    "priced_tickers": 126,
     "source_decision": "WATCH_ONLY_NO_TRADE",
     "source_failure_reason": null,
     "source_first_seen_forward_only": 22,
     "source_report_ok": true,
-    "watch_candidates": 7
+    "watch_candidates": 10
   },
   "events_new": 0,
   "events_total": 4,
@@ -50,33 +50,33 @@
     }
   },
   "h083": {
-    "forward_failure": {
-      "broker_ordering": false,
-      "error": "İleri izleme veri/akış hatası; yeni karar yok.",
-      "error_type": "RuntimeError",
-      "information_only": true,
-      "last_attempt_utc": "2026-11-25T05:03:32.480763+00:00",
-      "ok": false
-    },
-    "forward_results_status": "SOURCE_FAILED_NO_NEW_FORWARD_RESULT",
+    "forward_failure": null,
+    "forward_results_status": "PUBLISHED_SOURCE_ONLY_NOT_SUPERLAB_APPROVED",
     "green_workflow_is_not_forward_result": true,
     "last_attempt": {
-      "attempt_id": "2026-11-25T05:03:32.474678+00:00|H083",
-      "attempted_at_utc": "2026-11-25T05:03:32.474678+00:00",
+      "attempt_id": "2026-11-26T04:10:59.560950+00:00|H083",
+      "attempted_at_utc": "2026-11-26T04:10:59.560950+00:00",
       "counts_as_forward_month": false,
-      "reason": "RuntimeError",
-      "session": "",
-      "state": "FAILED"
+      "reason": "AFTER_NYSE_CLOSE",
+      "session": "2026-11-25",
+      "state": "COMPLETED_RESEARCH"
     },
     "last_verified_forward_report": {
       "approved_paper_rules": [],
       "cohorts_frozen_this_run": 0,
       "data_coverage_ok": true,
       "forward_months_closed": 0,
-      "generated_utc": "2026-11-21T03:14:33.927162+00:00",
-      "last_complete_nyse_session": "2026-11-20"
+      "generated_utc": "2026-11-26T04:10:59.560950+00:00",
+      "last_complete_nyse_session": "2026-11-25"
     },
-    "published_forward_report": null,
+    "published_forward_report": {
+      "approved_paper_rules": [],
+      "cohorts_frozen_this_run": 0,
+      "data_coverage_ok": true,
+      "forward_months_closed": 0,
+      "generated_utc": "2026-11-26T04:10:59.560950+00:00",
+      "last_complete_nyse_session": "2026-11-25"
+    },
     "research_tracks": [
       "monthly_low_beta",
       "monthly_vol_squeeze"
@@ -97,12 +97,12 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "0208b03614710e63eb7dc9e7a861c2761894010b",
+  "source_commit_sha": "f4fa00e12f22bc6a0edfa19daec7c5e90ee55e1d",
   "source_hashes": {
     "economic_intelligence_status.json": "085a003466748674e373ca8efd41b50e8d05cf2a3895d94a66e519188b94bc2c",
-    "event_watch_status.json": "15f302894ffe464d292f428cfb1cc1305084ce21c0c8b18b36fdd21eb2026ca4",
-    "h083_forward_status.json": "88e36081097daab17c1aa6779b0d0e40d24a47d18c5ed5374a44f4c33d693009",
-    "h083_last_attempt.json": "5f1ea3e34d31109cc5af3fb5a0a99b90a34e2f07601e41bc5db7520f52acff85"
+    "event_watch_status.json": "dd4595299dbaa0cc179fa3a286ea1fca453eaebca83a9dc5cd117f7f7e09d0be",
+    "h083_forward_status.json": "7ea5977ab1343e4cbf2637cd311e6b4212b267c24ec2930e4a5700feb80c310a",
+    "h083_last_attempt.json": "3e5493314a9aac12f9893b8b6530293411b3e540a6503968f674c1915f82e3b1"
   },
   "source_repo": "evsayar33-oss/federal-incentive-radar",
   "two_strategy_families_never_combined": true,
@@ -116,11 +116,11 @@
       "status": "completed"
     },
     "h083_forward.yml": {
-      "conclusion": "failure",
-      "created_at": "2026-11-25T04:53:46Z",
+      "conclusion": "success",
+      "created_at": "2026-11-26T04:10:15Z",
       "event": "schedule",
-      "head_sha": "0a3569deba99088226ff53ab59f56b8e46e21616",
-      "id": 45549854751,
+      "head_sha": "7b1c1bb16dea1881578114992cf294c77c0ecc5e",
+      "id": 45753490570,
       "status": "completed"
     }
   }

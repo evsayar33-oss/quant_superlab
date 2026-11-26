@@ -7,24 +7,24 @@
     "cohorts_frozen_this_run": 0,
     "data_coverage_ok": true,
     "forward_months_closed": 0,
-    "generated_utc": "2026-11-21T03:14:33.927162+00:00",
-    "last_complete_nyse_session": "2026-11-20"
+    "generated_utc": "2026-11-26T04:10:59.560950+00:00",
+    "last_complete_nyse_session": "2026-11-25"
   },
   "h083_attempt": {
-    "attempt_id": "2026-11-25T05:03:32.474678+00:00|H083",
-    "attempted_at_utc": "2026-11-25T05:03:32.474678+00:00",
+    "attempt_id": "2026-11-26T04:10:59.560950+00:00|H083",
+    "attempted_at_utc": "2026-11-26T04:10:59.560950+00:00",
     "counts_as_forward_month": false,
-    "reason": "RuntimeError",
-    "session": "",
-    "state": "FAILED"
+    "reason": "AFTER_NYSE_CLOSE",
+    "session": "2026-11-25",
+    "state": "COMPLETED_RESEARCH"
   },
   "h083_skipped_session_streak": 0,
-  "last_source_commit": "0208b03614710e63eb7dc9e7a861c2761894010b",
+  "last_source_commit": "f4fa00e12f22bc6a0edfa19daec7c5e90ee55e1d",
   "schema": "QS.h122.federal_evidence.v1",
-  "seen_utc": "2026-11-26T02:28:49.480715+00:00",
+  "seen_utc": "2026-11-26T13:12:29.686119+00:00",
   "watch": {
     "data_coverage_ok": true,
-    "data_coverage_pct": 0.8435,
-    "feature_asof": "2026-11-24"
+    "data_coverage_pct": 0.8571,
+    "feature_asof": "2026-11-25"
   }
 }
