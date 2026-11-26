@@ -2,7 +2,7 @@
   "alpha_accepted": false,
   "ends_ms": 1797257406425,
   "finalized": false,
-  "last_tick_ms": 1795645662824,
+  "last_tick_ms": 1795669077241,
   "outages": [],
   "positions": {
     "gate_BTC_4H_two_bar_reversal_short": {
@@ -15,7 +15,7 @@
       "entry_source_sha256": "0a14b6dd6d1a2f95609045d51c462840c509649e0e47bb190d7746e13931ec37",
       "family": "two_bar_reversal",
       "key": "gate_BTC_4H_two_bar_reversal_short",
-      "last_examined_bar_ms": 1795640400000,
+      "last_examined_bar_ms": 1795662000000,
       "risk": 2821.9000000000005,
       "side": "short",
       "signal_ms": 1795478400000,
@@ -34,7 +34,7 @@
       "entry_source_sha256": "2cac1d275114e1a8be20145d0c21a0a74dade293157e56cf8f28ba9e062d6c0d",
       "family": "two_bar_reversal",
       "key": "okx_BTC_4H_two_bar_reversal_short",
-      "last_examined_bar_ms": 1795640400000,
+      "last_examined_bar_ms": 1795662000000,
       "risk": 2821.7428571428586,
       "side": "short",
       "signal_ms": 1795478400000,
@@ -103,7 +103,9 @@
     "okx_BTC_4H_zscore_revert_long_1795521600000",
     "gate_BTC_4H_zscore_revert_long_1795521600000",
     "okx_BTC_4H_zscore_revert_long_1795593600000",
-    "gate_BTC_4H_zscore_revert_long_1795593600000"
+    "gate_BTC_4H_zscore_revert_long_1795593600000",
+    "okx_BTC_4H_zscore_revert_long_1795651200000",
+    "gate_BTC_4H_zscore_revert_long_1795651200000"
   ],
   "started_ms": 1794665406425,
   "ticks": [
@@ -790,6 +792,25 @@
         }
       },
       "ts": 1795645662824
+    },
+    {
+      "closed_trades": 2,
+      "open_positions": 2,
+      "quotes": {
+        "gate": {
+          "ask": 60881.4,
+          "bar_hash": "f86f494b40632f0cf0fd0ee2e40af2161b9a472d2cde75ab48b6a1a31adda027",
+          "bid": 60881.3,
+          "quote_ms": 1795669077241
+        },
+        "okx": {
+          "ask": 60882.1,
+          "bar_hash": "a3518ab4dec59b599b4778d6ac7b812524a45bf294c82922f1493b7c0aab4762",
+          "bid": 60882.0,
+          "quote_ms": 1795669077768
+        }
+      },
+      "ts": 1795669077241
     }
   ],
   "trades": [
