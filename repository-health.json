@@ -1,44 +1,18 @@
 {
   "repository": "evsayar33-oss/quant_superlab",
-  "observed_at": "2026-11-25T17:38:25.560610+00:00",
+  "observed_at": "2026-11-26T17:20:01.751143+00:00",
   "metrics": {
-    "repository_bytes": 14699520,
-    "cache_bytes": 4041032176,
-    "artifact_bytes": 47906656,
-    "artifact_count": 416,
-    "release_count": 63,
-    "release_asset_bytes": 5850806
+    "repository_bytes": 14837760,
+    "cache_bytes": 3842331236,
+    "artifact_bytes": 48377591,
+    "artifact_count": 439,
+    "release_count": 81,
+    "release_asset_bytes": 7975264
   },
-  "alerts": [
-    "Archive backlog: 2 near-expiry artifacts remain"
-  ],
+  "alerts": [],
   "errors": [],
   "repaired": [],
   "archives": [
-    {
-      "id": 14884429526,
-      "tag": "evidence-archive-29768859"
-    },
-    {
-      "id": 14885492093,
-      "tag": "evidence-archive-29770984"
-    },
-    {
-      "id": 14885706015,
-      "tag": "evidence-archive-29771412"
-    },
-    {
-      "id": 14886640625,
-      "tag": "evidence-archive-29773281"
-    },
-    {
-      "id": 14885681935,
-      "tag": "evidence-archive-29771363"
-    },
-    {
-      "id": 14886715999,
-      "tag": "evidence-archive-29773431"
-    },
     {
       "id": 13971084018,
       "tag": "evidence-archive-27942168"
@@ -108,38 +82,6 @@
       "tag": "evidence-archive-28599688"
     },
     {
-      "id": 14979799031,
-      "tag": "evidence-archive-29959598"
-    },
-    {
-      "id": 15030768918,
-      "tag": "evidence-archive-30061537"
-    },
-    {
-      "id": 14933162584,
-      "tag": "evidence-archive-29866325"
-    },
-    {
-      "id": 14932184123,
-      "tag": "evidence-archive-29864368"
-    },
-    {
-      "id": 14931949227,
-      "tag": "evidence-archive-29863898"
-    },
-    {
-      "id": 14933154108,
-      "tag": "evidence-archive-29866308"
-    },
-    {
-      "id": 14933249331,
-      "tag": "evidence-archive-29866498"
-    },
-    {
-      "id": 14935140210,
-      "tag": "evidence-archive-29870280"
-    },
-    {
       "id": 14980090635,
       "tag": "evidence-archive-29960181"
     },
@@ -186,11 +128,83 @@
     {
       "id": 15032282683,
       "tag": "evidence-archive-30064565"
+    },
+    {
+      "id": 15076310976,
+      "tag": "evidence-archive-30152621"
+    },
+    {
+      "id": 15123333380,
+      "tag": "evidence-archive-30246666"
+    },
+    {
+      "id": 15076015730,
+      "tag": "evidence-archive-30152031"
+    },
+    {
+      "id": 15076245112,
+      "tag": "evidence-archive-30152490"
+    },
+    {
+      "id": 15075223312,
+      "tag": "evidence-archive-30150446"
+    },
+    {
+      "id": 15074783786,
+      "tag": "evidence-archive-30149567"
+    },
+    {
+      "id": 15075762716,
+      "tag": "evidence-archive-30151525"
+    },
+    {
+      "id": 15075323334,
+      "tag": "evidence-archive-30150646"
+    },
+    {
+      "id": 15123316657,
+      "tag": "evidence-archive-30246633"
+    },
+    {
+      "id": 15123631633,
+      "tag": "evidence-archive-30247263"
+    },
+    {
+      "id": 15124650764,
+      "tag": "evidence-archive-30249301"
+    },
+    {
+      "id": 15124537175,
+      "tag": "evidence-archive-30249074"
+    },
+    {
+      "id": 15124142666,
+      "tag": "evidence-archive-30248285"
+    },
+    {
+      "id": 15124876301,
+      "tag": "evidence-archive-30249752"
+    },
+    {
+      "id": 14369889908,
+      "tag": "evidence-archive-28739779"
+    },
+    {
+      "id": 14396566593,
+      "tag": "evidence-archive-28793133"
+    },
+    {
+      "id": 14472115087,
+      "tag": "evidence-archive-28944230"
+    },
+    {
+      "id": 14497356669,
+      "tag": "evidence-archive-28994713"
     }
   ],
   "billing_quota": "unknown: account billing permission required",
-  "archive_candidates": 22,
-  "archive_pending": 2,
+  "archive_candidates": 18,
+  "archive_pending": 0,
   "workflow_states": {
     ".github/workflows/adhoc.yml": "active",
     ".github/workflows/arena.yml": "active",
@@ -271,5 +285,5 @@
   },
   "large_files": [],
   "default_branch_commit_age_days": 0,
-  "status": "attention"
+  "status": "ok"
 }
