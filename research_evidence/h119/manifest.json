@@ -18,11 +18,11 @@
   "research_only": true,
   "schema": "QS.h119.autonomous_alpha.v1",
   "source_commits": {
-    "crypto": "65de34fe917b58164aad173b18d41b3c2bf26f3d",
-    "equity": "d3560845331715658bc0ee78c58cd25528249edd",
-    "patterns": "b9f93739e93872283e28529f968303d21edbd763"
+    "crypto": "12f74f14f2f684bd3e0338ce282628df4c6032bd",
+    "equity": "a8bf30aaca1870c75d22b71f498738cb77e32c2c",
+    "patterns": "d075f3f05a0743a0714f3e16465bc2a4f2405c8f"
   },
   "source_count": 3,
-  "updated_utc": "2026-11-26T10:01:39.400874+00:00",
+  "updated_utc": "2026-11-26T22:34:15.022162+00:00",
   "writes_lab_registry": false
 }
