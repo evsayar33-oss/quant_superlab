@@ -6,7 +6,7 @@ from unittest.mock import patch
 import numpy as np
 import pandas as pd
 
-from lab import candidates as CD, strict_oos, validation
+from lab import candidates as CD, robustness as rb, strict_oos, validation
 from lab.engine import Costs
 from lab.panel import Panel
 
@@ -246,6 +246,18 @@ class StrictWalkForwardTests(unittest.TestCase):
         self.assertEqual(shuffle["method"],"TRADE_ORDER_PERMUTATION_DRAWDOWN_ONLY")
         self.assertTrue(shuffle["terminal_wealth_order_invariant"])
         self.assertAlmostEqual(shuffle["final_p05"],shuffle["final_median"],places=3)
+
+    def test_regime_block_path_stress_is_reproducible_and_path_dependent(self):
+        index = pd.date_range("2020-01-01", periods=180, freq="D")
+        returns = pd.Series(np.r_[np.full(60, .004), np.full(60, -.006),
+                                  np.full(60, .005)], index=index)
+        turnover = pd.Series(.5, index=index)
+        a = rb.regime_block_path_stress(returns, turnover, n=120, mean_block=8, seed=9)
+        b = rb.regime_block_path_stress(returns, turnover, n=120, mean_block=8, seed=9)
+        self.assertEqual(a, b)
+        self.assertEqual(a["method"], "STATIONARY_CIRCULAR_BLOCK_WITH_COST_AND_LATENCY_STRESS")
+        self.assertLessEqual(a["maxdd_p05"], 0)
+        self.assertTrue(a["diagnostic_only"])
 
     def test_rule_needs_genuine_fold_trades_and_robustness(self):
         base = {
