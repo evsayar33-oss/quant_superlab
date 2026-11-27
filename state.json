@@ -2,7 +2,7 @@
   "alpha_accepted": false,
   "ends_ms": 1797257406425,
   "finalized": false,
-  "last_tick_ms": 1795767318180,
+  "last_tick_ms": 1795805617594,
   "outages": [],
   "positions": {},
   "rejected": [],
@@ -833,6 +833,25 @@
         }
       },
       "ts": 1795767318180
+    },
+    {
+      "closed_trades": 4,
+      "open_positions": 0,
+      "quotes": {
+        "gate": {
+          "ask": 59905.6,
+          "bar_hash": "40d76fe45eb91d9a4b3b4b44aa3fe0a1b4832aeb1280e8e399d7153997276431",
+          "bid": 59905.5,
+          "quote_ms": 1795805617594
+        },
+        "okx": {
+          "ask": 59882.9,
+          "bar_hash": "e922df0abe0082912f46fd0a4999f83844c2b2682fb7e467d3d7b9df752d3781",
+          "bid": 59882.8,
+          "quote_ms": 1795805617967
+        }
+      },
+      "ts": 1795805617594
     }
   ],
   "trades": [
