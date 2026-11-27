@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-27T02:25:15.860302+00:00",
+  "asof_utc": "2026-11-27T13:09:14.678907+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -54,12 +54,12 @@
     "forward_results_status": "PUBLISHED_SOURCE_ONLY_NOT_SUPERLAB_APPROVED",
     "green_workflow_is_not_forward_result": true,
     "last_attempt": {
-      "attempt_id": "2026-11-26T04:10:59.560950+00:00|H083",
-      "attempted_at_utc": "2026-11-26T04:10:59.560950+00:00",
+      "attempt_id": "2026-11-27T04:16:34.798218+00:00|H083",
+      "attempted_at_utc": "2026-11-27T04:16:34.798218+00:00",
       "counts_as_forward_month": false,
-      "reason": "AFTER_NYSE_CLOSE",
-      "session": "2026-11-25",
-      "state": "COMPLETED_RESEARCH"
+      "reason": "NYSE_CLOSED",
+      "session": "2026-11-26",
+      "state": "SKIPPED"
     },
     "last_verified_forward_report": {
       "approved_paper_rules": [],
@@ -81,7 +81,7 @@
       "monthly_low_beta",
       "monthly_vol_squeeze"
     ],
-    "skipped_session_streak_since_h122_start": 0
+    "skipped_session_streak_since_h122_start": 1
   },
   "known_limitations": [
     "Green H083 Actions run may safely skip on after-close NYSE time guard",
@@ -97,12 +97,12 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "447240df248db6077cb0cc0028ae9aa7b9ad1478",
+  "source_commit_sha": "f8a705acfabcb9c82efae21a8215dc8a527eca05",
   "source_hashes": {
     "economic_intelligence_status.json": "2647f32f8c08964af765bddd280a60e2e906fd38f86dfe812eaad6e7801f1c98",
-    "event_watch_status.json": "5fb1b89b54a1008c68cc3b3de59e7413421113cfe66614eaba36da0099202922",
+    "event_watch_status.json": "d6b7bce00e95aa3d61d7805625729da442b372164ab95e69b10c2177575a4a52",
     "h083_forward_status.json": "7ea5977ab1343e4cbf2637cd311e6b4212b267c24ec2930e4a5700feb80c310a",
-    "h083_last_attempt.json": "3e5493314a9aac12f9893b8b6530293411b3e540a6503968f674c1915f82e3b1"
+    "h083_last_attempt.json": "88d489fa84d8e71959655dad1769f863da54a8540fdd2a14f04653ee1374863f"
   },
   "source_repo": "evsayar33-oss/federal-incentive-radar",
   "two_strategy_families_never_combined": true,
@@ -117,10 +117,10 @@
     },
     "h083_forward.yml": {
       "conclusion": "success",
-      "created_at": "2026-11-26T04:10:15Z",
+      "created_at": "2026-11-27T04:15:57Z",
       "event": "schedule",
       "head_sha": "7b1c1bb16dea1881578114992cf294c77c0ecc5e",
-      "id": 45753490570,
+      "id": 45938929944,
       "status": "completed"
     }
   }
