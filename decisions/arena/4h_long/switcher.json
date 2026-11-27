@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-26T13:56:55+00:00",
- "data_end": "2026-11-26 08:00:00",
+ "updated_at": "2026-11-27T00:38:31+00:00",
+ "data_end": "2026-11-26 20:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -108,9 +108,9 @@
   "since": "2026-10-20",
   "days": 36,
   "ret": -0.0101,
-  "sharpe": -5.874,
-  "ew_ret": -0.0196,
-  "ew_sharpe": -9.257,
+  "sharpe": -5.834,
+  "ew_ret": -0.0197,
+  "ew_sharpe": -9.249,
   "max_dd": -0.0122
  },
  "regimes": {
@@ -137,9 +137,9 @@
    }
   },
   "SOL/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-23 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-26 20:00:00",
    "share": {
     "range": 0.697,
     "trend_up": 0.082,
@@ -148,9 +148,9 @@
    }
   },
   "BNB/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-21 08:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-26 20:00:00",
    "share": {
     "range": 0.713,
     "trend_up": 0.076,
@@ -170,9 +170,9 @@
    }
   },
   "ADA/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-23 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-26 20:00:00",
    "share": {
     "range": 0.675,
     "trend_up": 0.064,
@@ -339,10 +339,10 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 16:00:00",
    "share": {
-    "range": 0.685,
+    "range": 0.684,
     "trend_up": 0.047,
     "trend_down": 0.071,
-    "volatile": 0.197
+    "volatile": 0.198
    }
   },
   "SAND/USDT": {
@@ -379,11 +379,11 @@
    }
   },
   "CRV/USDT": {
-   "now": "volatile",
-   "now_tr": "Volatil",
-   "since": "2026-11-21 20:00:00",
+   "now": "range",
+   "now_tr": "Yatay",
+   "since": "2026-11-26 20:00:00",
    "share": {
-    "range": 0.733,
+    "range": 0.732,
     "trend_up": 0.046,
     "trend_down": 0.071,
     "volatile": 0.151
@@ -394,7 +394,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 16:00:00",
    "share": {
-    "range": 0.727,
+    "range": 0.726,
     "trend_up": 0.037,
     "trend_down": 0.077,
     "volatile": 0.159
@@ -460,7 +460,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-26 08:00:00",
    "share": {
-    "range": 0.692,
+    "range": 0.693,
     "trend_up": 0.04,
     "trend_down": 0.089,
     "volatile": 0.179
@@ -474,7 +474,7 @@
     "range": 0.702,
     "trend_up": 0.049,
     "trend_down": 0.073,
-    "volatile": 0.175
+    "volatile": 0.176
    }
   },
   "PYTH/USDT": {
