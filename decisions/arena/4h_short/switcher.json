@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-27T00:39:00+00:00",
- "data_end": "2026-11-26 20:00:00",
+ "updated_at": "2026-11-27T13:52:26+00:00",
+ "data_end": "2026-11-27 08:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -67,24 +67,6 @@
    "regime": "range"
   },
   {
-   "id": "A0033",
-   "coin": "ADA/USDT",
-   "rule": "rsi_divergence",
-   "params": {
-    "n": 14,
-    "k": 3,
-    "exit_level": 70
-   },
-   "exit_id": 20,
-   "filter": "htf_week_sma10",
-   "confirm": null,
-   "side": "short",
-   "timeframe": "4h",
-   "weight": 0.2,
-   "position": "flat",
-   "regime": "range"
-  },
-  {
    "id": "A0059",
    "coin": "OP/USDT",
    "rule": "trix_cross",
@@ -100,15 +82,32 @@
    "weight": 0.2,
    "position": "flat",
    "regime": "range"
+  },
+  {
+   "id": "A0096",
+   "coin": "SAND/USDT",
+   "rule": "trix_cross",
+   "params": {
+    "n": 21,
+    "signal": 7
+   },
+   "exit_id": 18,
+   "filter": "low_vol",
+   "confirm": null,
+   "side": "short",
+   "timeframe": "4h",
+   "weight": 0.2,
+   "position": "flat",
+   "regime": "range"
   }
  ],
  "forward": {
   "since": "2026-10-20",
-  "days": 36,
+  "days": 37,
   "ret": 0.0654,
-  "sharpe": 4.097,
-  "ew_ret": 0.0225,
-  "ew_sharpe": 1.416,
+  "sharpe": 4.069,
+  "ew_ret": 0.0217,
+  "ew_sharpe": 1.359,
   "max_dd": -0.0508
  },
  "regimes": {
@@ -260,7 +259,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 20:00:00",
    "share": {
-    "range": 0.679,
+    "range": 0.678,
     "trend_up": 0.057,
     "trend_down": 0.072,
     "volatile": 0.193
@@ -381,7 +380,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-26 20:00:00",
    "share": {
-    "range": 0.732,
+    "range": 0.733,
     "trend_up": 0.046,
     "trend_down": 0.071,
     "volatile": 0.151
@@ -395,7 +394,7 @@
     "range": 0.726,
     "trend_up": 0.037,
     "trend_down": 0.077,
-    "volatile": 0.159
+    "volatile": 0.16
    }
   },
   "THETA/USDT": {
