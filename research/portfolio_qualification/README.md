@@ -89,3 +89,16 @@ asks for an overprivileged PAT, or publishes private strategy state into this
 potentially public repository's Actions artifacts. Interactive authorized
 GitHub connector review can evaluate that repo separately. An UNKNOWN in this
 portfolio report must never be treated as a positive or a negative proof.
+
+### EAR V18 adaptive event verification
+
+`ear_adaptive.validate` independently recomputes event labels and mark-based
+returns from the producer's timestamped records, rejects non-forward or
+duplicate samples, tests full-population detection and matched day blocks,
+and uses the actual Quant Superlab DSR implementation when sufficient dated
+observations exist. Discovery corrects for the actual trial count. Its receipt
+is a research diagnostic, never the official lab ACCEPT gate. A sparse event
+table is not an aligned portfolio return matrix: no PBO or executable PnL
+is fabricated. The producer can consume the independent verdict for a separate
+frozen mark-only shadow experiment. Normal PAPER and live approval remain
+governed by `lab/validation.py` and the existing central registry.
