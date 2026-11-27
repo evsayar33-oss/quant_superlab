@@ -26,6 +26,8 @@ Her yeni fikir aynı sırayla geçer. Atlanan adım = karar yok. Ayrıntı: [`PI
 8. **İleri kayıt** — arena / paper / live tracking; bozulan strateji DEGRADED olur.
 9. **Bot** — sadece ACCEPT. `lab/client.py` → `approved()`.
 
+OOS risk raporu ayrıca ardışık piyasa kümelerini koruyan stationary-block yol stresi üretir. Bu stres; ek maliyet, kayma/sağlayıcı gecikmesi ve kötü düşüş dağılımını ölçer. Eski işlem-sırası permütasyonu yalnız sıralama kaynaklı düşüş tanısı olarak tutulur; terminal getiri belirsizliği kanıtı sayılmaz ve yeni stres sonucu tek başına ACCEPT vermez.
+
 ## Hızlı başlangıç
 
 ```bash
