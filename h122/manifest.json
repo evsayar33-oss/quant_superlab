@@ -19,12 +19,12 @@
     "state": "COMPLETED_RESEARCH"
   },
   "h083_skipped_session_streak": 0,
-  "last_source_commit": "f4fa00e12f22bc6a0edfa19daec7c5e90ee55e1d",
+  "last_source_commit": "447240df248db6077cb0cc0028ae9aa7b9ad1478",
   "schema": "QS.h122.federal_evidence.v1",
-  "seen_utc": "2026-11-26T13:12:29.686119+00:00",
+  "seen_utc": "2026-11-27T02:25:15.860302+00:00",
   "watch": {
     "data_coverage_ok": true,
-    "data_coverage_pct": 0.8571,
+    "data_coverage_pct": 0.8639,
     "feature_asof": "2026-11-25"
   }
 }

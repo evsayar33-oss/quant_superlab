@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-26T13:12:29.686119+00:00",
+  "asof_utc": "2026-11-27T02:25:15.860302+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -14,11 +14,11 @@
       "monthly_vol_squeeze": 5
     },
     "data_coverage_ok": true,
-    "data_coverage_pct": 0.8571,
+    "data_coverage_pct": 0.8639,
     "eligible_tickers": 147,
     "feature_asof": "2026-11-25",
     "liquid_tickers": 109,
-    "priced_tickers": 126,
+    "priced_tickers": 127,
     "source_decision": "WATCH_ONLY_NO_TRADE",
     "source_failure_reason": null,
     "source_first_seen_forward_only": 22,
@@ -97,10 +97,10 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "f4fa00e12f22bc6a0edfa19daec7c5e90ee55e1d",
+  "source_commit_sha": "447240df248db6077cb0cc0028ae9aa7b9ad1478",
   "source_hashes": {
-    "economic_intelligence_status.json": "085a003466748674e373ca8efd41b50e8d05cf2a3895d94a66e519188b94bc2c",
-    "event_watch_status.json": "dd4595299dbaa0cc179fa3a286ea1fca453eaebca83a9dc5cd117f7f7e09d0be",
+    "economic_intelligence_status.json": "2647f32f8c08964af765bddd280a60e2e906fd38f86dfe812eaad6e7801f1c98",
+    "event_watch_status.json": "5fb1b89b54a1008c68cc3b3de59e7413421113cfe66614eaba36da0099202922",
     "h083_forward_status.json": "7ea5977ab1343e4cbf2637cd311e6b4212b267c24ec2930e4a5700feb80c310a",
     "h083_last_attempt.json": "3e5493314a9aac12f9893b8b6530293411b3e540a6503968f674c1915f82e3b1"
   },
