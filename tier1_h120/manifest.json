@@ -1,11 +1,11 @@
 {
-  "calls_seen": 172,
-  "last_audit_utc": "2026-11-27T02:16:48.359037+00:00",
-  "last_poll_utc": "2026-11-27T10:09:50.066923+00:00",
+  "calls_seen": 180,
+  "last_audit_utc": "2026-11-27T20:00:36.358928+00:00",
+  "last_poll_utc": "2026-11-27T22:22:25.704521+00:00",
   "no_production_changes": true,
   "schema": "QS.h120.tier1_intelligence.v1",
   "source_commits": {
-    "audit/30d-evidence": "d144ec86457a7d23b9216d17b559f156959c68f8",
+    "audit/30d-evidence": "5ac4a467d56b6d71db910b89b862fc088c703895",
     "audit/study-decisions": "f9eb3a1dac9f954e8614777f0dc047c7bd87a15d"
   }
 }
