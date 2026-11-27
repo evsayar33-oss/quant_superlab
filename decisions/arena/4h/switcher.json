@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-27T00:40:15+00:00",
- "data_end": "2026-11-26 20:00:00",
+ "updated_at": "2026-11-27T13:52:34+00:00",
+ "data_end": "2026-11-27 08:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -33,14 +33,15 @@
    "regime": "range"
   },
   {
-   "id": "A0148",
-   "coin": "ARB/USDT",
-   "rule": "smc_bos",
+   "id": "A0144",
+   "coin": "SAND/USDT",
+   "rule": "bollinger_breakout",
    "params": {
-    "k": 8
+    "n": 50,
+    "k": 2.5
    },
-   "exit_id": 18,
-   "filter": "trend_sma200",
+   "exit_id": 37,
+   "filter": "adx20",
    "confirm": null,
    "side": "both",
    "timeframe": "4h",
@@ -122,7 +123,7 @@
   "ret": -0.0017,
   "sharpe": 0.044,
   "ew_ret": 0.0028,
-  "ew_sharpe": 0.296,
+  "ew_sharpe": 0.293,
   "max_dd": -0.1223
  },
  "regimes": {
@@ -274,7 +275,7 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 20:00:00",
    "share": {
-    "range": 0.679,
+    "range": 0.678,
     "trend_up": 0.057,
     "trend_down": 0.072,
     "volatile": 0.193
@@ -395,7 +396,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-26 20:00:00",
    "share": {
-    "range": 0.732,
+    "range": 0.733,
     "trend_up": 0.046,
     "trend_down": 0.071,
     "volatile": 0.151
@@ -409,7 +410,7 @@
     "range": 0.726,
     "trend_up": 0.037,
     "trend_down": 0.077,
-    "volatile": 0.159
+    "volatile": 0.16
    }
   },
   "THETA/USDT": {
