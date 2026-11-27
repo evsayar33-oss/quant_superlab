@@ -46,6 +46,59 @@ def mc_trade_shuffle(tlog: pd.DataFrame, n: int = 1000, seed: int = 1) -> dict:
             "return_uncertainty_method": "USE_OOS_CIRCULAR_BLOCK_BOOTSTRAP_INSTEAD"}
 
 
+def regime_block_path_stress(r: pd.Series, turnover: pd.Series | None = None, *,
+                             n: int = 1000, mean_block: int = 10,
+                             extra_cost_bps=(0.0, 5.0, 15.0), skip_probability: float = .02,
+                             seed: int = 17) -> dict:
+    """Path-dependent OOS stress preserving local return/volatility clusters.
+
+    Whole-path permutations destroy serial dependence and cannot change terminal
+    wealth.  This stationary circular block bootstrap instead resamples contiguous
+    observations, applies an independently sampled adverse cost envelope and can
+    miss a small share of positive bars (scheduler/provider latency stress).  It is
+    diagnostic only and never supplies an ACCEPT verdict by itself.
+    """
+    x = pd.Series(r, dtype=float).dropna()
+    if len(x) < max(40, mean_block * 3) or n < 1 or mean_block < 2:
+        return {}
+    to = (pd.Series(0.0, index=x.index) if turnover is None else
+          pd.Series(turnover, dtype=float).reindex(x.index).fillna(0.0).clip(lower=0.0))
+    values, turns = x.to_numpy(), to.to_numpy()
+    rng = np.random.default_rng(seed)
+    T, restart = len(values), 1.0 / mean_block
+    dds, terminals, ruin = [], [], []
+    for _ in range(n):
+        idx = np.empty(T, dtype=int)
+        idx[0] = int(rng.integers(T))
+        for j in range(1, T):
+            idx[j] = (int(rng.integers(T)) if rng.random() < restart
+                      else (idx[j - 1] + 1) % T)
+        path = values[idx].copy()
+        cost = float(rng.choice(extra_cost_bps)) / 10000.0
+        path -= turns[idx] * cost
+        missed = (rng.random(T) < skip_probability) & (path > 0)
+        path[missed] = 0.0
+        eq = np.cumprod(1 + np.maximum(path, -.999999))
+        dd = float((eq / np.maximum.accumulate(np.r_[1.0, eq])[1:] - 1).min())
+        terminal = float(eq[-1] - 1)
+        dds.append(dd)
+        terminals.append(terminal)
+        ruin.append(dd <= -.50)
+    return {
+        "method": "STATIONARY_CIRCULAR_BLOCK_WITH_COST_AND_LATENCY_STRESS",
+        "simulated_paths": n,
+        "mean_block": mean_block,
+        "extra_cost_bps": list(extra_cost_bps),
+        "positive_bar_skip_probability": skip_probability,
+        "terminal_p05": round(float(np.percentile(terminals, 5)), 4),
+        "terminal_median": round(float(np.median(terminals)), 4),
+        "maxdd_p05": round(float(np.percentile(dds, 5)), 4),
+        "probability_drawdown_below_50pct": round(float(np.mean(ruin)), 4),
+        "diagnostic_only": True,
+        "not_broker_fills_or_future_forecast": True,
+    }
+
+
 def random_entry_test(cand, p: Panel, v, costs: Costs, n: int = 25, seed: int = 2) -> dict:
     """Random entries with the SAME exits, sizing and (calibrated) number of trades.
     Compares return per unit of market exposure, so a strategy is not rewarded for simply

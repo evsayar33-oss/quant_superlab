@@ -311,6 +311,7 @@ def validate(spec: dict, p: Panel, costs: Costs, train_years: float = 3.0, test_
         if isinstance(cand, CD.RuleCandidate):
             rob["random_entry"] = RB.random_entry_test(cand, p, final_v, costs)
             rob["mc_trade_shuffle"] = RB.mc_trade_shuffle(trades)
+            rob["regime_block_path_stress"] = RB.regime_block_path_stress(oos, oos_to)
             sig = cand._signals(p, final_v)
             es = RB.event_study(p, sig.entry_long, 1)
             eg = RB.exit_grid_study(p, sig.entry_long, 1, cost=2 * costs.per_turnover)
