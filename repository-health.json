@@ -1,54 +1,18 @@
 {
   "repository": "evsayar33-oss/quant_superlab",
-  "observed_at": "2026-11-26T17:20:01.751143+00:00",
+  "observed_at": "2026-11-27T16:59:06.372259+00:00",
   "metrics": {
-    "repository_bytes": 14837760,
-    "cache_bytes": 3842331236,
-    "artifact_bytes": 48377591,
-    "artifact_count": 439,
-    "release_count": 81,
-    "release_asset_bytes": 7975264
+    "repository_bytes": 15009792,
+    "cache_bytes": 3753075029,
+    "artifact_bytes": 48829901,
+    "artifact_count": 453,
+    "release_count": 97,
+    "release_asset_bytes": 10089955
   },
   "alerts": [],
   "errors": [],
   "repaired": [],
   "archives": [
-    {
-      "id": 13971084018,
-      "tag": "evidence-archive-27942168"
-    },
-    {
-      "id": 13972705293,
-      "tag": "evidence-archive-27945410"
-    },
-    {
-      "id": 13971924973,
-      "tag": "evidence-archive-27943849"
-    },
-    {
-      "id": 13973076651,
-      "tag": "evidence-archive-27946153"
-    },
-    {
-      "id": 13972239322,
-      "tag": "evidence-archive-27944478"
-    },
-    {
-      "id": 13973281973,
-      "tag": "evidence-archive-27946563"
-    },
-    {
-      "id": 13972633343,
-      "tag": "evidence-archive-27945266"
-    },
-    {
-      "id": 13972254944,
-      "tag": "evidence-archive-27944509"
-    },
-    {
-      "id": 14006285488,
-      "tag": "evidence-archive-28012570"
-    },
     {
       "id": 14072607218,
       "tag": "evidence-archive-28145214"
@@ -80,62 +44,6 @@
     {
       "id": 14299844305,
       "tag": "evidence-archive-28599688"
-    },
-    {
-      "id": 14980090635,
-      "tag": "evidence-archive-29960181"
-    },
-    {
-      "id": 14980375373,
-      "tag": "evidence-archive-29960750"
-    },
-    {
-      "id": 14980275282,
-      "tag": "evidence-archive-29960550"
-    },
-    {
-      "id": 14979479461,
-      "tag": "evidence-archive-29958958"
-    },
-    {
-      "id": 14979379533,
-      "tag": "evidence-archive-29958759"
-    },
-    {
-      "id": 14980905581,
-      "tag": "evidence-archive-29961811"
-    },
-    {
-      "id": 15031177798,
-      "tag": "evidence-archive-30062355"
-    },
-    {
-      "id": 15032530609,
-      "tag": "evidence-archive-30065061"
-    },
-    {
-      "id": 15031966663,
-      "tag": "evidence-archive-30063933"
-    },
-    {
-      "id": 15032442165,
-      "tag": "evidence-archive-30064884"
-    },
-    {
-      "id": 15032511988,
-      "tag": "evidence-archive-30065023"
-    },
-    {
-      "id": 15032282683,
-      "tag": "evidence-archive-30064565"
-    },
-    {
-      "id": 15076310976,
-      "tag": "evidence-archive-30152621"
-    },
-    {
-      "id": 15123333380,
-      "tag": "evidence-archive-30246666"
     },
     {
       "id": 15076015730,
@@ -200,10 +108,74 @@
     {
       "id": 14497356669,
       "tag": "evidence-archive-28994713"
+    },
+    {
+      "id": 15162829833,
+      "tag": "evidence-archive-30325659"
+    },
+    {
+      "id": 15203208458,
+      "tag": "evidence-archive-30406416"
+    },
+    {
+      "id": 15163067555,
+      "tag": "evidence-archive-30326135"
+    },
+    {
+      "id": 15163217025,
+      "tag": "evidence-archive-30326434"
+    },
+    {
+      "id": 15163242045,
+      "tag": "evidence-archive-30326484"
+    },
+    {
+      "id": 15163405935,
+      "tag": "evidence-archive-30326811"
+    },
+    {
+      "id": 15163505782,
+      "tag": "evidence-archive-30327011"
+    },
+    {
+      "id": 15163745368,
+      "tag": "evidence-archive-30327490"
+    },
+    {
+      "id": 15203847005,
+      "tag": "evidence-archive-30407694"
+    },
+    {
+      "id": 15203183088,
+      "tag": "evidence-archive-30406366"
+    },
+    {
+      "id": 15203697553,
+      "tag": "evidence-archive-30407395"
+    },
+    {
+      "id": 15203413767,
+      "tag": "evidence-archive-30406827"
+    },
+    {
+      "id": 15202789097,
+      "tag": "evidence-archive-30405578"
+    },
+    {
+      "id": 15202993944,
+      "tag": "evidence-archive-30405987"
+    },
+    {
+      "id": 14573382986,
+      "tag": "evidence-archive-29146765"
+    },
+    {
+      "id": 14598419488,
+      "tag": "evidence-archive-29196838"
     }
   ],
   "billing_quota": "unknown: account billing permission required",
-  "archive_candidates": 18,
+  "archive_candidates": 16,
   "archive_pending": 0,
   "workflow_states": {
     ".github/workflows/adhoc.yml": "active",
