@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T01:58:08+00:00",
+  "updated": "2026-11-28T01:41:17+00:00",
   "hypotheses": {
     "H001": {
       "verdict": "WATCH",
@@ -8314,13 +8314,13 @@
       "accepted_at": "2026-10-17T17:53:48+00:00",
       "data_end": "2026-10-17 12:00:00",
       "live": {
-        "live_bars": 241,
+        "live_bars": 247,
         "live_return": -0.1066,
-        "live_sharpe": -3.069,
+        "live_sharpe": -3.032,
         "live_max_dd": -0.1362,
         "degraded": false,
         "why": "ok",
-        "checked_at": "2026-11-27T01:58:06+00:00"
+        "checked_at": "2026-11-28T01:41:15+00:00"
       }
     },
     "H053": {
@@ -8572,13 +8572,13 @@
       "accepted_at": "2026-10-17T18:34:11+00:00",
       "data_end": "2026-10-17 12:00:00",
       "live": {
-        "live_bars": 241,
+        "live_bars": 247,
         "live_return": -0.1096,
-        "live_sharpe": -3.068,
+        "live_sharpe": -3.031,
         "live_max_dd": -0.1404,
         "degraded": false,
         "why": "ok",
-        "checked_at": "2026-11-27T01:58:06+00:00"
+        "checked_at": "2026-11-28T01:41:15+00:00"
       }
     },
     "H063": {
