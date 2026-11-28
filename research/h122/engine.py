@@ -21,6 +21,8 @@ from research import bridge_guard as b
 SCHEMA = "QS.h122.federal_evidence.v1"
 SOURCE = "evsayar33-oss/federal-incentive-radar"
 BRANCH = "data"
+EXPANSION_BRANCH = "research/h083-expansion"
+EXPANSION_PATH = "h083_expansion_status.json"
 H083_RULES = {"monthly_low_beta", "monthly_vol_squeeze"}
 EVENT_HYPOTHESES = (
     "FEDERAL_DIRECT_20D", "POLICY_REGULATORY_20D",
@@ -61,6 +63,17 @@ def collect(fetch=b.request):
             raise
         payloads[path] = json.loads(content)
         hashes[path] = check
+    # Expansion is a different mutable source branch. An absent or broken
+    # optional research lane must never interrupt the core H083 observer.
+    try:
+        expansion_sha = b.get_sha(SOURCE, EXPANSION_BRANCH, fetch)
+        content, check = b.pinned(SOURCE, expansion_sha, EXPANSION_PATH, fetch)
+        payloads["expansion_observation"] = {
+            "source_sha": expansion_sha, "source_hash": check, "status": json.loads(content)}
+    except urllib.error.HTTPError as err:
+        payloads["expansion_observation"] = {"unavailable": "NOT_YET_PUBLISHED" if err.code == 404 else "SOURCE_UNAVAILABLE"}
+    except (urllib.error.URLError, TimeoutError, ValueError, TypeError, KeyError):
+        payloads["expansion_observation"] = {"unavailable": "SOURCE_UNAVAILABLE"}
     workflows = {}
     for wf in WORKFLOWS:
         url = (f"https://api.github.com/repos/{SOURCE}/actions/workflows/"
@@ -193,6 +206,62 @@ def notice(kind, identity, message, now):
     }
 
 
+def expansion_evidence(observation, core_watch, now):
+    """Never combine denominators or promote optional expansion evidence."""
+    result = {"research_only": True, "paper_approved": False,
+              "counts_toward_core_coverage": False, "source_branch": EXPANSION_BRANCH}
+    if not observation or "unavailable" in observation:
+        return {**result, "status": (observation or {}).get("unavailable", "NOT_YET_PUBLISHED")}
+    try:
+        r = observation["status"]
+        if (r.get("schema") != "H083_EXPANSION_V1"
+                or r.get("scope") != "ISOLATED_PROSPECTIVE_WATCH_ONLY"
+                or r.get("watch_only") is not True or r.get("validated_alpha") is not False
+                or r.get("paper_approved") is not False
+                or r.get("core_coverage_not_modified") is not True
+                or r.get("decision") != "WATCH_ONLY_NO_TRADE"):
+            raise ValueError("UNSAFE_EXPANSION")
+        if b.utc(r["generated_at_utc"]) > now:
+            raise ValueError("EXPANSION_FROM_FUTURE")
+        if not b.SHA.fullmatch(r["source_commit_sha"]):
+            raise ValueError("UNPINNED_EXPANSION_CORE")
+        session = datetime.fromisoformat(r["feature_asof"]).date()
+        if session > now.date():
+            raise ValueError("FUTURE_EXPANSION_SESSION")
+        keys = ("core_eligible_tickers", "eligible_tickers", "priced_tickers",
+                "liquid_tickers", "candidates", "discovered_tickers", "pending_capacity",
+                "pending_prior_history", "total_screened_tickers", "total_limit", "next_total_limit")
+        counts = {k:r[k] for k in keys}
+        if any(type(n) is not int or n < 0 for n in counts.values()):
+            raise ValueError("EXPANSION_COUNTS")
+        n, priced, liquid = r["eligible_tickers"], r["priced_tickers"], r["liquid_tickers"]
+        pct = finite_number(r["data_coverage_pct"], 0, 1)
+        if (not 0 <= liquid <= priced <= n <= r["discovered_tickers"]
+                or r["total_screened_tickers"] != r["core_eligible_tickers"] + n
+                or r["total_screened_tickers"] > r["total_limit"]
+                or r["total_limit"] not in range(200, 501, 50)
+                or r["next_total_limit"] not in range(r["total_limit"], min(r["total_limit"] + 50,500)+1, 50)
+                or abs(pct - (round(priced/n,4) if n else 0.)) > .00005):
+            raise ValueError("EXPANSION_COUNTS_OR_RATIO")
+        if r["ok"] is True:
+            if not n or pct < .8 or r["data_coverage_ok"] is not True:
+                raise ValueError("UNSAFE_EXPANSION_HEALTH")
+        elif r["ok"] is not False or r["data_coverage_ok"] is not False or r["candidates"] != 0 or not r.get("reason"):
+            raise ValueError("UNSAFE_EXPANSION_OUTAGE")
+        current = (r["feature_asof"] == core_watch["feature_asof"]
+                   and r["core_eligible_tickers"] == core_watch["eligible_tickers"])
+        return {**result, **counts, "feature_asof": r["feature_asof"],
+                "generated_at_utc": r["generated_at_utc"],
+                "status": ("STALE_OR_CORE_CHANGED" if not current else
+                           "WATCH_ONLY_COVERAGE_OK" if r["ok"] else "BLOCKED"),
+                "source_report_ok": r["ok"], "data_coverage_pct": pct,
+                "data_coverage_ok": current and r["ok"], "source_failure_reason": r.get("reason"),
+                "source_commit_sha": observation["source_sha"], "source_hash": observation["source_hash"],
+                "core_source_commit_sha_used": r["source_commit_sha"]}
+    except (ValueError, KeyError, TypeError, AttributeError, OverflowError):
+        return {**result, "status": "INVALID_OR_UNAVAILABLE_EXPANSION_EVIDENCE"}
+
+
 def evaluate(sha, data, hashes, workflows, previous, now):
     attempt, watch, econ, forward = validate(sha, data, now)
     last_attempt = {
@@ -306,6 +375,7 @@ def evaluate(sha, data, hashes, workflows, previous, now):
             "source_first_seen_forward_only": watch["source_first_seen_forward_only"],
             "source_decision": "WATCH_ONLY_NO_TRADE",
         },
+        "h083_expansion": expansion_evidence(data.get("expansion_observation"), watch, now),
         "economic_relationships": {
             "recorded": econ["total_relationships"],
             "pending_primary_verification": econ["pending_primary_verification"],

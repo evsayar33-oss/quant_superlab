@@ -47,6 +47,10 @@ def provider(info):
     def get(url):
         seen.append(url)
         if "/git/ref/heads/" in url:
+            if url.endswith("/" + h.EXPANSION_BRANCH):
+                if h.EXPANSION_PATH not in info:
+                    raise urllib.error.HTTPError(url,404,"Not Found",{},None)
+                return json.dumps({"object": {"sha": "d"*40}})
             return json.dumps({"object": {"sha": SHA}})
         if "/actions/workflows/" in url:
             return json.dumps({"workflow_runs": [
@@ -275,6 +279,61 @@ class TestFederalIndependent(unittest.TestCase):
         self.assertTrue(result["no_official_alpha_approval"])
         self.assertEqual(result["five_event_hypotheses"]["published_forward_20_session_net_scores"],
                          "NOT_AVAILABLE_AS_READABLE_SOURCE")
+
+
+
+
+class TestExpansionIsolation(unittest.TestCase):
+    def expansion(self):
+        return {"schema":"H083_EXPANSION_V1","scope":"ISOLATED_PROSPECTIVE_WATCH_ONLY",
+                "watch_only":True,"validated_alpha":False,"paper_approved":False,
+                "core_coverage_not_modified":True,"decision":"WATCH_ONLY_NO_TRADE",
+                "generated_at_utc":"2026-11-19T02:40:07+00:00","feature_asof":"2026-11-18",
+                "core_eligible_tickers":146,"eligible_tickers":54,"priced_tickers":49,
+                "liquid_tickers":40,"candidates":10,"discovered_tickers":600,
+                "pending_capacity":480,"pending_prior_history":66,
+                "total_screened_tickers":200,"total_limit":200,"next_total_limit":200,
+                "data_coverage_pct":round(49/54,4),"data_coverage_ok":True,"ok":True,
+                "source_commit_sha":SHA}
+
+    def test_expansion_success_does_not_hide_core_outage(self):
+        d = values()
+        d["event_watch_status.json"].update(ok=False, data_coverage_ok=False,
+            priced_tickers=106, liquid_tickers=99, data_coverage_pct=round(106/146,4),
+            candidates=0, by_rule={"monthly_low_beta":0,"monthly_vol_squeeze":0},
+            reason="INSUFFICIENT_PRICE_COVERAGE")
+        d[h.EXPANSION_PATH] = self.expansion()
+        get, seen = provider(d)
+        with tempfile.TemporaryDirectory() as state:
+            r = h.run(state,get,NOW)
+        self.assertEqual(r["h083_expansion"]["status"],"WATCH_ONLY_COVERAGE_OK")
+        self.assertFalse(r["event_watch"]["data_coverage_ok"])
+        self.assertFalse(r["h083_expansion"]["counts_toward_core_coverage"])
+        self.assertEqual(r["h083_expansion"]["source_commit_sha"],"d"*40)
+        self.assertTrue(any("/"+"d"*40+"/"+h.EXPANSION_PATH in u for u in seen))
+        self.assertEqual(r["event_watch"]["priced_tickers"],106)
+
+    def test_invalid_optional_expansion_never_interrupts_core(self):
+        d = values()
+        d[h.EXPANSION_PATH] = dict(self.expansion(), paper_approved=True)
+        get, _ = provider(d)
+        with tempfile.TemporaryDirectory() as state:
+            r = h.run(state,get,NOW)
+        self.assertTrue(r["event_watch"]["data_coverage_ok"])
+        self.assertEqual(r["h083_expansion"]["status"],"INVALID_OR_UNAVAILABLE_EXPANSION_EVIDENCE")
+
+    def test_stale_expansion_not_healthy_and_absent_is_optional(self):
+        d = values()
+        d[h.EXPANSION_PATH] = dict(self.expansion(), feature_asof="2026-11-17")
+        get,_ = provider(d)
+        with tempfile.TemporaryDirectory() as state:
+            r = h.run(state,get,NOW)
+        self.assertEqual(r["h083_expansion"]["status"],"STALE_OR_CORE_CHANGED")
+        self.assertFalse(r["h083_expansion"]["data_coverage_ok"])
+        get,_ = provider(values())
+        with tempfile.TemporaryDirectory() as state:
+            r = h.run(state,get,NOW)
+        self.assertEqual(r["h083_expansion"]["status"],"NOT_YET_PUBLISHED")
 
 
 if __name__=="__main__":
