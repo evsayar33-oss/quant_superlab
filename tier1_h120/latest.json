@@ -1,6 +1,6 @@
 {
-  "asof_utc": "2026-11-27T22:22:25.704521+00:00",
-  "audit_age_hours": 2.36,
+  "asof_utc": "2026-11-28T08:13:11.940553+00:00",
+  "audit_age_hours": 5.46,
   "descriptive_asset_diagnostics": [
     {
       "always_long_hit": 0.0,
@@ -67,7 +67,13 @@
     }
   ],
   "entry_allowed": 0,
-  "final_study_decisions": [],
+  "final_study_decisions": [
+    {
+      "decision": "NO_DEMONSTRATED_ADVANTAGE",
+      "sha256": "5d486a489bf8a2b074f070a17c29f5781d57937fd1f4280023aa93754d34b012",
+      "study": "tier1_v2_forward"
+    }
+  ],
   "grades": {
     "24": {
       "always_long_hit": 0.1667,
@@ -106,25 +112,33 @@
     "30-day observations lack 3-year OOS, independent PIT and brokerage NAV",
     "No automatic hypothesis/registry update, paper reset or live model changes"
   ],
-  "new_events": 0,
-  "observed_calls": 180,
-  "observed_snapshots": 510,
+  "new_events": 1,
+  "observed_calls": 183,
+  "observed_snapshots": 522,
   "official_gate": "NOT_RUN",
-  "pending_notifications": 0,
+  "pending_notifications": 1,
   "production_logic": "UNCHANGED",
   "replication_leads_not_accepts": 0,
   "research_only": true,
   "schema": "QS.h120.tier1_intelligence.v1",
   "source": "evsayar33-oss/tier1_quant_terminal",
   "source_commits": {
-    "audit/30d-evidence": "5ac4a467d56b6d71db910b89b862fc088c703895",
-    "audit/study-decisions": "f9eb3a1dac9f954e8614777f0dc047c7bd87a15d"
+    "audit/30d-evidence": "1f9b06e57356c46503b472c5d7e1043627bfc25d",
+    "audit/study-decisions": "1cedbf4c61baffc65987d34885c2c50472de8628"
   },
   "source_hashes": {
-    "ledger": "468c25561de95f37db8b1c0666428c4924f685835f3879700fd2b1b5c7887927",
-    "summary": "8c2d292a6bcf4616bf8e9ad2023b136878060a24bf8a628f884f97c23d26c43d"
+    "ledger": "d9c0200c3770069df6af5c13ccce6a9453db41e38d51d9ce1821c0bf8e6b3f14",
+    "summary": "f8b639e01c4457c79819aaafed7669e3bedba60f5183a9862669b41c719a5803"
   },
   "state_branch": "research/h120-tier1-evidence",
-  "tier1_audit_utc": "2026-11-27T20:00:36.358928+00:00",
-  "total_events": 0
+  "tier1_audit_utc": "2026-11-28T02:45:34.993731+00:00",
+  "tier1_v2_label_integrity": {
+    "correction_sha256": "179124dfd8a935f7107f8986fb272b7c524db99a3ae9d477d4a7ba48ea3c81d9",
+    "frozen_final_sha256": "5d486a489bf8a2b074f070a17c29f5781d57937fd1f4280023aa93754d34b012",
+    "nominal_futures_saturday_starts": 43,
+    "source_commit": "1cedbf4c61baffc65987d34885c2c50472de8628",
+    "status": "EVIDENCE_INTEGRITY_LIMITATION",
+    "verified_four_hour_edge": false
+  },
+  "total_events": 1
 }
