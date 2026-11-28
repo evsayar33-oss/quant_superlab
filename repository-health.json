@@ -1,42 +1,18 @@
 {
   "repository": "evsayar33-oss/quant_superlab",
-  "observed_at": "2026-11-27T16:59:06.372259+00:00",
+  "observed_at": "2026-11-28T15:50:13.204700+00:00",
   "metrics": {
-    "repository_bytes": 15009792,
-    "cache_bytes": 3753075029,
-    "artifact_bytes": 48829901,
-    "artifact_count": 453,
-    "release_count": 97,
-    "release_asset_bytes": 10089955
+    "repository_bytes": 15050752,
+    "cache_bytes": 3644381228,
+    "artifact_bytes": 49343731,
+    "artifact_count": 476,
+    "release_count": 113,
+    "release_asset_bytes": 12207336
   },
   "alerts": [],
   "errors": [],
   "repaired": [],
   "archives": [
-    {
-      "id": 14072607218,
-      "tag": "evidence-archive-28145214"
-    },
-    {
-      "id": 14094269562,
-      "tag": "evidence-archive-28188539"
-    },
-    {
-      "id": 14104736987,
-      "tag": "evidence-archive-28209473"
-    },
-    {
-      "id": 14105210807,
-      "tag": "evidence-archive-28210421"
-    },
-    {
-      "id": 14105220822,
-      "tag": "evidence-archive-28210441"
-    },
-    {
-      "id": 14104548702,
-      "tag": "evidence-archive-28209097"
-    },
     {
       "id": 14276389835,
       "tag": "evidence-archive-28552779"
@@ -44,54 +20,6 @@
     {
       "id": 14299844305,
       "tag": "evidence-archive-28599688"
-    },
-    {
-      "id": 15076015730,
-      "tag": "evidence-archive-30152031"
-    },
-    {
-      "id": 15076245112,
-      "tag": "evidence-archive-30152490"
-    },
-    {
-      "id": 15075223312,
-      "tag": "evidence-archive-30150446"
-    },
-    {
-      "id": 15074783786,
-      "tag": "evidence-archive-30149567"
-    },
-    {
-      "id": 15075762716,
-      "tag": "evidence-archive-30151525"
-    },
-    {
-      "id": 15075323334,
-      "tag": "evidence-archive-30150646"
-    },
-    {
-      "id": 15123316657,
-      "tag": "evidence-archive-30246633"
-    },
-    {
-      "id": 15123631633,
-      "tag": "evidence-archive-30247263"
-    },
-    {
-      "id": 15124650764,
-      "tag": "evidence-archive-30249301"
-    },
-    {
-      "id": 15124537175,
-      "tag": "evidence-archive-30249074"
-    },
-    {
-      "id": 15124142666,
-      "tag": "evidence-archive-30248285"
-    },
-    {
-      "id": 15124876301,
-      "tag": "evidence-archive-30249752"
     },
     {
       "id": 14369889908,
@@ -108,14 +36,6 @@
     {
       "id": 14497356669,
       "tag": "evidence-archive-28994713"
-    },
-    {
-      "id": 15162829833,
-      "tag": "evidence-archive-30325659"
-    },
-    {
-      "id": 15203208458,
-      "tag": "evidence-archive-30406416"
     },
     {
       "id": 15163067555,
@@ -172,6 +92,70 @@
     {
       "id": 14598419488,
       "tag": "evidence-archive-29196838"
+    },
+    {
+      "id": 15239596894,
+      "tag": "evidence-archive-30479193"
+    },
+    {
+      "id": 15254835351,
+      "tag": "evidence-archive-30509670"
+    },
+    {
+      "id": 15239171590,
+      "tag": "evidence-archive-30478343"
+    },
+    {
+      "id": 15239216525,
+      "tag": "evidence-archive-30478433"
+    },
+    {
+      "id": 15239426254,
+      "tag": "evidence-archive-30478852"
+    },
+    {
+      "id": 15239775125,
+      "tag": "evidence-archive-30479550"
+    },
+    {
+      "id": 15239730575,
+      "tag": "evidence-archive-30479461"
+    },
+    {
+      "id": 15239477294,
+      "tag": "evidence-archive-30478954"
+    },
+    {
+      "id": 15254440835,
+      "tag": "evidence-archive-30508881"
+    },
+    {
+      "id": 15253254650,
+      "tag": "evidence-archive-30506509"
+    },
+    {
+      "id": 15254595419,
+      "tag": "evidence-archive-30509190"
+    },
+    {
+      "id": 15253734339,
+      "tag": "evidence-archive-30507468"
+    },
+    {
+      "id": 15255115442,
+      "tag": "evidence-archive-30510230"
+    },
+    {
+      "id": 15255045133,
+      "tag": "evidence-archive-30510090"
+    },
+    {
+      "id": 14668598037,
+      "tag": "evidence-archive-29337196"
+    },
+    {
+      "id": 14690125948,
+      "tag": "evidence-archive-29380251"
     }
   ],
   "billing_quota": "unknown: account billing permission required",
