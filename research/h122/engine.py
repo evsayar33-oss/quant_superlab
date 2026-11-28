@@ -128,6 +128,14 @@ def validate(sha, data, now):
     if (watch["priced_tickers"] > watch["eligible_tickers"]
             or watch["liquid_tickers"] > watch["priced_tickers"]):
         raise ValueError("H122_COVERAGE_COUNTS_INCONSISTENT")
+    if watch["eligible_tickers"]:
+        calculated = round(watch["priced_tickers"] / watch["eligible_tickers"], 4)
+        if abs(watch["data_coverage_pct"] - calculated) > 0.00005:
+            raise ValueError("H122_COVERAGE_PERCENT_NOT_RECONCILED")
+    if watch["ok"] and (watch.get("data_coverage_ok") is not True or watch["data_coverage_pct"] < .8):
+        raise ValueError("H122_UNSAFE_HEALTHY_COVERAGE")
+    if watch.get("reason") == "INSUFFICIENT_PRICE_COVERAGE" and watch["data_coverage_pct"] >= .8:
+        raise ValueError("H122_COVERAGE_REASON_INCONSISTENT")
     if not set(watch.get("by_rule", {})).issubset(H083_RULES):
         raise ValueError("H122_UNKNOWN_H083_STYLE_RULE")
     if watch["candidates"] != sum(watch["by_rule"].values()):
@@ -236,7 +244,9 @@ def evaluate(sha, data, hashes, workflows, previous, now):
                 f"{attempt.get('reason')}. GitHub yesil olmasi  ileri test kaniti degildir.", now))
         if old_watch["data_coverage_ok"] and not watch["data_coverage_ok"]:
             events.append(notice("H083_COVERAGE_LOST", watch["feature_asof"],
-                f"Radar fiyat/veri kapsama yeterliligi kaybedildi: %{100*watch['data_coverage_pct']:.1f}. "
+                f"Radar fiyat/veri kapsama yeterliligi kaybedildi: %{100*watch['data_coverage_pct']:.2f} "
+                f"({watch['priced_tickers']}/{watch['eligible_tickers']}, seans {watch['feature_asof']}). "
+                f"Neden: {watch.get('reason', 'UNKNOWN')}. "
                 "Yeni adaylarin PAPER onayi degil, kaynak riski bildirimi.", now))
         if current_forward and old_forward:
             if current_forward["forward_months_closed"] > old_forward["forward_months_closed"]:
@@ -281,6 +291,13 @@ def evaluate(sha, data, hashes, workflows, previous, now):
             "data_coverage_ok": watch["data_coverage_ok"],
             "source_report_ok": watch["ok"],
             "source_failure_reason": watch.get("reason") if watch["ok"] is False else None,
+            "source_generated_at_utc": watch["generated_at_utc"],
+            "source_exclusion_detail_reasons": watch.get("exclusion_detail_reasons", {}),
+            "source_price_recovery": {
+                k: watch.get("price_download", {}).get(k) for k in (
+                    "requested", "loaded", "missing", "total_recovered", "single_recheck_recovered",
+                    "independent_recovered", "fallback_recovered", "unreached_due_to_budget", "recovery_round")
+            },
             "eligible_tickers": watch["eligible_tickers"],
             "priced_tickers": watch["priced_tickers"],
             "liquid_tickers": watch["liquid_tickers"],
