@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-28T07:30:47.040622+00:00",
+  "asof_utc": "2026-11-28T07:50:09.575059+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -101,6 +101,13 @@
       "monthly_vol_squeeze"
     ],
     "skipped_session_streak_since_h122_start": 0
+  },
+  "h083_expansion": {
+    "counts_toward_core_coverage": false,
+    "paper_approved": false,
+    "research_only": true,
+    "source_branch": "research/h083-expansion",
+    "status": "NOT_YET_PUBLISHED"
   },
   "known_limitations": [
     "Green H083 Actions run may safely skip on after-close NYSE time guard",
