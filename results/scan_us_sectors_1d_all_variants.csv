@@ -1,0 +1,1470 @@
+family,variant,sharpe,cagr,max_dd,turnover_ann
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only",1.192,0.024,-0.0272,1.56
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=18,lo=-40|f=trend_sma200|x=signal_only",1.151,0.0266,-0.0294,2.05
+macd_divergence,"macd_divergence|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only",1.129,0.0194,-0.0264,2.12
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=18,lo=-40|f=trend_sma200|x=signal_only",1.125,0.0288,-0.0317,2.2
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=21,lo=-40|f=trend_sma200|x=signal_only",1.116,0.0198,-0.0257,1.37
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=18,lo=-40|f=trend_sma200|x=signal_only",1.097,0.0232,-0.0272,1.9
+stoch_reversal+ibs_reversion,"stoch_reversal+ibs_reversion|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=5",1.081,0.0275,-0.026,3.42
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=21,lo=-40|f=trend_sma200|x=signal_only",1.079,0.0245,-0.0317,1.81
+wavetrend_reversal+stoch_reversal,"wavetrend_reversal+stoch_reversal|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=5",1.075,0.0204,-0.0272,1.29
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only",1.072,0.0304,-0.0294,4.04
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=3,lo=10|f=trend_sma200|x=signal_only",1.064,0.0458,-0.0651,4.0
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=1,lo=10|f=trend_sma200|x=signal_only",1.055,0.0401,-0.037,5.86
+wavetrend_reversal+ibs_reversion,"wavetrend_reversal+ibs_reversion|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=5",1.05,0.0168,-0.0253,1.09
+wavetrend_reversal+stoch_reversal,"wavetrend_reversal+stoch_reversal|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=3",1.039,0.0172,-0.0272,1.13
+williams_reversal,"williams_reversal|n=21,lo=-90|f=trend_sma200|x=signal_only",1.038,0.0403,-0.0482,5.19
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=3,lo=20|f=trend_sma200|x=signal_only",1.029,0.0526,-0.0925,5.34
+stoch_reversal+ibs_reversion,"stoch_reversal+ibs_reversion|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=3",1.023,0.0229,-0.0226,2.87
+williams_reversal,"williams_reversal|n=14,lo=-95|f=trend_sma200|x=signal_only",1.023,0.0344,-0.0463,5.5
+williams_reversal,"williams_reversal|n=14,lo=-90|f=trend_sma200|x=signal_only",1.018,0.0384,-0.0476,7.19
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=3,lo=25|f=trend_sma200|x=signal_only",1.001,0.0536,-0.0925,5.91
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=1,lo=20|f=trend_sma200|x=signal_only",1.0,0.0441,-0.0412,7.78
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=26,lo=-40|f=trend_sma200|x=signal_only",0.994,0.0145,-0.0268,1.03
+macd_divergence+ibs_reversion,"macd_divergence+ibs_reversion|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=3",0.993,0.0099,-0.0224,0.59
+williams_reversal,"williams_reversal|n=21,lo=-95|f=trend_sma200|x=signal_only",0.992,0.034,-0.0443,4.02
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only",0.988,0.0314,-0.055,3.35
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=18,lo=-53|f=trend_sma200|x=signal_only",0.988,0.0155,-0.0257,1.09
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=1,lo=10|f=trend_sma200|x=signal_only",0.984,0.0399,-0.0557,4.53
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=1,lo=20|f=trend_sma200|x=signal_only",0.97,0.038,-0.0592,6.51
+macd_divergence+ibs_reversion,"macd_divergence+ibs_reversion|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=0",0.955,0.0056,-0.007,0.2
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=1,lo=20|f=trend_sma200|x=signal_only",0.945,0.044,-0.0574,5.88
+wavetrend_reversal+ibs_reversion,"wavetrend_reversal+ibs_reversion|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=3",0.942,0.0091,-0.0181,0.6
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.931,0.0418,-0.0592,5.64
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=1,lo=20|f=trend_sma200|x=signal_only",0.928,0.0399,-0.0592,5.04
+macd_divergence+ibs_reversion,"macd_divergence+ibs_reversion|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=5",0.928,0.0119,-0.0221,1.19
+macd_cross,"macd_cross|cfg=(5, 35, 5),zero_filter=True|f=trend_sma200|x=signal_only",0.921,0.0243,-0.0385,7.2
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=3,lo=10|f=trend_sma200|x=signal_only",0.916,0.0385,-0.0925,4.86
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.908,0.0374,-0.0592,7.35
+frog_in_pan,"frog_in_pan|lookback=252,top_n=5",0.902,0.1346,-0.3059,3.49
+xs_momentum,"xs_momentum|lookback=189,skip=0,top_n=5",0.901,0.1337,-0.2963,3.55
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=3,lo=20|f=trend_sma200|x=signal_only",0.896,0.0436,-0.0925,6.84
+frog_in_pan,"frog_in_pan|lookback=126,top_n=5",0.895,0.1364,-0.3277,5.82
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=3,lo=25|f=trend_sma200|x=signal_only",0.888,0.0454,-0.0925,7.66
+xs_momentum,"xs_momentum|lookback=252,skip=0,top_n=5",0.887,0.1315,-0.3175,2.98
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.877,0.0432,-0.0603,8.75
+low_vol,"low_vol|lookback=126,top_n=5",0.877,0.1194,-0.3017,1.9
+max_effect,"max_effect|lookback=63,top_n=5",0.874,0.1217,-0.3238,4.87
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=26,lo=-40|f=trend_sma200|x=signal_only",0.873,0.0116,-0.0257,0.82
+williams_reversal,"williams_reversal|n=10,lo=-90|f=trend_sma200|x=signal_only",0.871,0.032,-0.0432,8.94
+macd_divergence,"macd_divergence|k=3,fast=12,slow=26|f=none|x=signal_only",0.87,0.0298,-0.058,3.57
+low_vol,"low_vol|lookback=63,top_n=5",0.869,0.1179,-0.3008,2.95
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=1,lo=10|f=trend_sma200|x=signal_only",0.867,0.0245,-0.0494,8.29
+macd_divergence,"macd_divergence|k=5,fast=12,slow=26|f=trend_sma200|x=signal_only",0.866,0.0112,-0.0201,1.54
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only",0.865,0.0209,-0.0344,4.28
+macro_risk_switch,"macro_risk_switch|vix_max=25,use_curve=False,trend_n=200",0.861,0.0808,-0.1834,7.91
+usdtry_hedge_switch,"usdtry_hedge_switch|n=50,thr=0.05",0.86,0.1291,-0.3634,0.09
+usdtry_hedge_switch,"usdtry_hedge_switch|n=20,thr=0.03",0.86,0.1291,-0.3634,0.09
+williams_reversal,"williams_reversal|n=10,lo=-95|f=trend_sma200|x=signal_only",0.86,0.0283,-0.0463,6.49
+usdtry_hedge_switch,"usdtry_hedge_switch|n=20,thr=0.05",0.86,0.1291,-0.3634,0.09
+usdtry_hedge_switch,"usdtry_hedge_switch|n=50,thr=0.03",0.86,0.1291,-0.3634,0.09
+williams_reversal,"williams_reversal|n=7,lo=-95|f=trend_sma200|x=signal_only",0.858,0.0262,-0.0547,7.95
+xs_momentum,"xs_momentum|lookback=189,skip=0,top_n=10",0.858,0.1247,-0.3412,0.57
+inside_bar+price_ma,"inside_bar+price_ma|trend_n=200|f=none|x=signal_only|confirm=kind=ema,n=200,within=3",0.857,0.023,-0.052,1.09
+xs_momentum,"xs_momentum|lookback=189,skip=0,top_n=3",0.856,0.1347,-0.3116,4.97
+xs_momentum,"xs_momentum|lookback=126,skip=0,top_n=10",0.856,0.125,-0.3412,0.62
+low_vol,"low_vol|lookback=252,top_n=5",0.853,0.1162,-0.3198,1.25
+xs_momentum,"xs_momentum|lookback=126,skip=0,top_n=5",0.852,0.1263,-0.3317,4.47
+xs_momentum,"xs_momentum|lookback=189,skip=21,top_n=10",0.852,0.1237,-0.3412,0.51
+rsi_rotation,"rsi_rotation|n=28,top_n=10,mode=strong",0.851,0.1258,-0.3412,2.51
+xs_momentum,"xs_momentum|lookback=189,skip=21,top_n=5",0.851,0.1282,-0.3317,3.63
+rsi_rotation,"rsi_rotation|n=14,top_n=10,mode=strong",0.85,0.1258,-0.3493,3.49
+betting_against_beta,"betting_against_beta|lookback=252,top_n=5",0.849,0.1136,-0.3198,1.09
+frog_in_pan,"frog_in_pan|lookback=126,top_n=10",0.849,0.1249,-0.3575,0.86
+trend_quality,"trend_quality|n=63,top_n=10",0.848,0.1249,-0.3412,0.85
+macro_risk_switch,"macro_risk_switch|vix_max=30,use_curve=False,trend_n=200",0.847,0.0849,-0.1715,6.02
+high_52w,high_52w|top_n=10,0.847,0.1231,-0.3412,0.49
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=18,lo=-53|f=trend_sma200|x=signal_only",0.844,0.0107,-0.0257,0.75
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.843,0.0443,-0.0774,6.43
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=1,lo=10|f=trend_sma200|x=signal_only",0.841,0.0294,-0.0466,7.14
+volume_shock,"volume_shock|n=20,top_n=10",0.84,0.1258,-0.3673,4.13
+rsi_rotation,"rsi_rotation|n=21,top_n=10,mode=strong",0.839,0.1239,-0.3412,3.0
+macd_cross,"macd_cross|cfg=(12, 26, 9),zero_filter=True|f=trend_sma200|x=signal_only",0.837,0.0234,-0.0603,4.91
+ibs_reversion,"ibs_reversion|lo=0.1,hi=0.8|f=none|x=signal_only",0.836,0.0589,-0.1428,35.34
+rsi_rotation,"rsi_rotation|n=7,top_n=10,mode=strong",0.833,0.1236,-0.3509,4.39
+macro_risk_switch,"macro_risk_switch|vix_max=30,use_curve=True,trend_n=200",0.833,0.074,-0.1221,6.29
+vol_managed_momentum,"vol_managed_momentum|lookback=252,top_n=10,target=0.12",0.83,0.0917,-0.2262,0.88
+rsi_rotation,"rsi_rotation|n=21,top_n=10,mode=weak",0.83,0.1253,-0.3645,2.9
+trend_quality,"trend_quality|n=126,top_n=10",0.83,0.1207,-0.346,0.61
+volume_shock,"volume_shock|n=63,top_n=10",0.829,0.1239,-0.3725,3.89
+rsi_rotation,"rsi_rotation|n=28,top_n=10,mode=weak",0.828,0.125,-0.3645,2.67
+max_effect,"max_effect|lookback=63,top_n=10",0.828,0.121,-0.3412,0.51
+xs_momentum,"xs_momentum|lookback=252,skip=21,top_n=10",0.827,0.119,-0.3412,0.39
+tsi_cross,"tsi_cross|cfg=(40, 20, 10)|f=none|x=signal_only",0.827,0.0627,-0.1227,13.57
+low_vol,"low_vol|lookback=63,top_n=10",0.826,0.1207,-0.3412,0.43
+rsi_rotation,"rsi_rotation|n=7,top_n=10,mode=weak",0.826,0.1247,-0.365,3.93
+macd_cross,"macd_cross|cfg=(5, 35, 5),zero_filter=True|f=none|x=signal_only",0.826,0.0542,-0.0865,12.92
+xs_momentum,"xs_momentum|lookback=126,skip=21,top_n=10",0.824,0.1196,-0.3412,0.69
+vol_managed_momentum,"vol_managed_momentum|lookback=252,top_n=10,target=0.18",0.824,0.1054,-0.2842,0.58
+rsi_rotation,"rsi_rotation|n=14,top_n=10,mode=weak",0.824,0.1242,-0.3641,3.32
+dual_momentum,"dual_momentum|lookback=252,top_n=5",0.823,0.1157,-0.3175,3.25
+xs_momentum,"xs_momentum|lookback=252,skip=0,top_n=10",0.822,0.1182,-0.3412,0.42
+max_effect,"max_effect|lookback=21,top_n=10",0.822,0.1203,-0.3441,0.94
+bollinger_reversion,"bollinger_reversion|n=20,k=2.0|f=trend_sma200|x=signal_only",0.821,0.0307,-0.1071,5.35
+rsi_divergence,"rsi_divergence|n=14,k=3,exit_level=70|f=none|x=signal_only",0.821,0.0641,-0.1528,1.95
+zscore_reversion,"zscore_reversion|n=20,z=2.0|f=trend_sma200|x=signal_only",0.821,0.0307,-0.1071,5.35
+macd_cross,"macd_cross|cfg=(12, 26, 9),zero_filter=True|f=none|x=signal_only",0.821,0.0534,-0.0981,8.52
+low_vol,"low_vol|lookback=126,top_n=10",0.82,0.1196,-0.3412,0.27
+idio_vol,"idio_vol|lookback=63,top_n=10",0.819,0.1209,-0.3412,0.24
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=26,lo=-40|f=trend_sma200|x=signal_only",0.817,0.0106,-0.0257,0.75
+betting_against_beta,"betting_against_beta|lookback=126,top_n=5",0.817,0.1095,-0.3198,1.85
+high_52w,high_52w|top_n=5,0.816,0.1149,-0.3174,6.44
+xs_momentum,"xs_momentum|lookback=252,skip=21,top_n=5",0.816,0.1213,-0.324,3.28
+betting_against_beta,"betting_against_beta|lookback=126,top_n=10",0.815,0.1182,-0.3441,0.39
+mfi_reversal,"mfi_reversal|n=14,lo=30|f=trend_sma200|x=signal_only",0.814,0.0316,-0.1089,3.53
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=1,lo=20|f=trend_sma200|x=signal_only",0.814,0.028,-0.0496,8.08
+price_ma,"price_ma|kind=ema,n=200|f=trend_sma200|x=signal_only",0.814,0.0477,-0.143,4.16
+idio_vol,"idio_vol|lookback=126,top_n=5",0.814,0.1225,-0.3531,1.55
+frog_in_pan,"frog_in_pan|lookback=252,top_n=10",0.813,0.1178,-0.3606,0.58
+psar_flip,"psar_flip|cfg=(0.01, 0.1)|f=none|x=signal_only",0.813,0.0637,-0.1025,14.15
+macd_cross,"macd_cross|cfg=(8, 21, 5),zero_filter=True|f=none|x=signal_only",0.812,0.0545,-0.1037,12.95
+low_vol,"low_vol|lookback=252,top_n=10",0.812,0.1175,-0.3412,0.13
+idio_vol,"idio_vol|lookback=126,top_n=10",0.81,0.119,-0.3412,0.23
+betting_against_beta,"betting_against_beta|lookback=252,top_n=10",0.807,0.1164,-0.3691,0.27
+idio_vol,"idio_vol|lookback=63,top_n=5",0.806,0.1208,-0.3465,2.74
+residual_momentum,"residual_momentum|lookback=126,top_n=10",0.804,0.1171,-0.3675,0.81
+coppock_turn,coppock_turn|scale=21|f=trend_sma200|x=signal_only,0.802,0.0229,-0.0554,0.26
+rsi_rotation,"rsi_rotation|n=28,top_n=5,mode=strong",0.802,0.1153,-0.3206,20.25
+ma_cross,"ma_cross|kind=dema,pair=(10, 30)|f=none|x=signal_only",0.801,0.0592,-0.1186,15.19
+ma_cross,"ma_cross|kind=tema,pair=(10, 30)|f=none|x=signal_only",0.801,0.062,-0.11,19.5
+ma_cross,"ma_cross|kind=tema,pair=(10, 50)|f=none|x=signal_only",0.8,0.0593,-0.1133,16.57
+xs_momentum,"xs_momentum|lookback=252,skip=0,top_n=3",0.799,0.1239,-0.3152,5.15
+macd_cross,"macd_cross|cfg=(8, 21, 5),zero_filter=True|f=trend_sma200|x=signal_only",0.798,0.0233,-0.0371,7.64
+macro_risk_switch,"macro_risk_switch|vix_max=25,use_curve=True,trend_n=200",0.797,0.0657,-0.1223,8.04
+rsi_reversal,"rsi_reversal|n=5,lo=30,exit=60|f=trend_sma200|x=signal_only",0.796,0.0321,-0.0857,9.48
+trend_quality,"trend_quality|n=126,top_n=5",0.796,0.1182,-0.3369,4.12
+rsi_reversal,"rsi_reversal|n=9,lo=35,exit=70|f=trend_sma200|x=signal_only",0.796,0.0685,-0.2632,4.37
+ibs_reversion,"ibs_reversion|lo=0.2,hi=0.8|f=none|x=signal_only",0.796,0.0687,-0.188,53.62
+inside_bar+ibs_reversion,"inside_bar+ibs_reversion|trend_n=200|f=none|x=signal_only|confirm=lo=0.1,hi=0.8,within=5",0.795,0.0501,-0.1142,1.93
+rsi_reversal,"rsi_reversal|n=5,lo=25,exit=70|f=trend_sma200|x=signal_only",0.794,0.0443,-0.1563,6.09
+xs_momentum,"xs_momentum|lookback=126,skip=0,top_n=3",0.792,0.1219,-0.2943,6.95
+inside_bar,inside_bar|trend_n=200|f=trend_sma200|x=signal_only,0.791,0.057,-0.1229,2.86
+vol_managed_momentum,"vol_managed_momentum|lookback=252,top_n=5,target=0.18",0.791,0.1064,-0.2675,3.39
+inside_bar,inside_bar|trend_n=200|f=none|x=signal_only,0.791,0.057,-0.1229,2.86
+macd_cross,"macd_cross|cfg=(19, 39, 9),zero_filter=False|f=none|x=signal_only",0.791,0.0578,-0.1201,14.71
+dual_momentum,"dual_momentum|lookback=252,top_n=3",0.79,0.1201,-0.3152,5.24
+ml_ridge_rank,"ml_ridge_rank|train_months=36,alpha=1.0,top_n=5",0.789,0.1121,-0.3591,6.41
+wavetrend_reversal+inside_bar,"wavetrend_reversal+inside_bar|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=5",0.788,0.0072,-0.0201,0.48
+macd_cross,"macd_cross|cfg=(19, 39, 9),zero_filter=True|f=none|x=signal_only",0.788,0.0488,-0.1075,5.89
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=1,lo=20|f=trend_sma200|x=signal_only",0.788,0.0337,-0.0486,10.48
+vol_managed_momentum,"vol_managed_momentum|lookback=252,top_n=5,target=0.12",0.785,0.0893,-0.2119,3.5
+mfi_reversal,"mfi_reversal|n=10,lo=30|f=trend_sma200|x=signal_only",0.785,0.0301,-0.0959,6.3
+price_ma,"price_ma|kind=ema,n=100|f=trend_sma200|x=signal_only",0.784,0.0479,-0.099,9.0
+high_52w,high_52w|top_n=3,0.783,0.1117,-0.2774,11.04
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.783,0.0354,-0.0541,11.66
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.782,0.0317,-0.0537,15.72
+xs_momentum,"xs_momentum|lookback=189,skip=21,top_n=3",0.782,0.1247,-0.3138,5.87
+ml_ridge_rank,"ml_ridge_rank|train_months=36,alpha=10.0,top_n=5",0.781,0.1109,-0.3591,6.33
+residual_momentum,"residual_momentum|lookback=252,top_n=10",0.78,0.1101,-0.3412,0.5
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=18,lo=-60|f=trend_sma200|x=signal_only",0.779,0.0034,-0.0087,0.19
+residual_momentum,"residual_momentum|lookback=126,top_n=5",0.778,0.1138,-0.3317,5.06
+ppo_cross,"ppo_cross|cfg=(10, 30, 9)|f=none|x=signal_only",0.778,0.0588,-0.1078,19.23
+xs_momentum,"xs_momentum|lookback=252,skip=21,top_n=3",0.776,0.1211,-0.3152,4.61
+residual_momentum,"residual_momentum|lookback=252,top_n=5",0.775,0.1103,-0.3227,3.09
+ppo_cross,"ppo_cross|cfg=(12, 26, 9)|f=none|x=signal_only",0.775,0.0586,-0.1141,18.56
+ma_timing,"ma_timing|fast=20,slow=200",0.775,0.075,-0.2193,1.8
+max_effect,"max_effect|lookback=21,top_n=5",0.775,0.1081,-0.3305,9.38
+price_ma,"price_ma|kind=kama,n=150|f=trend_sma200|x=signal_only",0.774,0.048,-0.1035,9.81
+trix_cross,"trix_cross|n=15,signal=9|f=none|x=signal_only",0.774,0.0566,-0.1477,11.34
+macd_divergence+stoch_reversal,"macd_divergence+stoch_reversal|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=3",0.774,0.0076,-0.0233,0.74
+mom_acceleration,"mom_acceleration|short=63,long=252,top_n=10",0.773,0.1108,-0.3444,0.84
+williams_reversal,"williams_reversal|n=7,lo=-90|f=trend_sma200|x=signal_only",0.773,0.0285,-0.056,11.4
+inside_bar+price_ma,"inside_bar+price_ma|trend_n=200|f=none|x=signal_only|confirm=kind=ema,n=200,within=5",0.771,0.0223,-0.058,1.27
+ma_cross,"ma_cross|kind=ema,pair=(20, 100)|f=none|x=signal_only",0.77,0.066,-0.1687,2.72
+xs_momentum,"xs_momentum|lookback=126,skip=21,top_n=3",0.77,0.1225,-0.3413,7.31
+rsi_reversal,"rsi_reversal|n=7,lo=30,exit=70|f=trend_sma200|x=signal_only",0.769,0.0566,-0.2257,4.9
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=3,lo=20|f=trend_sma200|x=signal_only",0.768,0.0434,-0.1563,4.82
+tsi_cross,"tsi_cross|cfg=(25, 13, 7)|f=none|x=signal_only",0.766,0.0603,-0.1177,20.29
+macd_cross,"macd_cross|cfg=(12, 26, 9),zero_filter=False|f=none|x=signal_only",0.766,0.0583,-0.1164,18.56
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=3,lo=10|f=trend_sma200|x=signal_only",0.766,0.03,-0.0925,5.53
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=3,lo=25|f=trend_sma200|x=signal_only",0.766,0.0446,-0.1563,5.34
+rsi_reversal,"rsi_reversal|n=5,lo=30,exit=70|f=trend_sma200|x=signal_only",0.765,0.0474,-0.1563,8.07
+trix_cross,"trix_cross|n=15,signal=7|f=none|x=signal_only",0.764,0.0564,-0.1612,12.05
+pivot_bounce,pivot_bounce|window=20|f=trend_sma200|x=signal_only,0.764,0.0113,-0.0454,2.5
+price_ma,"price_ma|kind=sma,n=200|f=none|x=signal_only",0.763,0.0597,-0.1622,7.48
+price_ma,"price_ma|kind=sma,n=200|f=trend_sma200|x=signal_only",0.763,0.0597,-0.1622,7.48
+ma_cross,"ma_cross|kind=tema,pair=(10, 30)|f=trend_sma200|x=signal_only",0.763,0.0322,-0.0713,14.63
+xs_momentum,"xs_momentum|lookback=126,skip=21,top_n=5",0.762,0.1139,-0.3478,4.95
+rsi_reversal,"rsi_reversal|n=9,lo=30,exit=50|f=trend_sma200|x=signal_only",0.762,0.0195,-0.0511,3.59
+trend_quality,"trend_quality|n=63,top_n=5",0.762,0.1123,-0.331,7.11
+price_ma,"price_ma|kind=ema,n=150|f=trend_sma200|x=signal_only",0.761,0.0465,-0.123,6.57
+rsi_reversal,"rsi_reversal|n=5,lo=25,exit=60|f=trend_sma200|x=signal_only",0.761,0.0275,-0.0857,6.77
+wavetrend_reversal+inside_bar,"wavetrend_reversal+inside_bar|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=3",0.761,0.0068,-0.0201,0.46
+rsi_rotation,"rsi_rotation|n=14,top_n=5,mode=strong",0.761,0.1093,-0.3197,28.59
+rsi_rotation,"rsi_rotation|n=21,top_n=3,mode=strong",0.76,0.1112,-0.3598,32.72
+rsi_rotation,"rsi_rotation|n=21,top_n=5,mode=strong",0.754,0.1071,-0.3205,24.11
+rsi_rotation,"rsi_rotation|n=14,top_n=3,mode=strong",0.748,0.1093,-0.354,38.7
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.748,0.028,-0.0603,9.44
+rsi_rotation,"rsi_rotation|n=28,top_n=5,mode=weak",0.747,0.1225,-0.4175,20.68
+ibs_reversion,"ibs_reversion|lo=0.2,hi=0.8|f=trend_sma200|x=signal_only",0.746,0.0388,-0.0944,37.8
+st_reversal,"st_reversal|lookback=21,top_n=5",0.743,0.1204,-0.4156,25.54
+rsi_reversal,"rsi_reversal|n=14,lo=35,exit=70|f=none|x=signal_only",0.741,0.0836,-0.3182,2.61
+ma_cross,"ma_cross|kind=tema,pair=(20, 50)|f=none|x=signal_only",0.741,0.0527,-0.1335,10.85
+rsi_reversal,"rsi_reversal|n=9,lo=35,exit=60|f=trend_sma200|x=signal_only",0.739,0.0405,-0.1563,5.46
+rsi_divergence,"rsi_divergence|n=14,k=3,exit_level=70|f=trend_sma200|x=signal_only",0.738,0.0308,-0.0785,1.38
+rsi_reversal,"rsi_reversal|n=3,lo=20,exit=70|f=trend_sma200|x=signal_only",0.738,0.0293,-0.0511,11.26
+rsi_rotation,"rsi_rotation|n=7,top_n=3,mode=strong",0.737,0.1072,-0.3081,50.89
+tsi_cross,"tsi_cross|cfg=(25, 13, 7)|f=trend_sma200|x=signal_only",0.736,0.0308,-0.0788,14.87
+macd_divergence+stoch_reversal,"macd_divergence+stoch_reversal|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=5",0.735,0.0078,-0.0266,0.83
+price_ma,"price_ma|kind=sma,n=100|f=trend_sma200|x=signal_only",0.735,0.044,-0.1072,8.81
+core_dual_trend_vt,core_dual_trend_vt|,0.734,0.0607,-0.1398,10.36
+rsi_rotation,"rsi_rotation|n=21,top_n=5,mode=weak",0.734,0.1197,-0.4184,23.79
+core_dual_trend_vt_band,core_dual_trend_vt_band|,0.732,0.0605,-0.1407,10.35
+core_tsmom_vt,core_tsmom_vt|,0.732,0.0556,-0.1138,14.75
+wavetrend_reversal+price_ma,"wavetrend_reversal+price_ma|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=5",0.731,0.0095,-0.0261,0.59
+wavetrend_reversal+price_ma,"wavetrend_reversal+price_ma|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=3",0.731,0.0095,-0.0261,0.59
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=1,lo=20|f=trend_sma200|x=signal_only",0.731,0.0278,-0.0569,13.7
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=26,lo=-40|f=none|x=signal_only",0.73,0.047,-0.1095,2.61
+rsi_reversal,"rsi_reversal|n=9,lo=30,exit=70|f=trend_sma200|x=signal_only",0.73,0.0525,-0.2253,2.94
+ma_cross,"ma_cross|kind=kama,pair=(50, 200)|f=trend_sma200|x=signal_only",0.73,0.0626,-0.2318,1.4
+price_ma+ibs_reversion,"price_ma+ibs_reversion|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=3",0.73,0.0232,-0.0783,1.81
+rsi_reversal,"rsi_reversal|n=28,lo=35,exit=70|f=none|x=signal_only",0.729,0.0759,-0.3209,0.48
+rsi_rotation,"rsi_rotation|n=7,top_n=5,mode=weak",0.728,0.1171,-0.3928,37.09
+trix_cross,"trix_cross|n=21,signal=7|f=none|x=signal_only",0.727,0.0514,-0.1478,9.32
+williams_reversal,"williams_reversal|n=21,lo=-80|f=trend_sma200|x=signal_only",0.727,0.0357,-0.1053,6.88
+rsi_rotation,"rsi_rotation|n=7,top_n=5,mode=strong",0.727,0.1046,-0.3223,37.09
+st_reversal,"st_reversal|lookback=10,top_n=5",0.727,0.1165,-0.4281,36.39
+rsi_rotation,"rsi_rotation|n=14,top_n=5,mode=weak",0.727,0.1173,-0.4076,28.19
+price_ma+ibs_reversion,"price_ma+ibs_reversion|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=5",0.726,0.0284,-0.1007,2.5
+bollinger_reversion,"bollinger_reversion|n=10,k=1.5|f=trend_sma200|x=signal_only",0.726,0.025,-0.058,12.82
+zscore_reversion,"zscore_reversion|n=10,z=1.5|f=trend_sma200|x=signal_only",0.726,0.025,-0.058,12.82
+trix_cross,"trix_cross|n=21,signal=9|f=none|x=signal_only",0.725,0.0509,-0.1443,8.76
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=21,lo=-60|f=trend_sma200|x=signal_only",0.723,0.0027,-0.0087,0.13
+ibs_reversion,"ibs_reversion|lo=0.3,hi=0.8|f=none|x=signal_only",0.723,0.0709,-0.2392,65.91
+macro_risk_switch,"macro_risk_switch|vix_max=30,use_curve=False,trend_n=100",0.722,0.0687,-0.1768,10.6
+ml_ridge_rank,"ml_ridge_rank|train_months=36,alpha=1.0,top_n=10",0.721,0.0959,-0.3621,0.98
+ml_ridge_rank,"ml_ridge_rank|train_months=36,alpha=10.0,top_n=10",0.72,0.0957,-0.3621,0.98
+ibs_reversion,"ibs_reversion|lo=0.3,hi=0.8|f=trend_sma200|x=signal_only",0.719,0.042,-0.0988,47.33
+rsi_rotation,"rsi_rotation|n=28,top_n=3,mode=weak",0.718,0.1254,-0.4543,30.74
+price_ma,"price_ma|kind=kama,n=200|f=none|x=signal_only",0.718,0.0536,-0.1194,11.02
+st_reversal,"st_reversal|lookback=5,top_n=5",0.717,0.1147,-0.4066,52.82
+rsi_reversal,"rsi_reversal|n=7,lo=35,exit=70|f=trend_sma200|x=signal_only",0.717,0.0596,-0.2644,6.3
+rsi_reversal,"rsi_reversal|n=14,lo=35,exit=70|f=trend_sma200|x=signal_only",0.717,0.0602,-0.2397,1.93
+rsi_rotation,"rsi_rotation|n=7,top_n=3,mode=weak",0.717,0.1223,-0.441,52.82
+macd_divergence,"macd_divergence|k=5,fast=12,slow=26|f=none|x=signal_only",0.717,0.0186,-0.0552,2.75
+ts_momentum,"ts_momentum|lookback=126,vol_target=0.15",0.716,0.0689,-0.2383,2.66
+ts_momentum,"ts_momentum|lookback=126,vol_target=0.1",0.716,0.0466,-0.1628,1.77
+dual_momentum,"dual_momentum|lookback=126,top_n=3",0.715,0.105,-0.2943,6.99
+vortex_cross,vortex_cross|n=21|f=none|x=signal_only,0.714,0.0534,-0.1151,18.5
+price_ma,"price_ma|kind=ema,n=200|f=none|x=signal_only",0.714,0.0568,-0.1556,8.23
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=1,lo=25|f=trend_sma200|x=signal_only",0.713,0.0218,-0.0571,11.52
+ma_cross,"ma_cross|kind=kama,pair=(50, 200)|f=none|x=signal_only",0.713,0.0613,-0.2318,1.45
+supertrend_flip,"supertrend_flip|cfg=(10, 2.0)|f=none|x=signal_only",0.713,0.058,-0.1314,13.14
+ts_momentum,"ts_momentum|lookback=252,vol_target=0.15",0.713,0.0746,-0.2865,2.06
+ts_momentum,"ts_momentum|lookback=252,vol_target=0.1",0.713,0.0506,-0.1988,1.38
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=1,lo=20|f=trend_sma200|x=signal_only",0.713,0.0199,-0.0535,9.18
+dual_momentum,"dual_momentum|lookback=126,top_n=5",0.712,0.0959,-0.3317,4.74
+trix_cross,"trix_cross|n=12,signal=9|f=none|x=signal_only",0.711,0.0531,-0.1401,13.47
+supertrend_flip,"supertrend_flip|cfg=(14, 3.0)|f=none|x=signal_only",0.711,0.054,-0.0986,7.48
+rsi_rotation,"rsi_rotation|n=14,top_n=3,mode=weak",0.711,0.122,-0.4581,41.54
+supertrend_flip,"supertrend_flip|cfg=(7, 2.0)|f=none|x=signal_only",0.71,0.0545,-0.1261,13.13
+psar_flip,"psar_flip|cfg=(0.01, 0.1)|f=trend_sma200|x=signal_only",0.709,0.0345,-0.0742,10.45
+ma_cross,"ma_cross|kind=kama,pair=(20, 50)|f=trend_sma200|x=signal_only",0.707,0.0433,-0.1289,3.06
+rsi_rotation,"rsi_rotation|n=21,top_n=3,mode=weak",0.706,0.1213,-0.449,34.92
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=21,lo=-40|f=none|x=signal_only",0.706,0.0492,-0.1431,3.46
+awesome_zero,"awesome_zero|fast=5,slow=34|f=none|x=signal_only",0.706,0.054,-0.1095,9.9
+macd_cross,"macd_cross|cfg=(12, 26, 9),zero_filter=False|f=trend_sma200|x=signal_only",0.706,0.0296,-0.0825,13.81
+ma_cross,"ma_cross|kind=kama,pair=(10, 50)|f=none|x=signal_only",0.704,0.0555,-0.1565,4.18
+rsi_reversal,"rsi_reversal|n=5,lo=20,exit=70|f=trend_sma200|x=signal_only",0.704,0.036,-0.1563,4.19
+ma_timing,"ma_timing|fast=20,slow=100",0.703,0.063,-0.184,3.15
+roc_breakout,"roc_breakout|n=252,th=10|f=none|x=signal_only",0.703,0.055,-0.1908,1.09
+ma_cross,"ma_cross|kind=hma,pair=(10, 50)|f=trend_sma200|x=signal_only",0.703,0.0314,-0.0864,13.95
+ma_cross,"ma_cross|kind=dema,pair=(20, 50)|f=none|x=signal_only",0.703,0.0488,-0.1197,8.68
+price_ma,"price_ma|kind=ema,n=100|f=none|x=signal_only",0.702,0.0549,-0.1192,12.84
+williams_reversal,"williams_reversal|n=7,lo=-80|f=trend_sma200|x=signal_only",0.702,0.0286,-0.0545,16.48
+ppo_cross,"ppo_cross|cfg=(12, 26, 9)|f=trend_sma200|x=signal_only",0.702,0.0291,-0.0858,13.79
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=3,lo=10|f=trend_sma200|x=signal_only",0.702,0.0281,-0.1219,3.6
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=3,lo=20|f=trend_sma200|x=signal_only",0.702,0.037,-0.1563,6.0
+halloween,"halloween|start=10,end=5|f=none|x=signal_only",0.701,0.0872,-0.3634,1.94
+roc_breakout,"roc_breakout|n=126,th=0|f=none|x=signal_only",0.701,0.0553,-0.1687,8.26
+price_ma,"price_ma|kind=kama,n=200|f=trend_sma200|x=signal_only",0.7,0.0436,-0.0955,9.32
+macro_risk_switch,"macro_risk_switch|vix_max=25,use_curve=False,trend_n=100",0.7,0.0625,-0.1768,11.95
+roc_breakout,"roc_breakout|n=126,th=5|f=none|x=signal_only",0.7,0.0523,-0.1472,2.68
+supertrend_flip,"supertrend_flip|cfg=(10, 3.0)|f=none|x=signal_only",0.699,0.0516,-0.1053,7.49
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=18,lo=-53|f=trend_sma200|x=signal_only",0.699,0.0079,-0.0257,0.57
+ma_cross,"ma_cross|kind=dema,pair=(5, 20)|f=none|x=signal_only",0.699,0.0537,-0.1055,26.35
+ppo_cross,"ppo_cross|cfg=(10, 30, 9)|f=trend_sma200|x=signal_only",0.698,0.029,-0.0962,14.27
+rsi_reversal,"rsi_reversal|n=3,lo=20,exit=60|f=trend_sma200|x=signal_only",0.697,0.0222,-0.0457,12.71
+rsi_reversal,"rsi_reversal|n=9,lo=35,exit=70|f=none|x=signal_only",0.697,0.0771,-0.3358,5.55
+ma_cross,"ma_cross|kind=ema,pair=(20, 100)|f=trend_sma200|x=signal_only",0.696,0.0454,-0.1432,2.11
+roc_breakout,"roc_breakout|n=126,th=10|f=trend_sma200|x=signal_only",0.696,0.049,-0.1472,1.69
+macd_zero,"macd_zero|cfg=(8, 21, 5)|f=none|x=signal_only",0.695,0.0513,-0.119,11.09
+psar_flip,"psar_flip|cfg=(0.02, 0.2)|f=none|x=signal_only",0.694,0.0553,-0.1222,23.47
+ts_momentum,"ts_momentum|lookback=63,vol_target=0.1",0.694,0.0416,-0.1033,2.4
+ts_momentum,"ts_momentum|lookback=63,vol_target=0.15",0.694,0.0615,-0.1517,3.6
+ma_timing,"ma_timing|fast=50,slow=200",0.694,0.0733,-0.3067,1.29
+macro_risk_switch,"macro_risk_switch|vix_max=30,use_curve=True,trend_n=100",0.693,0.0589,-0.1768,9.93
+trix_cross,"trix_cross|n=12,signal=7|f=none|x=signal_only",0.693,0.0519,-0.1367,14.25
+inside_bar+macd_divergence,"inside_bar+macd_divergence|trend_n=200|f=none|x=signal_only|confirm=k=3,fast=12,slow=26,within=3",0.692,0.0091,-0.0256,0.31
+ma_cross,"ma_cross|kind=ema,pair=(20, 50)|f=none|x=signal_only",0.692,0.0562,-0.1448,4.25
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=3,lo=10|f=trend_sma200|x=signal_only",0.692,0.023,-0.0592,5.47
+price_ma,"price_ma|kind=hma,n=100|f=none|x=signal_only",0.691,0.0484,-0.1334,22.26
+rsi_reversal,"rsi_reversal|n=7,lo=30,exit=50|f=trend_sma200|x=signal_only",0.691,0.0192,-0.0511,6.16
+rsi_divergence,"rsi_divergence|n=14,k=5,exit_level=70|f=none|x=signal_only",0.691,0.0392,-0.1253,1.32
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=21,lo=-53|f=trend_sma200|x=signal_only",0.691,0.0069,-0.0185,0.57
+rsi_reversal,"rsi_reversal|n=9,lo=35,exit=50|f=trend_sma200|x=signal_only",0.69,0.021,-0.0731,6.46
+price_ma,"price_ma|kind=hma,n=50|f=none|x=signal_only",0.689,0.0528,-0.1104,31.74
+roc_breakout,"roc_breakout|n=126,th=10|f=none|x=signal_only",0.689,0.0491,-0.1565,1.75
+macd_divergence+inside_bar,"macd_divergence+inside_bar|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=5",0.688,0.0043,-0.0132,0.52
+st_reversal,"st_reversal|lookback=10,top_n=3",0.687,0.1174,-0.4566,50.44
+mom_acceleration,"mom_acceleration|short=63,long=252,top_n=5",0.686,0.098,-0.3405,6.95
+ma_cross,"ma_cross|kind=hma,pair=(10, 50)|f=none|x=signal_only",0.684,0.0525,-0.1361,18.91
+rsi_reversal,"rsi_reversal|n=9,lo=30,exit=70|f=none|x=signal_only",0.684,0.0709,-0.3296,4.23
+price_ma+stoch_reversal,"price_ma+stoch_reversal|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=5",0.684,0.0213,-0.0675,1.8
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=21,lo=-40|f=none|x=signal_only",0.684,0.0459,-0.1714,3.29
+ma_cross,"ma_cross|kind=ema,pair=(20, 50)|f=trend_sma200|x=signal_only",0.683,0.0425,-0.1198,3.2
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=26,lo=-53|f=none|x=signal_only",0.683,0.0346,-0.0821,1.37
+ma_cross,"ma_cross|kind=ema,pair=(10, 50)|f=none|x=signal_only",0.683,0.0533,-0.1175,6.29
+price_ma+inside_bar,"price_ma+inside_bar|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=5",0.682,0.0125,-0.0343,0.74
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=3,lo=10|f=trend_sma200|x=signal_only",0.681,0.0308,-0.1219,3.2
+rsi_reversal,"rsi_reversal|n=7,lo=30,exit=60|f=trend_sma200|x=signal_only",0.68,0.0341,-0.1563,5.6
+rsi_rotation,"rsi_rotation|n=28,top_n=3,mode=strong",0.679,0.0971,-0.3598,30.56
+ma_cross,"ma_cross|kind=ema,pair=(10, 30)|f=none|x=signal_only",0.679,0.0512,-0.1025,8.27
+cci_breakout,"cci_breakout|n=20,level=100|f=none|x=signal_only",0.679,0.0418,-0.1064,13.48
+rsi_reversal,"rsi_reversal|n=5,lo=20,exit=60|f=trend_sma200|x=signal_only",0.678,0.0218,-0.0857,4.37
+halloween,"halloween|start=10,end=4|f=none|x=signal_only",0.677,0.0802,-0.3634,1.94
+macd_divergence+inside_bar,"macd_divergence+inside_bar|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=3",0.676,0.0041,-0.0132,0.49
+rsi_reversal,"rsi_reversal|n=14,lo=35,exit=50|f=trend_sma200|x=signal_only",0.675,0.019,-0.073,2.62
+price_ma,"price_ma|kind=sma,n=150|f=none|x=signal_only",0.675,0.0516,-0.1428,8.86
+price_ma,"price_ma|kind=ema,n=150|f=none|x=signal_only",0.674,0.0529,-0.1394,9.7
+ibs_reversion+wavetrend_reversal,"ibs_reversion+wavetrend_reversal|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=3",0.674,0.0086,-0.0287,1.69
+ma_cross,"ma_cross|kind=kama,pair=(20, 50)|f=none|x=signal_only",0.674,0.0518,-0.1965,3.95
+engulfing,engulfing|trend_n=0|f=none|x=signal_only,0.673,0.0485,-0.1369,8.26
+roc_breakout,"roc_breakout|n=126,th=5|f=trend_sma200|x=signal_only",0.673,0.048,-0.1472,2.48
+trix_cross,"trix_cross|n=21,signal=9|f=trend_sma200|x=signal_only",0.671,0.0279,-0.0674,6.62
+price_ma,"price_ma|kind=kama,n=100|f=trend_sma200|x=signal_only",0.67,0.0392,-0.1044,10.6
+coppock_turn,coppock_turn|scale=21|f=none|x=signal_only,0.67,0.0246,-0.1119,0.29
+trix_cross,"trix_cross|n=9,signal=7|f=none|x=signal_only",0.669,0.0502,-0.1382,18.04
+cci_reversal,"cci_reversal|n=40,lo=-100|f=trend_sma200|x=signal_only",0.669,0.0266,-0.0992,4.61
+rsi_reversal,"rsi_reversal|n=9,lo=30,exit=60|f=trend_sma200|x=signal_only",0.669,0.0336,-0.1563,3.38
+roc_breakout,"roc_breakout|n=63,th=0|f=trend_sma200|x=signal_only",0.668,0.0444,-0.1522,9.29
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=18,lo=-40|f=none|x=signal_only",0.668,0.0483,-0.1717,3.95
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=18,lo=-40|f=none|x=signal_only",0.667,0.0469,-0.1717,3.84
+trix_cross,"trix_cross|n=9,signal=7|f=trend_sma200|x=signal_only",0.667,0.0285,-0.092,13.32
+ichimoku_cloud,"ichimoku_cloud|cfg=(7, 22, 44)|f=trend_sma200|x=signal_only",0.666,0.0274,-0.0827,9.33
+coppock_turn,coppock_turn|scale=5|f=none|x=signal_only,0.666,0.0403,-0.1644,2.03
+williams_reversal,"williams_reversal|n=14,lo=-80|f=trend_sma200|x=signal_only",0.666,0.0314,-0.1053,9.6
+price_ma+inside_bar,"price_ma+inside_bar|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=3",0.665,0.0119,-0.0289,0.57
+ibs_reversion,"ibs_reversion|lo=0.1,hi=0.7|f=none|x=signal_only",0.665,0.0427,-0.135,38.23
+rsi_reversal,"rsi_reversal|n=7,lo=35,exit=60|f=trend_sma200|x=signal_only",0.664,0.0358,-0.1563,7.81
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=3,lo=20|f=trend_sma200|x=signal_only",0.663,0.0295,-0.0639,9.86
+roc_breakout,"roc_breakout|n=252,th=5|f=none|x=signal_only",0.662,0.0527,-0.1976,1.8
+ibs_reversion,"ibs_reversion|lo=0.2,hi=0.7|f=none|x=signal_only",0.662,0.0526,-0.1912,60.71
+macd_cross,"macd_cross|cfg=(8, 21, 5),zero_filter=False|f=none|x=signal_only",0.661,0.0511,-0.1017,28.78
+rsi_reversal,"rsi_reversal|n=2,lo=10,exit=70|f=trend_sma200|x=signal_only",0.661,0.0202,-0.0433,13.86
+wavetrend_reversal+macd_divergence,"wavetrend_reversal+macd_divergence|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=5",0.661,0.0039,-0.0098,0.28
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=3,lo=25|f=trend_sma200|x=signal_only",0.661,0.0361,-0.1563,6.83
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=3,lo=25|f=trend_sma200|x=signal_only",0.659,0.0322,-0.0618,11.65
+price_ma,"price_ma|kind=sma,n=20|f=none|x=signal_only",0.659,0.0488,-0.1257,28.0
+roc_breakout,"roc_breakout|n=252,th=10|f=trend_sma200|x=signal_only",0.658,0.0502,-0.1908,1.02
+breadth_timing,"breadth_timing|ma=50,thr=0.5",0.658,0.0602,-0.242,16.96
+rsi_reversion,"rsi_reversion|n=2,entry=10,exit=70",0.657,0.023,-0.0905,14.51
+triple_ma,"triple_ma|set=(20, 50, 100),kind=ema|f=trend_sma200|x=signal_only",0.656,0.0465,-0.1301,3.56
+ma_cross,"ma_cross|kind=sma,pair=(10, 50)|f=none|x=signal_only",0.655,0.0509,-0.134,6.11
+trix_cross,"trix_cross|n=21,signal=7|f=trend_sma200|x=signal_only",0.653,0.0272,-0.0788,7.07
+cci_breakout,"cci_breakout|n=20,level=100|f=trend_sma200|x=signal_only",0.653,0.0288,-0.0862,11.12
+ma_cross,"ma_cross|kind=sma,pair=(10, 30)|f=none|x=signal_only",0.652,0.0499,-0.1179,8.6
+macro_risk_switch,"macro_risk_switch|vix_max=25,use_curve=True,trend_n=100",0.652,0.0512,-0.1768,11.14
+ma_cross,"ma_cross|kind=sma,pair=(20, 100)|f=none|x=signal_only",0.652,0.0556,-0.2006,2.92
+macd_cross,"macd_cross|cfg=(19, 39, 9),zero_filter=True|f=trend_sma200|x=signal_only",0.652,0.0146,-0.0725,3.09
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=3,lo=20|f=trend_sma200|x=signal_only",0.651,0.0322,-0.0925,8.59
+rsi_reversal,"rsi_reversal|n=7,lo=35,exit=70|f=none|x=signal_only",0.651,0.0696,-0.3368,8.17
+rsi_reversal,"rsi_reversal|n=3,lo=10,exit=70|f=trend_sma200|x=signal_only",0.65,0.0181,-0.0511,4.42
+linreg_slope,"linreg_slope|n=20,th=0.0005|f=none|x=signal_only",0.65,0.0473,-0.1369,10.1
+triple_ma,"triple_ma|set=(20, 50, 100),kind=ema|f=none|x=signal_only",0.649,0.0479,-0.132,3.88
+vortex_cross,vortex_cross|n=21|f=trend_sma200|x=signal_only,0.649,0.0335,-0.094,13.84
+macd_zero,"macd_zero|cfg=(12, 26, 9)|f=none|x=signal_only",0.648,0.0487,-0.1037,8.07
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=26,lo=-60|f=none|x=signal_only",0.648,0.0206,-0.0658,0.64
+aroon_cross,aroon_cross|n=25|f=none|x=signal_only,0.648,0.0472,-0.1022,8.68
+bollinger_reversion,"bollinger_reversion|n=30,k=1.5|f=trend_sma200|x=signal_only",0.648,0.0301,-0.1563,5.42
+ma_cross,"ma_cross|kind=dema,pair=(10, 30)|f=trend_sma200|x=signal_only",0.648,0.026,-0.0817,11.57
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=26,lo=-60|f=trend_sma200|x=signal_only",0.647,0.0011,-0.0024,0.04
+ma_cross,"ma_cross|kind=sma,pair=(5, 20)|f=none|x=signal_only",0.647,0.0483,-0.1524,14.67
+roc_breakout,"roc_breakout|n=21,th=0|f=none|x=signal_only",0.645,0.0474,-0.1175,21.15
+macd_cross,"macd_cross|cfg=(5, 35, 5),zero_filter=False|f=none|x=signal_only",0.643,0.05,-0.0935,32.42
+aroon_cross,aroon_cross|n=14|f=none|x=signal_only,0.643,0.0476,-0.1578,15.55
+st_reversal,"st_reversal|lookback=21,top_n=3",0.642,0.1086,-0.4697,36.86
+price_ma,"price_ma|kind=kama,n=150|f=none|x=signal_only",0.642,0.0484,-0.1377,12.4
+ma_cross,"ma_cross|kind=kama,pair=(5, 20)|f=none|x=signal_only",0.641,0.0479,-0.1302,9.47
+macd_zero,"macd_zero|cfg=(8, 21, 5)|f=trend_sma200|x=signal_only",0.641,0.0334,-0.1046,8.27
+ibs_reversion,"ibs_reversion|lo=0.1,hi=0.8|f=trend_sma200|x=signal_only",0.641,0.0266,-0.0755,24.35
+trix_cross,"trix_cross|n=9,signal=9|f=none|x=signal_only",0.641,0.048,-0.1444,16.74
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only",0.641,0.0106,-0.0457,3.88
+ma_cross,"ma_cross|kind=ema,pair=(5, 20)|f=none|x=signal_only",0.641,0.0471,-0.1298,14.23
+ma_cross,"ma_cross|kind=hma,pair=(20, 50)|f=none|x=signal_only",0.639,0.0484,-0.1435,14.04
+ma_cross,"ma_cross|kind=kama,pair=(10, 30)|f=none|x=signal_only",0.639,0.0482,-0.1298,6.19
+vortex_cross,vortex_cross|n=28|f=none|x=signal_only,0.638,0.0477,-0.1045,16.03
+rsi_reversal,"rsi_reversal|n=5,lo=20,exit=50|f=trend_sma200|x=signal_only",0.638,0.0135,-0.0316,4.55
+ma_cross,"ma_cross|kind=ema,pair=(50, 150)|f=none|x=signal_only",0.636,0.057,-0.258,1.25
+rsi_reversal,"rsi_reversal|n=3,lo=10,exit=60|f=trend_sma200|x=signal_only",0.636,0.0131,-0.0292,4.55
+inside_bar+price_ma,"inside_bar+price_ma|trend_n=200|f=none|x=signal_only|confirm=kind=ema,n=200,within=0",0.636,0.0094,-0.0262,0.42
+seasonality_same_month,"seasonality_same_month|years=5,top_n=10",0.636,0.0817,-0.3691,0.55
+ma_cross,"ma_cross|kind=dema,pair=(10, 50)|f=none|x=signal_only",0.635,0.0437,-0.1339,12.48
+psar_flip,"psar_flip|cfg=(0.03, 0.3)|f=none|x=signal_only",0.635,0.0508,-0.1307,30.85
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=21,lo=-40|f=none|x=signal_only",0.635,0.0406,-0.1512,3.03
+ma_cross,"ma_cross|kind=sma,pair=(20, 50)|f=none|x=signal_only",0.634,0.0513,-0.1791,5.1
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=3,lo=25|f=trend_sma200|x=signal_only",0.634,0.0274,-0.0931,9.33
+ma_cross,"ma_cross|kind=kama,pair=(50, 150)|f=none|x=signal_only",0.634,0.0549,-0.2365,1.8
+price_ma,"price_ma|kind=sma,n=150|f=trend_sma200|x=signal_only",0.633,0.0392,-0.1421,7.11
+price_ma+inside_bar,"price_ma+inside_bar|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=0",0.633,0.0095,-0.0261,0.42
+awesome_zero,"awesome_zero|fast=5,slow=50|f=none|x=signal_only",0.633,0.0479,-0.1272,7.76
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=1,lo=10|f=none|x=signal_only",0.633,0.0383,-0.1349,13.31
+roc_breakout,"roc_breakout|n=10,th=0|f=none|x=signal_only",0.632,0.048,-0.13,33.39
+price_ma+stoch_reversal,"price_ma+stoch_reversal|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=3",0.632,0.0161,-0.0675,1.47
+ma_cross,"ma_cross|kind=kama,pair=(5, 20)|f=trend_sma200|x=signal_only",0.631,0.0328,-0.1068,7.06
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=1,lo=20|f=none|x=signal_only",0.631,0.0472,-0.1788,20.25
+stochrsi_reversal,"stochrsi_reversal|n=21,lo=5|f=trend_sma200|x=signal_only",0.631,0.0341,-0.1563,5.46
+rsi_reversal,"rsi_reversal|n=7,lo=30,exit=70|f=none|x=signal_only",0.631,0.0649,-0.33,6.59
+bollinger_reversion,"bollinger_reversion|n=30,k=2.0|f=trend_sma200|x=signal_only",0.629,0.028,-0.1505,3.7
+rsi_reversal,"rsi_reversal|n=5,lo=30,exit=50|f=trend_sma200|x=signal_only",0.629,0.0185,-0.0457,11.25
+williams_reversal,"williams_reversal|n=10,lo=-80|f=trend_sma200|x=signal_only",0.629,0.0298,-0.1012,12.55
+ichimoku_cloud,"ichimoku_cloud|cfg=(9, 26, 52)|f=trend_sma200|x=signal_only",0.628,0.0264,-0.0709,8.21
+breadth_timing,"breadth_timing|ma=200,thr=0.6",0.628,0.0581,-0.2631,10.19
+ibs_reversion,"ibs_reversion|lo=0.2,hi=0.7|f=trend_sma200|x=signal_only",0.627,0.0292,-0.0941,42.56
+macd_zero,"macd_zero|cfg=(5, 35, 5)|f=none|x=signal_only",0.627,0.0464,-0.1119,10.68
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=18,lo=-60|f=trend_sma200|x=signal_only",0.626,0.0041,-0.015,0.31
+inside_bar+stoch_reversal,"inside_bar+stoch_reversal|trend_n=200|f=none|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=5",0.626,0.024,-0.0702,1.31
+breadth_timing,"breadth_timing|ma=50,thr=0.4",0.626,0.0598,-0.2327,15.48
+price_ma,"price_ma|kind=sma,n=100|f=none|x=signal_only",0.625,0.0479,-0.134,11.89
+tsi_cross,"tsi_cross|cfg=(40, 20, 10)|f=trend_sma200|x=signal_only",0.625,0.0252,-0.0862,10.3
+ma_cross,"ma_cross|kind=hma,pair=(20, 100)|f=none|x=signal_only",0.625,0.0444,-0.1387,10.51
+price_ma,"price_ma|kind=hma,n=150|f=none|x=signal_only",0.623,0.0409,-0.1086,18.9
+ma_cross,"ma_cross|kind=ema,pair=(5, 20)|f=trend_sma200|x=signal_only",0.623,0.0316,-0.0982,10.44
+smc_bos,smc_bos|k=8|f=none|x=signal_only,0.623,0.0462,-0.1507,3.89
+hammer_star,hammer_star|lookback_low=20|f=trend_sma200|x=signal_only,0.622,0.0065,-0.0192,1.37
+ma_cross,"ma_cross|kind=tema,pair=(10, 50)|f=trend_sma200|x=signal_only",0.622,0.024,-0.0915,12.98
+dual_momentum,"dual_momentum|lookback=252,top_n=1",0.621,0.1155,-0.3115,7.35
+rsi_reversal,"rsi_reversal|n=7,lo=25,exit=70|f=trend_sma200|x=signal_only",0.621,0.0407,-0.2253,3.2
+ma_cross,"ma_cross|kind=dema,pair=(5, 20)|f=trend_sma200|x=signal_only",0.621,0.0258,-0.1013,19.5
+inside_bar+stoch_reversal,"inside_bar+stoch_reversal|trend_n=200|f=none|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=3",0.621,0.0226,-0.0658,1.07
+smc_choch,smc_choch|k=5|f=trend_sma200|x=signal_only,0.621,0.0247,-0.0713,3.64
+ma_cross,"ma_cross|kind=ema,pair=(50, 150)|f=trend_sma200|x=signal_only",0.621,0.0516,-0.2336,1.14
+ichimoku_cloud,"ichimoku_cloud|cfg=(7, 22, 44)|f=none|x=signal_only",0.621,0.0332,-0.0927,11.43
+trix_cross,"trix_cross|n=9,signal=9|f=trend_sma200|x=signal_only",0.621,0.0265,-0.1074,12.42
+ml_ridge_rank,"ml_ridge_rank|train_months=60,alpha=10.0,top_n=5",0.62,0.0832,-0.3929,5.38
+trix_cross,"trix_cross|n=15,signal=9|f=trend_sma200|x=signal_only",0.62,0.026,-0.0889,8.62
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=3,lo=20|f=trend_sma200|x=signal_only",0.62,0.0245,-0.0931,7.24
+rsi_reversal,"rsi_reversal|n=14,lo=35,exit=60|f=trend_sma200|x=signal_only",0.62,0.0358,-0.1855,2.42
+price_ma,"price_ma|kind=sma,n=50|f=none|x=signal_only",0.619,0.0453,-0.0988,17.33
+ml_ridge_rank,"ml_ridge_rank|train_months=60,alpha=1.0,top_n=5",0.619,0.0829,-0.3903,5.44
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=3,lo=25|f=trend_sma200|x=signal_only",0.618,0.0322,-0.0925,9.68
+psar_flip,"psar_flip|cfg=(0.02, 0.2)|f=trend_sma200|x=signal_only",0.618,0.0298,-0.0948,17.34
+engulfing,engulfing|trend_n=0|f=trend_sma200|x=signal_only,0.617,0.0299,-0.1205,6.46
+engulfing,engulfing|trend_n=200|f=trend_sma200|x=signal_only,0.617,0.0299,-0.1205,6.46
+engulfing,engulfing|trend_n=200|f=none|x=signal_only,0.617,0.0299,-0.1205,6.46
+volume_shock,"volume_shock|n=20,top_n=5",0.617,0.0924,-0.3856,35.93
+rsi_reversal,"rsi_reversal|n=21,lo=35,exit=70|f=none|x=signal_only",0.614,0.0701,-0.3353,0.96
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=18,lo=-53|f=none|x=signal_only",0.614,0.0358,-0.1281,2.29
+zscore_reversion,"zscore_reversion|n=20,z=2.5|f=trend_sma200|x=signal_only",0.613,0.0173,-0.0861,2.59
+ibs_reversion+price_ma,"ibs_reversion+price_ma|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=kind=ema,n=200,within=5",0.613,0.0078,-0.0227,3.12
+bollinger_reversion,"bollinger_reversion|n=20,k=2.5|f=trend_sma200|x=signal_only",0.613,0.0173,-0.0861,2.59
+halloween,"halloween|start=11,end=5|f=none|x=signal_only",0.613,0.0718,-0.3634,1.89
+supertrend_flip,"supertrend_flip|cfg=(20, 4.0)|f=none|x=signal_only",0.612,0.046,-0.1185,5.13
+linreg_slope,"linreg_slope|n=100,th=0.001|f=none|x=signal_only",0.611,0.0456,-0.1948,1.35
+smc_bos,smc_bos|k=2|f=none|x=signal_only,0.61,0.0436,-0.1284,11.7
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=21,lo=-60|f=none|x=signal_only",0.61,0.03,-0.1032,1.37
+inside_bar+ibs_reversion,"inside_bar+ibs_reversion|trend_n=200|f=none|x=signal_only|confirm=lo=0.1,hi=0.8,within=3",0.609,0.0339,-0.1122,1.63
+breadth_timing,"breadth_timing|ma=200,thr=0.5",0.608,0.0594,-0.2458,8.85
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=21,lo=-53|f=none|x=signal_only",0.608,0.0317,-0.1037,1.72
+ibs_reversion,"ibs_reversion|lo=0.3,hi=0.7|f=trend_sma200|x=signal_only",0.607,0.0321,-0.1023,54.98
+linreg_slope,"linreg_slope|n=20,th=0.001|f=none|x=signal_only",0.607,0.0425,-0.1348,9.32
+price_ma,"price_ma|kind=kama,n=100|f=none|x=signal_only",0.606,0.0455,-0.1181,14.16
+smc_choch,smc_choch|k=8|f=trend_sma200|x=signal_only,0.606,0.0271,-0.1146,2.34
+smc_choch,smc_choch|k=5|f=none|x=signal_only,0.606,0.0351,-0.0908,4.69
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=26,lo=-40|f=none|x=signal_only",0.605,0.0366,-0.1065,2.37
+trix_cross,"trix_cross|n=12,signal=9|f=trend_sma200|x=signal_only",0.603,0.0258,-0.1085,10.02
+rsi_reversal,"rsi_reversal|n=5,lo=25,exit=50|f=trend_sma200|x=signal_only",0.603,0.0158,-0.0457,7.41
+ma_cross,"ma_cross|kind=sma,pair=(20, 50)|f=trend_sma200|x=signal_only",0.603,0.0376,-0.1107,3.96
+macd_divergence+price_ma,"macd_divergence+price_ma|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=3",0.602,0.0044,-0.0187,0.44
+aroon_cross,aroon_cross|n=50|f=trend_sma200|x=signal_only,0.602,0.0378,-0.1274,3.72
+macd_divergence+price_ma,"macd_divergence+price_ma|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=5",0.602,0.0044,-0.0187,0.44
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=26,lo=-40|f=none|x=signal_only",0.602,0.0354,-0.1009,2.26
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=18,lo=-53|f=none|x=signal_only",0.602,0.0383,-0.1515,2.65
+awesome_zero,"awesome_zero|fast=5,slow=34|f=trend_sma200|x=signal_only",0.602,0.0317,-0.1053,7.45
+smc_bos,smc_bos|k=2|f=trend_sma200|x=signal_only,0.602,0.0314,-0.1119,9.56
+stoch_reversal+price_ma,"stoch_reversal+price_ma|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=3",0.6,0.0046,-0.0225,0.55
+rsi_reversal,"rsi_reversal|n=7,lo=25,exit=70|f=none|x=signal_only",0.6,0.0573,-0.3306,4.88
+stoch_reversal+price_ma,"stoch_reversal+price_ma|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=5",0.6,0.0046,-0.0225,0.55
+halloween,"halloween|start=10,end=3|f=none|x=signal_only",0.6,0.0638,-0.3634,1.94
+rsi_reversal,"rsi_reversal|n=7,lo=25,exit=50|f=trend_sma200|x=signal_only",0.6,0.0147,-0.0511,3.54
+vwap_cross,vwap_cross|n=50|f=none|x=signal_only,0.6,0.0449,-0.1102,17.52
+donchian_breakout,"donchian_breakout|entry=20,exit=10|f=none|x=signal_only",0.6,0.0363,-0.0865,8.37
+rsi_reversion,"rsi_reversion|n=3,entry=20,exit=70",0.599,0.0246,-0.0912,11.98
+smc_order_block,"smc_order_block|k=3,max_age=50|f=none|x=signal_only",0.599,0.0379,-0.132,22.04
+macd_cross,"macd_cross|cfg=(6, 13, 4),zero_filter=True|f=none|x=signal_only",0.599,0.0407,-0.1196,18.33
+rsi_reversal,"rsi_reversal|n=9,lo=25,exit=70|f=none|x=signal_only",0.599,0.0553,-0.3152,2.83
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=21,lo=-53|f=trend_sma200|x=signal_only",0.597,0.0051,-0.015,0.41
+rsi_reversal,"rsi_reversal|n=21,lo=30,exit=70|f=none|x=signal_only",0.597,0.0501,-0.2673,0.52
+price_ma,"price_ma|kind=kama,n=50|f=none|x=signal_only",0.597,0.0435,-0.1058,17.87
+rsi_midline,"rsi_midline|n=14,level=50|f=none|x=signal_only",0.596,0.0432,-0.1232,27.04
+price_ma,"price_ma|kind=kama,n=50|f=trend_sma200|x=signal_only",0.596,0.0324,-0.0979,13.26
+breadth_timing,"breadth_timing|ma=200,thr=0.4",0.595,0.0619,-0.2916,7.91
+bollinger_breakout,"bollinger_breakout|n=20,k=1.5|f=none|x=signal_only",0.595,0.0334,-0.0865,12.77
+rsi_midline,"rsi_midline|n=21,level=55|f=trend_sma200|x=signal_only",0.595,0.0304,-0.0961,8.96
+rsi_reversal,"rsi_reversal|n=2,lo=10,exit=60|f=trend_sma200|x=signal_only",0.595,0.0156,-0.0397,14.73
+stoch_reversal+price_ma,"stoch_reversal+price_ma|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=0",0.595,0.0042,-0.0225,0.47
+ma_cross,"ma_cross|kind=ema,pair=(50, 200)|f=none|x=signal_only",0.594,0.0539,-0.2629,0.95
+macd_cross,"macd_cross|cfg=(6, 13, 4),zero_filter=True|f=trend_sma200|x=signal_only",0.594,0.0195,-0.0521,11.4
+smc_order_block,"smc_order_block|k=5,max_age=50|f=none|x=signal_only",0.594,0.0355,-0.1139,17.73
+smc_choch,smc_choch|k=8|f=none|x=signal_only,0.593,0.0359,-0.1345,2.95
+supertrend_flip,"supertrend_flip|cfg=(20, 4.0)|f=trend_sma200|x=signal_only",0.593,0.032,-0.0866,3.96
+price_ma,"price_ma|kind=kama,n=20|f=trend_sma200|x=signal_only",0.592,0.0293,-0.1331,18.92
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=18,lo=-60|f=trend_sma200|x=signal_only",0.592,0.0056,-0.0201,0.48
+roc_breakout,"roc_breakout|n=252,th=5|f=trend_sma200|x=signal_only",0.592,0.0424,-0.1908,1.47
+rsi_reversal,"rsi_reversal|n=5,lo=35,exit=70|f=trend_sma200|x=signal_only",0.592,0.0408,-0.2106,9.91
+rsi_reversal,"rsi_reversal|n=5,lo=30,exit=60|f=none|x=signal_only",0.591,0.0465,-0.2729,14.14
+supertrend_flip,"supertrend_flip|cfg=(10, 3.0)|f=trend_sma200|x=signal_only",0.591,0.0294,-0.0902,5.61
+ma_cross,"ma_cross|kind=tema,pair=(20, 100)|f=none|x=signal_only",0.591,0.0389,-0.1367,8.58
+vortex_cross,vortex_cross|n=14|f=none|x=signal_only,0.59,0.0441,-0.1428,24.13
+roc_breakout,"roc_breakout|n=252,th=0|f=none|x=signal_only",0.59,0.0479,-0.2054,4.93
+volume_shock,"volume_shock|n=63,top_n=5",0.59,0.0874,-0.4071,30.43
+linreg_slope,"linreg_slope|n=100,th=0.0005|f=none|x=signal_only",0.59,0.0498,-0.2376,1.69
+supertrend_flip,"supertrend_flip|cfg=(14, 3.0)|f=trend_sma200|x=signal_only",0.59,0.0299,-0.0923,5.56
+rsi_reversal,"rsi_reversal|n=5,lo=30,exit=70|f=none|x=signal_only",0.589,0.0579,-0.3186,11.07
+ma_cross,"ma_cross|kind=ema,pair=(50, 200)|f=trend_sma200|x=signal_only",0.589,0.0521,-0.2629,0.88
+smc_fvg,"smc_fvg|max_age=40,min_gap_atr=0.5|f=none|x=signal_only",0.589,0.0389,-0.1226,23.54
+ibs_reversion,"ibs_reversion|lo=0.3,hi=0.7|f=none|x=signal_only",0.588,0.0533,-0.2421,76.8
+rsi_divergence,"rsi_divergence|n=14,k=5,exit_level=70|f=trend_sma200|x=signal_only",0.588,0.0177,-0.0686,0.83
+linreg_slope,"linreg_slope|n=100,th=0.001|f=trend_sma200|x=signal_only",0.587,0.0417,-0.1948,1.26
+williams_reversal,"williams_reversal|n=21,lo=-90|f=none|x=signal_only",0.587,0.0542,-0.2849,7.84
+smc_liquidity_sweep,smc_liquidity_sweep|k=10|f=trend_sma200|x=signal_only,0.586,0.0108,-0.0519,3.92
+ma_cross,"ma_cross|kind=ema,pair=(10, 30)|f=trend_sma200|x=signal_only",0.586,0.0321,-0.0965,6.19
+donchian_breakout,"donchian_breakout|entry=20,exit=20|f=none|x=signal_only",0.586,0.0422,-0.1145,6.05
+rsi_reversal,"rsi_reversal|n=14,lo=30,exit=70|f=none|x=signal_only",0.586,0.0583,-0.3177,1.69
+stoch_reversal+wavetrend_reversal,"stoch_reversal+wavetrend_reversal|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=5",0.586,0.002,-0.0052,0.28
+rsi_reversal,"rsi_reversal|n=5,lo=25,exit=70|f=none|x=signal_only",0.585,0.0551,-0.3183,8.83
+ma_cross,"ma_cross|kind=sma,pair=(50, 200)|f=trend_sma200|x=signal_only",0.585,0.0534,-0.3064,0.98
+macd_cross,"macd_cross|cfg=(8, 21, 5),zero_filter=False|f=trend_sma200|x=signal_only",0.584,0.0246,-0.0866,21.24
+mfi_reversal,"mfi_reversal|n=21,lo=30|f=trend_sma200|x=signal_only",0.584,0.0185,-0.0804,1.34
+halloween,"halloween|start=11,end=4|f=none|x=signal_only",0.584,0.0649,-0.3634,1.89
+trix_cross,"trix_cross|n=15,signal=7|f=trend_sma200|x=signal_only",0.584,0.0244,-0.1107,9.1
+zscore_reversion,"zscore_reversion|n=50,z=1.5|f=trend_sma200|x=signal_only",0.584,0.0231,-0.112,2.93
+rsi_midline,"rsi_midline|n=28,level=50|f=trend_sma200|x=signal_only",0.584,0.032,-0.0997,13.55
+rsi_midline,"rsi_midline|n=14,level=60|f=none|x=signal_only",0.582,0.0315,-0.0931,10.25
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=21,lo=-53|f=none|x=signal_only",0.582,0.0276,-0.0937,1.42
+williams_reversal,"williams_reversal|n=14,lo=-90|f=none|x=signal_only",0.582,0.0515,-0.2849,10.89
+rsi_reversal,"rsi_reversal|n=2,lo=10,exit=50|f=trend_sma200|x=signal_only",0.581,0.0136,-0.0402,15.42
+supertrend_flip,"supertrend_flip|cfg=(10, 2.0)|f=trend_sma200|x=signal_only",0.581,0.0285,-0.0825,9.52
+ichimoku_cloud,"ichimoku_cloud|cfg=(9, 26, 52)|f=none|x=signal_only",0.581,0.0309,-0.0806,9.83
+smc_bos,smc_bos|k=8|f=trend_sma200|x=signal_only,0.581,0.0366,-0.1554,3.43
+ma_timing,"ma_timing|fast=50,slow=100",0.58,0.056,-0.2908,2.41
+rsi_divergence,"rsi_divergence|n=14,k=3,exit_level=50|f=trend_sma200|x=signal_only",0.579,0.0039,-0.0111,1.73
+ma_cross,"ma_cross|kind=kama,pair=(50, 150)|f=trend_sma200|x=signal_only",0.579,0.0472,-0.2365,1.63
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=1,lo=25|f=none|x=signal_only",0.579,0.0482,-0.2385,22.9
+macd_cross,"macd_cross|cfg=(19, 39, 9),zero_filter=False|f=trend_sma200|x=signal_only",0.577,0.0229,-0.0836,11.11
+ultimate_reversal,"ultimate_reversal|a=5,lo=35|f=trend_sma200|x=signal_only",0.577,0.0223,-0.1,5.32
+ibs_reversion+macd_divergence,"ibs_reversion+macd_divergence|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=k=3,fast=12,slow=26,within=5",0.576,0.0061,-0.036,2.27
+seasonality_same_month,"seasonality_same_month|years=5,top_n=5",0.576,0.0751,-0.3694,8.7
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=1,lo=20|f=none|x=signal_only",0.576,0.0551,-0.3021,11.37
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=21,lo=-53|f=none|x=signal_only",0.575,0.0335,-0.123,2.04
+stoch_reversal+macd_divergence,"stoch_reversal+macd_divergence|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=5",0.574,0.0015,-0.0052,0.17
+rsi_reversal,"rsi_reversal|n=3,lo=25,exit=70|f=trend_sma200|x=signal_only",0.574,0.0282,-0.1097,14.49
+rsi_midline,"rsi_midline|n=28,level=50|f=none|x=signal_only",0.574,0.0422,-0.1148,18.8
+rsi_reversal,"rsi_reversal|n=5,lo=25,exit=60|f=none|x=signal_only",0.573,0.0429,-0.2729,10.62
+rsi_midline,"rsi_midline|n=14,level=55|f=none|x=signal_only",0.572,0.0362,-0.1101,15.73
+rsi_reversion,"rsi_reversion|n=2,entry=20,exit=70",0.572,0.0264,-0.1111,24.24
+macro_risk_switch,"macro_risk_switch|vix_max=20,use_curve=False,trend_n=200",0.571,0.0466,-0.1692,14.52
+smc_order_block,"smc_order_block|k=3,max_age=20|f=none|x=signal_only",0.571,0.0312,-0.1027,16.64
+ma_cross,"ma_cross|kind=sma,pair=(10, 30)|f=trend_sma200|x=signal_only",0.57,0.0312,-0.1019,6.43
+rsi_reversal,"rsi_reversal|n=3,lo=35,exit=70|f=none|x=signal_only",0.57,0.0499,-0.2888,27.91
+ma_cross,"ma_cross|kind=hma,pair=(50, 150)|f=none|x=signal_only",0.569,0.0393,-0.1613,5.48
+roc_breakout,"roc_breakout|n=126,th=0|f=trend_sma200|x=signal_only",0.569,0.0351,-0.1565,5.55
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=1,lo=10|f=none|x=signal_only",0.569,0.0519,-0.299,9.03
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=18,lo=-60|f=none|x=signal_only",0.569,0.0286,-0.104,1.41
+rsi_midline,"rsi_midline|n=9,level=60|f=trend_sma200|x=signal_only",0.569,0.0245,-0.0984,13.99
+aroon_cross,aroon_cross|n=50|f=none|x=signal_only,0.568,0.0434,-0.1902,4.65
+ma_cross,"ma_cross|kind=sma,pair=(5, 20)|f=trend_sma200|x=signal_only",0.567,0.0291,-0.1202,10.92
+price_ma,"price_ma|kind=kama,n=20|f=none|x=signal_only",0.567,0.0407,-0.1355,25.86
+zscore_reversion,"zscore_reversion|n=20,z=2.0|f=none|x=signal_only",0.567,0.0444,-0.2849,8.52
+ma_cross,"ma_cross|kind=kama,pair=(20, 100)|f=none|x=signal_only",0.567,0.0441,-0.1969,2.4
+bollinger_reversion,"bollinger_reversion|n=20,k=2.0|f=none|x=signal_only",0.567,0.0444,-0.2849,8.52
+dual_momentum,"dual_momentum|lookback=126,top_n=1",0.567,0.1022,-0.3559,10.59
+triple_ma,"triple_ma|set=(20, 50, 100),kind=sma|f=trend_sma200|x=signal_only",0.566,0.0348,-0.107,3.93
+rsi_reversal,"rsi_reversal|n=7,lo=25,exit=60|f=trend_sma200|x=signal_only",0.566,0.0259,-0.1563,3.43
+macd_cross,"macd_cross|cfg=(5, 35, 5),zero_filter=False|f=trend_sma200|x=signal_only",0.566,0.0237,-0.0906,24.16
+ma_cross,"ma_cross|kind=sma,pair=(50, 200)|f=none|x=signal_only",0.565,0.0524,-0.3064,1.1
+ma_cross,"ma_cross|kind=hma,pair=(20, 50)|f=trend_sma200|x=signal_only",0.565,0.0255,-0.1079,10.6
+ma_cross,"ma_cross|kind=kama,pair=(20, 100)|f=trend_sma200|x=signal_only",0.564,0.0367,-0.1437,2.02
+roc_breakout,"roc_breakout|n=252,th=0|f=trend_sma200|x=signal_only",0.564,0.0321,-0.1524,2.77
+price_ma,"price_ma|kind=sma,n=20|f=trend_sma200|x=signal_only",0.563,0.0267,-0.137,20.58
+vwap_cross,vwap_cross|n=20|f=none|x=signal_only,0.563,0.0423,-0.1341,28.57
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=26,lo=-53|f=none|x=signal_only",0.563,0.0188,-0.0628,0.74
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=3,lo=20|f=none|x=signal_only",0.563,0.0558,-0.3152,7.35
+inside_bar+macd_divergence,"inside_bar+macd_divergence|trend_n=200|f=none|x=signal_only|confirm=k=3,fast=12,slow=26,within=5",0.563,0.0101,-0.0406,0.49
+williams_reversal,"williams_reversal|n=7,lo=-95|f=none|x=signal_only",0.562,0.0412,-0.236,12.74
+triple_ma,"triple_ma|set=(10, 50, 200),kind=ema|f=none|x=signal_only",0.561,0.0371,-0.1104,5.44
+linreg_slope,"linreg_slope|n=20,th=0.0005|f=trend_sma200|x=signal_only",0.561,0.0282,-0.1161,7.64
+bollinger_reversion,"bollinger_reversion|n=20,k=1.5|f=trend_sma200|x=signal_only",0.561,0.0253,-0.147,7.72
+zscore_reversion,"zscore_reversion|n=20,z=1.5|f=trend_sma200|x=signal_only",0.561,0.0253,-0.147,7.72
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=18,lo=-40|f=none|x=signal_only",0.56,0.0391,-0.192,3.67
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=1,lo=10|f=none|x=signal_only",0.56,0.0437,-0.2687,6.92
+supertrend_flip,"supertrend_flip|cfg=(7, 2.0)|f=trend_sma200|x=signal_only",0.56,0.0269,-0.0866,9.56
+mfi_reversal,"mfi_reversal|n=10,lo=30|f=none|x=signal_only",0.56,0.0412,-0.2401,9.08
+pivot_bounce,pivot_bounce|window=5|f=none|x=signal_only,0.559,0.0264,-0.1077,24.94
+stoch_reversal+macd_divergence,"stoch_reversal+macd_divergence|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=0",0.558,0.001,-0.0039,0.09
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=3,lo=25|f=none|x=signal_only",0.558,0.0559,-0.3152,7.94
+ultimate_reversal,"ultimate_reversal|a=7,lo=35|f=trend_sma200|x=signal_only",0.558,0.0278,-0.1855,2.96
+price_ma,"price_ma|kind=hma,n=50|f=trend_sma200|x=signal_only",0.558,0.0232,-0.1013,23.64
+rsi_midline,"rsi_midline|n=14,level=55|f=trend_sma200|x=signal_only",0.558,0.0265,-0.1026,12.66
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=21,lo=-53|f=trend_sma200|x=signal_only",0.557,0.0038,-0.0172,0.33
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=3,lo=10|f=none|x=signal_only",0.557,0.0512,-0.2852,5.82
+ma_cross,"ma_cross|kind=kama,pair=(10, 50)|f=trend_sma200|x=signal_only",0.556,0.0313,-0.1425,3.19
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=26,lo=-53|f=none|x=signal_only",0.555,0.022,-0.0647,0.93
+price_ma+macd_divergence,"price_ma+macd_divergence|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=0",0.553,0.0034,-0.0164,0.09
+rsi_midline,"rsi_midline|n=14,level=50|f=trend_sma200|x=signal_only",0.553,0.028,-0.1234,19.84
+cci_reversal,"cci_reversal|n=40,lo=-100|f=none|x=signal_only",0.553,0.035,-0.1556,6.61
+st_reversal,"st_reversal|lookback=5,top_n=3",0.553,0.0887,-0.4578,71.67
+triple_ma,"triple_ma|set=(10, 50, 200),kind=ema|f=trend_sma200|x=signal_only",0.552,0.0363,-0.1097,5.34
+smc_bos,smc_bos|k=3|f=none|x=signal_only,0.552,0.0396,-0.1286,9.07
+triple_ma,"triple_ma|set=(5, 20, 50),kind=ema|f=trend_sma200|x=signal_only",0.551,0.0282,-0.0947,9.89
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=18,lo=-60|f=none|x=signal_only",0.551,0.0309,-0.1322,1.88
+smc_choch,smc_choch|k=3|f=none|x=signal_only,0.551,0.0341,-0.1007,7.18
+rsi_reversal,"rsi_reversal|n=5,lo=35,exit=60|f=trend_sma200|x=signal_only",0.551,0.0271,-0.147,12.44
+williams_reversal,"williams_reversal|n=14,lo=-95|f=none|x=signal_only",0.55,0.0466,-0.2849,8.73
+ma_cross,"ma_cross|kind=sma,pair=(50, 150)|f=none|x=signal_only",0.549,0.0519,-0.314,1.47
+donchian_breakout,"donchian_breakout|entry=20,exit=10|f=trend_sma200|x=signal_only",0.549,0.0267,-0.0976,7.4
+keltner_breakout,"keltner_breakout|n=50,k=1.5|f=trend_sma200|x=signal_only",0.549,0.0284,-0.0904,7.31
+trix_cross,"trix_cross|n=12,signal=7|f=trend_sma200|x=signal_only",0.549,0.0236,-0.1224,10.65
+triple_ma,"triple_ma|set=(20, 50, 100),kind=sma|f=none|x=signal_only",0.549,0.036,-0.109,4.59
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=3,lo=10|f=trend_sma200|x=signal_only",0.549,0.0145,-0.0931,2.96
+ma_cross,"ma_cross|kind=ema,pair=(10, 50)|f=trend_sma200|x=signal_only",0.549,0.0318,-0.1164,4.73
+cmf_flow,"cmf_flow|n=20,th=0.2|f=none|x=signal_only",0.548,0.0279,-0.1222,5.97
+rsi_midline,"rsi_midline|n=21,level=55|f=none|x=signal_only",0.548,0.034,-0.0964,10.57
+smc_ote,"smc_ote|k=8,fib_lo=0.618|f=trend_sma200|x=signal_only",0.548,0.0101,-0.0482,5.29
+turn_of_month,"turn_of_month|pre=3,post=4|f=none|x=signal_only",0.548,0.0431,-0.175,22.56
+williams_reversal,"williams_reversal|n=14,lo=-80|f=none|x=signal_only",0.548,0.0474,-0.2849,13.83
+price_ma,"price_ma|kind=ema,n=50|f=trend_sma200|x=signal_only",0.548,0.0298,-0.1075,14.36
+price_ma,"price_ma|kind=ema,n=50|f=none|x=signal_only",0.547,0.0398,-0.1194,19.58
+rsi_reversal,"rsi_reversal|n=21,lo=35,exit=70|f=trend_sma200|x=signal_only",0.547,0.0388,-0.2092,0.54
+rsi_midline,"rsi_midline|n=9,level=50|f=none|x=signal_only",0.547,0.04,-0.1196,34.04
+elder_impulse,"elder_impulse|ema_n=21,macd_cfg=(12, 26, 9)|f=none|x=signal_only",0.546,0.0393,-0.1208,26.43
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=21,lo=-60|f=none|x=signal_only",0.546,0.0225,-0.0927,0.88
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=26,lo=-53|f=trend_sma200|x=signal_only",0.546,0.003,-0.0143,0.17
+ma_cross,"ma_cross|kind=tema,pair=(5, 20)|f=none|x=signal_only",0.546,0.0431,-0.1409,34.52
+rsi_reversal,"rsi_reversal|n=28,lo=30,exit=70|f=none|x=signal_only",0.545,0.0326,-0.2113,0.16
+macd_zero,"macd_zero|cfg=(12, 26, 9)|f=trend_sma200|x=signal_only",0.543,0.0293,-0.0949,6.03
+zscore_reversion,"zscore_reversion|n=50,z=2.0|f=trend_sma200|x=signal_only",0.543,0.0161,-0.083,1.78
+linreg_slope,"linreg_slope|n=50,th=0.0005|f=trend_sma200|x=signal_only",0.543,0.0337,-0.1091,3.26
+mfi_reversal,"mfi_reversal|n=10,lo=20|f=trend_sma200|x=signal_only",0.542,0.0176,-0.1125,2.68
+roc_breakout,"roc_breakout|n=63,th=0|f=none|x=signal_only",0.542,0.0417,-0.1877,12.33
+cci_reversal,"cci_reversal|n=40,lo=-150|f=trend_sma200|x=signal_only",0.541,0.02,-0.1205,2.67
+price_ma,"price_ma|kind=ema,n=20|f=none|x=signal_only",0.54,0.0391,-0.1243,31.35
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=1,lo=25|f=none|x=signal_only",0.539,0.0521,-0.3021,12.44
+turn_of_month,"turn_of_month|days_before=3,days_after=4",0.539,0.0433,-0.1687,25.9
+ma_cross,"ma_cross|kind=dema,pair=(10, 50)|f=trend_sma200|x=signal_only",0.539,0.0213,-0.0818,9.73
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=1,lo=20|f=none|x=signal_only",0.538,0.0469,-0.3021,9.64
+turn_of_month,"turn_of_month|days_before=2,days_after=4",0.538,0.0405,-0.154,25.9
+rsi_midline,"rsi_midline|n=28,level=55|f=none|x=signal_only",0.538,0.0332,-0.0883,7.82
+cci_reversal,"cci_reversal|n=20,lo=-150|f=trend_sma200|x=signal_only",0.537,0.0239,-0.1563,5.83
+rsi_midline,"rsi_midline|n=28,level=55|f=trend_sma200|x=signal_only",0.537,0.0291,-0.0939,7.13
+adx_trend,"adx_trend|n=10,th=20|f=trend_sma200|x=signal_only",0.537,0.0132,-0.0821,8.59
+macd_zero,"macd_zero|cfg=(5, 35, 5)|f=trend_sma200|x=signal_only",0.537,0.0286,-0.1026,8.02
+ml_ridge_rank,"ml_ridge_rank|train_months=60,alpha=1.0,top_n=10",0.536,0.0659,-0.3621,0.97
+linreg_slope,"linreg_slope|n=100,th=0.0005|f=trend_sma200|x=signal_only",0.536,0.0414,-0.2376,1.51
+rsi_reversal,"rsi_reversal|n=5,lo=35,exit=70|f=none|x=signal_only",0.535,0.0537,-0.3176,13.22
+aroon_cross,aroon_cross|n=25|f=trend_sma200|x=signal_only,0.535,0.0281,-0.095,6.59
+smc_fvg,"smc_fvg|max_age=20,min_gap_atr=0.5|f=none|x=signal_only",0.535,0.0332,-0.1152,21.56
+ml_ridge_rank,"ml_ridge_rank|train_months=60,alpha=10.0,top_n=10",0.534,0.0658,-0.3621,0.97
+price_ma,"price_ma|kind=ema,n=20|f=trend_sma200|x=signal_only",0.533,0.0263,-0.1241,22.83
+ultimate_reversal,"ultimate_reversal|a=5,lo=30|f=trend_sma200|x=signal_only",0.533,0.0137,-0.079,2.55
+price_ma,"price_ma|kind=hma,n=200|f=none|x=signal_only",0.532,0.034,-0.1165,17.14
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=1,lo=10|f=none|x=signal_only",0.532,0.0504,-0.3021,6.79
+smc_order_block,"smc_order_block|k=5,max_age=50|f=trend_sma200|x=signal_only",0.532,0.0253,-0.1087,14.85
+rsi_reversal,"rsi_reversal|n=14,lo=35,exit=60|f=none|x=signal_only",0.531,0.0499,-0.3137,3.92
+ibs_reversion+stoch_reversal,"ibs_reversion+stoch_reversal|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=5",0.53,0.0125,-0.0481,5.35
+rsi_reversal,"rsi_reversal|n=3,lo=20,exit=50|f=trend_sma200|x=signal_only",0.53,0.014,-0.0394,13.87
+linreg_slope,"linreg_slope|n=50,th=0.0005|f=none|x=signal_only",0.53,0.0401,-0.1964,3.91
+smc_bos,smc_bos|k=5|f=none|x=signal_only,0.53,0.0367,-0.1144,6.24
+keltner_breakout,"keltner_breakout|n=50,k=1.5|f=none|x=signal_only",0.53,0.0322,-0.0876,8.16
+rsi_reversal,"rsi_reversal|n=3,lo=10,exit=50|f=trend_sma200|x=signal_only",0.529,0.0092,-0.0293,4.67
+ma_cross,"ma_cross|kind=hma,pair=(50, 200)|f=none|x=signal_only",0.529,0.0362,-0.1849,4.86
+awesome_zero,"awesome_zero|fast=5,slow=50|f=trend_sma200|x=signal_only",0.529,0.0294,-0.1137,5.9
+williams_reversal,"williams_reversal|n=7,lo=-90|f=none|x=signal_only",0.528,0.042,-0.2549,17.15
+williams_reversal,"williams_reversal|n=10,lo=-90|f=none|x=signal_only",0.528,0.0439,-0.2724,13.58
+ibs_reversion+wavetrend_reversal,"ibs_reversion+wavetrend_reversal|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=5",0.528,0.0085,-0.0505,2.74
+rsi_midline,"rsi_midline|n=9,level=55|f=none|x=signal_only",0.527,0.0344,-0.1069,23.8
+ma_cross,"ma_cross|kind=kama,pair=(10, 30)|f=trend_sma200|x=signal_only",0.527,0.0276,-0.1105,4.73
+williams_reversal,"williams_reversal|n=10,lo=-95|f=none|x=signal_only",0.527,0.0416,-0.2661,10.38
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=1,lo=20|f=none|x=signal_only",0.527,0.0517,-0.3021,8.25
+vwap_cross,vwap_cross|n=50|f=trend_sma200|x=signal_only,0.526,0.0283,-0.1004,13.21
+cci_breakout,"cci_breakout|n=14,level=100|f=trend_sma200|x=signal_only",0.526,0.0229,-0.0894,14.4
+psar_flip,"psar_flip|cfg=(0.03, 0.3)|f=trend_sma200|x=signal_only",0.526,0.0254,-0.0948,22.86
+elder_impulse,"elder_impulse|ema_n=13,macd_cfg=(12, 26, 9)|f=none|x=signal_only",0.526,0.039,-0.1332,32.87
+stoch_reversal+macd_divergence,"stoch_reversal+macd_divergence|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=3",0.525,0.0013,-0.0052,0.15
+smc_ote,"smc_ote|k=8,fib_lo=0.618|f=none|x=signal_only",0.525,0.0112,-0.0607,6.42
+turn_of_month,"turn_of_month|pre=3,post=3|f=none|x=signal_only",0.525,0.0371,-0.1196,22.56
+rsi_reversal,"rsi_reversal|n=9,lo=25,exit=70|f=trend_sma200|x=signal_only",0.525,0.0255,-0.1563,1.45
+macd_cross,"macd_cross|cfg=(6, 13, 4),zero_filter=False|f=none|x=signal_only",0.524,0.0407,-0.13,38.77
+roc_breakout,"roc_breakout|n=21,th=0|f=trend_sma200|x=signal_only",0.524,0.0263,-0.0972,15.76
+elder_impulse,"elder_impulse|ema_n=21,macd_cfg=(12, 26, 9)|f=trend_sma200|x=signal_only",0.523,0.0285,-0.1328,20.58
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=18,lo=-60|f=none|x=signal_only",0.523,0.0242,-0.0937,1.12
+rsi_midline,"rsi_midline|n=9,level=60|f=none|x=signal_only",0.523,0.0302,-0.1118,17.09
+down_days,"down_days|n=3,hold_exit=3|f=none|x=signal_only",0.523,0.0509,-0.3437,15.82
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=1,lo=25|f=none|x=signal_only",0.523,0.0343,-0.1686,17.65
+stochrsi_reversal,"stochrsi_reversal|n=21,lo=10|f=trend_sma200|x=signal_only",0.522,0.0314,-0.1991,6.42
+stoch_reversal,"stoch_reversal|k=21,d=3,smooth=1,lo=25|f=none|x=signal_only",0.521,0.0515,-0.3021,8.85
+rsi_midline,"rsi_midline|n=14,level=60|f=trend_sma200|x=signal_only",0.521,0.0228,-0.0961,9.06
+atr_breakout,"atr_breakout|n=10,k=1.5|f=none|x=signal_only",0.521,0.0137,-0.0581,7.02
+rsi_reversal,"rsi_reversal|n=28,lo=25,exit=70|f=none|x=signal_only",0.521,0.0088,-0.0417,0.04
+cci_breakout,"cci_breakout|n=14,level=100|f=none|x=signal_only",0.52,0.0316,-0.1315,17.95
+aroon_cross,aroon_cross|n=14|f=trend_sma200|x=signal_only,0.518,0.0254,-0.1254,11.43
+rsi_reversal,"rsi_reversal|n=2,lo=20,exit=70|f=none|x=signal_only",0.518,0.0414,-0.2881,34.14
+rsi_reversal,"rsi_reversal|n=5,lo=20,exit=60|f=none|x=signal_only",0.518,0.0358,-0.2661,7.4
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=3,lo=20|f=none|x=signal_only",0.518,0.0492,-0.3152,6.65
+smc_order_block,"smc_order_block|k=5,max_age=20|f=none|x=signal_only",0.517,0.0256,-0.0913,11.84
+halloween,"halloween|start=10,end=5|f=trend_sma200|x=signal_only",0.517,0.0495,-0.3139,1.21
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=18,lo=-53|f=none|x=signal_only",0.516,0.0293,-0.1494,2.0
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=3,lo=25|f=none|x=signal_only",0.515,0.0495,-0.3152,7.19
+keltner_breakout,"keltner_breakout|n=20,k=1.5|f=none|x=signal_only",0.515,0.0256,-0.0865,10.6
+rsi_reversal,"rsi_reversal|n=7,lo=35,exit=60|f=none|x=signal_only",0.514,0.0457,-0.3093,11.21
+mfi_reversal,"mfi_reversal|n=14,lo=20|f=trend_sma200|x=signal_only",0.514,0.0113,-0.0678,1.05
+smc_order_block,"smc_order_block|k=3,max_age=50|f=trend_sma200|x=signal_only",0.514,0.0245,-0.1156,17.74
+macro_risk_switch,"macro_risk_switch|vix_max=20,use_curve=True,trend_n=200",0.514,0.0367,-0.1517,12.49
+rsi_reversal,"rsi_reversal|n=2,lo=25,exit=60|f=none|x=signal_only",0.514,0.0388,-0.2288,45.02
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=1,lo=10|f=none|x=signal_only",0.513,0.0431,-0.2687,5.45
+rsi_midline,"rsi_midline|n=9,level=50|f=trend_sma200|x=signal_only",0.512,0.0249,-0.1295,24.63
+roc_breakout,"roc_breakout|n=63,th=5|f=trend_sma200|x=signal_only",0.512,0.0321,-0.1539,3.78
+bollinger_reversion,"bollinger_reversion|n=30,k=2.5|f=trend_sma200|x=signal_only",0.511,0.0184,-0.1257,2.15
+rsi_reversal,"rsi_reversal|n=5,lo=20,exit=70|f=none|x=signal_only",0.511,0.0451,-0.3183,6.41
+rsi_reversal,"rsi_reversal|n=3,lo=10,exit=70|f=none|x=signal_only",0.511,0.0292,-0.207,7.63
+rsi_divergence,"rsi_divergence|n=14,k=3,exit_level=50|f=none|x=signal_only",0.511,0.0184,-0.0577,3.13
+smc_bos,smc_bos|k=5|f=trend_sma200|x=signal_only,0.51,0.0282,-0.1113,5.27
+mfi_reversal,"mfi_reversal|n=21,lo=30|f=none|x=signal_only",0.51,0.0334,-0.2148,2.56
+ma_cross,"ma_cross|kind=sma,pair=(20, 100)|f=trend_sma200|x=signal_only",0.509,0.0334,-0.1823,2.27
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=3,lo=25|f=none|x=signal_only",0.509,0.0496,-0.3152,10.54
+rsi_reversal,"rsi_reversal|n=2,lo=20,exit=60|f=none|x=signal_only",0.509,0.0385,-0.2445,38.76
+pivot_bounce,pivot_bounce|window=20|f=none|x=signal_only,0.509,0.0174,-0.1004,3.8
+cci_breakout,"cci_breakout|n=20,level=150|f=trend_sma200|x=signal_only",0.508,0.0195,-0.0717,8.41
+cci_breakout,"cci_breakout|n=20,level=150|f=none|x=signal_only",0.508,0.0257,-0.0865,9.95
+halloween,"halloween|start=11,end=5|f=trend_sma200|x=signal_only",0.508,0.0473,-0.3139,1.28
+rsi_reversal,"rsi_reversal|n=9,lo=30,exit=60|f=none|x=signal_only",0.508,0.0449,-0.3134,5.45
+rsi_reversal,"rsi_reversal|n=3,lo=20,exit=70|f=none|x=signal_only",0.507,0.0397,-0.2599,16.52
+coppock_turn,coppock_turn|scale=5|f=trend_sma200|x=signal_only,0.506,0.0167,-0.0996,1.28
+atr_breakout,"atr_breakout|n=20,k=1.0|f=none|x=signal_only",0.506,0.0316,-0.1491,22.82
+stoch_reversal+wavetrend_reversal,"stoch_reversal+wavetrend_reversal|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=0",0.506,0.0013,-0.0052,0.18
+macd_cross,"macd_cross|cfg=(6, 13, 4),zero_filter=False|f=trend_sma200|x=signal_only",0.506,0.0222,-0.0728,28.54
+price_ma,"price_ma|kind=sma,n=50|f=trend_sma200|x=signal_only",0.506,0.0265,-0.0996,13.38
+rsi_reversal,"rsi_reversal|n=2,lo=25,exit=70|f=none|x=signal_only",0.505,0.0413,-0.2882,39.14
+rsi_reversal,"rsi_reversal|n=3,lo=35,exit=70|f=trend_sma200|x=signal_only",0.505,0.0267,-0.1195,19.96
+price_ma,"price_ma|kind=hma,n=150|f=trend_sma200|x=signal_only",0.505,0.02,-0.0813,15.45
+adx_trend,"adx_trend|n=10,th=20|f=none|x=signal_only",0.504,0.0206,-0.1077,11.9
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=1,lo=25|f=none|x=signal_only",0.504,0.0444,-0.3021,10.66
+turn_of_month,"turn_of_month|days_before=3,days_after=3",0.503,0.0365,-0.117,25.9
+turn_of_month,"turn_of_month|days_before=2,days_after=3",0.503,0.0337,-0.1316,25.9
+williams_reversal,"williams_reversal|n=10,lo=-80|f=none|x=signal_only",0.503,0.0421,-0.2814,17.78
+inside_bar+macd_divergence,"inside_bar+macd_divergence|trend_n=200|f=none|x=signal_only|confirm=k=3,fast=12,slow=26,within=0",0.503,0.0043,-0.0268,0.14
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=3,lo=20|f=none|x=signal_only",0.503,0.0483,-0.3152,9.63
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=1,lo=20|f=none|x=signal_only",0.502,0.0462,-0.3021,7.23
+rsi_reversal,"rsi_reversal|n=21,lo=35,exit=60|f=none|x=signal_only",0.502,0.0455,-0.3134,1.78
+ma_cross,"ma_cross|kind=tema,pair=(20, 50)|f=trend_sma200|x=signal_only",0.502,0.0198,-0.0987,8.44
+smc_fvg,"smc_fvg|max_age=10,min_gap_atr=0.5|f=none|x=signal_only",0.502,0.0284,-0.1082,17.95
+vwap_cross,vwap_cross|n=10|f=none|x=signal_only,0.5,0.0384,-0.1107,41.51
+rsi_reversal,"rsi_reversal|n=2,lo=30,exit=70|f=none|x=signal_only",0.5,0.0407,-0.2775,44.33
+bollinger_breakout,"bollinger_breakout|n=20,k=1.5|f=trend_sma200|x=signal_only",0.499,0.0208,-0.0823,10.94
+bb_squeeze,"bb_squeeze|n=20,q=0.1,look=252|f=trend_sma200|x=signal_only",0.498,0.008,-0.0324,2.64
+cci_breakout,"cci_breakout|n=14,level=150|f=trend_sma200|x=signal_only",0.498,0.0177,-0.0861,10.31
+williams_reversal,"williams_reversal|n=21,lo=-95|f=none|x=signal_only",0.498,0.0434,-0.2849,6.42
+rsi_reversal,"rsi_reversal|n=5,lo=35,exit=60|f=none|x=signal_only",0.498,0.0416,-0.3036,17.85
+halloween,"halloween|start=11,end=3|f=none|x=signal_only",0.497,0.0489,-0.3634,1.89
+rsi_reversion,"rsi_reversion|n=2,entry=10,exit=50",0.496,0.014,-0.0951,15.67
+rsi_reversal,"rsi_reversal|n=7,lo=30,exit=60|f=none|x=signal_only",0.496,0.043,-0.3134,8.37
+smc_bos,smc_bos|k=3|f=trend_sma200|x=signal_only,0.496,0.0262,-0.1173,7.53
+rsi_reversal,"rsi_reversal|n=14,lo=30,exit=70|f=trend_sma200|x=signal_only",0.496,0.0266,-0.1563,0.82
+macd_divergence+wavetrend_reversal,"macd_divergence+wavetrend_reversal|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=3",0.495,0.0043,-0.024,0.63
+rsi_reversal,"rsi_reversal|n=9,lo=35,exit=60|f=none|x=signal_only",0.495,0.0452,-0.3093,7.71
+triple_ma,"triple_ma|set=(5, 20, 50),kind=ema|f=none|x=signal_only",0.495,0.03,-0.0964,11.7
+macd_divergence+wavetrend_reversal,"macd_divergence+wavetrend_reversal|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=5",0.495,0.0043,-0.024,0.63
+rsi_reversal,"rsi_reversal|n=3,lo=25,exit=70|f=none|x=signal_only",0.495,0.0421,-0.2913,20.47
+rsi_reversion,"rsi_reversion|n=3,entry=10,exit=70",0.494,0.0126,-0.0594,4.57
+rsi_reversal,"rsi_reversal|n=3,lo=25,exit=60|f=trend_sma200|x=signal_only",0.494,0.0202,-0.1047,17.14
+rsi_reversal,"rsi_reversal|n=3,lo=30,exit=70|f=none|x=signal_only",0.493,0.043,-0.2913,23.91
+keltner_breakout,"keltner_breakout|n=20,k=1.5|f=trend_sma200|x=signal_only",0.493,0.0193,-0.0754,9.21
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=3,lo=10|f=none|x=signal_only",0.493,0.0424,-0.2864,4.99
+stoch_reversal,"stoch_reversal|k=21,d=5,smooth=1,lo=25|f=none|x=signal_only",0.492,0.046,-0.3021,7.88
+williams_reversal,"williams_reversal|n=7,lo=-80|f=none|x=signal_only",0.491,0.0391,-0.2553,23.7
+ibs_reversion+stoch_reversal,"ibs_reversion+stoch_reversal|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=3",0.491,0.0104,-0.0504,3.56
+cci_reversal,"cci_reversal|n=40,lo=-150|f=none|x=signal_only",0.49,0.0342,-0.2021,4.67
+ultimate_reversal,"ultimate_reversal|a=7,lo=35|f=none|x=signal_only",0.49,0.0409,-0.316,4.9
+rsi_reversion,"rsi_reversion|n=3,entry=20,exit=50",0.489,0.0159,-0.0943,14.14
+vortex_cross,vortex_cross|n=28|f=trend_sma200|x=signal_only,0.489,0.0258,-0.1296,11.86
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=1,lo=20|f=none|x=signal_only",0.489,0.0442,-0.3021,15.27
+ma_cross,"ma_cross|kind=dema,pair=(20, 100)|f=none|x=signal_only",0.488,0.0316,-0.1328,6.77
+roc_breakout,"roc_breakout|n=10,th=5|f=none|x=signal_only",0.488,0.0254,-0.0975,7.49
+roc_breakout,"roc_breakout|n=10,th=0|f=trend_sma200|x=signal_only",0.488,0.0231,-0.1045,24.27
+bb_squeeze,"bb_squeeze|n=20,q=0.1,look=252|f=none|x=signal_only",0.487,0.0081,-0.0259,2.82
+mfi_reversal,"mfi_reversal|n=14,lo=30|f=none|x=signal_only",0.486,0.0356,-0.2395,5.47
+ma_cross,"ma_cross|kind=dema,pair=(20, 50)|f=trend_sma200|x=signal_only",0.485,0.0193,-0.0882,6.85
+ma_cross,"ma_cross|kind=tema,pair=(5, 20)|f=trend_sma200|x=signal_only",0.485,0.021,-0.0766,25.75
+ma_cross,"ma_cross|kind=dema,pair=(50, 200)|f=none|x=signal_only",0.485,0.0309,-0.123,2.72
+rsi_midline,"rsi_midline|n=21,level=50|f=none|x=signal_only",0.484,0.0348,-0.1252,22.27
+engulfing,engulfing|trend_n=50|f=trend_sma200|x=signal_only,0.484,0.0211,-0.1205,5.57
+rsi_reversal,"rsi_reversal|n=9,lo=30,exit=50|f=none|x=signal_only",0.483,0.0327,-0.2659,6.56
+rsi_midline,"rsi_midline|n=9,level=55|f=trend_sma200|x=signal_only",0.482,0.0221,-0.1156,18.56
+ma_cross,"ma_cross|kind=sma,pair=(10, 50)|f=trend_sma200|x=signal_only",0.482,0.0277,-0.102,4.75
+tsi_cross,"tsi_cross|cfg=(13, 7, 7)|f=none|x=signal_only",0.482,0.0385,-0.1637,29.87
+smc_choch,smc_choch|k=3|f=trend_sma200|x=signal_only,0.481,0.0198,-0.0859,5.6
+donchian_breakout,"donchian_breakout|entry=20,exit=20|f=trend_sma200|x=signal_only",0.48,0.0284,-0.1341,5.42
+smc_liquidity_sweep,smc_liquidity_sweep|k=10|f=none|x=signal_only,0.48,0.0146,-0.0957,6.75
+wavetrend_reversal+inside_bar,"wavetrend_reversal+inside_bar|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=0",0.479,0.0032,-0.0136,0.24
+cci_reversal,"cci_reversal|n=14,lo=-150|f=trend_sma200|x=signal_only",0.479,0.0211,-0.1563,7.57
+vortex_cross,vortex_cross|n=14|f=trend_sma200|x=signal_only,0.477,0.0236,-0.1157,17.77
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=3,lo=20|f=trend_sma200|x=signal_only",0.477,0.0238,-0.1563,7.04
+rsi_reversal,"rsi_reversal|n=3,lo=10,exit=60|f=none|x=signal_only",0.476,0.0201,-0.1551,7.94
+price_ma+macd_divergence,"price_ma+macd_divergence|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=3",0.476,0.005,-0.0426,0.28
+stoch_reversal+wavetrend_reversal,"stoch_reversal+wavetrend_reversal|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=3",0.476,0.0015,-0.0052,0.25
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=1,lo=20|f=none|x=signal_only",0.476,0.0291,-0.1685,14.5
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=21,lo=-60|f=none|x=signal_only",0.475,0.016,-0.083,0.63
+seasonality_same_month,"seasonality_same_month|years=10,top_n=10",0.475,0.0364,-0.1694,0.08
+ma_cross,"ma_cross|kind=hma,pair=(10, 30)|f=none|x=signal_only",0.474,0.0355,-0.1618,25.1
+wavetrend_reversal,"wavetrend_reversal|n1=12,n2=21,lo=-60|f=trend_sma200|x=signal_only",0.474,0.0032,-0.016,0.25
+high_52w_break,"high_52w_break|n=252,exit_ma=100|f=trend_sma200|x=signal_only",0.473,0.0231,-0.11,2.42
+rsi_midline,"rsi_midline|n=21,level=50|f=trend_sma200|x=signal_only",0.473,0.0248,-0.1153,16.33
+high_52w_break,"high_52w_break|n=252,exit_ma=100|f=none|x=signal_only",0.473,0.0231,-0.11,2.42
+rsi_reversal,"rsi_reversal|n=7,lo=35,exit=50|f=trend_sma200|x=signal_only",0.473,0.0179,-0.1137,9.69
+macro_risk_switch,"macro_risk_switch|vix_max=20,use_curve=False,trend_n=100",0.472,0.0367,-0.1843,16.14
+rsi_divergence,"rsi_divergence|n=14,k=5,exit_level=50|f=none|x=signal_only",0.472,0.0086,-0.0348,2.0
+bollinger_reversion,"bollinger_reversion|n=30,k=2.0|f=none|x=signal_only",0.471,0.0389,-0.3084,6.08
+wavetrend_reversal+macd_divergence,"wavetrend_reversal+macd_divergence|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=3",0.471,0.0025,-0.0104,0.23
+ma_cross,"ma_cross|kind=hma,pair=(50, 200)|f=trend_sma200|x=signal_only",0.47,0.0222,-0.1212,3.93
+turn_of_month,"turn_of_month|pre=2,post=4|f=none|x=signal_only",0.47,0.034,-0.1784,22.56
+price_ma+macd_divergence,"price_ma+macd_divergence|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=5",0.47,0.0059,-0.0469,0.42
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=3,lo=20|f=none|x=signal_only",0.47,0.0426,-0.3152,8.46
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=1,lo=25|f=none|x=signal_only",0.47,0.0429,-0.3021,16.61
+elder_impulse,"elder_impulse|ema_n=13,macd_cfg=(12, 26, 9)|f=trend_sma200|x=signal_only",0.469,0.0241,-0.1239,25.29
+turn_of_month,"turn_of_month|days_before=2,days_after=2",0.468,0.0274,-0.126,25.9
+cci_breakout,"cci_breakout|n=40,level=100|f=none|x=signal_only",0.467,0.0278,-0.0958,8.18
+ibs_reversion+inside_bar,"ibs_reversion+inside_bar|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=trend_n=200,within=5",0.467,0.0063,-0.0445,5.36
+ts_seasonality,"ts_seasonality|years=5,thr=0.0",0.467,0.0412,-0.2444,3.34
+linreg_slope,"linreg_slope|n=50,th=0.001|f=none|x=signal_only",0.467,0.033,-0.1867,3.58
+bollinger_reversion,"bollinger_reversion|n=30,k=1.5|f=none|x=signal_only",0.466,0.0368,-0.2815,8.08
+turn_of_month,"turn_of_month|days_before=3,days_after=2",0.466,0.0302,-0.1357,25.9
+linreg_slope,"linreg_slope|n=20,th=0.001|f=trend_sma200|x=signal_only",0.465,0.0224,-0.1156,7.27
+stoch_reversal,"stoch_reversal|k=14,d=3,smooth=3,lo=10|f=none|x=signal_only",0.465,0.0421,-0.3152,7.34
+rsi_reversal,"rsi_reversal|n=2,lo=30,exit=60|f=none|x=signal_only",0.465,0.0349,-0.2256,51.44
+down_days,"down_days|n=4,hold_exit=3|f=none|x=signal_only",0.464,0.0385,-0.3152,8.73
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=3,lo=25|f=none|x=signal_only",0.463,0.0409,-0.2957,16.47
+ibs_reversion,"ibs_reversion|lo=0.1,hi=0.7|f=trend_sma200|x=signal_only",0.462,0.017,-0.0916,26.22
+rsi_reversal,"rsi_reversal|n=28,lo=35,exit=70|f=trend_sma200|x=signal_only",0.46,0.0139,-0.1044,0.07
+stochrsi_reversal,"stochrsi_reversal|n=21,lo=20|f=trend_sma200|x=signal_only",0.459,0.0266,-0.1886,7.41
+bollinger_reversion,"bollinger_reversion|n=20,k=1.5|f=none|x=signal_only",0.458,0.037,-0.3035,11.41
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=3,lo=10|f=none|x=signal_only",0.458,0.0371,-0.2863,5.86
+zscore_reversion,"zscore_reversion|n=20,z=1.5|f=none|x=signal_only",0.458,0.037,-0.3035,11.41
+vwap_cross,vwap_cross|n=20|f=trend_sma200|x=signal_only,0.457,0.0219,-0.1416,20.73
+cci_reversal,"cci_reversal|n=20,lo=-200|f=trend_sma200|x=signal_only",0.457,0.0187,-0.1563,3.38
+rsi_reversal,"rsi_reversal|n=7,lo=20,exit=70|f=none|x=signal_only",0.457,0.0382,-0.3152,2.9
+ma_cross,"ma_cross|kind=hma,pair=(5, 20)|f=none|x=signal_only",0.456,0.0353,-0.1278,42.51
+linreg_slope,"linreg_slope|n=50,th=0.001|f=trend_sma200|x=signal_only",0.456,0.027,-0.1362,3.06
+zscore_reversion,"zscore_reversion|n=10,z=2.0|f=trend_sma200|x=signal_only",0.455,0.0165,-0.1066,6.7
+bollinger_reversion,"bollinger_reversion|n=10,k=2.0|f=trend_sma200|x=signal_only",0.455,0.0165,-0.1066,6.7
+rsi_reversion,"rsi_reversion|n=2,entry=5,exit=70",0.454,0.0114,-0.0642,7.29
+price_ma+wavetrend_reversal,"price_ma+wavetrend_reversal|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=5",0.453,0.0073,-0.0353,0.85
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=3,lo=25|f=trend_sma200|x=signal_only",0.453,0.0239,-0.1563,8.33
+zscore_reversion,"zscore_reversion|n=50,z=1.5|f=none|x=signal_only",0.453,0.0341,-0.2415,4.77
+triple_ma,"triple_ma|set=(5, 20, 50),kind=sma|f=none|x=signal_only",0.452,0.0249,-0.1056,11.59
+williams_reversal,"williams_reversal|n=21,lo=-80|f=none|x=signal_only",0.45,0.04,-0.2849,9.6
+smc_order_block,"smc_order_block|k=5,max_age=20|f=trend_sma200|x=signal_only",0.45,0.0178,-0.0949,9.92
+ma_cross,"ma_cross|kind=hma,pair=(20, 100)|f=trend_sma200|x=signal_only",0.45,0.0191,-0.1071,8.16
+ma_cross,"ma_cross|kind=tema,pair=(20, 100)|f=trend_sma200|x=signal_only",0.449,0.0162,-0.0851,6.81
+cci_breakout,"cci_breakout|n=14,level=150|f=none|x=signal_only",0.449,0.0211,-0.0966,12.32
+rsi_reversal,"rsi_reversal|n=3,lo=10,exit=50|f=none|x=signal_only",0.449,0.0138,-0.0835,8.3
+smc_ote,"smc_ote|k=8,fib_lo=0.5|f=trend_sma200|x=signal_only",0.448,0.0098,-0.0706,6.37
+force_index,force_index|n=13|f=none|x=signal_only,0.446,0.0296,-0.2232,23.2
+rsi_reversal,"rsi_reversal|n=7,lo=25,exit=60|f=none|x=signal_only",0.446,0.0365,-0.3152,5.8
+price_ma,"price_ma|kind=hma,n=200|f=trend_sma200|x=signal_only",0.445,0.0176,-0.0849,14.1
+rsi_reversal,"rsi_reversal|n=2,lo=10,exit=70|f=none|x=signal_only",0.445,0.0296,-0.2416,20.8
+rsi_reversal,"rsi_reversal|n=28,lo=25,exit=60|f=none|x=signal_only",0.445,0.0044,-0.0171,0.04
+cci_reversal,"cci_reversal|n=20,lo=-150|f=none|x=signal_only",0.445,0.0359,-0.3152,9.01
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=26,lo=-53|f=trend_sma200|x=signal_only",0.444,0.0015,-0.0114,0.12
+macro_risk_switch,"macro_risk_switch|vix_max=20,use_curve=True,trend_n=100",0.444,0.0307,-0.1843,14.11
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=3,lo=10|f=trend_sma200|x=signal_only",0.444,0.0185,-0.1563,3.88
+ibs_reversion+inside_bar,"ibs_reversion+inside_bar|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=trend_n=200,within=0",0.444,0.0004,-0.0022,0.09
+high_52w_break,"high_52w_break|n=126,exit_ma=100|f=trend_sma200|x=signal_only",0.442,0.0231,-0.1435,2.77
+chop_switch,"chop_switch|n=14,lo=38.2,hi=61.8|f=none|x=signal_only",0.442,0.0154,-0.0789,5.67
+stoch_reversal+inside_bar,"stoch_reversal+inside_bar|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=5",0.442,0.0027,-0.0101,0.47
+rsi_reversal,"rsi_reversal|n=3,lo=20,exit=60|f=none|x=signal_only",0.442,0.0301,-0.2481,19.07
+stoch_reversal,"stoch_reversal|k=14,d=5,smooth=3,lo=25|f=none|x=signal_only",0.442,0.0405,-0.3152,9.33
+ultimate_reversal,"ultimate_reversal|a=5,lo=35|f=none|x=signal_only",0.442,0.0319,-0.2658,8.35
+keltner_breakout,"keltner_breakout|n=50,k=2.0|f=none|x=signal_only",0.44,0.0247,-0.0911,6.73
+turn_of_month,"turn_of_month|pre=2,post=3|f=none|x=signal_only",0.44,0.0281,-0.1234,22.56
+tsi_cross,"tsi_cross|cfg=(13, 7, 7)|f=trend_sma200|x=signal_only",0.44,0.0192,-0.0825,21.74
+rsi_reversal,"rsi_reversal|n=3,lo=30,exit=70|f=trend_sma200|x=signal_only",0.44,0.0239,-0.1438,17.06
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=1,lo=10|f=none|x=signal_only",0.439,0.0368,-0.299,11.17
+ma_cross,"ma_cross|kind=sma,pair=(50, 150)|f=trend_sma200|x=signal_only",0.439,0.0328,-0.2591,1.15
+bollinger_breakout,"bollinger_breakout|n=20,k=2.0|f=none|x=signal_only",0.438,0.019,-0.0865,8.62
+adx_trend,"adx_trend|n=10,th=25|f=trend_sma200|x=signal_only",0.438,0.0068,-0.0611,3.77
+turn_of_month,"turn_of_month|pre=3,post=2|f=none|x=signal_only",0.437,0.0273,-0.1078,22.56
+rsi_reversal,"rsi_reversal|n=2,lo=35,exit=70|f=none|x=signal_only",0.437,0.0354,-0.2902,48.76
+triple_ma,"triple_ma|set=(10, 50, 200),kind=sma|f=trend_sma200|x=signal_only",0.437,0.0261,-0.1089,5.23
+triple_ma,"triple_ma|set=(10, 50, 200),kind=sma|f=none|x=signal_only",0.436,0.0261,-0.1104,5.28
+engulfing,engulfing|trend_n=50|f=none|x=signal_only,0.436,0.0221,-0.1205,6.37
+halloween,"halloween|start=10,end=4|f=trend_sma200|x=signal_only",0.436,0.0391,-0.3139,1.21
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=1,lo=10|f=none|x=signal_only",0.436,0.0183,-0.1199,7.37
+ma_cross,"ma_cross|kind=dema,pair=(50, 200)|f=trend_sma200|x=signal_only",0.436,0.0223,-0.1111,2.4
+roc_breakout,"roc_breakout|n=63,th=5|f=none|x=signal_only",0.435,0.0289,-0.1749,4.27
+stoch_reversal+ibs_reversion,"stoch_reversal+ibs_reversion|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=0",0.434,0.0017,-0.0067,0.13
+rsi_reversal,"rsi_reversal|n=2,lo=10,exit=60|f=none|x=signal_only",0.434,0.026,-0.1859,22.4
+ma_cross,"ma_cross|kind=tema,pair=(50, 200)|f=none|x=signal_only",0.434,0.0271,-0.1297,3.74
+down_days,"down_days|n=4,hold_exit=1|f=none|x=signal_only",0.433,0.0136,-0.0805,10.81
+breadth_timing,"breadth_timing|ma=50,thr=0.6",0.433,0.0348,-0.2329,23.3
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=3,lo=20|f=none|x=signal_only",0.433,0.0365,-0.2957,14.29
+smc_order_block,"smc_order_block|k=3,max_age=20|f=trend_sma200|x=signal_only",0.432,0.0176,-0.117,13.54
+rsi_reversal,"rsi_reversal|n=2,lo=20,exit=50|f=none|x=signal_only",0.431,0.0306,-0.2389,41.79
+rsi_reversal,"rsi_reversal|n=7,lo=30,exit=50|f=none|x=signal_only",0.43,0.0285,-0.2561,9.97
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=21,lo=-60|f=trend_sma200|x=signal_only",0.428,0.0009,-0.0087,0.05
+cci_reversal,"cci_reversal|n=20,lo=-100|f=none|x=signal_only",0.428,0.0302,-0.2344,12.55
+hurst_switch,"hurst_switch|n=100,fast=20,rsi_n=2|f=trend_sma200|x=signal_only",0.427,0.0124,-0.0704,8.22
+rsi_reversion,"rsi_reversion|n=2,entry=20,exit=50",0.427,0.0164,-0.1147,28.53
+roc_breakout,"roc_breakout|n=10,th=5|f=trend_sma200|x=signal_only",0.427,0.0125,-0.0673,5.8
+bollinger_reversion,"bollinger_reversion|n=10,k=1.5|f=none|x=signal_only",0.427,0.031,-0.2641,18.59
+zscore_reversion,"zscore_reversion|n=10,z=1.5|f=none|x=signal_only",0.427,0.031,-0.2641,18.59
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=1,lo=20|f=none|x=signal_only",0.427,0.0342,-0.3061,12.3
+ibs_reversion+wavetrend_reversal,"ibs_reversion+wavetrend_reversal|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=0",0.426,0.0029,-0.0133,0.27
+ultimate_reversal,"ultimate_reversal|a=7,lo=25|f=trend_sma200|x=signal_only",0.426,0.0022,-0.0134,0.21
+rsi_reversal,"rsi_reversal|n=14,lo=30,exit=60|f=none|x=signal_only",0.425,0.0356,-0.3152,2.2
+rsi_reversal,"rsi_reversal|n=3,lo=35,exit=60|f=none|x=signal_only",0.425,0.0322,-0.2764,35.53
+cci_breakout,"cci_breakout|n=40,level=150|f=trend_sma200|x=signal_only",0.424,0.0184,-0.1162,5.38
+ts_seasonality,"ts_seasonality|years=5,thr=0.005",0.422,0.0318,-0.1986,3.81
+ma_cross,"ma_cross|kind=hma,pair=(10, 30)|f=trend_sma200|x=signal_only",0.422,0.0191,-0.0793,18.65
+donchian_breakout,"donchian_breakout|entry=40,exit=10|f=trend_sma200|x=signal_only",0.422,0.0182,-0.0951,6.27
+rsi_reversal,"rsi_reversal|n=14,lo=35,exit=50|f=none|x=signal_only",0.422,0.0306,-0.2758,5.07
+price_ma,"price_ma|kind=hma,n=100|f=trend_sma200|x=signal_only",0.421,0.0163,-0.0848,17.57
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=3,lo=10|f=none|x=signal_only",0.42,0.0354,-0.3152,8.62
+rsi_reversal,"rsi_reversal|n=5,lo=20,exit=50|f=none|x=signal_only",0.42,0.0215,-0.2015,7.91
+obv_trend,"obv_trend|n=50,price_n=20|f=none|x=signal_only",0.42,0.0265,-0.1582,20.02
+rsi_reversal,"rsi_reversal|n=2,lo=20,exit=60|f=trend_sma200|x=signal_only",0.42,0.016,-0.073,26.58
+donchian_breakout,"donchian_breakout|entry=55,exit=20|f=trend_sma200|x=signal_only",0.419,0.0211,-0.1113,4.3
+cmf_flow,"cmf_flow|n=20,th=0.1|f=none|x=signal_only",0.419,0.0288,-0.1582,9.27
+ibs_reversion+macd_divergence,"ibs_reversion+macd_divergence|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=k=3,fast=12,slow=26,within=3",0.419,0.0036,-0.0347,1.48
+obv_trend,"obv_trend|n=50,price_n=20|f=trend_sma200|x=signal_only",0.418,0.0216,-0.1095,15.84
+bollinger_reversion,"bollinger_reversion|n=10,k=2.0|f=none|x=signal_only",0.417,0.0277,-0.2456,9.98
+zscore_reversion,"zscore_reversion|n=10,z=2.0|f=none|x=signal_only",0.417,0.0277,-0.2456,9.98
+roc_breakout,"roc_breakout|n=21,th=5|f=none|x=signal_only",0.417,0.0235,-0.0988,7.0
+rsi_reversal,"rsi_reversal|n=7,lo=20,exit=70|f=trend_sma200|x=signal_only",0.416,0.0184,-0.1563,1.44
+rsi_reversal,"rsi_reversal|n=9,lo=25,exit=50|f=trend_sma200|x=signal_only",0.416,0.0081,-0.0511,1.57
+wavetrend_reversal+price_ma,"wavetrend_reversal+price_ma|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=0",0.415,0.0039,-0.0233,0.27
+price_ma+wavetrend_reversal,"price_ma+wavetrend_reversal|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=3",0.414,0.006,-0.0353,0.67
+rsi_reversal,"rsi_reversal|n=3,lo=25,exit=60|f=none|x=signal_only",0.414,0.0309,-0.28,24.72
+rsi_reversal,"rsi_reversal|n=2,lo=30,exit=70|f=trend_sma200|x=signal_only",0.413,0.0199,-0.1216,31.46
+rsi_reversal,"rsi_reversal|n=2,lo=25,exit=60|f=trend_sma200|x=signal_only",0.412,0.0165,-0.0726,31.28
+cci_breakout,"cci_breakout|n=40,level=100|f=trend_sma200|x=signal_only",0.412,0.0198,-0.106,7.17
+zscore_reversion,"zscore_reversion|n=50,z=2.0|f=none|x=signal_only",0.412,0.0306,-0.2451,3.54
+rsi_reversal,"rsi_reversal|n=5,lo=30,exit=50|f=none|x=signal_only",0.412,0.0267,-0.2477,17.3
+smc_fvg,"smc_fvg|max_age=40,min_gap_atr=0.5|f=trend_sma200|x=signal_only",0.412,0.0202,-0.1203,19.09
+donchian_breakout,"donchian_breakout|entry=55,exit=10|f=trend_sma200|x=signal_only",0.411,0.0168,-0.1064,5.8
+rsi_reversal,"rsi_reversal|n=9,lo=35,exit=50|f=none|x=signal_only",0.41,0.0283,-0.2756,10.22
+stochrsi_reversal,"stochrsi_reversal|n=14,lo=20|f=trend_sma200|x=signal_only",0.41,0.0211,-0.1332,10.08
+chop_switch,"chop_switch|n=14,lo=38.2,hi=61.8|f=trend_sma200|x=signal_only",0.41,0.0121,-0.0826,5.09
+donchian_breakout,"donchian_breakout|entry=55,exit=20|f=none|x=signal_only",0.409,0.0222,-0.11,4.61
+hammer_star,hammer_star|lookback_low=20|f=none|x=signal_only,0.409,0.0106,-0.0628,2.28
+roc_breakout,"roc_breakout|n=21,th=5|f=trend_sma200|x=signal_only",0.409,0.0165,-0.0898,5.59
+keltner_breakout,"keltner_breakout|n=20,k=2.0|f=trend_sma200|x=signal_only",0.408,0.0139,-0.0785,6.7
+obv_trend,"obv_trend|n=20,price_n=20|f=trend_sma200|x=signal_only",0.408,0.0187,-0.1146,25.38
+high_52w_break,"high_52w_break|n=126,exit_ma=100|f=none|x=signal_only",0.408,0.0214,-0.1435,2.86
+rsi_divergence,"rsi_divergence|n=14,k=5,exit_level=50|f=trend_sma200|x=signal_only",0.408,0.0023,-0.0096,1.03
+rsi_reversal,"rsi_reversal|n=2,lo=25,exit=50|f=none|x=signal_only",0.407,0.029,-0.2326,49.1
+rsi_reversal,"rsi_reversal|n=28,lo=35,exit=60|f=none|x=signal_only",0.406,0.03,-0.2765,0.82
+donchian_breakout,"donchian_breakout|entry=40,exit=10|f=none|x=signal_only",0.405,0.0194,-0.1059,6.84
+ma_cross,"ma_cross|kind=hma,pair=(50, 150)|f=trend_sma200|x=signal_only",0.405,0.0189,-0.1175,4.37
+cmf_flow,"cmf_flow|n=10,th=0.1|f=trend_sma200|x=signal_only",0.405,0.0197,-0.1216,14.82
+hurst_switch,"hurst_switch|n=200,fast=20,rsi_n=2|f=trend_sma200|x=signal_only",0.405,0.009,-0.0501,5.58
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=26,lo=-53|f=trend_sma200|x=signal_only",0.405,0.0013,-0.0093,0.08
+smc_ote,"smc_ote|k=8,fib_lo=0.5|f=none|x=signal_only",0.405,0.0101,-0.0947,7.71
+macd_divergence+stoch_reversal,"macd_divergence+stoch_reversal|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=0",0.405,0.0012,-0.0079,0.09
+bollinger_reversion,"bollinger_reversion|n=30,k=2.5|f=none|x=signal_only",0.404,0.0305,-0.2981,3.88
+rsi_reversal,"rsi_reversal|n=28,lo=25,exit=50|f=none|x=signal_only",0.404,0.0033,-0.0133,0.04
+turn_of_month,"turn_of_month|pre=1,post=4|f=none|x=signal_only",0.403,0.0271,-0.1759,22.56
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=3,lo=20|f=none|x=signal_only",0.403,0.0362,-0.3152,12.14
+triple_ma,"triple_ma|set=(5, 20, 50),kind=sma|f=trend_sma200|x=signal_only",0.402,0.0179,-0.1114,9.67
+stoch_reversal,"stoch_reversal|k=9,d=3,smooth=3,lo=25|f=none|x=signal_only",0.399,0.0364,-0.3152,13.43
+donchian_breakout,"donchian_breakout|entry=40,exit=20|f=none|x=signal_only",0.399,0.0231,-0.1247,5.11
+bollinger_reversion,"bollinger_reversion|n=20,k=2.5|f=none|x=signal_only",0.399,0.0279,-0.2849,4.28
+zscore_reversion,"zscore_reversion|n=20,z=2.5|f=none|x=signal_only",0.399,0.0279,-0.2849,4.28
+halloween,"halloween|start=11,end=4|f=trend_sma200|x=signal_only",0.398,0.0343,-0.3139,1.28
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=26,lo=-60|f=none|x=signal_only",0.397,0.0096,-0.0643,0.31
+ibs_reversion+inside_bar,"ibs_reversion+inside_bar|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=trend_n=200,within=3",0.397,0.0037,-0.0207,3.19
+rsi_reversal,"rsi_reversal|n=5,lo=25,exit=50|f=none|x=signal_only",0.396,0.0247,-0.2477,12.09
+obv_trend,"obv_trend|n=50,price_n=50|f=trend_sma200|x=signal_only",0.396,0.0202,-0.1123,16.53
+ibs_reversion+price_ma,"ibs_reversion+price_ma|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=kind=ema,n=200,within=3",0.396,0.0045,-0.0249,2.29
+rsi_reversal,"rsi_reversal|n=2,lo=20,exit=70|f=trend_sma200|x=signal_only",0.395,0.0189,-0.1448,23.78
+cmf_flow,"cmf_flow|n=10,th=0.1|f=none|x=signal_only",0.395,0.0299,-0.2104,19.25
+ma_cross,"ma_cross|kind=hma,pair=(5, 20)|f=trend_sma200|x=signal_only",0.395,0.0182,-0.0842,31.51
+donchian_breakout,"donchian_breakout|entry=40,exit=20|f=trend_sma200|x=signal_only",0.393,0.0207,-0.1169,4.7
+keltner_breakout,"keltner_breakout|n=50,k=2.0|f=trend_sma200|x=signal_only",0.393,0.0193,-0.1029,6.3
+cmf_flow,"cmf_flow|n=10,th=0.2|f=trend_sma200|x=signal_only",0.393,0.0165,-0.0945,10.8
+cmf_flow,"cmf_flow|n=10,th=0.05|f=none|x=signal_only",0.392,0.0314,-0.2207,24.17
+stochrsi_reversal,"stochrsi_reversal|n=14,lo=5|f=trend_sma200|x=signal_only",0.392,0.0196,-0.1563,6.9
+smc_liquidity_sweep,smc_liquidity_sweep|k=5|f=none|x=signal_only,0.392,0.0136,-0.1034,11.39
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=3,lo=20|f=none|x=signal_only",0.392,0.0327,-0.3152,10.24
+adx_trend,"adx_trend|n=10,th=25|f=none|x=signal_only",0.391,0.011,-0.1022,5.72
+rsi_reversal,"rsi_reversal|n=7,lo=25,exit=50|f=none|x=signal_only",0.39,0.0235,-0.2433,6.54
+rsi_reversal,"rsi_reversal|n=2,lo=10,exit=50|f=none|x=signal_only",0.389,0.0216,-0.1679,23.71
+cci_reversal,"cci_reversal|n=20,lo=-100|f=trend_sma200|x=signal_only",0.388,0.0167,-0.1444,8.81
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=1,lo=25|f=none|x=signal_only",0.388,0.0316,-0.3021,13.99
+rsi_reversal,"rsi_reversal|n=3,lo=30,exit=60|f=none|x=signal_only",0.387,0.0295,-0.287,29.78
+rsi_reversal,"rsi_reversal|n=7,lo=35,exit=50|f=none|x=signal_only",0.387,0.0259,-0.2513,14.68
+rsi_reversal,"rsi_reversal|n=2,lo=30,exit=60|f=trend_sma200|x=signal_only",0.386,0.0154,-0.0615,36.2
+rsi_reversion,"rsi_reversion|n=3,entry=10,exit=50",0.386,0.0078,-0.0536,4.75
+ultimate_reversal,"ultimate_reversal|a=5,lo=25|f=trend_sma200|x=signal_only",0.385,0.005,-0.0295,0.82
+obv_trend,"obv_trend|n=20,price_n=20|f=none|x=signal_only",0.385,0.024,-0.1113,32.55
+bollinger_breakout,"bollinger_breakout|n=50,k=1.5|f=trend_sma200|x=signal_only",0.384,0.0186,-0.1015,6.0
+ma_cross,"ma_cross|kind=dema,pair=(50, 150)|f=none|x=signal_only",0.384,0.0246,-0.1469,3.4
+adx_trend,"adx_trend|n=10,th=30|f=trend_sma200|x=signal_only",0.383,0.0037,-0.0285,1.55
+donchian_breakout,"donchian_breakout|entry=55,exit=10|f=none|x=signal_only",0.383,0.017,-0.1132,6.21
+keltner_breakout,"keltner_breakout|n=50,k=2.5|f=trend_sma200|x=signal_only",0.383,0.0179,-0.0991,5.32
+rsi_reversal,"rsi_reversal|n=2,lo=25,exit=70|f=trend_sma200|x=signal_only",0.383,0.0189,-0.1444,27.5
+wavetrend_reversal+macd_divergence,"wavetrend_reversal+macd_divergence|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=k=3,fast=12,slow=26,within=0",0.382,0.0019,-0.0104,0.18
+chaikin_osc,"chaikin_osc|cfg=(5, 20)|f=trend_sma200|x=signal_only",0.382,0.0228,-0.1657,9.86
+bollinger_breakout,"bollinger_breakout|n=20,k=2.0|f=trend_sma200|x=signal_only",0.382,0.0129,-0.0712,7.44
+ts_seasonality,"ts_seasonality|years=10,thr=0.0",0.382,0.0207,-0.1492,1.39
+cmf_flow,"cmf_flow|n=40,th=0.1|f=none|x=signal_only",0.382,0.0246,-0.1957,4.17
+rsi_reversal,"rsi_reversal|n=2,lo=20,exit=50|f=trend_sma200|x=signal_only",0.381,0.0132,-0.0793,28.49
+rsi_reversal,"rsi_reversal|n=28,lo=30,exit=70|f=trend_sma200|x=signal_only",0.381,0.0035,-0.0214,0.01
+vwap_cross,vwap_cross|n=10|f=trend_sma200|x=signal_only,0.381,0.018,-0.1075,30.29
+inside_bar+stoch_reversal,"inside_bar+stoch_reversal|trend_n=200|f=none|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=0",0.38,0.0052,-0.0454,0.33
+bollinger_breakout,"bollinger_breakout|n=50,k=1.5|f=none|x=signal_only",0.38,0.0212,-0.1014,6.54
+rsi_reversal,"rsi_reversal|n=3,lo=25,exit=50|f=trend_sma200|x=signal_only",0.378,0.0124,-0.0624,19.11
+stochrsi_reversal,"stochrsi_reversal|n=9,lo=20|f=none|x=signal_only",0.377,0.0264,-0.2668,19.0
+cci_reversal,"cci_reversal|n=40,lo=-200|f=trend_sma200|x=signal_only",0.377,0.0123,-0.1189,1.5
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=3,lo=25|f=none|x=signal_only",0.376,0.0297,-0.2966,13.43
+cci_reversal,"cci_reversal|n=20,lo=-200|f=none|x=signal_only",0.374,0.0276,-0.3152,5.45
+cmf_flow,"cmf_flow|n=10,th=0.2|f=none|x=signal_only",0.374,0.0234,-0.1441,13.53
+obv_trend,"obv_trend|n=50,price_n=50|f=none|x=signal_only",0.373,0.0232,-0.1573,20.36
+cci_breakout,"cci_breakout|n=40,level=150|f=none|x=signal_only",0.373,0.0187,-0.1112,6.02
+obv_trend,"obv_trend|n=20,price_n=50|f=trend_sma200|x=signal_only",0.373,0.0172,-0.127,26.38
+roc_breakout,"roc_breakout|n=63,th=10|f=trend_sma200|x=signal_only",0.372,0.0194,-0.1789,2.28
+ultimate_reversal,"ultimate_reversal|a=5,lo=30|f=none|x=signal_only",0.372,0.0231,-0.2657,4.85
+cmf_flow,"cmf_flow|n=40,th=0.05|f=none|x=signal_only",0.372,0.028,-0.217,6.43
+rsi_reversal,"rsi_reversal|n=9,lo=20,exit=70|f=none|x=signal_only",0.372,0.0293,-0.3152,1.47
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=3,lo=25|f=none|x=signal_only",0.371,0.0316,-0.3152,11.74
+atr_breakout,"atr_breakout|n=10,k=1.0|f=none|x=signal_only",0.371,0.0208,-0.1273,24.83
+smc_fvg,"smc_fvg|max_age=10,min_gap_atr=0.5|f=trend_sma200|x=signal_only",0.371,0.0153,-0.1106,14.43
+stochrsi_reversal,"stochrsi_reversal|n=9,lo=20|f=trend_sma200|x=signal_only",0.37,0.0155,-0.0886,13.68
+rsi_reversal,"rsi_reversal|n=14,lo=25,exit=70|f=none|x=signal_only",0.37,0.0263,-0.271,0.76
+smc_fvg,"smc_fvg|max_age=20,min_gap_atr=0.0|f=trend_sma200|x=signal_only",0.37,0.016,-0.0885,29.86
+cci_reversal,"cci_reversal|n=14,lo=-100|f=trend_sma200|x=signal_only",0.369,0.0159,-0.151,11.26
+rsi_reversal,"rsi_reversal|n=9,lo=25,exit=60|f=trend_sma200|x=signal_only",0.369,0.0153,-0.1563,1.54
+smc_fvg,"smc_fvg|max_age=40,min_gap_atr=0.0|f=trend_sma200|x=signal_only",0.369,0.016,-0.0891,30.0
+price_ma,"price_ma|kind=hma,n=20|f=none|x=signal_only",0.368,0.0275,-0.1672,51.98
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=3,lo=20|f=none|x=signal_only",0.368,0.0278,-0.2966,10.89
+chaikin_osc,"chaikin_osc|cfg=(5, 20)|f=none|x=signal_only",0.368,0.031,-0.2177,13.72
+cmf_flow,"cmf_flow|n=40,th=0.05|f=trend_sma200|x=signal_only",0.368,0.022,-0.1601,5.17
+stoch_reversal+inside_bar,"stoch_reversal+inside_bar|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=3",0.368,0.0022,-0.0124,0.42
+keltner_breakout,"keltner_breakout|n=20,k=2.0|f=none|x=signal_only",0.367,0.0152,-0.0939,7.49
+heikin_ashi,heikin_ashi|confirm=2|f=trend_sma200|x=signal_only,0.367,0.0146,-0.0921,35.35
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=3,lo=10|f=none|x=signal_only",0.367,0.0279,-0.3152,6.42
+rsi_reversal,"rsi_reversal|n=9,lo=25,exit=60|f=none|x=signal_only",0.365,0.0285,-0.3152,3.24
+turn_of_month,"turn_of_month|pre=1,post=3|f=none|x=signal_only",0.365,0.0212,-0.1406,22.56
+keltner_breakout,"keltner_breakout|n=50,k=2.5|f=none|x=signal_only",0.365,0.0188,-0.1021,5.72
+atr_breakout,"atr_breakout|n=20,k=1.5|f=none|x=signal_only",0.364,0.0118,-0.127,7.03
+cci_reversal,"cci_reversal|n=40,lo=-200|f=none|x=signal_only",0.363,0.0254,-0.2619,3.01
+ts_seasonality,"ts_seasonality|years=10,thr=0.005",0.363,0.0171,-0.1457,1.72
+atr_breakout,"atr_breakout|n=20,k=1.0|f=trend_sma200|x=signal_only",0.362,0.0155,-0.1051,16.68
+force_index,force_index|n=13|f=trend_sma200|x=signal_only,0.362,0.0228,-0.2232,20.72
+stochrsi_reversal,"stochrsi_reversal|n=14,lo=10|f=trend_sma200|x=signal_only",0.359,0.019,-0.1563,8.52
+rsi_reversal,"rsi_reversal|n=21,lo=30,exit=60|f=none|x=signal_only",0.357,0.0232,-0.2469,0.74
+stoch_reversal+inside_bar,"stoch_reversal+inside_bar|k=14,d=5,smooth=1,lo=10|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=0",0.356,0.0019,-0.0112,0.35
+rsi_reversal,"rsi_reversal|n=2,lo=30,exit=50|f=none|x=signal_only",0.355,0.025,-0.2296,56.39
+bollinger_reversion,"bollinger_reversion|n=20,k=3.0|f=trend_sma200|x=signal_only",0.354,0.0043,-0.0376,0.66
+cci_reversal,"cci_reversal|n=14,lo=-150|f=none|x=signal_only",0.354,0.0271,-0.3152,11.44
+halloween,"halloween|start=10,end=3|f=trend_sma200|x=signal_only",0.352,0.0277,-0.3139,1.21
+macd_divergence+inside_bar,"macd_divergence+inside_bar|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=trend_n=200,within=0",0.35,0.0012,-0.0079,0.15
+zscore_reversion,"zscore_reversion|n=50,z=2.5|f=none|x=signal_only",0.349,0.0253,-0.2833,2.34
+down_days,"down_days|n=5,hold_exit=1|f=none|x=signal_only",0.349,0.0069,-0.0347,4.96
+donchian_breakout,"donchian_breakout|entry=100,exit=10|f=none|x=signal_only",0.348,0.0124,-0.1079,5.32
+obv_trend,"obv_trend|n=20,price_n=50|f=none|x=signal_only",0.348,0.0206,-0.1169,31.86
+rsi_reversal,"rsi_reversal|n=3,lo=20,exit=50|f=none|x=signal_only",0.347,0.0212,-0.221,21.58
+zscore_reversion,"zscore_reversion|n=50,z=2.5|f=trend_sma200|x=signal_only",0.347,0.0087,-0.0779,0.83
+stoch_reversal,"stoch_reversal|k=5,d=3,smooth=3,lo=10|f=none|x=signal_only",0.347,0.025,-0.2781,8.76
+smc_fvg,"smc_fvg|max_age=20,min_gap_atr=0.5|f=trend_sma200|x=signal_only",0.346,0.0157,-0.1207,17.36
+ma_cross,"ma_cross|kind=tema,pair=(50, 150)|f=none|x=signal_only",0.346,0.0214,-0.1715,4.36
+bb_squeeze,"bb_squeeze|n=20,q=0.2,look=252|f=trend_sma200|x=signal_only",0.346,0.0073,-0.0462,4.17
+ma_cross,"ma_cross|kind=dema,pair=(50, 150)|f=trend_sma200|x=signal_only",0.346,0.0167,-0.1119,2.94
+donchian_breakout,"donchian_breakout|entry=100,exit=10|f=trend_sma200|x=signal_only",0.345,0.0121,-0.11,5.15
+force_index,force_index|n=2|f=none|x=signal_only,0.345,0.0176,-0.1363,58.44
+cmf_flow,"cmf_flow|n=10,th=0.05|f=trend_sma200|x=signal_only",0.344,0.0172,-0.1572,18.12
+smc_fvg,"smc_fvg|max_age=40,min_gap_atr=0.0|f=none|x=signal_only",0.343,0.0199,-0.1261,38.6
+stochrsi_reversal,"stochrsi_reversal|n=21,lo=5|f=none|x=signal_only",0.341,0.0279,-0.3152,7.43
+rsi_reversal,"rsi_reversal|n=2,lo=35,exit=60|f=none|x=signal_only",0.341,0.0257,-0.2831,56.87
+pivot_bounce,pivot_bounce|window=5|f=trend_sma200|x=signal_only,0.341,0.0087,-0.0655,17.34
+smc_fvg,"smc_fvg|max_age=20,min_gap_atr=0.0|f=none|x=signal_only",0.34,0.0196,-0.1235,38.42
+rsi_reversal,"rsi_reversal|n=2,lo=25,exit=50|f=trend_sma200|x=signal_only",0.339,0.0124,-0.0789,34.05
+ichimoku_cloud,"ichimoku_cloud|cfg=(20, 60, 120)|f=trend_sma200|x=signal_only",0.338,0.0167,-0.1301,4.94
+chaikin_osc,"chaikin_osc|cfg=(3, 10)|f=trend_sma200|x=signal_only",0.338,0.0182,-0.1523,18.26
+atr_breakout,"atr_breakout|n=10,k=1.0|f=trend_sma200|x=signal_only",0.337,0.0126,-0.1148,18.83
+cmf_flow,"cmf_flow|n=20,th=0.1|f=trend_sma200|x=signal_only",0.337,0.0162,-0.1144,7.44
+smc_liquidity_sweep,smc_liquidity_sweep|k=5|f=trend_sma200|x=signal_only,0.336,0.0078,-0.0828,7.78
+turn_of_month,"turn_of_month|pre=2,post=2|f=none|x=signal_only",0.336,0.0184,-0.109,22.56
+cci_reversal,"cci_reversal|n=14,lo=-200|f=trend_sma200|x=signal_only",0.336,0.0131,-0.1583,3.73
+stoch_reversal,"stoch_reversal|k=9,d=5,smooth=1,lo=10|f=none|x=signal_only",0.336,0.0239,-0.299,7.57
+rsi_reversal,"rsi_reversal|n=7,lo=20,exit=50|f=trend_sma200|x=signal_only",0.336,0.0063,-0.0511,1.5
+weekday_long,weekday_long|day=0|f=none|x=signal_only,0.334,0.0179,-0.2126,88.39
+stochrsi_reversal,"stochrsi_reversal|n=21,lo=10|f=none|x=signal_only",0.334,0.0279,-0.3221,8.7
+donchian_breakout,"donchian_breakout|entry=100,exit=20|f=none|x=signal_only",0.332,0.0148,-0.1051,3.96
+rsi_reversal,"rsi_reversal|n=2,lo=35,exit=70|f=trend_sma200|x=signal_only",0.332,0.0161,-0.1231,34.99
+rsi_midline,"rsi_midline|n=28,level=60|f=trend_sma200|x=signal_only",0.331,0.0147,-0.1264,4.21
+rsi_reversal,"rsi_reversal|n=14,lo=30,exit=50|f=none|x=signal_only",0.33,0.0217,-0.2703,2.56
+rsi_reversal,"rsi_reversal|n=9,lo=25,exit=50|f=none|x=signal_only",0.329,0.0186,-0.2361,3.61
+high_52w_break,"high_52w_break|n=252,exit_ma=50|f=none|x=signal_only",0.328,0.0122,-0.1056,3.59
+high_52w_break,"high_52w_break|n=252,exit_ma=50|f=trend_sma200|x=signal_only",0.328,0.0122,-0.1056,3.59
+bb_squeeze,"bb_squeeze|n=20,q=0.2,look=252|f=none|x=signal_only",0.328,0.0073,-0.0491,4.46
+cmf_flow,"cmf_flow|n=20,th=0.05|f=none|x=signal_only",0.328,0.024,-0.1874,13.09
+stochrsi_reversal,"stochrsi_reversal|n=14,lo=20|f=none|x=signal_only",0.326,0.0259,-0.3095,13.79
+bollinger_breakout,"bollinger_breakout|n=20,k=2.5|f=trend_sma200|x=signal_only",0.326,0.0054,-0.036,2.4
+heikin_ashi,heikin_ashi|confirm=1|f=none|x=signal_only,0.325,0.0236,-0.1661,63.04
+rsi_reversal,"rsi_reversal|n=21,lo=30,exit=70|f=trend_sma200|x=signal_only",0.324,0.0071,-0.0791,0.08
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=26,lo=-60|f=none|x=signal_only",0.323,0.0069,-0.0643,0.23
+rsi_reversal,"rsi_reversal|n=3,lo=25,exit=50|f=none|x=signal_only",0.322,0.0216,-0.254,28.6
+cci_reversal,"cci_reversal|n=14,lo=-100|f=none|x=signal_only",0.322,0.0237,-0.3131,16.29
+adx_trend,"adx_trend|n=10,th=30|f=none|x=signal_only",0.322,0.0057,-0.0456,2.5
+rsi_reversal,"rsi_reversal|n=21,lo=35,exit=50|f=none|x=signal_only",0.321,0.0218,-0.2685,2.16
+price_ma+stoch_reversal,"price_ma+stoch_reversal|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=0",0.321,0.0041,-0.0504,0.48
+smc_fvg,"smc_fvg|max_age=10,min_gap_atr=0.0|f=trend_sma200|x=signal_only",0.32,0.0132,-0.0786,28.04
+cmf_flow,"cmf_flow|n=20,th=0.2|f=trend_sma200|x=signal_only",0.319,0.0129,-0.1189,5.07
+halloween,"halloween|start=11,end=3|f=trend_sma200|x=signal_only",0.319,0.0237,-0.3139,1.28
+rsi_midline,"rsi_midline|n=21,level=60|f=trend_sma200|x=signal_only",0.318,0.014,-0.106,6.02
+roc_breakout,"roc_breakout|n=10,th=10|f=none|x=signal_only",0.317,0.0098,-0.0685,0.96
+rsi_reversal,"rsi_reversal|n=3,lo=35,exit=60|f=trend_sma200|x=signal_only",0.315,0.0139,-0.1142,25.05
+cci_reversal,"cci_reversal|n=14,lo=-200|f=none|x=signal_only",0.314,0.0223,-0.3152,5.89
+donchian_breakout,"donchian_breakout|entry=100,exit=20|f=trend_sma200|x=signal_only",0.313,0.0137,-0.1078,3.85
+turn_of_month,"turn_of_month|pre=1,post=4|f=trend_sma200|x=signal_only",0.309,0.0128,-0.1444,16.49
+turn_of_month,"turn_of_month|days_before=1,days_after=4",0.308,0.0202,-0.1615,25.9
+cmf_flow,"cmf_flow|n=40,th=0.1|f=trend_sma200|x=signal_only",0.308,0.0168,-0.1535,3.59
+stochrsi_reversal,"stochrsi_reversal|n=21,lo=20|f=none|x=signal_only",0.307,0.025,-0.3249,9.91
+hammer_star,hammer_star|lookback_low=10|f=trend_sma200|x=signal_only,0.304,0.0038,-0.0312,2.74
+volume_breakout,"volume_breakout|n=20,rv=3.0|f=trend_sma200|x=signal_only",0.304,0.0014,-0.0145,0.2
+stochrsi_reversal,"stochrsi_reversal|n=14,lo=10|f=none|x=signal_only",0.303,0.024,-0.3152,11.89
+ultimate_reversal,"ultimate_reversal|a=7,lo=30|f=trend_sma200|x=signal_only",0.303,0.0072,-0.0879,0.9
+rsi_reversal,"rsi_reversal|n=3,lo=30,exit=60|f=trend_sma200|x=signal_only",0.303,0.0139,-0.1389,20.96
+ibs_reversion+macd_divergence,"ibs_reversion+macd_divergence|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=k=3,fast=12,slow=26,within=0",0.303,0.0011,-0.0074,0.47
+hammer_star,hammer_star|lookback_low=10|f=none|x=signal_only,0.303,0.0072,-0.0646,3.93
+rsi_reversal,"rsi_reversal|n=21,lo=35,exit=60|f=trend_sma200|x=signal_only",0.3,0.0125,-0.1563,0.58
+bollinger_breakout,"bollinger_breakout|n=50,k=2.5|f=trend_sma200|x=signal_only",0.299,0.0081,-0.0889,2.18
+bb_squeeze,"bb_squeeze|n=20,q=0.1,look=126|f=none|x=signal_only",0.295,0.0058,-0.0444,3.18
+roc_breakout,"roc_breakout|n=63,th=10|f=none|x=signal_only",0.295,0.0158,-0.1998,2.5
+rsi_reversal,"rsi_reversal|n=21,lo=25,exit=70|f=none|x=signal_only",0.294,0.0135,-0.2002,0.12
+rsi_reversal,"rsi_reversal|n=5,lo=10,exit=50|f=trend_sma200|x=signal_only",0.293,0.0027,-0.0129,0.59
+heikin_ashi,heikin_ashi|confirm=2|f=none|x=signal_only,0.293,0.0173,-0.1642,48.07
+chaikin_osc,"chaikin_osc|cfg=(3, 10)|f=none|x=signal_only",0.292,0.0237,-0.238,25.5
+rsi_reversal,"rsi_reversal|n=5,lo=35,exit=50|f=trend_sma200|x=signal_only",0.292,0.0106,-0.0996,15.88
+high_52w_break,"high_52w_break|n=126,exit_ma=50|f=trend_sma200|x=signal_only",0.292,0.0115,-0.1263,4.04
+ma_cross,"ma_cross|kind=tema,pair=(50, 200)|f=trend_sma200|x=signal_only",0.291,0.0105,-0.0881,3.04
+seasonality_same_month,"seasonality_same_month|years=10,top_n=5",0.288,0.0221,-0.2256,3.87
+ma_cross,"ma_cross|kind=dema,pair=(20, 100)|f=trend_sma200|x=signal_only",0.288,0.0117,-0.1121,5.55
+rsi_reversal,"rsi_reversal|n=14,lo=30,exit=50|f=trend_sma200|x=signal_only",0.287,0.0064,-0.073,0.9
+ichimoku_cloud,"ichimoku_cloud|cfg=(20, 60, 120)|f=none|x=signal_only",0.286,0.0146,-0.1451,5.33
+rsi_reversal,"rsi_reversal|n=2,lo=30,exit=50|f=trend_sma200|x=signal_only",0.282,0.0102,-0.0732,39.63
+rsi_reversal,"rsi_reversal|n=7,lo=20,exit=60|f=trend_sma200|x=signal_only",0.282,0.0109,-0.1563,1.48
+rsi_reversal,"rsi_reversal|n=3,lo=30,exit=50|f=trend_sma200|x=signal_only",0.282,0.0098,-0.0624,24.23
+high_52w_break,"high_52w_break|n=126,exit_ma=50|f=none|x=signal_only",0.28,0.0111,-0.1263,4.15
+keltner_breakout,"keltner_breakout|n=20,k=2.5|f=trend_sma200|x=signal_only",0.279,0.0077,-0.068,4.3
+rsi_reversal,"rsi_reversal|n=2,lo=35,exit=60|f=trend_sma200|x=signal_only",0.278,0.0115,-0.0803,40.58
+stochrsi_reversal,"stochrsi_reversal|n=14,lo=5|f=none|x=signal_only",0.277,0.021,-0.3152,9.81
+rsi_reversal,"rsi_reversal|n=9,lo=20,exit=70|f=trend_sma200|x=signal_only",0.276,0.0111,-0.1563,0.55
+rsi_reversal,"rsi_reversal|n=3,lo=30,exit=50|f=none|x=signal_only",0.276,0.0186,-0.2611,35.27
+rsi_reversal,"rsi_reversal|n=7,lo=20,exit=60|f=none|x=signal_only",0.275,0.0196,-0.3152,3.16
+rsi_reversal,"rsi_reversal|n=28,lo=35,exit=50|f=none|x=signal_only",0.274,0.016,-0.2433,1.09
+rsi_reversal,"rsi_reversal|n=14,lo=30,exit=60|f=trend_sma200|x=signal_only",0.273,0.0115,-0.1563,0.86
+bollinger_reversion,"bollinger_reversion|n=30,k=3.0|f=trend_sma200|x=signal_only",0.273,0.0055,-0.0693,0.65
+bb_squeeze,"bb_squeeze|n=20,q=0.1,look=126|f=trend_sma200|x=signal_only",0.273,0.0046,-0.0417,2.88
+down_days,"down_days|n=3,hold_exit=3|f=trend_sma200|x=signal_only",0.272,0.02,-0.3437,11.0
+rsi_reversion,"rsi_reversion|n=2,entry=5,exit=50",0.272,0.0055,-0.0706,7.53
+rsi_reversal,"rsi_reversal|n=14,lo=25,exit=70|f=trend_sma200|x=signal_only",0.271,0.006,-0.0791,0.14
+mfi_reversal,"mfi_reversal|n=10,lo=20|f=none|x=signal_only",0.27,0.0181,-0.293,4.63
+rsi_reversal,"rsi_reversal|n=21,lo=20,exit=60|f=none|x=signal_only",0.27,0.0029,-0.0338,0.02
+stochrsi_reversal,"stochrsi_reversal|n=9,lo=10|f=none|x=signal_only",0.268,0.0178,-0.2568,15.82
+stochrsi_reversal,"stochrsi_reversal|n=9,lo=5|f=trend_sma200|x=signal_only",0.268,0.0103,-0.0912,8.94
+turn_of_month,"turn_of_month|pre=3,post=1|f=none|x=signal_only",0.266,0.014,-0.1295,22.45
+atr_breakout,"atr_breakout|n=20,k=1.5|f=trend_sma200|x=signal_only",0.265,0.0061,-0.1008,5.08
+smc_fvg,"smc_fvg|max_age=10,min_gap_atr=0.0|f=none|x=signal_only",0.265,0.0145,-0.1235,36.28
+rsi_midline,"rsi_midline|n=21,level=60|f=none|x=signal_only",0.264,0.0125,-0.1193,6.57
+rsi_reversal,"rsi_reversal|n=7,lo=20,exit=50|f=none|x=signal_only",0.264,0.0128,-0.2046,3.42
+turn_of_month,"turn_of_month|pre=3,post=4|f=trend_sma200|x=signal_only",0.264,0.0129,-0.1502,16.23
+rsi_reversal,"rsi_reversal|n=28,lo=30,exit=60|f=none|x=signal_only",0.264,0.0116,-0.1751,0.27
+cmf_flow,"cmf_flow|n=20,th=0.05|f=trend_sma200|x=signal_only",0.262,0.0134,-0.1383,10.05
+atr_breakout,"atr_breakout|n=10,k=2.0|f=none|x=signal_only",0.26,0.0034,-0.0296,1.86
+stoch_reversal,"stoch_reversal|k=5,d=5,smooth=3,lo=10|f=none|x=signal_only",0.26,0.0161,-0.2781,5.44
+bollinger_breakout,"bollinger_breakout|n=50,k=2.0|f=trend_sma200|x=signal_only",0.26,0.0109,-0.116,4.45
+rsi_midline,"rsi_midline|n=28,level=60|f=none|x=signal_only",0.255,0.0115,-0.139,4.52
+roc_breakout,"roc_breakout|n=21,th=10|f=none|x=signal_only",0.254,0.0095,-0.0813,2.24
+roc_breakout,"roc_breakout|n=10,th=10|f=trend_sma200|x=signal_only",0.253,0.0028,-0.0286,0.56
+mfi_reversal,"mfi_reversal|n=14,lo=20|f=none|x=signal_only",0.252,0.0147,-0.2391,2.26
+bollinger_breakout,"bollinger_breakout|n=50,k=2.5|f=none|x=signal_only",0.251,0.0072,-0.1074,2.29
+hurst_switch,"hurst_switch|n=100,fast=20,rsi_n=2|f=none|x=signal_only",0.25,0.0146,-0.234,11.54
+atr_breakout,"atr_breakout|n=20,k=2.0|f=none|x=signal_only",0.248,0.0037,-0.034,1.82
+turn_of_month,"turn_of_month|pre=3,post=3|f=trend_sma200|x=signal_only",0.247,0.011,-0.1395,16.23
+inside_bar,inside_bar|trend_n=50|f=none|x=signal_only,0.247,0.0109,-0.1177,6.34
+bollinger_breakout,"bollinger_breakout|n=20,k=2.5|f=none|x=signal_only",0.246,0.0047,-0.0514,2.76
+heikin_ashi,heikin_ashi|confirm=3|f=trend_sma200|x=signal_only,0.246,0.0082,-0.0719,27.15
+bollinger_reversion,"bollinger_reversion|n=20,k=3.0|f=none|x=signal_only",0.245,0.0083,-0.1264,1.18
+rsi_reversal,"rsi_reversal|n=5,lo=35,exit=50|f=none|x=signal_only",0.245,0.0163,-0.2943,23.53
+adx_trend,"adx_trend|n=14,th=20|f=none|x=signal_only",0.245,0.0069,-0.092,6.15
+volume_breakout,"volume_breakout|n=20,rv=2.0|f=trend_sma200|x=signal_only",0.244,0.0026,-0.0357,1.02
+rsi_reversal,"rsi_reversal|n=3,lo=35,exit=50|f=none|x=signal_only",0.243,0.0159,-0.2763,42.86
+smc_liquidity_sweep,smc_liquidity_sweep|k=3|f=none|x=signal_only,0.243,0.0089,-0.1367,15.82
+turn_of_month,"turn_of_month|pre=1,post=2|f=none|x=signal_only",0.243,0.0116,-0.1413,22.56
+keltner_breakout,"keltner_breakout|n=20,k=2.5|f=none|x=signal_only",0.242,0.0075,-0.0762,4.66
+inside_bar+wavetrend_reversal,"inside_bar+wavetrend_reversal|trend_n=200|f=none|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=5",0.241,0.0034,-0.0443,0.54
+turn_of_month,"turn_of_month|days_before=1,days_after=3",0.241,0.0135,-0.133,25.9
+wavetrend_reversal+stoch_reversal,"wavetrend_reversal+stoch_reversal|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=0",0.24,0.0013,-0.0209,0.18
+rsi_reversal,"rsi_reversal|n=21,lo=35,exit=50|f=trend_sma200|x=signal_only",0.239,0.0052,-0.073,0.6
+price_ma,"price_ma|kind=hma,n=20|f=trend_sma200|x=signal_only",0.238,0.0103,-0.1021,38.52
+price_ma+wavetrend_reversal,"price_ma+wavetrend_reversal|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=0",0.237,0.0017,-0.0189,0.29
+roc_breakout,"roc_breakout|n=21,th=10|f=trend_sma200|x=signal_only",0.237,0.0056,-0.0533,1.71
+macd_divergence+wavetrend_reversal,"macd_divergence+wavetrend_reversal|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=0",0.236,0.0009,-0.0109,0.18
+down_days,"down_days|n=4,hold_exit=3|f=trend_sma200|x=signal_only",0.235,0.0114,-0.237,5.32
+down_days,"down_days|n=5,hold_exit=3|f=none|x=signal_only",0.235,0.0147,-0.2958,4.45
+volume_breakout,"volume_breakout|n=20,rv=3.0|f=none|x=signal_only",0.235,0.0015,-0.0155,0.25
+stochrsi_reversal,"stochrsi_reversal|n=9,lo=10|f=trend_sma200|x=signal_only",0.234,0.0097,-0.1142,11.28
+volume_breakout,"volume_breakout|n=20,rv=1.5|f=trend_sma200|x=signal_only",0.233,0.0048,-0.056,3.25
+turn_of_month,"turn_of_month|pre=1,post=3|f=trend_sma200|x=signal_only",0.23,0.0084,-0.1381,16.49
+rsi_reversal,"rsi_reversal|n=14,lo=20,exit=70|f=none|x=signal_only",0.23,0.0095,-0.1881,0.27
+rsi_reversal,"rsi_reversal|n=21,lo=30,exit=50|f=none|x=signal_only",0.228,0.0117,-0.2141,0.86
+ultimate_reversal,"ultimate_reversal|a=7,lo=30|f=none|x=signal_only",0.228,0.0152,-0.3152,2.05
+bollinger_breakout,"bollinger_breakout|n=50,k=2.0|f=none|x=signal_only",0.226,0.01,-0.1352,4.8
+stochrsi_reversal,"stochrsi_reversal|n=9,lo=5|f=none|x=signal_only",0.225,0.0136,-0.2568,12.71
+down_days,"down_days|n=5,hold_exit=1|f=trend_sma200|x=signal_only",0.225,0.0018,-0.0231,2.5
+atr_breakout,"atr_breakout|n=10,k=1.5|f=trend_sma200|x=signal_only",0.224,0.0041,-0.0594,5.38
+heikin_ashi,heikin_ashi|confirm=1|f=trend_sma200|x=signal_only,0.224,0.0101,-0.1313,45.57
+volume_breakout,"volume_breakout|n=20,rv=2.0|f=none|x=signal_only",0.223,0.003,-0.0461,1.23
+force_index,force_index|n=2|f=trend_sma200|x=signal_only,0.223,0.0098,-0.1659,50.98
+volume_breakout,"volume_breakout|n=50,rv=3.0|f=trend_sma200|x=signal_only",0.22,0.0012,-0.022,0.16
+hurst_switch,"hurst_switch|n=200,fast=20,rsi_n=2|f=none|x=signal_only",0.218,0.0103,-0.1754,7.71
+mfi_reversal,"mfi_reversal|n=21,lo=20|f=trend_sma200|x=signal_only",0.218,0.0015,-0.0239,0.12
+rsi_reversal,"rsi_reversal|n=2,lo=35,exit=50|f=none|x=signal_only",0.218,0.0146,-0.2868,62.34
+macd_divergence+price_ma,"macd_divergence+price_ma|k=3,fast=12,slow=26|f=trend_sma200|x=signal_only|confirm=kind=ema,n=200,within=0",0.215,0.0006,-0.0058,0.09
+turn_of_month,"turn_of_month|pre=2,post=4|f=trend_sma200|x=signal_only",0.214,0.0096,-0.1625,16.26
+turn_of_month,"turn_of_month|pre=2,post=3|f=trend_sma200|x=signal_only",0.213,0.0087,-0.124,16.26
+rsi_reversal,"rsi_reversal|n=14,lo=25,exit=60|f=none|x=signal_only",0.213,0.0126,-0.2655,0.89
+adx_trend,"adx_trend|n=14,th=20|f=trend_sma200|x=signal_only",0.209,0.0034,-0.0611,4.15
+adx_trend,"adx_trend|n=14,th=25|f=none|x=signal_only",0.207,0.004,-0.0639,2.32
+rsi_reversal,"rsi_reversal|n=3,lo=35,exit=50|f=trend_sma200|x=signal_only",0.206,0.0071,-0.0714,29.75
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.5,min_corr=0.8,hedge=ratio",0.204,0.0027,-0.0332,2.36
+rsi_reversion,"rsi_reversion|n=3,entry=5,exit=70",0.203,0.0027,-0.0414,1.3
+rsi_reversal,"rsi_reversal|n=2,lo=35,exit=50|f=trend_sma200|x=signal_only",0.197,0.007,-0.0928,44.46
+inside_bar,inside_bar|trend_n=50|f=trend_sma200|x=signal_only,0.195,0.0077,-0.099,5.61
+rsi_reversal,"rsi_reversal|n=9,lo=20,exit=60|f=none|x=signal_only",0.194,0.0125,-0.3152,1.56
+mfi_reversal,"mfi_reversal|n=14,lo=10|f=trend_sma200|x=signal_only",0.19,0.0003,-0.0053,0.02
+down_days,"down_days|n=5,hold_exit=3|f=trend_sma200|x=signal_only",0.19,0.0055,-0.1263,2.36
+mfi_reversal,"mfi_reversal|n=10,lo=10|f=trend_sma200|x=signal_only",0.189,0.0034,-0.0678,0.58
+rsi_reversal,"rsi_reversal|n=21,lo=25,exit=60|f=none|x=signal_only",0.187,0.0058,-0.1431,0.16
+volume_breakout,"volume_breakout|n=20,rv=1.5|f=none|x=signal_only",0.186,0.0046,-0.0677,3.78
+rsi_reversal,"rsi_reversal|n=28,lo=35,exit=60|f=trend_sma200|x=signal_only",0.185,0.0037,-0.0791,0.09
+bb_squeeze,"bb_squeeze|n=20,q=0.2,look=126|f=none|x=signal_only",0.184,0.0042,-0.0528,4.8
+bollinger_reversion,"bollinger_reversion|n=30,k=3.0|f=none|x=signal_only",0.181,0.0107,-0.2825,1.49
+rsi_reversal,"rsi_reversal|n=21,lo=20,exit=70|f=none|x=signal_only",0.179,0.0027,-0.0417,0.02
+bb_squeeze,"bb_squeeze|n=20,q=0.2,look=126|f=trend_sma200|x=signal_only",0.178,0.0036,-0.0528,4.34
+ma_cross,"ma_cross|kind=tema,pair=(50, 150)|f=trend_sma200|x=signal_only",0.174,0.0061,-0.133,3.5
+inside_bar+wavetrend_reversal,"inside_bar+wavetrend_reversal|trend_n=200|f=none|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=3",0.173,0.002,-0.0432,0.39
+rsi_reversal,"rsi_reversal|n=21,lo=20,exit=50|f=none|x=signal_only",0.169,0.0015,-0.0297,0.02
+hurst_switch,"hurst_switch|n=200,fast=20,rsi_n=5|f=none|x=signal_only",0.168,0.0078,-0.2183,0.94
+rsi_reversal,"rsi_reversal|n=7,lo=10,exit=50|f=trend_sma200|x=signal_only",0.167,0.0006,-0.0066,0.09
+rsi_reversal,"rsi_reversal|n=5,lo=10,exit=70|f=none|x=signal_only",0.166,0.01,-0.3152,1.48
+turn_of_month,"turn_of_month|days_before=1,days_after=2",0.163,0.0074,-0.1621,25.9
+inside_bar+ibs_reversion,"inside_bar+ibs_reversion|trend_n=200|f=none|x=signal_only|confirm=lo=0.1,hi=0.8,within=0",0.163,0.0011,-0.0219,0.08
+pivot_bounce,pivot_bounce|window=1|f=none|x=signal_only,0.161,0.0076,-0.138,85.75
+turn_of_month,"turn_of_month|pre=3,post=2|f=trend_sma200|x=signal_only",0.161,0.0061,-0.1374,16.23
+rsi_reversion,"rsi_reversion|n=3,entry=5,exit=50",0.159,0.0017,-0.0313,1.31
+cmf_flow,"cmf_flow|n=40,th=0.2|f=trend_sma200|x=signal_only",0.158,0.0059,-0.1444,2.26
+wavetrend_reversal+ibs_reversion,"wavetrend_reversal+ibs_reversion|n1=10,n2=21,lo=-40|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=0",0.156,0.0006,-0.0165,0.11
+rsi_reversal,"rsi_reversal|n=5,lo=10,exit=70|f=trend_sma200|x=signal_only",0.156,0.0048,-0.1359,0.58
+rsi_reversal,"rsi_reversal|n=9,lo=20,exit=50|f=trend_sma200|x=signal_only",0.15,0.0024,-0.0511,0.55
+rsi_reversal,"rsi_reversal|n=5,lo=10,exit=60|f=trend_sma200|x=signal_only",0.143,0.0023,-0.0645,0.59
+rsi_reversal,"rsi_reversal|n=9,lo=20,exit=60|f=trend_sma200|x=signal_only",0.142,0.0049,-0.1563,0.55
+smc_ote,"smc_ote|k=3,fib_lo=0.618|f=trend_sma200|x=signal_only",0.141,0.0021,-0.0517,8.83
+rsi_reversal,"rsi_reversal|n=9,lo=20,exit=50|f=none|x=signal_only",0.141,0.0061,-0.2229,1.64
+rsi_reversal,"rsi_reversal|n=21,lo=30,exit=60|f=trend_sma200|x=signal_only",0.139,0.0026,-0.0791,0.09
+mfi_reversal,"mfi_reversal|n=21,lo=20|f=none|x=signal_only",0.137,0.0032,-0.0792,0.49
+rsi_reversal,"rsi_reversal|n=28,lo=35,exit=50|f=trend_sma200|x=signal_only",0.134,0.001,-0.0278,0.09
+rsi_reversal,"rsi_reversal|n=28,lo=30,exit=50|f=none|x=signal_only",0.134,0.0043,-0.1574,0.29
+hurst_switch,"hurst_switch|n=200,fast=20,rsi_n=5|f=trend_sma200|x=signal_only",0.134,0.0033,-0.1011,0.61
+mfi_reversal,"mfi_reversal|n=21,lo=10|f=none|x=signal_only",0.133,0.0006,-0.0166,0.07
+adx_trend,"adx_trend|n=20,th=20|f=trend_sma200|x=signal_only",0.132,0.0017,-0.0416,1.99
+down_days,"down_days|n=4,hold_exit=1|f=trend_sma200|x=signal_only",0.132,0.0016,-0.0564,6.11
+cmf_flow,"cmf_flow|n=40,th=0.2|f=none|x=signal_only",0.131,0.0052,-0.2068,2.56
+adx_trend,"adx_trend|n=14,th=25|f=trend_sma200|x=signal_only",0.13,0.0011,-0.0403,1.51
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.0,min_corr=0.6,hedge=ratio",0.129,0.0037,-0.1123,14.42
+turn_of_month,"turn_of_month|pre=2,post=1|f=none|x=signal_only",0.128,0.0052,-0.1275,22.45
+smc_ote,"smc_ote|k=3,fib_lo=0.618|f=none|x=signal_only",0.125,0.0024,-0.0747,11.4
+ibs_reversion+price_ma,"ibs_reversion+price_ma|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=kind=ema,n=200,within=0",0.124,0.0002,-0.0042,0.06
+hurst_switch,"hurst_switch|n=100,fast=20,rsi_n=5|f=none|x=signal_only",0.121,0.0059,-0.2664,1.83
+rsi_reversal,"rsi_reversal|n=21,lo=30,exit=50|f=trend_sma200|x=signal_only",0.119,0.0009,-0.0278,0.09
+adx_trend,"adx_trend|n=20,th=20|f=none|x=signal_only",0.118,0.0022,-0.0684,2.93
+rsi_reversal,"rsi_reversal|n=14,lo=25,exit=50|f=trend_sma200|x=signal_only",0.117,0.0009,-0.0278,0.15
+rsi_reversal,"rsi_reversal|n=21,lo=25,exit=70|f=trend_sma200|x=signal_only",0.116,0.0007,-0.0214,0.01
+nr7_breakout,nr7_breakout|n=4|f=trend_sma200|x=signal_only,0.115,0.0032,-0.0929,23.33
+ultimate_reversal,"ultimate_reversal|a=7,lo=25|f=none|x=signal_only",0.113,0.0049,-0.2449,0.74
+rsi_reversal,"rsi_reversal|n=14,lo=20,exit=70|f=trend_sma200|x=signal_only",0.113,0.0008,-0.0214,0.02
+rsi_reversal,"rsi_reversal|n=14,lo=25,exit=60|f=trend_sma200|x=signal_only",0.11,0.0021,-0.0791,0.15
+rsi_reversal,"rsi_reversal|n=7,lo=10,exit=70|f=trend_sma200|x=signal_only",0.105,0.0012,-0.0455,0.09
+rsi_reversal,"rsi_reversal|n=14,lo=25,exit=50|f=none|x=signal_only",0.104,0.0042,-0.2208,0.98
+volume_breakout,"volume_breakout|n=50,rv=3.0|f=none|x=signal_only",0.103,0.0006,-0.022,0.21
+turn_of_month,"turn_of_month|pre=2,post=2|f=trend_sma200|x=signal_only",0.102,0.0032,-0.1154,16.26
+smc_ote,"smc_ote|k=3,fib_lo=0.5|f=none|x=signal_only",0.097,0.0021,-0.0615,13.98
+rsi_reversal,"rsi_reversal|n=14,lo=20,exit=60|f=none|x=signal_only",0.093,0.003,-0.1723,0.28
+atr_breakout,"atr_breakout|n=10,k=2.0|f=trend_sma200|x=signal_only",0.09,0.0008,-0.0385,1.42
+smc_ote,"smc_ote|k=3,fib_lo=0.5|f=trend_sma200|x=signal_only",0.087,0.0014,-0.0492,10.88
+price_ma+ibs_reversion,"price_ma+ibs_reversion|kind=ema,n=200|f=trend_sma200|x=signal_only|confirm=lo=0.1,hi=0.8,within=0",0.086,0.0002,-0.0122,0.01
+turn_of_month,"turn_of_month|pre=1,post=2|f=trend_sma200|x=signal_only",0.085,0.0023,-0.1364,16.49
+ultimate_reversal,"ultimate_reversal|a=5,lo=25|f=none|x=signal_only",0.078,0.0029,-0.2657,1.93
+rsi_reversal,"rsi_reversal|n=9,lo=10,exit=70|f=none|x=signal_only",0.077,0.001,-0.0572,0.07
+hurst_switch,"hurst_switch|n=100,fast=20,rsi_n=5|f=trend_sma200|x=signal_only",0.075,0.002,-0.128,1.11
+rsi_reversal,"rsi_reversal|n=7,lo=10,exit=70|f=none|x=signal_only",0.073,0.0024,-0.2217,0.39
+smc_liquidity_sweep,smc_liquidity_sweep|k=3|f=trend_sma200|x=signal_only,0.071,0.0015,-0.1251,11.04
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.0,min_corr=0.8,hedge=ratio",0.071,0.001,-0.0395,4.12
+rsi_reversal,"rsi_reversal|n=14,lo=20,exit=50|f=trend_sma200|x=signal_only",0.071,0.0001,-0.0066,0.02
+rsi_reversal,"rsi_reversal|n=5,lo=10,exit=60|f=none|x=signal_only",0.07,0.0023,-0.2533,1.55
+rsi_reversal,"rsi_reversal|n=28,lo=30,exit=60|f=trend_sma200|x=signal_only",0.066,0.0004,-0.0214,0.01
+nr7_breakout,nr7_breakout|n=4|f=none|x=signal_only,0.062,0.0018,-0.1992,30.62
+down_days,"down_days|n=3,hold_exit=1|f=none|x=signal_only",0.058,0.0016,-0.1442,23.89
+volume_breakout,"volume_breakout|n=50,rv=2.0|f=trend_sma200|x=signal_only",0.054,0.0007,-0.0682,0.73
+rsi_reversal,"rsi_reversal|n=21,lo=25,exit=50|f=trend_sma200|x=signal_only",0.052,0.0001,-0.002,0.01
+rsi_reversal,"rsi_reversal|n=28,lo=30,exit=50|f=trend_sma200|x=signal_only",0.052,0.0001,-0.002,0.01
+rsi_reversal,"rsi_reversal|n=9,lo=10,exit=50|f=trend_sma200|x=signal_only",0.052,0.0001,-0.002,0.01
+nr7_breakout,nr7_breakout|n=7|f=trend_sma200|x=signal_only,0.051,0.0009,-0.1334,16.22
+rsi_reversal,"rsi_reversal|n=5,lo=10,exit=50|f=none|x=signal_only",0.05,0.0012,-0.1782,1.55
+down_days,"down_days|n=3,hold_exit=1|f=trend_sma200|x=signal_only",0.045,0.0007,-0.0907,15.1
+atr_breakout,"atr_breakout|n=20,k=2.0|f=trend_sma200|x=signal_only",0.044,0.0004,-0.0571,1.37
+rsi_reversal,"rsi_reversal|n=21,lo=25,exit=50|f=none|x=signal_only",0.043,0.0008,-0.1251,0.16
+turn_of_month,"turn_of_month|pre=3,post=1|f=trend_sma200|x=signal_only",0.035,0.0006,-0.1159,16.23
+mfi_reversal,"mfi_reversal|n=10,lo=10|f=none|x=signal_only",0.034,0.0005,-0.2164,1.36
+rsi_reversal,"rsi_reversal|n=21,lo=25,exit=60|f=trend_sma200|x=signal_only",0.031,0.0002,-0.0214,0.01
+rsi_reversal,"rsi_reversal|n=7,lo=10,exit=60|f=trend_sma200|x=signal_only",0.027,0.0002,-0.0455,0.09
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.5,min_corr=0.8,hedge=ratio",0.026,0.0003,-0.0536,3.18
+rsi_reversal,"rsi_reversal|n=9,lo=10,exit=70|f=trend_sma200|x=signal_only",0.024,0.0001,-0.0214,0.01
+volume_breakout,"volume_breakout|n=50,rv=2.0|f=none|x=signal_only",0.022,0.0002,-0.0671,0.79
+bollinger_reversion,"bollinger_reversion|n=10,k=2.5|f=trend_sma200|x=signal_only",0.018,0.0002,-0.0687,0.71
+zscore_reversion,"zscore_reversion|n=10,z=2.5|f=trend_sma200|x=signal_only",0.018,0.0002,-0.0687,0.71
+rsi_reversal,"rsi_reversal|n=14,lo=20,exit=50|f=none|x=signal_only",0.017,0.0,-0.1547,0.29
+weekday_long,weekday_long|day=3|f=none|x=signal_only,0.016,-0.0011,-0.1921,94.98
+heikin_ashi,heikin_ashi|confirm=3|f=none|x=signal_only,0.015,-0.0006,-0.1611,36.35
+pairs_zscore,"pairs_zscore|form=252,entry_z=1.5,min_corr=0.8,hedge=ratio",0.011,0.0,-0.0441,6.27
+volume_breakout,"volume_breakout|n=50,rv=1.5|f=trend_sma200|x=signal_only",0.008,-0.0001,-0.0962,1.95
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.5,min_corr=0.6,hedge=ratio",0.008,-0.0002,-0.1013,9.53
+rsi_reversal,"rsi_reversal|n=14,lo=20,exit=60|f=trend_sma200|x=signal_only",0.004,0.0,-0.0218,0.02
+pairs_zscore,"pairs_zscore|form=126,entry_z=1.5,min_corr=0.6,hedge=ratio",-0.007,-0.0009,-0.1201,17.9
+rsi_reversal,"rsi_reversal|n=9,lo=10,exit=60|f=none|x=signal_only",-0.008,-0.0002,-0.0572,0.07
+rsi_reversal,"rsi_reversal|n=7,lo=10,exit=60|f=none|x=signal_only",-0.012,-0.0018,-0.2219,0.4
+turn_of_month,"turn_of_month|pre=1,post=1|f=none|x=signal_only",-0.014,-0.0015,-0.133,22.45
+mfi_reversal,"mfi_reversal|n=14,lo=10|f=none|x=signal_only",-0.018,-0.0003,-0.0774,0.27
+gap_fade,gap_fade|g=0.03|f=trend_sma200|x=signal_only,-0.024,-0.0002,-0.028,0.43
+rsi_reversal,"rsi_reversal|n=9,lo=10,exit=60|f=trend_sma200|x=signal_only",-0.026,-0.0002,-0.0214,0.01
+rsi_reversal,"rsi_reversal|n=9,lo=10,exit=50|f=none|x=signal_only",-0.035,-0.0003,-0.0381,0.07
+gap_fade,gap_fade|g=0.02|f=trend_sma200|x=signal_only,-0.039,-0.0007,-0.065,1.64
+adx_trend,"adx_trend|n=20,th=30|f=trend_sma200|x=signal_only",-0.044,-0.0001,-0.0101,0.12
+turn_of_month,"turn_of_month|pre=2,post=1|f=trend_sma200|x=signal_only",-0.05,-0.0022,-0.1107,16.26
+inside_bar+wavetrend_reversal,"inside_bar+wavetrend_reversal|trend_n=200|f=none|x=signal_only|confirm=n1=10,n2=21,lo=-40,within=0",-0.054,-0.0005,-0.0342,0.23
+gap_fade,gap_fade|g=0.02|f=none|x=signal_only,-0.055,-0.0054,-0.2067,4.58
+pivot_bounce,pivot_bounce|window=1|f=trend_sma200|x=signal_only,-0.062,-0.0026,-0.1377,62.96
+zscore_reversion,"zscore_reversion|n=10,z=2.5|f=none|x=signal_only",-0.065,-0.0029,-0.1634,1.09
+bollinger_reversion,"bollinger_reversion|n=10,k=2.5|f=none|x=signal_only",-0.065,-0.0029,-0.1634,1.09
+volume_breakout,"volume_breakout|n=50,rv=1.5|f=none|x=signal_only",-0.065,-0.0021,-0.1069,2.13
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.5,min_corr=0.6,hedge=ratio",-0.072,-0.0024,-0.1024,7.82
+ibs_reversion+stoch_reversal,"ibs_reversion+stoch_reversal|lo=0.1,hi=0.8|f=none|x=signal_only|confirm=k=14,d=5,smooth=1,lo=10,within=0",-0.072,-0.0003,-0.0231,0.26
+nr7_breakout,nr7_breakout|n=7|f=none|x=signal_only,-0.073,-0.0034,-0.192,21.14
+adx_trend,"adx_trend|n=20,th=25|f=none|x=signal_only",-0.086,-0.0011,-0.0576,0.86
+rsi_reversal,"rsi_reversal|n=7,lo=10,exit=50|f=none|x=signal_only",-0.091,-0.0033,-0.1536,0.42
+gap_fade,gap_fade|g=0.03|f=none|x=signal_only,-0.102,-0.0062,-0.1606,1.85
+turn_of_month,"turn_of_month|pre=1,post=1|f=trend_sma200|x=signal_only",-0.146,-0.0044,-0.1106,16.49
+gap_fade,gap_fade|g=0.05|f=none|x=signal_only,-0.179,-0.0081,-0.1558,0.74
+weekday_long,weekday_long|day=0|f=trend_sma200|x=signal_only,-0.194,-0.0071,-0.1622,64.1
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.0,min_corr=0.6,hedge=ratio",-0.205,-0.0071,-0.1505,12.21
+adx_trend,"adx_trend|n=20,th=30|f=none|x=signal_only",-0.206,-0.001,-0.0264,0.21
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.0,min_corr=0.8,hedge=ratio",-0.212,-0.0042,-0.0708,5.55
+adx_trend,"adx_trend|n=14,th=30|f=none|x=signal_only",-0.228,-0.0024,-0.0525,0.72
+smc_ote,"smc_ote|k=5,fib_lo=0.618|f=trend_sma200|x=signal_only",-0.231,-0.0043,-0.1063,6.85
+smc_ote,"smc_ote|k=5,fib_lo=0.5|f=trend_sma200|x=signal_only",-0.234,-0.0049,-0.1104,8.3
+weekday_long,weekday_long|day=4|f=trend_sma200|x=signal_only,-0.236,-0.0105,-0.2093,68.56
+smc_ote,"smc_ote|k=5,fib_lo=0.5|f=none|x=signal_only",-0.239,-0.006,-0.1527,9.98
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.5,min_corr=0.6,hedge=ols",-0.249,-0.0004,-0.013,0.19
+adx_trend,"adx_trend|n=20,th=25|f=trend_sma200|x=signal_only",-0.257,-0.0013,-0.0284,0.48
+smc_ote,"smc_ote|k=5,fib_lo=0.618|f=none|x=signal_only",-0.266,-0.0057,-0.1429,8.29
+adx_trend,"adx_trend|n=14,th=30|f=trend_sma200|x=signal_only",-0.272,-0.001,-0.0303,0.38
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.0,min_corr=0.8,hedge=ols",-0.297,-0.0006,-0.012,0.15
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.0,min_corr=0.6,hedge=ols",-0.298,-0.0007,-0.0144,0.27
+weekday_long,weekday_long|day=4|f=none|x=signal_only,-0.299,-0.0254,-0.3747,94.53
+weekday_long,weekday_long|day=1|f=none|x=signal_only,-0.307,-0.0205,-0.3471,96.92
+pairs_zscore,"pairs_zscore|form=252,entry_z=1.5,min_corr=0.6,hedge=ratio",-0.319,-0.0117,-0.195,16.04
+pairs_zscore,"pairs_zscore|form=126,entry_z=2.5,min_corr=0.8,hedge=ols",-0.346,-0.0005,-0.0113,0.13
+pairs_zscore,"pairs_zscore|form=126,entry_z=1.5,min_corr=0.6,hedge=ols",-0.349,-0.001,-0.0211,0.35
+pairs_zscore,"pairs_zscore|form=126,entry_z=1.5,min_corr=0.8,hedge=ratio",-0.361,-0.0075,-0.1134,8.21
+weekday_long,weekday_long|day=1|f=trend_sma200|x=signal_only,-0.387,-0.0141,-0.2453,70.75
+weekday_long,weekday_long|day=3|f=trend_sma200|x=signal_only,-0.413,-0.017,-0.2649,68.84
+pairs_zscore,"pairs_zscore|form=126,entry_z=1.5,min_corr=0.8,hedge=ols",-0.423,-0.0009,-0.0169,0.18
+gap_fade,gap_fade|g=0.05|f=trend_sma200|x=signal_only,-0.511,-0.0004,-0.0057,0.04
+weekday_long,weekday_long|day=2|f=trend_sma200|x=signal_only,-0.558,-0.0226,-0.2971,70.35
+weekday_long,weekday_long|day=2|f=none|x=signal_only,-0.624,-0.0436,-0.5007,96.61
+rsi_reversal,"rsi_reversal|n=14,lo=10,exit=50|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=14,lo=10,exit=50|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=14,lo=10,exit=60|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=14,lo=10,exit=60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=14,lo=10,exit=70|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=14,lo=10,exit=70|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=10,exit=50|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=10,exit=50|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=10,exit=60|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=10,exit=60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=10,exit=70|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=10,exit=70|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=20,exit=50|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=20,exit=60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=21,lo=20,exit=70|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=10,exit=50|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=10,exit=50|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=10,exit=60|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=10,exit=60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=10,exit=70|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=10,exit=70|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=20,exit=50|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=20,exit=50|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=20,exit=60|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=20,exit=60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=20,exit=70|f=none|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=20,exit=70|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=25,exit=50|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=25,exit=60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+rsi_reversal,"rsi_reversal|n=28,lo=25,exit=70|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+mfi_reversal,"mfi_reversal|n=21,lo=10|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+wavetrend_reversal,"wavetrend_reversal|n1=9,n2=26,lo=-60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+wavetrend_reversal,"wavetrend_reversal|n1=10,n2=26,lo=-60|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+bollinger_reversion,"bollinger_reversion|n=10,k=3.0|f=none|x=signal_only",,0.0,0.0,0.0
+bollinger_reversion,"bollinger_reversion|n=10,k=3.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=260,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=260,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=260,th=2.0|f=none|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=260,th=2.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=520,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=520,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=520,th=2.0|f=none|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=520,th=2.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=780,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=780,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=780,th=2.0|f=none|x=signal_only",,0.0,0.0,0.0
+cot_extreme,"cot_extreme|n=780,th=2.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=260,th=1.0|f=none|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=260,th=1.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=260,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=260,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=780,th=1.0|f=none|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=780,th=1.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=780,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+cot_commercial,"cot_commercial|n=780,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=90,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=90,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=90,th=2.0|f=none|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=90,th=2.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=180,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=180,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=180,th=2.0|f=none|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=180,th=2.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=365,th=1.5|f=none|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=365,th=1.5|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=365,th=2.0|f=none|x=signal_only",,0.0,0.0,0.0
+funding_extreme,"funding_extreme|n=365,th=2.0|f=trend_sma200|x=signal_only",,0.0,0.0,0.0
+pairs_zscore,"pairs_zscore|form=252,entry_z=1.5,min_corr=0.6,hedge=ols",,0.0,0.0,0.0
+pairs_zscore,"pairs_zscore|form=252,entry_z=1.5,min_corr=0.8,hedge=ols",,0.0,0.0,0.0
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.0,min_corr=0.6,hedge=ols",,0.0,0.0,0.0
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.0,min_corr=0.8,hedge=ols",,0.0,0.0,0.0
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.5,min_corr=0.6,hedge=ols",,0.0,0.0,0.0
+pairs_zscore,"pairs_zscore|form=252,entry_z=2.5,min_corr=0.8,hedge=ols",,0.0,0.0,0.0
+ts_seasonality,"ts_seasonality|years=15,thr=0.0",,0.0,0.0,0.0
+ts_seasonality,"ts_seasonality|years=15,thr=0.005",,0.0,0.0,0.0
