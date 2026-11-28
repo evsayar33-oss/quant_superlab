@@ -104,6 +104,11 @@
       "source_verdict": "INSUFFICIENT"
     }
   },
+  "last_notification_delivery": {
+    "count": 1,
+    "method": "TELEGRAM",
+    "utc": "2026-11-28T08:13:16.336824+00:00"
+  },
   "limitations": [
     "Only tier1_quant_terminal independent audit and sealed decisions are read",
     "Model directional scores do not imply permitted/executed trades",
@@ -116,7 +121,7 @@
   "observed_calls": 183,
   "observed_snapshots": 522,
   "official_gate": "NOT_RUN",
-  "pending_notifications": 1,
+  "pending_notifications": 0,
   "production_logic": "UNCHANGED",
   "replication_leads_not_accepts": 0,
   "research_only": true,
