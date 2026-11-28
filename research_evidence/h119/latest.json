@@ -1,5 +1,5 @@
 {
-  "asof_utc": "2026-11-28T09:25:42.468722+00:00",
+  "asof_utc": "2026-11-28T17:48:19.856043+00:00",
   "limitations": [
     "H119 never changes hypotheses/registry.yaml or decisions/registry.json",
     "upstream event patterns are not a deployable backtest until native data/DSR/PBO/Reality Check pass",
@@ -13,20 +13,20 @@
       "forward_trials_frozen": 0,
       "future_test_decisions": 0,
       "matured_first_seen_horizon_counts": {
-        "1": 69,
+        "1": 92,
         "10": 0,
-        "3": 23,
-        "5": 0
+        "3": 46,
+        "5": 23
       },
       "source_reported_variants": 64,
-      "v12_pre_move_observations": 161
+      "v12_pre_move_observations": 184
     },
     "CRYPTO_PERPETUAL": {
       "asof_first_seen_observations": 76,
       "costed_research_candidates": 0,
       "forward_trials_frozen": 0,
       "future_test_decisions": 0,
-      "source_age_minutes": 285.955,
+      "source_age_minutes": 263.484,
       "source_reported_variants": 92,
       "source_status": "STALE_UPSTREAM_V8_WATCH_ONLY"
     },
@@ -35,13 +35,13 @@
       "forward_trials_frozen": 0,
       "future_test_decisions": 0,
       "matured_first_seen_horizon_counts": {
-        "1": 46,
+        "1": 79,
         "10": 0,
         "3": 23,
         "5": 0
       },
       "source_reported_variants": 64,
-      "v12_pre_move_observations": 129
+      "v12_pre_move_observations": 149
     }
   },
   "new_hypotheses_or_milestones": 0,
@@ -49,9 +49,9 @@
   "notifications_waiting_delivery": 0,
   "schema": "QS.h119.autonomous_alpha.v1",
   "source_commits": {
-    "crypto": "98892c0c72e2545abb3e6d940d7a0eb329eb481c",
-    "equity": "12889f1215532a21c8cda12de22f076f5785ccc3",
-    "patterns": "295b06df911eaa684db886bfa3dca55e05b05ed5"
+    "crypto": "4f4dc1f3f3c9dc623a6848e3bcb7673a4c2113f0",
+    "equity": "983435e9c2b07c8c7edcd0e2a03f0629ef25f45b",
+    "patterns": "1b57ed718519b408e08c0b36bc16799cc9e46fa9"
   },
   "status": "RESEARCH_ONLY_NO_NEW_OFFICIAL_LAB_APPROVAL",
   "total_evidence_events": 1
