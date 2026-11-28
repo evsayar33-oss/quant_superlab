@@ -29,6 +29,7 @@ STUDY_FILES = (
     "research_decisions/research30_crypto_flow-final.json",
 )
 SENTIMENT_FILE = "sentiment_study_decisions/tier1_sentiment_superlab-final.json"
+V2_INTEGRITY_FILE = "research_decisions/tier1_v2_forward-label-integrity-audit.json"
 MIN_INDEPENDENT = 100
 MIN_ALLOWED = 30
 STALE_HOURS = 24
@@ -161,6 +162,7 @@ def fetch_evidence(old_sha, fetch=http_text):
         "summary": json.loads(summary_raw),
         "ledger": json.loads(ledger_raw),
         "decision_docs": [],
+        "integrity_docs": [],
         "source_commits": {AUDIT: sha},
         "source_hashes": {
             "summary": hashlib.sha256(summary_raw.encode()).hexdigest(),
@@ -176,6 +178,19 @@ def fetch_evidence(old_sha, fetch=http_text):
             continue
         check_ancestry(branch, old_sha.get(branch), commit, fetch)
         report["source_commits"][branch] = commit
+        if branch == STUDIES:
+            # Append-only correction is pinned to the same branch snapshot as
+            # the frozen FINAL. It is not a new strategy decision/notification.
+            try:
+                raw = source_raw(commit, V2_INTEGRITY_FILE, fetch, optional=True)
+                if raw is not None:
+                    report["integrity_docs"].append({
+                        "path": V2_INTEGRITY_FILE, "branch": branch, "commit": commit,
+                        "sha256": hashlib.sha256(raw.encode()).hexdigest(),
+                        "data": json.loads(raw),
+                    })
+            except (urllib.error.URLError, TimeoutError, ValueError, TypeError):
+                report["integrity_docs"].append({"unavailable": True})
         for path in paths:
             contents = source_raw(commit, path, fetch, optional=True)
             if contents is None:
@@ -338,6 +353,41 @@ def validate_decision(d):
     return item
 
 
+def label_integrity(evidence, now):
+    """Validate the explicit correction without silently replacing FINAL."""
+    docs = evidence.get("integrity_docs", [])
+    if not docs:
+        return {"status": "NO_CORRECTION_PUBLISHED", "verified_four_hour_edge": False}
+    try:
+        if len(docs) != 1:
+            raise ValueError("DUPLICATE_CORRECTION")
+        d = docs[0]
+        item = d["data"]
+        assessment = item["assessment"]
+        finals = [f for f in evidence["decision_docs"] if f["path"] == STUDY_FILES[0]]
+        if (len(finals) != 1 or d["path"] != V2_INTEGRITY_FILE or d["branch"] != STUDIES
+                or d["commit"] != finals[0]["commit"]
+                or item.get("schema") != 1 or item.get("study_id") != "tier1_v2_forward"
+                or item.get("stage") != "LABEL_INTEGRITY_AUDIT"
+                or item.get("auto_applied") != "RESEARCH_STATUS_ONLY"
+                or item.get("production_logic_modified") is not False
+                or item.get("live_orders") is not False
+                or assessment.get("decision") != "EVIDENCE_INTEGRITY_LIMITATION"
+                or assessment.get("prior_final_preserved") is not True
+                or assessment.get("previous_final_sha256") != finals[0]["sha256"]
+                or utc(item["as_of_utc"]) > now):
+            raise ValueError("INVALID_CORRECTION")
+        n = assessment["nominal_futures_confirmed_saturday_starts"]
+        if type(n) is not int or n < 0:
+            raise ValueError("INVALID_CORRECTION_COUNT")
+        return {"status": "EVIDENCE_INTEGRITY_LIMITATION", "verified_four_hour_edge": False,
+                "frozen_final_sha256": finals[0]["sha256"], "correction_sha256": d["sha256"],
+                "source_commit": d["commit"], "nominal_futures_saturday_starts": n}
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return {"status": "INVALID_OR_UNVERIFIABLE_CORRECTION",
+                "verified_four_hour_edge": False}
+
+
 def event(kind, identity, details, stamp):
     return {
         "kind": kind, "id": fingerprint([SCHEMA, kind, identity]),
@@ -403,6 +453,7 @@ def evaluate(evidence, previous, now):
         "entry_allowed": evidence["summary"]["entry_allowed"],
         "grades": grades,
         "descriptive_asset_diagnostics": descriptive_asset_review(evidence["ledger"]),
+        "tier1_v2_label_integrity": label_integrity(evidence, now),
         "final_study_decisions": [
             {"study": validate_decision(d)["study_id"],
              "decision": d["data"]["assessment"]["decision"],

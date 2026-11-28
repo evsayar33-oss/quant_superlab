@@ -176,6 +176,29 @@ class TestTier1OnlyBridge(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "UNTRUSTED_STUDY_DECISION"):
             h.evaluate(e, {}, T)
 
+    def test_v2_correction_keeps_final_and_never_adds_approval(self):
+        e = raw_audit()
+        final = {"schema":1,"study_id":"tier1_v2_forward","stage":"FINAL",
+                 "as_of_utc":"2026-11-19T11:49:35+00:00","auto_applied":"RESEARCH_STATUS_ONLY",
+                 "production_logic_modified":False,"live_orders":False,
+                 "assessment":{"decision":"NO_DEMONSTRATED_ADVANTAGE"}}
+        e["decision_docs"] = [{"data":final,"path":h.STUDY_FILES[0],
+                                "branch":h.STUDIES,"commit":SHA,"sha256":"d"*64}]
+        correction = {**final, "stage":"LABEL_INTEGRITY_AUDIT",
+                      "assessment":{"decision":"EVIDENCE_INTEGRITY_LIMITATION",
+                        "prior_final_preserved":True,"previous_final_sha256":"d"*64,
+                        "nominal_futures_confirmed_saturday_starts":43}}
+        e["integrity_docs"] = [{"data":correction,"path":h.V2_INTEGRITY_FILE,
+                                 "branch":h.STUDIES,"commit":SHA,"sha256":"e"*64}]
+        r, events = h.evaluate(e,{},T)
+        self.assertEqual(r["tier1_v2_label_integrity"]["status"],"EVIDENCE_INTEGRITY_LIMITATION")
+        self.assertFalse(r["tier1_v2_label_integrity"]["verified_four_hour_edge"])
+        self.assertEqual(r["final_study_decisions"][0]["decision"],"NO_DEMONSTRATED_ADVANTAGE")
+        self.assertEqual(len(events),1)  # original final only, no duplicate alert
+        correction["assessment"]["previous_final_sha256"]="f"*64
+        r,_ = h.evaluate(e,{},T)
+        self.assertEqual(r["tier1_v2_label_integrity"]["status"],"INVALID_OR_UNVERIFIABLE_CORRECTION")
+
     def test_rejects_branch_history_rewrites_and_missing_study_branch(self):
         with self.assertRaisesRegex(ValueError, "REWRITTEN_OR_ROLLED_BACK"):
             h.check_ancestry(h.AUDIT, "a"*40, SHA,
