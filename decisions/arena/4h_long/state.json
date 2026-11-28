@@ -1,7 +1,7 @@
 {
  "positions": {
   "A0001": "flat",
-  "A0002": "long",
+  "A0002": "flat",
   "A0003": "flat",
   "A0004": "flat",
   "A0005": "flat",
@@ -109,15 +109,6 @@
   "A0058": 0.08
  },
  "last_summary": "2026-11-21",
- "last_bar": "2026-11-26 08:00:00",
- "updated_at": "2026-11-26T13:56:55+00:00",
- "book_status": {
-  "A": "inside",
-  "B": "inside",
-  "B2": "inside",
-  "C": "inside",
-  "C2": "inside",
-  "K1": "below",
-  "K2": "below"
- }
+ "last_bar": "2026-11-27 20:00:00",
+ "updated_at": "2026-11-28T00:07:39+00:00"
 }
