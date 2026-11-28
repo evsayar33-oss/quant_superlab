@@ -1,6 +1,6 @@
 {
-  "asof_utc": "2026-11-28T08:13:11.940553+00:00",
-  "audit_age_hours": 5.46,
+  "asof_utc": "2026-11-28T09:28:58.393655+00:00",
+  "audit_age_hours": 6.72,
   "descriptive_asset_diagnostics": [
     {
       "always_long_hit": 0.0,
@@ -104,11 +104,6 @@
       "source_verdict": "INSUFFICIENT"
     }
   },
-  "last_notification_delivery": {
-    "count": 1,
-    "method": "TELEGRAM",
-    "utc": "2026-11-28T08:13:16.336824+00:00"
-  },
   "limitations": [
     "Only tier1_quant_terminal independent audit and sealed decisions are read",
     "Model directional scores do not imply permitted/executed trades",
@@ -117,7 +112,7 @@
     "30-day observations lack 3-year OOS, independent PIT and brokerage NAV",
     "No automatic hypothesis/registry update, paper reset or live model changes"
   ],
-  "new_events": 1,
+  "new_events": 0,
   "observed_calls": 183,
   "observed_snapshots": 522,
   "official_gate": "NOT_RUN",
@@ -129,7 +124,7 @@
   "source": "evsayar33-oss/tier1_quant_terminal",
   "source_commits": {
     "audit/30d-evidence": "1f9b06e57356c46503b472c5d7e1043627bfc25d",
-    "audit/study-decisions": "1cedbf4c61baffc65987d34885c2c50472de8628"
+    "audit/study-decisions": "dab30c385dd04060d7df069d72f96833029f4d50"
   },
   "source_hashes": {
     "ledger": "d9c0200c3770069df6af5c13ccce6a9453db41e38d51d9ce1821c0bf8e6b3f14",
@@ -141,7 +136,7 @@
     "correction_sha256": "179124dfd8a935f7107f8986fb272b7c524db99a3ae9d477d4a7ba48ea3c81d9",
     "frozen_final_sha256": "5d486a489bf8a2b074f070a17c29f5781d57937fd1f4280023aa93754d34b012",
     "nominal_futures_saturday_starts": 43,
-    "source_commit": "1cedbf4c61baffc65987d34885c2c50472de8628",
+    "source_commit": "dab30c385dd04060d7df069d72f96833029f4d50",
     "status": "EVIDENCE_INTEGRITY_LIMITATION",
     "verified_four_hour_edge": false
   },
