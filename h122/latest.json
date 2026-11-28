@@ -1,6 +1,6 @@
 {
   "alerts_pending": 0,
-  "asof_utc": "2026-11-28T02:12:04.699415+00:00",
+  "asof_utc": "2026-11-28T07:30:47.040622+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -10,22 +10,41 @@
   },
   "event_watch": {
     "candidate_counts_by_rule": {
-      "monthly_low_beta": 0,
-      "monthly_vol_squeeze": 0
+      "monthly_low_beta": 5,
+      "monthly_vol_squeeze": 5
     },
-    "data_coverage_ok": false,
-    "data_coverage_pct": 0.7755,
+    "data_coverage_ok": true,
+    "data_coverage_pct": 0.8367,
     "eligible_tickers": 147,
     "feature_asof": "2026-11-27",
-    "liquid_tickers": 107,
-    "priced_tickers": 114,
+    "liquid_tickers": 108,
+    "priced_tickers": 123,
     "source_decision": "WATCH_ONLY_NO_TRADE",
-    "source_failure_reason": "INSUFFICIENT_PRICE_COVERAGE",
+    "source_exclusion_detail_reasons": {
+      "DOLLAR_VOLUME_20D_BELOW_5M": 15,
+      "INSUFFICIENT_200_SESSION_TREND": 7,
+      "MISSING_ASOF_CLOSE": 9,
+      "MISSING_ASOF_VOLUME": 6,
+      "NO_PROVIDER_SERIES": 2
+    },
+    "source_failure_reason": null,
     "source_first_seen_forward_only": 22,
-    "source_report_ok": false,
-    "watch_candidates": 0
+    "source_generated_at_utc": "2026-11-28T03:55:14.264626+00:00",
+    "source_price_recovery": {
+      "fallback_recovered": null,
+      "independent_recovered": null,
+      "loaded": null,
+      "missing": null,
+      "recovery_round": null,
+      "requested": null,
+      "single_recheck_recovered": null,
+      "total_recovered": null,
+      "unreached_due_to_budget": null
+    },
+    "source_report_ok": true,
+    "watch_candidates": 10
   },
-  "events_new": 1,
+  "events_new": 0,
   "events_total": 5,
   "executable_broker_pnl": null,
   "five_event_hypotheses": {
@@ -54,34 +73,34 @@
     "forward_results_status": "PUBLISHED_SOURCE_ONLY_NOT_SUPERLAB_APPROVED",
     "green_workflow_is_not_forward_result": true,
     "last_attempt": {
-      "attempt_id": "2026-11-27T04:16:34.798218+00:00|H083",
-      "attempted_at_utc": "2026-11-27T04:16:34.798218+00:00",
+      "attempt_id": "2026-11-28T03:55:14.264626+00:00|H083",
+      "attempted_at_utc": "2026-11-28T03:55:14.264626+00:00",
       "counts_as_forward_month": false,
-      "reason": "NYSE_CLOSED",
-      "session": "2026-11-26",
-      "state": "SKIPPED"
+      "reason": "AFTER_NYSE_CLOSE",
+      "session": "2026-11-27",
+      "state": "COMPLETED_RESEARCH"
     },
     "last_verified_forward_report": {
       "approved_paper_rules": [],
       "cohorts_frozen_this_run": 0,
       "data_coverage_ok": true,
       "forward_months_closed": 0,
-      "generated_utc": "2026-11-26T04:10:59.560950+00:00",
-      "last_complete_nyse_session": "2026-11-25"
+      "generated_utc": "2026-11-28T03:55:14.264626+00:00",
+      "last_complete_nyse_session": "2026-11-27"
     },
     "published_forward_report": {
       "approved_paper_rules": [],
       "cohorts_frozen_this_run": 0,
       "data_coverage_ok": true,
       "forward_months_closed": 0,
-      "generated_utc": "2026-11-26T04:10:59.560950+00:00",
-      "last_complete_nyse_session": "2026-11-25"
+      "generated_utc": "2026-11-28T03:55:14.264626+00:00",
+      "last_complete_nyse_session": "2026-11-27"
     },
     "research_tracks": [
       "monthly_low_beta",
       "monthly_vol_squeeze"
     ],
-    "skipped_session_streak_since_h122_start": 1
+    "skipped_session_streak_since_h122_start": 0
   },
   "known_limitations": [
     "Green H083 Actions run may safely skip on after-close NYSE time guard",
@@ -97,12 +116,12 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "cd8afafeb95a9762f05d0888f0e436935e91ad21",
+  "source_commit_sha": "32ab8078033ae7402cfa47b11add5c3ffb1baa42",
   "source_hashes": {
     "economic_intelligence_status.json": "1719b4f5a1d90225c6abd896c39859a929a69d099286c4c4e2edb95cd1672f4e",
-    "event_watch_status.json": "35c44c4664a1256410030dab6f9b37d2dc845ad562b59bda4160c1e47c5b2c4d",
-    "h083_forward_status.json": "7ea5977ab1343e4cbf2637cd311e6b4212b267c24ec2930e4a5700feb80c310a",
-    "h083_last_attempt.json": "88d489fa84d8e71959655dad1769f863da54a8540fdd2a14f04653ee1374863f"
+    "event_watch_status.json": "7c6eb3f097794a7feada5d95ef60dbd8066561538525ca9e4815e74e53fd635b",
+    "h083_forward_status.json": "656f10c67519e6726197f8c57a8d671c1641ca7513bea9878c6a28fa849d9dfa",
+    "h083_last_attempt.json": "18ee129274175cc61f30f61829c2758eb6da4ba69b0e3e1debec6e4a69c997e5"
   },
   "source_repo": "evsayar33-oss/federal-incentive-radar",
   "two_strategy_families_never_combined": true,
@@ -117,10 +136,10 @@
     },
     "h083_forward.yml": {
       "conclusion": "success",
-      "created_at": "2026-11-27T04:15:57Z",
+      "created_at": "2026-11-28T03:54:33Z",
       "event": "schedule",
       "head_sha": "7b1c1bb16dea1881578114992cf294c77c0ecc5e",
-      "id": 45938929944,
+      "id": 46105056360,
       "status": "completed"
     }
   }
