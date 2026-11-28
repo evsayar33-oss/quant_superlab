@@ -1,6 +1,6 @@
 {
-  "alerts_pending": 0,
-  "asof_utc": "2026-11-27T13:09:14.678907+00:00",
+  "alerts_pending": 1,
+  "asof_utc": "2026-11-28T02:12:04.699415+00:00",
   "data_branch": "data",
   "data_branch_sha_may_be_replaced": true,
   "economic_relationships": {
@@ -10,23 +10,23 @@
   },
   "event_watch": {
     "candidate_counts_by_rule": {
-      "monthly_low_beta": 5,
-      "monthly_vol_squeeze": 5
+      "monthly_low_beta": 0,
+      "monthly_vol_squeeze": 0
     },
-    "data_coverage_ok": true,
-    "data_coverage_pct": 0.8639,
+    "data_coverage_ok": false,
+    "data_coverage_pct": 0.7755,
     "eligible_tickers": 147,
-    "feature_asof": "2026-11-25",
-    "liquid_tickers": 109,
-    "priced_tickers": 127,
+    "feature_asof": "2026-11-27",
+    "liquid_tickers": 107,
+    "priced_tickers": 114,
     "source_decision": "WATCH_ONLY_NO_TRADE",
-    "source_failure_reason": null,
+    "source_failure_reason": "INSUFFICIENT_PRICE_COVERAGE",
     "source_first_seen_forward_only": 22,
-    "source_report_ok": true,
-    "watch_candidates": 10
+    "source_report_ok": false,
+    "watch_candidates": 0
   },
-  "events_new": 0,
-  "events_total": 4,
+  "events_new": 1,
+  "events_total": 5,
   "executable_broker_pnl": null,
   "five_event_hypotheses": {
     "SPY_relative_alpha": "NOT_EVALUATED",
@@ -97,10 +97,10 @@
   "original_lab_gate": "NOT_RUN",
   "research_only": true,
   "schema": "QS.h122.federal_evidence.v1",
-  "source_commit_sha": "f8a705acfabcb9c82efae21a8215dc8a527eca05",
+  "source_commit_sha": "cd8afafeb95a9762f05d0888f0e436935e91ad21",
   "source_hashes": {
-    "economic_intelligence_status.json": "2647f32f8c08964af765bddd280a60e2e906fd38f86dfe812eaad6e7801f1c98",
-    "event_watch_status.json": "d6b7bce00e95aa3d61d7805625729da442b372164ab95e69b10c2177575a4a52",
+    "economic_intelligence_status.json": "1719b4f5a1d90225c6abd896c39859a929a69d099286c4c4e2edb95cd1672f4e",
+    "event_watch_status.json": "35c44c4664a1256410030dab6f9b37d2dc845ad562b59bda4160c1e47c5b2c4d",
     "h083_forward_status.json": "7ea5977ab1343e4cbf2637cd311e6b4212b267c24ec2930e4a5700feb80c310a",
     "h083_last_attempt.json": "88d489fa84d8e71959655dad1769f863da54a8540fdd2a14f04653ee1374863f"
   },
