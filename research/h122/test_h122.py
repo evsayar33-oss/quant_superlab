@@ -171,7 +171,8 @@ class TestFederalIndependent(unittest.TestCase):
         outage = values()
         outage["event_watch_status.json"].update({
             "ok": False, "data_coverage_ok": False,
-            "data_coverage_pct": 0.726, "candidates": 0,
+            "data_coverage_pct": 0.726, "priced_tickers": 106, "liquid_tickers": 100,
+            "excluded_tickers": 46, "candidates": 0,
             "by_rule": {"monthly_low_beta": 0, "monthly_vol_squeeze": 0},
             "reason": "INSUFFICIENT_PRICE_COVERAGE",
         })
@@ -188,6 +189,31 @@ class TestFederalIndependent(unittest.TestCase):
         outage["event_watch_status.json"]["candidates"] = 1
         with self.assertRaisesRegex(ValueError, "UNSAFE_WATCH_OUTAGE"):
             h.evaluate(SHA, outage, {}, {}, old, NOW)
+
+    def test_source_coverage_ratio_and_healthy_flag_are_checked(self):
+        data=values()
+        data["event_watch_status.json"]["data_coverage_pct"]=.99
+        with self.assertRaisesRegex(ValueError,"PERCENT_NOT_RECONCILED"):
+            h.evaluate(SHA,data,{}, {}, {},NOW)
+        data=values()
+        data["event_watch_status.json"].update(priced_tickers=100,liquid_tickers=95,data_coverage_pct=round(100/146,4))
+        with self.assertRaisesRegex(ValueError,"UNSAFE_HEALTHY_COVERAGE"):
+            h.evaluate(SHA,data,{}, {}, {},NOW)
+
+    def test_complete_benchmark_outage_remains_evidence_not_an_exception(self):
+        data=values()
+        _, old, _=h.evaluate(SHA,data,{}, {}, {},NOW)
+        data["event_watch_status.json"].update(
+            ok=False, reason="MISSING_REQUIRED_BENCHMARK_SESSION", data_coverage_ok=False,
+            data_coverage_pct=0.0, priced_tickers=0, liquid_tickers=0, candidates=0,
+            excluded_tickers=146, by_rule={"monthly_low_beta":0,"monthly_vol_squeeze":0},
+            exclusion_detail_reasons={"MISSING_REQUIRED_BENCHMARK_SESSION":146},
+            price_download={"total_recovered":2,"independent_recovered":2,"recovery_round":3})
+        report, _, events=h.evaluate(SHA,data,{}, {}, old,NOW)
+        self.assertEqual(report["event_watch"]["source_price_recovery"]["total_recovered"],2)
+        self.assertEqual(report["event_watch"]["source_failure_reason"],"MISSING_REQUIRED_BENCHMARK_SESSION")
+        self.assertIn("0/146",events[0]["message"])
+        self.assertEqual(report["original_lab_gate"],"NOT_RUN")
 
     def test_failed_forward_envelope_preserves_last_success_and_deduplicates(self):
         data = values()
