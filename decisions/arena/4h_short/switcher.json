@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-27T13:52:26+00:00",
- "data_end": "2026-11-27 08:00:00",
+ "updated_at": "2026-11-28T00:06:23+00:00",
+ "data_end": "2026-11-27 20:00:00",
  "universe": "crypto_alts",
  "timeframe": "4h",
  "usable": false,
@@ -105,9 +105,9 @@
   "since": "2026-10-20",
   "days": 37,
   "ret": 0.0654,
-  "sharpe": 4.069,
-  "ew_ret": 0.0217,
-  "ew_sharpe": 1.359,
+  "sharpe": 4.042,
+  "ew_ret": 0.0215,
+  "ew_sharpe": 1.341,
   "max_dd": -0.0508
  },
  "regimes": {
@@ -281,7 +281,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-26 08:00:00",
    "share": {
-    "range": 0.689,
+    "range": 0.69,
     "trend_up": 0.044,
     "trend_down": 0.081,
     "volatile": 0.185
@@ -303,7 +303,7 @@
    "now_tr": "Yatay",
    "since": "2026-11-26 08:00:00",
    "share": {
-    "range": 0.687,
+    "range": 0.688,
     "trend_up": 0.06,
     "trend_down": 0.075,
     "volatile": 0.177
@@ -350,7 +350,7 @@
     "range": 0.688,
     "trend_up": 0.06,
     "trend_down": 0.095,
-    "volatile": 0.157
+    "volatile": 0.156
    }
   },
   "MANA/USDT": {
@@ -427,7 +427,7 @@
     "range": 0.711,
     "trend_up": 0.065,
     "trend_down": 0.054,
-    "volatile": 0.171
+    "volatile": 0.17
    }
   },
   "OP/USDT": {
@@ -438,7 +438,7 @@
     "range": 0.69,
     "trend_up": 0.069,
     "trend_down": 0.088,
-    "volatile": 0.153
+    "volatile": 0.152
    }
   },
   "ARB/USDT": {
@@ -468,10 +468,10 @@
    "now_tr": "Volatil",
    "since": "2026-11-23 20:00:00",
    "share": {
-    "range": 0.702,
+    "range": 0.701,
     "trend_up": 0.049,
     "trend_down": 0.073,
-    "volatile": 0.176
+    "volatile": 0.177
    }
   },
   "PYTH/USDT": {
@@ -493,7 +493,7 @@
     "range": 0.73,
     "trend_up": 0.035,
     "trend_down": 0.076,
-    "volatile": 0.159
+    "volatile": 0.158
    }
   }
  }
